@@ -43,20 +43,21 @@ export default function samplingOptionsTest() {
     /**
      * @tc.number    : samplingOptions_test_constructor
      * @tc.name      : samplingOptions_test_constructor
-     * @tc.desc      : SamplingOptions的构造函数。
+     * @tc.desc      : Constructor for SamplingOptions.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('samplingOptions_test_constructor', DEFAULT, () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-
+      const msg = 'samplingOptions_test_constructor';
       try {
         let samplingOptions = new drawing.SamplingOptions();
-        // 判断是否可以正常生成SamplingOptions的实例
+        console.info(msg + 'constructor successed');
+        // Determine if an instance of SamplingOptions can be generated properly
         expect(samplingOptions instanceof drawing.SamplingOptions).assertTrue();
-      } catch (err) {
+      } catch (e) {
+        console.info(msg + `constructor errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })

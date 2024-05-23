@@ -49,16 +49,19 @@ export default function pathEffectTest() {
     /**
      * @tc.number    : pathEffect_test_createDashPathEffect
      * @tc.name      : pathEffect_test_createDashPathEffect
-     * @tc.desc      : 用于创建将路径变为虚线的路径效果对象。
+     * @tc.desc      : Used to create path effect objects that turn paths into dashed lines.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pathEffect_test_createDashPathEffect', DEFAULT, () => {
+      const msg = 'pathEffect_test_createDashPathEffect';
       try {
         let intervals = [10, 5];
         drawing.PathEffect.createDashPathEffect(intervals, 5);
+        console.info(msg + 'createDashPathEffect successed');
       } catch (e) {
+        console.info(msg + `createDashPathEffect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -66,17 +69,19 @@ export default function pathEffectTest() {
     /**
      * @tc.number    : pathEffect_test_createDashPathEffect_param_invalid
      * @tc.name      : pathEffect_test_createDashPathEffect_param_invalid
-     * @tc.desc      : 用于创建将路径变为虚线的路径效果对象。（参数非法）
+     * @tc.desc      : Used to create path effect objects that turn paths into dashed lines. (Parameters illegal)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it("pathEffect_test_createDashPathEffect_param_invalid", DEFAULT, () => {
+      const msg = 'pathEffect_test_createDashPathEffect_param_invalid';
       try {
-        // 异常参数
         let intervals = [];
         drawing.PathEffect.createDashPathEffect(intervals, 5);
+        console.info(msg + 'createDashPathEffect successed');
       } catch (e) {
+        console.info(msg + `createDashPathEffect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })
@@ -84,17 +89,19 @@ export default function pathEffectTest() {
     /**
      * @tc.number    : pathEffect_test_createDashPathEffect_param_null
      * @tc.name      : pathEffect_test_createDashPathEffect_param_null
-     * @tc.desc      : 用于创建将路径变为虚线的路径效果对象。（参数为空）
+     * @tc.desc      : Used to create path effect objects that turn paths into dashed lines. (Parameter is empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it("pathEffect_test_createDashPathEffect_param_null", DEFAULT, () => {
+      const msg = 'pathEffect_test_createDashPathEffect_param_null';
       try {
-        // 必填参数是null
         let intervals = [10, 5];
         drawing.PathEffect.createDashPathEffect(intervals, null);
+        console.info(msg + 'createDashPathEffect successed');
       } catch (e) {
+        console.info(msg + `createDashPathEffect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })

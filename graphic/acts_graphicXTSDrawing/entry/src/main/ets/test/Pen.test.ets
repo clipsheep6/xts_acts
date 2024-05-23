@@ -49,15 +49,18 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_constructor
      * @tc.name      : pen_test_constructor
-     * @tc.desc      : Pen的构造函数
+     * @tc.desc      : Pen's constructor
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_constructor', DEFAULT, () => {
+      const msg = 'pen_test_constructor';
       try {
         const pen = new drawing.Pen();
+        console.info(msg + 'constructor successed');
       } catch (e) {
+        console.info(msg + `constructor errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -65,17 +68,20 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_setMaskFilter
      * @tc.name      : pen_test_setMaskFilter
-     * @tc.desc      : 用于给画笔添加额外的蒙版滤镜。
+     * @tc.desc      : Used to add an additional masking filter to the brush.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_setMaskFilter', DEFAULT, () => {
+      const msg = 'pen_test_setMaskFilter';
       try {
         const pen = new drawing.Pen();
         let maskFilter = drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.OUTER, 10);
         pen.setMaskFilter(maskFilter);
+        console.info(msg + 'setMaskFilter successed');
       } catch (e) {
+        console.info(msg + `setMaskFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -83,16 +89,19 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_setMaskFilter_param_null
      * @tc.name      : pen_test_setMaskFilter_param_null
-     * @tc.desc      : 用于给画笔添加额外的蒙版滤镜。（参数为空）
+     * @tc.desc      : Used to add an additional masking filter to the brush. (Parameters are empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_setMaskFilter_param_null', DEFAULT, () => {
+      const msg = 'pen_test_setMaskFilter_param_null';
       try {
         const pen = new drawing.Pen();
         pen.setMaskFilter(null);
+        console.info(msg + 'setMaskFilter successed');
       } catch (e) {
+        console.info(msg + `setMaskFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })
@@ -100,12 +109,13 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_setPathEffect
      * @tc.name      : pen_test_setPathEffect
-     * @tc.desc      : 设置画笔路径效果。
+     * @tc.desc      : Set the brush path effect.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_setPathEffect', DEFAULT, () => {
+      const msg = 'pen_test_setPathEffect';
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -114,7 +124,9 @@ export default function penTest() {
         });
         let pathEffect = drawing.PathEffect.createDashPathEffect([30, 10], 0);
         pen.setPathEffect(pathEffect);
+        console.info(msg + 'setPathEffect successed');
       } catch (e) {
+        console.info(msg + `setPathEffect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -122,12 +134,13 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_setPathEffect_param_null
      * @tc.name      : pen_test_setPathEffect_param_null
-     * @tc.desc      : 设置画笔路径效果。（参数为空）
+     * @tc.desc      : Set the brush path effect. (Parameters are empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_setPathEffect_param_null', DEFAULT, () => {
+      const msg = 'pen_test_setPathEffect_param_null';
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -135,7 +148,9 @@ export default function penTest() {
           alpha: 255, red: 255, green: 0, blue: 0
         });
         pen.setPathEffect(null);
+        console.info(msg + 'setPathEffect successed');
       } catch (e) {
+        console.info(msg + `setPathEffect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })
@@ -143,12 +158,13 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_setShadowLayer
      * @tc.name      : pen_test_setShadowLayer
-     * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
+     * @tc.desc      : Sets the brush shadow layer effect. Empty means that the shadow layer effect is cleared and is currently only effective on text.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_setShadowLayer', DEFAULT, () => {
+      const msg = 'pen_test_setShadowLayer';
       try {
         const pen = new drawing.Pen();
         let color: common2D.Color = {
@@ -156,7 +172,9 @@ export default function penTest() {
         };
         let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, color);
         pen.setShadowLayer(shadowLayer);
+        console.info(msg + 'setShadowLayer successed');
       } catch (e) {
+        console.info(msg + `setShadowLayer errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -164,16 +182,19 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_setShadowLayer_param_null
      * @tc.name      : pen_test_setShadowLayer_param_null
-     * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。（参数为空）
+     * @tc.desc      : Sets the brush shadow layer effect. Empty means that the shadow layer effect is cleared and is currently only effective on text. (Parameter is empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_setShadowLayer_param_null', DEFAULT, () => {
+      const msg = 'pen_test_setShadowLayer_param_null';
       try {
         const pen = new drawing.Pen();
         pen.setShadowLayer(null);
+        console.info(msg + 'setShadowLayer successed');
       } catch (e) {
+        console.info(msg + `setShadowLayer errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })
@@ -181,12 +202,13 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_setJoinStyle
      * @tc.name      : pen_test_setJoinStyle
-     * @tc.desc      : 用于设置画笔绘制转角的样式。
+     * @tc.desc      : Used to set the style in which the brush draws corners.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_setJoinStyle', DEFAULT, () => {
+      const msg = 'pen_test_setJoinStyle';
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -194,7 +216,9 @@ export default function penTest() {
           alpha: 255, red: 255, green: 0, blue: 0
         });
         pen.setJoinStyle(drawing.JoinStyle.ROUND_JOIN);
+        console.info(msg + 'setJoinStyle successed');
       } catch (e) {
+        console.info(msg + `setJoinStyle errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -202,12 +226,13 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_getJoinStyle
      * @tc.name      : pen_test_getJoinStyle
-     * @tc.desc      : 用于获取画笔绘制转角的样式。
+     * @tc.desc      : Used to get the style of the corner drawn by the brush.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_getJoinStyle', DEFAULT, () => {
+      const msg = 'pen_test_getJoinStyle';
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -217,7 +242,9 @@ export default function penTest() {
         pen.setJoinStyle(drawing.JoinStyle.ROUND_JOIN);
         let joinStyle = pen.getJoinStyle();
         expect(joinStyle).assertEqual(drawing.JoinStyle.ROUND_JOIN)
+        console.info(msg + 'getJoinStyle successed');
       } catch (e) {
+        console.info(msg + `getJoinStyle errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -225,12 +252,13 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_setCapStyle
      * @tc.name      : pen_test_setCapStyle
-     * @tc.desc      : 用于设置线帽样式。
+     * @tc.desc      : Used to set the line cap style.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_setCapStyle', DEFAULT, () => {
+      const msg = 'pen_test_setCapStyle';
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -238,7 +266,9 @@ export default function penTest() {
           alpha: 255, red: 255, green: 0, blue: 0
         });
         pen.setCapStyle(drawing.CapStyle.SQUARE_CAP);
+        console.info(msg + 'setCapStyle successed');
       } catch (e) {
+        console.info(msg + `setCapStyle errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -246,12 +276,13 @@ export default function penTest() {
     /**
      * @tc.number    : pen_test_getCapStyle
      * @tc.name      : pen_test_getCapStyle
-     * @tc.desc      : 用于获取线帽样式。
+     * @tc.desc      : Used to get the line cap style.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('pen_test_getCapStyle', DEFAULT, () => {
+      const msg = 'pen_test_getCapStyle';
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -261,7 +292,9 @@ export default function penTest() {
         pen.setCapStyle(drawing.CapStyle.SQUARE_CAP);
         let capStyle = pen.getCapStyle();
         expect(capStyle).assertEqual(drawing.CapStyle.SQUARE_CAP)
+        console.info(msg + 'getCapStyle successed');
       } catch (e) {
+        console.info(msg + `getCapStyle errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })

@@ -49,18 +49,21 @@ export default function colorFilterTest() {
     /**
      * @tc.number    : colorFilter_test_createBlendModeColorFilter
      * @tc.name      : colorFilter_test_createBlendModeColorFilter
-     * @tc.desc      : 使用指定的颜色和混合模式创建颜色滤波器。
+     * @tc.desc      : Creates a color filter using the specified color and blend mode.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('colorFilter_test_createBlendModeColorFilter', DEFAULT, () => {
+      const msg = 'colorFilter_test_createBlendModeColorFilter';
       try {
         const color: common2D.Color = {
           alpha: 255, red: 255, green: 0, blue: 0
         };
         drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
+        console.info(msg + 'createBlendModeColorFilter successed');
       } catch (e) {
+        console.info(msg + `createBlendModeColorFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -68,33 +71,37 @@ export default function colorFilterTest() {
     /**
      * @tc.number    : colorFilter_test_createBlendModeColorFilter_param_null
      * @tc.name      : colorFilter_test_createBlendModeColorFilter_param_null
-     * @tc.desc      : 使用指定的颜色和混合模式创建颜色滤波器。（参数为空）
+     * @tc.desc      : Creates a color filter using the specified color and blend mode. (Parameter is empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it("colorFilter_test_createBlendModeColorFilter_param_null", DEFAULT, () => {
+      const msg = 'colorFilter_test_createBlendModeColorFilter_param_null';
       try {
-        // 必填参数是null
         drawing.ColorFilter.createBlendModeColorFilter(null, drawing.BlendMode.SRC);
+        console.info(msg + 'createBlendModeColorFilter successed');
       } catch (e) {
+        console.info(msg + `createBlendModeColorFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
 
       try {
-        // 必填参数是null
         const color: common2D.Color = {
           alpha: 255, red: 255, green: 0, blue: 0
         };
         drawing.ColorFilter.createBlendModeColorFilter(color, null);
+        console.info(msg + 'createBlendModeColorFilter successed');
       } catch (e) {
+        console.info(msg + `createBlendModeColorFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
 
       try {
-        // 必填参数是null
         drawing.ColorFilter.createBlendModeColorFilter(null, null);
+        console.info(msg + 'createBlendModeColorFilter successed');
       } catch (e) {
+        console.info(msg + `createBlendModeColorFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })
@@ -102,19 +109,21 @@ export default function colorFilterTest() {
     /**
      * @tc.number    : colorFilter_test_createBlendModeColorFilter_param_invalid
      * @tc.name      : colorFilter_test_createBlendModeColorFilter_param_invalid
-     * @tc.desc      : 使用指定的颜色和混合模式创建颜色滤波器。（参数非法）
+     * @tc.desc      : Creates a color filter using the specified color and blend mode. (Parameters illegal)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it("colorFilter_test_createBlendModeColorFilter_param_invalid", DEFAULT, () => {
+      const msg = 'colorFilter_test_createBlendModeColorFilter_param_invalid';
       try {
-        // 错误类型
         const color: common2D.Color = {
           alpha: 255, red: 255, green: 0, blue: 0
         };
         drawing.ColorFilter.createBlendModeColorFilter(color, -100);
+        console.info(msg + 'createBlendModeColorFilter successed');
       } catch (e) {
+        console.info(msg + `createBlendModeColorFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })

@@ -49,12 +49,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_drawPoint
      * @tc.name      : canvas_test_drawPoint
-     * @tc.desc      : 用于绘制一个点。
+     * @tc.desc      : Used to draw a point.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_drawPoint', DEFAULT, () => {
+      const msg = 'canvas_test_drawPoint';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -65,7 +66,9 @@ export default function canvasTest() {
         canvas.attachPen(pen);
         canvas.drawPoint(10, 10);
         canvas.detachPen();
+        console.info(msg + 'drawPoint successed');
       } catch (e) {
+        console.info(msg + `drawPoint errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -73,12 +76,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_drawPoint_param_null
      * @tc.name      : canvas_test_drawPoint_param_null
-     * @tc.desc      : 用于绘制一个点。(参数为空)
+     * @tc.desc      : Used to draw a point. (Parameters are empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_drawPoint_param_null', DEFAULT, () => {
+      const msg = 'canvas_test_drawPoint_param_null';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -89,7 +93,9 @@ export default function canvasTest() {
         canvas.attachPen(pen);
         canvas.drawPoint(10, null);
         canvas.detachPen();
+        console.info(msg + 'drawPoint successed');
       } catch (e) {
+        console.info(msg + `drawPoint errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -103,7 +109,9 @@ export default function canvasTest() {
         canvas.attachPen(pen);
         canvas.drawPoint(null, 0);
         canvas.detachPen();
+        console.info(msg + 'drawPoint successed');
       } catch (e) {
+        console.info(msg + `drawPoint errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -117,7 +125,9 @@ export default function canvasTest() {
         canvas.attachPen(pen);
         canvas.drawPoint(null, null);
         canvas.detachPen();
+        console.info(msg + 'drawPoint successed');
       } catch (e) {
+        console.info(msg + `drawPoint errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -125,12 +135,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_save
      * @tc.name      : canvas_test_save
-     * @tc.desc      : 用于保存当前画布的状态（画布矩阵）到栈顶。
+     * @tc.desc      : Used to save the current canvas state (canvas matrix) to the top of the stack.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_save', DEFAULT, () => {
+      const msg = 'canvas_test_save';
       try {
         const canvas = new drawing.Canvas(pixel);
         let rect: common2D.Rect = {
@@ -138,7 +149,9 @@ export default function canvasTest() {
         };
         canvas.drawRect(rect);
         let saveCount = canvas.save();
+        console.info(msg + 'save successed');
       } catch (e) {
+        console.info(msg + `save errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -146,12 +159,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_save
      * @tc.name      : canvas_test_save
-     * @tc.desc      : 用于恢复保存在栈顶的画布状态（画布矩阵）。
+     * @tc.desc      : Used to restore the canvas state (canvas matrix) saved at the top of the stack.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_restore', DEFAULT, () => {
+      const msg = 'canvas_test_restore';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -162,7 +176,9 @@ export default function canvasTest() {
         canvas.attachPen(pen);
         canvas.restore();
         canvas.detachPen();
+        console.info(msg + 'restore successed');
       } catch (e) {
+        console.info(msg + `restore errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -170,12 +186,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_restoreToCount
      * @tc.name      : canvas_test_restoreToCount
-     * @tc.desc      : 用于恢复到指定数量的画布状态（画布矩阵）。
+     * @tc.desc      : Used to revert to a specified number of canvas states (canvas matrices).
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_restoreToCount', DEFAULT, () => {
+      const msg = 'canvas_test_restoreToCount';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -201,7 +218,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'restoreToCount successed');
       } catch (e) {
+        console.info(msg + `restoreToCount errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -209,12 +228,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_restoreToCount_param_null
      * @tc.name      : canvas_test_restoreToCount_param_null
-     * @tc.desc      : 用于恢复到指定数量的画布状态（画布矩阵）。（参数为空）
+     * @tc.desc      : Used to revert to a specified number of canvas states (canvas matrices). (parameter is empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_restoreToCount_param_null', DEFAULT, () => {
+      const msg = 'canvas_test_restoreToCount_param_null';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -240,7 +260,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'restoreToCount successed');
       } catch (e) {
+        console.info(msg + `restoreToCount errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -248,12 +270,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_getSaveCount
      * @tc.name      : canvas_test_getSaveCount
-     * @tc.desc      : 用于获取栈中保存的画布状态（画布矩阵）的数量。
+     * @tc.desc      : Used to get the number of canvas states (canvas matrix) saved in the stack.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_getSaveCount', DEFAULT, () => {
+      const msg = 'canvas_test_getSaveCount';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -271,7 +294,9 @@ export default function canvasTest() {
         });
         canvas.getSaveCount();
         canvas.detachPen();
+        console.info(msg + 'getSaveCount successed');
       } catch (e) {
+        console.info(msg + `getSaveCount errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -279,12 +304,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_scale
      * @tc.name      : canvas_test_scale
-     * @tc.desc      : 用于画布缩放。
+     * @tc.desc      : Used for canvas scaling.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_scale', DEFAULT, () => {
+      const msg = 'canvas_test_scale';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -298,7 +324,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'scale successed');
       } catch (e) {
+        console.info(msg + `scale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -306,12 +334,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_scale_param_null
      * @tc.name      : canvas_test_scale_param_null
-     * @tc.desc      : 用于画布缩放。（参数为空）
+     * @tc.desc      : Used for canvas scaling. (Parameter is empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_scale_param_null', DEFAULT, () => {
+      const msg = 'canvas_test_scale_param_null';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -325,7 +354,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'scale successed');
       } catch (e) {
+        console.info(msg + `scale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -342,7 +373,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'scale successed');
       } catch (e) {
+        console.info(msg + `scale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -359,7 +392,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'scale successed');
       } catch (e) {
+        console.info(msg + `scale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -367,12 +402,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_skew
      * @tc.name      : canvas_test_skew
-     * @tc.desc      : 用于画布倾斜变换，包括水平轴和垂直轴上的偏移。
+     * @tc.desc      : Used for canvas tilt transformations, including offsets on the horizontal and vertical axes.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_skew', DEFAULT, () => {
+      const msg = 'canvas_test_skew';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -386,7 +422,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'skew successed');
       } catch (e) {
+        console.info(msg + `skew errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -394,12 +432,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_skew_param_null
      * @tc.name      : canvas_test_skew_param_null
-     * @tc.desc      : 用于画布倾斜变换，包括水平轴和垂直轴上的偏移。（参数为空）
+     * @tc.desc      : Used for canvas tilt transformations, including offsets on the horizontal and vertical axes. (Parameter is empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_skew_param_null', DEFAULT, () => {
+      const msg = 'canvas_test_skew_param_null';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -413,7 +452,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'skew successed');
       } catch (e) {
+        console.info(msg + `skew errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -430,7 +471,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'skew successed');
       } catch (e) {
+        console.info(msg + `skew errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -447,7 +490,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'skew successed');
       } catch (e) {
+        console.info(msg + `skew errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -455,12 +500,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_rotate
      * @tc.name      : canvas_test_rotate
-     * @tc.desc      : 用于画布旋转一定的角度。
+     * @tc.desc      : Used to rotate the canvas by a certain angle.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_rotate', DEFAULT, () => {
+      const msg = 'canvas_test_rotate';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -474,7 +520,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'rotate successed');
       } catch (e) {
+        console.info(msg + `rotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -482,12 +530,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_rotate_param_null
      * @tc.name      : canvas_test_rotate_param_null
-     * @tc.desc      : 用于画布旋转一定的角度。（参数为空）
+     * @tc.desc      : Used to rotate the canvas by a certain angle. (Parameter is empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_rotate_param_null', DEFAULT, () => {
+      const msg = 'canvas_test_rotate_param_null';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -501,7 +550,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'rotate successed');
       } catch (e) {
+        console.info(msg + `rotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -509,12 +560,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_translate
      * @tc.name      : canvas_test_translate
-     * @tc.desc      : 用于平移画布一段距离。
+     * @tc.desc      : Used to pan the canvas a distance.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_translate', DEFAULT, () => {
+      const msg = 'canvas_test_translate';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -528,7 +580,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'translate successed');
       } catch (e) {
+        console.info(msg + `translate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -536,12 +590,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_translate
      * @tc.name      : canvas_test_translate
-     * @tc.desc      : 用于平移画布一段距离。（参数为空）
+     * @tc.desc      : Used to pan the canvas a distance. (parameter is empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_translate_param_null', DEFAULT, () => {
+      const msg = 'canvas_test_translate_param_null';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -555,7 +610,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         });
         canvas.detachPen();
+        console.info(msg + 'translate successed');
       } catch (e) {
+        console.info(msg + `translate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -563,12 +620,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_clipPath
      * @tc.name      : canvas_test_clipPath
-     * @tc.desc      : 用于裁剪一个自定义路径。
+     * @tc.desc      : Used to crop a custom path.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_clipPath', DEFAULT, () => {
+      const msg = 'canvas_test_clipPath';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -583,7 +641,9 @@ export default function canvasTest() {
         canvas.attachPen(pen);
         canvas.clipPath(path, drawing.ClipOp.DIFFERENCE, true);
         canvas.detachPen();
+        console.info(msg + 'clipPath successed');
       } catch (e) {
+        console.info(msg + `clipPath errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -591,12 +651,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_clipPath_param_null
      * @tc.name      : canvas_test_clipPath_param_null
-     * @tc.desc      : 用于裁剪一个自定义路径。（参数为空）
+     * @tc.desc      : Used to crop a custom path. (parameter is empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_clipPath_param_null', DEFAULT, () => {
+      const msg = 'canvas_test_clipPath_param_null';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -611,7 +672,9 @@ export default function canvasTest() {
         canvas.attachPen(pen);
         canvas.clipPath(null, drawing.ClipOp.DIFFERENCE, true);
         canvas.detachPen();
+        console.info(msg + 'clipPath successed');
       } catch (e) {
+        console.info(msg + `clipPath errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -619,12 +682,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_clipPath_param_invalid
      * @tc.name      : canvas_test_clipPath_param_invalid
-     * @tc.desc      : 用于裁剪一个自定义路径。（参数非法）
+     * @tc.desc      : Used to crop a custom path. (Illegal parameter)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_clipPath_param_invalid', DEFAULT, () => {
+      const msg = 'canvas_test_clipPath_param_invalid';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -639,7 +703,9 @@ export default function canvasTest() {
         canvas.attachPen(pen);
         canvas.clipPath(path, 9999, true);
         canvas.detachPen();
+        console.info(msg + 'clipPath successed');
       } catch (e) {
+        console.info(msg + `clipPath errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -647,12 +713,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_clipRect
      * @tc.name      : canvas_test_clipRect
-     * @tc.desc      : 用于裁剪一个矩形。
+     * @tc.desc      : Used to crop a rectangle.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_clipRect', DEFAULT, () => {
+      const msg = 'canvas_test_clipRect';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -665,7 +732,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         }, drawing.ClipOp.DIFFERENCE, true);
         canvas.detachPen();
+        console.info(msg + 'clipRect successed');
       } catch (e) {
+        console.info(msg + `clipRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -673,12 +742,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_clipRect_param_null
      * @tc.name      : canvas_test_clipRect_param_null
-     * @tc.desc      : 用于裁剪一个矩形。（参数为空）
+     * @tc.desc      : Used to crop a rectangle. (Parameters are empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_clipRect_param_null', DEFAULT, () => {
+      const msg = 'canvas_test_clipRect_param_null';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -689,7 +759,9 @@ export default function canvasTest() {
         canvas.attachPen(pen);
         canvas.clipRect(null, drawing.ClipOp.DIFFERENCE, true);
         canvas.detachPen();
+        console.info(msg + 'clipRect successed');
       } catch (e) {
+        console.info(msg + `clipRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -697,12 +769,13 @@ export default function canvasTest() {
     /**
      * @tc.number    : canvas_test_clipRect_param_invalid
      * @tc.name      : canvas_test_clipRect_param_invalid
-     * @tc.desc      : 用于裁剪一个矩形。（参数非法）
+     * @tc.desc      : Used to crop a rectangle. (Parameters illegal)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('canvas_test_clipRect_param_invalid', DEFAULT, () => {
+      const msg = 'canvas_test_clipRect_param_null';
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -715,7 +788,9 @@ export default function canvasTest() {
           left: 10, right: 500, top: 300, bottom: 900
         }, 9999, true);
         canvas.detachPen();
+        console.info(msg + 'clipRect successed');
       } catch (e) {
+        console.info(msg + `clipRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })

@@ -49,18 +49,21 @@ export default function shadowLayerTest() {
     /**
      * @tc.number    : shadowLayer_test_create
      * @tc.name      : shadowLayer_test_create
-     * @tc.desc      : 用于创建一个阴影层对象。
+     * @tc.desc      : Used to create a shadow layer object.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('shadowLayer_test_create', DEFAULT, () => {
+      const msg = 'shadowLayer_test_create';
       try {
         let color: common2D.Color = {
           alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00
         };
         drawing.ShadowLayer.create(3, -3, 3, color);
+        console.info(msg + 'create successed');
       } catch (e) {
+        console.info(msg + `create errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -68,19 +71,21 @@ export default function shadowLayerTest() {
     /**
      * @tc.number    : shadowLayer_test_create_param_null
      * @tc.name      : shadowLayer_test_create_param_null
-     * @tc.desc      : 用于创建一个阴影层对象。（参数是空）
+     * @tc.desc      : Used to create a shadow layer object. (parameter is empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('shadowLayer_test_create_param_null', DEFAULT, () => {
+      const msg = 'shadowLayer_test_create_param_null';
       try {
-        // 必填参数是null
         let color: common2D.Color = {
           alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00
         };
         drawing.ShadowLayer.create(null, -3, 3, color);
+        console.info(msg + 'create successed');
       } catch (e) {
+        console.info(msg + `create errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })
@@ -88,17 +93,19 @@ export default function shadowLayerTest() {
     /**
      * @tc.number    : shadowLayer_test_create_param_invalid
      * @tc.name      : shadowLayer_test_create_param_invalid
-     * @tc.desc      : 用于创建一个阴影层对象。（参数非法）
+     * @tc.desc      : Used to create a shadow layer object. (Illegal parameter)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it("shadowLayer_test_create_param_invalid", DEFAULT, () => {
+      const msg = 'shadowLayer_test_create_param_invalid';
       try {
-        // 参数类型不对
         let color: Record<string, string> = {};
         drawing.ShadowLayer.create(null, -3, 3, color as ESObject);
+        console.info(msg + 'create successed');
       } catch (e) {
+        console.info(msg + `create errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })

@@ -49,17 +49,20 @@ export default function brushTest() {
     /**
      * @tc.number    : brush_test_setMaskFilter
      * @tc.name      : brush_test_setMaskFilter
-     * @tc.desc      : 用于给画刷添加额外的蒙版滤镜。
+     * @tc.desc      : Used to add additional masking filters to brushes.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('brush_test_setMaskFilter', DEFAULT, () => {
+      const msg = 'brush_test_setMaskFilter';
       try {
         const brush = new drawing.Brush();
         let maskFilter = drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.OUTER, 10);
         brush.setMaskFilter(maskFilter);
+        console.info(msg + 'setMaskFilter successed');
       } catch (e) {
+        console.info(msg + `setMaskFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -67,16 +70,19 @@ export default function brushTest() {
     /**
      * @tc.number    : brush_test_setMaskFilter_param_null
      * @tc.name      : brush_test_setMaskFilter_param_null
-     * @tc.desc      : 用于给画刷添加额外的蒙版滤镜(参数为空)。
+     * @tc.desc      : Used to add an additional masking filter to the brush (parameter is empty).
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('brush_test_setMaskFilter_param_null', DEFAULT, () => {
+      const msg = 'brush_test_setMaskFilter_param_null';
       try {
         const brush = new drawing.Brush();
         brush.setMaskFilter(null);
+        console.info(msg + 'setMaskFilter successed');
       } catch (e) {
+        console.info(msg + `setMaskFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })
@@ -84,12 +90,13 @@ export default function brushTest() {
     /**
      * @tc.number    : brush_test_setShadowLayer
      * @tc.name      : brush_test_setShadowLayer
-     * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
+     * @tc.desc      : Sets the brush shadow layer effect. Empty means that the shadow layer effect is cleared and is currently only effective on text.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('brush_test_setShadowLayer', DEFAULT, () => {
+      const msg = 'brush_test_setShadowLayer';
       try {
         let color: common2D.Color = {
           alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00
@@ -97,7 +104,9 @@ export default function brushTest() {
         let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, color);
         const brush = new drawing.Brush();
         brush.setShadowLayer(shadowLayer);
+        console.info(msg + 'setShadowLayer successed');
       } catch (e) {
+        console.info(msg + `setShadowLayer errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail();
       }
     })
@@ -106,16 +115,19 @@ export default function brushTest() {
     /**
      * @tc.number    : brush_test_setShadowLayer_param_null
      * @tc.name      : brush_test_setShadowLayer_param_null
-     * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效(参数为空)。
+     * @tc.desc      : Sets the brush shadow layer effect. Empty means clear the shadow layer effect, which currently only works on text (parameter is empty).
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('brush_test_setShadowLayer_param_null', DEFAULT, () => {
+      const msg = 'brush_test_setShadowLayer_param_null';
       try {
         const brush = new drawing.Brush();
         brush.setShadowLayer(null);
+        console.info(msg + 'setShadowLayer successed');
       } catch (e) {
+        console.info(msg + `setShadowLayer errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })

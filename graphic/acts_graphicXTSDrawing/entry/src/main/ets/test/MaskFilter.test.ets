@@ -49,15 +49,18 @@ export default function maskFilterTest() {
     /**
      * @tc.number    : maskFilter_test_createBlurMaskFilter
      * @tc.name      : maskFilter_test_createBlurMaskFilter
-     * @tc.desc      : 用于创建具有模糊效果的蒙版滤镜。
+     * @tc.desc      : Used to create a masking filter with a blurring effect.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it('maskFilter_test_createBlurMaskFilter', DEFAULT, () => {
+      const msg = 'maskFilter_test_createBlurMaskFilter';
       try {
         drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.OUTER, 10);
+        console.info(msg + 'createBlurMaskFilter successed');
       } catch (e) {
+        console.info(msg + `createBlurMaskFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -65,16 +68,18 @@ export default function maskFilterTest() {
     /**
      * @tc.number    : maskFilter_test_createBlurMaskFilter_param_null
      * @tc.name      : maskFilter_test_createBlurMaskFilter_param_null
-     * @tc.desc      : 用于创建具有模糊效果的蒙版滤镜。（参数为空）
+     * @tc.desc      : Used to create a masking filter with a blurring effect. (Parameters are empty)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it("maskFilter_test_createBlurMaskFilter_param_null", DEFAULT, () => {
+      const msg = 'maskFilter_test_createBlurMaskFilter_param_null';
       try {
-        // 必填参数是null
         drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.OUTER, null);
+        console.info(msg + 'createBlurMaskFilter successed');
       } catch (e) {
+        console.info(msg + `createBlurMaskFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })
@@ -82,16 +87,18 @@ export default function maskFilterTest() {
     /**
      * @tc.number    : maskFilter_test_createBlurMaskFilter_param_invalid
      * @tc.name      : maskFilter_test_createBlurMaskFilter_param_invalid
-     * @tc.desc      : 用于创建具有模糊效果的蒙版滤镜。（参数非法）
+     * @tc.desc      : Used to create a masking filter with a blurring effect. (Parameters illegal)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
     it("maskFilter_test_createBlurMaskFilter_param_invalid", DEFAULT, () => {
+      const msg = 'maskFilter_test_createBlurMaskFilter_param_invalid';
       try {
-        // 错误类型
         drawing.MaskFilter.createBlurMaskFilter(9999, 10);
+        console.info(msg + 'createBlurMaskFilter successed');
       } catch (e) {
+        console.info(msg + `createBlurMaskFilter errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401)
       }
     })
