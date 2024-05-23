@@ -50,9 +50,9 @@ export default function brushTest() {
      * @tc.number    : SUB_BASIC_WMS_SPECIAL_XTS_GRAPHIC_DRAWING_JS_API_0000
      * @tc.name      : setMaskFilter(maskFilter)
      * @tc.desc      : 用于给画刷添加额外的蒙版滤镜。
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level2
+     * @tc.size      : MEDIUM
+     * @tc.type      : Functional
+     * @tc.level     : Level 2
      */
     it('SUB_BASIC_WMS_SPECIAL_XTS_GRAPHIC_DRAWING_JS_API_0000', DEFAULT, () => {
       try {
@@ -68,9 +68,9 @@ export default function brushTest() {
      * @tc.number    : SUB_BASIC_WMS_SPECIAL_XTS_GRAPHIC_DRAWING_JS_API_0001
      * @tc.name      : setMaskFilter(null)
      * @tc.desc      : 用于给画刷添加额外的蒙版滤镜(参数为空)。
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level2
+     * @tc.size      : MEDIUM
+     * @tc.type      : Functional
+     * @tc.level     : Level 2
      */
     it('brush_test_setMaskFilter_param_null', DEFAULT, () => {
       try {
@@ -85,9 +85,9 @@ export default function brushTest() {
      * @tc.number    : SUB_BASIC_WMS_SPECIAL_XTS_GRAPHIC_DRAWING_JS_API_0010
      * @tc.name      : setShadowLayer(shadowLayer)
      * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level2
+     * @tc.size      : MEDIUM
+     * @tc.type      : Functional
+     * @tc.level     : Level 2
      */
     it('SUB_BASIC_WMS_SPECIAL_XTS_GRAPHIC_DRAWING_JS_API_0010', DEFAULT, () => {
       try {
@@ -107,9 +107,9 @@ export default function brushTest() {
      * @tc.number    : SUB_BASIC_WMS_SPECIAL_XTS_GRAPHIC_DRAWING_JS_API_0011
      * @tc.name      : setShadowLayer(null)
      * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效(参数为空)。
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level2
+     * @tc.size      : MEDIUM
+     * @tc.type      : Functional
+     * @tc.level     : Level 2
      */
     it('SUB_BASIC_WMS_SPECIAL_XTS_GRAPHIC_DRAWING_JS_API_0011', DEFAULT, () => {
       try {
