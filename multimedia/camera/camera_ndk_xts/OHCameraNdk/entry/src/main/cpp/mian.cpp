@@ -24,17 +24,17 @@ static int NUMBER_2 = 2;
 static int NUMBER_3 = 3;
 static int NUMBER_4 = 4;
 
-static void CameraManagerStatusCallback(Camera_Manager *cameraManager, Camera_StatusInfo *status) 
+static void CameraManagerStatusCallback(Camera_Manager *cameraManager, Camera_StatusInfo *status)
 {
     OH_LOG_Print(LOG_APP, LOG_DEBUG, CAMERA_LOG_DOMAIN, CAMERA_LOG_TAG, "状态码回调");
 }
-static CameraManager_Callbacks *GetCameraManagerListener() 
+static CameraManager_Callbacks *GetCameraManagerListener()
 {
     static CameraManager_Callbacks listener = {.onCameraStatus = CameraManagerStatusCallback};
     return &listener;
 }
 
-static napi_value InitCamera(napi_env env, napi_callback_info info) 
+static napi_value InitCamera(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -57,7 +57,7 @@ static napi_value InitCamera(napi_env env, napi_callback_info info)
     return result;
 }
 // 只在测试此接口时使用
-static napi_value CameraGetCameraManager(napi_env env, napi_callback_info info) 
+static napi_value CameraGetCameraManager(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -103,7 +103,7 @@ static napi_value OHCameraManagerRegisterCallback(napi_env env, napi_callback_in
     return result;
 }
 
-static napi_value CameraDeleteCameraManager(napi_env env, napi_callback_info info) 
+static napi_value CameraDeleteCameraManager(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -185,7 +185,7 @@ static napi_value GetSupportedCameraOutputCapability(napi_env env, napi_callback
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCameraManagerCreatePreviewOutput(napi_env env, napi_callback_info info) 
+static napi_value OHCameraManagerCreatePreviewOutput(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -201,7 +201,7 @@ static napi_value OHCameraManagerCreatePreviewOutput(napi_env env, napi_callback
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCameraManagerCreateCameraInput(napi_env env, napi_callback_info info) 
+static napi_value OHCameraManagerCreateCameraInput(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -229,7 +229,7 @@ static Camera_Position GetPosition(int position)
     }
 }
 
-static Camera_Type GetType(int type) 
+static Camera_Type GetType(int type)
 {
     switch (type) {
     case NUMBER_1:
@@ -244,7 +244,7 @@ static Camera_Type GetType(int type)
         return Camera_Type::CAMERA_TYPE_DEFAULT;
     }
 }
-static napi_value OHCreateCameraInputWithPositionAndType(napi_env env, napi_callback_info info) 
+static napi_value OHCreateCameraInputWithPositionAndType(napi_env env, napi_callback_info info)
 {
     size_t argc = 3;
     napi_value args[3] = {nullptr};
@@ -267,7 +267,7 @@ static napi_value OHCreateCameraInputWithPositionAndType(napi_env env, napi_call
     napi_create_int32(env, ret, &result);
     return result;
 }
-static napi_value OHCameraManagerCreateCaptureSession(napi_env env, napi_callback_info info) 
+static napi_value OHCameraManagerCreateCaptureSession(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -299,7 +299,7 @@ static napi_value CameraManagerDeleteSupportedCameraOutputCapability(napi_env en
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value PreviewOutputRegisterCallback(napi_env env, napi_callback_info info) 
+static napi_value PreviewOutputRegisterCallback(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -315,7 +315,7 @@ static napi_value PreviewOutputRegisterCallback(napi_env env, napi_callback_info
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCameraManagerCreatePhotoOutput(napi_env env, napi_callback_info info) 
+static napi_value OHCameraManagerCreatePhotoOutput(napi_env env, napi_callback_info info)
 {
     napi_value result;
 
@@ -369,7 +369,7 @@ static napi_value OHCameraInputOpen(napi_env env, napi_callback_info info)
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCameraInputClose(napi_env env, napi_callback_info info) 
+static napi_value OHCameraInputClose(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -465,7 +465,7 @@ static napi_value OHCaptureSessionCommitConfig(napi_env env, napi_callback_info 
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionStart(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionStart(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -481,7 +481,7 @@ static napi_value OHCaptureSessionStart(napi_env env, napi_callback_info info)
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionStop(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionStop(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -529,7 +529,7 @@ static napi_value OHCaptureSessionRegisterCallback(napi_env env, napi_callback_i
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionUnregisterCallback(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionUnregisterCallback(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -561,7 +561,7 @@ static napi_value OHCaptureSessionGetExposureBias(napi_env env, napi_callback_in
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionAddInput(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionAddInput(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -641,7 +641,7 @@ static napi_value OHCaptureSessionGetExposureBiasRange(napi_env env, napi_callba
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCameraManagerIsCameraMuted(napi_env env, napi_callback_info info) 
+static napi_value OHCameraManagerIsCameraMuted(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -673,7 +673,7 @@ static napi_value OHCaptureSessionGetExposureMode(napi_env env, napi_callback_in
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionIsExposureModeSupported(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionIsExposureModeSupported(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -691,7 +691,7 @@ static napi_value OHCaptureSessionIsExposureModeSupported(napi_env env, napi_cal
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionSetExposureMode(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionSetExposureMode(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -709,7 +709,7 @@ static napi_value OHCaptureSessionSetExposureMode(napi_env env, napi_callback_in
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionSetExposureBias(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionSetExposureBias(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -745,7 +745,7 @@ static napi_value OHCaptureSessionIsFlashModeSupported(napi_env env, napi_callba
     napi_create_int32(env, ret, &result);
     return result;
 }
-static napi_value OHCaptureSessionHasFlash(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionHasFlash(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -761,7 +761,7 @@ static napi_value OHCaptureSessionHasFlash(napi_env env, napi_callback_info info
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionSetFlashMode(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionSetFlashMode(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -779,7 +779,7 @@ static napi_value OHCaptureSessionSetFlashMode(napi_env env, napi_callback_info 
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionGetFlashMode(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionGetFlashMode(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -813,7 +813,7 @@ static napi_value OHCaptureSessionIsFocusModeSupported(napi_env env, napi_callba
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionGetFocusMode(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionGetFocusMode(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -845,7 +845,7 @@ static napi_value OHCaptureSessionGetFocusPoint(napi_env env, napi_callback_info
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionSetFocusPoint(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionSetFocusPoint(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -885,7 +885,7 @@ static napi_value OHCaptureSessionGetMeteringPoint(napi_env env, napi_callback_i
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionGetZoomRatio(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionGetZoomRatio(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -901,7 +901,7 @@ static napi_value OHCaptureSessionGetZoomRatio(napi_env env, napi_callback_info 
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionGetZoomRatioRange(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionGetZoomRatioRange(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -917,7 +917,7 @@ static napi_value OHCaptureSessionGetZoomRatioRange(napi_env env, napi_callback_
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionSetZoomRatio(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionSetZoomRatio(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -960,7 +960,7 @@ static napi_value OHCaptureSessionSetMeteringPoint(napi_env env, napi_callback_i
     napi_create_int32(env, ret, &result);
     return result;
 }
-static napi_value OHCaptureSessionIsVideoStabilizationModeSupported(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionIsVideoStabilizationModeSupported(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -994,7 +994,7 @@ static napi_value OHCaptureSessionGetVideoStabilizationMode(napi_env env, napi_c
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionSetVideoStabilizationMode(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionSetVideoStabilizationMode(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -1028,7 +1028,7 @@ static napi_value OHCaptureSessionRemovePreviewOutput(napi_env env, napi_callbac
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionRemovePhotoOutput(napi_env env, napi_callback_info info) 
+static napi_value OHCaptureSessionRemovePhotoOutput(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -1077,7 +1077,7 @@ static napi_value OHCameraManagerCreateVideoOutput(napi_env env, napi_callback_i
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
     
-    Camera_ErrorCode ret = ndkCamera_->CreateVideoOutput(videoId,index);
+    Camera_ErrorCode ret = ndkCamera_->CreateVideoOutput(videoId, index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -1097,7 +1097,7 @@ static napi_value OHVideoOutputRegisterCallback(napi_env env, napi_callback_info
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHVideoOutputUnregisterCallback(napi_env env, napi_callback_info info) 
+static napi_value OHVideoOutputUnregisterCallback(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -1113,7 +1113,7 @@ static napi_value OHVideoOutputUnregisterCallback(napi_env env, napi_callback_in
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHVideoOutputStart(napi_env env, napi_callback_info info) 
+static napi_value OHVideoOutputStart(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -1161,7 +1161,7 @@ static napi_value OHCaptureSessionRemoveVideoOutput(napi_env env, napi_callback_
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHVideoOutputRelease(napi_env env, napi_callback_info info) 
+static napi_value OHVideoOutputRelease(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -1193,7 +1193,7 @@ static napi_value OHCameraManagerUnregisterCallback(napi_env env, napi_callback_
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHPreviewOutputStart(napi_env env, napi_callback_info info) 
+static napi_value OHPreviewOutputStart(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -1209,7 +1209,7 @@ static napi_value OHPreviewOutputStart(napi_env env, napi_callback_info info)
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHPreviewOutputStop(napi_env env, napi_callback_info info) 
+static napi_value OHPreviewOutputStop(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -1273,7 +1273,7 @@ static napi_value OHPhotoOutputUnregisterCallback(napi_env env, napi_callback_in
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHPhotoOutputIsMirrorSupported(napi_env env, napi_callback_info info) 
+static napi_value OHPhotoOutputIsMirrorSupported(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -1289,7 +1289,7 @@ static napi_value OHPhotoOutputIsMirrorSupported(napi_env env, napi_callback_inf
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHPhotoOutputCapture(napi_env env, napi_callback_info info) 
+static napi_value OHPhotoOutputCapture(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -1337,7 +1337,7 @@ static napi_value GetCaptureParam(napi_env env, napi_value captureConfigValue, C
 
     return 0;
 }
-static void SetConfig(Capture_Setting settings, Camera_PhotoCaptureSetting *photoSetting, Camera_Location *location) 
+static void SetConfig(Capture_Setting settings, Camera_PhotoCaptureSetting *photoSetting, Camera_Location *location)
 {
     if (photoSetting == nullptr || location == nullptr) {
         return;
@@ -1350,7 +1350,7 @@ static void SetConfig(Capture_Setting settings, Camera_PhotoCaptureSetting *phot
     location->longitude = settings.longitude;
     photoSetting->location = location;
 }
-static napi_value OHPhotoOutputCaptureWithCaptureSetting(napi_env env, napi_callback_info info) 
+static napi_value OHPhotoOutputCaptureWithCaptureSetting(napi_env env, napi_callback_info info)
 {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
@@ -1369,7 +1369,7 @@ static napi_value OHPhotoOutputCaptureWithCaptureSetting(napi_env env, napi_call
     napi_create_int32(env, ret, &result);
     return result;
 }
-static napi_value OHPhotoOutputRelease(napi_env env, napi_callback_info info) 
+static napi_value OHPhotoOutputRelease(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -1386,7 +1386,7 @@ static napi_value OHPhotoOutputRelease(napi_env env, napi_callback_info info)
     return result;
 }
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) 
+static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         {"initCamera", nullptr, InitCamera, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1423,9 +1423,9 @@ static napi_value Init(napi_env env, napi_value exports)
         {"oHCameraInputRelease", nullptr, OHCameraInputRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCameraInputUnregisterCallback", nullptr, OHCameraInputUnregisterCallback, nullptr, nullptr, nullptr,
          napi_default, nullptr},
-        {"oHCameraInputRegisterCallback", nullptr, OHCameraInputRegisterCallback, nullptr, nullptr, nullptr, 
+        {"oHCameraInputRegisterCallback", nullptr, OHCameraInputRegisterCallback, nullptr, nullptr, nullptr,
         napi_default, nullptr},
-        {"oHCaptureSessionBeginConfig", nullptr, OHCaptureSessionBeginConfig, nullptr, nullptr, nullptr, 
+        {"oHCaptureSessionBeginConfig", nullptr, OHCaptureSessionBeginConfig, nullptr, nullptr, nullptr,
         napi_default, nullptr},
         {"oHCaptureSessionCommitConfig", nullptr, OHCaptureSessionCommitConfig, nullptr, nullptr, nullptr,
          napi_default, nullptr},
@@ -1443,7 +1443,7 @@ static napi_value Init(napi_env env, napi_value exports)
          nullptr},
         {"oHCaptureSessionRemoveInput", nullptr, OHCaptureSessionRemoveInput, nullptr, nullptr, nullptr,
          napi_default, nullptr},
-        {"oHCaptureSessionAddPreviewOutput", nullptr, OHCaptureSessionAddPreviewOutput, nullptr, nullptr, 
+        {"oHCaptureSessionAddPreviewOutput", nullptr, OHCaptureSessionAddPreviewOutput, nullptr, nullptr,
         nullptr, napi_default, nullptr},
         {"oHCaptureSessionAddPhotoOutput", nullptr, OHCaptureSessionAddPhotoOutput, nullptr, nullptr, nullptr,
          napi_default, nullptr},
@@ -1477,17 +1477,17 @@ static napi_value Init(napi_env env, napi_value exports)
          napi_default, nullptr},
         {"oHCaptureSessionGetMeteringPoint", nullptr, OHCaptureSessionGetMeteringPoint, nullptr, nullptr, nullptr,
          napi_default, nullptr},
-        {"oHCaptureSessionGetZoomRatio", nullptr, OHCaptureSessionGetZoomRatio, nullptr, nullptr, nullptr, 
+        {"oHCaptureSessionGetZoomRatio", nullptr, OHCaptureSessionGetZoomRatio, nullptr, nullptr, nullptr,
         napi_default, nullptr},
         {"oHCaptureSessionGetZoomRatioRange", nullptr, OHCaptureSessionGetZoomRatioRange, nullptr, nullptr,
          nullptr, napi_default, nullptr},
         {"oHCaptureSessionSetZoomRatio", nullptr, OHCaptureSessionSetZoomRatio, nullptr, nullptr, nullptr,
          napi_default, nullptr},
-        {"oHCaptureSessionSetMeteringPoint", nullptr, OHCaptureSessionSetMeteringPoint, nullptr, nullptr, 
+        {"oHCaptureSessionSetMeteringPoint", nullptr, OHCaptureSessionSetMeteringPoint, nullptr, nullptr,
         nullptr, napi_default, nullptr},
         {"oHCaptureSessionIsVideoStabilizationModeSupported", nullptr, 
         OHCaptureSessionIsVideoStabilizationModeSupported, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"oHCaptureSessionGetVideoStabilizationMode", nullptr, OHCaptureSessionGetVideoStabilizationMode, 
+        {"oHCaptureSessionGetVideoStabilizationMode", nullptr, OHCaptureSessionGetVideoStabilizationMode,
         nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCaptureSessionSetVideoStabilizationMode", nullptr, OHCaptureSessionSetVideoStabilizationMode,
          nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1513,7 +1513,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"oHPreviewOutputStart", nullptr, OHPreviewOutputStart, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHPreviewOutputStop", nullptr, OHPreviewOutputStop, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHPreviewOutputRelease", nullptr, OHPreviewOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"oHPhotoOutputRegisterCallback", nullptr, OHPhotoOutputRegisterCallback, nullptr, nullptr, nullptr, 
+        {"oHPhotoOutputRegisterCallback", nullptr, OHPhotoOutputRegisterCallback, nullptr, nullptr, nullptr,
         napi_default, nullptr},
         {"oHPhotoOutputUnregisterCallback", nullptr, OHPhotoOutputUnregisterCallback, nullptr, nullptr, nullptr,
          napi_default, nullptr},
