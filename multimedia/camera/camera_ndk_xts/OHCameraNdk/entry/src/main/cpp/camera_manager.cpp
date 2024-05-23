@@ -770,7 +770,7 @@ Camera_ErrorCode NDKCamera::SessionGetZoomRatioRange(int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionSetZoomRatio(float zoom,int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionSetZoomRatio(float zoom, int useCaseCode)
 {
     if (useCaseCode == Parameter_Ok) {
         ret_ = OH_CaptureSession_SetZoomRatio(captureSession_, zoom);
@@ -868,7 +868,7 @@ Camera_ErrorCode NDKCamera::AddVideoOutput(int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId,int useCaseCode)
+Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId, int useCaseCode)
 {
     videoProfile_ = cameraOutputCapability_->videoProfiles[0];
     

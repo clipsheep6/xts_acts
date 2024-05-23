@@ -723,7 +723,7 @@ static napi_value OHCaptureSessionSetExposureBias(napi_env env, napi_callback_in
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
     
-    Camera_ErrorCode ret = ndkCamera_->SessionSetExposureBias(exposureBias,index);
+    Camera_ErrorCode ret = ndkCamera_->SessionSetExposureBias(exposureBias, index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -865,7 +865,7 @@ static napi_value OHCaptureSessionSetFocusPoint(napi_env env, napi_callback_info
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
     
-    Camera_ErrorCode ret = ndkCamera_->SessionSetFocusPoint(x, y,index);
+    Camera_ErrorCode ret = ndkCamera_->SessionSetFocusPoint(x, y, index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -1365,7 +1365,7 @@ static napi_value OHPhotoOutputCaptureWithCaptureSetting(napi_env env, napi_call
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
     napi_value result;
-    Camera_ErrorCode ret = ndkCamera_->TakePictureWithPhotoSettings(photoSetting,index);
+    Camera_ErrorCode ret = ndkCamera_->TakePictureWithPhotoSettings(photoSetting, index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -1399,7 +1399,7 @@ napi_property_descriptor desc1[] = {
         {"oHCameraManagerDeleteSupportedCameras", nullptr, CameraManagerDeleteSupportedCameras, nullptr, nullptr,
          nullptr, napi_default, nullptr},
         {"oHGetSupportedCameraOutputCapability", nullptr, GetSupportedCameraOutputCapability, nullptr, nullptr,
-         nullptr,napi_default, nullptr},
+         nullptr, napi_default, nullptr},
         {"oHCameraManagerCreatePreviewOutput", nullptr, OHCameraManagerCreatePreviewOutput, nullptr, nullptr, nullptr,
          napi_default, nullptr},
         {"oHCameraManagerCreateCameraInput", nullptr, OHCameraManagerCreateCameraInput, nullptr, nullptr, nullptr,
