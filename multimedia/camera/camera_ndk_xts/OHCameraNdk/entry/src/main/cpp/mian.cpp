@@ -1437,7 +1437,7 @@ napi_property_descriptor desc1[] = {
      napi_default, nullptr},
     {"oHCaptureSessionGetExposureBias", nullptr, OHCaptureSessionGetExposureBias, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-}
+};
 napi_property_descriptor desc2[] = {
     {"oHCaptureSessionAddInput", nullptr, OHCaptureSessionAddInput, nullptr, nullptr, nullptr, napi_default,
      nullptr},
@@ -1489,7 +1489,7 @@ napi_property_descriptor desc2[] = {
      OHCaptureSessionIsVideoStabilizationModeSupported, nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHCaptureSessionGetVideoStabilizationMode", nullptr, OHCaptureSessionGetVideoStabilizationMode,
      nullptr, nullptr, nullptr, napi_default, nullptr},
-}
+};
 napi_property_descriptor desc3[] = {
     {"oHCaptureSessionSetVideoStabilizationMode", nullptr, OHCaptureSessionSetVideoStabilizationMode,
      nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1525,11 +1525,11 @@ napi_property_descriptor desc3[] = {
     {"oHPhotoOutputCaptureWithCaptureSetting", nullptr, OHPhotoOutputCaptureWithCaptureSetting, nullptr, nullptr,
      nullptr, napi_default, nullptr},
     {"oHPhotoOutputRelease", nullptr, OHPhotoOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr}
-}
+};
 
-static napi_value Init(napi_env env, napi_value exports) 
+static napi_value Init(napi_env env, napi_value exports)
 {
-    size_t mergedLength = sizeof(desc1) / sizeof(desc1[0]) + 
+    size_t mergedLength = sizeof(desc1) / sizeof(desc1[0]) +
         sizeof(desc2) / sizeof(desc2[0]) + sizeof(desc3) / sizeof(desc3[0]);
     napi_property_descriptor mergedArray[mergedLength];
     for (size_t i = 0; i < sizeof(desc1) / sizeof(desc1[0]); ++i) {
