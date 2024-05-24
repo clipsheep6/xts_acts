@@ -1732,5 +1732,74 @@ export default function audioManagerApi9() {
             await audioManager.setVolume(audio.AudioVolumeType.MEDIA, minVolume)
             done();
         })
+
+        /**
+         *@tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_OFF_VOLUMECHANGE_0100
+         *@tc.name      : OffVolumeChange - off-ERROR-INPUT_NUMDER_PARAMETER
+         *@tc.desc      : OffVolumeChange - off-ERROR-INPUT_NUMDER_PARAMETER
+         *@tc.size      : MEDIUM
+         *@tc.type      : Function
+         *@tc.level     : Level 3
+         */
+         it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_OFF_VOLUMECHANGE_0100', 3, async function (done) {
+            let audioVolumeManager = audioManager.getVolumeManager();
+            try {
+                audioVolumeManager.off(-1, (data) => {
+                    console.info(` off-VolumeChange Success! test fail!`);
+                    expect(false).assertTrue();
+                    done();
+                });
+            } catch (error) {
+                console.error(`off-VolumeChange input parameter type -1: ${error.message}, ${error.code}`);
+                expect(Number(error.code)).assertEqual(401);
+                done();
+            }
+        })
+
+        /**
+         *@tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_OFF_VOLUMECHANGE_0200
+         *@tc.name      : OffVolumeChange - off-ERROR-INPUT_NUMDER_PARAMETER
+         *@tc.desc      : OffVolumeChange - off-ERROR-INPUT_NUMDER_PARAMETER
+         *@tc.size      : MEDIUM
+         *@tc.type      : Function
+         *@tc.level     : Level 3
+         */
+        it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_OFF_VOLUMECHANGE_0200', 3, async function (done) {
+            let audioVolumeManager = audioManager.getVolumeManager();
+            try {
+                audioVolumeManager.off('123', (data) => {
+                    console.info(` off-VolumeChange Success! test fail!`);
+                    expect(false).assertTrue();
+                    done();
+                });
+            } catch (error) {
+                console.error(`off-VolumeChange invalid parameter type '123': ${error.message}, ${error.code}`);
+                expect(Number(error.code)).assertEqual(6800101);
+                done();
+            }
+        })
+
+        /**
+         *@tc.number    : SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_OFF_VOLUMECHANGE_0300
+         *@tc.name      : OffVolumeChange - off-ERROR-INPUT_NUMDER_PARAMETER
+         *@tc.desc      : OffVolumeChange - off-ERROR-INPUT_NUMDER_PARAMETER
+         *@tc.size      : MEDIUM
+         *@tc.type      : Function
+         *@tc.level     : Level 3
+         */
+        it('SUB_MULTIMEDIA_AUDIO_VOLUME_GROUP_MANAGER_OFF_VOLUMECHANGE_0300', 3, async function (done) {
+            let audioVolumeManager = audioManager.getVolumeManager();
+            try {
+                audioVolumeManager.off((data) => {
+                    console.info(` off-VolumeChange Success! test fail!`);
+                    expect(false).assertTrue();
+                    done();
+                });
+            } catch (error) {
+                console.error(`off-VolumeChange no input parameter: ${error.message}, ${error.code}`);
+                expect(Number(error.code)).assertEqual(401);
+                done();
+            }
+        })
     })
 }
