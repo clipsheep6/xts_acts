@@ -17,6 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import featureAbility from "@ohos.ability.featureAbility";
 import commonEvent from '@ohos.commonEvent';
 import Utils from './Utils';
+import { BusinessError } from '@ohos.base';
 
 export default function callTest() {
   let TAG = "";
@@ -26,9 +27,9 @@ export default function callTest() {
     'group_name': 'test1',
     'ringtone_modify_time': 28
   };
-  var dataAssert = "";
-  var subscriber;
-  var subscribeInfo = {
+  let dataAssert = "";
+  let subscriber;
+  let subscribeInfo = {
     events: ["call_event"]
   };
 
@@ -37,7 +38,7 @@ export default function callTest() {
       console.error("commonEvent subscribe failed " + JSON.stringify(err));
     } else {
       console.info("commonEvent subscribe service " + JSON.stringify(data));
-      for (var key in data.parameters) {
+      for (const key of data.parameters) {
         if (data.parameters[key]) {
           dataAssert = data.parameters[key]
           console.info("callTest dataAssert is : " + dataAssert);
@@ -56,14 +57,14 @@ export default function callTest() {
     }
   }
 
-  describe('callTest', function () {
+  describe('callTest', () => {
     /*
      * @tc.number  CallTest_0100
      * @tc.name    The deviceid passed in is null, so the installation free process is implemented
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("CallTest_0100", 0, async function (done) {
+    it("CallTest_0100", 0, async (done: Function) => {
       console.info("------------start CallTest_0100-------------");
       console.info("CallTest_0100 commonEvent.createSubscriber start!!!");
       commonEvent.createSubscriber(subscribeInfo, CreateSubscriberCallBack);
@@ -73,7 +74,7 @@ export default function callTest() {
       dataAbilityHelper.call(URI_TEST, 'insert', '', pacMap).then((data) => {
         console.info(TAG + ' call succeeded, data: ' + JSON.stringify(data));
         details = data;
-      }).catch((error) => {
+      }).catch((error: BusinessError) => {
         console.error(TAG + ' call failed, error: ' + JSON.stringify(error));
       });
       await Utils.sleep(2000);
