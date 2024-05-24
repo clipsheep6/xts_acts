@@ -17,7 +17,7 @@ ohos_js_app_suite("video_player_js_hap") {
   test_hap = true
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "video_player_js_hap"
+  hap_name = "ActsVideoPlayerJsTest"
   part_name = "player_framework"
   subsystem_name = "multimedia"
 }
