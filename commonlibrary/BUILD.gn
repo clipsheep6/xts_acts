@@ -20,6 +20,7 @@ group("commonlibrary") {
       "memory_utils:memory_utils",
       "thirdparty:thirdparty",
       "toolchain:toolchain",
+      "toolchain/fdsan:ActsToolChainFDSANTest",
     ]
     if (target_cpu == "arm64") {
       deps += [ "ark_runtime:ark_runtime" ]
