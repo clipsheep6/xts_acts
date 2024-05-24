@@ -16,15 +16,10 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
-import testNapi from 'libentry.so'
 import web_webview from '@ohos.web.webview'
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    testNapi.registerCustomSchemes()
-    web_webview.WebviewController.initializeWebEngine();
-    testNapi.setSchemeHandler();
   }
 
   onDestroy() {
