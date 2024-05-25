@@ -50,19 +50,16 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           }
         }
 
-        try {
-          let data: cert.CertChainBuildResult = await cert.buildX509CertChain(param);
-          let x509_certChain: cert.X509CertChain = data.certChain;
-          let cert_ChainValidationResult = data.validationResult;
-          expect(x509_certChain.getCertList().length == 2).asertTrue();
-          expect(cert_ChainValidationResult.trustAnchor.CACert?.getNotBeforeTime() == '201212201944Z').assertTrue();
-          expect(cert_ChainValidationResult.trustAnchor.nameConstraints != null).assertTrue();
+        cert.buildX509CertChain(param).then((data) => {
+          expect(data.certChain.getCertList().length == 2).assertTrue();
+          expect(data.validationResult.trustAnchor.CACert?.getNotBeforeTime() == '201212201944Z').assertTrue();
+          expect(data.validationResult.trustAnchor.nameConstraints != null).assertTrue();
           done();
-        } catch (err) {
+        }).catch((err: BusinessError) => {
           console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
-        }
+        });
       } catch (error) {
         console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
