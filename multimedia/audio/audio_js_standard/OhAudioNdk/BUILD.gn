@@ -31,3 +31,45 @@ ohos_js_app_suite("OhAudioNdkTest") {
   part_name = "audio_framework"
   deps = [ ":OhAudio_ndk_main" ]
 }
+
+
+AUDIO_ROOT_DIR = "//foundation/multimedia/audio_framework/"
+
+ohos_moduletest_suite("ActsOhaudioNdkTest") {
+  module_out_path = "acts/ActsOhaudioNdkTest"
+  sources = [ "ActsOhaudioNdkTest.cpp" ]
+
+  include_dirs = [
+    "$AUDIO_ROOT_DIR/interfaces/kits/c/",
+    "$AUDIO_ROOT_DIR/interfaces/kits/c/common/",
+    "$AUDIO_ROOT_DIR/interfaces/kits/c/audio_renderer/",
+    "$AUDIO_ROOT_DIR/interfaces/kits/c/audio_capturer/",
+  ]
+
+  cflags = [
+    "-Werror",
+    "-fno-rtti",
+    "-fno-exceptions",
+    "-Wall",
+    "-fno-common",
+    "-fstack-protector-strong",
+    "-Wshadow",
+    "-FPIC",
+    "-FS",
+    "-O2",
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-Wformat=2",
+    "-Wdate-time",
+    "",
+  ]
+
+  deps = [ "$AUDIO_ROOT_DIR/frameworks/native/ohaudio:ohaudio" ]
+  external_deps = [
+    "c_utils:utils",
+    "hilog:libhilog",
+  ]
+
+  part_name = "audio_framework"
+  subsystem_name = "multimedia"
+}
