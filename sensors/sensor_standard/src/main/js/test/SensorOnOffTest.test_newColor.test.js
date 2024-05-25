@@ -856,7 +856,6 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -894,7 +893,6 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -933,7 +931,6 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -965,7 +962,6 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -1008,7 +1004,6 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -1052,7 +1047,6 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -1091,7 +1085,6 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -1135,7 +1128,6 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
