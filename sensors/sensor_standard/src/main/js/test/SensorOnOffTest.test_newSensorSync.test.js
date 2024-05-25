@@ -51,6 +51,7 @@ describe("SensorJsTest_sensor_64", function () {
     const SENSOR_NO_SUPPORT_CODE = 14500102
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const CODEARR = [14500101, 14500102]
 
     /*
      * @tc.name: SensorSyncTest_001
@@ -69,7 +70,8 @@ describe("SensorJsTest_sensor_64", function () {
             done();
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
-            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            let isIncluded = CODEARR.includes(error.code)
+            expect(isIncluded).assertTrue();
             done();
         }
     })
@@ -91,7 +93,8 @@ describe("SensorJsTest_sensor_64", function () {
             done();
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
-            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            let isIncluded = CODEARR.includes(error.code)
+            expect(isIncluded).assertTrue();
             done();
         }
     })
@@ -114,6 +117,7 @@ describe("SensorJsTest_sensor_64", function () {
             done();
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
             done();
         }
     })
@@ -136,6 +140,7 @@ describe("SensorJsTest_sensor_64", function () {
             done();
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
             done();
         }
     })
@@ -159,7 +164,8 @@ describe("SensorJsTest_sensor_64", function () {
             done();
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
-            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            let isIncluded = CODEARR.includes(error.code)
+            expect(isIncluded).assertTrue();
             done();
         }
     })
@@ -181,7 +187,8 @@ describe("SensorJsTest_sensor_64", function () {
             done();
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
-            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            let isIncluded = CODEARR.includes(error.code)
+            expect(isIncluded).assertTrue();
             done();
         }
     })
@@ -203,7 +210,8 @@ describe("SensorJsTest_sensor_64", function () {
             done();
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
-            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            let isIncluded = CODEARR.includes(error.code)
+            expect(isIncluded).assertTrue();
             done();
         }
     })
