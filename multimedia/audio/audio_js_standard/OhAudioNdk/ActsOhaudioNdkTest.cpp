@@ -21,8 +21,7 @@
 using namespace std::chrono;
 using namespace testing::ext;
 
-namespace OHOS
-{
+namespace OHOS {
     namespace AudioStandard {
 
         static int32_t AudioCapturerOnReadData(OH_AudioCapturer *capturer,
@@ -135,7 +134,7 @@ namespace OHOS
             readCallbackMock.Install([&count, &mutex, &cv](OH_AudioRenderer *renderer, void *userData,
                                                            void *buffer,
                                                            int32_t bufferLen)
-                                     {
+            {
             std::lock_guard lock(mutex);
             cv.notify_one();
             // only execute twice
@@ -197,7 +196,7 @@ namespace OHOS
             readCallbackMock.Install([&count, &mutex, &cv](OH_AudioRenderer *renderer, void *userData,
                                                            void *buffer,
                                                            int32_t bufferLen)
-                                    {
+            {
             std::lock_guard lock(mutex);
             cv.notify_one();
             // only execute twice
@@ -261,7 +260,7 @@ namespace OHOS
             writeCallbackMock.Install([&count, &mutex, &cv](OH_AudioRenderer *renderer, void *userData,
                                                             void *buffer,
                                                             int32_t bufferLen)
-                                      {
+            {
             std::lock_guard lock(mutex);
             cv.notify_one();
             // only execute twice
@@ -357,7 +356,7 @@ namespace OHOS
             writeCallbackMock.Install([&count, &mutex, &cv](OH_AudioRenderer *renderer, void *userData,
                                                             void *buffer,
                                                             int32_t bufferLen)
-                                      {
+            {
             std::lock_guard lock(mutex);
             cv.notify_one();
             // only execute twice
