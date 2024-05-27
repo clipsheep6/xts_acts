@@ -3080,8 +3080,8 @@ static int32_t AudioOnWriteDataSleep(OH_AudioCapturer *capturer, void *userData,
 {
     static int count = 0;
     count++;
-    if(count == 2){
-    sleep(400)
+    if(count == 2) {
+    sleep(400);
     }
     
     return 0;
@@ -3130,7 +3130,7 @@ static napi_value AudioGetUnderFlowTest2(napi_env env, napi_callback_info info)
     OH_AudioRenderer *audioReadrer;
     OH_AudioStreamBuilder_GenerateRenderer(builder, &audioReadrer);
     OH_AudioRenderer_Start(audioReadrer);
-    sleep(600)
+    sleep(600);
     
     OH_AudioStream_Result result = OH_AudioRenderer_Stop(audioReadrer);
     
@@ -3160,7 +3160,7 @@ static napi_value AudioGetUnderFlowTest3(napi_env env, napi_callback_info info)
     OH_AudioRenderer *audioReadrer;
     OH_AudioStreamBuilder_GenerateRenderer(builder, &audioReadrer);
     OH_AudioRenderer_Start(audioReadrer);
-    sleep(600)
+    sleep(600);
     
     OH_AudioStream_Result result = OH_AudioRenderer_Stop(audioReadrer);
     
@@ -3180,8 +3180,8 @@ static int32_t AudioOnReadDataSleep(OH_AudioCapturer *capturer, void *userData, 
 {
     static int count = 0;
     count++;
-    if(count == 2){
-    sleep(400)
+    if(count == 2) {
+    sleep(400);
     }
     
     return 0;
@@ -3231,7 +3231,7 @@ static napi_value AudioGetOverFlowTest2(napi_env env, napi_callback_info info)
     OH_AudioCapturer *audioCapturer;
     OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
     OH_AudioCapturer_Start(audioCapturer);
-    sleep(600)
+    sleep(600);
     
     OH_AudioStream_Result result = OH_AudioCapturer_Stop(audioCapturer);
     
@@ -3261,7 +3261,7 @@ static napi_value AudioGetOverFlowTest3(napi_env env, napi_callback_info info)
     OH_AudioCapturer *audioCapturer;
     OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
     OH_AudioCapturer_Start(audioCapturer);
-    sleep(600)
+    sleep(600);
     
     OH_AudioStream_Result result = OH_AudioCapturer_Stop(audioCapturer);
     
@@ -3276,8 +3276,6 @@ static napi_value AudioGetOverFlowTest3(napi_env env, napi_callback_info info)
     
     return res;
 }
-
-
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
