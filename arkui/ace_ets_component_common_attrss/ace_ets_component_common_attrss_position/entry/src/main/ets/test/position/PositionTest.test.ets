@@ -199,7 +199,7 @@ export default function positionTest() {
       let benchmarkChanged = false;
       if ('TabContent' == data.pageConfig.targetView || 'StepperItem' == data.pageConfig.targetView) {
         let parentComponent: ESObject = JSON.parse(JSON.stringify(getInspectorTree()))
-          .$children[0]
+          .$children[0]  // test
           .$children[0]
           .$children[0];
         parentComponent.$children.forEach((element: ESObject) => {
