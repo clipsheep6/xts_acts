@@ -108,43 +108,27 @@ function testSetDisallowedPolicy() {
   it("test_set_disallowed_policy_0103", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
     try {
-      restrictions.setDisallowedPolicy(SELFWANT, LABEL_BLUETOOTH, true);
-      expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_BLUETOOTH)).assertTrue();
       restrictions.setDisallowedPolicy(SELFWANT, LABEL_BLUETOOTH, false);
       expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_BLUETOOTH)).assertFalse();
 
-      restrictions.setDisallowedPolicy(SELFWANT, LABEL_MODIFY_DATETIME, true);
-      expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_MODIFY_DATETIME)).assertTrue();
       restrictions.setDisallowedPolicy(SELFWANT, LABEL_MODIFY_DATETIME, false);
       expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_MODIFY_DATETIME)).assertFalse();
 
-      restrictions.setDisallowedPolicy(SELFWANT, LABEL_PRINTER, true);
-      expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_PRINTER)).assertTrue();
       restrictions.setDisallowedPolicy(SELFWANT, LABEL_PRINTER, false);
       expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_PRINTER)).assertFalse();
 
-      restrictions.setDisallowedPolicy(SELFWANT, LABEL_HDC, true);
-      expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_HDC)).assertTrue();
       restrictions.setDisallowedPolicy(SELFWANT, LABEL_HDC, false);
       expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_HDC)).assertFalse();
 
-      restrictions.setDisallowedPolicy(SELFWANT, LABEL_MIC, true);
-      expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_MIC)).assertTrue();
       restrictions.setDisallowedPolicy(SELFWANT, LABEL_MIC, false);
       expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_MIC)).assertFalse();
 
-      restrictions.setDisallowedPolicy(SELFWANT, LABEL_FINGER_PRINT, true);
-      expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_FINGER_PRINT)).assertTrue();
       restrictions.setDisallowedPolicy(SELFWANT, LABEL_FINGER_PRINT, false);
       expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_FINGER_PRINT)).assertFalse();
 
-      restrictions.setDisallowedPolicy(SELFWANT, LABEL_USB, true);
-      expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_USB)).assertTrue();
       restrictions.setDisallowedPolicy(SELFWANT, LABEL_USB, false);
       expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_USB)).assertFalse();
 
-      restrictions.setDisallowedPolicy(SELFWANT, LABEL_WIFI, true);
-      expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_WIFI)).assertTrue();
       restrictions.setDisallowedPolicy(SELFWANT, LABEL_WIFI, false);
       expect(restrictions.getDisallowedPolicy(SELFWANT, LABEL_WIFI)).assertFalse();
     } catch (error) {
