@@ -20,7 +20,11 @@ group("hdf") {
       # "device_manager:device_manager_ndk",
       "base:base_ndk",
       "hid:emit_event_test",
+<<<<<<< HEAD:hdf/BUILD.gn
       "usb:usb_ndk",
+=======
+      "usb_ndk:ActsDriversExternalUsbNdkTest",
+>>>>>>> image_effect_ndk:driver/BUILD.gn
     ]
   }
 }

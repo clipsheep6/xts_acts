@@ -783,11 +783,19 @@ static napi_value UsbSendPipeRequestWithAshmemOne(napi_env env, napi_callback_in
     size_t bufferLen = PARAM_10;
     const uint8_t name[100] = "TestAshmem";
     DDK_Ashmem *ashmem = nullptr;
+<<<<<<< HEAD:hdf/usb/usb_ndk/entry/src/main/cpp/usbddk.cpp
     int32_t createAshmemValue = OH_DDK_CreateAshmem(name, bufferLen, &ashmem);
     NAPI_ASSERT(env, createAshmemValue == PARAM_0, "OH_DDK_CreateAshmem failed");
     const uint8_t ashmemMapType = 0x03;
     int32_t mapAshmemValue = OH_DDK_MapAshmem(ashmem, ashmemMapType);
     NAPI_ASSERT(env, mapAshmemValue == PARAM_0, "OH_DDK_MapAshmem failed");
+=======
+    int32_t CreateAshmemValue = OH_DDK_CreateAshmem(name, bufferLen, &ashmem);
+    NAPI_ASSERT(env, CreateAshmemValue == PARAM_0, "OH_DDK_CreateAshmem failed");
+    const uint8_t ashmemMapType = 0x03;
+    int32_t MapAshmemValue = OH_DDK_MapAshmem(ashmem, ashmemMapType);
+    NAPI_ASSERT(env, MapAshmemValue == PARAM_0, "OH_DDK_MapAshmem failed");
+>>>>>>> image_effect_ndk:driver/usb_ndk/entry/src/main/cpp/usbddk.cpp
     struct UsbRequestPipe pipe;
     pipe.interfaceHandle = interfaceHandle;
     pipe.endpoint = endpoint1;
@@ -807,11 +815,19 @@ static napi_value UsbSendPipeRequestWithAshmemTwo(napi_env env, napi_callback_in
     size_t bufferLen = PARAM_10;
     const uint8_t name[100] = "TestAshmem";
     DDK_Ashmem *ashmem = nullptr;
+<<<<<<< HEAD:hdf/usb/usb_ndk/entry/src/main/cpp/usbddk.cpp
     int32_t createAshmemValue = OH_DDK_CreateAshmem(name, bufferLen, &ashmem);
     NAPI_ASSERT(env, createAshmemValue == PARAM_0, "OH_DDK_CreateAshmem failed");
     const uint8_t ashmemMapType = 0x03;
     int32_t mapAshmemValue = OH_DDK_MapAshmem(ashmem, ashmemMapType);
     NAPI_ASSERT(env, mapAshmemValue == PARAM_0, "OH_DDK_MapAshmem failed");
+=======
+    int32_t CreateAshmemValue = OH_DDK_CreateAshmem(name, bufferLen, &ashmem);
+    NAPI_ASSERT(env, CreateAshmemValue == PARAM_0, "OH_DDK_CreateAshmem failed");
+    const uint8_t ashmemMapType = 0x03;
+    int32_t MapAshmemValue = OH_DDK_MapAshmem(ashmem, ashmemMapType);
+    NAPI_ASSERT(env, MapAshmemValue == PARAM_0, "OH_DDK_MapAshmem failed");
+>>>>>>> image_effect_ndk:driver/usb_ndk/entry/src/main/cpp/usbddk.cpp
     int32_t returnValue = OH_Usb_SendPipeRequestWithAshmem(nullptr, ashmem);
     OH_DDK_DestroyAshmem(ashmem);
     napi_value result = nullptr;
@@ -872,11 +888,19 @@ static napi_value UsbSendPipeRequestWithAshmemFour(napi_env env, napi_callback_i
     size_t bufferLen = PARAM_10;
     const uint8_t name[100] = "TestAshmem";
     DDK_Ashmem *ashmem = nullptr;
+<<<<<<< HEAD:hdf/usb/usb_ndk/entry/src/main/cpp/usbddk.cpp
     int32_t createAshmemValue = OH_DDK_CreateAshmem(name, bufferLen, &ashmem);
     NAPI_ASSERT(env, createAshmemValue == PARAM_0, "OH_DDK_CreateAshmem failed");
     const uint8_t ashmemMapType = 0x03;
     int32_t mapAshmemValue = OH_DDK_MapAshmem(ashmem, ashmemMapType);
     NAPI_ASSERT(env, mapAshmemValue == PARAM_0, "OH_DDK_MapAshmem failed");
+=======
+    int32_t CreateAshmemValue = OH_DDK_CreateAshmem(name, bufferLen, &ashmem);
+    NAPI_ASSERT(env, CreateAshmemValue == PARAM_0, "OH_DDK_CreateAshmem failed");
+    const uint8_t ashmemMapType = 0x03;
+    int32_t MapAshmemValue = OH_DDK_MapAshmem(ashmem, ashmemMapType);
+    NAPI_ASSERT(env, MapAshmemValue == PARAM_0, "OH_DDK_MapAshmem failed");
+>>>>>>> image_effect_ndk:driver/usb_ndk/entry/src/main/cpp/usbddk.cpp
     struct UsbRequestPipe pipe;
     pipe.interfaceHandle = interfaceHandle;
     pipe.endpoint = ENDPOINT;

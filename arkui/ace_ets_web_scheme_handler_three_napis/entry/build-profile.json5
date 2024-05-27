@@ -20,6 +20,10 @@
       "path": "./src/main/cpp/CMakeLists.txt",
       "arguments": "",
       "cppFlags": "",
+<<<<<<< HEAD
+=======
+      "abiFilters": ["arm64-v8a", "armeabi-v7a", "x86_64"],
+>>>>>>> image_effect_ndk
     }
   },
   "targets": [

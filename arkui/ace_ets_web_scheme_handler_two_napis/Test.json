@@ -5,8 +5,12 @@
     "test-timeout": "600000",
     "shell-timeout": "600000",
     "bundle-name": "com.example.ace_ets_web_scheme_handler_two_napis",
+<<<<<<< HEAD
     "module-name": "entry_test",
     "testcase-timeout": "300000"
+=======
+    "module-name": "entry_test"
+>>>>>>> image_effect_ndk
   },
   "kits": [
     {
@@ -24,4 +28,8 @@
       ]
     }
   ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> image_effect_ndk
