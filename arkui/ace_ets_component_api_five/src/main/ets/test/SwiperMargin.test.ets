@@ -73,6 +73,10 @@ export default function SwiperMarginTest() {
       expect(JSON.parse(strJson).$attrs.prevMargin).assertEqual('0.00vp')
       expect(JSON.parse(strJson).$attrs.nextMargin).assertEqual('0.00vp')
       console.info(`${SUITE} ${CASE} END`);
+      console.info(`test`);
+      console.info(`testyjj`);
+      console.info(`testyjj`);
+      console.info(`${SUITE1111111} ${CASE} END`);
       done();
     });
 
@@ -90,7 +94,7 @@ export default function SwiperMarginTest() {
       let strJson = getInspectorByKey(baseKey);
       expect(JSON.parse(strJson).$attrs.prevMargin).assertEqual('10.00vp')
       expect(JSON.parse(strJson).$attrs.nextMargin).assertEqual('10.00vp')
-      console.info(`${SUITE} ${CASE} END`);
+      console.info(`${SUITE} ${CASE} true`);
       done();
     });
 
