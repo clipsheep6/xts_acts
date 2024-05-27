@@ -15,7 +15,8 @@
 
 import image from "@ohos.multimedia.image";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index";
-import { base64Image, scale2x1, translate3x1, rotate90, flipH, testBmp, testGif, crop3x3, scale1x4, setAlpha8, translate1x3 } from '../../../../../imagePixelMapFramework/src/main/js/test/testImg2.js'
+import { base64Image, scale2x1, translate3x1, rotate90, flipH, testBmp, testGif, crop3x3, scale1x4, setAlpha8, translate1x3 }
+from '../../../../../imagePixelMapFramework/entry/src/ohosTest/js/test/testImg2.js'
 import { testPng ,testJpg} from "./testImg";
 
 export default function addImage() {
