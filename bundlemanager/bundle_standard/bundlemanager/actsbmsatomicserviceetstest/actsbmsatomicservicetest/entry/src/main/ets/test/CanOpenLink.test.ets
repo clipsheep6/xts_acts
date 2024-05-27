@@ -21,14 +21,14 @@ const ERROR_SCHEME_NOT_IN_QUERYSCHEMES = 17700056;
 const ERROR_INVALID_LINK = 17700055;
 
 export default function canOpenLink() {
-  describe('canOpenLink', function() {
+  describe('canOpenLink', () => {
 
     /**
      * @tc.number: SUB_BMS_CANOPENLINK_0010
      * @tc.name: canOpenLinkCanOpen
      * @tc.desc: Test canOpenLink, return true.
      */
-    it('canOpenLinkCanOpen', 0, async function (done) {
+    it('canOpenLinkCanOpen', 0, async (done: Function) => {
       try {
         let data = bundle.canOpenLink("http://");
         expect(data).assertTrue();
@@ -44,7 +44,7 @@ export default function canOpenLink() {
      * @tc.name: canOpenLinkCanNotOpen
      * @tc.desc: Test canOpenLink, return false.
      */
-    it('canOpenLinkCanNotOpen', 0, async function (done) {
+    it('canOpenLinkCanNotOpen', 0, async (done: Function) => {
       try {
         let data = bundle.canOpenLink("welink://");
         expect(data).assertFalse();
@@ -60,7 +60,7 @@ export default function canOpenLink() {
      * @tc.name: canOpenLinkNotInQuerySchemes
      * @tc.desc: The scheme of the specified link is not in the querySchemes.
      */
-    it('canOpenLinkNotInQuerySchemes', 0, async function (done) {
+    it('canOpenLinkNotInQuerySchemes', 0, async (done: Function) => {
       try {
         let data = bundle.canOpenLink("https://");
         expect(data).assertFail();
@@ -76,7 +76,7 @@ export default function canOpenLink() {
      * @tc.name: canOpenLinkInvalidLink
      * @tc.desc: The specified link is invalid.
      */
-    it('canOpenLinkInvalidLink', 0, async function (done) {
+    it('canOpenLinkInvalidLink', 0, async (done: Function) => {
       try {
         let data = bundle.canOpenLink("http:/");
         expect(data).assertFail();
@@ -92,7 +92,7 @@ export default function canOpenLink() {
      * @tc.name: canOpenLinkNullType
      * @tc.desc: The parameter type is incorrect.
      */
-    it('canOpenLinkNullType', 0, async function (done) {
+    it('canOpenLinkNullType', 0, async (done: Function) => {
       try {
         let data = bundle.canOpenLink(null);
         expect(data).assertFail();
@@ -108,13 +108,109 @@ export default function canOpenLink() {
      * @tc.name: canOpenLinkUndefinedType
      * @tc.desc: The parameter type is incorrect.
      */
-    it('canOpenLinkUndefinedType', 0, async function (done) {
+    it('canOpenLinkUndefinedType', 0, async (done: Function) => {
       try {
         let data = bundle.canOpenLink(undefined);
         expect(data).assertFail();
         done();
       } catch (err) {
         expect(err.code).assertEqual(PARAM_ERROR_CODE);
+        done();
+      }
+    });
+
+    /**
+     * @tc.number: SUB_BMS_CANOPENLINK_0070
+     * @tc.name: canOpenLinkEmptyParam
+     * @tc.desc: The parameter is incorrect.
+     */
+    it('canOpenLinkEmptyParam', 0, async (done: Function) => {
+      try {
+        let data = bundle.canOpenLink("");
+        expect(data).assertFail();
+        done();
+      } catch (err) {
+        expect(err.code).assertEqual(ERROR_INVALID_LINK);
+        done();
+      }
+    });
+
+    /**
+     * @tc.number: SUB_BMS_CANOPENLINK_0080
+     * @tc.name: canOpenLinkLowercaseParam
+     * @tc.desc: The parameter is lowercase letter when configure is capital letter.
+     */
+    it('canOpenLinkLowercaseParam', 0, async (done: Function) => {
+      try {
+        let data = bundle.canOpenLink("scheme://com.ohos.test");
+        expect(data).assertTrue();
+        done();
+      } catch (err) {
+        expect().assertFail();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number: SUB_BMS_CANOPENLINK_0090
+     * @tc.name: canOpenLinkSchemeMatch
+     * @tc.desc: Test canOpenLink when scheme match.
+     */
+    it('canOpenLinkSchemeMatch', 0, async (done: Function) => {
+      try {
+        let data = bundle.canOpenLink("matchscheme1://com.ohos.test");
+        expect(data).assertTrue();
+        done();
+      } catch (err) {
+        expect().assertFail();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number: SUB_BMS_CANOPENLINK_0010
+     * @tc.name: canOpenLinkHostMatch
+     * @tc.desc: Test canOpenLink when host match.
+     */
+    it('canOpenLinkHostMatch', 0, async (done: Function) => {
+      try {
+        let data = bundle.canOpenLink("matchscheme2://com.ohos.test:8080");
+        expect(data).assertTrue();
+        done();
+      } catch (err) {
+        expect().assertFail();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number: SUB_BMS_CANOPENLINK_0011
+     * @tc.name: canOpenLinkPortMatch
+     * @tc.desc: Test canOpenLink when port match.
+     */
+    it('canOpenLinkPortMatch', 0, async (done: Function) => {
+      try {
+        let data = bundle.canOpenLink("Matchscheme3://com.ohos.test:8080/hello");
+        expect(data).assertTrue();
+        done();
+      } catch (err) {
+        expect().assertFail();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number: SUB_BMS_CANOPENLINK_0012
+     * @tc.name: canOpenLinkHostNotMatch
+     * @tc.desc: Test canOpenLink when host not match.
+     */
+    it('canOpenLinkHostNotMatch', 0, async (done: Function) => {
+      try {
+        let data = bundle.canOpenLink("Matchscheme3://host.ohos.test:8080");
+        expect(data).assertFalse();
+        done();
+      } catch (err) {
+        expect().assertFail();
         done();
       }
     });

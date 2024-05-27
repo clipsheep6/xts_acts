@@ -156,10 +156,15 @@ export default function SearchJsunit() {
       await CommonFunc.sleep(1000);
       console.info("[SearchJsunit_0300] first longClick succ ");
       let textComponent3 = await driver.findComponent(BY.text('全选'));
-      await textComponent3.click()
+      if ( textComponent3 != null ) {
+        await textComponent3.click()
+      }
       let textComponent4 = await driver.findComponent(BY.text('复制'));
+      if ( textComponent4 == null ) {
+        console.info("[SearchJsunit_0300] after longClick can not find component 复制");
+      }
       await textComponent4.click()
-      await CommonFunc.sleep(1000);
+      await CommonFunc.sleep(3000);
       console.info("[SearchJsunit_0300] click copy succ ");
       let strJson3 = getInspectorByKey('copy');
       let obj3 = JSON.parse(strJson3);
@@ -172,10 +177,15 @@ export default function SearchJsunit() {
       await CommonFunc.sleep(1000);
       console.info("[SearchJsunit_0300] secand longClick succ ");
       let textComponent5 = await driver.findComponent(BY.text('全选'));
-      await textComponent5.click()
+      if ( textComponent5 != null ) {
+        await textComponent5.click()
+      }
       let textComponent6 = await driver.findComponent(BY.text('剪切'));
+      if ( textComponent6 == null ) {
+        console.info("[SearchJsunit_0300] after longClick can not find component 剪切");
+      }
       await textComponent6.click()
-      await CommonFunc.sleep(1000);
+      await CommonFunc.sleep(3000);
       console.info("[SearchJsunit_0300] click cut succ ");
       let strJson4 = getInspectorByKey('cut');
       let obj4 = JSON.parse(strJson4);
@@ -186,8 +196,11 @@ export default function SearchJsunit() {
       await textComponent1.longClick()
       await CommonFunc.sleep(1000);
       let textComponent8 = await driver.findComponent(BY.text('粘贴'));
+      if ( textComponent8 == null ) {
+        console.info("[SearchJsunit_0300] after longClick can not find component 粘贴");
+      }
       await textComponent8.click()
-      await CommonFunc.sleep(1000);
+      await CommonFunc.sleep(3000);
       console.info("[SearchJsunit_0300] click paste succ ");
       let strJson5 = getInspectorByKey('paste');
       let obj5 = JSON.parse(strJson5);

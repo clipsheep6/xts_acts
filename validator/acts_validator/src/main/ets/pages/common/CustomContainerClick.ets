@@ -19,27 +19,77 @@ import screenshot from '@ohos.screenshot';
 import image from '@ohos.multimedia.image';
 import Logger from '../model/Logger';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import { Info } from '../ArkUI/InfoObj';
+import { BusinessError } from '@ohos.base';
 
 let path = globalThis.dir;
 
 const TAG = '[Screenshot]';
 
-@Builder function specificNoParam($$?: ABuilderParam) {
+export class RectValue {
+  left: number = 0;
+  top: number = 0;
+  right: number = 0;
+  bottom: number = 0;
+}
+
+export default class RangeFunc {
+  static rect_left: number;
+  static rect_top: number;
+  static rect_right: number;
+  static rect_bottom: number;
+  static rect_value: RectValue;
+
+  static getComponentRect(key: string) {
+    let strJson = getInspectorByKey(key);
+    let obj: Record<string, Object> = JSON.parse(strJson);
+    let rectInfo: Array<string> = JSON.parse('[' + obj.$rect + ']');
+    RangeFunc.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0];
+    RangeFunc.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1];
+    RangeFunc.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0];
+    RangeFunc.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1];
+    RangeFunc.rect_value = {
+      left: RangeFunc.rect_left, top: RangeFunc.rect_top, right: RangeFunc.rect_right, bottom: RangeFunc.rect_bottom
+    };
+    console.info(JSON.stringify(RangeFunc.rect_value));
+    return RangeFunc.rect_value;
+  }
+}
+
+@Builder
+function specificNoParam($$?: ABuilderParam) {
   Column() {
     Scroll() {
       Column() {
+        Button(`不支持外接鼠标`)
+          .borderRadius(8)
+          .backgroundColor(0x317aff)
+          .width('50%')
+          .margin('5vp')
+          .onClick(()=>{
+            this.Vue = true;
+            router.back({
+              url: 'pages/MultimodalInput/MultimodalInput_index',
+              params: { result: 'true ', title: this.name }
+            });
+            promptAction.showToast({
+              message: '当前设备不支持外接鼠标', duration: 1000
+            });
+          })
         Row() {
           Button('1')
             .fontSize(24)
-            .width(100)
-            .height(100)
+            .width('100vp')
+            .height('100vp')
             .backgroundColor($$.paramA1 ? Color.Green : Color.Blue)
+            .key('btn1')
 
           Button('2')
             .fontSize(24)
-            .width(100)
-            .height(100)
+            .width('100vp')
+            .height('100vp')
             .backgroundColor($$.paramA2 ? Color.Green : Color.Blue)
+            .key('btn2')
         }
         .justifyContent(FlexAlign.SpaceEvenly)
         .width('100%')
@@ -48,15 +98,17 @@ const TAG = '[Screenshot]';
         Row() {
           Button('3')
             .fontSize(24)
-            .width(100)
-            .height(100)
+            .width('100vp')
+            .height('100vp')
             .backgroundColor($$.paramA3 ? Color.Green : Color.Blue)
+            .key('btn3')
 
           Button('4')
             .fontSize(24)
-            .width(100)
-            .height(100)
+            .width('100vp')
+            .height('100vp')
             .backgroundColor($$.paramA4 ? Color.Green : Color.Blue)
+            .key('btn4')
         }
         .justifyContent(FlexAlign.SpaceEvenly)
         .width('100%')
@@ -89,17 +141,20 @@ export struct CustomContainerClick {
   @Link btnTwo: boolean;
   @Link btnThree: boolean;
   @Link btnFour: boolean;
+  @Link Vue: boolean;
   Url: string = '';
   title: string = '';
   StepTips: string = '';
-  @Link Vue: boolean;
+
   // @BuilderParam content: ($$: boolean, $$: boolean, $$: boolean, $$: boolean) => void = specificNoParam;
 
   @Builder
   PassBtn(text: Resource, isFullScreen: boolean) {
     if (this.Vue == false) {
       Button({ stateEffect: this.Vue }) {
-        Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
+        Image($r('app.media.ic_public_pass'))
+          .width('20vp')
+          .height('20vp')
       }
       .width('30%')
       .height('30vp')
@@ -111,12 +166,18 @@ export struct CustomContainerClick {
     }
     else {
       Button({ stateEffect: this.Vue }) {
-        Image($r('app.media.ic_public_pass')).width('20vp').height('20vp')
-      }.width('30%').height('30vp').backgroundColor(Color.Grey)
+        Image($r('app.media.ic_public_pass'))
+          .width('20vp')
+          .height('20vp')
+      }
+      .width('30%')
+      .height('30vp')
+      .backgroundColor(Color.Grey)
       .onClick(() => {
         router.back({
           url: this.Url,
-          params: { result: 'true ', title: this.name,
+          params: {
+            result: 'true ', title: this.name,
           }
         })
         this.getScreen(isFullScreen);
@@ -130,12 +191,18 @@ export struct CustomContainerClick {
   @Builder
   FailBtn(text: Resource, isFullScreen: boolean) {
     Button() {
-      Image($r('app.media.ic_public_fail')).width('20vp').height('20vp')
-    }.width('30%').height('30vp').backgroundColor(Color.Grey)
+      Image($r('app.media.ic_public_fail'))
+        .width('20vp')
+        .height('20vp')
+    }
+    .width('30%')
+    .height('30vp')
+    .backgroundColor(Color.Grey)
     .onClick(() => {
       router.back({
         url: this.Url,
-        params: { result: 'false', title: this.name,
+        params: {
+          result: 'false', title: this.name,
         }
       })
       this.getScreen(isFullScreen);
@@ -149,8 +216,13 @@ export struct CustomContainerClick {
     Column() {
       Row() {
         Button() {
-          Image($r('app.media.ic_public_back')).width('20vp').height('18vp').margin({ left: '20vp' })
-        }.backgroundColor(Color.Black).size({ width: '40vp', height: '30vp' })
+          Image($r('app.media.ic_public_back'))
+            .width('20vp')
+            .height('18vp')
+            .margin({ left: '20vp' })
+        }
+        .backgroundColor(Color.Black)
+        .size({ width: '40vp', height: '30vp' })
         .onClick(() => {
           router.back({
             url: this.Url,
@@ -158,9 +230,18 @@ export struct CustomContainerClick {
           })
         })
 
-        Text(this.title).fontColor(Color.White).fontSize('18fp').margin({ left: '-20vp' })
-        Text('hello').fontColor(Color.White).visibility(Visibility.Hidden)
-      }.backgroundColor(Color.Black).height('10%').width('100%').justifyContent(FlexAlign.SpaceBetween)
+        Text(this.title)
+          .fontColor(Color.White)
+          .fontSize('18fp')
+          .margin({ left: '-20vp' })
+        Text('hello')
+          .fontColor(Color.White)
+          .visibility(Visibility.Hidden)
+      }
+      .backgroundColor(Color.Black)
+      .height('10%')
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceBetween)
 
       specificNoParam({ paramA1: this.btnOne, paramA2: this.btnTwo, paramA3: this.btnThree, paramA4: this.btnFour })
       Blank()
@@ -168,8 +249,13 @@ export struct CustomContainerClick {
       Row() {
         this.PassBtn($r('app.string.btn_fullscreen'), true);
         Button() {
-          Image($r('app.media.ic_public_help')).width('20vp').height('20vp')
-        }.width('30%').height('30vp').backgroundColor(Color.Grey)
+          Image($r('app.media.ic_public_help'))
+            .width('20vp')
+            .height('20vp')
+        }
+        .width('30%')
+        .height('30vp')
+        .backgroundColor(Color.Grey)
         .onClick(() => {
           AlertDialog.show(
             {
@@ -185,16 +271,21 @@ export struct CustomContainerClick {
         })
 
         this.FailBtn($r('app.string.btn_fullscreen'), true);
-      }.width('100%').justifyContent(FlexAlign.SpaceEvenly).backgroundColor(Color.Black)
-    }.height('98%').width('100%')
+      }
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceEvenly)
+      .backgroundColor(Color.Black)
+    }
+    .height('98%')
+    .width('100%')
   }
 
-  async savePicture(data: image.PixelMap, context: any) {
+  async savePicture(data: image.PixelMap, context: ESObject) {
     Logger.info(TAG, `savePicture`);
     let packOpts: image.PackingOption = {
       format: "image/jpeg", quality: 100
     };
-    let info = {
+    let info: Info = {
       prefix: 'IMG_', suffix: '.jpg', directory: mediaLibrary.DirectoryType.DIR_IMAGE
     };
     let name = this.name;
@@ -226,12 +317,12 @@ export struct CustomContainerClick {
       }
     }
     try {
-      screenshot.save(screenshotOptions, (err, data: image.PixelMap) => {
+      screenshot.save(screenshotOptions, (err: BusinessError, data: image.PixelMap) => {
         if (err) {
           Logger.info(TAG, `Failed to save the screenshot. Error:${JSON.stringify(err)}`);
         }
         Logger.info(TAG, 'save callback');
-        this.savePicture(data, getContext(this) as any);
+        this.savePicture(data, getContext(this) as ESObject);
       })
     } catch (err) {
       Logger.error(`save failed, code is ${err.code}, message is ${err.message}`);

@@ -99,8 +99,8 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_0100
-     * @tc.name Test Enumerated value
-     * @tc.desc Test Enumerated value
+     * @tc.name test enumerated value
+     * @tc.desc test enumerated value
      * @tc.size SmallTest
      * @tc.level Level0
      * @tc.type Function
@@ -112,6 +112,8 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       expect(certManager.CMErrorCode.CM_ERROR_GENERIC).assertEqual(17500001);
       expect(certManager.CMErrorCode.CM_ERROR_NO_FOUND).assertEqual(17500002);
       expect(certManager.CMErrorCode.CM_ERROR_INCORRECT_FORMAT).assertEqual(17500003);
+      expect(certManager.CMErrorCode.CM_ERROR_MAX_CERT_COUNT_REACHED).assertEqual(17500004);
+      expect(certManager.CMErrorCode.CM_ERROR_NO_AUTHORIZATION).assertEqual(17500005);
       expect(certManager.CmKeyPadding.CM_PADDING_NONE).assertEqual(0);
       expect(certManager.CmKeyPadding.CM_PADDING_PSS).assertEqual(1);
       expect(certManager.CmKeyPadding.CM_PADDING_PKCS1_V1_5).assertEqual(2);
@@ -125,12 +127,12 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       expect(certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN).assertEqual(4);
       expect(certManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY).assertEqual(8);
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_0200
-     * @tc.name Test installPrivateCertificate and uninstallPrivateCertificate with normal parameters one
-     * @tc.desc Use Promise Type
+     * @tc.name test installPrivateCertificate and uninstallPrivateCertificate with normal parameters one
+     * @tc.desc use promise type
      * @tc.size SmallTest
      * @tc.level Level1
      * @tc.type Function
@@ -153,7 +155,7 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       }).catch((err: BusinessError) => {
         console.error("[Promise] installPrivateCertificate err: " + err.code);
         expect(null).assertFail();
-      })
+      });
       if (keyUri != undefined) {
         await certManager.uninstallPrivateCertificate(keyUri);
       } else {
@@ -161,12 +163,12 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
         expect(null).assertFail();
       }
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_0300
-     * @tc.name Test installPrivateCertificate and uninstallPrivateCertificate with normal parameters two
-     * @tc.desc Use AsyncCallback Type
+     * @tc.name test installPrivateCertificate and uninstallPrivateCertificate with normal parameters two
+     * @tc.desc use asyncCallback type
      * @tc.size SmallTest
      * @tc.level Level1
      * @tc.type Function
@@ -185,7 +187,7 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
             } else {
               resolve(cmResult);
             }
-          })
+          });
         });
         expect(cmResult != undefined).assertTrue();
       } catch (err) {
@@ -203,19 +205,19 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
             } else {
               resolve();
             }
-          })
-        })
+          });
+        });
       } catch (err) {
         console.error("Security_CertManager_PriCertJsApi_Func_0300 get err2: " + err.code);
         expect(null).assertFail();
       }
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_0400
-     * @tc.name Test getPrivateCertificate with normal parameters one
-     * @tc.desc Use Promise Type
+     * @tc.name test getPrivateCertificate with normal parameters one
+     * @tc.desc use promise type
      * @tc.size SmallTest
      * @tc.level Level3
      * @tc.type Function
@@ -234,14 +236,14 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       }).catch((err: BusinessError) => {
         console.error("Security_CertManager_PriCertJsApi_Func_0400 getPrivateCertificate err: " + err.code);
         expect(null).assertFail();
-      })
+      });
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_0500
-     * @tc.name Test getPrivateCertificate with normal parameters two
-     * @tc.desc Use AsyncCallback Type
+     * @tc.name test getPrivateCertificate with normal parameters two
+     * @tc.desc use asyncCallback type
      * @tc.size SmallTest
      * @tc.level Level3
      * @tc.type Function
@@ -257,7 +259,7 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
             } else {
               resolve(CMResult);
             }
-          })
+          });
         });
         expect(cmResult2.credential != undefined && cmResult2.credential != null).assertTrue();
         if (cmResult2.certList != undefined) {
@@ -273,12 +275,12 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
         expect(null).assertFail();
       }
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_0600
-     * @tc.name Test init->update->finish interface with normal parameters one
-     * @tc.desc Use AsyncCallback Type
+     * @tc.name test init->update->finish interface with normal parameters one
+     * @tc.desc use asyncCallback type
      * @tc.size SmallTest
      * @tc.level Level1
      * @tc.type Function
@@ -296,14 +298,14 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       }).catch((err: BusinessError) => {
         console.error("Security_CertManager_PriCertJsApi_Func_0600 get err: " + err);
         expect(null).assertFail();
-      })
+      });
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_0700
-     * @tc.name Test init->update->finish interface with normal parameters two
-     * @tc.desc Use Promise Type
+     * @tc.name test init->update->finish interface with normal parameters two
+     * @tc.desc use promise type
      * @tc.size SmallTest
      * @tc.level Level1
      * @tc.type Function
@@ -321,14 +323,14 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       }).catch((err: BusinessError) => {
         console.error("Security_CertManager_PriCertJsApi_Func_0700 get err: " + err);
         expect(null).assertFail();
-      })
+      });
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_0800
-     * @tc.name Test abort interface with normal parameters one
-     * @tc.desc Use Promise Type
+     * @tc.name test abort interface with normal parameters one
+     * @tc.desc use promise type
      * @tc.size SmallTest
      * @tc.level Level2
      * @tc.type Function
@@ -344,12 +346,12 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
         expect(null).assertFail();
       }
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_0900
-     * @tc.name Test abort interface with normal parameters two
-     * @tc.desc Use AsyncCallback Type
+     * @tc.name test abort interface with normal parameters two
+     * @tc.desc use asyncCallback type
      * @tc.size SmallTest
      * @tc.level Level2
      * @tc.type Function
@@ -365,12 +367,12 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
         expect(null).assertFail();
       }
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_1000
-     * @tc.name Test abort interface with normal parameters three
-     * @tc.desc Use Promise Type
+     * @tc.name test abort interface with normal parameters three
+     * @tc.desc use promise type
      * @tc.size SmallTest
      * @tc.level Level2
      * @tc.type Function
@@ -386,12 +388,12 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
         expect(null).assertFail();
       }
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_1100
-     * @tc.name Test abort interface with normal parameters four
-     * @tc.desc Use AsyncCallback Type
+     * @tc.name test abort interface with normal parameters four
+     * @tc.desc use asyncCallback type
      * @tc.size SmallTest
      * @tc.level Level2
      * @tc.type Function
@@ -407,12 +409,12 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
         expect(null).assertFail();
       }
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_1200
-     * @tc.name Test Max length of PrivateCredential List
-     * @tc.desc Test Max length of PrivateCredential List
+     * @tc.name test max length of privateCredential list
+     * @tc.desc test max length of privateCredential list
      * @tc.size SmallTest
      * @tc.level Level4
      * @tc.type Function
@@ -425,15 +427,15 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
         }
         expect(null).assertFail();
       } catch (err) {
-        expect(err.code).assertEqual(17500001);
+        expect(err.code).assertEqual(17500004);
       }
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_1300
-     * @tc.name Test getAllAppPrivateCertificates interface with normal parameters one
-     * @tc.desc Use Promise Type
+     * @tc.name test getAllAppPrivateCertificates interface with normal parameters one
+     * @tc.desc use promise type
      * @tc.size SmallTest
      * @tc.level Level3
      * @tc.type Function
@@ -457,12 +459,12 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
         expect(null).assertFail();
       }
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_1400
-     * @tc.name Test getAllAppPrivateCertificates interface with normal parameters two
-     * @tc.desc Use AsyncCallback Type
+     * @tc.name test getAllAppPrivateCertificates interface with normal parameters two
+     * @tc.desc use asyncCallback type
      * @tc.size SmallTest
      * @tc.level Level3
      * @tc.type Function
@@ -477,7 +479,7 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
             } else {
               resolve(cmResult);
             }
-          })
+          });
         });
         if (cmResult != undefined && cmResult.credentialList != undefined) {
           expect(cmResult.credentialList.length).assertLessOrEqual(256);
@@ -496,12 +498,12 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
         expect(null).assertFail();
       }
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_1500
-     * @tc.name Test init->update->finish interface with padding and digest one
-     * @tc.desc Use AsyncCallback Type
+     * @tc.name test init->update->finish interface with padding and digest one
+     * @tc.desc use asyncCallback type
      * @tc.size SmallTest
      * @tc.level Level3
      * @tc.type Function
@@ -529,14 +531,14 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       }).catch((err: BusinessError) => {
         console.error("Security_CertManager_PriCertJsApi_Func_1500 get err: " + err.code);
         expect(null).assertFail();
-      })
+      });
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_1600
-     * @tc.name Test init->update->finish interface with padding and digest two
-     * @tc.desc Use Promise Type
+     * @tc.name test init->update->finish interface with padding and digest two
+     * @tc.desc use promise type
      * @tc.size SmallTest
      * @tc.level Level3
      * @tc.type Function
@@ -562,14 +564,14 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       }).catch((err: BusinessError) => {
         console.error("Security_CertManager_PriCertJsApi_Func_1600 get err: " + err.code);
         expect(null).assertFail();
-      })
+      });
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_1700
-     * @tc.name Test init->update->finish interface with padding and digest three
-     * @tc.desc Use AsyncCallback Type
+     * @tc.name test init->update->finish interface with padding and digest three
+     * @tc.desc use asyncCallback type
      * @tc.size SmallTest
      * @tc.level Level3
      * @tc.type Function
@@ -597,14 +599,14 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       }).catch((err: BusinessError) => {
         console.error("Security_CertManager_PriCertJsApi_Func_1700 get err: " + err.code);
         expect(null).assertFail();
-      })
+      });
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_1800
-     * @tc.name Test init->update->finish interface with padding and digest four
-     * @tc.desc Use Promise Type
+     * @tc.name test init->update->finish interface with padding and digest four
+     * @tc.desc use promise type
      * @tc.size SmallTest
      * @tc.level Level3
      * @tc.type Function
@@ -630,15 +632,15 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       }).catch((err: BusinessError) => {
         console.error("Security_CertManager_PriCertJsApi_Func_1800 get err: " + err.code);
         expect(null).assertFail();
-      })
+      });
       done();
-    })
+    });
 
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_1900
-     * @tc.name Test init->update->finish interface with padding and digest five
-     * @tc.desc Use AsyncCallback Type
+     * @tc.name test init->update->finish interface with padding and digest five
+     * @tc.desc use asyncCallback type
      * @tc.size SmallTest
      * @tc.level Level3
      * @tc.type Function
@@ -666,14 +668,14 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       }).catch((err: BusinessError) => {
         console.error("Security_CertManager_PriCertJsApi_Func_1900 get err: " + err.code);
         expect(null).assertFail();
-      })
+      });
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_2000
-     * @tc.name Test init->update->finish interface with padding and digest six
-     * @tc.desc Use Promise Type
+     * @tc.name test init->update->finish interface with padding and digest six
+     * @tc.desc use promise type
      * @tc.size SmallTest
      * @tc.level Level2
      * @tc.type Function
@@ -695,14 +697,14 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
       }).catch((err: BusinessError) => {
         console.error("Security_CertManager_PriCertJsApi_Func_2000 get err: " + err.code);
         expect(null).assertFail();
-      })
+      });
       done();
-    })
+    });
 
     /**
      * @tc.number Security_CertManager_PriCertJsApi_Func_2100
-     * @tc.name Test init->update->finish interface with padding and digest seven
-     * @tc.desc Use Promise Type
+     * @tc.name test init->update->finish interface with padding and digest seven
+     * @tc.desc use promise type
      * @tc.size SmallTest
      * @tc.level Level2
      * @tc.type Function
@@ -739,8 +741,6 @@ export default function certManagerPriCertJsAPIFunctionTestUnit() {
         expect(null).assertFail();
       }
       done();
-    })
+    });
   })
 }
-
-

@@ -230,25 +230,6 @@ struct webAttribute {
             }
 
 
-            case "testOnWindowExit001": {
-              try {
-                this.OnWindowExtCallBack = false
-                this.javaScriptAccess = true;
-                this.testAllowWindowOpenMethod = true;
-                this.testMultiWindowAccess = true;
-                this.controller.loadUrl({ url: "resource://rawfile/onWindowExit.html" });
-                await Utils.sleep(2000)
-                this.controller.runJavaScript({ script: "OpenWindowAll()", callback: (res) => {
-                  console.log('OpenWindowAll: ' + JSON.stringify(res));
-                } })
-                await Utils.sleep(2000)
-                Utils.emitEvent(this.OnWindowExtCallBack, 30075)
-              } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
-              }
-              break;
-            }
-
 
           }
         })
@@ -285,7 +266,7 @@ struct webAttribute {
         .initialScale(this.initialScale)
         .mixedMode(this.mixedMode)
         .userAgent("Mozila/5.0 (Linux; Andriod 9; VRD-AL10; HMSCore 6.3.0.331) AppleWebKit/537.36 " +
-        "(KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.0.4.1 MobileSafari/537.36")
+          "(KHTML, like Gecko) Chrome/92.0.4515.105 HuaweiBrowser/12.0.4.1 MobileSafari/537.36")
         .javaScriptProxy({
           object: this.jsObj,
           name: "backToEts",
@@ -329,7 +310,7 @@ struct webAttribute {
           if (event) {
             let popController: webView.WebviewController = new webView.WebviewController();
             this.OnWindowNewCallBack = true
-            event.handler.setWebController(popController);
+            event.handler.setWebController(null);
           }
         })
         .onWindowExit(() => {

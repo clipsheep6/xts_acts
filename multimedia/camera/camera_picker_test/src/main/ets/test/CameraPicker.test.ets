@@ -32,6 +32,19 @@ export default function cameraPicker() {
   describe('cameraPicker', () => {
     console.info(TAG + '----------CameraPickerTest--------------');
 
+    const driveAllowFn = async () => {
+      let driver = await UiDriver.create()
+      console.info(`drivePhotoFn is ${JSON.stringify(driver)}`)
+      await sleep(100)
+      console.info(`UiDriver start`);
+      let button = await driver.findComponent(BY.text(`同意`))
+      console.info(`button is ${JSON.stringify(button)}`)
+      await sleep(100);
+      if(button !== null){
+        await button.click();
+      }
+    }
+    
     const drivePhotoFn = async () => {
       console.info(`enter drivePhotoFn`);
       let driver = await UiDriver.create();
@@ -42,7 +55,7 @@ export default function cameraPicker() {
       console.info(`button is ${JSON.stringify(button)}`);
       await button.click();
       await sleep(2000);
-      let button2 = await driver.findComponent(BY.key("cameraPosition:1"));
+      let button2 = await driver.findComponent(BY.key("COMPONENT_ID_THIRDPARTYCALL_CONFIRM_1"));
       console.info(`button is ${JSON.stringify(button2)}`);
       await button2.click();
       await sleep(1000);
@@ -58,7 +71,7 @@ export default function cameraPicker() {
       console.info(`button is ${JSON.stringify(button)}`);
       await button.click();
       await sleep(2000);
-      let button2 = await driver.findComponent(BY.key("cameraPosition:2"));
+      let button2 = await driver.findComponent(BY.key("COMPONENT_ID_THIRDPARTYCALL_CONFIRM_1"));
       console.info(`button is ${JSON.stringify(button2)}`);
       await button2.click();
       await sleep(1000);
@@ -82,7 +95,7 @@ export default function cameraPicker() {
         await button2.click();
       }
       await sleep(2000);
-      let saveButt = await driver.findComponent(BY.key("cameraPosition:1"));
+      let saveButt = await driver.findComponent(BY.key("COMPONENT_ID_THIRDPARTYCALL_CONFIRM_1"));
       console.info(`button is ${JSON.stringify(saveButt)}`);
       await saveButt.click();
       await sleep(1000);
@@ -106,7 +119,7 @@ export default function cameraPicker() {
         await button2.click();
       }
       await sleep(2000);
-      let saveButt = await driver.findComponent(BY.key("cameraPosition:2"));
+      let saveButt = await driver.findComponent(BY.key("COMPONENT_ID_THIRDPARTYCALL_CONFIRM_1"));
       console.info(`button is ${JSON.stringify(saveButt)}`);
       await saveButt.click();
       await sleep(1000);
@@ -148,8 +161,13 @@ export default function cameraPicker() {
           expect(data.resultCode).assertEqual(0);
           expect(data.mediaType).assertEqual(picker.PickerMediaType.PHOTO);
           done();
-        });
+        })
+        .catch((err)=>{
+        console.log("SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_TAKEPHOTO_0100 get pick error " + JSON.stringify(err));
+        expect(true).assertFalse();
+      });
       await sleep(1000);
+      await driveAllowFn();
       await drivePhotoFn();
       console.info(TAG + "SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_TAKEPHOTO_0100 ends here");
     });
@@ -174,8 +192,13 @@ export default function cameraPicker() {
           expect(data.resultCode).assertEqual(0);
           expect(data.mediaType).assertEqual(picker.PickerMediaType.PHOTO);
           done();
-        });
+        })
+        .catch((err)=>{
+        console.log("SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_TAKEPHOTO_0101 get pick error " + JSON.stringify(err));
+        expect(true).assertFalse();
+      });
       await sleep(1000);
+      await driveAllowFn();
       await drivePhotoFrontFn();
       console.info(TAG + "SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_TAKEPHOTO_0101 ends here");
     });
@@ -207,8 +230,13 @@ export default function cameraPicker() {
           expect(data.resultUri).assertEqual(uri);
           expect(data.mediaType).assertEqual(picker.PickerMediaType.PHOTO);
           done();
+        })
+        .catch((err)=>{
+          console.log("SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_TAKEPHOTO_0102 get pick error " + JSON.stringify(err));
+          expect(true).assertFalse();
         });
       await sleep(1000);
+      await driveAllowFn();
       await drivePhotoFn();
       console.info(TAG + "SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_TAKEPHOTO_0102 ends here");
     });
@@ -234,8 +262,13 @@ export default function cameraPicker() {
           console.log("SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_TAKEPHOTO_0103 get pick result " + JSON.stringify(data));
           expect(data.resultCode).assertLess(0);
           done();
+        })
+        .catch((err)=>{
+          console.log("SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_TAKEPHOTO_0103 get pick error " + JSON.stringify(err));
+          expect(true).assertFalse();
         });
       await sleep(1000);
+      await driveAllowFn();
       await drivePhotoFn();
       console.info(TAG + "SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_TAKEPHOTO_0103 ends here");
     });
@@ -262,8 +295,13 @@ export default function cameraPicker() {
           expect(data.resultCode).assertEqual(0);
           expect(data.mediaType).assertEqual(picker.PickerMediaType.VIDEO);
           done();
+        })
+        .catch((err)=>{
+          console.log("SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_RECORDVIDEO_0100 get pick error " + JSON.stringify(err));
+          expect(true).assertFalse();
         });
       await sleep(1000);
+      await driveAllowFn();
       await driveVideoFn(videoDuration);
       console.info(TAG + "SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_RECORDVIDEO_0100 ends here");
     });
@@ -288,8 +326,13 @@ export default function cameraPicker() {
           expect(data.resultCode).assertEqual(0);
           expect(data.mediaType).assertEqual(picker.PickerMediaType.VIDEO);
           done();
+        })
+        .catch((err)=>{
+          console.log("SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_RECORDVIDEO_0101 get pick error " + JSON.stringify(err));
+          expect(true).assertFalse();
         });
       await sleep(1000);
+      await driveAllowFn();
       await driveVideoFn(0);
       console.info(TAG + "SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_RECORDVIDEO_0101 ends here");
     });
@@ -316,8 +359,13 @@ export default function cameraPicker() {
           expect(data.resultCode).assertEqual(0);
           expect(data.mediaType).assertEqual(picker.PickerMediaType.VIDEO);
           done();
+        })
+        .catch((err)=>{
+          console.log("SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_RECORDVIDEO_0102 get pick error " + JSON.stringify(err));
+          expect(true).assertFalse();
         });
       await sleep(1000);
+      await driveAllowFn();
       await driveVideoFrontFn(videoDuration);
       console.info(TAG + "SUB_MULTIMEDIA_CAMERA_PICKER_USECASS_RECORDVIDEO_0102 ends here");
     });

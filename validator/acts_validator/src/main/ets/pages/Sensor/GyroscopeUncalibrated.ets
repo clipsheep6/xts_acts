@@ -33,8 +33,8 @@ struct GyroscopeUncalibrated {
   @State FillColor: string = '#FF000000';
   @State name: string = 'GyroscopeUncalibrated';
   @State StepTips: string = '测试目的：用于测试本机传感器\n-确定是否有未校准的陀螺仪' +
-  '传感器' + '\n-点击开启按钮打开传感器,' +
-  '如果有传感器，请旋转设备，没有传感器则返回上一级' + '\n-预期结果：观察显示数值,跟随移动变化';
+    '传感器' + '\n-点击开启按钮打开传感器,' +
+    '如果有传感器，请旋转设备，没有传感器则返回上一级' + '\n-预期结果：观察显示数值,跟随移动变化';
   @State Vue: boolean = false;
   @State isHave: boolean = true;
   @State isSensor: boolean = undefined;
@@ -89,11 +89,11 @@ struct GyroscopeUncalibrated {
             if (this.nextX !== this.dataX || this.nextY !== this.dataY || this.nextY !== this.dataY) {
               this.Vue = true;
             }
-          }, 500)
+          }, 100)
         }, { interval: 100000000 });
         setTimeout(() => {
           sensor.off(sensor.SensorId.GYROSCOPE_UNCALIBRATED);
-        }, 500);
+        }, 5000);
       } catch (error) {
         let e: BusinessError.BusinessError = error as BusinessError.BusinessError;
         if (e) {
@@ -137,7 +137,7 @@ struct GyroscopeUncalibrated {
     }
   }
 
-  async aboutToDisappear(){
+  async aboutToDisappear() {
     clearInterval(this.intervalNum)
   }
 
@@ -168,7 +168,8 @@ struct GyroscopeUncalibrated {
       .onClick(() => {
         router.back({
           url: 'pages/Sensor/Sensor_index',
-          params: { result: 'true ', title: this.name,
+          params: {
+            result: 'true ', title: this.name,
           }
         })
         this.getScreen(isFullScreen);
@@ -192,7 +193,8 @@ struct GyroscopeUncalibrated {
     .onClick(() => {
       router.back({
         url: 'pages/Sensor/Sensor_index',
-        params: { result: 'false', title: this.name,
+        params: {
+          result: 'false', title: this.name,
         }
       })
       this.getScreen(isFullScreen);

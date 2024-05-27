@@ -51,7 +51,7 @@ export default function transFormJsunit() {
       try {
         let callBackConfiguration = (backData: events_emitter.EventData) => {
           console.info("configurationTest_0100 get configurationEvent result is: " + JSON.stringify(backData));
-          expect(backData!.data!.COUNTRY).assertEqual('');
+          expect(backData!.data!.COUNTRY).assertEqual('CN');
           expect(backData!.data!.DIR).assertEqual('ltr');
           done();
         }

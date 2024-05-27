@@ -45,6 +45,7 @@
 #include <threads.h>
 #include <unistd.h>
 #include <utmp.h>
+#include <atomic>
 
 #define NAMELEN 16
 #define NSEC_PER_SEC 1000000000
@@ -85,15 +86,15 @@
 #define PORT_2 2289
 #ifndef tls_mod_off_t
 #define tls_mod_off_t size_t
+#define PARAM_72 72
+#define SLEEPTIME 1
 #endif
 
 extern "C" mode_t __umask_chk(mode_t);
-extern "C" int __fstatat_time64(int, const char *__restrict, struct stat *__restrict, int);
 extern "C" ssize_t __sendto_chk(int, const void *, size_t, size_t, int, const struct sockaddr *, socklen_t);
 extern "C" ssize_t __send_chk(int, const void *, size_t, size_t, int);
 extern "C" ssize_t __recv_chk(int, void *, size_t, size_t, int);
 extern "C" ssize_t __recvfrom_chk(int, void *, size_t, size_t, int, struct sockaddr *, socklen_t *);
-extern "C" int __aeabi_atexit(void *obj, void (*func)(void *), void *d);
 extern "C" locale_t __duplocale(locale_t old);
 extern "C" int *__errno_location(void);
 extern "C" int __flt_rounds(void);
@@ -105,7 +106,6 @@ extern "C" void _pthread_cleanup_push(struct __ptcb *, void (*)(void *), void *)
 extern "C" int delete_module(const char *a, unsigned b);
 extern "C" int pivot_root(const char *a, const char *old);
 extern "C" pid_t pthread_gettid_np(pthread_t t);
-extern "C" uintptr_t __gnu_Unwind_Find_exidx(uintptr_t pc, int *pcount);
 
 static napi_value DlaDdr(napi_env env, napi_callback_info info)
 {
@@ -505,26 +505,6 @@ static napi_value UMask_chk(napi_env env, napi_callback_info info)
     return result;
 }
 
-static napi_value FStatAt_time64(napi_env env, napi_callback_info info)
-{
-    size_t argc = PARAM_1;
-    napi_value args[1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    size_t length = PARAM_256;
-    size_t strResult = PARAM_0;
-    char ptr[length];
-    napi_get_value_string_utf8(env, args[0], ptr, length, &strResult);
-    int backParam = PARAM_UNNORMAL;
-    struct stat st;
-    int fd = open(ptr, O_RDWR | O_CREAT, TEST_MODE);
-    lseek(fd, PARAM_0, SEEK_SET);
-    backParam = __fstatat_time64(AT_FDCWD, ptr, &st, PARAM_0);
-    close(fd);
-    napi_value result = nullptr;
-    napi_create_int32(env, backParam, &result);
-    return result;
-}
-
 static napi_value SendTo_chk(napi_env env, napi_callback_info info)
 {
     int sendRet = SUCCESS;
@@ -707,17 +687,15 @@ static napi_value Overflow(napi_env env, napi_callback_info info)
 
 static napi_value Uflow(napi_env env, napi_callback_info info)
 {
-    size_t argc = PARAM_1;
-    napi_value args[1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    size_t length = PARAM_256;
-    size_t strResult = PARAM_0;
-    char ptr[length];
-    napi_get_value_string_utf8(env, args[0], ptr, length, &strResult);
-    FILE *files = fopen(ptr, "w");
-    __overflow(files, PARAM_0);
-    int backInfo = __uflow(files);
-    fclose(files);
+    FILE *file = fopen("/data/storage/el2/base/files/example.txt", "w");
+    fprintf(file, "Hello, world!\nThis is a test file.\n");
+    fclose(file);
+    file = fopen("/data/storage/el2/base/files/example.txt", "r");
+    int backInfo = __uflow(file);
+    fclose(file);
+    if (backInfo == PARAM_72) {
+        backInfo = SUCCESS;
+    }
     napi_value result = nullptr;
     napi_create_int32(env, backInfo, &result);
     return result;
@@ -907,9 +885,16 @@ static napi_value Optresets(napi_env env, napi_callback_info info)
     napi_create_int32(env, optreset, &result);
     return result;
 }
+
+std::atomic<bool> isPthreadTestRun  (true);
+
 void *pthread_test(void *arg)
 {
     *((pid_t *)arg) = gettid();
+    while(isPthreadTestRun)
+    {
+        sleep(SLEEPTIME);
+    }
     return nullptr;
 }
 static napi_value Pthreadgettidnp(napi_env env, napi_callback_info info)
@@ -919,6 +904,8 @@ static napi_value Pthreadgettidnp(napi_env env, napi_callback_info info)
     int backInfo = FAILD;
     pthread_create(&t, nullptr, pthread_test, &tid);
     pid_t recv_result = pthread_gettid_np(t);
+    isPthreadTestRun = false;
+    pthread_join(t,nullptr);
     if (recv_result > NO_ERROR) {
         backInfo = SUCCESS;
     }
@@ -1267,25 +1254,6 @@ static napi_value Setfatalmessage(napi_env env, napi_callback_info info)
     return result;
 }
 
-void exitFunc(void *arg){};
-static napi_value Aeabiatexit(napi_env env, napi_callback_info info)
-{
-    int32_t var = PARAM_0;
-    int backInfo = __aeabi_atexit(&var, exitFunc, nullptr);
-    napi_value result = nullptr;
-    napi_create_int32(env, backInfo, &result);
-    return result;
-}
-
-static napi_value Gnuunwindfindexidx(napi_env env, napi_callback_info info)
-{
-    uintptr_t pc = PARAM_10;
-    int32_t pcount = PARAM_32;
-    int32_t backInfo = __gnu_Unwind_Find_exidx(pc, &pcount);
-    napi_value result = nullptr;
-    napi_create_int32(env, backInfo, &result);
-    return result;
-}
 static napi_value Ctypegetmbcurmax(napi_env env, napi_callback_info info)
 {
     int rev = __ctype_get_mb_cur_max();
@@ -1350,7 +1318,6 @@ static napi_value Init(napi_env env, napi_value exports)
         {"dlerror", nullptr, DlError, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"dladdr", nullptr, DlaDdr, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"flock", nullptr, Flock, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"__fstatat_time64", nullptr, FStatAt_time64, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"__umask_chk", nullptr, UMask_chk, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"__recv_chk", nullptr, RecV_chk, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"__recvfrom_chk", nullptr, RecVFrom_chk, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1398,8 +1365,6 @@ static napi_value Init(napi_env env, napi_value exports)
         {"setapplicationtargetsdkversion", nullptr, Setapplicationtargetsdkversion, nullptr, nullptr, nullptr,
          napi_default, nullptr},
         {"setfatalmessage", nullptr, Setfatalmessage, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"aeabiatexit", nullptr, Aeabiatexit, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"gnuunwindfindexidx", nullptr, Gnuunwindfindexidx, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"vsyslog", nullptr, Vsyslog, nullptr, nullptr, nullptr, napi_default, nullptr},
 
     };

@@ -28,6 +28,8 @@ import marqueeJsunit from './MarqueeJsunit.test';
 import overLayJsunit from './OverlayJsunit.test';
 import stepperJsunit from './StepperJsunit.test';
 import swiperJsunit from './SwiperJsunit.test';
+import textAreaAutoFillJsUnit from './TextAreaAutoFillJsUnit.test';
+import textInputAutoFillJsUnit from './TextInputAutoFillJsUnit.test';
 import textStyleJsunit from './TextStyleJsunit.test';
 import touchAbleJsunit from './TouchAbleJsunit.test';
 import touchJsunit from './TouchJsunit.test';
@@ -52,6 +54,8 @@ export default function testsuite() {
   overLayJsunit();
   stepperJsunit();
   swiperJsunit();
+  textAreaAutoFillJsUnit();
+  textInputAutoFillJsUnit();
   textStyleJsunit();
   touchJsunit();
   gridSettingsJsunit();

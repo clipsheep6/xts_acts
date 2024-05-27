@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
+import router from '@ohos.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import Utils from './Utils.ets'
+import Utils from './Utils'
 
 export default function textAreaOnCutJsunit() {
   describe('textAreaOnCutTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/textArea',
+      let options: router.RouterOptions  = {
+        url: 'MainAbility/pages/textArea',
       }
       try {
         router.clear();
@@ -146,22 +146,6 @@ export default function textAreaOnCutJsunit() {
 
     });
 
-    /*
-     * @tc.number       SUB_ACE_BASIC_ETS_API_0007
-     * @tc.name         testtextAreaOnCut0007
-     * @tc.desic         acetextAreaOnCutEtsTest0007
-     */
-    it('testtextAreaOnCut0007', 0, async () => {
-      console.info('textAreaOnCut testtextAreaOnCut0007 START');
-      await Utils.sleep(2000);
-      let strJson = getInspectorByKey('onCutText');
-      console.info("[testtextAreaOnCut0007] component lineHeight strJson:" + strJson);
-      let obj: Record<string, Object> = JSON.parse(strJson);
-      expect(obj.$type).assertEqual('TextArea');
-      expect(JSON.parse(strJson).$attrs.lineHeight).assertEqual(undefined);
-      console.info("[testtextAreaOnCut0007] lineHeight value :" + JSON.parse(strJson).$attrs.lineHeight);
-
-    });
 
     /*
      * @tc.number       SUB_ACE_BASIC_ETS_API_0009

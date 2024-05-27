@@ -32,15 +32,19 @@ def copy_files(sourcedir, targetdir):
             if os.path.isdir(source_f):
                 copy_files(source_f, target_f)
             continue
+        if f.endswith('.rsp'):
+            continue
         if os.path.exists(targetdir):
             copy_file_counts += 1
-            with open(target_f, "wb") as fp: 
-                fp.write(open(source_f, "rb").read())
+            with open(source_f, "rb") as fp1:
+                with open(target_f, "wb") as fp: 
+                    fp.write(fp1.read())
         elif not os.path.exists(targetdir):
             os.makedirs(targetdir)
             copy_file_counts += 1
-            with open(target_f, "wb") as fp: 
-                fp.write(open(source_f, "rb").read())
+            with open(source_f, "rb") as fp1:
+                with open(target_f, "wb") as fp: 
+                    fp.write(fp1.read())
 
 
 def make_targz_one_by_one(output_filename, source_dir):

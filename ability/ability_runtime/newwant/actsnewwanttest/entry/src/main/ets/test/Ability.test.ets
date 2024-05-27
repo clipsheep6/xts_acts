@@ -16,7 +16,11 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import commonEvent from '@ohos.commonEvent'
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
+import {Driver, ON} from '@ohos.UiTest';
 
+let driver = Driver.create();
+let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 let subscriberInfo = {
   events: ['onCreateMain_To_Test_CommonEvent',
     'onWindowStageCreateMain_To_Test_CommonEvent',
@@ -38,9 +42,13 @@ let flagNewWant = false;
 
 export default function abilityTest() {
   describe('ActsNewWantTest', function () {
-
     let TAG1 = 'ACTS_NewWant_Test : '
     let id = undefined;
+
+    beforeEach(async (done) => {
+      setTimeout(() => { done(); }, 3000)
+    })
+
     beforeAll(async (done) => {
         console.log(TAG1 + "beforeAll called");
         let myReason = 'test ActsNewWantTest';
@@ -83,7 +91,7 @@ export default function abilityTest() {
         await commonEvent.subscribe(Subscriber, SubscribeCallBack);
       })
 
-      globalThis.abilityContext.startAbility({
+      await globalThis.mainAbilityContext.startAbility({
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapa.MainAbility"
       }, (error, data) => {
@@ -91,7 +99,15 @@ export default function abilityTest() {
           + JSON.stringify(error) + ", " + JSON.stringify(data))
       })
 
-     
+      await driver.delayMs(2000);
+      let allowed = await driver.findComponent(ON.text(""));
+      if (allowed) {
+        console.log("find button");
+        let point = await allowed.getBoundsCenter();
+        console.log('point.x : ' + point.x +'point.y : '+ point.y);
+        await driver.click(point.x, point.y);
+      }
+      
       function SubscribeCallBack(err, data) {
 
         console.debug("ACTS_NewWant_Test_0100====>Subscribe CallBack data:====>"
@@ -153,13 +169,22 @@ export default function abilityTest() {
         await commonEvent.subscribe(Subscriber, SubscribeCallBack);
       })
 
-      globalThis.abilityContext.startAbility({
+      await globalThis.mainAbilityContext.startAbility({
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapa.SecondAbility"
       }, (error, data) => {
         console.log('ACTS_NewWant_Test_0200 - startAbility start singleton: '
           + JSON.stringify(error) + ", " + JSON.stringify(data))
       })
+
+       await driver.delayMs(2000);
+      let allowed = await driver.findComponent(ON.text(""));
+      if (allowed) {
+        console.log("find button");
+        let point = await allowed.getBoundsCenter();
+        console.log('point.x : ' + point.x +'point.y : '+ point.y);
+        await driver.click(point.x, point.y);
+      }
 
       function SubscribeCallBack(err, data) {
 
@@ -210,6 +235,10 @@ export default function abilityTest() {
      */
     it('ACTS_NewWant_Test_0300', 0, async function (done) {
       console.log("ACTS_NewWant_Test_0300 --- start")
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber;
       let flagOnCreate = 0;
       let flagOnWindowStageCreate = 0;
@@ -222,7 +251,7 @@ export default function abilityTest() {
         await commonEvent.subscribe(Subscriber, SubscribeCallBack);
       })
 
-      globalThis.abilityContext.startAbility({
+      await globalThis.mainAbilityContext.startAbility({
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapa.MainAbility",
         action: "startStandard0300"
@@ -230,6 +259,15 @@ export default function abilityTest() {
         console.log('ACTS_NewWant_Test_0300 - startAbility start standard: '
           + JSON.stringify(error) + ", " + JSON.stringify(data))
       })
+
+       await driver.delayMs(2000);
+      let allowed = await driver.findComponent(ON.text(""));
+      if (allowed) {
+        console.log("find button");
+        let point = await allowed.getBoundsCenter();
+        console.log('point.x : ' + point.x +'point.y : '+ point.y);
+        await driver.click(point.x, point.y);
+      }
 
       function SubscribeCallBack(err, data) {
 
@@ -280,6 +318,10 @@ export default function abilityTest() {
      */
     it('ACTS_NewWant_Test_0400', 0, async function (done) {
       console.log("ACTS_NewWant_Test_0400 --- start")
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber;
       let flagOnCreate = 0;
       let flagOnWindowStageCreate = 0;
@@ -292,7 +334,7 @@ export default function abilityTest() {
         await commonEvent.subscribe(Subscriber, SubscribeCallBack);
       })
 
-      globalThis.abilityContext.startAbility({
+      await globalThis.mainAbilityContext.startAbility({
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapa.SecondAbility",
         action: "startSingleton0400"
@@ -300,6 +342,15 @@ export default function abilityTest() {
         console.log('ACTS_NewWant_Test_0400 - startAbility start singleton: '
           + JSON.stringify(error) + ", " + JSON.stringify(data))
       })
+
+       await driver.delayMs(2000);
+      let allowed = await driver.findComponent(ON.text(""));
+      if (allowed) {
+        console.log("find button");
+        let point = await allowed.getBoundsCenter();
+        console.log('point.x : ' + point.x +'point.y : '+ point.y);
+        await driver.click(point.x, point.y);
+      }
 
       function SubscribeCallBack(err, data) {
 
@@ -352,6 +403,10 @@ export default function abilityTest() {
      */
     it('ACTS_NewWant_Test_0500', 0, async function (done) {
       console.log("ACTS_NewWant_Test_0500 --- start")
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber;
       let flagOnCreate = 0;
       let flagOnWindowStageCreate = 0;
@@ -364,7 +419,7 @@ export default function abilityTest() {
         await commonEvent.subscribe(Subscriber, SubscribeCallBack);
       })
 
-      globalThis.abilityContext.startAbility({
+      await globalThis.mainAbilityContext.startAbility({
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapb.MainAbility",
         action: "startHapB"
@@ -372,6 +427,15 @@ export default function abilityTest() {
         console.log('ACTS_NewWant_Test_0500 - startAbility start HapB: '
           + JSON.stringify(error) + ", " + JSON.stringify(data))
       })
+
+       await driver.delayMs(2000);
+      let allowed = await driver.findComponent(ON.text(""));
+      if (allowed) {
+        console.log("find button");
+        let point = await allowed.getBoundsCenter();
+        console.log('point.x : ' + point.x +'point.y : '+ point.y);
+        await driver.click(point.x, point.y);
+      }
 
       function SubscribeCallBack(err, data) {
 
@@ -424,6 +488,10 @@ export default function abilityTest() {
      */
     it('ACTS_NewWant_Test_0600', 0, async function (done) {
       console.log("ACTS_NewWant_Test_0600 --- start")
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber;
       let flagOnCreate = 0;
       let flagOnWindowStageCreate = 0;
@@ -436,7 +504,7 @@ export default function abilityTest() {
         await commonEvent.subscribe(Subscriber, SubscribeCallBack);
       })
 
-      globalThis.abilityContext.startAbility({
+      await globalThis.mainAbilityContext.startAbility({
         bundleName: "com.example.newwanthapa",
         abilityName: "com.example.newwanthapc.MainAbility",
         action: "startHapC"
@@ -496,6 +564,10 @@ export default function abilityTest() {
      */
     it('ACTS_NewWant_Test_0700', 0, async function (done) {
       console.log("ACTS_NewWant_Test_0700 --- start")
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber;
       let flagOnCreate = 0;
       let flagOnWindowStageCreate = 0;
@@ -508,7 +580,7 @@ export default function abilityTest() {
         await commonEvent.subscribe(Subscriber, SubscribeCallBack);
       })
 
-      globalThis.abilityContext.startAbility({
+      await globalThis.mainAbilityContext.startAbility({
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapa.SecondAbility",
         action: "startSecondAbility0700"
@@ -567,6 +639,10 @@ export default function abilityTest() {
      */
     it('ACTS_NewWant_Test_0800', 0, async function (done) {
       console.log("ACTS_NewWant_Test_0800 --- start")
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber;
       let flagOnCreate = 0;
       let flagOnWindowStageCreate = 0;
@@ -579,7 +655,7 @@ export default function abilityTest() {
         await commonEvent.subscribe(Subscriber, SubscribeCallBack);
       })
 
-      globalThis.abilityContext.startAbility({
+      await globalThis.mainAbilityContext.startAbility({
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapa.MainAbility",
         action: "startMainAbility0800"

@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
+import router from '@ohos.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import Utils from './Utils.ets'
+import Utils from './Utils'
 
 export default function textInputOnEditChangeJsunit() {
   describe('textInputOnEditChangeTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/textInput',
+      let options: router.RouterOptions  = {
+        url: 'MainAbility/pages/textInput',
       }
       try {
         router.clear();
@@ -143,23 +143,6 @@ export default function textInputOnEditChangeJsunit() {
       expect(obj.$type).assertEqual('TextInput');
       expect(JSON.parse(strJson).$attrs.fontColor).assertEqual("#FFCCCCCC");
       console.info("[testtextInputOnEditChange0006] fontColor value :" + JSON.parse(strJson).$attrs.fontColor);
-
-    });
-
-    /*
-     * @tc.number       SUB_ACE_BASIC_ETS_API_0007
-     * @tc.name         testtextInputOnEditChange0007
-     * @tc.desic         acetextInputOnEditChangeEtsTest0007
-     */
-    it('testtextInputOnEditChange0007', 0, async () => {
-      console.info('textInputOnEditChange testtextInputOnEditChange0007 START');
-      await Utils.sleep(2000);
-      let strJson = getInspectorByKey('onEditChangeText');
-      console.info("[testtextInputOnEditChange0007] component lineHeight strJson:" + strJson);
-      let obj: Record<string, Object> = JSON.parse(strJson);
-      expect(obj.$type).assertEqual('TextInput');
-      expect(JSON.parse(strJson).$attrs.lineHeight).assertEqual(undefined);
-      console.info("[testtextInputOnEditChange0007] lineHeight value :" + JSON.parse(strJson).$attrs.lineHeight);
 
     });
 

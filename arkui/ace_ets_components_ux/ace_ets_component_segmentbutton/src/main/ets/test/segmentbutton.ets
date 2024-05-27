@@ -15,11 +15,12 @@
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import router from '@system.router'
 import { Driver, ON } from '@ohos.UiTest'
+import Utils from './Utils.ets'
 
 export default function abilityTest() {
   const SUITE = 'SegmentButton'
-  describe('ActsAceSegmentButtonTest', function () {
-    beforeEach(async function (done) {
+  describe('ActsAceSegmentButtonTest', () => {
+    beforeEach(async (done: Function) => {
       let options = {
         uri: "../testability/pages/Index",
       }
@@ -29,16 +30,16 @@ export default function abilityTest() {
         if (pages == null || !("Index" == pages.name)) {
           let driver = Driver.create()
           await router.push(options);
-          await driver.delayMs(2000);
+          await Utils.sleep(2000);
         }
       } catch (err) {
         console.error(`${SUITE} beforeEach error:` + JSON.stringify(err));
       }
       done()
     })
-    afterEach(async function (done) {
+    afterEach(async (done: Function) => {
       let driver = Driver.create()
-      await driver.delayMs(2);
+      await Utils.sleep(2000);
       done()
     })
 
@@ -47,7 +48,7 @@ export default function abilityTest() {
     *tc.name   single select SegmentButton UI test
     *tc.desc   Test single select SegmentButton UI
     */
-    it('Advanced_ui_SegmentButton_0100', 0, async function (done) {
+    it('Advanced_ui_SegmentButton_0100', 0, async (done: Function) => {
       let driver = Driver.create()
       let singleTextSegmentButton = await driver.findComponent(ON.text('单选文字1'))
       let singleTextSegmentButtonIsEnabled = await singleTextSegmentButton.isEnabled()
@@ -71,6 +72,7 @@ export default function abilityTest() {
       if (await pushItemButton.isClickable()) {
         await pushItemButton.click()
       }
+      await Utils.sleep(2000);
       await driver.assertComponentExist(ON.text('push button'))
       done()
     })
@@ -80,7 +82,7 @@ export default function abilityTest() {
     *tc.name   multiple select SegmentButton UI test
     *tc.desc   Test multiple SegmentButton UI
     */
-    it('Advanced_ui_SegmentButton_0200', 0, async function (done) {
+    it('Advanced_ui_SegmentButton_0200', 0, async (done: Function) => {
       let driver = Driver.create()
       let multipleTextSegmentButton = await driver.findComponent(ON.text('多选文字1'))
       let multipleTextSegmentButtonType = await multipleTextSegmentButton.getType()
@@ -96,6 +98,7 @@ export default function abilityTest() {
       if (await unShiftItemButton.isClickable()) {
         await unShiftItemButton.click()
       }
+      await Utils.sleep(2000);
       await driver.assertComponentExist(ON.text('unshift button'))
       done()
     })
@@ -105,7 +108,7 @@ export default function abilityTest() {
     *tc.name   tab SegmentButton UI test
     *tc.desc   Test tab SegmentButton UI
     */
-    it('Advanced_ui_SegmentButton_0300', 0, async function (done) {
+    it('Advanced_ui_SegmentButton_0300', 0, async (done: Function) => {
       let driver = Driver.create()
       let tabSegmentButton = await driver.findComponent(ON.text('页签1'))
       let tabSegmentButtonType = await tabSegmentButton.getType()
@@ -116,6 +119,7 @@ export default function abilityTest() {
       if (await spliceItemButton.isClickable()) {
         await spliceItemButton.click()
       }
+      await Utils.sleep(2000);
       await driver.assertComponentExist(ON.text('splice button'))
       done()
     })

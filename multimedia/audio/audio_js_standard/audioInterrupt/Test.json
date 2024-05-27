@@ -1,10 +1,11 @@
 {
     "description": "Configuration for audio manager Tests",
     "driver": {
-        "type": "JSUnitTest",
-        "test-timeout": "5500000",
-        "package": "ohos.acts.multimedia.audio.audiointerrupt",
-        "shell-timeout": "60000"
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.multimedia.audio.audiointerrupt",
+        "package-name": "ohos.acts.multimedia.audio.audiointerrupt"
     },
     "kits": [
         {
@@ -24,12 +25,9 @@
                 "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.audiointerrupt/haps/entry/files/",
                 "mkdir -p /data/app/el2/100/base/com.example.audiorenderinterrupt/haps/entry/files/",
                 "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.audio.audiointerrupt/haps/entry",
-                "chmod 777 -R /data/app/el2/100/base/com.example.audiorenderinterrupt/haps/entry",
-                "hdc shell param set persist.sys.abilityms.support.ecologicalrulemgrservice false"
-                
-
+                "chmod 777 -R /data/app/el2/100/base/com.example.audiorenderinterrupt/haps/entry"
             ],
-            "teardown-command":[
+            "teardown-command": [
                 "power-shell setmode 600"
             ],
             "cleanup-apps": true
@@ -40,7 +38,6 @@
             "push": [
                 "./resource/audio/audioManager/StarWars10s-2C-48000-4SW.wav ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audiointerrupt/haps/entry/files/",
                 "./resource/audio/audioManager/StarWars10s-2C-48000-4SW.wav ->/data/app/el2/100/base/com.example.audiorenderinterrupt/haps/entry/files/"
-       
             ]
         }
     ]

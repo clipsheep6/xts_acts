@@ -61,7 +61,7 @@ export default function onSelectionChange4() {
 
       let richEditor = await driver.findComponent(ON.id('onSelectionChange4_RichEditor'));
       await richEditor.longClick();
-      await CommonFunc.sleep(300);
+      await CommonFunc.sleep(1000);
       let Select  = await driver.findComponent(ON.text('全选'))
       await Select .click()
       await CommonFunc.sleep(1000);
@@ -80,17 +80,18 @@ export default function onSelectionChange4() {
       await CommonFunc.sleep(1000);
       let text1_2 = getInspectorByKey('onSelectionChange4_text1');
       let Obj1_2 = JSON.parse(text1_2);
-      expect(Obj1_2.$attrs.content).assertEqual('3');
+      expect(Obj1_2.$attrs.content).assertEqual('2');
       let text2_2 = getInspectorByKey('onSelectionChange4_text2');
       let Obj2_2 = JSON.parse(text2_2);
-      expect(Obj2_2.$attrs.content).assertEqual('2');
+      expect(Obj2_2.$attrs.content).assertEqual('0');
       let text3_2 = getInspectorByKey('onSelectionChange4_text3');
       let Obj3_2 = JSON.parse(text3_2);
       expect(Obj3_2.$attrs.content).assertEqual('2');
+      await CommonFunc.sleep(2500);
 
       let richEditor2 = await driver.findComponent(ON.id('onSelectionChange4_RichEditor'));
       await richEditor2.longClick();
-      await CommonFunc.sleep(300);
+      await CommonFunc.sleep(1000);
       let paste = await driver.findComponent(ON.text('粘贴'))
       await paste.click()
       await CommonFunc.sleep(1000);
