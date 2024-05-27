@@ -3075,6 +3075,180 @@ static napi_value AudioAudioDeviceDescriptorGetDeviceEncodingTypes_004(napi_env 
     return res;
 }
 
+tatic napi_value AudioGetUnderFlowTest1(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder *builder = CreateCapturerBuilder();
+    OH_AudioRenderer_Callbacks callbacks;
+    
+    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
+    
+    callbacks OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+    
+    OH_AudioRenderer *audioReadrer;
+    OH_AudioStreamBuilder_GenerateRenderer(builder, &audioReadrer);
+    OH_AudioRenderer_Start(audioReadrer);
+    
+    OH_AudioStream_Result result = OH_AudioRenderer_Stop(audioReadrer);
+    
+    uint32_t count;
+    OH_AudioRenderer_GetUnderflowCount(audioReadrer, &count);
+    
+    OH_AudioRenderer_Release(audioReadrer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    
+    napi_value res;
+    napi_create_uint32(env, count, &res);
+    
+    return res;
+}
+
+static napi_value AudioGetUnderFlowTest2(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder *builder = CreateCapturerBuilder();
+    OH_AudioRenderer_Callbacks callbacks;
+    
+    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
+    
+    callbacks OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+    
+    OH_AudioRenderer *audioReadrer;
+    OH_AudioStreamBuilder_GenerateRenderer(builder, &audioReadrer);
+    OH_AudioRenderer_Start(audioReadrer);
+    
+    OH_AudioStream_Result result = OH_AudioRenderer_Stop(audioReadrer);
+    
+    uint32_t count;
+    OH_AudioRenderer_GetUnderflowCount(audioReadrer, &count);
+    
+    OH_AudioRenderer_Release(audioReadrer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    
+    napi_value res;
+    napi_create_uint32(env, count, &res);
+    
+    return res;
+}
+
+static napi_value AudioGetUnderFlowTest3(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder *builder = CreateCapturerBuilder();
+    OH_AudioRenderer_Callbacks callbacks;
+    
+    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
+    
+    callbacks OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+    
+    OH_AudioRenderer *audioReadrer;
+    OH_AudioStreamBuilder_GenerateRenderer(builder, &audioReadrer);
+    OH_AudioRenderer_Start(audioReadrer);
+    
+    OH_AudioStream_Result result = OH_AudioRenderer_Stop(audioReadrer);
+    
+    uint32_t count;
+    OH_AudioRenderer_GetUnderflowCount(audioReadrer, &count);
+    
+    OH_AudioRenderer_Release(audioReadrer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    
+    napi_value res;
+    napi_create_uint32(env, count, &res);
+    
+    return res;
+}
+
+static napi_value AudioGetOverFlowTest1(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder *builder = CreateCapturerBuilder();
+    OH_AudioCapturer_Callbacks callbacks;
+    
+    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
+    
+    callbacks OH_AudioCapturer_OnReadData = AudioCapturerOnReadData;
+    OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
+    
+    OH_AudioCapturer *audioCapturer;
+    OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
+    OH_AudioCapturer_Start(audioCapturer);
+    
+    OH_AudioStream_Result result = OH_AudioCapturer_Stop(audioCapturer);
+    
+    uint32_t count;
+    OH_AudioRenderer_GetOverflowCount(audioCapturer, &count);
+    
+    OH_AudioCapturer_Release(audioCapturer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    
+    napi_value res;
+    napi_create_uint32(env, count, &res);
+    
+    return res;
+}
+
+static napi_value AudioGetOverFlowTest2(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder *builder = CreateCapturerBuilder();
+    OH_AudioCapturer_Callbacks callbacks;
+    
+    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
+    
+    callbacks OH_AudioCapturer_OnReadData = AudioCapturerOnReadData;
+    OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
+    
+    OH_AudioCapturer *audioCapturer;
+    OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
+    OH_AudioCapturer_Start(audioCapturer);
+    
+    OH_AudioStream_Result result = OH_AudioCapturer_Stop(audioCapturer);
+    
+    uint32_t count;
+    OH_AudioRenderer_GetOverflowCount(audioCapturer, &count);
+    
+    OH_AudioCapturer_Release(audioCapturer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    
+    napi_value res;
+    napi_create_uint32(env, count, &res);
+    
+    return res;
+}
+
+static napi_value AudioGetOverFlowTest3(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder *builder = CreateCapturerBuilder();
+    OH_AudioCapturer_Callbacks callbacks;
+    
+    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
+    
+    callbacks OH_AudioCapturer_OnReadData = AudioCapturerOnReadData;
+    OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
+    
+    OH_AudioCapturer *audioCapturer;
+    OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
+    OH_AudioCapturer_Start(audioCapturer);
+    
+    OH_AudioStream_Result result = OH_AudioCapturer_Stop(audioCapturer);
+    
+    uint32_t count;
+    OH_AudioRenderer_GetOverflowCount(audioCapturer, &count);
+    
+    OH_AudioCapturer_Release(audioCapturer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    
+    napi_value res;
+    napi_create_uint32(env, count, &res);
+    
+    return res;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -3343,6 +3517,12 @@ static napi_value Init(napi_env env, napi_value exports)
             AudioAudioDeviceDescriptorGetDeviceEncodingTypes_003, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioAudioDeviceDescriptorGetDeviceEncodingTypes_004", nullptr,
             AudioAudioDeviceDescriptorGetDeviceEncodingTypes_004, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioGetOverFlowTest2", nullptr, AudioGetOverFlowTest2, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioGetOverFlowTest1", nullptr, AudioGetOverFlowTest1, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioGetOverFlowTest3", nullptr, AudioGetOverFlowTest3, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioGetUnderFlowTest3", nullptr, AudioGetUnderFlowTest3, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioGetUnderFlowTest2", nullptr, AudioGetUnderFlowTest2, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioGetUnderFlowTest1", nullptr, AudioGetUnderFlowTest1, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
