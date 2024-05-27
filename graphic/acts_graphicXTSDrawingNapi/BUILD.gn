@@ -24,9 +24,19 @@ ohos_moduletest_suite("ActsGraphicXTSDrawingNapiTest") {
   comPath = "../../../../../foundation/graphic/graphic_2d"
 
   sources = [
-    "NativeDrawingBitmapTest.cpp",
-    "NativeDrawingBrushTest.cpp",
-    "NativeDrawingCanvasTest.cpp",
+    "NativeXTSDrawingBitmapTest.cpp",
+    "NativeXTSDrawingBrushTest.cpp",
+    "NativeXTSDrawingCanvasTest.cpp",
+    "NativeXTSDrawingColorFilterTest.cpp",
+    "NativeXTSDrawingColorTest.cpp",
+    "NativeXTSDrawingFilterTest.cpp",
+    "NativeXTSDrawingFontMgrTest.cpp",
+    # "NativeXTSDrawingFontTest.cpp",
+    "NativeXTSDrawingImageFilterTest.cpp",
+    "NativeXTSDrawingImageTest.cpp",
+    "NativeXTSDrawingMaskFilterTest.cpp",
+    "NativeXTSDrawingMatrixTest.cpp",
+    "NativeXTSDrawingPenTest.cpp",
   ]
 
   cflags = [
