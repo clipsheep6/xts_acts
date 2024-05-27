@@ -66,6 +66,7 @@ export default function TextAreaSelectTest() {
       expect(JSON.parse(strJson).$attrs.caretPosition).assertEqual("0");
 
       console.info(`${SUITE} ${CASE} END`);
+      console.info(`nxx`);
       done()
     });
 
