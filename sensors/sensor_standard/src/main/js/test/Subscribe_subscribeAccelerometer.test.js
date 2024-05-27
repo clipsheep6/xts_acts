@@ -396,6 +396,7 @@ describe("SensorJsTest_sensor_25", function () {
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
                     console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     sensor.subscribeAccelerometer({
                         interval: 'game',
@@ -436,6 +437,7 @@ describe("SensorJsTest_sensor_25", function () {
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
                     console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     sensor.subscribeAccelerometer({
                         interval: 'ui',
@@ -476,6 +478,7 @@ describe("SensorJsTest_sensor_25", function () {
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
                     console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     sensor.subscribeAccelerometer({
                         interval: 'normal',
@@ -516,6 +519,7 @@ describe("SensorJsTest_sensor_25", function () {
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
                     console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     sensor.subscribeAccelerometer({
                         interval: 'normal',
@@ -566,6 +570,7 @@ describe("SensorJsTest_sensor_25", function () {
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
                     console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     sensor.subscribeAccelerometer({
                         interval: 'xxx',
@@ -603,6 +608,7 @@ describe("SensorJsTest_sensor_25", function () {
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
                     console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     sensor.subscribeAccelerometer({
                         interval: 'xxx',
@@ -641,6 +647,7 @@ describe("SensorJsTest_sensor_25", function () {
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
                     console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     sensor.subscribeAccelerometer({
                         interval: 'game',
