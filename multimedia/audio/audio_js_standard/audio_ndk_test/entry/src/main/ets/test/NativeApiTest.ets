@@ -2180,5 +2180,95 @@ export default function audioNDK() {
         expect(a).assertEqual(6800101)
         done()
     })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_OH_AudioRenderer_GetUnderflowCount_0200
+     * @tc.name      : set GetUnderflowCount with nullptr descriptor
+     * @tc.desc      : test OH_AudioRenderer_GetUnderflowCount
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
+    it('SUB_MULTIMEDIA_AUDIO_OH_AudioRenderer_GetUnderflowCount_0200', 0, async function (done) {
+      let a = myaudioNdk.audioGetUnderFlowTest1();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_OH_AudioRenderer_GetUnderflowCount_0200 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
+      expect(a).assertEqual(0)
+      done()
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_OH_AudioRenderer_GetUnderflowCount_0100
+     * @tc.name      : set GetUnderflowCount with nullptr descriptor
+     * @tc.desc      : test OH_AudioRenderer_GetUnderflowCount
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
+    it('SUB_MULTIMEDIA_AUDIO_OH_AudioRenderer_GetUnderflowCount_0100', 0, async function (done) {
+      let a = myaudioNdk.audioGetUnderFlowTest2();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_OH_AudioRenderer_GetUnderflowCount_0100 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
+      expect(a).assertEqual(0)
+      done()
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_OH_AudioRenderer_GetUnderflowCount_0300
+     * @tc.name      : set GetUnderflowCount with nullptr descriptor
+     * @tc.desc      : test OH_AudioRenderer_GetUnderflowCount
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
+    it('SUB_MULTIMEDIA_AUDIO_OH_AudioRenderer_GetUnderflowCount_0300', 0, async function (done) {
+      let a = myaudioNdk.audioGetUnderFlowTest3();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_OH_AudioRenderer_GetUnderflowCount_0300 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
+      expect(a).assertEqual(0)
+      done()
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_OH_AudioCapturer_GetOverflowCount_0100
+     * @tc.name      : set GetOverflowCount with nullptr descriptor
+     * @tc.desc      : test OH_AudioCapturer_GetOverflowCount
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
+    it('SUB_MULTIMEDIA_AUDIO_OH_AudioCapturer_GetOverflowCount_0100', 0, async function (done) {
+      let a = myaudioNdk.audioGetOverFlowTest1();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_OH_AudioCapturer_GetOverflowCount_0100 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
+      expect(a).assertEqual(0)
+      done()
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_OH_AudioCapturer_GetOverflowCount_0200
+     * @tc.name      : set GetOverflowCount with nullptr descriptor
+     * @tc.desc      : test OH_AudioCapturer_GetOverflowCount
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
+    it('SUB_MULTIMEDIA_AUDIO_OH_AudioCapturer_GetOverflowCount_0200', 0, async function (done) {
+      let a = myaudioNdk.audioGetOverFlowTest2();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_OH_AudioCapturer_GetOverflowCount_0200 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
+      expect(a).assertEqual(0)
+      done()
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_OH_AudioCapturer_GetOverflowCount_0300
+     * @tc.name      : set GetOverflowCount with nullptr descriptor
+     * @tc.desc      : test OH_AudioCapturer_GetOverflowCount
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
+    it('SUB_MULTIMEDIA_AUDIO_OH_AudioCapturer_GetOverflowCount_0300', 0, async function (done) {
+      let a = myaudioNdk.audioGetOverFlowTest3();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_OH_AudioCapturer_GetOverflowCount_0300 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
+      expect(a).assertEqual(0)
+      done()
+    })
   })
 }
