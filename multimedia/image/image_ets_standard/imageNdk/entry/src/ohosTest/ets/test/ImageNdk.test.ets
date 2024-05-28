@@ -17,13 +17,16 @@ import { describe, beforeAll, afterEach, it, expect } from '@ohos/hypium'
 import ndkTest, { IImageInfo } from 'libImageNdk.so'
 import image from "@ohos.multimedia.image";
 import hilog from '@ohos.hilog';
-
+import common from '@ohos.app.ability.common';
 import fs from '@ohos.file.fs';
+import resourceManager from '@ohos.resourceManager';
+import { BusinessError } from '@ohos.base';
 
 export default function imageNdkTest() {
   describe('ImageNdkTest', () => {
     let globalpixelmap: image.PixelMap;
     let outBuffer: ArrayBuffer = new ArrayBuffer(1200000)
+    let testContext: common.UIAbilityContext;
     afterEach(async () => {
       if (globalpixelmap != undefined) {
         console.info('globalpixelmap release start');
@@ -38,6 +41,7 @@ export default function imageNdkTest() {
 
     beforeAll(async () => {
       filesDir = AppStorage.get('pathDir')
+      testContext = AppStorage.get<common.UIAbilityContext>('testContext') as common.UIAbilityContext;
     })
 
     let filePath: string;
@@ -624,6 +628,99 @@ export default function imageNdkTest() {
         expect(false).assertTrue();
       }
       done();
+    }
+
+    const NDK_CreateFromRawFile = async (TAG: string, filename: string, done: Function) => {
+      const resourceMgr: resourceManager.ResourceManager = testContext.createModuleContext("entry").resourceManager;
+      resourceMgr.getRawFd(filename).then((rawFileDescriptor: resourceManager.RawFileDescriptor) => {
+        let imageSourceApi: image.ImageSource = ndkTest.CreateFromRawFile(rawFileDescriptor.fd,
+          rawFileDescriptor.offset, rawFileDescriptor.length);
+        if (typeof imageSourceApi === "object") {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+          expect(true).assertTrue();
+          done();
+        } else {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed:${imageSourceApi}`)
+          expect(false).assertTrue();
+          done();
+        }
+      }).catch((error: BusinessError) => {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source error: ${error.code}`)
+        expect(false).assertTrue();
+        done()
+      })
+    }
+
+    const NDK_CreatePixelMapByRawFile = async (TAG: string, index: number, rotate: number, x: number, y: number, Regionwidth: number,
+                                               RegionHeight: number, width: number, height: number, desiredPixelFormat: number,
+                                               filename: string, done: Function) => {
+      const resourceMgr: resourceManager.ResourceManager = testContext.createModuleContext("entry").resourceManager;
+      const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd(filename)
+      let imageSourceApi: image.ImageSource = ndkTest.CreateFromRawFile(rawFileDescriptor.fd,
+        rawFileDescriptor.offset, rawFileDescriptor.length);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
+        ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
+        ndkTest.DecodingOptionsSetIndex(options, index);
+        ndkTest.DecodingOptionsSetRotate(options, rotate);
+        ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
+        ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
+        const pixelMap = ndkTest.CreatePixelMap(imageSourceApi, options)
+        if (typeof pixelMap === "object") {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap success :${pixelMap}`)
+          expect(true).assertTrue();
+          ndkTest.SourceRelease(imageSourceApi);
+          ndkTest.PixelMapRelease(pixelMap);
+          done()
+        } else {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap failed: ${pixelMap}`)
+          ndkTest.SourceRelease(imageSourceApi)
+          expect(false).assertTrue();
+          done()
+        }
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
+        expect(false).assertTrue();
+        done();
+      }
+    }
+
+    const NDK_CreatePixelMapListByRawFile = async (TAG: string, index: number, rotate: number, x: number, y: number,
+                                                   Regionwidth: number, RegionHeight: number, width: number, height: number,
+                                                   desiredPixelFormat: number, filename: string, done: Function) => {
+      const resourceMgr: resourceManager.ResourceManager = testContext.createModuleContext("entry").resourceManager;
+      const rawFileDescriptor: resourceManager.RawFileDescriptor = await resourceMgr.getRawFd(filename)
+      let imageSourceApi: image.ImageSource = ndkTest.CreateFromRawFile(rawFileDescriptor.fd,
+        rawFileDescriptor.offset, rawFileDescriptor.length);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
+        ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
+        ndkTest.DecodingOptionsSetIndex(options, index);
+        ndkTest.DecodingOptionsSetRotate(options, rotate);
+        ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
+        ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
+        const pixelMapList = ndkTest.CreatePixelMapList(imageSourceApi, options)
+        if (Array.isArray(pixelMapList)) {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList success :${pixelMapList}`)
+          expect(true).assertTrue();
+          ndkTest.SourceRelease(imageSourceApi);
+          pixelMapList.forEach((pixelMap) => {
+            ndkTest.PixelMapRelease(pixelMap);
+          });
+          done()
+        } else {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList failed: ${pixelMapList}`)
+          expect(false).assertTrue();
+          ndkTest.SourceRelease(imageSourceApi);
+          done()
+        }
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
+        expect(false).assertTrue();
+        done();
+      }
     }
 
     const compResult = (res: Number, done: Function) => {
@@ -3513,5 +3610,375 @@ export default function imageNdkTest() {
         done();
       }
     })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0100
+     * @tc.name      : createImageSourceFromRawFile
+     * @tc.desc      : 1.get testPng.buffer
+     *                 2.createImageSourceFromRawFile
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0100", 0, async (done: Function) => {
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0100'
+      try {
+        await NDK_CreateFromRawFile(testTag, "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0200
+     * @tc.name      : createImageSourceFromRawFile
+     * @tc.desc      : 1.get testPng.buffer
+     *                 2.createImageSourceFromRawFile
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0200", 0, async (done: Function) => {
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0200'
+      try {
+        await NDK_CreateFromRawFile(testTag, "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0300
+     * @tc.name      : createImageSourceFromRawFile
+     * @tc.desc      : 1.get testPng.buffer
+     *                 2.createImageSourceFromRawFile
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0300", 0, async (done: Function) => {
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0300'
+      try {
+        await NDK_CreateFromRawFile(testTag, "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0400
+     * @tc.name      : createImageSourceFromRawFile
+     * @tc.desc      : 1.get testPng.buffer
+     *                 2.createImageSourceFromRawFile
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0400", 0, async (done: Function) => {
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0400'
+      try {
+        await NDK_CreateFromRawFile(testTag, "test8.bmp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0500
+     * @tc.name      : createImageSourceFromRawFile
+     * @tc.desc      : 1.get testPng.buffer
+     *                 2.createImageSourceFromRawFile
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0500", 0, async (done: Function) => {
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0500'
+      try {
+        await NDK_CreateFromRawFile(testTag, "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0600
+     * @tc.name      : createImageSourceFromRawFile
+     * @tc.desc      : 1.get testPng.buffer
+     *                 2.createImageSourceFromRawFile
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0600", 0, async (done: Function) => {
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0600'
+      try {
+        await NDK_CreateFromRawFile(testTag, "test.arw", done);
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0700
+     * @tc.name      : createImageSourceFromRawFile
+     * @tc.desc      : 1.get testPng.buffer
+     *                 2.createImageSourceFromRawFile
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0700", 0, async (done: Function) => {
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0700'
+      try {
+        await NDK_CreateFromRawFile(testTag, "docx.ico", done);
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0800
+     * @tc.name      : createImageSourceFromRawFile
+     * @tc.desc      : 1.get testPng.buffer
+     *                 2.createImageSourceFromRawFile
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0800", 0, async (done: Function) => {
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_RAWFILE_0800'
+      try {
+        await NDK_CreateFromRawFile(testTag, "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0100
+     * @tc.name      : CreatePixelMap
+     * @tc.desc      : 1.getimagepath,2.createImageSourceFromRawFile,3.CreateDecodingOptions,4.DecodingOptionsSetPixelFormat，
+     *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
+     *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0100", 0, async (done: Function) => {
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0100"
+      try {
+        await NDK_CreatePixelMapByRawFile(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3, "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0200
+     * @tc.name      : CreatePixelMap
+     * @tc.desc      : 1.getimagepath,2.createImageSourceFromRawFile,3.CreateDecodingOptions,4.DecodingOptionsSetPixelFormat，
+     *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
+     *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0200", 0, async (done: Function) => {
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0200"
+      try {
+        await NDK_CreatePixelMapByRawFile(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3, "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0300
+     * @tc.name      : CreatePixelMap
+     * @tc.desc      : 1.getimagepath,2.createImageSourceFromRawFile,3.CreateDecodingOptions,4.DecodingOptionsSetPixelFormat，
+     *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
+     *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0300", 0, async (done: Function) => {
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0300"
+      try {
+        await NDK_CreatePixelMapByRawFile(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3, "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0400
+     * @tc.name      : CreatePixelMap
+     * @tc.desc      : 1.getimagepath,2.createImageSourceFromRawFile,3.CreateDecodingOptions,4.DecodingOptionsSetPixelFormat，
+     *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
+     *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0400", 0, async (done: Function) => {
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0400"
+      try {
+        await NDK_CreatePixelMapByRawFile(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3, "test8.bmp", done);
+      }catch (error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0500
+     * @tc.name      : CreatePixelMap
+     * @tc.desc      : 1.getimagepath,2.createImageSourceFromRawFile,3.CreateDecodingOptions,4.DecodingOptionsSetPixelFormat，
+     *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
+     *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0500", 0, async (done: Function) => {
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0500"
+      try {
+        await NDK_CreatePixelMapByRawFile(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3, "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0600
+     * @tc.name      : CreatePixelMap
+     * @tc.desc      : 1.getimagepath,2.createImageSourceFromRawFile,3.CreateDecodingOptions,4.DecodingOptionsSetPixelFormat，
+     *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
+     *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0600", 0, async (done: Function) => {
+      const testTag ="SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0600"
+      try {
+        await NDK_CreatePixelMapByRawFile(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3, "test.arw", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0700
+     * @tc.name      : CreatePixelMap
+     * @tc.desc      : 1.getimagepath,2.createImageSourceFromRawFile,3.CreateDecodingOptions,4.DecodingOptionsSetPixelFormat，
+     *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
+     *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0700", 0, async (done: Function) => {
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0700"
+      try {
+        await NDK_CreatePixelMapByRawFile(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3, "docx.ico", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0800
+     * @tc.name      : CreatePixelMap
+     * @tc.desc      : 1.getimagepath,2.createImageSourceFromRawFile,3.CreateDecodingOptions,4.DecodingOptionsSetPixelFormat，
+     *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
+     *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0800", 0, async (done: Function) => {
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_RAWFILE_0800"
+      try {
+        await NDK_CreatePixelMapByRawFile(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3, "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_GIF_CREATE_RGBA8888LIST_BYRAWFILE_0100
+     * @tc.name      : CreatePixelMapList
+     * @tc.desc      : 1.getimagepath,2.createImageSourceFromRawFile,3.CreateDecodingOptions,4.DecodingOptionsSetPixelFormat，
+     *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
+     *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMapList
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_GIF_CREATE_RGBA8888LIST_BYRAWFILE_0100", 0, async (done: Function) => {
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_GIF_CREATE_RGBA8888LIST_BYRAWFILE_0100"
+      try {
+        await NDK_CreatePixelMapListByRawFile(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3, "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_WEBP_CREATE_RGBA8888LIST_BYRAWFILE_0100
+     * @tc.name      : CreatePixelMapList
+     * @tc.desc      : 1.getimagepath,2.createImageSourceFromRawFile,3.CreateDecodingOptions,4.DecodingOptionsSetPixelFormat，
+     *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
+     *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMapList
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_WEBP_CREATE_RGBA8888LIST_BYRAWFILE_0100", 0, async (done: Function) => {
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_WEBP_CREATE_RGBA8888LIST_BYRAWFILE_0100"
+      try {
+        await NDK_CreatePixelMapListByRawFile(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3, "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
   })
 }
