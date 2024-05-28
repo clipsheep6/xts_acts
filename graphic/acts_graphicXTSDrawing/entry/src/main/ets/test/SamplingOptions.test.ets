@@ -15,6 +15,7 @@
 
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from '@ohos/hypium';
 import drawing from '@ohos.graphics.drawing';
+import hilog from '@ohos.hilog';
 
 export default function samplingOptionsTest() {
   describe('samplingOptions_test', () => {

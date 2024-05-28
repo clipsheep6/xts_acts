@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,7 +28,9 @@ export default class MainAbility extends Ability {
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate windowStage="+ windowStage)
+        console.log("[Demo] MainAbility onWindowStageCreate windowStage="+ windowStage);
+        AppStorage.setOrCreate('windowStage',windowStage);
+        console.log('windowStage:' +JSON.stringify(windowStage));
         globalThis.windowStage = windowStage
         globalThis.abilityContext = this.context
         windowStage.setUIContent(this.context, "MainAbility/pages/index/index", null)
