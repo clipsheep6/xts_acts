@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { drawing } from '@kit.ArkGraphics2D';
 
-import { afterAll, afterEach, beforeAll, beforeEach, describe, it } from '@ohos/hypium';
+import { afterAll, afterEach, beforeAll, beforeEach, describe } from '@ohos/hypium';
 import image from '@ohos.multimedia.image';
+
 
 export default function fontTest() {
   describe('Font_test', () => {

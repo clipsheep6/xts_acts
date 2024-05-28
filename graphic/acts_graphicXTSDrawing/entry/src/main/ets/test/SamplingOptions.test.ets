@@ -12,10 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { drawing } from '@kit.ArkGraphics2D';
 
-import { hilog } from '@kit.PerformanceAnalysisKit';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from '@ohos/hypium';
+import drawing from '@ohos.graphics.drawing';
 
 export default function samplingOptionsTest() {
   describe('samplingOptions_test', () => {
