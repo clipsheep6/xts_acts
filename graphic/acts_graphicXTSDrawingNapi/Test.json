@@ -5,7 +5,7 @@
                 "ActsGraphicXTSDrawingNapiTest->/data/local/tmp/ActsGraphicXTSDrawingNapiTest"
             ],
             "type": "PushKit",
-            "post-push" : [
+            "post-push": [
                 "chmod -R 777 /data/local/tmp/*"
             ]
         }

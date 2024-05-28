@@ -39,10 +39,10 @@ class NativeXTSDrawingMemoryStreamTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingMemoryStreamTest, OH_Drawing_MemoryStreamCreate, TestSize.Level1) {
-  size_t length = 1;
-  OH_Drawing_MemoryStream *memoryStream = OH_Drawing_MemoryStreamCreate(nullptr, length, false);
-  OH_Drawing_MemoryStreamDestroy(memoryStream);
-  EXPECT_TRUE(true);
+    size_t length = 1;
+    OH_Drawing_MemoryStream *memoryStream = OH_Drawing_MemoryStreamCreate(nullptr, length, false);
+    OH_Drawing_MemoryStreamDestroy(memoryStream);
+    EXPECT_TRUE(true);
 }
 
 /*
@@ -53,10 +53,10 @@ HWTEST_F(NativeXTSDrawingMemoryStreamTest, OH_Drawing_MemoryStreamCreate, TestSi
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingMemoryStreamTest, OH_Drawing_MemoryStreamDestroy, TestSize.Level1) {
-  size_t length = 1;
-  OH_Drawing_MemoryStream *memoryStream = OH_Drawing_MemoryStreamCreate(nullptr, length, false);
-  OH_Drawing_MemoryStreamDestroy(memoryStream);
-  EXPECT_TRUE(true);
+    size_t length = 1;
+    OH_Drawing_MemoryStream *memoryStream = OH_Drawing_MemoryStreamCreate(nullptr, length, false);
+    OH_Drawing_MemoryStreamDestroy(memoryStream);
+    EXPECT_TRUE(true);
 }
 
 } // namespace Drawing

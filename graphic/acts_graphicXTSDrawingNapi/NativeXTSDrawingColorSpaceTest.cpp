@@ -33,9 +33,9 @@ class NativeXTSDrawingColorSpaceTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingColorSpaceTest, OH_Drawing_ColorSpaceDestroy, TestSize.Level1) {
-  OH_Drawing_ColorSpace *colorSpace = OH_Drawing_ColorSpaceCreateSrgb();
-  EXPECT_NE(colorSpace, nullptr);
-  OH_Drawing_ColorSpaceDestroy(colorSpace);
+    OH_Drawing_ColorSpace *colorSpace = OH_Drawing_ColorSpaceCreateSrgb();
+    EXPECT_NE(colorSpace, nullptr);
+    OH_Drawing_ColorSpaceDestroy(colorSpace);
 }
 
 } // namespace Drawing

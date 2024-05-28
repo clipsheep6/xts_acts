@@ -36,20 +36,20 @@ class NativeXTSDrawingGpuContextTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingGpuContextTest, OH_Drawing_GpuContextCreateFromGL, TestSize.Level1) {
-  // todo cpp crash
+    // todo cpp crash
 
-  // OH_Drawing_GpuContextOptions options;
-  // options.allowPathMaskCaching = true;
-  // OH_Drawing_GpuContext *gpuContext = OH_Drawing_GpuContextCreateFromGL(options);
-  // EXPECT_NE(gpuContext, nullptr);
-  // OH_Drawing_GpuContextDestroy(gpuContext);
+    // OH_Drawing_GpuContextOptions options;
+    // options.allowPathMaskCaching = true;
+    // OH_Drawing_GpuContext *gpuContext = OH_Drawing_GpuContextCreateFromGL(options);
+    // EXPECT_NE(gpuContext, nullptr);
+    // OH_Drawing_GpuContextDestroy(gpuContext);
 
-  // options.allowPathMaskCaching = false;
-  // OH_Drawing_GpuContext *gpuContext2 = OH_Drawing_GpuContextCreateFromGL(options);
-  // EXPECT_NE(gpuContext2, nullptr);
-  // OH_Drawing_GpuContextDestroy(gpuContext2);
+    // options.allowPathMaskCaching = false;
+    // OH_Drawing_GpuContext *gpuContext2 = OH_Drawing_GpuContextCreateFromGL(options);
+    // EXPECT_NE(gpuContext2, nullptr);
+    // OH_Drawing_GpuContextDestroy(gpuContext2);
 
-  EXPECT_TRUE(true);
+    EXPECT_TRUE(true);
 }
 
 /*
@@ -60,20 +60,20 @@ HWTEST_F(NativeXTSDrawingGpuContextTest, OH_Drawing_GpuContextCreateFromGL, Test
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingGpuContextTest, OH_Drawing_GpuContextDestroy, TestSize.Level1) {
-  // todo cpp crash
+    // todo cpp crash
 
-  // OH_Drawing_GpuContextOptions options;
-  // options.allowPathMaskCaching = true;
-  // OH_Drawing_GpuContext *gpuContext = OH_Drawing_GpuContextCreateFromGL(options);
-  // EXPECT_NE(gpuContext, nullptr);
-  // OH_Drawing_GpuContextDestroy(gpuContext);
+    // OH_Drawing_GpuContextOptions options;
+    // options.allowPathMaskCaching = true;
+    // OH_Drawing_GpuContext *gpuContext = OH_Drawing_GpuContextCreateFromGL(options);
+    // EXPECT_NE(gpuContext, nullptr);
+    // OH_Drawing_GpuContextDestroy(gpuContext);
 
-  // options.allowPathMaskCaching = false;
-  // OH_Drawing_GpuContext *gpuContext2 = OH_Drawing_GpuContextCreateFromGL(options);
-  // EXPECT_NE(gpuContext2, nullptr);
-  // OH_Drawing_GpuContextDestroy(gpuContext2);
+    // options.allowPathMaskCaching = false;
+    // OH_Drawing_GpuContext *gpuContext2 = OH_Drawing_GpuContextCreateFromGL(options);
+    // EXPECT_NE(gpuContext2, nullptr);
+    // OH_Drawing_GpuContextDestroy(gpuContext2);
 
-  EXPECT_TRUE(true);
+    EXPECT_TRUE(true);
 }
 
 } // namespace Drawing

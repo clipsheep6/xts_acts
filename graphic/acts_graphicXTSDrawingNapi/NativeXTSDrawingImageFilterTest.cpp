@@ -16,10 +16,10 @@
 #include "gtest/gtest.h"
 
 #include "drawing_bitmap.h"
-#include "drawing_image.h"
-#include "drawing_image_filter.h"
 #include "drawing_color.h"
 #include "drawing_color_filter.h"
+#include "drawing_image.h"
+#include "drawing_image_filter.h"
 #include "effect/color_filter.h"
 #include "effect/filter.h"
 
@@ -39,9 +39,9 @@ class NativeXTSDrawingImageTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingImageTest, OH_Drawing_ImageFilterCreateBlur, TestSize.Level1) {
-  OH_Drawing_ImageFilter *f = OH_Drawing_ImageFilterCreateBlur(1.0, 1.0, OH_Drawing_TileMode::MIRROR, nullptr);
-  EXPECT_NE(f, nullptr);
-  OH_Drawing_ImageFilterDestroy(f);
+    OH_Drawing_ImageFilter *f = OH_Drawing_ImageFilterCreateBlur(1.0, 1.0, OH_Drawing_TileMode::MIRROR, nullptr);
+    EXPECT_NE(f, nullptr);
+    OH_Drawing_ImageFilterDestroy(f);
 }
 
 /*
@@ -52,11 +52,12 @@ HWTEST_F(NativeXTSDrawingImageTest, OH_Drawing_ImageFilterCreateBlur, TestSize.L
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingImageTest, OH_Drawing_ImageFilterCreateFromColorFilter, TestSize.Level1) {
-  OH_Drawing_ColorFilter *colorFilter = OH_Drawing_ColorFilterCreateBlendMode(0xff0000ff, OH_Drawing_BlendMode::BLEND_MODE_SRC);
-  OH_Drawing_ImageFilter *f = OH_Drawing_ImageFilterCreateFromColorFilter(colorFilter, nullptr);
-  EXPECT_NE(f, nullptr);
-  OH_Drawing_ColorFilterDestroy(colorFilter);
-  OH_Drawing_ImageFilterDestroy(f);
+    OH_Drawing_ColorFilter *colorFilter =
+        OH_Drawing_ColorFilterCreateBlendMode(0xff0000ff, OH_Drawing_BlendMode::BLEND_MODE_SRC);
+    OH_Drawing_ImageFilter *f = OH_Drawing_ImageFilterCreateFromColorFilter(colorFilter, nullptr);
+    EXPECT_NE(f, nullptr);
+    OH_Drawing_ColorFilterDestroy(colorFilter);
+    OH_Drawing_ImageFilterDestroy(f);
 }
 
 /*
@@ -67,13 +68,13 @@ HWTEST_F(NativeXTSDrawingImageTest, OH_Drawing_ImageFilterCreateFromColorFilter,
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingImageTest, OH_Drawing_ImageFilterDestroy, TestSize.Level1) {
-  OH_Drawing_ColorFilter *colorFilter = OH_Drawing_ColorFilterCreateBlendMode(0xff0000ff, OH_Drawing_BlendMode::BLEND_MODE_SRC);
-  OH_Drawing_ImageFilter *f = OH_Drawing_ImageFilterCreateFromColorFilter(colorFilter, nullptr);
-  EXPECT_NE(f, nullptr);
-  OH_Drawing_ColorFilterDestroy(colorFilter);
-  OH_Drawing_ImageFilterDestroy(f);
+    OH_Drawing_ColorFilter *colorFilter =
+        OH_Drawing_ColorFilterCreateBlendMode(0xff0000ff, OH_Drawing_BlendMode::BLEND_MODE_SRC);
+    OH_Drawing_ImageFilter *f = OH_Drawing_ImageFilterCreateFromColorFilter(colorFilter, nullptr);
+    EXPECT_NE(f, nullptr);
+    OH_Drawing_ColorFilterDestroy(colorFilter);
+    OH_Drawing_ImageFilterDestroy(f);
 }
-
 
 } // namespace Drawing
 } // namespace Rosen

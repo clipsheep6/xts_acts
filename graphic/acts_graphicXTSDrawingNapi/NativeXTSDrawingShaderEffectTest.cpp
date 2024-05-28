@@ -40,22 +40,24 @@ class NativeXTSDrawingShaderEffectTest : public testing::Test {};
  * @tc.type  : Function
  * @tc.level : Level 1
  */
-HWTEST_F(NativeXTSDrawingShaderEffectTest, OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMatrix, TestSize.Level1) {
-  OH_Drawing_Point2D startPt = {100, 400};
-  OH_Drawing_Point2D endPt = {200, 500};
+HWTEST_F(NativeXTSDrawingShaderEffectTest, OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMatrix,
+         TestSize.Level1) {
+    OH_Drawing_Point2D startPt = {100, 400};
+    OH_Drawing_Point2D endPt = {200, 500};
 
-  uint32_t colors[] = {0xffff0000, 0xff00ff00};
-  float pos[] = {0., 1.0};
+    uint32_t colors[] = {0xffff0000, 0xff00ff00};
+    float pos[] = {0., 1.0};
 
-  OH_Drawing_Matrix *matrix = OH_Drawing_MatrixCreate();
-  EXPECT_NE(matrix, nullptr);
-  OH_Drawing_MatrixSetMatrix(matrix, 1, 0, 0, 0, -1, 0, 0, 0, 1);
+    OH_Drawing_Matrix *matrix = OH_Drawing_MatrixCreate();
+    EXPECT_NE(matrix, nullptr);
+    OH_Drawing_MatrixSetMatrix(matrix, 1, 0, 0, 0, -1, 0, 0, 0, 1);
 
-  OH_Drawing_ShaderEffect *linearGradient = OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMatrix(&startPt, &endPt, colors, pos, 2, OH_Drawing_TileMode::CLAMP, matrix);
-  EXPECT_NE(linearGradient, nullptr);
+    OH_Drawing_ShaderEffect *linearGradient = OH_Drawing_ShaderEffectCreateLinearGradientWithLocalMatrix(
+        &startPt, &endPt, colors, pos, 2, OH_Drawing_TileMode::CLAMP, matrix);
+    EXPECT_NE(linearGradient, nullptr);
 
-  OH_Drawing_MatrixDestroy(matrix);
-  OH_Drawing_ShaderEffectDestroy(linearGradient);
+    OH_Drawing_MatrixDestroy(matrix);
+    OH_Drawing_ShaderEffectDestroy(linearGradient);
 }
 
 /*
@@ -65,21 +67,23 @@ HWTEST_F(NativeXTSDrawingShaderEffectTest, OH_Drawing_ShaderEffectCreateLinearGr
  * @tc.type  : Function
  * @tc.level : Level 1
  */
-HWTEST_F(NativeXTSDrawingShaderEffectTest, OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix, TestSize.Level1) {
-  OH_Drawing_Point2D centerPt = {100, 100};
-  float radius = 10.0;
-  uint32_t colors[] = {0xffff0000, 0xff00ff00};
-  float pos[] = {0., 1.0};
+HWTEST_F(NativeXTSDrawingShaderEffectTest, OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix,
+         TestSize.Level1) {
+    OH_Drawing_Point2D centerPt = {100, 100};
+    float radius = 10.0;
+    uint32_t colors[] = {0xffff0000, 0xff00ff00};
+    float pos[] = {0., 1.0};
 
-  OH_Drawing_Matrix *matrix = OH_Drawing_MatrixCreate();
-  EXPECT_NE(matrix, nullptr);
-  OH_Drawing_MatrixSetMatrix(matrix, 1, 0, 0, 0, -1, 0, 0, 0, 1);
+    OH_Drawing_Matrix *matrix = OH_Drawing_MatrixCreate();
+    EXPECT_NE(matrix, nullptr);
+    OH_Drawing_MatrixSetMatrix(matrix, 1, 0, 0, 0, -1, 0, 0, 0, 1);
 
-  OH_Drawing_ShaderEffect *radialGradient = OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix(&centerPt, radius, colors, pos, 2, OH_Drawing_TileMode::CLAMP, matrix);
-  EXPECT_NE(radialGradient, nullptr);
+    OH_Drawing_ShaderEffect *radialGradient = OH_Drawing_ShaderEffectCreateRadialGradientWithLocalMatrix(
+        &centerPt, radius, colors, pos, 2, OH_Drawing_TileMode::CLAMP, matrix);
+    EXPECT_NE(radialGradient, nullptr);
 
-  OH_Drawing_MatrixDestroy(matrix);
-  OH_Drawing_ShaderEffectDestroy(radialGradient);
+    OH_Drawing_MatrixDestroy(matrix);
+    OH_Drawing_ShaderEffectDestroy(radialGradient);
 }
 
 /*
@@ -90,10 +94,10 @@ HWTEST_F(NativeXTSDrawingShaderEffectTest, OH_Drawing_ShaderEffectCreateRadialGr
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingShaderEffectTest, OH_Drawing_ShaderEffectCreateColorShader, TestSize.Level1) {
-  uint32_t color = 0xff00ff00;
-  OH_Drawing_ShaderEffect *effect = OH_Drawing_ShaderEffectCreateColorShader(color);
-  EXPECT_NE(effect, nullptr);
-  OH_Drawing_ShaderEffectDestroy(effect);
+    uint32_t color = 0xff00ff00;
+    OH_Drawing_ShaderEffect *effect = OH_Drawing_ShaderEffectCreateColorShader(color);
+    EXPECT_NE(effect, nullptr);
+    OH_Drawing_ShaderEffectDestroy(effect);
 }
 
 } // namespace Drawing

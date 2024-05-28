@@ -40,9 +40,9 @@ class NativeXTSDrawingMaskFilterTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingMaskFilterTest, OH_Drawing_MaskFilterCreateBlur, TestSize.Level1) {
-  OH_Drawing_MaskFilter *maskFilter = OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType::NORMAL, 10, true);
-  EXPECT_NE(maskFilter, nullptr);
-  OH_Drawing_MaskFilterDestroy(maskFilter);
+    OH_Drawing_MaskFilter *maskFilter = OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType::NORMAL, 10, true);
+    EXPECT_NE(maskFilter, nullptr);
+    OH_Drawing_MaskFilterDestroy(maskFilter);
 }
 
 /*
@@ -53,9 +53,9 @@ HWTEST_F(NativeXTSDrawingMaskFilterTest, OH_Drawing_MaskFilterCreateBlur, TestSi
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingMaskFilterTest, OH_Drawing_MaskFilterDestroy, TestSize.Level1) {
-  OH_Drawing_MaskFilter *maskFilter = OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType::NORMAL, 10, true);
-  EXPECT_NE(maskFilter, nullptr);
-  OH_Drawing_MaskFilterDestroy(maskFilter);
+    OH_Drawing_MaskFilter *maskFilter = OH_Drawing_MaskFilterCreateBlur(OH_Drawing_BlurType::NORMAL, 10, true);
+    EXPECT_NE(maskFilter, nullptr);
+    OH_Drawing_MaskFilterDestroy(maskFilter);
 }
 
 } // namespace Drawing

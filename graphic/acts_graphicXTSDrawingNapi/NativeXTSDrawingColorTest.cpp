@@ -56,9 +56,9 @@ class NativeXTSDrawingColorTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingColorTest, OH_Drawing_ColorSetArgb, TestSize.Level1) {
-  OH_Drawing_Brush *brush1 = OH_Drawing_BrushCreate();
-  OH_Drawing_BrushSetColor(brush1, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
-  EXPECT_EQ(OH_Drawing_BrushGetColor(brush1), 0xFFFF0000);
+    OH_Drawing_Brush *brush1 = OH_Drawing_BrushCreate();
+    OH_Drawing_BrushSetColor(brush1, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
+    EXPECT_EQ(OH_Drawing_BrushGetColor(brush1), 0xFFFF0000);
 }
 
 } // namespace Drawing

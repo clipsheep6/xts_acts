@@ -57,12 +57,12 @@ class NativeXTSDrawingFilterTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingFilterTest, OH_Drawing_FilterSetImageFilter, TestSize.Level1) {
-  OH_Drawing_Filter *cFilter_ = OH_Drawing_FilterCreate();
-  EXPECT_NE(cFilter_, nullptr);
-  OH_Drawing_ImageFilter *f = OH_Drawing_ImageFilterCreateBlur(1.0, 1.0, OH_Drawing_TileMode::MIRROR, nullptr);
-  OH_Drawing_FilterSetImageFilter(cFilter_, f);
-  OH_Drawing_FilterDestroy(cFilter_);
-  EXPECT_TRUE(true);
+    OH_Drawing_Filter *cFilter_ = OH_Drawing_FilterCreate();
+    EXPECT_NE(cFilter_, nullptr);
+    OH_Drawing_ImageFilter *f = OH_Drawing_ImageFilterCreateBlur(1.0, 1.0, OH_Drawing_TileMode::MIRROR, nullptr);
+    OH_Drawing_FilterSetImageFilter(cFilter_, f);
+    OH_Drawing_FilterDestroy(cFilter_);
+    EXPECT_TRUE(true);
 }
 
 /*
@@ -73,19 +73,20 @@ HWTEST_F(NativeXTSDrawingFilterTest, OH_Drawing_FilterSetImageFilter, TestSize.L
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingFilterTest, OH_Drawing_FilterGetColorFilter, TestSize.Level1) {
-  OH_Drawing_Filter *filter = OH_Drawing_FilterCreate();
-  EXPECT_NE(filter, nullptr);
-  OH_Drawing_ColorFilter *colorFilter = OH_Drawing_ColorFilterCreateBlendMode(0xff0000ff, OH_Drawing_BlendMode::BLEND_MODE_SRC);
-  EXPECT_NE(colorFilter, nullptr);
-  OH_Drawing_ColorFilter *colorFilterTmp = OH_Drawing_ColorFilterCreateLinearToSrgbGamma();
-  EXPECT_NE(colorFilterTmp, nullptr);
-  OH_Drawing_FilterSetColorFilter(filter, colorFilter);
-  OH_Drawing_FilterGetColorFilter(filter, colorFilterTmp);
+    OH_Drawing_Filter *filter = OH_Drawing_FilterCreate();
+    EXPECT_NE(filter, nullptr);
+    OH_Drawing_ColorFilter *colorFilter =
+        OH_Drawing_ColorFilterCreateBlendMode(0xff0000ff, OH_Drawing_BlendMode::BLEND_MODE_SRC);
+    EXPECT_NE(colorFilter, nullptr);
+    OH_Drawing_ColorFilter *colorFilterTmp = OH_Drawing_ColorFilterCreateLinearToSrgbGamma();
+    EXPECT_NE(colorFilterTmp, nullptr);
+    OH_Drawing_FilterSetColorFilter(filter, colorFilter);
+    OH_Drawing_FilterGetColorFilter(filter, colorFilterTmp);
 
-  OH_Drawing_ColorFilterDestroy(colorFilter);
-  OH_Drawing_ColorFilterDestroy(colorFilterTmp);
-  OH_Drawing_FilterDestroy(filter);
-  EXPECT_TRUE(true);
+    OH_Drawing_ColorFilterDestroy(colorFilter);
+    OH_Drawing_ColorFilterDestroy(colorFilterTmp);
+    OH_Drawing_FilterDestroy(filter);
+    EXPECT_TRUE(true);
 }
 
 } // namespace Drawing

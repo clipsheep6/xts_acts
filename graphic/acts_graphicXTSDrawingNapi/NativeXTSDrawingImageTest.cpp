@@ -34,9 +34,9 @@ class NativeXTSDrawingImageTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingImageTest, OH_Drawing_ImageDestroy, TestSize.Level1) {
-  OH_Drawing_Image *image = OH_Drawing_ImageCreate();
-  OH_Drawing_ImageDestroy(image);
-  EXPECT_TRUE(true);
+    OH_Drawing_Image *image = OH_Drawing_ImageCreate();
+    OH_Drawing_ImageDestroy(image);
+    EXPECT_TRUE(true);
 }
 
 } // namespace Drawing

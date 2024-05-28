@@ -38,12 +38,12 @@ class NativeXTSDrawingRoundRectTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingRoundRectTest, OH_Drawing_RoundRectCreate, TestSize.Level1) {
-  OH_Drawing_Rect *rect = OH_Drawing_RectCreate(10, 100, 200, 300);
-  EXPECT_NE(rect, nullptr);
-  OH_Drawing_RoundRect *roundRect = OH_Drawing_RoundRectCreate(rect, 10, 10);
-  EXPECT_NE(roundRect, nullptr);
-  OH_Drawing_RectDestroy(rect);
-  OH_Drawing_RoundRectDestroy(roundRect);
+    OH_Drawing_Rect *rect = OH_Drawing_RectCreate(10, 100, 200, 300);
+    EXPECT_NE(rect, nullptr);
+    OH_Drawing_RoundRect *roundRect = OH_Drawing_RoundRectCreate(rect, 10, 10);
+    EXPECT_NE(roundRect, nullptr);
+    OH_Drawing_RectDestroy(rect);
+    OH_Drawing_RoundRectDestroy(roundRect);
 }
 
 /*
@@ -54,14 +54,14 @@ HWTEST_F(NativeXTSDrawingRoundRectTest, OH_Drawing_RoundRectCreate, TestSize.Lev
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingRoundRectTest, OH_Drawing_RoundRectSetCorner, TestSize.Level1) {
-  OH_Drawing_Rect *rect = OH_Drawing_RectCreate(10, 100, 200, 300);
-  EXPECT_NE(rect, nullptr);
-  OH_Drawing_RoundRect *roundRect = OH_Drawing_RoundRectCreate(rect, 0, 0);
-  EXPECT_NE(roundRect, nullptr);
-  OH_Drawing_RoundRectSetCorner(nullptr, OH_Drawing_CornerPos::CORNER_POS_BOTTOM_LEFT, {10, 10});
-  OH_Drawing_RoundRectSetCorner(roundRect, OH_Drawing_CornerPos::CORNER_POS_BOTTOM_LEFT, {10, 10});
-  OH_Drawing_RectDestroy(rect);
-  OH_Drawing_RoundRectDestroy(roundRect);
+    OH_Drawing_Rect *rect = OH_Drawing_RectCreate(10, 100, 200, 300);
+    EXPECT_NE(rect, nullptr);
+    OH_Drawing_RoundRect *roundRect = OH_Drawing_RoundRectCreate(rect, 0, 0);
+    EXPECT_NE(roundRect, nullptr);
+    OH_Drawing_RoundRectSetCorner(nullptr, OH_Drawing_CornerPos::CORNER_POS_BOTTOM_LEFT, {10, 10});
+    OH_Drawing_RoundRectSetCorner(roundRect, OH_Drawing_CornerPos::CORNER_POS_BOTTOM_LEFT, {10, 10});
+    OH_Drawing_RectDestroy(rect);
+    OH_Drawing_RoundRectDestroy(roundRect);
 }
 
 /*
@@ -72,15 +72,16 @@ HWTEST_F(NativeXTSDrawingRoundRectTest, OH_Drawing_RoundRectSetCorner, TestSize.
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingRoundRectTest, OH_Drawing_RoundRectGetCorner, TestSize.Level1) {
-  OH_Drawing_Rect *rect = OH_Drawing_RectCreate(10, 100, 200, 300);
-  OH_Drawing_RoundRect *roundRect = OH_Drawing_RoundRectCreate(rect, 0, 0);
-  OH_Drawing_RoundRectSetCorner(nullptr, OH_Drawing_CornerPos::CORNER_POS_BOTTOM_LEFT, {10, 10});
-  OH_Drawing_RoundRectSetCorner(roundRect, OH_Drawing_CornerPos::CORNER_POS_BOTTOM_LEFT, {10, 10});
-  OH_Drawing_Corner_Radii radiusPoint = OH_Drawing_RoundRectGetCorner(roundRect, OH_Drawing_CornerPos::CORNER_POS_BOTTOM_LEFT);
-  EXPECT_EQ(10.0f, radiusPoint.x);
-  EXPECT_EQ(10.0f, radiusPoint.y);
-  OH_Drawing_RectDestroy(rect);
-  OH_Drawing_RoundRectDestroy(roundRect);
+    OH_Drawing_Rect *rect = OH_Drawing_RectCreate(10, 100, 200, 300);
+    OH_Drawing_RoundRect *roundRect = OH_Drawing_RoundRectCreate(rect, 0, 0);
+    OH_Drawing_RoundRectSetCorner(nullptr, OH_Drawing_CornerPos::CORNER_POS_BOTTOM_LEFT, {10, 10});
+    OH_Drawing_RoundRectSetCorner(roundRect, OH_Drawing_CornerPos::CORNER_POS_BOTTOM_LEFT, {10, 10});
+    OH_Drawing_Corner_Radii radiusPoint =
+        OH_Drawing_RoundRectGetCorner(roundRect, OH_Drawing_CornerPos::CORNER_POS_BOTTOM_LEFT);
+    EXPECT_EQ(10.0f, radiusPoint.x);
+    EXPECT_EQ(10.0f, radiusPoint.y);
+    OH_Drawing_RectDestroy(rect);
+    OH_Drawing_RoundRectDestroy(roundRect);
 }
 
 /*
@@ -91,12 +92,12 @@ HWTEST_F(NativeXTSDrawingRoundRectTest, OH_Drawing_RoundRectGetCorner, TestSize.
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingRoundRectTest, OH_Drawing_RoundRectDestroy, TestSize.Level1) {
-  OH_Drawing_Rect *rect = OH_Drawing_RectCreate(10, 100, 200, 300);
-  EXPECT_NE(rect, nullptr);
-  OH_Drawing_RoundRect *roundRect = OH_Drawing_RoundRectCreate(rect, 10, 10);
-  EXPECT_NE(roundRect, nullptr);
-  OH_Drawing_RectDestroy(rect);
-  OH_Drawing_RoundRectDestroy(roundRect);
+    OH_Drawing_Rect *rect = OH_Drawing_RectCreate(10, 100, 200, 300);
+    EXPECT_NE(rect, nullptr);
+    OH_Drawing_RoundRect *roundRect = OH_Drawing_RoundRectCreate(rect, 10, 10);
+    EXPECT_NE(roundRect, nullptr);
+    OH_Drawing_RectDestroy(rect);
+    OH_Drawing_RoundRectDestroy(roundRect);
 }
 
 } // namespace Drawing

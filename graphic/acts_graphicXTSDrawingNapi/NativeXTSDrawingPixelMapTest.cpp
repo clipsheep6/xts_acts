@@ -33,11 +33,10 @@ class NativeXTSDrawingPixelMapTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingPixelMapTest, OH_Drawing_PixelMapGetFromNativePixelMap, TestSize.Level1) {
-  // todo: don't know how to get NativePixelMap_
-  // NativePixelMap_ *npm = nullptr;
-  // OH_Drawing_PixelMap *pm = OH_Drawing_PixelMapGetFromNativePixelMap(npm);
-  // EXPECT_NE(pm, nullptr);
-  EXPECT_TRUE(true);
+    // todo: don't know how to get NativePixelMap_
+    NativePixelMap_ *npm = nullptr;
+    OH_Drawing_PixelMap *pm = OH_Drawing_PixelMapGetFromNativePixelMap(npm);
+    EXPECT_EQ(pm, nullptr);
 }
 
 /*
@@ -48,11 +47,10 @@ HWTEST_F(NativeXTSDrawingPixelMapTest, OH_Drawing_PixelMapGetFromNativePixelMap,
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingPixelMapTest, OH_Drawing_PixelMapGetFromOhPixelMapNative, TestSize.Level1) {
-  // todo: don't know how to get OH_PixelmapNative
-  // OH_PixelmapNative *npm = nullptr;
-  // OH_Drawing_PixelMap *pm = OH_Drawing_PixelMapGetFromOhPixelMapNative(npm);
-  // EXPECT_NE(pm, nullptr);
-  EXPECT_TRUE(true);
+    // todo: don't know how to get OH_PixelmapNative
+    OH_PixelmapNative *npm = nullptr;
+    OH_Drawing_PixelMap *pm = OH_Drawing_PixelMapGetFromOhPixelMapNative(npm);
+    EXPECT_EQ(pm, nullptr);
 }
 
 /*
@@ -63,9 +61,10 @@ HWTEST_F(NativeXTSDrawingPixelMapTest, OH_Drawing_PixelMapGetFromOhPixelMapNativ
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingPixelMapTest, OH_Drawing_PixelMapDissolve, TestSize.Level1) {
-  // todo: don't know how to get OH_Drawing_PixelMap
-  OH_Drawing_PixelMap *npm = nullptr;
-  OH_Drawing_PixelMapDissolve(npm);
+    // todo: don't know how to get OH_Drawing_PixelMap
+    OH_Drawing_PixelMap *npm = nullptr;
+    OH_Drawing_PixelMapDissolve(npm);
+    EXPECT_TRUE(true);
 }
 
 } // namespace Drawing
