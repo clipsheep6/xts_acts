@@ -25,6 +25,7 @@ group("ability_runtime") {
       "abilitystagemonitor:abilitystagemonitor",
       "abilitytoolabilitydelegatortest:abilitytoolabilitydelegatortest",
       "actsNotificationWantAgentTest:ActsNotificationWantAgentTest",
+      "actsaadebugtest:actsaadebugtest",
       "actsaastartabilitytest:actsaastartabilitytest",
       "actsabilitydelegatorcase:ActsAbilityDelegatorCaseTest",
       "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
