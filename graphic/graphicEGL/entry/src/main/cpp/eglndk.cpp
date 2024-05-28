@@ -372,12 +372,12 @@ static napi_value EglGetConfigAttrib(napi_env env, napi_callback_info info)
     EGLBoolean Ret;
     for (int i = 0; i < numConfigs; ++i) {
         Ret = eglGetConfigAttrib(m_eglDisplay, m_eglConf[i], EGL_BUFFER_SIZE, &numConfigs);
+        NAPI_ASSERT(env, Ret == TRUE, "eglGetConfigAttrib error");
     }
-    NAPI_ASSERT(env, Ret == TRUE, "eglGetConfigAttrib error");
     for (int i = 0; i < numConfigs; ++i) {
         Ret = eglGetConfigAttrib(m_eglDisplay, m_eglConf[i], EGL_ALPHA_SIZE, &numConfigs);
+        NAPI_ASSERT(env, Ret == TRUE, "eglGetConfigAttrib error");
     }
-    NAPI_ASSERT(env, Ret == TRUE, "eglGetConfigAttrib error");
     eglReleaseThread();
     eglTerminate(m_eglDisplay);
     napi_value result = nullptr;
