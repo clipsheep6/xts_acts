@@ -1098,5 +1098,33 @@ export default function AVPlayerNdkTest() {
       expect(result).assertEqual(0);
       done();
     });
+
+     /**
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_ADDSUBTITLEFDSOURCE_0100
+     * @tc.name       : testOhAvPlayerAddSubtitleFdSource001
+     * @tc.desc       : test OH_AVPlayer_AddSubtitleFdSource
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
+     */
+    it('testOhAvPlayerAddSubtitleFdSource001', 0, async (done: Function) => {
+      let result: number = avplayer.AvPlayerAddSubtitleFdSource();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+     /**
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_SETSUBTITLECALLBACK_0100
+     * @tc.name       : testOhAvPlayerSetSubtitleCallback001
+     * @tc.desc       : test OH_AVPlayer_SetSubtitleCallback
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
+     */
+    it('testOhAvPlayerSetSubtitleCallback001', 0, async (done: Function) => {
+      let result: number = avplayer.AvPlayerSetSubtitleCallback();
+      expect(result).assertEqual(0);
+      done();
+    });
   })
 }

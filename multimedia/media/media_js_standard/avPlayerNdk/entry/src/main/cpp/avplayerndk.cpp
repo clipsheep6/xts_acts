@@ -47,6 +47,7 @@
 #define ONEVAL 1
 #define PARAM_0666 0666
 #define PATH "/data/storage/el2/base/files/demo.mp4"
+#define SRT_SUBTITLE_PATH "/data/storage/el2/base/files/test.srt"
 
 void InitGLES(EGLDisplay &display, EGLContext &context, EGLSurface &surface)
 {
@@ -837,6 +838,24 @@ static napi_value OhAvPlayerSetLoopingAbnormalOne(napi_env env, napi_callback_in
 
 static void AVPlayerOnError(OH_AVPlayer *player, int32_t errorCode, const char *errorMsg) {}
 static void AVPlayerOnInfo(OH_AVPlayer *player, AVPlayerOnInfoType Type, int32_t extra) {}
+static void AVPlayerOnSubtitleUpdate(OH_AVPlayer *player, const char *text,
+                                    int32_t *pts, int32_t *duration, void *userData){}
+
+static napi_value OhAvPlayerSetSubtitleCallback(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    int backParam = FAIL;
+    OH_AVPlayer *player = OH_AVPlayer_Create();
+    void *userData;
+    SubtitleCallback cb = { &AVPlayerOnSubtitleUpdate };
+    OH_AVErrCode errCode = OH_AVPlayer_SetSubtitleCallback(player, cb, userData);
+    if (errCode == AV_ERR_OK) {
+        backParam = SUCCESS;
+    }
+    OH_AVPlayer_ReleaseSync(player);
+    napi_create_int32(env, backParam, &result);
+    return result;
+}
 
 static napi_value OhAvPlayerSetPlayerCallback(napi_env env, napi_callback_info info)
 {
@@ -979,6 +998,21 @@ static napi_value OhAvPlayerGetCurrentTrackAbnormalOne(napi_env env, napi_callba
     return result;
 }
 
+static napi_value OhAvPlayerAddSubtitleFdSource(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    int backParam = FAIL;
+    OH_AVPlayer *player = GetPrepareAVPlayer();
+    char fileName[] = {SRT_SUBTITLE_PATH};
+    int fileDescribe = open(fileName, O_RDONLY, PARAM_0666);
+    OH_AVErrCode errCode = OH_AVPlayer_AddSubtitleFDSource(player, fileDescribe, offset, size, "mimeType");
+    if (errCode != AV_ERR_OK) {
+        backParam = SUCCESS;
+    }
+    napi_create_int32(env, backParam, &result);
+    return result;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -1073,6 +1107,10 @@ static napi_value Init(napi_env env, napi_value exports)
         {"AvPlayerGetCurrentTrack", nullptr, OhAvPlayerGetCurrentTrack, nullptr, nullptr, nullptr,
             napi_default, nullptr},
         {"AvPlayerGetCurrentTrackAbnormalOne", nullptr, OhAvPlayerGetCurrentTrackAbnormalOne, nullptr,
+            nullptr, nullptr, napi_default, nullptr},
+        {"AvPlayerAddSubtitleFdSource", nullptr, OhAvPlayerAddSubtitleFdSource, nullptr,
+            nullptr, nullptr, napi_default, nullptr},
+        {"AvPlayerSetSubtitleCallback", nullptr, OhAvPlayerSetSubtitleCallback, nullptr,
             nullptr, nullptr, napi_default, nullptr}
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
