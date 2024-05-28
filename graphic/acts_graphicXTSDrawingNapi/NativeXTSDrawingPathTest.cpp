@@ -269,7 +269,6 @@ HWTEST_F(NativeXTSDrawingPathTest, OH_Drawing_PathSetFillType, TestSize.Level1) 
     OH_Drawing_Path *path = OH_Drawing_PathCreate();
     OH_Drawing_PathSetFillType(nullptr, PATH_FILL_TYPE_WINDING);
     OH_Drawing_PathSetFillType(path, PATH_FILL_TYPE_WINDING);
-    // line point x = 50, y = 40
     OH_Drawing_PathLineTo(path, 50, 40);
     OH_Drawing_PathClose(path);
     EXPECT_TRUE(IsScalarAlmostEqual(reinterpret_cast<Path *>(path)->GetBounds().GetWidth(), 50.0));

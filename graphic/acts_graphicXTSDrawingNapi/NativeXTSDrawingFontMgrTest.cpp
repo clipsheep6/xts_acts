@@ -158,22 +158,8 @@ HWTEST_F(NativeXTSDrawingFontMgrTest, OH_Drawing_FontMgrMatchFamily, TestSize.Le
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingFontMgrTest, OH_Drawing_FontMgrMatchFamilyStyle, TestSize.Level1) {
-    // todo cpp crash
-
-    // OH_Drawing_FontMgr *mgr = OH_Drawing_FontMgrCreate();
-    // EXPECT_NE(mgr, nullptr);
-    // const char *matchFamilyName = "HarmonyOS-Sans";
-    // OH_Drawing_FontStyleStruct normalStyle;
-    // normalStyle.weight = FONT_WEIGHT_400;
-    // normalStyle.width = FONT_WIDTH_NORMAL;
-    // normalStyle.slant = FONT_STYLE_NORMAL;
-    // OH_Drawing_Typeface *typeface = OH_Drawing_FontMgrMatchFamilyStyle(mgr, matchFamilyName, normalStyle);
-    // EXPECT_NE(typeface, nullptr);
-    // OH_Drawing_TypefaceDestroy(typeface);
-
-    // OH_Drawing_FontMgrDestroy(mgr);
-
-    EXPECT_TRUE(true);
+    // todo cpp crash when OH_Drawing_FontMgrCreate
+    EXPECT_TRUE(false);
 }
 
 /*
@@ -184,24 +170,8 @@ HWTEST_F(NativeXTSDrawingFontMgrTest, OH_Drawing_FontMgrMatchFamilyStyle, TestSi
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingFontMgrTest, OH_Drawing_FontMgrMatchFamilyStyleCharacter, TestSize.Level1) {
-    // todo cpp crash
-
-    // OH_Drawing_FontMgr *mgr = OH_Drawing_FontMgrCreate();
-    // EXPECT_NE(mgr, nullptr);
-
-    // const char *matchFamilyName = "HarmonyOS-Sans";
-    // OH_Drawing_FontStyleStruct normalStyle;
-    // normalStyle.weight = FONT_WEIGHT_400;
-    // normalStyle.width = FONT_WIDTH_NORMAL;
-    // normalStyle.slant = FONT_STYLE_NORMAL;
-
-    // const char *bcp47[] = {"zh-Hans", "zh-CN"};
-    // OH_Drawing_Typeface *CharTypeface = OH_Drawing_FontMgrMatchFamilyStyleCharacter(mgr, matchFamilyName,
-    // normalStyle, bcp47, 1, ' '); EXPECT_NE(CharTypeface, nullptr); OH_Drawing_TypefaceDestroy(CharTypeface);
-
-    // OH_Drawing_FontMgrDestroy(mgr);
-
-    EXPECT_TRUE(true);
+    // todo cpp crash when OH_Drawing_FontMgrCreate
+    EXPECT_TRUE(false);
 }
 
 /*

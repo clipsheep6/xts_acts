@@ -312,29 +312,8 @@ HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasDrawRect, TestSize.Level1)
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasDrawTextBlob, TestSize.Level1) {
-    // todo cpp crash
-    
-    /*
-    OH_Drawing_Canvas *canvas = OH_Drawing_CanvasCreate();
-
-    const char *str = "123456";
-    int count = strlen(str);
-    OH_Drawing_Point2D pts[count];
-
-    OH_Drawing_Font *font = OH_Drawing_FontCreate();
-    OH_Drawing_Typeface *typeSurface = OH_Drawing_TypefaceCreateDefault();
-    OH_Drawing_FontSetTypeface(font, typeSurface);
-
-    OH_Drawing_TextBlob *textBlob = OH_Drawing_TextBlobCreateFromPosText(str, count, &pts[0], font,
-    OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8); OH_Drawing_CanvasDrawTextBlob(canvas, textBlob, 0, 0);
-
-    OH_Drawing_TextBlobDestroy(textBlob);
-    OH_Drawing_FontDestroy(font);
-    OH_Drawing_TypefaceDestroy(typeSurface);
-    OH_Drawing_CanvasDestroy(canvas);
-    */
-
-    EXPECT_TRUE(true);
+    // todo cpp crash when OH_Drawing_FontCreate
+    EXPECT_TRUE(false);
 }
 
 /*
