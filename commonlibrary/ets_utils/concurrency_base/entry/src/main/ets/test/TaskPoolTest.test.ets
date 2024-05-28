@@ -65,7 +65,7 @@ export default function TaskPoolTest() {
      */
     it('testTwoTasksChained', 0, async (done: Function) => {
       let result: Object = await skipConditional( // NOTE flaky in full runs on rk3568
-        "testTwoTasksChained in progress", true, testTwoTasksChained();
+        "testTwoTasksChained in progress", true, testTwoTasksChained);
       expect(result).assertEqual("PASSED");
       done();
     })
@@ -77,7 +77,7 @@ export default function TaskPoolTest() {
      */
     it('testManyTasksChained', 0, async (done: Function) => {
       let result: Object = await skipConditional( // NOTE flaky in full runs on rk3568
-        "testManyTasksChained in progress", true, testManyTasksChained();
+        "testManyTasksChained in progress", true, testManyTasksChained);
       expect(result).assertEqual("PASSED");
       done();
     })
