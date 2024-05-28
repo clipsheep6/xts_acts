@@ -1599,6 +1599,485 @@ export default function WorkerTest() {
             done();
         })
 
+        // Check the transmission types supported by Worker is ok.
+        /**
+         * @tc.name: worker_support_types_test_002
+         * @tc.desc: Check the transmission types supported by Worker is ok.
+         */
+        it('worker_support_types_test_002', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_017.js");
+            let res;
+            let flag = false;
+            let isTerminate = false;
+            ss.onmessage = function (d) {
+                res = d.data.name;
+                flag = true;
+            }
+            ss.onexit = function () {
+                isTerminate = true;
+            }
+            ss.postMessage("start");
+            while (!flag) {
+                await promiseCase();
+            }
 
+            ss.terminate();
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res).assertEqual("worker")
+
+            done();
+        })
+
+        // Check the transmission types supported by Worker is ok.
+        /**
+         * @tc.name: worker_support_types_test_003
+         * @tc.desc: Check the transmission types supported by Worker is ok.
+         */
+        it('worker_support_types_test_003', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_018.js");
+            let res;
+            let flag = false;
+            let isTerminate = false;
+            ss.onmessage = function (d) {
+                res = d.data;
+                flag = true;
+            }
+            ss.onexit = function () {
+                isTerminate = true;
+            }
+            const data = new Set();
+            ss.postMessage(data);
+            while (!flag) {
+                await promiseCase();
+            }
+
+            ss.terminate();
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res.has(1)).assertTrue()
+            expect(res.has(2)).assertTrue()
+            expect(!res.has(1010)).assertTrue()
+            done();
+        })
+
+        // Check the transmission types supported by Worker is ok.
+        /**
+         * @tc.name: worker_support_types_test_004
+         * @tc.desc: Check the transmission types supported by Worker is ok.
+         */
+        it('worker_support_types_test_004', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_019.js");
+            let res;
+            let flag = false;
+            let isTerminate = false;
+            ss.onmessage = function (d) {
+                res = d.data;
+                flag = true;
+            }
+            ss.onexit = function () {
+                isTerminate = true;
+            }
+            const data = new Map();
+            ss.postMessage(data);
+            while (!flag) {
+                await promiseCase();
+            }
+
+            ss.terminate();
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res.get("worker")).assertEqual("success");
+            done();
+        })
+
+        // Check the transmission types supported by Worker is ok.
+        /**
+         * @tc.name: worker_support_types_test_005
+         * @tc.desc: Check the transmission types supported by Worker is ok.
+         */
+        it('worker_support_types_test_005', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_020.js");
+            let res;
+            let flag = false;
+            let isTerminate = false;
+            ss.onmessage = function (d) {
+                res = d.data;
+                flag = true;
+            }
+            ss.onexit = function () {
+                isTerminate = true;
+            }
+            const buffer = new ArrayBuffer(8);
+            ss.postMessage(buffer);
+            while (!flag) {
+                await promiseCase();
+            }
+
+            ss.terminate();
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res[res.length - 1]).assertEqual(3);
+            done();
+        })
+
+        // Check the transmission types supported by Worker is ok.
+        /**
+         * @tc.name: worker_support_types_test_006
+         * @tc.desc: Check the transmission types supported by Worker is ok.
+         */
+        it('worker_support_types_test_006', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_021.js");
+            let res;
+            let flag = false;
+            let isTerminate = false;
+            ss.onmessage = function (d) {
+                res = d.data;
+                flag = true;
+            }
+            ss.onexit = function () {
+                isTerminate = true;
+            }
+            var re = new RegExp("(\\w+)\\s(\\w+)");
+            ss.postMessage(re);
+            while (!flag) {
+                await promiseCase();
+            }
+
+            ss.terminate();
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res).assertEqual("Worker, HI!");
+            done();
+        })
+
+        // Check the transmission types supported by Worker is ok.
+        /**
+         * @tc.name: worker_support_types_test_007
+         * @tc.desc: Check the transmission types supported by Worker is ok.
+         */
+        it('worker_support_types_test_007', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_021.js");
+            let flag = false;
+            let isTerminate = false;
+            ss.onmessageerror = function (d) {
+                console.info("worker:: unsupport the Symbol.");
+                flag = true;
+            }
+            ss.onexit = function () {
+                isTerminate = true;
+            }
+            const data = Symbol();
+            ss.postMessage(data);
+            while (!flag) {
+                await promiseCase();
+            }
+            ss.terminate();
+            while (!isTerminate) {
+                await promiseCase();
+            }
+
+            expect(flag).assertTrue();
+            done();
+        })
+
+        // Check the transmission types supported by Worker is ok.
+        /**
+         * @tc.name: worker_support_types_test_008
+         * @tc.desc: Check the transmission types supported by Worker is ok.
+         */
+        it('worker_support_types_test_008', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_022.js");
+            let flag = false;
+            let result;
+            let isTerminate = false;
+
+            class MyModel {
+                name = "module";
+
+                Init() {
+                    this.name = "Init";
+                }
+            }
+
+            let model = new MyModel()
+            ss.onmessage = function (d) {
+                result = d.data;
+                flag = true;
+            }
+            ss.onexit = function () {
+                isTerminate = true;
+            }
+            ss.postMessage(model);
+            while (!flag) {
+                await promiseCase();
+            }
+            ss.terminate();
+            while (!isTerminate) {
+                await promiseCase();
+            }
+
+            expect(result).assertEqual("module");
+            done();
+        })
+
+        // Check the transmission types supported by Worker is ok.
+        /**
+         * @tc.name: worker_support_types_test_009
+         * @tc.desc: Check the transmission types supported by Worker is ok.
+         */
+        it('worker_support_types_test_009', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_023.js");
+            let result = "";
+            let isTerminate = false;
+
+            class MyModel {
+                name = "module";
+
+                Init() {
+                    this.name = "Init";
+                }
+            }
+
+            let model = new MyModel()
+
+            ss.onerror = function (e) {
+                result = "unInit";
+            }
+            ss.onexit = function () {
+                isTerminate = true;
+            }
+            ss.postMessage(model);
+            while (!isTerminate) {
+                await promiseCase();
+            }
+
+            expect(result).assertEqual("unInit");
+            done();
+        })
+
+        // Check the SharedArrayBuffer with worker.
+        /**
+         * @tc.name: worker_SharedArrayBuffer_test_001
+         * @tc.desc: Check the SharedArrayBuffer with worker is ok.
+         */
+        it('worker_SharedArrayBuffer_test_001', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_024.js");
+            let sab = new SharedArrayBuffer(20);
+            let int32 = new Uint32Array(sab);
+
+            let res = 0;
+            let isTerminate = false;
+            ss.onmessage = function (d) {
+                if (d.data == "success") {
+                    res = int32[0] + int32[1] + int32[2] + int32[3];
+                }
+                ss.terminate();
+            }
+            ss.onexit = function () {
+                isTerminate = true;
+            }
+            ss.postMessage(int32);
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res == 1000).assertTrue();
+            done();
+        })
+
+        // Check the listener of worker.
+        /**
+         * @tc.name: worker_listener_test_001
+         * @tc.desc: Check the listener of worker is ok.
+         */
+        it('worker_listener_test_001', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_025.js");
+            let res = undefined;
+            let flag = false;
+            let isTerminate = false;
+
+            ss.on('message', (event) => {
+                flag = true;
+                let jsonData = JSON.parse(JSON.stringify(event));
+                res = jsonData.data;
+                ss.terminate();
+            });
+
+            ss.on('exit', (code) => {
+                isTerminate = true;
+            })
+            ss.postMessage("123");
+
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res).assertEqual("hello worker")
+            done();
+        })
+
+        // Check the listener of worker.
+        /**
+         * @tc.name: worker_listener_test_002
+         * @tc.desc: Check the listener of worker is ok.
+         */
+        it('worker_listener_test_002', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_025.js");
+            let res = 0;
+            let flag = false;
+            let isTerminate = false;
+
+            ss.addEventListener('messageerror', (event) => {
+                flag = true;
+                res += 1;
+            });
+
+            ss.addEventListener('exit', (code) => {
+                isTerminate = true;
+            })
+
+            try {
+                const data = Symbol();
+                ss.postMessage(data);
+            } catch (error) {
+                while (!flag) {
+                    await promiseCase();
+                }
+                ss.terminate();
+                while (!isTerminate) {
+                    await promiseCase();
+                }
+            }
+            expect(res).assertEqual(1)
+            done();
+        })
+
+        // Check the listener of worker.
+        /**
+         * @tc.name: worker_listener_test_003
+         * @tc.desc: Check the listener of worker is ok.
+         */
+        it('worker_listener_test_003', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_007.js");
+            let res = undefined;
+            let isTerminate = false;
+
+            ss.addEventListener('error', (event) => {
+                let jsonData = JSON.parse(JSON.stringify(event));
+                res = jsonData.message;
+                ss.terminate();
+            });
+
+            ss.addEventListener('exit', (code) => {
+                isTerminate = true;
+            })
+            ss.postMessage("123");
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res).assertEqual("Error: 123")
+            done();
+        })
+
+        // Check the listener of worker.
+        /**
+         * @tc.name: worker_listener_test_004
+         * @tc.desc: Check the listener of worker is ok.
+         */
+        it('worker_listener_test_004', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_007.js");
+            let res = undefined;
+            let isTerminate = false;
+
+            ss.on('error', (event) => {
+                let jsonData = JSON.parse(JSON.stringify(event));
+                res = jsonData.message;
+                ss.terminate();
+            });
+
+            ss.on('exit', (code) => {
+                isTerminate = true;
+            })
+            ss.postMessage("123");
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res).assertEqual("Error: 123")
+            done();
+        })
+
+        // Check the listener of worker.
+        /**
+         * @tc.name: worker_listener_test_005
+         * @tc.desc: Check the listener of worker is ok.
+         */
+        it('worker_listener_test_005', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_025.js");
+            let res1 = "";
+            let res2 = "";
+            let flag1 = false;
+            let flag2 = false;
+            let isTerminate = false;
+
+            ss.on('message', (event) => {
+                flag1 = true;
+                let jsonData = JSON.parse(JSON.stringify(event));
+                res1 = jsonData.data;
+            });
+
+            ss.onmessage = function (d) {
+                flag2 = true;
+                let data = d.data;
+                res2 = data;
+            }
+
+            ss.on('exit', (code) => {
+                isTerminate = true;
+            })
+            ss.postMessage("123");
+            while (!flag1 || !flag2) {
+                await promiseCase();
+            }
+            ss.terminate();
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res1).assertEqual("hello worker")
+            expect(res2).assertEqual("hello worker")
+            done();
+        })
+
+        // Check the listener of worker.
+        /**
+         * @tc.name: worker_listener_test_006
+         * @tc.desc: Check the listener of worker is ok.
+         */
+        it('worker_listener_test_006', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_026.js");
+            let res = 0;
+            let isTerminate = false;
+
+            ss.on('message', (event) => {
+                res += 1;
+                if (res == 3) {
+                    ss.terminate();
+                }
+            });
+            ss.on('exit', (code) => {
+                isTerminate = true;
+            })
+
+            ss.postMessage("123");
+
+            while (!isTerminate) {
+                await promiseCase();
+            }
+            expect(res).assertEqual(3)
+            done();
+        })
     })
 }
