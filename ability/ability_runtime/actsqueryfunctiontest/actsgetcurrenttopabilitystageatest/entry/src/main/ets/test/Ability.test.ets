@@ -13,69 +13,67 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import commonEvent from "@ohos.commonEvent"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import commonEvent from "@ohos.commonEvent";
+import common from '@ohos.app.ability.common';
+import commonEventManager from '@ohos.commonEventManager';
 
-var subscriberInfo_MainAbility2 = {
-    events: ["GetCurrentTopAbilityB"],
+let subscriberInfo_MainAbility2: commonEventManager.CommonEventSubscribeInfo = {
+  events: ["GetCurrentTopAbilityB"],
 };
 const START_ABILITY_TIMEOUT = 4000;
 
 export default function abilityTest() {
-    describe('ActsParticleAbilityTest', function () {
+  describe('ActsParticleAbilityTest', () => {
 
-        /**
-         * @tc.number: ACTS_GetCurrentTopAbility_0100
-         * @tc.name: Verify the interface for obtaining the Ability of the foreground
-         * @tc.desc:Start PageAbility1,Ability2 to be tested in turn, and get the current foreground Ability (AsyncCallback)
-         */
-        it('ACTS_GetCurrentTopAbility_0100', 0, async function (done) {
-            console.log("ACTS_GetCurrentTopAbility_0100 --- start");
-            var flag = true;
-            var Subscriber;
-            var AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+    /**
+     * @tc.number: ACTS_GetCurrentTopAbility_0100
+     * @tc.name: Verify the interface for obtaining the Ability of the foreground
+     * @tc.desc:Start PageAbility1,Ability2 to be tested in turn, and get the current foreground Ability (AsyncCallback)
+     */
+    it('ACTS_GetCurrentTopAbility_0100', 0, async (done: Function) => {
+      console.log("ACTS_GetCurrentTopAbility_0100 --- start");
+      let flag = true;
+      let Subscriber: commonEventManager.CommonEventSubscriber;
+      let AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 
-            async function SubscribeCallBack(err, data) {
-                console.debug("ACTS_GetCurrentTopAbility_0100====>Subscribe CallBack data:====>"
-                + JSON.stringify(data));
-                expect(data.event == 'GetCurrentTopAbilityB').assertTrue();
-                if (data.event == 'GetCurrentTopAbilityB') {
-                    commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
-                    AbilityDelegator.getCurrentTopAbility((err, data) => {
-                        console.log("ACTS_GetCurrentTopAbility_0100 and");
-                        console.debug("====>thisTopAbility_0100====>" + JSON.stringify(data));
-                        console.debug("====>thisTopAbility_0100====>want====>" + JSON.stringify(data.lastRequestWant));
-                        console.debug("====>thisTopAbility_0100====>abilityName====>"
-                        + JSON.stringify(data.lastRequestWant.abilityName));
-                        console.debug("====>start startAbility====>");
-                        expect(data.lastRequestWant.abilityName == "Ability2").assertTrue();
-                        globalThis.ability2Context.terminateSelf();
-                        globalThis.ability3Context.terminateSelf();
-                        done();
-                    })
-                }
-            }
-
-            commonEvent.createSubscriber(subscriberInfo_MainAbility2).then(async (data) => {
-                console.debug("ACTS_GetCurrentTopAbility_0100====>Create Subscriber====>");
-                Subscriber = data;
-                commonEvent.subscribe(Subscriber, SubscribeCallBack);
-
-                console.log("ACTS_GetCurrentTopAbility_0100 start");
-                await globalThis.abilityContext.startAbility(
-                    {
-                        bundleName: 'com.example.actsgetcurrenttopabilitystageatest',
-                        abilityName: 'Ability1'
-                    }, (err) => {
-                    console.debug("====>ACTS_GetCurrentTopAbility_0100 err:" + JSON.stringify(err))
-                })
-                console.log("ACTS_GetCurrentTopAbility_0100 end");
-            })
-
-            async function UnSubscribeCallback() {
+      commonEvent.createSubscriber(subscriberInfo_MainAbility2)
+        .then(async (data) => {
+          console.debug("ACTS_GetCurrentTopAbility_0100====>Create Subscriber====>");
+          Subscriber = data;
+          commonEvent.subscribe(Subscriber, (err, data) => {
+            console.debug("ACTS_GetCurrentTopAbility_0100====>Subscribe CallBack data:====>" + JSON.stringify(data));
+            expect(data.event == 'GetCurrentTopAbilityB').assertTrue();
+            if (data.event == 'GetCurrentTopAbilityB') {
+              commonEvent.unsubscribe(Subscriber, () => {
                 console.debug("ACTS_GetCurrentTopAbility_0100====>UnSubscribe CallBack====>");
+              });
+              AbilityDelegator.getCurrentTopAbility((err, data) => {
+                console.log("ACTS_GetCurrentTopAbility_0100 and");
+                console.debug("====>thisTopAbility_0100====>" + JSON.stringify(data));
+                console.debug("====>thisTopAbility_0100====>want====>" + JSON.stringify(data.lastRequestWant));
+                console.debug("====>thisTopAbility_0100====>abilityName====>" + JSON.stringify(data.lastRequestWant.abilityName));
+                console.debug("====>start startAbility====>");
+                expect(data.lastRequestWant.abilityName == "Ability2").assertTrue();
+                AppStorage.get<common.UIAbilityContext>("ability2Context")!.terminateSelf();
+                AppStorage.get<common.UIAbilityContext>("ability3Context")!.terminateSelf();
+                done();
+              })
             }
+          });
+
+          console.log("ACTS_GetCurrentTopAbility_0100 start");
+
+          await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
+            {
+              bundleName: 'com.example.actsgetcurrenttopabilitystageatest',
+              abilityName: 'Ability1'
+            }, (err) => {
+            console.debug("====>ACTS_GetCurrentTopAbility_0100 err:" + JSON.stringify(err))
+          })
+          console.log("ACTS_GetCurrentTopAbility_0100 end");
         })
     })
+  })
 }
