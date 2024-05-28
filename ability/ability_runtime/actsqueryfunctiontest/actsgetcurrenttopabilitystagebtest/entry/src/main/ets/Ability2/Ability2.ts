@@ -12,45 +12,50 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
+
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        // Ability is creating, initialize resources for this ability
-        console.log("Ability2 onCreate")
-        globalThis.abilityWant = want;
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // Ability is creating, initialize resources for this ability
+    console.log("Ability2 onCreate");
+  }
 
-    onDestroy() {
-        // Ability is destroying, release resources for this abilitya
-        console.log("Ability2 onDestroy")
-    }
+  onDestroy() {
+    // Ability is destroying, release resources for this abilitya
+    console.log("Ability2 onDestroy");
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("Ability2 onWindowStageCreate")
-        globalThis.ability2Context = this.context
-        windowStage.setUIContent(this.context, "pages/index2", null)
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("Ability2 onWindowStageCreate");
+    AppStorage.setOrCreate<common.UIAbilityContext>("ability2Context", this.context);
+    windowStage.loadContent("pages/index2", null);
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("Ability2 onWindowStageDestroy")
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("Ability2 onWindowStageDestroy");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("Ability2 onForeground")
-        globalThis.ability2Context.startAbility(
-            {
-                bundleName: 'com.example.actsgetcurrenttopabilitystagebtest',
-                abilityName: 'Ability1'
-            })
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("Ability2 onForeground");
+    this.context.startAbility(
+      {
+        bundleName: 'com.example.actsgetcurrenttopabilitystagebtest',
+        abilityName: 'Ability1'
+      })
+  }
 
 
-    onBackground() {
-        // Ability has back to background
-        console.log("Ability2 onBackground")
-    }
+  onBackground() {
+    // Ability has back to background
+    console.log("Ability2 onBackground");
+  }
 }
 
