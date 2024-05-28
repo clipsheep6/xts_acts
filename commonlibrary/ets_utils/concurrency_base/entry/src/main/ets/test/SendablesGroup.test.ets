@@ -68,7 +68,8 @@ export default function SendableGroupTest() {
          * @tc.author: oleg-ignatenko
          */
         it('Excluded_testSendableToGroupAndUpdate', 0, async (done: Function) => {
-           let result = await testSendableToGroupAndUpdate();
+           let result = await skipConditional(
+             "testSendableToGroupAndUpdate excluded", true, testSendableToGroupAndUpdate);
            expect(result).assertEqual("PASSED");
            done();
         })

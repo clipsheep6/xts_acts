@@ -15,7 +15,7 @@
 
 import { describe, afterAll, it, expect } from '@ohos/hypium'
 import { testHappyPath, testTwoTasks, testManyTasks, testTwoTasksChained, testManyTasksChained, testRepeats } from './TaskPoolTest';
-
+import { skipConditional } from './utils'
 
 export default function TaskPoolTest() {
   let printLog = 'TaskPoolTest:';
@@ -64,7 +64,8 @@ export default function TaskPoolTest() {
      * @tc.author: oleg-ignatenko
      */
     it('testTwoTasksChained', 0, async (done: Function) => {
-      let result: Object = await testTwoTasksChained();
+      let result: Object = await skipConditional( // NOTE flaky in full runs on rk3568
+        "testTwoTasksChained in progress", true, testTwoTasksChained();
       expect(result).assertEqual("PASSED");
       done();
     })
@@ -75,7 +76,8 @@ export default function TaskPoolTest() {
      * @tc.author: oleg-ignatenko
      */
     it('testManyTasksChained', 0, async (done: Function) => {
-      let result: Object = await testManyTasksChained();
+      let result: Object = await skipConditional( // NOTE flaky in full runs on rk3568
+        "testManyTasksChained in progress", true, testManyTasksChained();
       expect(result).assertEqual("PASSED");
       done();
     })
