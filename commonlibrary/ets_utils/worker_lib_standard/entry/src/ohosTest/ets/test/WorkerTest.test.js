@@ -33,8 +33,324 @@ export default function WorkerTest() {
             return p
         }
 
-       
-    
+        /**
+         * @tc.name: worker_constructor_test_001
+         * @tc.desc: worker constructor to Creates a worker instance.
+         * @tc.author: hanyuqing
+         */
+        it('worker_constructor_test_001', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker.js")
+            let isTerminate = false
+
+            ss.onexit = function () {
+                isTerminate = true
+            }
+
+            expect(ss != null).assertTrue()
+
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+            done()
+        })
+
+        /**
+         * @tc.name: worker_constructor_test_002
+         * @tc.desc: worker constructor to Creates a worker instance.
+         * @tc.author: hanyuqing
+         */
+        it('worker_constructor_test_002', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker.js", {
+                name: "1st worker", shared: false
+            })
+            let isTerminate = false
+
+            ss.onexit = function () {
+                isTerminate = true
+            }
+
+            expect(ss != null).assertTrue()
+
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+            done()
+        })
+
+        /**
+         * @tc.name: worker_constructor_test_003
+         * @tc.desc: worker constructor to Creates a worker instance.
+         * @tc.author: hanyuqing
+         */
+        it('worker_constructor_test_003', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker.js", {
+                type: "classic", name: "2st worker", shared: false
+            })
+            let isTerminate = false
+
+            ss.onexit = function () {
+                isTerminate = true
+            }
+
+            expect(ss != null).assertTrue()
+
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+            done()
+        })
+
+        /**
+         * @tc.name: worker_constructor_test_004
+         * @tc.desc: worker constructor to Creates a worker instance.
+         * @tc.author: hanyuqing
+         */
+        it('worker_constructor_test_004', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker.js", {
+                type: "classic", name: "3st worker", shared: true
+            })
+            let isTerminate = false
+
+            ss.onexit = function () {
+                isTerminate = true
+            }
+
+            expect(ss != null).assertTrue()
+
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+            done()
+        })
+
+        /**
+         * @tc.name: worker_constructor_test_005
+         * @tc.desc: worker constructor to Creates a worker instance.
+         */
+        it('worker_constructor_test_005', 0, async function (done) {
+            let ss = new worker.Worker("/entry/ets/workers/worker.js");
+            let isTerminate = false
+            ss.onexit = function () {
+                isTerminate = true
+            }
+            expect(ss != null).assertTrue()
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+            done()
+        })
+
+        /**
+         * @tc.name: worker_constructor_test_006
+         * @tc.desc: worker constructor to Creates a worker instance.
+         */
+        it('worker_constructor_test_006', 0, async function (done) {
+            let ss = new worker.Worker("@bundle:com.example.workertest/entry/ets/workers/worker.js");
+            let isTerminate = false
+            ss.onexit = function () {
+                isTerminate = true
+            }
+            expect(ss != null).assertTrue()
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+            done()
+        })
+
+        // check postMessage is ok
+        // main post "hello world", will receive "hello world worker"
+        /**
+         * @tc.name: worker_postMessage_test_001
+         * @tc.desc: Sends a message to the worker thread.
+         * @tc.author: hanyuqing
+         */
+        it('worker_postMessage_test_001', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_002.js")
+
+            let res = undefined
+            let flag = false
+            let isTerminate = false
+
+            ss.onexit = function () {
+                isTerminate = true
+            }
+            ss.onmessage = function (e) {
+                res = e.data
+                flag = true
+            }
+
+            ss.postMessage("hello world")
+            while (!flag) {
+                await promiseCase()
+            }
+
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+
+            expect(res).assertEqual("hello world worker")
+            done()
+        })
+
+        // check postMessage is ok
+        // main post 12 , will receive 12 * 2 + 1
+        /**
+         * @tc.name: worker_postMessage_test_002
+         * @tc.desc: Sends a message to the worker thread.
+         * @tc.author: hanyuqing
+         */
+        it('worker_postMessage_test_002', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_003.js")
+
+            let res = undefined
+            let flag = false
+            let isTerminate = false
+
+            ss.onexit = function () {
+                isTerminate = true
+            }
+            ss.onmessage = function (e) {
+                res = e.data
+                flag = true
+            }
+
+            ss.postMessage(12)
+            while (!flag) {
+                await promiseCase()
+            }
+
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+
+            expect(res).assertEqual(25)
+            done()
+        })
+
+        // check postMessage is ok
+        /**
+         * @tc.name: worker_postMessage_test_003
+         * @tc.desc: Sends a message to the worker thread.
+         * @tc.author: hanyuqing
+         */
+        it('worker_postMessage_test_003', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_004.js")
+
+            let res = undefined
+            let flag = false
+            let isTerminate = false
+
+            ss.onexit = function () {
+                isTerminate = true
+            }
+            ss.onmessage = function (e) {
+                res = e.data.message
+                flag = true
+            }
+
+            ss.postMessage({
+                "message": "hello world"
+            })
+            while (!flag) {
+                await promiseCase()
+            }
+
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+
+            expect(res).assertEqual("hello world worker")
+            done()
+        })
+
+        // check worker name is ok
+        /**
+         * @tc.name: worker_postMessage_test_004
+         * @tc.desc: Sends a message to the worker thread.
+         * @tc.author: hanyuqing
+         */
+        it('worker_postMessage_test_004', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_005.js", {
+                name: "zhangsan"
+            })
+
+            let res = undefined
+            let flag = false
+            let isTerminate = false
+
+            ss.onexit = function () {
+                isTerminate = true
+            }
+            ss.onmessage = function (e) {
+                res = e.data
+                console.info("worker:: type " + e.type)
+                console.info("worker:: timeStamp " + e.timeStamp)
+                flag = true
+            }
+
+            ss.postMessage("hello world")
+            while (!flag) {
+                await promiseCase()
+            }
+
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+
+            expect(res).assertEqual("zhangsan")
+            done()
+        })
+
+        // check worker transfer buffer is ok
+        /**
+         * @tc.name: worker_postMessage_test_005
+         * @tc.desc: Sends a message to the worker thread.
+         * @tc.author: hanyuqing
+         */
+        it('worker_postMessage_test_005', 0, async function (done) {
+            let ss = new worker.Worker("entry/ets/workers/worker_006.js")
+            let isTerminate = false
+
+            ss.onexit = function () {
+                isTerminate = true
+            }
+
+            const buffer = new ArrayBuffer(8)
+            expect(buffer.byteLength).assertEqual(8)
+            ss.postMessage(buffer, [buffer])
+            let length = undefined
+            let exception = undefined
+            try {
+                length = buffer.byteLength
+            } catch (e) {
+                exception = e.message
+            }
+
+            ss.terminate()
+            while (!isTerminate) {
+                await promiseCase()
+            }
+
+            console.log("worker:: length is " + length)
+            console.log("worker:: exception is " + exception)
+
+            if (typeof exception == "undefined") {
+                expect(length).assertEqual(0)
+            } else {
+                expect(exception).assertEqual("IsDetachedBuffer")
+            }
+            done()
+        })
 
         // check worker handle error is ok
         /**
