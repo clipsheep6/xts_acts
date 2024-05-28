@@ -16,9 +16,11 @@
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
 import { describe, it, expect } from 'deccjsunit/index'
 import mediaNative from "libmediaAssetManager.so";
+
 import {
   photoKeys,
   fetchOption,
+  createSandboxFileUri,
 } from '../../../../../../../common'
 
 export default function requestCancelNativeTest() {
@@ -32,12 +34,7 @@ export default function requestCancelNativeTest() {
         let fetchResult = await helper.getAssets(fetchOps);
         let photoAsset = await fetchResult.getFirstObject();
         let srcUri = photoAsset.uri;
-        let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.VIDEO;
-        let extension: string = 'mp4';
-        let CreateOptions: photoAccessHelper.CreateOptions = {
-          title: 'testPhoto' + new Date().getTime()
-        }
-        let destUri: string = await helper.createAsset(photoType, extension, CreateOptions);
+        let destUri = createSandboxFileUri('mp4');
         let result = await mediaNative.testRequestVideoForPath(srcUri, requestOptions, destUri, (err, state, requestId ) => {
             console.info(`${testNum} succeed ${state} ${requestId}`);
             expect(state).assertEqual(0);
@@ -60,15 +57,15 @@ export default function requestCancelNativeTest() {
     }
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_REQUEST_VIDEO_NATIVE_0000
+     * @tc.number    : SUB_PHOTOACCESS_HELPER_REQUEST_CANCEL_NATIVE_0000
      * @tc.name      : test requestImage requestOptions with FAST_MODE
      * @tc.desc      : request video with fast mode
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('request_video_native_request_option_fast_mode', 0, async function (done) {
-      let testNum = 'request_video_native_request_option_fast_mode';
+    it('request_cancel_native_request_option_fast_mode', 0, async function (done) {
+      let testNum = 'request_cancel_native_request_option_fast_mode';
       let requestOptions = {
         deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
       }
@@ -76,15 +73,15 @@ export default function requestCancelNativeTest() {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_REQUEST_VIDEO_NATIVE_0100
+     * @tc.number    : SUB_PHOTOACCESS_HELPER_REQUEST_CANCEL_NATIVE_0100
      * @tc.name      : test requestVideo requestOptions with HIGH_QUALITY_MODE 
      * @tc.desc      : request video with high quality mode
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('request_video_native_request_option_high_quality_mode', 0, async function (done) {
-      let testNum = 'request_video_native_request_option_high_quality_mode';
+    it('request_cancel_native_request_option_high_quality_mode', 0, async function (done) {
+      let testNum = 'request_cancel_native_request_option_high_quality_mode';
       let requestOptions = {
         deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
       }
@@ -92,15 +89,15 @@ export default function requestCancelNativeTest() {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_REQUEST_VIDEO_NATIVE_0200
+     * @tc.number    : SUB_PHOTOACCESS_HELPER_REQUEST_CANCEL_NATIVE_0200
      * @tc.name      : test requestVideo requestOptions with BALANCE_MODE and sourceMode: 
      * @tc.desc      : request video with high balance mode
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('request_video_native_request_option_balance_mode', 0, async function (done) {
-      let testNum = 'request_video_native_request_option_balance_mode';
+    it('request_cancel_native_request_option_balance_mode', 0, async function (done) {
+      let testNum = 'request_cancel_native_request_option_balance_mode';
       let requestOptions = {
         deliveryMode: photoAccessHelper.DeliveryMode.BALANCE_MODE,
       }

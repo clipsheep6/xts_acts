@@ -378,6 +378,13 @@ export async function pushCreateAssetSingle(names: Array<string>){
   }
 }
 
+export function createSandboxFileUri(extension) {
+  let pathDir = globalThis.abilityContext.filesDir;
+  let path = pathDir + '/test' + new Date().getTime() + '.' + extension;
+  fs.openSync(path, fs.OpenMode.CREATE)
+  return fileuri.getUriFromPath(path);
+}
+
 export {
   photoType,
   photoKeys,

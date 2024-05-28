@@ -23,7 +23,7 @@ import arkuiNodeEventTest from './NodeContainerTest/arkuinode/arkuinodeEnvent.te
 import arkuiNodeRenderTest from './NodeContainerTest/arkuinode/arkuinodeRender.test';
 import Image_QRCode_Api from './textTest/Image_QRCode_Api.test';
 import RichEditorApi from './RichEditorTest/RichEditorApi.test';
-import RichEditorApi2 from './RichEditorTest/RichEditorApi2.test';
+import RichEditorApi222 from './RichEditorTest/RichEditorApi222.test';
 import APIgetUIFontConfigJsunit from './fontTest/APIgetUIFontConfigJsunit.test';
 import APITextBackgroundStyleJsunit from './ContainerSpanTest/APITextBackgroundStyleJsunit.test'
 import SXrenderingStrategyJsunit from './RichEditorTest/SXrenderingStrategyJsunit.test';
@@ -173,14 +173,9 @@ import textOneJsunit from './textTest/textOneJsunit.test';
 import textTwoJsunit from './textTest/textTwoJsunit.test';
 import textEnabledJsunit from './textTest/textEnabledJsunit.test';
 import textChangeEnabledJsunit from './textTest/textChangeEnabledJsunit.test';
-import datePickerJsunit from './DatePickerTest/datePickerJsunit.test.ets';
-import datelPanelJsunit from './datelPanelTest/datelPanelJsunit.test.ets';
 import loadingProgressJsunit from './ProgressTest/loadingProgressJsunit.test.ets';
 import ProgressJsunit from './ProgressTest/ProgressJsunit.test.ets';
-import gaugeJsunit from './gaugeTest/gaugeJsunit.test.ets';
-import TextPickerJsunit from './TextPickerTest/TextPickerJsunit.test.ets';
 import TextTimerJsunit from './TextTimerTest/TextTimerJsunit.test.ets';
-import TimePickerJsunit from './TimePickerTest/TimePickerJsunit.test.ets';
 import ToggleJsunit from './ToggleTest/ToggleJsunit.test.ets';
 import marqueeUIJsunit from './marqueeTest/marqueeUIJsunit.test.ets';
 import PatternLockJsunit from './PatternLockTest/PatternLockJsunit.test.ets';
@@ -195,7 +190,6 @@ import focusJsunit from './buttonTest/FocusJsunit.test';
 import imageJsunit55 from './imageTest/ImageJsunit55.test';
 import playModeJsunit from './buttonTest/PlayModeJsunit.test';
 import richTextJsunitFOUR from './RichEditorTest/RichTextJsunitFOUR.test';
-
 import textClockJsunit from './textTest/TextClockJsunit.test';
 import textTimerJsunit from './textTest/TextTimerJsunit.test';
 import unitsModuleNameJsunit from './textTest/units.test.ets';
@@ -211,14 +205,23 @@ import progress3Jsunit from './ProgressTest/Progress3Jsunit.test';
 import text3Jsunit from './textTest/Text3Jsunit.test';
 import span3Jsunit from './spanTest/Span3Jsunit.test';
 import button3Jsunit from './buttonTest/Button3Jsunit.test';
-import timeStampJsunit from './TimePickerTest/TimeStampJsunit.test';
 import imageAnimatorJsunitt from './ImageAnimator/ImageAnimatorJsunit2.test.ets'
 import loadingProgressJsunit2 from './ProgressTest/LoadingProgressJsunit2.test.ets';
-
+import ButtonHoverTest from './buttonTest/ButtonHover.test';
+import ActsgetcomponentTest from './buttonTest/getcomponent.test';
+import ActsgetcomponentaddTest from './buttonTest/getcomponentadd.test';
+import stageAnimatorTest from './buttonTest/stageAnimator.test';
+import imageObscuredTest from './imageTest/imageObscuredTest.test';
+import ActsRichEditorTest from './RichEditorTest/RichEditor/Richeditor01.test';
+import textAreaJsunit3 from './TextAreaTest/TextAreaJsunit3.test';
+import textInputJsunit3 from './TextInputTest/TextInputJsunit3.test';
+import textObscuredTest from './textTest/textObscuredTest.test';
+import textSpanFontTest from './textTest/textSpanFont.test';
 
 export default function testsuite() {
   stageFontTest();
   stageMediaquery();
+  RichEditorApi222();
   TextStateJsunit();
   richEditorApi4();
   richEditorApi5();
@@ -243,7 +246,6 @@ export default function testsuite() {
   arkuiNodeRenderTest();
   Image_QRCode_Api();
   RichEditorApi();
-  RichEditorApi2();
   APIgetUIFontConfigJsunit();
   APITextBackgroundStyleJsunit();
   SXrenderingStrategyJsunit();
@@ -378,14 +380,9 @@ export default function testsuite() {
   textTwoJsunit();
   textEnabledJsunit();
   textChangeEnabledJsunit();
-  datePickerJsunit();
-  datelPanelJsunit();
   loadingProgressJsunit();
   ProgressJsunit();
-  gaugeJsunit();  
-  TextPickerJsunit();
   TextTimerJsunit();
-  TimePickerJsunit();
   ToggleJsunit();
   marqueeUIJsunit();
   PatternLockJsunit();
@@ -412,7 +409,19 @@ export default function testsuite() {
   text3Jsunit();
   button3Jsunit();
   span3Jsunit();
-  timeStampJsunit();
   imageAnimatorJsunitt();
   loadingProgressJsunit2();
+  textMinFontSizeJsunit();
+  textAreaOnCutJsunit();
+  textInputOnEditChangeJsunit();
+  ButtonHoverTest();
+  ActsgetcomponentTest();
+  ActsgetcomponentaddTest();
+  stageAnimatorTest();
+  imageObscuredTest();
+  ActsRichEditorTest();
+  textAreaJsunit3();
+  textInputJsunit3();
+  textObscuredTest();
+  textSpanFontTest();
 }

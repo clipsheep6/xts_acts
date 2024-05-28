@@ -18,10 +18,8 @@
         {
             "type": "ShellKit",
             "run-command": [
-                "param get hilog.flowctrl.proc.on false"
-            ],
-            "teardown-command": [
-                "param get hilog.flowctrl.proc.on true"
+                "hilog -b D -D 0x3200",
+                "hilog -b D -D 0xD003200"
             ]
         }
     ]
