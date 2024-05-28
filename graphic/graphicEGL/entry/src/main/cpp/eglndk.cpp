@@ -395,12 +395,12 @@ static napi_value EglGetConfigAttribAbnormal(napi_env env, napi_callback_info in
     EGLBoolean Ret;
     for (int i = 0; i < numConfigs; ++i) {
         Ret = eglGetConfigAttrib(m_eglDisplay, m_eglConf[i], EGL_BUFFER_SIZE, &numConfigs);
+        NAPI_ASSERT(env, Ret == FALSE, "eglGetConfigAttrib error");
     }
-    NAPI_ASSERT(env, Ret == FALSE, "eglGetConfigAttrib error");
     for (int i = 0; i < numConfigs; ++i) {
         Ret = eglGetConfigAttrib(m_eglDisplay, m_eglConf[i], EGL_ALPHA_SIZE, &numConfigs);
+        NAPI_ASSERT(env, Ret == FALSE, "eglGetConfigAttrib error");
     }
-    NAPI_ASSERT(env, Ret == FALSE, "eglGetConfigAttrib error");
     eglReleaseThread();
     eglTerminate(m_eglDisplay);
     napi_value result = nullptr;
