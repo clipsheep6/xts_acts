@@ -24,7 +24,7 @@ using namespace testing::ext;
 
 namespace OHOS {
 namespace Rosen {
-namespace XTSDrawing {
+namespace Drawing {
 class NativeXTSDrawingMatrixTest : public testing::Test {};
 
 /*
@@ -197,7 +197,7 @@ HWTEST_F(NativeXTSDrawingMatrixTest, OH_Drawing_MatrixPreScale, TestSize.Level1)
   OH_Drawing_MatrixPreScale(matrix, 10, 10, 10, 10);
   float value;
   value = OH_Drawing_MatrixGetValue(matrix, 0);
-  EXPECT_TRUE(Drawing::IsScalarAlmostEqual(value, 10));
+  EXPECT_TRUE(IsScalarAlmostEqual(value, 10));
 
   OH_Drawing_MatrixSetMatrix(matrix, 2, 1, 3, 1, 2, 2, 3, 1, 1);
   OH_Drawing_MatrixPreScale(matrix, 4, 6, 5, 7);
@@ -223,7 +223,7 @@ HWTEST_F(NativeXTSDrawingMatrixTest, OH_Drawing_MatrixPreTranslate, TestSize.Lev
   OH_Drawing_MatrixPreTranslate(matrix, 10, 10);
   float value;
   value = OH_Drawing_MatrixGetValue(matrix, 0);
-  EXPECT_TRUE(Drawing::IsScalarAlmostEqual(value, 1));
+  EXPECT_TRUE(IsScalarAlmostEqual(value, 1));
 
   OH_Drawing_MatrixSetMatrix(matrix, 2, 1, 3, 1, 2, 2, 3, 1, 1);
   OH_Drawing_MatrixPreTranslate(matrix, 2, 4);
@@ -272,7 +272,7 @@ HWTEST_F(NativeXTSDrawingMatrixTest, OH_Drawing_MatrixPostScale, TestSize.Level1
   OH_Drawing_MatrixPostScale(matrix, 10, 10, 10, 10);
   float value;
   value = OH_Drawing_MatrixGetValue(matrix, 0);
-  EXPECT_TRUE(Drawing::IsScalarAlmostEqual(value, 10));
+  EXPECT_TRUE(IsScalarAlmostEqual(value, 10));
 
   OH_Drawing_MatrixSetMatrix(matrix, 2, 1, 3, 1, 2, 2, 3, 1, 1);
   OH_Drawing_MatrixPostScale(matrix, 4, 6, 5, 7);
@@ -298,7 +298,7 @@ HWTEST_F(NativeXTSDrawingMatrixTest, OH_Drawing_MatrixPostTranslate, TestSize.Le
   OH_Drawing_MatrixPostTranslate(matrix, 10, 10);
   float value;
   value = OH_Drawing_MatrixGetValue(matrix, 0);
-  EXPECT_TRUE(Drawing::IsScalarAlmostEqual(value, 1));
+  EXPECT_TRUE(IsScalarAlmostEqual(value, 1));
 
   OH_Drawing_MatrixSetMatrix(matrix, 2, 1, 3, 1, 2, 2, 3, 1, 1);
   OH_Drawing_MatrixPostTranslate(matrix, 2, 4);
@@ -389,6 +389,6 @@ HWTEST_F(NativeXTSDrawingMatrixTest, OH_Drawing_MatrixMapRect, TestSize.Level1) 
   EXPECT_TRUE(true);
 }
 
-} // namespace XTSDrawing
+} // namespace Drawing
 } // namespace Rosen
 } // namespace OHOS

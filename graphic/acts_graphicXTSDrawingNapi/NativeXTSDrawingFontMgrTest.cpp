@@ -24,7 +24,7 @@ using namespace testing::ext;
 
 namespace OHOS {
 namespace Rosen {
-namespace XTSDrawing {
+namespace Drawing {
 class NativeXTSDrawingFontMgrTest : public testing::Test {};
 
 /*
@@ -303,6 +303,6 @@ HWTEST_F(NativeXTSDrawingFontMgrTest, OH_Drawing_FontStyleSetCount, TestSize.Lev
   OH_Drawing_FontMgrDestroy(mgr);
 }
 
-} // namespace XTSDrawing
+} // namespace Drawing
 } // namespace Rosen
 } // namespace OHOS

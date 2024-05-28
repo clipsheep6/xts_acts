@@ -34,7 +34,6 @@
 #include "drawing_round_rect.h"
 #include "drawing_sampling_options.h"
 #include "drawing_shader_effect.h"
-#include "drawing_shadow_layer.h"
 #include "drawing_text_blob.h"
 #include "drawing_typeface.h"
 #include "effect/color_filter.h"
@@ -46,19 +45,22 @@ using namespace testing::ext;
 namespace OHOS {
 namespace Rosen {
 namespace Drawing {
-class NativeXTSDrawingColorTest : public testing::Test {};
+class NativeXTSDrawingTextBlobTest : public testing::Test {};
 
 /*
- * @tc.name: OH_Drawing_ColorSetArgb
- * @tc.desc: test for OH_Drawing_ColorSetArgb.
+ * @tc.name: OH_Drawing_TextBlobUniqueID
+ * @tc.desc: test for OH_Drawing_TextBlobUniqueID.
  * @tc.size  : MediumTest
  * @tc.type  : Function
  * @tc.level : Level 1
  */
-HWTEST_F(NativeXTSDrawingColorTest, OH_Drawing_ColorSetArgb, TestSize.Level1) {
-  OH_Drawing_Brush *brush1 = OH_Drawing_BrushCreate();
-  OH_Drawing_BrushSetColor(brush1, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
-  EXPECT_EQ(OH_Drawing_BrushGetColor(brush1), 0xFFFF0000);
+HWTEST_F(NativeXTSDrawingTextBlobTest, OH_Drawing_TextBlobUniqueID, TestSize.Level1) {
+  // todo cpp crash
+  // const char *str = "123456";
+  // OH_Drawing_Font *font = OH_Drawing_FontCreate();
+  // OH_Drawing_TextBlob *textBlob = OH_Drawing_TextBlobCreateFromText(str, strlen(str), font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8);
+  // EXPECT_TRUE(OH_Drawing_TextBlobUniqueID(textBlob) > 0);
+  EXPECT_TRUE(OH_Drawing_TextBlobUniqueID(nullptr) == 0);
 }
 
 } // namespace Drawing

@@ -15,8 +15,7 @@
 
 #include "gtest/gtest.h"
 
-#include "drawing_bitmap.h"
-#include "drawing_image.h"
+#include "drawing_shadow_layer.h"
 
 using namespace testing;
 using namespace testing::ext;
@@ -24,19 +23,32 @@ using namespace testing::ext;
 namespace OHOS {
 namespace Rosen {
 namespace Drawing {
-class NativeXTSDrawingImageTest : public testing::Test {};
+class NativeXTSDrawingShadowLayerTest : public testing::Test {};
 
 /*
- * @tc.name: OH_Drawing_ImageDestroy
- * @tc.desc: test for OH_Drawing_ImageDestroy.
+ * @tc.name: OH_Drawing_ShadowLayerCreate
+ * @tc.desc: test for OH_Drawing_ShadowLayerCreate.
  * @tc.size  : MediumTest
  * @tc.type  : Function
  * @tc.level : Level 1
  */
-HWTEST_F(NativeXTSDrawingImageTest, OH_Drawing_ImageDestroy, TestSize.Level1) {
-  OH_Drawing_Image *image = OH_Drawing_ImageCreate();
-  OH_Drawing_ImageDestroy(image);
-  EXPECT_TRUE(true);
+HWTEST_F(NativeXTSDrawingShadowLayerTest, OH_Drawing_ShadowLayerCreate, TestSize.Level1) {
+  OH_Drawing_ShadowLayer *shadowLayer = OH_Drawing_ShadowLayerCreate(3.f, -3.f, 3.f, 0xFF00FF00);
+  EXPECT_NE(shadowLayer, nullptr);
+  OH_Drawing_ShadowLayerDestroy(shadowLayer);
+}
+
+/*
+ * @tc.name: OH_Drawing_ShadowLayerDestroy
+ * @tc.desc: test for OH_Drawing_ShadowLayerDestroy.
+ * @tc.size  : MediumTest
+ * @tc.type  : Function
+ * @tc.level : Level 1
+ */
+HWTEST_F(NativeXTSDrawingShadowLayerTest, OH_Drawing_ShadowLayerDestroy, TestSize.Level1) {
+  OH_Drawing_ShadowLayer *shadowLayer = OH_Drawing_ShadowLayerCreate(3.f, -3.f, 3.f, 0xFF00FF00);
+  EXPECT_NE(shadowLayer, nullptr);
+  OH_Drawing_ShadowLayerDestroy(shadowLayer);
 }
 
 } // namespace Drawing

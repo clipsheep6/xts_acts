@@ -15,8 +15,7 @@
 
 #include "gtest/gtest.h"
 
-#include "drawing_bitmap.h"
-#include "drawing_image.h"
+#include "drawing_point.h"
 
 using namespace testing;
 using namespace testing::ext;
@@ -24,19 +23,32 @@ using namespace testing::ext;
 namespace OHOS {
 namespace Rosen {
 namespace Drawing {
-class NativeXTSDrawingImageTest : public testing::Test {};
+class NativeXTSDrawingPointTest : public testing::Test {};
 
 /*
- * @tc.name: OH_Drawing_ImageDestroy
- * @tc.desc: test for OH_Drawing_ImageDestroy.
+ * @tc.name: OH_Drawing_PointCreate
+ * @tc.desc: test for OH_Drawing_PointCreate.
  * @tc.size  : MediumTest
  * @tc.type  : Function
  * @tc.level : Level 1
  */
-HWTEST_F(NativeXTSDrawingImageTest, OH_Drawing_ImageDestroy, TestSize.Level1) {
-  OH_Drawing_Image *image = OH_Drawing_ImageCreate();
-  OH_Drawing_ImageDestroy(image);
-  EXPECT_TRUE(true);
+HWTEST_F(NativeXTSDrawingPointTest, OH_Drawing_PointCreate, TestSize.Level1) {
+  OH_Drawing_Point *point = OH_Drawing_PointCreate(100, 60);
+  EXPECT_NE(point, nullptr);
+  OH_Drawing_PointDestroy(point);
+}
+
+/*
+ * @tc.name: OH_Drawing_PointDestroy
+ * @tc.desc: test for OH_Drawing_PointDestroy.
+ * @tc.size  : MediumTest
+ * @tc.type  : Function
+ * @tc.level : Level 1
+ */
+HWTEST_F(NativeXTSDrawingPointTest, OH_Drawing_PointDestroy, TestSize.Level1) {
+  OH_Drawing_Point *point = OH_Drawing_PointCreate(100, 60);
+  EXPECT_NE(point, nullptr);
+  OH_Drawing_PointDestroy(point);
 }
 
 } // namespace Drawing

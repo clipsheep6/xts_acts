@@ -44,7 +44,7 @@ using namespace testing::ext;
 
 namespace OHOS {
 namespace Rosen {
-namespace XTSDrawing {
+namespace Drawing {
 class NativeXTSDrawingColorFilterTest : public testing::Test {};
 
 /*
@@ -55,9 +55,58 @@ class NativeXTSDrawingColorFilterTest : public testing::Test {};
  * @tc.level : Level 1
  */
 HWTEST_F(NativeXTSDrawingColorFilterTest, OH_Drawing_ColorFilterCreateBlendMode, TestSize.Level1) {
-  OH_Drawing_ColorFilter *cColorFilter_ = OH_Drawing_ColorFilterCreateBlendMode(0xFF0000FF, BLEND_MODE_COLOR);
-  EXPECT_NE(cColorFilter_, nullptr);
-  OH_Drawing_ColorFilterDestroy(cColorFilter_);
+  OH_Drawing_Canvas *canvas = OH_Drawing_CanvasCreate();
+  OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
+  
+  OH_Drawing_BrushSetColor(brush, OH_Drawing_ColorSetArgb(0xFF, 0xFF, 0x00, 0x00));
+  EXPECT_EQ(OH_Drawing_BrushGetColor(brush), 0xFFFF0000);
+  OH_Drawing_ColorFilter *colorFilter = OH_Drawing_ColorFilterCreateBlendMode(0xff0000ff, OH_Drawing_BlendMode::BLEND_MODE_SRC);
+  EXPECT_NE(colorFilter, nullptr);
+  OH_Drawing_ColorFilter *colorFilterTmp = OH_Drawing_ColorFilterCreateLinearToSrgbGamma();
+  EXPECT_NE(colorFilterTmp, nullptr);
+  OH_Drawing_Filter *filter = OH_Drawing_FilterCreate();
+  EXPECT_NE(filter, nullptr);
+
+  OH_Drawing_FilterSetColorFilter(nullptr, colorFilter);
+  OH_Drawing_FilterSetColorFilter(filter, nullptr);
+  OH_Drawing_FilterGetColorFilter(filter, colorFilterTmp);
+  EXPECT_EQ(reinterpret_cast<ColorFilter *>(colorFilterTmp)->GetType(), ColorFilter::FilterType::NO_TYPE);
+
+  OH_Drawing_FilterSetColorFilter(filter, colorFilter);
+  OH_Drawing_FilterGetColorFilter(filter, colorFilterTmp);
+  EXPECT_EQ(reinterpret_cast<ColorFilter *>(colorFilterTmp)->GetType(), ColorFilter::FilterType::BLEND_MODE);
+
+  OH_Drawing_BrushSetFilter(brush, nullptr);
+  OH_Drawing_BrushSetFilter(brush, filter);
+  OH_Drawing_Rect *rect = OH_Drawing_RectCreate(0, 0, 100, 100);
+  OH_Drawing_CanvasDrawRect(canvas, rect);
+  OH_Drawing_ColorFilter *linear = OH_Drawing_ColorFilterCreateLinearToSrgbGamma();
+  OH_Drawing_FilterSetColorFilter(filter, linear);
+  OH_Drawing_CanvasTranslate(canvas, 100, 100);
+  OH_Drawing_CanvasDrawRect(canvas, rect);
+  OH_Drawing_ColorFilter *luma = OH_Drawing_ColorFilterCreateLuma();
+  OH_Drawing_FilterSetColorFilter(filter, luma);
+  OH_Drawing_CanvasTranslate(canvas, 200, 200);
+  OH_Drawing_CanvasDrawRect(canvas, rect);
+  const float matrix[20] = {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0.5f, 0};
+  OH_Drawing_ColorFilter *matrixFilter = OH_Drawing_ColorFilterCreateMatrix(nullptr);
+  EXPECT_EQ(matrixFilter, nullptr);
+  matrixFilter = OH_Drawing_ColorFilterCreateMatrix(matrix);
+  EXPECT_NE(matrixFilter, nullptr);
+  OH_Drawing_FilterSetColorFilter(filter, matrixFilter);
+  OH_Drawing_CanvasTranslate(canvas, 300, 300);
+  OH_Drawing_CanvasDrawRect(canvas, rect);
+  OH_Drawing_RectDestroy(rect);
+  OH_Drawing_ColorFilterDestroy(colorFilter);
+  OH_Drawing_ColorFilterDestroy(luma);
+  OH_Drawing_ColorFilterDestroy(matrixFilter);
+  OH_Drawing_ColorFilterDestroy(linear);
+  OH_Drawing_ColorFilterDestroy(colorFilterTmp);
+  OH_Drawing_FilterDestroy(filter);
+  OH_Drawing_FilterDestroy(nullptr);
+
+  OH_Drawing_BrushDestroy(brush);
+  OH_Drawing_CanvasDestroy(canvas);
 }
 
 /*
@@ -73,6 +122,6 @@ HWTEST_F(NativeXTSDrawingColorFilterTest, OH_Drawing_ColorFilterDestroy, TestSiz
   EXPECT_TRUE(true);
 }
 
-} // namespace XTSDrawing
+} // namespace Drawing
 } // namespace Rosen
 } // namespace OHOS

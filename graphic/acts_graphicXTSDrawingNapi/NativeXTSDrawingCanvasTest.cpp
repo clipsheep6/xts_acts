@@ -44,7 +44,7 @@ using namespace testing::ext;
 
 namespace OHOS {
 namespace Rosen {
-namespace XTSDrawing {
+namespace Drawing {
 class NativeXTSDrawingCanvasTest : public testing::Test {};
 
 constexpr uint32_t POINT_PARAMETER = 3;
@@ -72,11 +72,25 @@ HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasDestroy, TestSize.Level1) 
  */
 HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasBind, TestSize.Level1) {
   OH_Drawing_Canvas *canvas = OH_Drawing_CanvasCreate();
-  OH_Drawing_Bitmap *cBitmap = OH_Drawing_BitmapCreate();
-  OH_Drawing_CanvasBind(canvas, cBitmap);
-  OH_Drawing_BitmapDestroy(cBitmap);
+  OH_Drawing_Bitmap *bitmap = OH_Drawing_BitmapCreate();
+  EXPECT_NE(bitmap, nullptr);
+  OH_Drawing_CanvasBind(nullptr, bitmap);
+  OH_Drawing_BitmapDestroy(bitmap);
+  OH_Drawing_CanvasAttachPen(canvas, nullptr);
+  OH_Drawing_CanvasTranslate(canvas, INT32_MIN, INT32_MIN);
+  OH_Drawing_CanvasTranslate(canvas, INT32_MAX, INT32_MAX);
+  OH_Drawing_CanvasDrawLine(nullptr, 0, 0, 20, 20);
+  OH_Drawing_CanvasDrawLine(canvas, 0, 0, INT32_MAX, INT32_MAX);
+  OH_Drawing_CanvasDrawLine(canvas, 0, 0, INT32_MIN, INT32_MIN);
+  OH_Drawing_Path *path = OH_Drawing_PathCreate();
+  OH_Drawing_PathMoveTo(path, INT32_MAX, INT32_MIN);
+  OH_Drawing_PathMoveTo(nullptr, 9999, -1000);
+  OH_Drawing_PathClose(nullptr);
+  OH_Drawing_PathClose(path);
+  OH_Drawing_CanvasDrawPath(nullptr, path);
+  OH_Drawing_CanvasDrawPath(canvas, nullptr);
+  OH_Drawing_PathDestroy(path);
   OH_Drawing_CanvasDestroy(canvas);
-  EXPECT_TRUE(true);
 }
 
 /*
@@ -89,6 +103,7 @@ HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasBind, TestSize.Level1) {
 HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasAttachPen, TestSize.Level1) {
   OH_Drawing_Canvas *canvas = OH_Drawing_CanvasCreate();
   OH_Drawing_Pen *pen = OH_Drawing_PenCreate();
+  EXPECT_NE(pen, nullptr);
   OH_Drawing_CanvasAttachPen(canvas, pen);
   OH_Drawing_PenDestroy(pen);
   OH_Drawing_CanvasDestroy(canvas);
@@ -104,9 +119,12 @@ HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasAttachPen, TestSize.Level1
  */
 HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasDetachPen, TestSize.Level1) {
   OH_Drawing_Canvas *canvas = OH_Drawing_CanvasCreate();
+  OH_Drawing_Pen *pen = OH_Drawing_PenCreate();
+  EXPECT_NE(pen, nullptr);
+  OH_Drawing_CanvasAttachPen(canvas, pen);
   OH_Drawing_CanvasDetachPen(canvas);
+  OH_Drawing_PenDestroy(pen);
   OH_Drawing_CanvasDestroy(canvas);
-  EXPECT_TRUE(true);
 }
 
 /*
@@ -119,10 +137,10 @@ HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasDetachPen, TestSize.Level1
 HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasAttachBrush, TestSize.Level1) {
   OH_Drawing_Canvas *canvas = OH_Drawing_CanvasCreate();
   OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
+  EXPECT_NE(brush, nullptr);
   OH_Drawing_CanvasAttachBrush(canvas, brush);
   OH_Drawing_BrushDestroy(brush);
   OH_Drawing_CanvasDestroy(canvas);
-  EXPECT_TRUE(true);
 }
 
 /*
@@ -148,13 +166,17 @@ HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasDetachBrush, TestSize.Leve
  */
 HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasSaveLayer, TestSize.Level1) {
   OH_Drawing_Canvas *canvas = OH_Drawing_CanvasCreate();
-  OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
+
   OH_Drawing_Rect *rect = OH_Drawing_RectCreate(200, 500, 300, 600);
+  EXPECT_NE(rect, nullptr);
+  OH_Drawing_Brush *brush = OH_Drawing_BrushCreate();
+  EXPECT_NE(brush, nullptr);
+  // test exception
+  OH_Drawing_CanvasSaveLayer(nullptr, rect, brush);
   OH_Drawing_CanvasSaveLayer(canvas, rect, brush);
+  OH_Drawing_CanvasRestore(canvas);
   OH_Drawing_RectDestroy(rect);
-  OH_Drawing_BrushDestroy(brush);
   OH_Drawing_CanvasDestroy(canvas);
-  EXPECT_TRUE(true);
 }
 
 /*
@@ -291,7 +313,7 @@ HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasDrawRect, TestSize.Level1)
  */
 HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasDrawTextBlob, TestSize.Level1) {
   // todo cpp crash
-  
+
   // OH_Drawing_Canvas *canvas = OH_Drawing_CanvasCreate();
 
   // const char *str = "123456";
@@ -622,6 +644,6 @@ HWTEST_F(NativeXTSDrawingCanvasTest, OH_Drawing_CanvasClipRoundRect, TestSize.Le
   EXPECT_TRUE(true);
 }
 
-} // namespace XTSDrawing
+} // namespace Drawing
 } // namespace Rosen
 } // namespace OHOS

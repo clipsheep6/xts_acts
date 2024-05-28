@@ -28,7 +28,7 @@ using namespace testing::ext;
 
 namespace OHOS {
 namespace Rosen {
-namespace XTSDrawing {
+namespace Drawing {
 class NativeXTSDrawingImageTest : public testing::Test {};
 
 /*
@@ -75,6 +75,6 @@ HWTEST_F(NativeXTSDrawingImageTest, OH_Drawing_ImageFilterDestroy, TestSize.Leve
 }
 
 
-} // namespace XTSDrawing
+} // namespace Drawing
 } // namespace Rosen
 } // namespace OHOS

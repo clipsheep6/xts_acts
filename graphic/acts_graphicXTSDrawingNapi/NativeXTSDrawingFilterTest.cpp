@@ -46,7 +46,7 @@ using namespace testing::ext;
 
 namespace OHOS {
 namespace Rosen {
-namespace XTSDrawing {
+namespace Drawing {
 class NativeXTSDrawingFilterTest : public testing::Test {};
 
 /*
@@ -88,6 +88,6 @@ HWTEST_F(NativeXTSDrawingFilterTest, OH_Drawing_FilterGetColorFilter, TestSize.L
   EXPECT_TRUE(true);
 }
 
-} // namespace XTSDrawing
+} // namespace Drawing
 } // namespace Rosen
 } // namespace OHOS

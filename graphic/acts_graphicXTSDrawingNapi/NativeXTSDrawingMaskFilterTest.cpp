@@ -29,7 +29,7 @@ using namespace testing::ext;
 
 namespace OHOS {
 namespace Rosen {
-namespace XTSDrawing {
+namespace Drawing {
 class NativeXTSDrawingMaskFilterTest : public testing::Test {};
 
 /*
@@ -58,6 +58,6 @@ HWTEST_F(NativeXTSDrawingMaskFilterTest, OH_Drawing_MaskFilterDestroy, TestSize.
   OH_Drawing_MaskFilterDestroy(maskFilter);
 }
 
-} // namespace XTSDrawing
+} // namespace Drawing
 } // namespace Rosen
 } // namespace OHOS
