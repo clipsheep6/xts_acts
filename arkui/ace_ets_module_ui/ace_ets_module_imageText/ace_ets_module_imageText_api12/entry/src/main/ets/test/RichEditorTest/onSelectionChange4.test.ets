@@ -90,7 +90,7 @@ export default function onSelectionChange4() {
       await CommonFunc.sleep(2500);
 
       let richEditor2 = await driver.findComponent(ON.id('onSelectionChange4_RichEditor'));
-      await richEditor2.longClick();
+      await richEditor2.click();
       await CommonFunc.sleep(1000);
       let paste = await driver.findComponent(ON.text('粘贴'))
       await paste.click()
