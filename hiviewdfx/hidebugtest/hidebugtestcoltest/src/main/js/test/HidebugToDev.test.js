@@ -20,6 +20,133 @@ export default function HidebugToDevJsTest() {
 describe('HidebugToDevJsTest', function () {
 
     /**
+     * @tc.number SUB_DFX_DFT_Set_App_Resource_Limit_Js_0100
+     * @tc.name testHiDebugJs_001
+     * @tc.desc 验证应用内设置资源限制值
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level3
+     */
+    it('testHiDebugJs_001', 1, async function (done) {
+        try {
+            let type = 'js_heap';
+            let value = 85;
+            let enabledDebugLog = true;
+            hidebug.setAppResourceLimit(type, value, enabledDebugLog);
+            type = 'pss_memory';
+            value = 1024;
+            enabledDebugLog = true;
+            hidebug.setAppResourceLimit(type, value, enabledDebugLog);
+            type = 'fd';
+            value = 10;
+            enabledDebugLog = true;
+            hidebug.setAppResourceLimit(type, value, enabledDebugLog);
+            type = 'thread';
+            value = 10;
+            enabledDebugLog = true;
+            hidebug.setAppResourceLimit(type, value, enabledDebugLog);
+            done();
+        } catch (err) {
+            console.error(`SUB_DFX_DFT_Set_App_Resource_Limit_Js_0100 > `
+                `error code: ${err.code}, error msg: ${err.message}`);
+            expect().assertFail();
+            done();
+        }
+    })
+
+    /**
+     * @tc.number SUB_DFX_DFT_Set_App_Resource_Limit_Js_0200
+     * @tc.name testHiDebugJs_002
+     * @tc.desc 验证应用内设置资源限制值, type无效
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level3
+     */
+    it('testHiDebugJs_002', 1, async function (done) {
+        try {
+            let type = 'testHiDebugJs19';
+            let value = 85;
+            let enabledDebugLog = true;
+            hidebug.setAppResourceLimit(type, value, enabledDebugLog);
+            done();
+        } catch (err) {
+            console.error(`SUB_DFX_DFT_Set_App_Resource_Limit_Js_0200 > `
+                `error code: ${err.code}, error msg: ${err.message}`);
+            expect(err.code == 401).assertTrue();
+            done();
+        }
+    })
+
+    /**
+     * @tc.number SUB_DFX_DFT_Set_App_Resource_Limit_Js_0300
+     * @tc.name testHiDebugJs_003
+     * @tc.desc 验证应用内设置资源限制值, value为undefined
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level3
+     */
+    it('testHiDebugJs_003', 1, async function (done) {
+        try {
+            let type = 'js_heap';
+            let value = undefined;
+            let enabledDebugLog = true;
+            hidebug.setAppResourceLimit(type, value, enabledDebugLog);
+            done();
+        } catch (err) {
+            console.error(`SUB_DFX_DFT_Set_App_Resource_Limit_Js_0300 > `
+                `error code: ${err.code}, error msg: ${err.message}`);
+            expect(err.code == 401).assertTrue();
+            done();
+        }
+    })
+
+    /**
+     * @tc.number SUB_DFX_DFT_Set_App_Resource_Limit_Js_0400
+     * @tc.name testHiDebugJs_004
+     * @tc.desc 验证应用内设置资源限制值, enabledDebugLog为undefined
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level3
+     */
+    it('testHiDebugJs_004', 1, async function (done) {
+        try {
+            let type = 'js_heap';
+            let value = 85;
+            let enabledDebugLog = undefined;
+            hidebug.setAppResourceLimit(type, value, enabledDebugLog);
+            done();
+        } catch (err) {
+            console.error(`SUB_DFX_DFT_Set_App_Resource_Limit_Js_0400 > `
+                `error code: ${err.code}, error msg: ${err.message}`);
+            expect(err.code == 401).assertTrue();
+            done();
+        }
+    })
+
+    /**
+     * @tc.number SUB_DFX_DFT_Set_App_Resource_Limit_Js_0500
+     * @tc.name testHiDebugJs_005
+     * @tc.desc 验证应用内设置资源限制值, value不在范围内
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level3
+     */
+    it('testHiDebugJs_005', 1, async function (done) {
+        try {
+            let type = 'js_heap';
+            let value = 15;
+            let enabledDebugLog = true;
+            hidebug.setAppResourceLimit(type, value, enabledDebugLog);
+            done();
+        } catch (err) {
+            console.error(`SUB_DFX_DFT_Set_App_Resource_Limit_Js_0500 > `
+                `error code: ${err.code}, error msg: ${err.message}`);
+            expect(err.code == 401).assertTrue();
+            done();
+        }
+    })
+
+    /**
      * @tc.number SUB_DFX_DFT_HiDebug_Mem_Js_0100
      * @tc.name testHiDebugJs01
      * @tc.desc 验证获取系统内存MemTotal、MemFree、MemAvaiable内存大小能力-ts接口-getSystemMemInfo
