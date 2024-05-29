@@ -22,7 +22,7 @@
     "deviceTypes": [
       "default",
       "tablet",
-			"2in1"
+      "2in1"
     ],
     "requestPermissions":[
       {
