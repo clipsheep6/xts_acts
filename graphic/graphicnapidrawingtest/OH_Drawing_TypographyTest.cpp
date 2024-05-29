@@ -1226,7 +1226,11 @@ HWTEST_F(OH_Drawing_TypographyTest, OH_Drawing_TypographyTest040, TestSize.Level
         char** list = OH_Drawing_FontParserGetSystemFontList(parser, &fontNum);
         EXPECT_EQ(list != nullptr, true);
         const char *name = "OS Sans Digit";
-        EXPECT_EQ(OH_Drawing_FontParserGetFontByName(parser, name) != nullptr, true);
+        OH_Drawing_FontDescriptor* fDescriptor = OH_Drawing_FontParserGetFontByName(parser, name);
+        if (fDescriptor) {
+            OH_Drawing_DestroyFontDescriptor(fDescriptor);
+        }
+        EXPECT_EQ(fDescriptor, nullptr);
         OH_Drawing_DestroySystemFontList(list, fontNum);
     }
     OH_Drawing_DestroyFontParser(parser);
@@ -2505,7 +2509,11 @@ HWTEST_F(OH_Drawing_TypographyTest, OH_Drawing_TypographyTest102, TestSize.Level
         EXPECT_EQ(list != nullptr, true);
         EXPECT_EQ(OH_Drawing_FontParserGetSystemFontList(nullptr, &fontNum) == nullptr, true);
         const char *name = "OS Sans Digit";
-        EXPECT_EQ(OH_Drawing_FontParserGetFontByName(parser, name) != nullptr, true);
+        OH_Drawing_FontDescriptor* fDescriptor = OH_Drawing_FontParserGetFontByName(parser, name);
+        if (fDescriptor) {
+            OH_Drawing_DestroyFontDescriptor(fDescriptor);
+        }
+        EXPECT_EQ(fDescriptor, nullptr);
         EXPECT_EQ(OH_Drawing_FontParserGetFontByName(nullptr, name) == nullptr, true);
         OH_Drawing_DestroySystemFontList(list, fontNum);
         OH_Drawing_DestroySystemFontList(nullptr, fontNum);
