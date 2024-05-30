@@ -86,6 +86,7 @@ group("ability_runtime") {
       "stopserviceextension:stopserviceextension",
       "want:want",
       "workercontextcover:workercontextcover",
+	  "actsterminateselfwithresulturitest:terminateselfwithresulturitest"
     ]
   }
 }
