@@ -29,8 +29,8 @@ export function testHappyPathCombined(): Promise<string> {
 }
 
 
+@Concurrent
 async function testHappyPathImpl() {
-  "use concurrent"
   let sab = createUint32Array(3);
   let task1 = new taskpool.Task(indexSetter, sab, 1);
   let task2 = new taskpool.Task(indexSetter, sab, 2);
@@ -48,8 +48,8 @@ async function testHappyPathImpl() {
   throw new Error("Test failed Expected " + "1 and 2" + ", but was " + res1 + " and " + res2);
 }
 
+@Concurrent
 async function testHappyPathImplCombined() {
-  "use concurrent"
   let sab = createUint32Array(3);
 
   let group: taskpool.TaskGroup = new taskpool.TaskGroup();
@@ -70,8 +70,8 @@ export function testRepeats(): Promise<string> {
   return check("testRepeats", p);
 }
 
+@Concurrent
 async function testRepeatsImpl() {
-  "use concurrent"
   let repeats: number = 10;
   let size: number = repeats + 3;
   let sab = createUint32Array(size);

@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 import taskpool from '@ohos.taskpool'
-import hilog from '@ohos.hilog';
 import { check } from './utils';
-import { DataChainedPath0, DataChainedPath2 } from './SendablesChainTestImport';
-import { DataChainedPath1, extractDataJob, taskDataFunction0, taskDataFunction2 } from './SendablesChainTestImport2';
+import { DataChainedPath0, DataChainedPath1, DataChainedPath2 } from './SendablesChainTestImport3';
+import { extractDataJob, taskDataFunction0, taskDataFunction2 } from './SendablesChainTestImport2';
 
 /// TESTS IMPLEMENTATION ///
 
@@ -25,13 +24,12 @@ export function testChainedPath0(): Promise<string> {
   return check("testChainedPath0", p);
 }
 
+@Concurrent
 function taskTaskFunction0(input: DataChainedPath0): taskpool.Task {
-  "use concurrent"
   return new taskpool.Task(taskDataFunction0, input.nested);
 }
 
 async function testChainedPath0Impl() {
-  hilog.info(0x0000, 'UDAV', 'Start testChainedPath0Impl');
   let input: DataChainedPath0 = new DataChainedPath0();
   let taskOne: Promise<taskpool.Task> = taskpool.execute(taskTaskFunction0, input) as Promise<taskpool.Task>;
 
@@ -50,7 +48,6 @@ export function testChainedPath0Negative(): Promise<string> {
 }
 
 async function testChainedPath0ImplNegative() {
-  hilog.info(0x0000, 'UDAV', 'Start testChainedPath0ImplNegative');
   let input: DataChainedPath0 = new DataChainedPath0();
   let taskOne: Promise<taskpool.Task> = taskpool.execute(taskTaskFunction0, input) as Promise<taskpool.Task>;
 
@@ -63,8 +60,8 @@ async function testChainedPath0ImplNegative() {
   return "Test passed, as expected " + 321 + " not equals " + res;
 }
 
+@Concurrent
 function taskDataFunction1(): DataChainedPath1 {
-  "use concurrent"
   let result: DataChainedPath1 = new DataChainedPath1();
   return result;
 }
@@ -92,8 +89,8 @@ export function testChainedPath2(): Promise<string> {
   return check("testChainedPath2", p);
 }
 
+@Concurrent
 function taskTaskFunction2(input: DataChainedPath2): Promise<taskpool.Task> {
-  "use concurrent"
   return Promise.resolve(new taskpool.Task(taskDataFunction2, input.nested)); // return new Promise<taskpool.Task>(resolve => new taskpool.Task(taskDataFunction2, input.nested));
 }
 

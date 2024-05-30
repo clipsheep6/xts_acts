@@ -19,22 +19,22 @@ export function createUint32Array(size: number): Uint32Array {
   return new Uint32Array(sab);
 }
 
+@Concurrent
 export function indexSetter(data: Uint32Array, index: number): Uint32Array {
-  "use concurrent"
   data[index] = index;
   return data;
 }
 
+@Concurrent
 export async function indexSetterWithTimeout(data: Uint32Array, index: number, millis: number): Promise<Uint32Array> {
-  "use concurrent"
   let waitPromise: Promise<Object> = new Promise(f => setTimeout(f, millis));
   await waitPromise;
   data[index] = index;
   return data;
 }
 
+@Concurrent
 export async function taskpoolExecuteChainedRecursive(data: Uint32Array, index: number, limit: number) {
-  "use concurrent"
   // NOTE this is workaround for "Concurrent function should only use import variable or local variable"
   return taskpoolExecuteChained(data, index, limit);
 }

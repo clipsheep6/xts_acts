@@ -55,7 +55,7 @@ export function compareBuffers(source: SharedArrayBuffer, target: SharedArrayBuf
 export async function skipConditional(reasonToSkip: string, requiredToSkip: boolean, runIfNotSkip: () => Object): Promise<Object> {
   // NOTE requiredToSkip allows simple reliable way to toggle skip on and off when experimenting and debugging
   if(requiredToSkip) {
-    hilog.info(0x0000, "[xts_skip_test]", "skip test case: " + reasonToSkip);
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', "skip test case: " + reasonToSkip);
     return "PASSED";
   }
   return runIfNotSkip();

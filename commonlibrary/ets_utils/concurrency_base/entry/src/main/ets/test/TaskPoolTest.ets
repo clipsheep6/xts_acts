@@ -24,8 +24,8 @@ export function testHappyPath(): Promise<string> {
   return check("testHappyPath", p);
 }
 
+@Concurrent
 async function testHappyPathImpl() {
-  "use concurrent"
   let sab = createUint32Array(3);
   let task1 = new taskpool.Task(indexSetter, sab, 1);
   let task: Promise<Object> = taskpool.execute(task1, taskpool.Priority.HIGH) as Promise<Object>;
@@ -42,8 +42,8 @@ export function testTwoTasks(): Promise<string> {
   return check("testTwoTasks", p);
 }
 
+@Concurrent
 async function testTwoTasksImpl() {
-  "use concurrent"
   let sab = createUint32Array(3);
   let task1 = new taskpool.Task(indexSetter, sab, 1);
   let task2 = new taskpool.Task(indexSetter, sab, 2);
@@ -63,8 +63,8 @@ export function testManyTasks(): Promise<string> {
   return check("testManyTasks", p);
 }
 
+@Concurrent
 async function testManyTasksImpl() {
-  "use concurrent"
   let stressCount: number = 10;
   let size: number = stressCount + 3;
   let sab = createUint32Array(size);
@@ -127,8 +127,8 @@ export function testUnder3Minutes(): Promise<string> {
   return check("testUnder3Minutes", p);
 }
 
+@Concurrent
 async function testUnder3MinutesImpl() {
-  "use concurrent"
   let sab = createUint32Array(3);
   let timeout: number = 1000 * 60 * 2 + 1000 * 50;
   let task1 = new taskpool.Task(indexSetterWithTimeout, sab, 1, timeout);
@@ -146,8 +146,8 @@ export function testOver3Minutes(): Promise<string> {
   return check("testOver3Minutes", p);
 }
 
+@Concurrent
 async function testOver3MinutesImpl() {
-  "use concurrent"
   let sab = createUint32Array(3);
   let timeout: number = 1000 * 60 * 4;
   let task1 = new taskpool.Task(indexSetterWithTimeout, sab, 1, timeout);
@@ -165,8 +165,8 @@ export function testRepeats(): Promise<string> {
   return check("testRepeats", p);
 }
 
+@Concurrent
 async function testRepeatsImpl() {
-  "use concurrent"
   let repeats: number = 10;
   let size: number = repeats + 3;
   let sab = createUint32Array(size);

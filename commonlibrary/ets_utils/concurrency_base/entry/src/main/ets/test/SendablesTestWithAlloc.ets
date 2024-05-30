@@ -20,18 +20,17 @@ import { StringContainer, NestedSendableContainer, NullableNestedSendableContain
   OuterInitializerContainer
 } from './Containers'
 import { Nested } from './Nested'
+import { CombinedType } from './SendablesTestImport'
 
 /// TESTS IMPLEMENTATION ///
-
-type CombinedType = SharedArrayBuffer|String;
 
 export function testSendableSimpleDate(): Promise<string> {
   let p = taskpool.execute(testSendableSimpleDateImpl)
   return check("testSendableSimpleDate", p);
 }
 
+@Concurrent
 async function testSendableSimpleDateImpl(): Promise<string> {
-  "use concurrent"
   let input: Date = new Date();
   let job: BypassFunctionType<Date> = allocateAndBypassFunction;
 
@@ -48,8 +47,8 @@ export function testSendableSimpleString(): Promise<string> {
   return check("testSendableSimpleString", p);
 }
 
+@Concurrent
 async function testSendableSimpleStringImpl(): Promise<string> {
-  "use concurrent"
   let input: String = "Hello World";
   let job: BypassFunctionType<String> = allocateAndBypassFunction;
 
@@ -66,8 +65,8 @@ export function testSendableSimpleNumber(): Promise<string> {
   return check("testSendableSimpleNumber", p);
 }
 
+@Concurrent
 async function testSendableSimpleNumberImpl(): Promise<string> {
-  "use concurrent"
   let input: Number = 12345678;
   let job: BypassFunctionType<Number> = allocateAndBypassFunction;
 
@@ -84,8 +83,8 @@ export function testSendableSimpleBoolean(): Promise<string> {
   return check("testSendableSimpleBoolean", p);
 }
 
+@Concurrent
 async function testSendableSimpleBooleanImpl(): Promise<string> {
-  "use concurrent"
   let input: Boolean = true;
   let job: BypassFunctionType<Boolean> = allocateAndBypassFunction;
 
@@ -102,8 +101,8 @@ export function testSendableSimpleSharedArrayBuffer(): Promise<string> {
   return check("testSendableSimpleSharedArrayBuffer", p);
 }
 
+@Concurrent
 async function testSendableSimpleSharedArrayBufferImpl(): Promise<string> {
-  "use concurrent"
   let input: SharedArrayBuffer = new SharedArrayBuffer(5);
   let srcView = new DataView(input);
   for(let i = 0; i < 5; i++) srcView.setInt8(i, i);
@@ -123,8 +122,8 @@ export function testSendableSimpleSharedArrayBufferAndUndefined(): Promise<strin
   return check("testSendableSimpleSharedArrayBufferAndUndefined", p);
 }
 
+@Concurrent
 async function testSendableSimpleSharedArrayBufferAndUndefinedImpl(): Promise<string> {
-  "use concurrent"
   let input: SharedArrayBuffer = new SharedArrayBuffer(5);
   let job: BypassFunctionType<SharedArrayBuffer|undefined> = allocateAndBypassFunction;
 
@@ -141,8 +140,8 @@ export function testSendableSimpleSharedArrayBufferAndNull(): Promise<string> {
   return check("testSendableSimpleSharedArrayBufferAndNull", p);
 }
 
+@Concurrent
 async function testSendableSimpleSharedArrayBufferAndNullImpl(): Promise<string> {
-  "use concurrent"
   let input: SharedArrayBuffer = new SharedArrayBuffer(5);
   let job: BypassFunctionType<SharedArrayBuffer|null> = allocateAndBypassFunction;
 
@@ -159,8 +158,8 @@ export function testSendableSimpleCombined0(): Promise<string> {
   return check("testSendableSimpleCombined0", p);
 }
 
+@Concurrent
 async function testSendableSimpleCombined0Impl(): Promise<string> {
-  "use concurrent"
   let input: SharedArrayBuffer = new SharedArrayBuffer(5);
   let job: BypassFunctionType<SharedArrayBuffer|null|undefined> = allocateAndBypassFunction;
 
@@ -177,8 +176,8 @@ export function testSendableSimpleCombined1(): Promise<string> {
   return check("testSendableSimpleCombined1", p);
 }
 
+@Concurrent
 async function testSendableSimpleCombined1Impl(): Promise<string> {
-  "use concurrent"
   let input: SharedArrayBuffer = new SharedArrayBuffer(5);
   let job: BypassFunctionType<SharedArrayBuffer|String> = allocateAndBypassFunction;
 
@@ -195,8 +194,8 @@ export function testSendableSimpleCombined2(): Promise<string> {
   return check("testSendableSimpleCombined2", p);
 }
 
+@Concurrent
 async function testSendableSimpleCombined2Impl(): Promise<string> {
-  "use concurrent"
   let input: String = "Hello World"
   let job: BypassFunctionType<SharedArrayBuffer|String> = allocateAndBypassFunction;
 
@@ -213,8 +212,8 @@ export function testSendableSimpleCombinedAsType1(): Promise<string> {
   return check("testSendableSimpleCombinedAsType1", p);
 }
 
+@Concurrent
 async function testSendableSimpleCombinedAsType1Impl(): Promise<string> {
-  "use concurrent"
   let input: CombinedType = "Hello World"
   let job: BypassFunctionType<CombinedType> = allocateAndBypassFunction;
 
@@ -231,8 +230,8 @@ export function testSendableSimpleCombinedAsType2(): Promise<string> {
   return check("testSendableSimpleCombinedAsType2", p);
 }
 
+@Concurrent
 async function testSendableSimpleCombinedAsType2Impl(): Promise<string> {
-  "use concurrent"
   let input: CombinedType = new SharedArrayBuffer(5);
   let job: BypassFunctionType<CombinedType> = allocateAndBypassFunction;
 
@@ -255,8 +254,8 @@ export function testSendableSharedArrayBufferInContainer(): Promise<string> {
   return check("testSendableSharedArrayBufferInContainer", p);
 }
 
+@Concurrent
 async function testSendableSharedArrayBufferInContainerImpl(): Promise<string> {
-  "use concurrent"
   let input: SharedArrayBufferContainer = new SharedArrayBufferContainer();
   let job: BypassFunctionType<SharedArrayBufferContainer> = allocateAndBypassFunction;
 
@@ -275,8 +274,8 @@ export function testSendableContainerWithString(): Promise<string> {
   return check("testSendableContainerWithString", p);
 }
 
+@Concurrent
 async function testSendableContainerWithStringImpl(): Promise<string> {
-  "use concurrent"
   let input: StringContainer = new StringContainer();
   let job: BypassFunctionType<StringContainer> = allocateAndBypassFunction;
 
@@ -293,8 +292,8 @@ export function testSendableContainerWithNumber(): Promise<string> {
   return check("testSendableContainerWithNumber", p);
 }
 
+@Concurrent
 async function testSendableContainerWithNumberImpl(): Promise<string> {
-  "use concurrent"
   let input: NumberContainer = new NumberContainer();
   let job: BypassFunctionType<NumberContainer> = allocateAndBypassFunction;
 
@@ -311,8 +310,8 @@ export function testSendableContainerWithNested(): Promise<string> {
   return check("testSendableContainerWithNested", p);
 }
 
+@Concurrent
 async function testSendableContainerWithNestedImpl(): Promise<string> {
-  "use concurrent"
   let input: NestedSendableContainer = new NestedSendableContainer();
   let job: BypassFunctionType<NestedSendableContainer> = allocateAndBypassFunction;
 
@@ -329,8 +328,8 @@ export function testSendableContainerWithNullableNested(): Promise<string> {
   return check("testSendableContainerWithNullableNested", p);
 }
 
+@Concurrent
 async function testSendableContainerWithNullableNestedImpl(): Promise<string> {
-  "use concurrent"
   let input: NullableNestedSendableContainer = new NullableNestedSendableContainer();
   let job: BypassFunctionType<NullableNestedSendableContainer> = allocateAndBypassFunction;
 
@@ -348,8 +347,8 @@ export function testSendableContainerWithStringType(): Promise<string> {
   return check("testSendableContainerWithStringType", p);
 }
 
+@Concurrent
 async function testSendableContainerWithStringTypeImpl(): Promise<string> {
-  "use concurrent"
   let input: StringDefContainer = new StringDefContainer();
   let job: BypassFunctionType<sc.StringDefContainer> = allocateAndBypassFunction;
 
@@ -369,8 +368,8 @@ export function testSendableContainerWithNullableString(): Promise<string> {
   return check("testSendableContainerWithNullableString", p);
 }
 
+@Concurrent
 async function testSendableContainerWithNullableStringImpl(): Promise<string> {
-  "use concurrent"
   let input: NullAndStringContainer = new NullAndStringContainer();
   let job: BypassFunctionType<NullAndStringContainer> = allocateAndBypassFunction;
 
@@ -387,8 +386,8 @@ export function testSendableContainerWithUndefinedString(): Promise<string> {
   return check("testSendableContainerWithUndefinedString", p);
 }
 
+@Concurrent
 async function testSendableContainerWithUndefinedStringImpl(): Promise<string> {
-  "use concurrent"
   let input: UndefinedAndStringContainer = new UndefinedAndStringContainer();
   let job: BypassFunctionType<UndefinedAndStringContainer> = allocateAndBypassFunction;
 
@@ -405,8 +404,8 @@ export function testSendableWithGenericSendableField(): Promise<string> {
   return check("testSendableWithGenericSendableField", p);
 }
 
+@Concurrent
 async function testSendableWithGenericSendableFieldImpl(): Promise<string> {
-  "use concurrent"
   let input: GenericSendable<Nested> = new GenericSendable<Nested>();
   let job: BypassFunctionType<GenericSendable<Nested>> = allocateAndBypassFunction;
 
@@ -424,8 +423,8 @@ export function testSendableWithSendableCollectionHolder(): Promise<string> {
   return check("testSendableWithSendableCollectionHolder", p);
 }
 
+@Concurrent
 async function testSendableWithSendableCollectionHolderImpl(): Promise<string> {
-  "use concurrent"
   let input: CollectionHolder = new CollectionHolder();
   let job: BypassFunctionType<CollectionHolder> = allocateAndBypassFunction;
 
@@ -444,8 +443,8 @@ export function testSendableImportedInitializer(): Promise<string> {
   return check("testSendableImportedInitializer", p);
 }
 
+@Concurrent
 async function testSendableImportedInitializerImpl(): Promise<string> {
-  "use concurrent"
   let input: OuterInitializerContainer = new OuterInitializerContainer();
   let job: BypassFunctionType<OuterInitializerContainer> = allocateAndBypassFunction;
   let p = taskpool.execute(new taskpool.Task(job, input)) as Promise<Object>;

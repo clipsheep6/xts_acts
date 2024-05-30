@@ -14,22 +14,13 @@
  */
 import taskpool from '@ohos.taskpool'
 import {
-  NestedDataChainedPath0,
   taskDataFunction2,
-  NestedDataChainedPath2
 } from './SendablesChainTestImport2';
+import {
+  DataChainedPath2
+} from './SendablesChainTestImport3';
 
-@Sendable
-export class DataChainedPath0 {
-  nested: NestedDataChainedPath0 = new NestedDataChainedPath0();
-}
-
-@Sendable
-export class DataChainedPath2 {
-  nested: NestedDataChainedPath2 = new NestedDataChainedPath2();
-}
-
+@Concurrent
 export async function taskTaskFunction2(input: DataChainedPath2): Promise<taskpool.Task> {
-  "use concurrent"
   return Promise.resolve(new taskpool.Task(taskDataFunction2, input.nested));
 }

@@ -18,19 +18,19 @@ import { NumberContainer, NumberContainerArray } from './Containers'
 
 export type BypassFunctionType<T> = ((input: T) => T);
 
+@Concurrent
 export function bypassFunction<T>(input: T): T {
-  "use concurrent"
   return input;
 }
 
+@Concurrent
 export function allocateAndBypassFunction<T>(input: T): T {
-  "use concurrent"
   Allocator.allocate();
   return input;
 }
 
+@Concurrent
 export function fillAndBypass(containers: NumberContainerArray, value: number): number {
-  "use concurrent"
   // NOTE this can be used only after concurrent arrays become available
   let containerArray: NumberContainer[] = containers.data;
   let container: NumberContainer = containerArray[value];
@@ -38,8 +38,8 @@ export function fillAndBypass(containers: NumberContainerArray, value: number): 
   return container.data;
 }
 
+@Concurrent
 export function fillAndBypassContainer(container: NumberContainer, value: number): number {
-  "use concurrent"
   container.data = value;
   return container.data;
 }

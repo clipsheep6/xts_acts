@@ -13,18 +13,15 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
 import { NumberContainer } from './Containers'
 
+@Concurrent
 export function createNumberContainer(): NumberContainer {
-  "use concurrent"
-  hilog.info(0x0000, 'UDAV', 'in createNumberContainer');
   let data = new NumberContainer();
   return data;
 }
 
+@Concurrent
 export function bypassNumberContainer(data: NumberContainer): NumberContainer {
-  "use concurrent"
-  hilog.info(0x0000, 'UDAV', 'in bypassNumberContainer');
   return data;
 }

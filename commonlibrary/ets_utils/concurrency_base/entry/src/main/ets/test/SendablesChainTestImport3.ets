@@ -12,16 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import taskpool from '@ohos.taskpool'
-import { indexSetter, taskpoolExecuteChainedRecursive } from './TaskPoolTestImport';
+import {
+  NestedDataChainedPath0,
+  NestedDataChainedPath2
+} from './SendablesChainTestImport4';
 
-@Concurrent
-export async function taskpoolExecuteChained(data: Uint32Array, index: number, limit: number): Promise<Uint32Array> {
-  let task: taskpool.Task = new taskpool.Task(indexSetter, data, index);
-  let promise: Promise<Object> = taskpool.execute(task) as Promise<Object>;
-  if (index < limit + 1) {
-    taskpoolExecuteChainedRecursive(data, index + 1, limit)
-  }
-  let ret: Uint32Array = await (promise) as Uint32Array;
-  return ret;
+@Sendable
+export class DataChainedPath1 {
+  data: number = 123;
+}
+
+@Sendable
+export class DataChainedPath0 {
+  nested: NestedDataChainedPath0 = new NestedDataChainedPath0();
+}
+
+@Sendable
+export class DataChainedPath2 {
+  nested: NestedDataChainedPath2 = new NestedDataChainedPath2();
 }

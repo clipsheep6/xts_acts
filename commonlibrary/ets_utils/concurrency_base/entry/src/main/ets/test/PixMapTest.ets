@@ -42,13 +42,12 @@ export function testPixMapWriteSingleTaskGroup(): Promise<Object> {
 }
 
 async function testPixMapTaskGroupImpl() {
-  hilog.info(0x0000, 'MAKIAM', ':testPixMapTaskGroup');
   let ab = new ArrayBuffer(BL);
 
   let pm: PixelMap = image.createPixelMapSync(ab, options);
   if(pm == undefined) return Promise.reject("FAILED");
 
-  hilog.info(0x0000, 'MAKIAM', ':createPixelMapSync: %{public}s\n%{public}s', JSON.stringify(pm.getImageInfoSync()) ?? '', JSON.stringify(pm.getBytesNumberPerRow()));
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', ':createPixelMapSync: %{public}s\n%{public}s', JSON.stringify(pm.getImageInfoSync()) ?? '', JSON.stringify(pm.getBytesNumberPerRow()));
 
   let group = new taskpool.TaskGroup();
   group.addTask(new taskpool.Task(fillPixelMap, pm, 0, 10, 20, 30));
@@ -56,20 +55,14 @@ async function testPixMapTaskGroupImpl() {
   group.addTask(new taskpool.Task(fillPixelMap, pm, 2, 70, 80, 90));
   group.addTask(new taskpool.Task(fillPixelMap, pm, 3, 100, 110, 120));
 
-  hilog.info(0x0000, 'MAKIAM', 'Taskpool.execute');
   let pg: Promise<Object> = taskpool.execute(group);
-  hilog.info(0x0000, 'MAKIAM', 'Awaiting...');
   await (pg);
-  hilog.info(0x0000, 'MAKIAM', 'After awaiting');
 
   let readBuffer: ArrayBuffer = new ArrayBuffer(BL);
   pm.readPixelsToBufferSync(readBuffer);
-  hilog.info(0x0000, 'MAKIAM', ':readPixelsToBufferSync');
 
   let buff = new Uint8Array(readBuffer);
   let expected =  [10, 20, 30, 255, 40, 50, 60, 255, 70, 80, 90, 255, 100, 110, 120, 255];
-
-  hilog.info(0x0000, 'MAKIAM', JSON.stringify(buff));
 
   for(let i= 0; i< readBuffer.byteLength; i++) {
     if(expected[i] == buff[i]) continue;
@@ -80,33 +73,26 @@ async function testPixMapTaskGroupImpl() {
 }
 
 async function testPixMapSingleTaskGroupImpl() {
-  hilog.info(0x0000, 'MAKIAM', ':testPixMapSingleTaskGroup');
   let ab = new ArrayBuffer(BL);
 
   let pm: PixelMap = image.createPixelMapSync(ab, options);
   if(pm == undefined) return Promise.reject("FAILED");
 
-  hilog.info(0x0000, 'MAKIAM', ':createPixelMapSync: %{public}s\n%{public}s', JSON.stringify(pm.getImageInfoSync()) ?? '', JSON.stringify(pm.getBytesNumberPerRow()));
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', ':createPixelMapSync: %{public}s\n%{public}s', JSON.stringify(pm.getImageInfoSync()) ?? '', JSON.stringify(pm.getBytesNumberPerRow()));
 
   let group = new taskpool.TaskGroup();
   group.addTask(new taskpool.Task(fillPixelMap, pm, 0, 10, 20, 30));
 
-  hilog.info(0x0000, 'MAKIAM', 'Taskpool.execute');
   let pg: Promise<Object> = taskpool.execute(group);
-  hilog.info(0x0000, 'MAKIAM', 'Awaiting...');
   await (pg);
-  hilog.info(0x0000, 'MAKIAM', 'After awaiting');
-
-
 
   let readBuffer: ArrayBuffer = new ArrayBuffer(BL);
   pm.readPixelsToBufferSync(readBuffer);
-  hilog.info(0x0000, 'MAKIAM', ':readPixelsToBufferSync');
 
   let buff = new Uint8Array(readBuffer);
   let expected =  [10, 20, 30, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-  hilog.info(0x0000, 'MAKIAM', JSON.stringify(buff));
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', JSON.stringify(buff));
 
   for(let i= 0; i< readBuffer.byteLength; i++) {
     if(expected[i] == buff[i]) continue;
@@ -117,32 +103,25 @@ async function testPixMapSingleTaskGroupImpl() {
 }
 
 async function testPixMapTaskImpl() {
-  hilog.info(0x0000, 'MAKIAM', ':testPixMapTask');
   let ab = new ArrayBuffer(BL);
 
   let pm: PixelMap = image.createPixelMapSync(ab, options);
   if(pm == undefined) return Promise.reject("FAILED");
 
-  hilog.info(0x0000, 'MAKIAM', ':createPixelMapSync: %{public}s\n%{public}s', JSON.stringify(pm.getImageInfoSync()) ?? '', JSON.stringify(pm.getBytesNumberPerRow()));
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', ':createPixelMapSync: %{public}s\n%{public}s', JSON.stringify(pm.getImageInfoSync()) ?? '', JSON.stringify(pm.getBytesNumberPerRow()));
 
   let task = new taskpool.Task(fillPixelMap, pm, 0, 10, 20, 30)
 
-  hilog.info(0x0000, 'MAKIAM', 'Taskpool.execute');
   let pg: Promise<Object> = taskpool.execute(task);
-  hilog.info(0x0000, 'MAKIAM', 'Awaiting...');
   await (pg);
-  hilog.info(0x0000, 'MAKIAM', 'After awaiting');
-
-
 
   let readBuffer: ArrayBuffer = new ArrayBuffer(BL);
   pm.readPixelsToBufferSync(readBuffer);
-  hilog.info(0x0000, 'MAKIAM', ':readPixelsToBufferSync');
 
   let buff = new Uint8Array(readBuffer);
   let expected =  [10, 20, 30, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-  hilog.info(0x0000, 'MAKIAM', JSON.stringify(buff));
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', JSON.stringify(buff));
 
   for(let i= 0; i< readBuffer.byteLength; i++) {
     if(expected[i] == buff[i]) continue;

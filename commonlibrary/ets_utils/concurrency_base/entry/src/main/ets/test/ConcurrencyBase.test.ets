@@ -17,8 +17,8 @@ import worker from "@ohos.worker"
 import taskpool from '@ohos.taskpool';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
+@Concurrent
 function taskDateFunction(input: Date): Date {
-    "use concurrent"
     return input;
 }
 

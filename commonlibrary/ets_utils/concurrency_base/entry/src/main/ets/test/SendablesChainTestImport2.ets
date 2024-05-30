@@ -12,35 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import hilog from '@ohos.hilog';
+import {
+  DataChainedPath1
+} from './SendablesChainTestImport3';
+import {
+  NestedDataChainedPath0,
+  NestedDataChainedPath2
+} from './SendablesChainTestImport4';
 
-@Sendable
-export class NestedDataChainedPath0 {
-  data: number = 123;
-}
-
+@Concurrent
 export function taskDataFunction0(input: NestedDataChainedPath0): number {
-  "use concurrent"
   return input.data;
 }
 
-@Sendable
-export class DataChainedPath1 {
-  data: number = 123;
-}
-
-@Sendable
-export class NestedDataChainedPath2 {
-  data: number = 123;
-}
-
+@Concurrent
 export function taskDataFunction2(input: NestedDataChainedPath2): number {
-  "use concurrent"
   return input.data;
 }
 
+@Concurrent
 export function extractDataJob(dataChainedPath1: DataChainedPath1) {
-  "use concurrent"
-  hilog.info(0x0000, 'UDAV', 'inside extractData');
   return dataChainedPath1.data;
 }

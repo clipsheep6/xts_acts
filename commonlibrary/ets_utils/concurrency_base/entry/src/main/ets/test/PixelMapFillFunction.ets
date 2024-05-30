@@ -15,11 +15,10 @@
 
 
 import { image } from '@kit.ImageKit';
-import hilog from '@ohos.hilog';
 
 
+@Concurrent
 export function fillPixelMap(map: image.PixelMap, col: number, b: number, g: number, r: number): Promise<void> {
-  "use concurrent"
 
   let area: image.PositionArea = {
     pixels: new ArrayBuffer(4),
@@ -34,7 +33,6 @@ export function fillPixelMap(map: image.PixelMap, col: number, b: number, g: num
   buff[3] = 255;
 
   let pv: Promise<void> = map.writePixels(area);
-  hilog.info(0x0000, 'MAKIAM', 'Index: %{public}s', col);
   return pv;
 }
 

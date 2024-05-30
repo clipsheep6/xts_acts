@@ -55,8 +55,8 @@ export function exclusiveSingleTest() {
 }
 
 // Code of this function must be the same as in Worker.ets
+@Concurrent
 async function exclusiveMultiJob(lockName: string, timeout: number, tidBuf: Uint32Array, tid: number): Promise<void> {
-  "use concurrent"
   let lock = utils.locks.AsyncLock.request(lockName);
   lock.lockAsync<void>(async () => {
     let old = Atomics.compareExchange(tidBuf, 0, 0, tid);
@@ -119,8 +119,8 @@ export function sharedSingleTest() {
 }
 
 // Code of this function must be the same as in Worker.ets
+@Concurrent
 function sharedMultiJob(lockName: string, timeout: number, idBuf: Uint32Array, id: number) {
-  "use concurrent"
   let lock = utils.locks.AsyncLock.request(lockName);
   lock.lockAsync<void>(async () => {
     let old = Atomics.compareExchange(idBuf, 0, 0, id);
@@ -165,17 +165,17 @@ export function sharedMultiWorkerTest() {
   return check("sharedMultiWorkerTest", Promise.all([p1, p2]));
 }
 
+@Concurrent
 export function isAvailableTrueJob(lockName: string) {
-  "use concurrent"
   let lock = utils.locks.AsyncLock.request(lockName);
   let options = new utils.locks.AsyncLockOptions<void>();
   options.isAvailable = true;
   let p: Promise<void> = lock.lockAsync(() => {}, utils.locks.AsyncLockMode.EXCLUSIVE, options);
   p.then(() => {
-    hilog.info(0x0000, 'UDAV', 'Test failed: the lock is acquired');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', 'Test failed: the lock is acquired');
   });
   p.catch( () => {
-    hilog.info(0x0000, 'UDAV', 'Test passed');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', 'Test passed');
   });
 }
 
@@ -190,17 +190,17 @@ export function isAvailableTest() {
   return check("isAvailableTest", p);
 }
 
+@Concurrent
 function isAvailableFalseJob(lockName: string) {
-  "use concurrent"
   let lock = utils.locks.AsyncLock.request(lockName);
   let options = new utils.locks.AsyncLockOptions<void>();
   options.isAvailable = false;
   let p: Promise<void> = lock.lockAsync(() => {}, utils.locks.AsyncLockMode.EXCLUSIVE, options);
   p.then(() => {
-    hilog.info(0x0000, 'UDAV', 'Test passed');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', 'Test passed');
   });
   p.catch( () => {
-    hilog.info(0x0000, 'UDAV', 'Test failed: the lock is acquired');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', 'Test failed: the lock is acquired');
   });
 }
 
@@ -256,7 +256,7 @@ export function abortTest() {
   options.isAvailable = false;
   options.signal = s;
   let p: Promise<number|string> = lock.lockAsync<number, string>(() => {
-    hilog.info(0x0000, 'UDAV', 'Test failed');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', 'Test failed');
     return 5;
   }, utils.locks.AsyncLockMode.EXCLUSIVE, options);
   s.aborted = true;
@@ -305,25 +305,25 @@ export function nestedDeadlockTest() {
   return check_negative("nestedDeadlockTest", p);
 }
 
+@Concurrent
 function twoThreadedDeadlockT2(lockNameL1: string, lockNameL2: string, flagBuf: Uint32Array) {
-  "use concurrent"
   let L2 = utils.locks.AsyncLock.request(lockNameL2);
   L2.lockAsync<void>(async () => { // F2
-    hilog.info(0x0000, 'UDAV', '>T2 F2');
-    hilog.info(0x0000, 'UDAV', '0->1');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>T2 F2');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '0->1');
     Atomics.compareExchange(flagBuf, 0, 0, 1);
     // now lock the second lock
     let L1 = utils.locks.AsyncLock.request(lockNameL1);
     await L1.lockAsync<void>(() => {
       // deadlock should happen, then T1 timeout exceeds and locks will unlock
     }, utils.locks.AsyncLockMode.EXCLUSIVE);
-    hilog.info(0x0000, 'UDAV', '<T2 F2');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<T2 F2');
   }, utils.locks.AsyncLockMode.EXCLUSIVE);
 }
 
 /// test entry point
 export function twoThreadedDeadlockTest() {
-  hilog.info(0x0000, 'UDAV', '>twoThreadedDeadlockTest');
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>twoThreadedDeadlockTest');
   let lockNameL1 = "twoThreadedDeadlockTestL1";
   let lockNameL2 = "twoThreadedDeadlockTestL2";
   let options = new utils.locks.AsyncLockOptions<void>();
@@ -334,33 +334,33 @@ export function twoThreadedDeadlockTest() {
   let p = new Promise<void>((resolve, reject) => {
     let L1 = utils.locks.AsyncLock.request(lockNameL1);
     L1.lockAsync<void>(async () => { // F1
-      hilog.info(0x0000, 'UDAV', '>T1 F1');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>T1 F1');
       // spawn T2
       taskpool.execute(twoThreadedDeadlockT2, lockNameL1, lockNameL2, flagBuf);
       // busy loop: wait until T2 acquires L2
-      hilog.info(0x0000, 'UDAV', '>bloop');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>bloop');
       while (Atomics.load(flagBuf, 0) != 1) {
       }
-      hilog.info(0x0000, 'UDAV', '<bloop');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<bloop');
       // try to lock L2 for the deadlock
       let L2 = utils.locks.AsyncLock.request(lockNameL2);
       await L2.lockAsync<void, void>(() => {
         resolve();
       }, utils.locks.AsyncLockMode.EXCLUSIVE, options);
-      hilog.info(0x0000, 'UDAV', '<T1 F1');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<T1 F1');
     }, utils.locks.AsyncLockMode.EXCLUSIVE).then((v) => {
       resolve(v);
     }).catch((e: Error) =>{
       reject(e);
     });
   });
-  hilog.info(0x0000, 'UDAV', '<twoThreadedDeadlockTest');
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<twoThreadedDeadlockTest');
   return check_negative("twoThreadedDeadlockTest", p);
 }
 
 /// test entry point
 export function twoThreadedDeadlockWorkerTest() {
-  hilog.info(0x0000, 'UDAV', '>twoThreadedDeadlockWorkerTest');
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>twoThreadedDeadlockWorkerTest');
   let lockNameL1 = "twoThreadedDeadlockWorkerLockL1";
   let lockNameL2 = "twoThreadedDeadlockWorkerLockL2";
   let options = new utils.locks.AsyncLockOptions<void>();
@@ -371,28 +371,28 @@ export function twoThreadedDeadlockWorkerTest() {
   let p = new Promise<void>((resolve, reject) => {
     let L1 = utils.locks.AsyncLock.request(lockNameL1);
     return L1.lockAsync<void>(async () => { // F1
-      hilog.info(0x0000, 'UDAV', '>T1 F1');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>T1 F1');
       // spawn T2
       globalWorker.postMessage({test: "twoThreadedDeadlockWorkerTest", lockNameL1: lockNameL1, lockNameL2: lockNameL2,
         flagBuf: flagBuf});
       // busy loop: wait until T2 acquires L2
-      hilog.info(0x0000, 'UDAV', '>bloop');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>bloop');
       while (Atomics.load(flagBuf, 0) != 1) {
       }
-      hilog.info(0x0000, 'UDAV', '<bloop');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<bloop');
       // try to lock L2 for the deadlock
       let L2 = utils.locks.AsyncLock.request(lockNameL2);
       await L2.lockAsync<void, void>(() => {
         resolve();
       }, utils.locks.AsyncLockMode.EXCLUSIVE, options);
-      hilog.info(0x0000, 'UDAV', '<T1 F1');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<T1 F1');
     }, utils.locks.AsyncLockMode.EXCLUSIVE).then((v) => {
       resolve(v);
     }).catch((e: Error) =>{
       reject(e);
     });
   });
-  hilog.info(0x0000, 'UDAV', '<twoThreadedDeadlockWorkerTest');
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<twoThreadedDeadlockWorkerTest');
   return check_negative("twoThreadedDeadlockWorkerTest", p);
 }
 
@@ -416,8 +416,8 @@ export function twoLocksSingleTest() {
   return check("twoLocksSingleTest", Promise.all([p1, p2]));
 }
 
+@Concurrent
 async function exclusiveLockAcquireJob(): Promise<void> {
-  "use concurrent"
   let lock = new utils.locks.AsyncLock();
   lock.lockAsync<void>(async () => {
   }, utils.locks.AsyncLockMode.EXCLUSIVE);
@@ -430,8 +430,8 @@ export function twoThreadsAcquireOwnLocks() {
   return check("twoThreadsAcquireOwnLocks", Promise.all([p1, p2]));
 }
 
+@Concurrent
 async function lockJob(lockName: string, flagBuf: Uint32Array): Promise<void> {
-  "use concurrent"
   let lock = utils.locks.AsyncLock.request(lockName);
   lock.lockAsync<void>(async () => {
     Atomics.compareExchange(flagBuf, 0, 0, 1);
@@ -471,7 +471,7 @@ async function waitForLockBody() {
   if (flagBuf[0] != 1) {
     throw new Error("Test failed: expected value 1, but was " + flagBuf[0]);
   }
-  hilog.info(0x0000, 'UDAV', 'Test passed');
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', 'Test passed');
 }
 
 /// test entry point
@@ -505,21 +505,21 @@ export function queryWithDeadlockTest() {
 
   setTimeout(() => {
     let states: utils.locks.AsyncLockState[] = utils.locks.AsyncLock.queryAll();
-    hilog.info(0x0000, 'UDAV', 'states.length = ' + states.length);
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', 'states.length = ' + states.length);
   }, 100);
 
   return check_negative("queryWithDeadlockTest", p);
 }
 
+@Concurrent
 async function lockHolderJob(lockName: string, timeout: number, flagBuf: Uint32Array): Promise<void> {
-  "use concurrent"
   let lock = utils.locks.AsyncLock.request(lockName);
   lock.lockAsync<void>(async () => {
-    hilog.info(0x0000, 'UDAV', '0->1');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '0->1');
     Atomics.compareExchange(flagBuf, 0, 0, 1);
-    hilog.info(0x0000, 'UDAV', '>timeout');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>timeout');
     await new Promise<void>(resolve => setTimeout(resolve, timeout));
-    hilog.info(0x0000, 'UDAV', '<timeout');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<timeout');
   }, utils.locks.AsyncLockMode.EXCLUSIVE);
 }
 
@@ -533,10 +533,10 @@ export function sequentialLock() {
     let lockA = new utils.locks.AsyncLock();
     lockA.lockAsync(() => {
       // busy loop
-      hilog.info(0x0000, 'UDAV', '>bloop');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>bloop');
       while (Atomics.load(flagBuf, 0) != 1) {
       }
-      hilog.info(0x0000, 'UDAV', '<bloop');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<bloop');
       let lockB = utils.locks.AsyncLock.request(lockNameB);
       lockB.lockAsync(() => {
         let old = Atomics.load(flagBuf, 0);
@@ -570,10 +570,10 @@ export function sequentialLockWorkerTest() {
     let lockA = new utils.locks.AsyncLock();
     lockA.lockAsync(() => {
       // busy loop
-      hilog.info(0x0000, 'UDAV', '>bloop');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>bloop');
       while (Atomics.load(flagBuf, 0) != 1) {
       }
-      hilog.info(0x0000, 'UDAV', '<bloop');
+      hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<bloop');
       let lockB = utils.locks.AsyncLock.request(lockNameB);
       lockB.lockAsync(() => {
         let old = Atomics.load(flagBuf, 0);
@@ -685,14 +685,14 @@ export function sequentialLockUnlocked3() {
 /// test entry point
 export function disarmTimeoutTest() {
   let lock = new utils.locks.AsyncLock();
-  hilog.info(0x0000, 'UDAV', '>lockAsync');
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>lockAsync');
   let options = new utils.locks.AsyncLockOptions<void>();
   options.timeout = 1000;
   let p: Promise<void> = lock.lockAsync<void, void>(() => {
-    hilog.info(0x0000, 'UDAV', '>callback');
-    hilog.info(0x0000, 'UDAV', '<callback');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>callback');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<callback');
   }, utils.locks.AsyncLockMode.EXCLUSIVE, options);
-  hilog.info(0x0000, 'UDAV', '<lockAsync');
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<lockAsync');
   return check("disarmTimeoutTest", p);
 }
 
@@ -704,24 +704,24 @@ export function disarmTimeoutLongAwaitTest() {
   * callback function can be properly executed and ends after 5 seconds instead of rejecting after 1 second.
   * */
   let lock = new utils.locks.AsyncLock();
-  hilog.info(0x0000, 'UDAV', '>lockAsync');
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>lockAsync');
   let options = new utils.locks.AsyncLockOptions<void>();
   options.timeout = 500;
   let p: Promise<void> = lock.lockAsync<void, void>(async () => {
-    hilog.info(0x0000, 'UDAV', '>callback');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '>callback');
     await new Promise<number>((res, rej) => {
       setTimeout(() => {
         res(123);
       }, 1500);
     });
-    hilog.info(0x0000, 'UDAV', '<callback');
+    hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<callback');
   }, utils.locks.AsyncLockMode.EXCLUSIVE, options);
-  hilog.info(0x0000, 'UDAV', '<lockAsync');
+  hilog.info(0x0000, 'ActsConcurrencyBaseJSTest', '<lockAsync');
   return check("disarmTimeoutLongAwaitTest", p);
 }
 
+@Concurrent
 async function applyLockJob(lockName: string, mode: utils.locks.AsyncLockMode, tidBuf: Uint32Array, tid: number): Promise<void> {
-  "use concurrent"
   let lock = utils.locks.AsyncLock.request(lockName);
   lock.lockAsync<void>(async () => {
     let old = Atomics.compareExchange(tidBuf, 0, 0, tid);
@@ -836,8 +836,8 @@ export function acquireLockTwiceExclusiveExclusiveNotAvailable() {
     acquireLockTwiceSuccess(utils.locks.AsyncLockMode.EXCLUSIVE, utils.locks.AsyncLockMode.EXCLUSIVE, false));
 }
 
+@Concurrent
 async function pressureWorker(lockName: string, timeout: number, taskBuf: Uint32Array) {
-  "use concurrent"
   let lock = utils.locks.AsyncLock.request(lockName);
   await lock.lockAsync(async () => {
     let value = 0;
@@ -851,10 +851,10 @@ async function pressureWorker(lockName: string, timeout: number, taskBuf: Uint32
     }
     if (index < 0) {
       // all data is processed
-      console.log("UDAV: No data to process");
+      console.log("ActsConcurrencyBaseJSTest: No data to process");
       return;
     }
-    console.log("UDAV: Process at " + index);
+    console.log("ActsConcurrencyBaseJSTest: Process at " + index);
     await new Promise<void>(resolve => setTimeout(resolve, timeout));
     let newValue = Atomics.exchange(taskBuf, index, 1);
     if (value != newValue) {

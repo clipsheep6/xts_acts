@@ -24,8 +24,8 @@ export function testSendablesFromOtherTaskWithAlloc() {
   return check("testSendablesFromOtherTaskWithAlloc", p);
 }
 
+@Concurrent
 function allocateAndPrepareTaskGroup(): taskpool.TaskGroup {
-  "use concurrent"
   Allocator.allocate();
   let group = new taskpool.TaskGroup();
   let data = new NumberContainer();
@@ -57,8 +57,8 @@ export function testManySendablesToGroup() {
   return check("testManySendablesToGroup", p);
 }
 
+@Concurrent
 async function testManySendablesToGroupImpl(): Promise<string> {
-  "use concurrent"
   let data: ValuedNumberContainer[] = [];
   let tasks = 20;
   let tasksGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
@@ -87,8 +87,8 @@ export function testSendableToGroupAndUpdate() {
   return check("testSendableToGroupAndUpdate", p);
 }
 
+@Concurrent
 async function testSendableToGroupAndUpdateImpl(): Promise<string> {
-  "use concurrent"
   let tasks = 20;
   let data: NumberContainerArray = new NumberContainerArray();
   let containersArray: NumberContainer[] = new Array(tasks);
