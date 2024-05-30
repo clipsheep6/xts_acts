@@ -9,12 +9,6 @@
     },
     "kits": [
         {
-            "test-file-name": [
-                "ActsAvRecorderJsTest.hap"
-            ],
-            "type": "AppInstallKit",
-            "cleanup-apps": true
-        },{
             "type": "ShellKit",
             "run-command": [
                 "rm -rf /storage/media/100/local/files/Audios/audio_*",
@@ -27,6 +21,13 @@
             "teardown-command":[
                 "power-shell setmode 600"
             ]
+        },
+        {
+            "test-file-name": [
+                "ActsAvRecorderJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
         }
     ]
 }

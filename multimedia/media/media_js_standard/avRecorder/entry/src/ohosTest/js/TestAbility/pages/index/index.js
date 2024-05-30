@@ -17,9 +17,13 @@ export default {
         title: ""
     },
     onInit() {
-        this.title = this.$t('strings.world');
+    },
+    onShow() {
+        console.info('onShow finish')
+    },
+    onReady() {
+    },
+    onload() {
+        globalThis.value = this.$element('xcomponent').getXComponentSurfaceId();
     }
 }
-
-
-
