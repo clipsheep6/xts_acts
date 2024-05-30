@@ -12,40 +12,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability, { Callee } from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        // Ability is creating, initialize resources for this ability
-        console.log("ThirdCallTest MainAbility onCreate")
-        globalThis.abilityWant = want;
-        globalThis.callee = this.callee;
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // Ability is creating, initialize resources for this ability
+    console.log("ThirdCallTest MainAbility onCreate");
+    AppStorage.setOrCreate<Want>("abilityWant", want);
+    AppStorage.setOrCreate<Callee>("callee", this.callee);
+  }
 
-    onDestroy() {
-        // Ability is destroying, release resources for this ability
-        console.log("ThirdCallTest MainAbility onDestroy")
-    }
+  onDestroy() {
+    // Ability is destroying, release resources for this ability
+    console.log("ThirdCallTest MainAbility onDestroy");
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("ThirdCallTest MainAbility onWindowStageCreate")
-        globalThis.abilityContext = this.context
-        windowStage.setUIContent(this.context, "MainAbility/pages/index/index", null)
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("ThirdCallTest MainAbility onWindowStageCreate");
+    AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", this.context);
+    windowStage.loadContent("MainAbility/pages/index/index", null);
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("ThirdCallTest MainAbility onWindowStageDestroy")
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("ThirdCallTest MainAbility onWindowStageDestroy");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("ThirdCallTest MainAbility onForeground")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("ThirdCallTest MainAbility onForeground");
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("ThirdCallTest MainAbility onBackground")
-    }
-};
+  onBackground() {
+    // Ability has back to background
+    console.log("ThirdCallTest MainAbility onBackground");
+  }
+}

@@ -12,171 +12,181 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
 
-var bundleNameCallee = "com.example.systemcalltest";
-var abilityNameCallee = "com.example.systemcalltest.SecondAbility";
-var subscriber;
-var caller;
-var event_getcaller = "getcaller.com.example.systemcalltest.SecondAbility";
-var event_call = "call.com.example.systemcalltest.SecondAbility";
-var event_release = "release.com.example.systemcalltest.SecondAbility";
-var event_onRemoteStateChangeCall = "onRemoteStateChangeCall.com.example.systemcalltest.SecondAbility";
-var subscribeInfo = {
-    events: [event_getcaller, event_call, event_release, event_onRemoteStateChangeCall],
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import window from '@ohos.window';
+
+let bundleNameCallee = "com.example.systemcalltest";
+let abilityNameCallee = "com.example.systemcalltest.SecondAbility";
+let subscriber;
+let caller;
+let event_getcaller = "getcaller.com.example.systemcalltest.SecondAbility";
+let event_call = "call.com.example.systemcalltest.SecondAbility";
+let event_release = "release.com.example.systemcalltest.SecondAbility";
+let event_onRemoteStateChangeCall = "onRemoteStateChangeCall.com.example.systemcalltest.SecondAbility";
+let subscribeInfo = {
+  events: [event_getcaller, event_call, event_release, event_onRemoteStateChangeCall],
 };
 
 class MySequenceable {
-    num: number = 0;
-    str: String = "";
-    result: String = "";
+  num: number = 0;
+  str: String = "";
+  result: String = "";
 
-    constructor(num, string, result) {
-        this.num = num;
-        this.str = string;
-        this.result = result;
-    }
+  constructor(num, string, result) {
+    this.num = num;
+    this.str = string;
+    this.result = result;
+  }
 
-    setMySequence(num, string, result) {
-        this.num = num;
-        this.str = string;
-        this.result = result;
-    }
+  setMySequence(num, string, result) {
+    this.num = num;
+    this.str = string;
+    this.result = result;
+  }
 
-    marshalling(messageParcel) {
-        messageParcel.writeInt(this.num);
-        messageParcel.writeString(this.str);
-        messageParcel.writeString(this.result);
-        return true;
-    }
+  marshalling(messageParcel) {
+    messageParcel.writeInt(this.num);
+    messageParcel.writeString(this.str);
+    messageParcel.writeString(this.result);
+    return true;
+  }
 
-    unmarshalling(messageParcel) {
-        this.num = messageParcel.readInt();
-        this.str = messageParcel.readString();
-        this.result = messageParcel.readString();
-        return true;
-    }
+  unmarshalling(messageParcel) {
+    this.num = messageParcel.readInt();
+    this.str = messageParcel.readString();
+    this.result = messageParcel.readString();
+    return true;
+  }
 }
 
 function getCaller(context) {
-    let want = {
-        bundleName: bundleNameCallee,
-        abilityName: abilityNameCallee,
-    };
-    context.startAbilityByCall(want).then(data => {
-        if (typeof data !== "object" || data == null) {
-            console.log('SystemAppCallerB MainAbility startAbilityByCall fail');
-        }
-        caller = data;
+  let want = {
+    bundleName: bundleNameCallee,
+    abilityName: abilityNameCallee,
+  };
+  context.startAbilityByCall(want)
+    .then(data => {
+      if (typeof data !== "object" || data == null) {
+        console.log('SystemAppCallerB MainAbility startAbilityByCall fail');
+      }
+      caller = data;
     });
 }
 
 function stressCall() {
-    console.log('SystemAppCallerB MainAbility stressCall begin');
-    if (typeof caller !== "object" || caller == null) {
-        console.log('SystemAppCallerB MainAbility caller error in stressCall');
-        return;
-    }
-    let times = 10;
-    for (let i = 0; i < times; i++) {
-        let data = new MySequenceable(i, "SystemAppCallerB", '');
-        caller.call('stressMethod', data);
-    }
+  console.log('SystemAppCallerB MainAbility stressCall begin');
+  if (typeof caller !== "object" || caller == null) {
+    console.log('SystemAppCallerB MainAbility caller error in stressCall');
+    return;
+  }
+  let times = 10;
+  for (let i = 0; i < times; i++) {
+    let data = new MySequenceable(i, "SystemAppCallerB", '');
+    caller.call('stressMethod', data);
+  }
 }
 
 function unsubscribeCallback() {
-    console.debug("SystemAppCallerB MainAbility  unsubscribeCallback");
+  console.debug("SystemAppCallerB MainAbility  unsubscribeCallback");
 }
 
 function releaseCallee() {
-    try {
-        caller.onRelease(data => {
-            console.log('SystemAppCallerB MainAbility releaseCallBack:' + data);
-        });
-        caller.release();
-    } catch (e) {
-        console.log('SystemAppCallerB MainAbility release fail ' + e);
-    }
-    commonEvent.unsubscribe(subscriber, unsubscribeCallback);
+  try {
+    caller.onRelease(data => {
+      console.log('SystemAppCallerB MainAbility releaseCallBack:' + data);
+    });
+    caller.release();
+  } catch (e) {
+    console.log('SystemAppCallerB MainAbility release fail ' + e);
+  }
+  commonEvent.unsubscribe(subscriber, unsubscribeCallback);
 }
 
-function onRemoteStateChangeCall(){
-  function OnRemoteStateChangeCallback (msg){
+function onRemoteStateChangeCall() {
+
+  function OnRemoteStateChangeCallback(msg) {
     console.log('SystemAppCallerB MainAbility onRemoteStateChange  ' + msg);
   }
-  caller.onRemoteStateChange(OnRemoteStateChangeCallback)
+
+  caller.onRemoteStateChange(OnRemoteStateChangeCallback);
 }
 
 function startNext(context) {
-    let want = {
-        bundleName: "com.example.systemappcallerc",
-        abilityName: "com.example.systemappcallerc.MainAbility",
-        parameters: {case_num: "case5600"},
-    }
-    context.startAbility(want,
-        (err) => {console.log("SystemAppCallerB MainAbility startAbility callback");});
-
+  let want = {
+    bundleName: "com.example.systemappcallerc",
+    abilityName: "com.example.systemappcallerc.MainAbility",
+    parameters: { case_num: "case5600" }
+  }
+  context.startAbility(want,
+    (err) => {
+      console.log("SystemAppCallerB MainAbility startAbility callback");
+    });
 }
 
 export default class MainAbility extends Ability {
+  subscribeCallBack(err, data) {
+    console.log('SystemAppCallerB MainAbility subscribeCallBack data:' + JSON.stringify(data));
+    switch (data.event) {
+      case event_call:
+        stressCall();
+        break;
+      case event_release:
+        releaseCallee();
+        break;
+      case event_onRemoteStateChangeCall:
+        onRemoteStateChangeCall();
+        break;
+      default:
+        console.log('SystemAppCallerB MainAbility subscribeCallBack event error:' + data.event);
+        break;
+    }
+  }
 
-    subscribeCallBack(err, data) {
-        console.log('SystemAppCallerB MainAbility subscribeCallBack data:' + JSON.stringify(data));
-        switch (data.event) {
-            case event_call:
-                stressCall();
-                break;
-            case event_release:
-                releaseCallee();
-                break;
-            case event_onRemoteStateChangeCall:
-                onRemoteStateChangeCall();
-                break;
-            default:
-                console.log('SystemAppCallerB MainAbility subscribeCallBack event error:' + data.event);
-                break;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // Ability is creating, initialize resources for this ability
+    console.log("SystemAppCallerB MainAbility onCreate");
+    AppStorage.setOrCreate<Want>("abilityWant", want);
+    AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", this.context);
+  }
+
+  onDestroy() {
+    // Ability is destroying, release resources for this ability
+    console.log("SystemAppCallerB MainAbility onDestroy");
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("SystemAppCallerB MainAbility onWindowStageCreate");
+    windowStage.loadContent("pages/index/index", null);
+  }
+
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("SystemAppCallerB MainAbility onWindowStageDestroy");
+  }
+
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("SystemAppCallerB MainAbility onForeground");
+    commonEvent.createSubscriber(subscribeInfo)
+      .then((data) => {
+        console.log("SystemAppCallerB MainAbility createSubscriber");
+        subscriber = data;
+        commonEvent.subscribe(subscriber, this.subscribeCallBack);
+        if (AppStorage.get<Want>("abilityWant")!.parameters["case_num"] == "case5600") {
+          getCaller(this.context);
+          startNext(this.context);
         }
-    }
-    onCreate(want, launchParam) {
-        // Ability is creating, initialize resources for this ability
-        console.log("SystemAppCallerB MainAbility onCreate")
-        globalThis.abilityWant = want;
-        globalThis.abilityContext = this.context
-    }
+      });
+  }
 
-    onDestroy() {
-        // Ability is destroying, release resources for this ability
-        console.log("SystemAppCallerB MainAbility onDestroy")
-    }
-
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("SystemAppCallerB MainAbility onWindowStageCreate")
-        windowStage.setUIContent(this.context, "pages/index/index", null)
-    }
-
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("SystemAppCallerB MainAbility onWindowStageDestroy")
-    }
-
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("SystemAppCallerB MainAbility onForeground");
-        commonEvent.createSubscriber(subscribeInfo).then((data) => {
-            console.log("SystemAppCallerB MainAbility createSubscriber");
-            subscriber = data;
-            commonEvent.subscribe(subscriber, this.subscribeCallBack);
-            if (globalThis.abilityWant.parameters["case_num"] == "case5600") {
-                getCaller(this.context);
-                startNext(this.context);
-            }
-        });
-    }
-
-    onBackground() {
-        // Ability has back to background
-        console.log("SystemAppCallerB MainAbility onBackground")
-    }
-};
+  onBackground() {
+    // Ability has back to background
+    console.log("SystemAppCallerB MainAbility onBackground");
+  }
+}
