@@ -20,9 +20,6 @@ struct ImageAnalyzer1 {
   @State startImageAnalyzerFlag: string = "Init";
   @State stopImageAnalyzerFlag: string = "Init";
   xComponentController: XComponentController = new XComponentController()  
-  private config: ImageAnalyzerConfig = {
-    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
-  }
 
   build() {
     Column() {
@@ -32,7 +29,7 @@ struct ImageAnalyzer1 {
         .width(80)
         .height(80)
         .onClick(() => {
-          this.xComponentController.startImageAnalyzer(this.config)
+          this.xComponentController.startImageAnalyzer()
             .then(() => {
               console.log("analysis complete")              
             })

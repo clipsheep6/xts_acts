@@ -18,9 +18,6 @@ struct VideoTest1 {
   @State videoSrc: Resource = $rawfile('test2.mp4')
   @State showControls: boolean = true
   controller: VideoController = new VideoController()
-  config: ImageAnalyzerConfig = {
-    types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
-  }
   @State text:string = ''
 
   build() {
@@ -34,7 +31,6 @@ struct VideoTest1 {
         .width('300vp')
         .height('200vp')
         .enableAnalyzer(true)
-        .analyzerConfig(this.config)
         .onStart(() => {
           console.info('onStart')
         })
