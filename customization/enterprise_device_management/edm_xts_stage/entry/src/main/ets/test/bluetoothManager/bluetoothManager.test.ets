@@ -272,7 +272,7 @@ export default function bluetoothManagerTest() {
       try {
         bluetoothManager.getAllowedBluetoothDevices(null);
       } catch(error) {
-        expect(false).assertTrue();
+        expect(error.code == 9200001).assertTrue();
       }
       done();
     })
