@@ -16,10 +16,9 @@ import("//test/xts/tools/build/suite.gni")
 pulseaudio_dir = "//third_party/pulseaudio"
 opensles_dir = "//third_party/openSLES"
 opensles_version = "1.0.1"
-module_output_path = "acts/ActsOpenslesNdkTest"
 AUDIO_ROOT_DIR = "//foundation/multimedia/audio_framework/"
 ohos_moduletest_suite("ActsOpenslesNdkTest") {
-  module_out_path = module_output_path
+  module_out_path = "acts/ActsOpenslesNdkTest"
   sources = [
     "openslesPlayerNdk/ActsOpenslesPlayerNdkTest.cpp",
     "openslesRecorderNdk/ActsOpenslesRecoderNdkTest.cpp",
