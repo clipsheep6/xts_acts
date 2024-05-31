@@ -17,8 +17,8 @@ group("terminateselfwithresulturitest") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "actsuiextensionuritest:ActsUiextensionUriTest",
       "uiextensionprovider:UiextensionProviderTest",
-       "actsuiextensionuritest:ActsUiextensionUriTest",
     ]
   }
 }

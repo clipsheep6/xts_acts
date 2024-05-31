@@ -61,7 +61,6 @@ group("ability_runtime") {
       "actsstserviceabilityclientcase:ActsStServiceAbilityClientCaseTest",
       "actssupportfunction:actssupportfunction",
       "actssystemapitest:ActsSystemAPITest",
-      "actsterminateselfwithresulturitest:terminateselfwithresulturitest",
       "actsturipermisssiontest:actsturipermisssiontest",
       "actsuiabilitycontext:actsuiabilitycontext",
       "actsuiextensionforresulttest:actsuiextensionforresulttest",
