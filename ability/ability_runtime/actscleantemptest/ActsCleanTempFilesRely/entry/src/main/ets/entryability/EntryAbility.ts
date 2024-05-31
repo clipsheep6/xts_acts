@@ -17,7 +17,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import type window from '@ohos.window';
 import commonEvent from '@ohos.commonEventManager';
-import fs, { type Filter } from '@ohos.file.fs';
+import fs, { Filter } from '@ohos.file.fs';
 
 const BUFSIZE = 1024;
 let DELAY_TIME = 100;
@@ -50,6 +50,7 @@ function getListFile(dir): number {
     public listNum: number = 0;
     public filter: Filter = {};
   }
+
   let option = new ListFileOption();
   option.filter.displayName = ['temp_useless*'];
   let files = fs.listFileSync(dir, option);
@@ -74,12 +75,13 @@ function startAndTerminate(action): void {
           setTimeout(() => {
             currentContext.terminateSelf().then(() => {
               console.log(action + 'rely terminateSelf end');
-            }).catch((err) => {
+            })
+            .catch((err) => {
               console.log(action + 'rely terminateSelf err: ' + JSON.stringify(err));
             });
-          }, DELAY_TIME);
-        }
-      });
+        }, DELAY_TIME);
+      }
+    });
   }, DELAY_TIME);
 }
 
