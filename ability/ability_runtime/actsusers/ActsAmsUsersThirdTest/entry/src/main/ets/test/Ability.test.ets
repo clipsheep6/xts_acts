@@ -12,34 +12,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import commonEvent from '@ohos.commonEvent'
-import osaccount from '@ohos.account.osAccount'
 
-var subscriberInfo_MainAbility = {
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
+import commonEvent from '@ohos.commonEvent';
+import common from '@ohos.app.ability.common';
+import commonEventManager from '@ohos.commonEventManager';
+import { BusinessError } from '@ohos.base';
+
+let subscriberInfo_MainAbility: commonEventManager.CommonEventSubscribeInfo = {
   events: [
     "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent",
     "ACTS_TerminateSelf_CommonEvent"
   ]
 };
-let TAG = ""
-let Subscriber = undefined;
+let TAG = "";
+let Subscriber: commonEventManager.CommonEventSubscriber;
+
+function sleep(ms: number) {
+  return new Promise<void>(resolve => setTimeout(resolve, ms));
+}
+
 export default function abilityTest() {
   console.info("====>in function abilityTest====>");
+  describe('ActsInterfaceMultiUsersThirdTest', () => {
 
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  describe('ActsInterfaceMultiUsersThirdTest', function () {
-
-    afterEach((done)=>{
+    afterEach((done: Function) => {
       if (Subscriber) {
-        commonEvent.unsubscribe(Subscriber, ()=>{
-          done()
+        commonEvent.unsubscribe(Subscriber, () => {
+          done();
         });
       } else {
-        done()
+        done();
       }
     })
     /*
@@ -47,47 +50,48 @@ export default function abilityTest() {
      * @tc.name    : start new ability
      * @tc.desc    : Start an ability with the parameter startability with options succeeded.(promise)
      */
-    it('ACTS_ThirdPartyStartAbility_0100', 0, async function (done) {
-      var startresult = false
+    it('ACTS_ThirdPartyStartAbility_0100', 0, async (done: Function) => {
+      let startresult = false;
       TAG = "ACTS_ThirdPartyStartAbility_0100";
       console.info(TAG + " start");
-      function SubscribeCallBack (err, data) {
-        console.info(TAG + " data is " + JSON.stringify(data));
-        expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent").assertTrue();
-        if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
-          console.info(TAG + " MainAbility2 is onWindowStageCreate");
-          startresult = true
-        } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
-          commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
-          Subscriber = undefined;
-          console.info(TAG + " MainAbility2 is Destroy");
-          expect(startresult).assertEqual(true);
-          done();
-        }
-      }
-      commonEvent.createSubscriber(subscriberInfo_MainAbility).then(async (data) => {
-        console.info(TAG + "====>Create Subscriber====>");
-        data.getSubscribeInfo().then(async (SubscribeInfo)=>{
-          console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
-          Subscriber = data;
-          commonEvent.subscribe(Subscriber, SubscribeCallBack);
-          console.info(TAG + "====>start startAbility====>");
-          await globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
-              abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
-            }, {
-            windowMode:0
-          }).then((data) => {
-            console.info(TAG + "====>startAbility end====>");
-            console.info(TAG + "====>data is====>" + JSON.stringify(data));
-          })
+      commonEvent.createSubscriber(subscriberInfo_MainAbility)
+        .then(async (data) => {
+          console.info(TAG + "====>Create Subscriber====>");
+          data.getSubscribeInfo()
+            .then(async (SubscribeInfo) => {
+              console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
+              Subscriber = data;
+              commonEvent.subscribe(Subscriber, (err, data) => {
+                console.info(TAG + " data is " + JSON.stringify(data));
+                expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent")
+                  .assertTrue();
+                if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
+                  console.info(TAG + " MainAbility2 is onWindowStageCreate");
+                  startresult = true;
+                } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
+                  commonEvent.unsubscribe(Subscriber, () => {
+                    console.info(TAG + "====>UnSubscribeCallback====>");
+                  });
+                  Subscriber = undefined;
+                  console.info(TAG + " MainAbility2 is Destroy");
+                  expect(startresult).assertEqual(true);
+                  done();
+                }
+              });
+              console.info(TAG + "====>start startAbility====>");
+              await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
+                {
+                  bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
+                  abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
+                }, {
+                windowMode: 0
+              })
+                .then((data) => {
+                  console.info(TAG + "====>startAbility end====>");
+                  console.info(TAG + "====>data is====>" + JSON.stringify(data));
+                })
+            })
         })
-      })
-
-      function UnSubscribeCallback() {
-        console.info(TAG + "====>UnSubscribeCallback====>");
-      }
     })
 
     /*
@@ -95,22 +99,24 @@ export default function abilityTest() {
      * @tc.name    : start new ability
      * @tc.desc    : Start an ability with the parameter startability with options failed.(promise)
      */
-    it('ACTS_ThirdPartyStartAbility_0200', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbility_0200', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbility_0200";
       console.info(TAG + " start");
-      await globalThis.abilityContext.startAbility(
+      await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
         {
           bundleName: 'com.acts.error',
           abilityName: 'com.acts.error.MainAbility2'
         }, {
-        windowMode:0
-      }).then((data) => {
-        console.info(TAG + "====>startAbility end====>");
-      }).catch((err) => {
-        console.info(TAG + 'ACTS_ThirdPartyStartAbility_0200 - error ' + JSON.stringify(err));
-        expect(err.code == 16000001).assertTrue();
-        done();
+        windowMode: 0
       })
+        .then((data) => {
+          console.info(TAG + "====>startAbility end====>");
+        })
+        .catch((err: BusinessError) => {
+          console.info(TAG + 'ACTS_ThirdPartyStartAbility_0200 - error ' + JSON.stringify(err));
+          expect(err.code == 16000001).assertTrue();
+          done();
+        })
     })
 
     /*
@@ -118,49 +124,49 @@ export default function abilityTest() {
      * @tc.name    : start new ability
      * @tc.desc    : Start an ability with the parameter startability with options succeeded.(callback)
      */
-    it('ACTS_ThirdPartyStartAbility_0300', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbility_0300', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbility_0300";
       console.info(TAG + " start");
-      let Subscriber;
-      var startresult = false;
-      function SubscribeCallBack (err, data) {
-        expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent").assertTrue();
-        console.info(TAG + "====> Subscribe CallBack data:====>" + JSON.stringify(data));
-        if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
-          console.info(TAG + " MainAbility2 is onWindowStageCreate");
-          startresult = true
-        } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
-          commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
-          Subscriber = undefined;
-          console.info(TAG + " MainAbility2 is Destroy");
-          expect(startresult).assertEqual(true);
-          done();
-        }
-      }
+      let Subscriber: commonEventManager.CommonEventSubscriber;
+      let startresult = false;
 
-      commonEvent.createSubscriber(subscriberInfo_MainAbility).then(async (data) => {
-        console.info(TAG + "====>Create Subscriber====>");
-        data.getSubscribeInfo().then(async (SubscribeInfo) => {
-          console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
-          Subscriber = data;
-          commonEvent.subscribe(Subscriber, SubscribeCallBack);
-          console.info(TAG + "====>start startAbility====>");
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
-              abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
-            }, {
-            windowMode:0
-          },(err,data) => {
-            console.info(TAG + "====>startAbility err:====>" + JSON.stringify(err));
-            console.info(TAG + "====>startAbility end====>" );
-          })
+      commonEvent.createSubscriber(subscriberInfo_MainAbility)
+        .then(async (data) => {
+          console.info(TAG + "====>Create Subscriber====>");
+          data.getSubscribeInfo()
+            .then(async (SubscribeInfo) => {
+              console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
+              Subscriber = data;
+              commonEvent.subscribe(Subscriber, (err, data) => {
+                expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent")
+                  .assertTrue();
+                console.info(TAG + "====> Subscribe CallBack data:====>" + JSON.stringify(data));
+                if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
+                  console.info(TAG + " MainAbility2 is onWindowStageCreate");
+                  startresult = true;
+                } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
+                  commonEvent.unsubscribe(Subscriber, () => {
+                    console.info(TAG + "====>UnSubscribeCallback====>");
+                  });
+                  Subscriber = undefined;
+                  console.info(TAG + " MainAbility2 is Destroy");
+                  expect(startresult).assertEqual(true);
+                  done();
+                }
+              });
+              console.info(TAG + "====>start startAbility====>");
+              AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
+                {
+                  bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
+                  abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
+                }, {
+                windowMode: 0
+              }, (err, data) => {
+                console.info(TAG + "====>startAbility err:====>" + JSON.stringify(err));
+                console.info(TAG + "====>startAbility end====>");
+              })
+            })
         })
-      })
-
-      function UnSubscribeCallback() {
-        console.info(TAG + "====>UnSubscribeCallback====>");
-      }
     })
 
     /*
@@ -168,18 +174,18 @@ export default function abilityTest() {
      * @tc.name    : start new ability
      * @tc.desc    : Start an ability with the parameter startability with options failed.(callback)
      */
-    it('ACTS_ThirdPartyStartAbility_0400', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbility_0400', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbility_0400";
       console.info(TAG + " start");
       try {
-        await globalThis.abilityContext.startAbility(
+        AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
           {
             bundleName: 'com.acts.error',
             abilityName: 'com.acts.error.MainAbility2'
           }, {
-          windowMode:0
-        },(err) => {
-          console.info(TAG + "====>startAbility end====>" );
+          windowMode: 0
+        }, (err) => {
+          console.info(TAG + "====>startAbility end====>");
           expect(err.code == 16000001).assertTrue();
           done();
         })
@@ -193,46 +199,48 @@ export default function abilityTest() {
      * @tc.name    : start new ability
      * @tc.desc    : Starting mainability2 with startability succeeded.(promise)
      */
-    it('ACTS_ThirdPartyStartAbility_0500', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbility_0500', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbility_0500";
       console.info(TAG + " start");
-      let Subscriber;
-      var startresult = false;
-      function SubscribeCallBack (err, data) {
-        expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent").assertTrue();
-        console.info(TAG + "====> Subscribe CallBack data:====>" + JSON.stringify(data));
-        if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
-          console.info(TAG + " MainAbility2 is onWindowStageCreate");
-          startresult = true
-        } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
-          commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
-          Subscriber = undefined;
-          console.info(TAG + " MainAbility2 is Destroy");
-          expect(startresult).assertEqual(true);
-          done();
-        }
-      }
-      commonEvent.createSubscriber(subscriberInfo_MainAbility).then(async (data) => {
-        console.info(TAG + "====>Create Subscriber====>");
-        data.getSubscribeInfo().then(async (SubscribeInfo) => {
-          console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
-          Subscriber = data;
-          commonEvent.subscribe(Subscriber, SubscribeCallBack);
-          console.info(TAG + "====>start startAbility====>");
-          await globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
-              abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
-            }).then((data) => {
-            console.info(TAG + "====>startAbility end====>");
-            console.info(TAG + "====>data is====>" + JSON.stringify(data));
-          })
-        })
-      })
+      let Subscriber: commonEventManager.CommonEventSubscriber;
+      let startresult = false;
 
-      function UnSubscribeCallback() {
-        console.info(TAG + "====>UnSubscribeCallback====>");
-      }
+      commonEvent.createSubscriber(subscriberInfo_MainAbility)
+        .then(async (data) => {
+          console.info(TAG + "====>Create Subscriber====>");
+          data.getSubscribeInfo()
+            .then(async (SubscribeInfo) => {
+              console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
+              Subscriber = data;
+              commonEvent.subscribe(Subscriber, (err, data) => {
+                expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent")
+                  .assertTrue();
+                console.info(TAG + "====> Subscribe CallBack data:====>" + JSON.stringify(data));
+                if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
+                  console.info(TAG + " MainAbility2 is onWindowStageCreate");
+                  startresult = true;
+                } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
+                  commonEvent.unsubscribe(Subscriber, () => {
+                    console.info(TAG + "====>UnSubscribeCallback====>");
+                  });
+                  Subscriber = undefined;
+                  console.info(TAG + " MainAbility2 is Destroy");
+                  expect(startresult).assertEqual(true);
+                  done();
+                }
+              });
+              console.info(TAG + "====>start startAbility====>");
+              await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
+                {
+                  bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
+                  abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
+                })
+                .then((data) => {
+                  console.info(TAG + "====>startAbility end====>");
+                  console.info(TAG + "====>data is====>" + JSON.stringify(data));
+                })
+            })
+        })
     })
 
     /*
@@ -240,20 +248,22 @@ export default function abilityTest() {
      * @tc.name    : start new ability
      * @tc.desc    : Starting mainability2 with startability failed.(promise)
      */
-    it('ACTS_ThirdPartyStartAbility_0600', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbility_0600', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbility_0600";
       console.info(TAG + " start");
-      await globalThis.abilityContext.startAbility(
+      await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
         {
           bundleName: 'com.acts.error',
           abilityName: 'com.acts.error.MainAbility2'
-        }).then(() => {
-        console.info(TAG + "====>startAbility end====>");
-      }).catch ((err) => {
-        console.info(TAG + 'ACTS_ThirdPartyStartAbility_0600 - error');
-        expect(err.code == 16000001).assertTrue();
-        done();
-      })
+        })
+        .then(() => {
+          console.info(TAG + "====>startAbility end====>");
+        })
+        .catch((err: BusinessError) => {
+          console.info(TAG + 'ACTS_ThirdPartyStartAbility_0600 - error');
+          expect(err.code == 16000001).assertTrue();
+          done();
+        })
     })
 
     /*
@@ -261,47 +271,47 @@ export default function abilityTest() {
      * @tc.name    : start new ability
      * @tc.desc    : Starting mainability2 with startability succeeded.(callback)
      */
-    it('ACTS_ThirdPartyStartAbility_0700', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbility_0700', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbility_0700";
       console.info(TAG + " start");
-      let Subscriber;
-      var startresult = false;
-      function SubscribeCallBack (err, data) {
-        expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent").assertTrue();
-        console.info(TAG + "====> Subscribe CallBack data:====>" + JSON.stringify(data));
-        if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
-          console.info(TAG + " MainAbility2 is onWindowStageCreate");
-          startresult = true
-        } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
-          commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
-          Subscriber = undefined;
-          console.info(TAG + " MainAbility2 is Destroy");
-          expect(startresult).assertEqual(true);
-          done();
-        }
-      }
+      let Subscriber: commonEventManager.CommonEventSubscriber;
+      let startresult = false;
 
-      commonEvent.createSubscriber(subscriberInfo_MainAbility).then(async (data) => {
-        console.info(TAG + "====>Create Subscriber====>");
-        data.getSubscribeInfo().then(async (SubscribeInfo) => {
-          console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
-          Subscriber = data;
-          commonEvent.subscribe(Subscriber, SubscribeCallBack);
-          console.info(TAG + "====>start startAbility====>");
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
-              abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
-            },(err,data) => {
-            console.info(TAG + "====>startAbility err:====>" + JSON.stringify(err));
-            console.info(TAG + "====>startAbility end====>");
-          })
+      commonEvent.createSubscriber(subscriberInfo_MainAbility)
+        .then(async (data) => {
+          console.info(TAG + "====>Create Subscriber====>");
+          data.getSubscribeInfo()
+            .then(async (SubscribeInfo) => {
+              console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
+              Subscriber = data;
+              commonEvent.subscribe(Subscriber, (err, data) => {
+                expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent")
+                  .assertTrue();
+                console.info(TAG + "====> Subscribe CallBack data:====>" + JSON.stringify(data));
+                if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
+                  console.info(TAG + " MainAbility2 is onWindowStageCreate");
+                  startresult = true;
+                } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
+                  commonEvent.unsubscribe(Subscriber, () => {
+                    console.info(TAG + "====>UnSubscribeCallback====>");
+                  });
+                  Subscriber = undefined;
+                  console.info(TAG + " MainAbility2 is Destroy");
+                  expect(startresult).assertEqual(true);
+                  done();
+                }
+              });
+              console.info(TAG + "====>start startAbility====>");
+              AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
+                {
+                  bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
+                  abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
+                }, (err, data) => {
+                console.info(TAG + "====>startAbility err:====>" + JSON.stringify(err));
+                console.info(TAG + "====>startAbility end====>");
+              })
+            })
         })
-      })
-
-      function UnSubscribeCallback() {
-        console.info(TAG + "====>UnSubscribeCallback====>");
-      }
     })
 
     /*
@@ -309,15 +319,15 @@ export default function abilityTest() {
      * @tc.name    : start new ability
      * @tc.desc    : Starting mainability2 with startability failed.(callback)
      */
-    it('ACTS_ThirdPartyStartAbility_0800', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbility_0800', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbility_0800";
       console.info(TAG + " start");
       try {
-        await globalThis.abilityContext.startAbility(
+        AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
           {
             bundleName: 'com.acts.error',
             abilityName: 'com.acts.error.MainAbility2'
-          },(err) => {
+          }, (err) => {
           console.info(TAG + "====>startAbility end====>" + JSON.stringify(err));
           expect(err.code == 16000001).assertTrue();
           done();
@@ -332,23 +342,24 @@ export default function abilityTest() {
      * @tc.name    : start new ability for result
      * @tc.desc    : Starting mainability3 with startAbilityForResult succeeded.(promise)
      */
-    it('ACTS_ThirdPartyStartAbilityForResult_0100', 0, async function (done) {
-      await sleep (2000);
+    it('ACTS_ThirdPartyStartAbilityForResult_0100', 0, async (done: Function) => {
+      await sleep(2000);
       TAG = "ACTS_ThirdPartyStartAbilityForResult_0100";
       console.info(TAG + " start");
       console.info(TAG + "====>start startAbilityForResult====>");
-      await globalThis.abilityContext.startAbilityForResult(
+      await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityForResult(
         {
           bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
           abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility3',
         }, {
-        windowMode:0
-      }).then((data) => {
-        console.info(TAG + "====>startAbilityForResult end====>" + JSON.stringify(data));
-        expect(data.resultCode).assertEqual(1);
-        expect(data.want.action).assertEqual('ACTION');
-        done();
+        windowMode: 0
       })
+        .then((data) => {
+          console.info(TAG + "====>startAbilityForResult end====>" + JSON.stringify(data));
+          expect(data.resultCode).assertEqual(1);
+          expect(data.want.action).assertEqual('ACTION');
+          done();
+        })
     })
 
     /*
@@ -356,22 +367,24 @@ export default function abilityTest() {
      * @tc.name    : start new ability for result
      * @tc.desc    : Starting mainability3 with startAbilityForResult failed.(promise)
      */
-    it('ACTS_ThirdPartyStartAbilityForResult_0200', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbilityForResult_0200', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbilityForResult_0200";
       console.info(TAG + "====>start startAbilityForResult====>");
-      await globalThis.abilityContext.startAbilityForResult(
+      await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityForResult(
         {
           bundleName: 'com.acts.error',
           abilityName: 'com.acts.error.MainAbility3',
         }, {
-        windowMode:0
-      }).then((data) => {
-        console.info(TAG + "====>startAbilityForResult end====>" + JSON.stringify(data));
-      }).catch((err) => {
-        console.info(TAG + 'ACTS_ThirdPartyStartAbilityForResult_0200 - error' + JSON.stringify(err));
-        expect(err.code == 16000001).assertTrue();
-        done();
+        windowMode: 0
       })
+        .then((data) => {
+          console.info(TAG + "====>startAbilityForResult end====>" + JSON.stringify(data));
+        })
+        .catch((err: BusinessError) => {
+          console.info(TAG + 'ACTS_ThirdPartyStartAbilityForResult_0200 - error' + JSON.stringify(err));
+          expect(err.code == 16000001).assertTrue();
+          done();
+        })
     })
 
     /*
@@ -379,18 +392,18 @@ export default function abilityTest() {
      * @tc.name    : start new ability for result
      * @tc.desc    : Starting mainability3 with startAbilityForResult succeeded.(callback)
      */
-    it('ACTS_ThirdPartyStartAbilityForResult_0300', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbilityForResult_0300', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbilityForResult_0300";
       console.info(TAG + "====>start startAbilityForResult====>");
       await sleep(2000);
       console.info("====>start startAbilityForResult====>");
-      await globalThis.abilityContext.startAbilityForResult(
+      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityForResult(
         {
           bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
           abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility3',
-        },{
-        windowMode : 0
-      },(err, data) => {
+        }, {
+        windowMode: 0
+      }, (err, data) => {
         console.info(TAG + "====>startAbilityForResult end====>" + JSON.stringify(err));
         console.info(TAG + "====>startAbilityForResult end====>" + JSON.stringify(data));
         expect(data.resultCode).assertEqual(1);
@@ -404,17 +417,17 @@ export default function abilityTest() {
      * @tc.name    : start new ability for result
      * @tc.desc    : Starting mainability3 with startAbilityForResult failed.(callback)
      */
-    it('ACTS_ThirdPartyStartAbilityForResult_0400', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbilityForResult_0400', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbilityForResult_0400";
       console.info(TAG + "====>start startAbilityForResult====>");
       try {
-        await globalThis.abilityContext.startAbilityForResult(
+        AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityForResult(
           {
             bundleName: 'com.acts.error',
             abilityName: 'com.acts.error.MainAbility3',
           }, {
-          windowMode:0
-        },(err, data) => {
+          windowMode: 0
+        }, (err, data) => {
           console.info(TAG + "====>startAbilityForResult end data====>" + JSON.stringify(data));
           console.info(TAG + "====>startAbilityForResult end err====>" + JSON.stringify(err));
           expect(err.code == 16000001).assertTrue();
@@ -430,21 +443,22 @@ export default function abilityTest() {
      * @tc.name    : start new ability for result
      * @tc.desc    : Starting mainability3 with startAbilityForResult succeeded.(promise)
      */
-    it('ACTS_ThirdPartyStartAbilityForResult_0500', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbilityForResult_0500', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbilityForResult_0500";
       console.info(TAG + "====>start startAbilityForResult====>");
       await sleep(2000);
-      await globalThis.abilityContext.startAbilityForResult(
+      await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityForResult(
         {
           bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
           abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility3',
-        }).then((data) => {
-        console.info(TAG + "====>startAbilityForResult end====>");
-        console.info(TAG + "====>data.result is====>" + JSON.stringify(data));
-        expect(data.resultCode).assertEqual(1);
-        expect(data.want.action).assertEqual('ACTION');
-        done();
-      })
+        })
+        .then((data) => {
+          console.info(TAG + "====>startAbilityForResult end====>");
+          console.info(TAG + "====>data.result is====>" + JSON.stringify(data));
+          expect(data.resultCode).assertEqual(1);
+          expect(data.want.action).assertEqual('ACTION');
+          done();
+        })
     })
 
     /*
@@ -452,20 +466,22 @@ export default function abilityTest() {
      * @tc.name    : start new ability for result
      * @tc.desc    : Starting mainability3 with startAbilityForResult failed.(promise)
      */
-    it('ACTS_ThirdPartyStartAbilityForResult_0600', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbilityForResult_0600', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbilityForResult_0600";
       console.info(TAG + "====>start startAbilityForResult====>");
-      await globalThis.abilityContext.startAbilityForResult(
+      await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityForResult(
         {
           bundleName: 'com.acts.error',
           abilityName: 'com.acts.error.MainAbility3',
-        }).then((data) => {
-        console.info(TAG + "====>startAbilityForResult end====>");
-      }).catch((err) => {
-        console.info(TAG + 'ACTS_ThirdPartyStartAbilityForResult_0600 - error' + JSON.stringify(err));
-        expect(err.code == 16000001).assertTrue();
-        done();
-      })
+        })
+        .then((data) => {
+          console.info(TAG + "====>startAbilityForResult end====>");
+        })
+        .catch((err: BusinessError) => {
+          console.info(TAG + 'ACTS_ThirdPartyStartAbilityForResult_0600 - error' + JSON.stringify(err));
+          expect(err.code == 16000001).assertTrue();
+          done();
+        })
     })
 
     /*
@@ -473,15 +489,15 @@ export default function abilityTest() {
      * @tc.name    : start new ability for result
      * @tc.desc    : Starting mainability3 with startAbilityForResult succeeded.(callback)
      */
-    it('ACTS_ThirdPartyStartAbilityForResult_0700', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbilityForResult_0700', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbilityForResult_0700";
       console.info(TAG + "====>start startAbilityForResult====>");
       await sleep(2000);
-      await globalThis.abilityContext.startAbilityForResult(
+      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityForResult(
         {
           bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
           abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility3',
-        },(err,data) => {
+        }, (err, data) => {
         console.info(TAG + "====>startAbilityForResult end err====>" + JSON.stringify(err));
         console.info(TAG + "====>startAbilityForResult end data====>" + JSON.stringify(data));
         expect(data.resultCode).assertEqual(1);
@@ -495,15 +511,15 @@ export default function abilityTest() {
      * @tc.name    : start new ability for result
      * @tc.desc    : Starting mainability3 with startAbilityForResult failed.(callback)
      */
-    it('ACTS_ThirdPartyStartAbilityForResult_0800', 0, async function (done) {
+    it('ACTS_ThirdPartyStartAbilityForResult_0800', 0, async (done: Function) => {
       TAG = "ACTS_ThirdPartyStartAbilityForResult_0800";
       console.info(TAG + "====>start startAbilityForResult====>");
       try {
-        await globalThis.abilityContext.startAbilityForResult(
+        AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityForResult(
           {
             bundleName: 'com.acts.error',
             abilityName: 'com.acts.error.MainAbility3',
-          },(err, data) => {
+          }, (err, data) => {
           console.info(TAG + "====>startAbilityForResult end err====>" + JSON.stringify(err));
           console.info(TAG + "====>startAbilityForResult end data====>" + JSON.stringify(data));
           expect(err.code == 16000001).assertTrue();
@@ -519,46 +535,47 @@ export default function abilityTest() {
      * @tc.name    : Use terminateself to terminate ability
      * @tc.desc    : Starting mainability2 with startAbility then terminateself ability succeeded.(promise)
      */
-    it('ACTS_TerminateSelf_0100', 0, async function (done) {
+    it('ACTS_TerminateSelf_0100', 0, async (done: Function) => {
       TAG = "ACTS_TerminateSelf_0100";
       console.info(TAG + "====>start startAbilityForResult====>");
-      let Subscriber;
-      var terminateresult = false;
-      function SubscribeCallBack (err, data) {
-        console.info(TAG + "====>0100 Subscribe CallBack data:====>" + JSON.stringify(data));
-        expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent").assertTrue();
-        if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
-          console.info(TAG + " MainAbility2 is onWindowStageCreate");
-          terminateresult = true;
-        } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
-          commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
-          Subscriber = undefined;
-          console.info(TAG + " MainAbility2 is Destroy");
-          expect(terminateresult).assertEqual(true);
-          done();
-        }
-      }
+      let Subscriber: commonEventManager.CommonEventSubscriber;
+      let terminateresult = false;
 
-      commonEvent.createSubscriber(subscriberInfo_MainAbility).then(async (data) => {
-        console.info(TAG + "====>Create Subscriber====>");
-        data.getSubscribeInfo().then(async (SubscribeInfo) => {
-          console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
-          Subscriber = data;
-          commonEvent.subscribe(Subscriber, SubscribeCallBack);
-          console.info(TAG + "====>start startAbility====>");
-          await globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
-              abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
-            }).then(() => {
-            console.info(TAG + "====>startAbility end====>");
-          })
+      commonEvent.createSubscriber(subscriberInfo_MainAbility)
+        .then(async (data) => {
+          console.info(TAG + "====>Create Subscriber====>");
+          data.getSubscribeInfo()
+            .then(async (SubscribeInfo) => {
+              console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
+              Subscriber = data;
+              commonEvent.subscribe(Subscriber, (err, data) => {
+                console.info(TAG + "====>0100 Subscribe CallBack data:====>" + JSON.stringify(data));
+                expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent")
+                  .assertTrue();
+                if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
+                  console.info(TAG + " MainAbility2 is onWindowStageCreate");
+                  terminateresult = true;
+                } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
+                  commonEvent.unsubscribe(Subscriber, () => {
+                    console.info(TAG + "====>UnSubscribeCallback====>");
+                  });
+                  Subscriber = undefined;
+                  console.info(TAG + " MainAbility2 is Destroy");
+                  expect(terminateresult).assertEqual(true);
+                  done();
+                }
+              });
+              console.info(TAG + "====>start startAbility====>");
+              await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
+                {
+                  bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
+                  abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
+                })
+                .then(() => {
+                  console.info(TAG + "====>startAbility end====>");
+                })
+            })
         })
-      })
-
-      function UnSubscribeCallback() {
-        console.info(TAG + "====>UnSubscribeCallback====>");
-      }
     })
 
     /*
@@ -566,46 +583,46 @@ export default function abilityTest() {
      * @tc.name    : Use terminateself to terminate ability
      * @tc.desc    : Starting mainability2 with startAbility then terminateself ability succeeded.(callback)
      */
-    it('ACTS_TerminateSelf_0300', 0, async function (done) {
+    it('ACTS_TerminateSelf_0300', 0, async (done: Function) => {
       TAG = "ACTS_TerminateSelf_0300";
       console.info(TAG + "====>start startAbilityForResult====>");
-      let Subscriber;
-      var terminateresult = false;
-      function SubscribeCallBack (err, data) {
-        console.info("====>0300 Subscribe CallBack data:====>" + JSON.stringify(data));
-        expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent").assertTrue();
-        if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
-          console.info(TAG + " MainAbility2 is onWindowStageCreate");
-          terminateresult = true
-        } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
-          commonEvent.unsubscribe(Subscriber, UnSubscribeCallback);
-          Subscriber = undefined;
-          console.info(TAG + " MainAbility2 is Destroy");
-          expect(terminateresult).assertEqual(true);
-          done();
-        }
-      }
+      let Subscriber: commonEventManager.CommonEventSubscriber;
+      let terminateresult = false;
 
-      commonEvent.createSubscriber(subscriberInfo_MainAbility).then(async (data) => {
-        console.info(TAG + "====>Create Subscriber====>");
-        data.getSubscribeInfo().then(async(SubscribeInfo) => {
-          console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
-          Subscriber = data;
-          commonEvent.subscribe(Subscriber, SubscribeCallBack);
-          console.info(TAG + "====>start startAbility====>");
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
-              abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
-            },() => {
-            console.info(TAG + "====>startAbility end====>" );
-          })
+      commonEvent.createSubscriber(subscriberInfo_MainAbility)
+        .then(async (data) => {
+          console.info(TAG + "====>Create Subscriber====>");
+          data.getSubscribeInfo()
+            .then(async (SubscribeInfo) => {
+              console.info(TAG + "====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
+              Subscriber = data;
+              commonEvent.subscribe(Subscriber, (err, data) => {
+                console.info("====>0300 Subscribe CallBack data:====>" + JSON.stringify(data));
+                expect(data.event == "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent" || data.event == "ACTS_TerminateSelf_CommonEvent")
+                  .assertTrue();
+                if (data.event === "ACTS_InterfaceMultiUsers_0100_Start_CommonEvent") {
+                  console.info(TAG + " MainAbility2 is onWindowStageCreate");
+                  terminateresult = true;
+                } else if (data.event === "ACTS_TerminateSelf_CommonEvent") {
+                  commonEvent.unsubscribe(Subscriber, () => {
+                    console.info(TAG + "====>UnSubscribeCallback====>");
+                  });
+                  Subscriber = undefined;
+                  console.info(TAG + " MainAbility2 is Destroy");
+                  expect(terminateresult).assertEqual(true);
+                  done();
+                }
+              });
+              console.info(TAG + "====>start startAbility====>");
+              AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
+                {
+                  bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
+                  abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility2'
+                }, () => {
+                console.info(TAG + "====>startAbility end====>");
+              })
+            })
         })
-      })
-
-      function UnSubscribeCallback() {
-        console.info(TAG + "====>UnSubscribeCallback====>");
-      }
     })
 
     /*
@@ -614,21 +631,22 @@ export default function abilityTest() {
      * @tc.desc    : Starting mainability3 with startAbilityforresult
      *               then terminateself ability and return result succeeded.(promise)
      */
-    it('ACTS_TerminateSelfWithResult_0100', 0, async function (done) {
+    it('ACTS_TerminateSelfWithResult_0100', 0, async (done: Function) => {
       TAG = "ACTS_TerminateSelfWithResult_0100";
       console.info(TAG + "====>start startAbilityForResult====>");
       await sleep(2000);
-      await globalThis.abilityContext.startAbilityForResult(
+      await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityForResult(
         {
           bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
           abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility3',
-        }).then((data) => {
-        console.info(TAG + "====>startAbilityForResult end====>");
-        console.info(TAG + "====>data.resultCode is====>" + JSON.stringify(data));
-        expect(data.resultCode).assertEqual(1);
-        expect(data.want.action).assertEqual('ACTION');
-        done();
-      })
+        })
+        .then((data) => {
+          console.info(TAG + "====>startAbilityForResult end====>");
+          console.info(TAG + "====>data.resultCode is====>" + JSON.stringify(data));
+          expect(data.resultCode).assertEqual(1);
+          expect(data.want.action).assertEqual('ACTION');
+          done();
+        })
     })
 
     /*
@@ -637,20 +655,20 @@ export default function abilityTest() {
      * @tc.desc    : Starting mainability3 with startAbilityforresult
      *               then terminateself ability and return result succeeded.(callback)
      */
-    it('ACTS_TerminateSelfWithResult_0300', 0, async function (done) {
+    it('ACTS_TerminateSelfWithResult_0300', 0, async (done: Function) => {
       TAG = "ACTS_TerminateSelfWithResult_0300";
       console.info(TAG + "====>start startAbilityForResult====>");
-      await sleep(2000)
-      await globalThis.abilityContext.startAbilityForResult(
+      await sleep(2000);
+      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityForResult(
         {
           bundleName: 'com.acts.actsinterfacemultiusersthirdtest',
           abilityName: 'com.acts.actsinterfacemultiusersthirdtest.MainAbility3',
-        },(err, data) => {
-          console.info(TAG + "====>startAbilityForResult end err====>" + JSON.stringify(err));
-          console.info(TAG + "====>startAbilityForResult end err====>" + JSON.stringify(data));
-          expect(data.resultCode).assertEqual(1);
-          expect(data.want.action).assertEqual('ACTION');
-          done();
+        }, (err, data) => {
+        console.info(TAG + "====>startAbilityForResult end err====>" + JSON.stringify(err));
+        console.info(TAG + "====>startAbilityForResult end err====>" + JSON.stringify(data));
+        expect(data.resultCode).assertEqual(1);
+        expect(data.want.action).assertEqual('ACTION');
+        done();
       })
     })
   })
