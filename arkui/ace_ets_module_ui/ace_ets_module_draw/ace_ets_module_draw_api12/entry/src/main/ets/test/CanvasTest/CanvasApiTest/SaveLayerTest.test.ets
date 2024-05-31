@@ -28,7 +28,7 @@ export default function SaveLayerTest() {
         router.clear();
         let pages = router.getState();
         console.info("get SaveLayerTest state pages:" + JSON.stringify(pages));
-        if (!("Unit" == pages.name)) {
+        if (!("SaveLayer" == pages.name)) {
           console.info("get SaveLayerTest pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);

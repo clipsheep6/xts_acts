@@ -28,7 +28,7 @@ export default function RestoreLayerTest() {
         router.clear();
         let pages = router.getState();
         console.info("get RestoreLayerTest state pages:" + JSON.stringify(pages));
-        if (!("Unit" == pages.name)) {
+        if (!("RestoreLayer" == pages.name)) {
           console.info("get RestoreLayerTest pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);

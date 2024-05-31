@@ -22,6 +22,7 @@ struct saveLayer {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(this.text2)
+        .id('text2')
       Canvas(this.context)
         .width('100%')
         .height('100%')

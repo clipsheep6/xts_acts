@@ -22,6 +22,7 @@ struct restoreLayerTest {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(this.text1)
+        .id('text1')
       Canvas(this.context)
         .width('100%')
         .height('100%')
