@@ -601,5 +601,1324 @@ export default function HttpResponsePropertiesTest() {
     });
 
 
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_1100
+     * @tc.name:    testHttpResponse1100
+     * @tc.desc:    test resultType with expectDataType:http.HttpDataType.STRING
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse1100', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse1100";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              let resultType: http.HttpDataType = -1;
+              const httpRequest: http.HttpRequest = http.createHttp();
+              const expectDataType: http.HttpDataType = http.HttpDataType.STRING;
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType,
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data -->:${JSON.stringify(data)}`);
+                  resultType = res.resultType;
+                  ExpectTrue(resultType == expectDataType);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_1200
+     * @tc.name:    testHttpResponse1200
+     * @tc.desc:    test resultType with expectDataType:http.HttpDataType.OBJECT
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse1200', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse1200";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              let resultType: http.HttpDataType = -1;
+              const httpRequest: http.HttpRequest = http.createHttp();
+              const expectDataType: http.HttpDataType = http.HttpDataType.OBJECT;
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType,
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data -->:${JSON.stringify(data)}`);
+                  resultType = res.resultType;
+                  const flag: boolean = [http.HttpDataType.OBJECT, http.HttpDataType.STRING].includes(resultType);
+                  ExpectTrue(flag);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_1300
+     * @tc.name:    testHttpResponse1300
+     * @tc.desc:    test resultType with expectDataType:http.HttpDataType.ARRAY_BUFFER
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse1300', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse1300";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              let resultType: http.HttpDataType = -1;
+              const httpRequest: http.HttpRequest = http.createHttp();
+              const expectDataType: http.HttpDataType = http.HttpDataType.ARRAY_BUFFER;
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType,
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data -->:${JSON.stringify(data)}`);
+                  resultType = res.resultType;
+                  ExpectTrue(resultType == expectDataType);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_1400
+     * @tc.name:    testHttpResponse1400
+     * @tc.desc:    test resultType with expectDataType:not within http.HttpDataType
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse1400', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse1400";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              let resultType: http.HttpDataType = -1;
+              const httpRequest: http.HttpRequest = http.createHttp();
+              const expectDataType: http.HttpDataType = 3;
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType,
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data -->:${JSON.stringify(data)}`);
+                  resultType = res.resultType;
+                  ExpectTrue(resultType == http.HttpDataType.STRING);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_1500
+     * @tc.name:    testHttpResponse1500
+     * @tc.desc:    test resultType with header.contentType(application/json)
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse1500', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse1500";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              let resultType: http.HttpDataType = -1;
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                header: {
+                  "content-type": "application/json"
+                }
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data -->:${JSON.stringify(data)}`);
+                  resultType = res.resultType;
+                  ExpectTrue(resultType == http.HttpDataType.STRING);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_1600
+     * @tc.name:    testHttpResponse1600
+     * @tc.desc:    test resultType with header.contentType(application/octet-stream)
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse1600', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse1600";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              let resultType: http.HttpDataType = -1;
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_STREAM_HTTPS, {
+                header: {
+                  "content-type": "application/octet-stream"
+                }
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data -->:${JSON.stringify(data)}`);
+                  resultType = res.resultType;
+                  ExpectTrue(resultType == http.HttpDataType.ARRAY_BUFFER);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_1700
+     * @tc.name:    testHttpResponse1700
+     * @tc.desc:    test resultType with header.contentType(image/svg+xml)
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse1700', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse1700";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              let resultType: http.HttpDataType = -1;
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_STREAM_HTTPS, {
+                header: {
+                  "content-type": "image/svg+xml"
+                }
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data -->:${JSON.stringify(data)}`);
+                  resultType = res.resultType;
+                  ExpectTrue(resultType == http.HttpDataType.ARRAY_BUFFER);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_1800
+     * @tc.name:    testHttpResponse1800
+     * @tc.desc:    test resultType with header.contentType(text/html)
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse1800', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse1800";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              let resultType: http.HttpDataType = -1;
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                header: {
+                  "content-type": "text/html"
+                }
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data -->:${JSON.stringify(data)}`);
+                  resultType = res.resultType;
+                  ExpectTrue(resultType == http.HttpDataType.STRING);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_1900
+     * @tc.name:    testHttpResponse1900
+     * @tc.desc:    test result expect type string expectDataType within http.HttpDataType
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse1900', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse1900";
+      console.info(`${caseName} test Start`);
+      const httpRequest: http.HttpRequest = http.createHttp();
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType: http.HttpDataType.STRING,
+              }).then((res: http.HttpResponse) => {
+                console.info(`${caseName} res.resultType:${res.resultType}  res.result:${JSON.stringify(res.result)}`);
+                const type: string = typeof res?.result;
+                ExpectTrue(type == 'string');
+                httpRequest.destroy();
+                done();
+              }).catch((error: BusinessError) => {
+                console.info(`${caseName} request fail, error code: ${error.code}, msg: ${error.message}`);
+                httpRequest.destroy();
+                ExpectFail();
+                done();
+              })
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_2000
+     * @tc.name:    testHttpResponse2000
+     * @tc.desc:    test result expect type object expectDataType within http.HttpDataType
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse2000', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse2000";
+      console.info(`${caseName} test Start`);
+      const httpRequest: http.HttpRequest = http.createHttp();
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType: http.HttpDataType.OBJECT,
+              }).then((res: http.HttpResponse) => {
+                console.info(`${caseName} res.resultType:${res.resultType}  res.result:${JSON.stringify(res.result)}`);
+                const type: string = typeof res?.result;
+                const flag: boolean = ['string', 'object', 'undefined'].includes(type);
+                ExpectTrue(flag);
+                httpRequest.destroy();
+                done();
+              }).catch((error: BusinessError) => {
+                console.info(`${caseName} request fail, error code: ${error.code}, msg: ${error.message}`);
+                httpRequest.destroy();
+                ExpectFail();
+                done();
+              })
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_2100
+     * @tc.name:    testHttpResponse2100
+     * @tc.desc:    test result expect type ArrayBuffer expectDataType within http.HttpDataType
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse2100', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse2100";
+      console.info(`${caseName} test Start`);
+      const httpRequest: http.HttpRequest = http.createHttp();
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType: http.HttpDataType.ARRAY_BUFFER,
+              }).then((res: http.HttpResponse) => {
+                console.info(`${caseName} res.resultType:${res.resultType}  res.result:${JSON.stringify(res.result)}`);
+                const flag: boolean = res?.result instanceof ArrayBuffer;
+                ExpectTrue(flag);
+                httpRequest.destroy();
+                done();
+              }).catch((error: BusinessError) => {
+                console.info(`${caseName} request fail, error code: ${error.code}, msg: ${error.message}`);
+                httpRequest.destroy();
+                ExpectFail();
+                done();
+              })
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_2200
+     * @tc.name:    testHttpResponse2200
+     * @tc.desc:    test result expect type string  expectDataType beyond http.HttpDataType
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse2200', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse2200";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType: 3,
+              }).then((res: http.HttpResponse) => {
+                console.info(`${caseName}  res.resultType:${res.resultType}  res.result:${JSON.stringify(res.result)}`);
+                const flag: boolean = typeof res?.result == 'string';
+                ExpectTrue(flag);
+                httpRequest.destroy();
+                done();
+              }).catch((error: BusinessError) => {
+                console.info(`${caseName} request fail, error code: ${error.code}, msg: ${error.message}`);
+                httpRequest.destroy();
+                ExpectFail();
+                done();
+              })
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_2300
+     * @tc.name:    testHttpResponse2300
+     * @tc.desc:    test result with header.contentType(application/json) type
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse2300', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse2300";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                header: {
+                  "content-type": "application/json"
+                }
+              }).then((res: http.HttpResponse) => {
+                console.info(`${caseName} res.resultType:${res.resultType}  res.result:${JSON.stringify(res.result)}`);
+                const type: string = typeof res?.result;
+                ExpectTrue(type == 'string');
+                httpRequest.destroy();
+                done();
+              }).catch((error: BusinessError) => {
+                console.info(`${caseName} request fail, error code: ${error.code}, msg: ${error.message}`);
+                httpRequest.destroy();
+                ExpectFail();
+                done();
+              })
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_2400
+     * @tc.name:    testHttpResponse2400
+     * @tc.desc:    test result with header.contentType(application/octet-stream) type
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse2400', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse2400";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_STREAM_HTTPS, {
+                header: {
+                  "content-type": "application/octet-stream"
+                }
+              }).then((res: http.HttpResponse) => {
+                console.info(`${caseName} res.resultType:${res.resultType}  res.result:${JSON.stringify(res.result)}`);
+                ExpectTrue(res?.result instanceof ArrayBuffer);
+                httpRequest.destroy();
+                done();
+              }).catch((error: BusinessError) => {
+                console.info(`${caseName} request fail, error code: ${error.code}, msg: ${error.message}`);
+                httpRequest.destroy();
+                ExpectFail();
+                done();
+              })
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_2500
+     * @tc.name:    testHttpResponse2500
+     * @tc.desc:    test result with header.contentType(image/svg+xml) type
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse2500', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse2500";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_STREAM_HTTPS, {
+                header: {
+                  "content-type": "image/svg+xml"
+                }
+              }).then((res: http.HttpResponse) => {
+                console.info(`${caseName} res.resultType:${res.resultType}  res.result:${JSON.stringify(res.result)}`);
+                ExpectTrue(res?.result instanceof ArrayBuffer);
+                httpRequest.destroy();
+                done();
+              }).catch((error: BusinessError) => {
+                console.info(`${caseName} request fail, error code: ${error.code}, msg: ${error.message}`);
+                httpRequest.destroy();
+                ExpectFail();
+                done();
+              })
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_2600
+     * @tc.name:    testHttpResponse2600
+     * @tc.desc:    test result with header.contentType(text/html) type
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse2600', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse2600";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                header: {
+                  "content-type": "text/html"
+                }
+              }).then((res: http.HttpResponse) => {
+                console.info(`${caseName} res.resultType:${res.resultType}  res.result:${JSON.stringify(res.result)}`);
+                ExpectTrue(typeof res?.result == 'string');
+                httpRequest.destroy();
+                done();
+              }).catch((error: BusinessError) => {
+                console.info(`${caseName} request fail, error code: ${error.code}, msg: ${error.message}`);
+                httpRequest.destroy();
+                ExpectFail();
+                done();
+              })
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_2700
+     * @tc.name:    testHttpResponse2700
+     * @tc.desc:    test result expect type string expectDataType within http.HttpDataType
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse2700', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse2700";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType: http.HttpDataType.STRING,
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data-->:${JSON.stringify(res)}`);
+                  ExpectTrue(typeof res?.result == 'string');
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_2800
+     * @tc.name:    testHttpResponse2800
+     * @tc.desc:    test result expect type object expectDataType within http.HttpDataType
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse2800', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse2800";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType: http.HttpDataType.OBJECT,
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data-->:${JSON.stringify(res)}`);
+                  const flag: boolean = ['string', 'object', 'undefined'].includes(typeof res?.result);
+                  ExpectTrue(flag);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_2900
+     * @tc.name:    testHttpResponse2900
+     * @tc.desc:    test result expect type ArrayBuffer expectDataType within http.HttpDataType
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse2900', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse2900";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType: http.HttpDataType.ARRAY_BUFFER,
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data-->:${JSON.stringify(res)}`);
+                  ExpectTrue(res?.result instanceof ArrayBuffer);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_3000
+     * @tc.name:    testHttpResponse3000
+     * @tc.desc:    test result expect type string  expectDataType beyond http.HttpDataType
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse3000', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse3000";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                expectDataType: 3,
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data-->:${JSON.stringify(res)}`);
+                  ExpectTrue(typeof res?.result == 'string');
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_3100
+     * @tc.name:    testHttpResponse3100
+     * @tc.desc:    test result  header.contentType(application/json)
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse3100', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse3100";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                header: {
+                  "content-type": "application/json"
+                }
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data-->:${JSON.stringify(res)}`);
+                  ExpectTrue(typeof res?.result == 'string');
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_3200
+     * @tc.name:    testHttpResponse3200
+     * @tc.desc:    test result header.contentType(application/octet-stream)
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse3200', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse3200";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_STREAM_HTTPS, {
+                header: {
+                  "content-type": "application/octet-stream"
+                }
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data-->:${JSON.stringify(res)}`);
+                  ExpectTrue(res?.result instanceof ArrayBuffer);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_3300
+     * @tc.name:    testHttpResponse3300
+     * @tc.desc:    test result header.contentType(image/svg+xml)
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse3300', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse3300";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_STREAM_HTTPS, {
+                header: {
+                  "content-type": "image/svg+xml"
+                }
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data-->:${JSON.stringify(res)}`);
+                  ExpectTrue(res?.result instanceof ArrayBuffer);
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_3400
+     * @tc.name:    testHttpResponse3400
+     * @tc.desc:    test result header.contentType(image/apng)
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse3400', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse3400";
+      console.info(`${caseName} test Start`);
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              const httpRequest: http.HttpRequest = http.createHttp();
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS, {
+                header: {
+                  "content-type": "text/html"
+                }
+              }, (err: BusinessError, res: http.HttpResponse) => {
+                if (err) {
+                  console.info(`${caseName} request fail, error code: ${err.code}, msg: ${err.message}`);
+                  httpRequest.destroy();
+                  ExpectFail();
+                  done();
+                } else {
+                  console.info(`${caseName} request data-->:${JSON.stringify(res)}`);
+                  ExpectTrue(typeof res?.result == 'string');
+                  httpRequest.destroy();
+                  done();
+                }
+              });
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
+
+
+    /* *
+     * @tc.number:  SUB_NetworkMgr_Http_Response_3500
+     * @tc.name:    testHttpResponse3500
+     * @tc.desc:    test responseCode with success request
+     * @tc.size:    SmallTest
+     * @tc.type:    Function
+     * @tc.level:   level 3
+     */
+    it('testHttpResponse3500', 0, async (done: Function) => {
+      const caseName: string = "testHttpResponse3500";
+      console.info(`${caseName} test Start`);
+      const httpRequest: http.HttpRequest = http.createHttp();
+      try {
+        connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
+          if (error) {
+            console.info(`${caseName} getDefaultNet fail, error code: ${error.code}, msg: ${error.message}`);
+            ExpectFail();
+            done();
+          } else {
+            if (data.netId == 0) {
+              console.info(`${caseName} no Network connected`);
+              ExpectFail();
+              done();
+            } else {
+              console.info(`${caseName} Network connected`);
+              httpRequest.request(ADDR_TEST_DOMAIN_HTTPS).then((res: http.HttpResponse) => {
+                console.info(`${caseName} res.responseCode:${res?.responseCode}`);
+                ExpectTrue(CODES.includes(res?.responseCode));
+                httpRequest.destroy();
+                done();
+              }).catch((error: BusinessError) => {
+                console.info(`${caseName} request fail, error code: ${error.code}, msg: ${error.message}`);
+                httpRequest.destroy();
+                ExpectFail();
+                done();
+              })
+            }
+          }
+        });
+      } catch (err) {
+        console.info(`${caseName} catch err: ${JSON.stringify(err)}`);
+        ExpectFail();
+        done();
+      }
+      console.info(`${caseName} test End`);
+    });
   });
 }
