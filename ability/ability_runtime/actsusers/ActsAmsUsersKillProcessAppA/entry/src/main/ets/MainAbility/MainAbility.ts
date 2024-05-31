@@ -12,45 +12,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
+
 function PublishCallBackOne() {
-    console.debug("====>Publish CallBack ACTS_KillProcess====>");
+  console.debug("====>Publish CallBack ACTS_KillProcess====>");
 }
 
 export default class MainAbility extends Ability {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // Ability is creating, initialize resources for this ability
+    console.log("MainAbility onCreate");
+    globalThis.abilityWant = want;
+  }
 
-    onCreate(want, launchParam) {
-        // Ability is creating, initialize resources for this ability
-        console.log("MainAbility onCreate")
-        globalThis.abilityWant = want;
-    }
+  onDestroy() {
+    // Ability is destroying, release resources for this ability
+    console.log("MainAbility onDestroy");
+  }
 
-    onDestroy() {
-        // Ability is destroying, release resources for this ability
-        console.log("MainAbility onDestroy")
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("MainAbility onWindowStageCreate");
+    globalThis.abilityContext = this.context;
+    windowStage.loadContent("pages/index/index", null);
+    commonEvent.publish("ACTS_KillProcess", PublishCallBackOne);
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("MainAbility onWindowStageCreate")
-        globalThis.abilityContext = this.context
-        windowStage.setUIContent(this.context, "pages/index/index", null)
-        commonEvent.publish("ACTS_KillProcess", PublishCallBackOne);
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("MainAbility onWindowStageDestroy");
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("MainAbility onWindowStageDestroy")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("MainAbility onForeground");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("MainAbility onForeground")
-    }
-
-    onBackground() {
-        // Ability has back to background
-        console.log("MainAbility onBackground")
-    }
-};
+  onBackground() {
+    // Ability has back to background
+    console.log("MainAbility onBackground");
+  }
+}

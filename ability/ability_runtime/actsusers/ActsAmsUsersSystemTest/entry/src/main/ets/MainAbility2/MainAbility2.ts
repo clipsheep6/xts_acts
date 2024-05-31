@@ -12,51 +12,65 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
+
 function PublishCallBackOne() {
   console.debug("====>Publish CallBack ACTS_StartAbility_0100_CommonEvent====>");
   globalThis.abilityContext2.terminateSelf().then(()=>{
     commonEvent.publish("ACTS_TerminateSelf_CommonEvent", PublishCallBackTwo);
-    console.debug("====>publish ACTS_TerminateSelf_CommonEvent finish====>")
+    console.debug("====>publish ACTS_TerminateSelf_CommonEvent finish====>");
   });
-  console.debug("====>terminateSelf succese====>")
+  console.debug("====>terminateSelf succese====>");
 }
-function PublishCallBackTwo(){
+
+function PublishCallBackTwo() {
   console.debug("====>Publish CallBack ACTS_TerminateSelf_CommonEvent====>");
 }
 
 export default class MainAbility2 extends Ability {
-    onCreate(want,launchParam){
-        // Ability is creating, initialize resources for this ability
-        console.log("MainAbility2 onCreate")
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // Ability is creating, initialize resources for this ability
+    console.log("MainAbility2 onCreate");
+  }
 
-    onDestroy() {
-        // Ability is destroying, release resources for this ability
-        console.log("MainAbility2 onDestroy")
-    }
+  onDestroy() {
+    // Ability is destroying, release resources for this ability
+    console.log("MainAbility2 onDestroy");
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("MainAbility2 onWindowStageCreate")
-        globalThis.abilityContext2 = this.context
-        windowStage.setUIContent(this.context, "MainAbility/pages/index/second", null)
-        commonEvent.publish("ACTS_InterfaceMultiUsers_0100_Start_CommonEvent", PublishCallBackOne);
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("MainAbility2 onWindowStageCreate");
+    globalThis.abilityContext2 = this.context;
+    windowStage.loadContent("MainAbility/pages/index/second", null);
+    commonEvent.publish("ACTS_InterfaceMultiUsers_0100_Start_CommonEvent", () => {
+      console.debug("====>Publish CallBack ACTS_StartAbility_0100_CommonEvent====>");
+      this.context.terminateSelf()
+        .then(() => {
+          commonEvent.publish("ACTS_TerminateSelf_CommonEvent", PublishCallBackTwo);
+          console.debug("====>publish ACTS_TerminateSelf_CommonEvent finish====>");
+        });
+      console.debug("====>terminateSelf succese====>");
+    });
+  }
 
-    onWindowStageDestroy() {
-        //Main window is destroyed, release UI related resources
-        console.log("MainAbility2 onWindowStageDestroy")
-    }
+  onWindowStageDestroy() {
+    //Main window is destroyed, release UI related resources
+    console.log("MainAbility2 onWindowStageDestroy");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("MainAbility2 onForeground")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("MainAbility2 onForeground");
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("MainAbility2 onBackground")
-    }
-};
+  onBackground() {
+    // Ability has back to background
+    console.log("MainAbility2 onBackground");
+  }
+}

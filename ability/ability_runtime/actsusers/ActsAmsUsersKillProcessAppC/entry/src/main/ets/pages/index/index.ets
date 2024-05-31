@@ -12,14 +12,14 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+
 import file from '@system.file';
 
 @Entry
 @Component
 struct Index {
-
   aboutToAppear() {
-    console.info("start run testcase!!!!")
+    console.info("start run testcase!!!!");
   }
 
   build() {
@@ -27,9 +27,7 @@ struct Index {
       Text('hello')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
-      .margin({
-        top: 20
-      })
+        .margin({ top: 20 })
     }
     .width('100%')
     .height('100%')
