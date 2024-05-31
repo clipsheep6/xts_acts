@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import hilog from '@ohos.hilog';
 import Ability from '@ohos.app.ability.UIAbility';
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
@@ -57,68 +58,75 @@ export default class EntryAbility extends Ability {
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
 
-    globalThis.terminate = () => {
+    AppStorage.setOrCreate<Function>("terminate", () => {
       setTimeout(() => {
-        this.context.terminateSelf().then(() => {
-          console.debug('====>terminateSelf end');
-        }).catch((err) => {
-          console.debug('====>terminateSelf err:' + JSON.stringify(err));
-        });
+        this.context.terminateSelf()
+          .then(() => {
+            console.debug('====>terminateSelf end');
+          })
+          .catch((err) => {
+            console.debug('====>terminateSelf err:' + JSON.stringify(err));
+          });
       }, 50)
-    };
+    });
 
-    globalThis.singleCallFunction_0100 = () => {
+    AppStorage.setOrCreate<Function>("singleCallFunction_0100", () => {
       this.context.startAbilityByCall({
         bundleName: 'com.acts.callapprely',
         abilityName: 'EntryAbility',
-      }).then((caller) => {
-        let param = new MyParcelable(100, 'Acts_SingleInstanceCallFunction_0100', false);
-        caller.callWithResult('call', param).then((data) => {
-          console.debug('====>Acts_SingleInstanceCallFunction_0100 call success');
-          let result = new MyParcelable(0, '', false);
-          data.readParcelable(result);
-          caller.release();
-          console.debug('====>Acts_SingleInstanceCallFunction_0100 callWithResult result:' + JSON.stringify(result));
-          let commonEventData = {
-            parameters: {
-              num: result.num,
-              str: result.str,
-              result: result.result
-            }
-          };
-          commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
-            console.debug('====>Acts_SingleInstanceCallFunction_0100 publish err:' + JSON.stringify(err));
-            globalThis.terminate();
+      })
+        .then((caller) => {
+          let param = new MyParcelable(100, 'Acts_SingleInstanceCallFunction_0100', false);
+          caller.callWithResult('call', param)
+            .then((data) => {
+              console.debug('====>Acts_SingleInstanceCallFunction_0100 call success');
+              let result = new MyParcelable(0, '', false);
+              data.readParcelable(result);
+              caller.release();
+              console.debug('====>Acts_SingleInstanceCallFunction_0100 callWithResult result:' + JSON.stringify(result));
+              let commonEventData = {
+                parameters: {
+                  num: result.num,
+                  str: result.str,
+                  result: result.result
+                }
+              };
+              commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
+                console.debug('====>Acts_SingleInstanceCallFunction_0100 publish err:' + JSON.stringify(err));
+                AppStorage.get<Function>("terminate")!();
+              })
+            }).catch((err) => {
+            console.debug('====>Acts_SingleInstanceCallFunction_0100 callWithResult err:' + JSON.stringify(err));
           })
         }).catch((err) => {
-          console.debug('====>Acts_SingleInstanceCallFunction_0100 callWithResult err:' + JSON.stringify(err));
-        })
-      }).catch((err) => {
         console.debug('====>Acts_SingleInstanceCallFunction_0100 startAbilityByCall err:' + JSON.stringify(err));
       })
-    }
+    });
 
-    globalThis.singleCallFunction_0200 = () => {
+    AppStorage.setOrCreate<Function>("singleCallFunction_0200", () => {
       this.context.startAbilityByCall({
         bundleName: 'com.acts.actscallfunction',
         abilityName: 'SecondAbility',
-      }).then((caller) => {
-        console.debug('====>Acts_SingleInstanceCallFunction_0200 startAbilityByCall caller:' + JSON.stringify(caller));
-      }).catch((err) => {
-        console.debug('====>Acts_SingleInstanceCallFunction_0200 startAbilityByCall err:' + JSON.stringify(err));
-        let commonEventData = {
-          parameters: {
-            num: err.code,
-          }
-        };
-        commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
-          console.debug('====>Acts_SingleInstanceCallFunction_0200 publish err:' + JSON.stringify(err));
-          globalThis.terminate();
-        })
       })
-    }
+        .then((caller) => {
+          console.debug('====>Acts_SingleInstanceCallFunction_0200 startAbilityByCall caller:' + JSON.stringify(caller));
+        })
+        .catch((err) => {
+          console.debug('====>Acts_SingleInstanceCallFunction_0200 startAbilityByCall err:' + JSON.stringify(err));
+          let commonEventData = {
+            parameters: {
+              num: err.code,
+            }
+          };
+          commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
+            console.debug('====>Acts_SingleInstanceCallFunction_0200 publish err:' + JSON.stringify(err));
+            AppStorage.get<Function>("terminate")!();
+          })
+        })
+    })
 
-    globalThis.singleCallFunction_0300 = () => {
+    AppStorage.setOrCreate<Function>("singleCallFunction_0300", () => {
+
       function releaseCallback(data): void {
         console.debug('====>Acts_SingleInstanceCallFunction_0300 releaseCallBack:' + data);
         let commonEventData = {
@@ -152,7 +160,7 @@ export default class EntryAbility extends Ability {
           };
           commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
             console.debug('====>Acts_SingleInstanceCallFunction_0300 call event publish err:' + JSON.stringify(err));
-            globalThis.terminate();
+            AppStorage.get<Function>("terminate")!();
           })
           caller.release();
         }).catch((err) => {
@@ -161,10 +169,11 @@ export default class EntryAbility extends Ability {
       }).catch((err) => {
         console.debug('====>Acts_SingleInstanceCallFunction_0300 startAbilityByCall err:' + JSON.stringify(err));
       })
-    }
+    })
 
-    globalThis.singleCallFunction_0400 = () => {
+    AppStorage.setOrCreate<Function>("singleCallFunction_0400", () => {
       let caller;
+
       function releaseCallback(data): void {
         console.debug('====>Acts_SingleInstanceCallFunction_0400 releaseCallBack:' + data);
         let commonEventData = {
@@ -203,7 +212,7 @@ export default class EntryAbility extends Ability {
             };
             commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
               console.debug('====>Acts_SingleInstanceCallFunction_0400 call event publish err:' + JSON.stringify(err));
-              globalThis.terminate();
+              AppStorage.get<Function>("terminate")!();
             })
           })
         }).catch(err => {
@@ -212,9 +221,9 @@ export default class EntryAbility extends Ability {
       }).catch((err) => {
         console.debug('====>Acts_SingleInstanceCallFunction_0400 startAbilityByCall err:' + JSON.stringify(err));
       })
-    }
+    })
 
-    globalThis.MultipleCallFunction_0100 = () => {
+    AppStorage.setOrCreate<Function>("MultipleCallFunction_0100", () => {
       this.context.startAbilityByCall({
         bundleName: 'com.acts.thirdpartyapprely',
         abilityName: 'SecondAbility',
@@ -241,7 +250,7 @@ export default class EntryAbility extends Ability {
               };
               commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
                 console.log('====>Acts_SingleInstanceCallFunction_0500 publish err:' + JSON.stringify(err));
-                globalThis.terminate();
+                AppStorage.get<Function>("terminate")!();
               })
             })
           })
@@ -253,9 +262,9 @@ export default class EntryAbility extends Ability {
       }).catch((err) => {
         console.info('====>Acts_SingleInstanceCallFunction_0500 startAbilityByCall err:' + JSON.stringify(err));
       })
-    }
+    })
 
-    globalThis.MultipleCallFunction_0300 = () => {
+    AppStorage.setOrCreate<Function>("MultipleCallFunction_0300", () => {
       this.context.startAbilityByCall({
         bundleName: 'com.acts.thirdpartyapprely',
         abilityName: 'SecondAbility',
@@ -276,8 +285,8 @@ export default class EntryAbility extends Ability {
           })
           caller.release();
           let callerReleaseRetryNum = 0;
-          let intervalId = setInterval(()=>{
-            callerReleaseRetryNum ++;
+          let intervalId = setInterval(() => {
+            callerReleaseRetryNum++;
             if (callerReleaseRetryNum === 10 || isCallerRelease) {
               clearInterval(intervalId);
               this.context.startAbilityByCall({
@@ -299,7 +308,7 @@ export default class EntryAbility extends Ability {
                       };
                       commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
                         console.log('====>Acts_SingleInstanceCallFunction_0700 publish err:' + JSON.stringify(err));
-                        globalThis.terminate();
+                        AppStorage.get<Function>("terminate")!();
                       })
                     }
                   })
@@ -315,14 +324,14 @@ export default class EntryAbility extends Ability {
       }).catch((err) => {
         console.info('====>Acts_SingleInstanceCallFunction_0700 startAbilityByCall err:' + JSON.stringify(err));
       })
-    }
+    })
 
-    globalThis.MultipleCallFunction_0400 = () => {
+    AppStorage.setOrCreate<Function>("MultipleCallFunction_0400", () => {
       let count = 0;
       let isCallerRelease = false;
       let isCaller1Release = false;
       let verifyResult = (str) => {
-        console.info('====>Acts_SingleInstanceCallFunction_0800 verify' + isCallerRelease +" "+ isCaller1Release);
+        console.info('====>Acts_SingleInstanceCallFunction_0800 verify' + isCallerRelease + " " + isCaller1Release);
         if (isCallerRelease && isCaller1Release) {
           let commonEventData = {
             parameters: {
@@ -332,7 +341,7 @@ export default class EntryAbility extends Ability {
           };
           commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
             console.log('====>Acts_SingleInstanceCallFunction_0800 publish err:' + JSON.stringify(err));
-            globalThis.terminate();
+            AppStorage.get<Function>("terminate")!();
           })
         }
       }
@@ -386,9 +395,9 @@ export default class EntryAbility extends Ability {
       }).catch((err) => {
         console.info('====>Acts_SingleInstanceCallFunction_0800 startAbilityByCall err:' + JSON.stringify(err));
       })
-    }
+    })
 
-    globalThis.multipleAndSingleCallFunction_0100 = () => {
+    AppStorage.setOrCreate<Function>("multipleAndSingleCallFunction_0100", () => {
       let firstCaller;
       let secondCaller;
       let thirdCaller;
@@ -450,7 +459,7 @@ export default class EntryAbility extends Ability {
                     thirdCaller.release();
                     secondCaller.release();
                     firstCaller.release();
-                    globalThis.terminate();
+                    AppStorage.get<Function>("terminate")!();
                   })
                 })
               }).catch((err) => {
@@ -462,9 +471,9 @@ export default class EntryAbility extends Ability {
           })
         })
       })
-    }
+    })
 
-    globalThis.Acts_SingleInstanceCallFunction_1000 = () => {
+    AppStorage.setOrCreate<Function>("Acts_SingleInstanceCallFunction_1000", () => {
       console.info('====>Acts_SingleInstanceCallFunction_1000 entryability data:');
       this.context.startAbilityByCall({
         bundleName: 'com.acts.thirdpartyapprely',
@@ -486,7 +495,7 @@ export default class EntryAbility extends Ability {
           };
           commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
             console.log('====>Acts_SingleInstanceCallFunction_1000 publish err:' + JSON.stringify(err));
-            globalThis.terminate();
+            AppStorage.get<Function>("terminate")!();
           })
         }).catch((err) => {
           console.info('====>Acts_SingleInstanceCallFunction_1000 callWithResult err:' + JSON.stringify(err));
@@ -494,9 +503,9 @@ export default class EntryAbility extends Ability {
       }).catch((err) => {
         console.info('====>Acts_SingleInstanceCallFunction_1000 startAbilityByCall err:' + JSON.stringify(err));
       })
-    }
+    })
 
-    globalThis.Acts_SingleInstanceCallFunction_1100 = () => {
+    AppStorage.setOrCreate<Function>("Acts_SingleInstanceCallFunction_1100", () => {
       console.info('====>Acts_SingleInstanceCallFunction_1100 entryability data:');
       this.context.startAbilityByCall({
         bundleName: 'com.acts.callapprely',
@@ -529,10 +538,10 @@ export default class EntryAbility extends Ability {
       }).catch((err) => {
         console.info('====>Acts_SingleInstanceCallFunction_1100 startAbilityByCall err:' + JSON.stringify(err));
       })
-      globalThis.terminate();
-    }
+      AppStorage.get<Function>("terminate")!();
+    })
 
-    globalThis.Acts_SingleInstanceCallFunction_1200 = () => {
+    AppStorage.setOrCreate<Function>("Acts_SingleInstanceCallFunction_1200", () => {
       console.info('====>Acts_SingleInstanceCallFunction_1200 entryability data:');
       this.context.startAbilityByCall({
         bundleName: 'com.acts.callapprely',
@@ -550,43 +559,43 @@ export default class EntryAbility extends Ability {
         };
         commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
           console.log('====>Acts_SingleInstanceCallFunction_1200 publish err:' + JSON.stringify(err));
-          globalThis.terminate();
+          AppStorage.get<Function>("terminate")!();
         })
       })
-    }
+    })
 
     if (want.action === 'Acts_SingleInstanceCallFunction_0100') {
-      globalThis.singleCallFunction_0100();
+      AppStorage.get<Function>("singleCallFunction_0100")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_0200') {
-      globalThis.singleCallFunction_0200();
+      AppStorage.get<Function>("singleCallFunction_0200")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_0300') {
-      globalThis.singleCallFunction_0300();
+      AppStorage.get<Function>("singleCallFunction_0300")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_0400') {
-      globalThis.singleCallFunction_0400();
+      AppStorage.get<Function>("singleCallFunction_0400")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_0500') {
-      globalThis.MultipleCallFunction_0100();
+      AppStorage.get<Function>("MultipleCallFunction_0100")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_0700') {
-      globalThis.MultipleCallFunction_0300();
+      AppStorage.get<Function>("MultipleCallFunction_0300")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_0800') {
-      globalThis.MultipleCallFunction_0400();
+      AppStorage.get<Function>("MultipleCallFunction_0400")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_0900') {
-      globalThis.multipleAndSingleCallFunction_0100();
+      AppStorage.get<Function>("multipleAndSingleCallFunction_0100")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_1000') {
-      globalThis.Acts_SingleInstanceCallFunction_1000();
+      AppStorage.get<Function>("Acts_SingleInstanceCallFunction_1000")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_1100') {
-      globalThis.Acts_SingleInstanceCallFunction_1100();
+      AppStorage.get<Function>("Acts_SingleInstanceCallFunction_1100")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_1200') {
-      globalThis.Acts_SingleInstanceCallFunction_1200();
+      AppStorage.get<Function>("Acts_SingleInstanceCallFunction_1200")!();
     }
   }
 

@@ -12,12 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import hilog from '@ohos.hilog';
 import TestRunner from '@ohos.application.testRunner'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import { BusinessError } from '@ohos.base';
 
-let abilityDelegator = undefined;
-let abilityDelegatorArguments = undefined;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs;
 
 function translateParamsToString(parameters) {
   const keySet = new Set([
@@ -39,7 +41,7 @@ async function onAbilityCreateCallback() {
   hilog.info(0x0000, 'testTag', '%{public}s', 'onAbilityCreateCallback');
 }
 
-async function addAbilityMonitorCallback(err: any) {
+async function addAbilityMonitorCallback(err: BusinessError) {
   hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
   hilog.info(0x0000, 'testTag', 'addAbilityMonitorCallback : %{public}s', JSON.stringify(err) ?? '');
 }
@@ -72,7 +74,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     }
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', 'cmd : %{public}s', cmd);
-    abilityDelegator.executeShellCommand(cmd, (err: any, d: any) => {
+    abilityDelegator.executeShellCommand(cmd, (err: BusinessError, d: AbilityDelegatorRegistry.ShellCmdResult) => {
       hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
       hilog.info(0x0000, 'testTag', 'executeShellCommand : err : %{public}s', JSON.stringify(err) ?? '');
       hilog.info(0x0000, 'testTag', 'executeShellCommand : data : %{public}s', d.stdResult ?? '');
