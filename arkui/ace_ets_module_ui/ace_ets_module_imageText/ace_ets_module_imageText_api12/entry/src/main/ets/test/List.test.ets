@@ -86,6 +86,7 @@ import TextClockApiTest from './TextColckTest/TextClockApiTest/TextClockApiTest.
 import TextTimerApiTest from './TextTimerTest/TextTimerApiTest/TextTimerApiTest.test'
 import AttributeUpdaterTest from './TextTest/TextAPITest/AttributeUpdaterTest.test'
 import UnitTest from './TextTest/TextAPITest/UnitTest.test'
+import TextAreaTest from './TextAreaTest/TextAreaAPITest/TextAreaTest.test'
 export default function testsuite() {
   APIContentTypeTest();
   APIUnderlineColorTest();
@@ -159,5 +160,6 @@ export default function testsuite() {
   TextTimerApiTest();
   AttributeUpdaterTest();
   UnitTest();
+  TextAreaTest();
 
 }

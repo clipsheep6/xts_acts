@@ -70,7 +70,7 @@
     "MainAbility/pages/Text/TextAPI/AttributeUpdater",
     "MainAbility/pages/Text/TextAPI/Unit",
     "MainAbility/pages/TextClock/TextClockApi/TextClockApi",
-    "MainAbility/pages/TextTimer/TextTimerApi/TextTimerApi"
-
+    "MainAbility/pages/TextTimer/TextTimerApi/TextTimerApi",
+    "MainAbility/pages/TextArea/TextAreaAPI/TextArea"
   ]
 }
