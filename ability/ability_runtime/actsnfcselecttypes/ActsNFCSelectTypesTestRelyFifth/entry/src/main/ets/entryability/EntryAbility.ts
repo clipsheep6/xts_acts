@@ -29,7 +29,7 @@ let timeout = 50;
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Abilitytest4 onCreate');
-    globalThis.terminate = () => {
+    AppStorage.setOrCreate<Function>("terminate", () => {
       setTimeout(() => {
         this.context.terminateSelf().then(() => {
           console.info('====>EntryAbility terminateSelf end');
@@ -37,7 +37,7 @@ export default class EntryAbility extends UIAbility {
           console.info('====>EntryAbility terminateSelf err:' + JSON.stringify(err));
         });
       }, timeout);
-    };
+    });
     console.info('Ability4 onCreate' + JSON.stringify(want));
     let actionStr = want.action;
     if (actionStr === 'ohos.nfc.tag.test.action') {
@@ -45,7 +45,7 @@ export default class EntryAbility extends UIAbility {
       commonEventData.parameters.message = 'select';
       commonEvent.publish('ACTS_CROSS_CALL_EVENT', commonEventData, (err) => {
         console.info('====>' + actionStr + ' apublish err:' + JSON.stringify(err));
-        globalThis.terminate();
+        AppStorage.get<Function>("terminate")!();
       });
     }
   }
