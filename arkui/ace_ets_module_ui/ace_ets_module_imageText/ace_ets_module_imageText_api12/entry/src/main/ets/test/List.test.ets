@@ -81,17 +81,11 @@ import imageAddApi from './ImageTest/imageAddApi.test'
 import SymbolGlyphApi from './SymbolGlyph/SymbolGlyphApi.test'
 import styledStringApi from './TextTest/styledStringApi.test'
 import SelectionMenuApi from './RichEditor/SelectionMenuApi.test'
-import TextAreaApi1 from './TextArea/TextAreaApi1.test'
-import TextAreaApi2 from './TextArea/TextAreaApi2.test'
-import TextAreaApi3 from './TextArea/TextAreaApi3.test'
-import textApi1 from './Text/TextApi1.test'
-import textStrategyJsunit from './TextTest/textStrategyJsunit.test';
-import EffectFillStyle from './SymbolGlyph/EffectFillStyle.test'
-import EffectScope from './SymbolGlyph/EffectScope.test'
-import menuPolicyHIDE from './RichEditorTest/menuPolicyHIDE.test'
-import menuPolicySHOW from './RichEditorTest/menuPolicySHOW.test'
 import StyledStringApi1 from './StyledString/StyledStringApi1.test'
-
+import TextClockApiTest from './TextColckTest/TextClockApiTest/TextClockApiTest.test'
+import TextTimerApiTest from './TextTimerTest/TextTimerApiTest/TextTimerApiTest.test'
+import AttributeUpdaterTest from './TextTest/TextAPITest/AttributeUpdaterTest.test'
+import UnitTest from './TextTest/TextAPITest/Unit.test'
 export default function testsuite() {
   APIContentTypeTest();
   APIUnderlineColorTest();
@@ -141,7 +135,6 @@ export default function testsuite() {
   RichEditor6();
   RichEditor7();
   TextInputTextAreaSearch();
-  TextStyleWavy();
   TextAreaApi1();
   TextAreaApi2();
   TextAreaApi3();
@@ -154,10 +147,6 @@ export default function testsuite() {
   Text_lineSpacingTest();
   marqueeOptionsTest();
   textStrategyJsunit();
-  EffectFillStyle()
-  EffectScope()
-  menuPolicyHIDE()
-  menuPolicySHOW()
 
   Context()
   getLayout()
@@ -166,5 +155,9 @@ export default function testsuite() {
   styledStringApi()
   SelectionMenuApi()
   StyledStringApi1();
+  TextClockApiTest();
+  TextTimerApiTest();
+  AttributeUpdaterTest();
+  UnitTest();
 
 }

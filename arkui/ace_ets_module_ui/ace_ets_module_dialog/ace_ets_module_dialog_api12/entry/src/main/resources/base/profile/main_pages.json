@@ -34,6 +34,9 @@
     "MainAbility/pages/CustomDialog/UIContext/OpenCustomDialog",
     "MainAbility/pages/CalendarPickerDialog/ButtonStyle",
     "MainAbility/pages/Dialog/dialogApi",
-    "MainAbility/pages/DatePickerDialog/DateButtonStyle"
+    "MainAbility/pages/DatePickerDialog/DateButtonStyle",
+    "MainAbility/pages/CustomDialog/CustomDialogRouter",
+    "MainAbility/pages/Popup/PopupApi/PopupApi",
+    "MainAbility/pages/Menu/MenuApi/IconApi"
   ]
 }
