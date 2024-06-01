@@ -20,9 +20,6 @@ import renderNodeGetInterfaceTest from './renderNode/renderNodeTestInterface.tes
 import disposeTest from './FrameNodeTest/dispose.test';
 import getAttrsTest from './FrameNodeTest/getAttrs.test';
 import RenderNodeAttributeTest from './renderNode/RenderNodeAttributeTest.test';
-import setMeasureSizeTest from './FrameNodeTest/setMeasureSize.test';
-import getPosition from './FrameNodeTest/getPosition.test';
-import setLayout from './FrameNodeTest/setLayout.test';
 import setRectShape from './GraphicsTest/setRectShape.test';
 import LengthUnitTest from './GraphicsTest/LengthUnit.test'
 import getBlendColor from './GraphicsTest/getBlendColor.test';
@@ -32,6 +29,12 @@ import getAlpha from './GraphicsTest/getAlpha.test';
 import getBlue from './GraphicsTest/getBlue.test';
 import getGreen from './GraphicsTest/getGreen.test';
 import getRed from './GraphicsTest/getRed.test';
+import onAppear from './FrameNodeTest/onAppear.test';
+import setMeasureSizeTest from './FrameNodeTest/setMeasureSize.test';
+
+import CornerTest from './GraphicsTest/GraphicsApiTest/CornerTest.test';
+import LengthMetricsUnitTest from './GraphicsTest/GraphicsApiTest/LengthMetricsUnitTest.test';
+import PercentReferenceTest from './GraphicsTest/GraphicsApiTest/PercentReferenceTest.test';
 
 export default function testsuite() {
   borderRadiuses();
@@ -42,9 +45,6 @@ export default function testsuite() {
   disposeTest();
   getAttrsTest();
   RenderNodeAttributeTest();
-  setMeasureSizeTest();
-  getPosition();
-  setLayout();
   setRectShape();
   LengthUnitTest();
   getBlendColor();
@@ -54,4 +54,6 @@ export default function testsuite() {
   getBlue();
   getGreen();
   getRed();
+  onAppear();
+  setMeasureSizeTest();
 }
