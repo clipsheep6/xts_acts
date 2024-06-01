@@ -85,7 +85,7 @@ import StyledStringApi1 from './StyledString/StyledStringApi1.test'
 import TextClockApiTest from './TextColckTest/TextClockApiTest/TextClockApiTest.test'
 import TextTimerApiTest from './TextTimerTest/TextTimerApiTest/TextTimerApiTest.test'
 import AttributeUpdaterTest from './TextTest/TextAPITest/AttributeUpdaterTest.test'
-import UnitTest from './TextTest/TextAPITest/UnitTest.test'
+import UnitTest from './TextTest/TextAPITest/Unit.test'
 import TextAreaTest from './TextAreaTest/TextAreaAPITest/TextAreaTest.test'
 export default function testsuite() {
   APIContentTypeTest();
