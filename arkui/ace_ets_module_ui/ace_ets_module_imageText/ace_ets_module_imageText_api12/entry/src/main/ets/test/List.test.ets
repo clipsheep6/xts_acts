@@ -87,6 +87,12 @@ import TextTimerApiTest from './TextTimerTest/TextTimerApiTest/TextTimerApiTest.
 import AttributeUpdaterTest from './TextTest/TextAPITest/AttributeUpdaterTest.test'
 import UnitTest from './TextTest/TextAPITest/Unit.test'
 import TextAreaTest from './TextAreaTest/TextAreaAPITest/TextAreaTest.test'
+
+import RichEditorApi2 from './RichEditor/RichEditorApi2.test'
+import RichEditorApi6 from './RichEditor/RichEditorApi6.test'
+import RichEditorApi7 from './RichEditor/RichEditorApi7.test'
+import TextAreaApi4 from './TextArea/TextAreaApi4.test'
+
 export default function testsuite() {
   APIContentTypeTest();
   APIUnderlineColorTest();
@@ -161,5 +167,10 @@ export default function testsuite() {
   AttributeUpdaterTest();
   UnitTest();
   TextAreaTest();
+
+  RichEditorApi2();
+  RichEditorApi6();
+  RichEditorApi7();
+  TextAreaApi4()
 
 }
