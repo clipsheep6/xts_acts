@@ -1,32 +1,31 @@
 {
-    "description": "Configuration for hls player Tests",
+    "description": "Configuration for hjunit demo Tests",
     "driver": {
-        "type": "JSUnitTest",
-        "test-timeout": "2000000",
-        "package": "ohos.acts.multimedia.media.hlsplayer",
-		"shell-timeout": "60000"
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "ohos.acts.multimedia.media.hlsplayer",
+        "package-name": "ohos.acts.multimedia.media.hlsplayer"
     },
     "kits": [
         {
-          "test-file-name": [
-            "ActsHLSPlayerJsTest.hap"
-          ],
-          "type": "AppInstallKit",
-          "cleanup-apps": true
+            "test-file-name": [
+                "ActsHLSPlayerJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
         },
         {
-          "type": "ShellKit",
-          "run-command": [
-          ],
-          "teardown-command":[
-          ]
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
         },
         {
-          "type": "PushKit",
-          "pre-push": [
-          ],
-          "push": [
-          ]
+            "type": "PushKit",
+            "pre-push": [],
+            "push": []
         }
     ]
 }
