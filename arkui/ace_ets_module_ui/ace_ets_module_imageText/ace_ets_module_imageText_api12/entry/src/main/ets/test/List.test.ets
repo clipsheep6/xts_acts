@@ -51,6 +51,12 @@ import RichEditorApi1 from './RichEditor/RichEditorApi1.test'
 import RichEditorApi3 from './RichEditor/RichEditorApi3.test'
 import RichEditorApi5 from './RichEditor/RichEditorApi5.test'
 import RichEditorChangeCallback from './RichEditor/RichEditorChangeCallback.test'
+import MarqueeHorseRace from './TextTest/MarqueeHorseRace.test';
+import MarqueeHorseRace2 from './TextTest/MarqueeHorseRace2.test';
+import MarqueeHorseRace3 from './TextTest/MarqueeHorseRace3.test';
+import MarqueeHorseRace4 from './TextTest/MarqueeHorseRace4.test';
+import MarqueeHorseRace5 from './TextTest/MarqueeHorseRace5.test';
+import MarqueeHorseRace6 from './TextTest/MarqueeHorseRace6.test';
 import RichEditorWordBreakJsunitTest from './RichEditorEnhance01/RichEditorWordBreakJsunitTest.test'
 import RichEditorMenuPolicyJsunit from './RichEditorEnhance01/RichEditorMenuPolicyJsunit.test'
 import RichEditorTextStyleJsunit from './RichEditorEnhance01/RichEditorTextStyleJsunit.test'
@@ -142,6 +148,12 @@ export default function testsuite() {
   RichEditorApi3();
   RichEditorApi5();
   RichEditorChangeCallback();
+  MarqueeHorseRace();
+  MarqueeHorseRace2();
+  MarqueeHorseRace3();
+  MarqueeHorseRace4();
+  MarqueeHorseRace5();
+  MarqueeHorseRace6();
   RichEditorWordBreakJsunitTest();
   RichEditorMenuPolicyJsunit();
   RichEditorTextStyleJsunit();
