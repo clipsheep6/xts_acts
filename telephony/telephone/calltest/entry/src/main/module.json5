@@ -16,40 +16,36 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "description": "$string:module_test_desc",
+    "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
       "default",
       "tablet",
+      "2in1"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
-    "pages": "$profile:test_pages",
+    "pages": "$profile:main_pages",
     "abilities": [
       {
         "name": "EntryAbility",
         "srcEntry": "./ets/entryability/EntryAbility.ts",
-        "description": "$string:TestAbility_desc",
+        "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
-        "label": "$string:TestAbility_label",
-        "exported": true,
+        "label": "$string:EntryAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
+        "exported": true,
         "skills": [
           {
-            "actions": [
-              "action.system.home"
-            ],
             "entities": [
               "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
             ]
           }
         ]
-      }
-    ],
-    "requestPermissions": [
-      {
-        "name": "ohos.permission.INTERNET"
       }
     ]
   }
