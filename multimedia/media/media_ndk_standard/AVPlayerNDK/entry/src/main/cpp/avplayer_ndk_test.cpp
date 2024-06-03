@@ -537,6 +537,36 @@ static napi_value OhAvPlayerSetVideoSurface(napi_env env, napi_callback_info inf
     return result;
 }
 
+// 设置音频流类型
+static napi_value OhAvPlayerSetAudioRendererInfo(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
+    OH_AVErrCode avErrCode = OH_AVPlayer_SetAudioRendererInfo(mainPlayer, streamUsage)
+    napi_create_int32(env, avErrCode, &result);
+    return result;
+}
+
+// 设置音频流打断模式
+static napi_value OhAvPlayerSetAudioInterruptMode(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
+    OH_AVErrCode avErrCode = OH_AVPlayer_SetAudioInterruptMode(mainPlayer, interruptMode);
+    napi_create_int32(env, avErrCode, &result);
+    return result;
+}
+
+// 设置音频流音效模式
+static napi_value OhAvPlayerSetAudioEffectMode(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    OH_AudioStream_AudioEffectMode effectMode = OH_AudioStream_AudioEffectMode::EFFECT_NONE;
+    OH_AVErrCode avErrCode = OH_AVPlayer_SetAudioEffectMode(mainPlayer, effectMode);
+    napi_create_int32(env, avErrCode, &result);
+    return result;
+}
+
 // 设置播放器的音量
 static napi_value OhAvPlayerSetVolume(napi_env env, napi_callback_info info)
 {
