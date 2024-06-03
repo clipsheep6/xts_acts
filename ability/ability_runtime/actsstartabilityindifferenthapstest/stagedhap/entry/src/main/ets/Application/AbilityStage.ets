@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import AbilityStage from "@ohos.app.ability.AbilityStage"
+import AbilityStage from '@ohos.app.ability.AbilityStage';
 import hilog from '@ohos.hilog';
 import commonEvent from '@ohos.commonEvent';
 
