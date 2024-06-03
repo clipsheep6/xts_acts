@@ -14,8 +14,10 @@
  */
 import observerScrollTest from './observerTest/observerScroll.test';
 import ObserverNavDestinationState from './observerTest/ObserverNavDestinationState.test';
+import ObserverPageId from './observerTest/ObserverPageId.test';
 
 export default function testsuite() {
   observerScrollTest()
   ObserverNavDestinationState();
+  ObserverPageId();
 }
