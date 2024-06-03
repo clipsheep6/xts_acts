@@ -870,5 +870,300 @@ export default function ConnectionWithoutNetTest() {
         done();
       }
     });
+
+    /**
+     * @tc.number     : SUB_NetworkMgr_ConnectionGetNetCapabilities_0400
+     * @tc.name       : testNetworkMgrConnectionGetNetCapabilities0400
+     * @tc.desc       : Obtain the capability information of the network corresponding to netHandle and use the callback method as an asynchronous method.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testNetworkMgrConnectionGetNetCapabilities0400', 0, async (done: Function) => {
+      const caseName: string = "testNetworkMgrConnectionGetNetCapabilities0400";
+      console.info(`${caseName} test start `);
+      try {
+        connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+          connection.getNetCapabilities(netHandle, (error: BusinessError, data: connection.NetCapabilities) => {
+            if (error) {
+              console.info(`${caseName} getNetCapabilities: err->${JSON.stringify(error)}`);
+              ExpectTrue(error.code == 2100001);
+              console.info(`${caseName}---End`);
+              done();
+            } else {
+              console.info(`${caseName} getNetCapabilities: success data->${JSON.stringify(data)}`);
+              ExpectFail();
+              console.info(`${caseName}---End`);
+              done();
+            }
+          });
+        }).catch((error: BusinessError) => {
+          console.info(`${caseName} getDefaultNet: err->${JSON.stringify(error)}`);
+          ExpectFail();
+          console.info(`${caseName}---End`);
+          done();
+        });
+      } catch (err) {
+        console.info(`${caseName} catch: err->${JSON.stringify(err)}`);
+        ExpectFail();
+        console.info(`${caseName}---End`);
+        done();
+      }
+    });
+
+    /**
+     * @tc.number     : SUB_NetworkMgr_ConnectionGetNetCapabilities_0500
+     * @tc.name       : testNetworkMgrConnectionGetNetCapabilities0500
+     * @tc.desc       : Obtain the capability information of the network corresponding to netHandle and use the Promise method as an asynchronous method.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testNetworkMgrConnectionGetNetCapabilities0500', 0, async (done: Function) => {
+      const caseName: string = "testNetworkMgrConnectionGetNetCapabilities0500";
+      console.info(`${caseName} test start `);
+      try {
+        connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+          connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
+            console.info(`${caseName} getNetCapabilities: success data->${JSON.stringify(data)}`);
+            ExpectFail();
+            console.info(`${caseName}---End`);
+            done();
+          }).catch((error: BusinessError) => {
+            console.info(`${caseName} getNetCapabilities: err->${JSON.stringify(error)}`);
+            ExpectTrue(error.code == 2100001);
+            console.info(`${caseName}---End`);
+            done();
+          });
+        }).catch((error: BusinessError) => {
+          console.info(`${caseName} getDefaultNet: err->${JSON.stringify(error)}`);
+          ExpectFail();
+          console.info(`${caseName}---End`);
+          done();
+        });
+      } catch (err) {
+        console.info(`${caseName} catch: err->${JSON.stringify(err)}`);
+        ExpectFail();
+        console.info(`${caseName}---End`);
+        done();
+      }
+    });
+
+    /**
+     * @tc.number     : SUB_NetworkMgr_ConnectionGetNetCapabilitiesSync_0400
+     * @tc.name       : testNetworkMgrConnectionGetNetCapabilitiesSync0400
+     * @tc.desc       : Obtain the capability information of the network corresponding to netHandle
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testNetworkMgrConnectionGetNetCapabilitiesSync0400', 0, async (done: Function) => {
+      const caseName: string = "testNetworkMgrConnectionGetNetCapabilitiesSync0400";
+      console.info(`${caseName} test start `);
+      try {
+        let netHandle: connection.NetHandle = connection.getDefaultNetSync();
+        let getNetCapAbilitiesSync: connection.NetCapabilities = connection.getNetCapabilitiesSync(netHandle);
+        console.info(`${caseName} getNetCapabilitiesSync: success data->${JSON.stringify(getNetCapAbilitiesSync)}`);
+        ExpectFail();
+        console.info(`${caseName}---End`);
+        done();
+      } catch (err) {
+        console.info(`${caseName} catch: err->${JSON.stringify(err)}`);
+        ExpectTrue(err.code == 2100001);
+        console.info(`${caseName}---End`);
+        done();
+      }
+    });
+
+    /**
+     * @tc.number     : SUB_NetworkMgr_Connection_ReportNetConnected_0200
+     * @tc.name       : testNetConnectionReportNetConnected0200
+     * @tc.desc       : Report to network management that the network is available
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testNetConnectionReportNetConnected0200', 0, async (done: Function) => {
+      const caseName: string = "testNetConnectionReportNetConnected0200";
+      console.info(`${caseName} test start`);
+      try {
+        connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+          connection.reportNetConnected(netHandle, (error: BusinessError) => {
+            if (error) {
+              console.info(`${caseName} reportNetConnected: BusinessError>${JSON.stringify(error)}`);
+              ExpectTrue(error.code == 2101006);
+              console.info(`${caseName}---End`);
+              done();
+            } else {
+              console.info(`${caseName}: reportNetConnected: success`);
+              ExpectFail();
+              console.info(`${caseName}---End`);
+              done();
+            }
+          });
+        }).catch((err: BusinessError) => {
+          console.info(`${caseName} getDefaultNet: err->${JSON.stringify(err)}`);
+          ExpectFail();
+          console.info(`${caseName}---End`);
+          done();
+        });
+      } catch (err) {
+        console.info(`${caseName} catch: err->${JSON.stringify(err)}`);
+        ExpectFail();
+        console.info(`${caseName}---End`);
+        done();
+      }
+    });
+
+    /**
+     * @tc.number     : SUB_NetworkMgr_Connection_ReportNetConnected_0300
+     * @tc.name       : testNetConnectionReportNetConnected0300
+     * @tc.desc       : Report to network management that the network is available
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testNetConnectionReportNetConnected0300', 0, async (done: Function) => {
+      const caseName: string = "testNetConnectionReportNetConnected0300";
+      console.info(`${caseName} test start`);
+      try {
+        connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+          connection.reportNetConnected(netHandle).then(() => {
+            console.info(`${caseName}: reportNetConnected: success`);
+            ExpectFail();
+            console.info(`${caseName}---End`);
+            done();
+          }).catch((err: BusinessError) => {
+            console.info(`${caseName} reportNetConnected: err->${JSON.stringify(err)}`);
+            ExpectTrue(err.code == 2101006);
+            console.info(`${caseName}---End`);
+            done();
+          });
+        }).catch((err: BusinessError) => {
+          console.info(`${caseName} getDefaultNet: err->${JSON.stringify(err)}`);
+          ExpectFail();
+          console.info(`${caseName}---End`);
+          done();
+        });
+      } catch (err) {
+        console.info(`${caseName} catch: err->${JSON.stringify(err)}`);
+        ExpectFail();
+        console.info(`${caseName}---End`);
+        done();
+      }
+    });
+
+    /**
+     * @tc.number     : SUB_NetworkMgr_Connection_ReportNetDisconnected_0200
+     * @tc.name       : testNetConnectionReportNetDisconnected0200
+     * @tc.desc       : Report the network to network management as unavailable
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testNetConnectionReportNetDisconnected0200', 0, async (done: Function) => {
+      const caseName: string = "testNetConnectionReportNetDisconnected0200";
+      console.info(`${caseName} test start`);
+      try {
+        connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+          connection.reportNetDisconnected(netHandle, (error: BusinessError) => {
+            if (error) {
+              console.info(`${caseName} reportNetDisconnected: BusinessError>${JSON.stringify(error)}`);
+              ExpectTrue(error.code == 2101006);
+              console.info(`${caseName}---End`);
+              done();
+            } else {
+              console.info(`${caseName}: reportNetDisconnected: success`);
+              ExpectFail();
+              console.info(`${caseName}---End`);
+              done();
+            }
+          });
+        }).catch((error: BusinessError) => {
+          console.info(`${caseName} getDefaultNet: err->${JSON.stringify(error)}`);
+          ExpectFail();
+          console.info(`${caseName}---End`);
+          done();
+        });
+      } catch (err) {
+        console.info(`${caseName} catch: err->${JSON.stringify(err)}`);
+        ExpectFail();
+        console.info(`${caseName}---End`);
+        done();
+      }
+    });
+
+    /**
+     * @tc.number     : SUB_NetworkMgr_Connection_ReportNetDisconnected_1100
+     * @tc.name       : testNetConnectionReportNetDisconnected1100
+     * @tc.desc       : Report the network to network management as unavailable
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testNetConnectionReportNetDisconnected1100', 0, async (done: Function) => {
+      const caseName: string = "testNetConnectionReportNetDisconnected1100";
+      console.info(`${caseName} test start`);
+      try {
+        connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
+          connection.reportNetDisconnected(netHandle).then(() => {
+            console.info(`${caseName}: reportNetDisconnected: success`);
+            ExpectFail();
+            console.info(`${caseName}---End`);
+            done();
+          }).catch((error: BusinessError) => {
+            console.info(`${caseName} reportNetDisconnected: err->${JSON.stringify(error)}`);
+            ExpectTrue(error.code == 2101006);
+            console.info(`${caseName}---End`);
+            done();
+          });
+        }).catch((error: BusinessError) => {
+          console.info(`${caseName} getDefaultNet: err->${JSON.stringify(error)}`);
+          ExpectFail();
+          console.info(`${caseName}---End`);
+          done();
+        });
+      } catch (err) {
+        console.info(`${caseName} catch: err->${JSON.stringify(err)}`);
+        ExpectFail();
+        console.info(`${caseName}---End`);
+        done();
+      }
+    });
+
+    /**
+     * @tc.number     : SUB_NetworkMgr_Connection_On_0400
+     * @tc.name       : testNetConnectionOn0400
+     * @tc.desc       : Subscription network connection information change events.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testNetConnectionOn0400', 0, async (done: Function) => {
+      const caseName: string = "testNetConnectionOn0400";
+      console.info(`${caseName} test start`);
+      try {
+        let netCon: connection.NetConnection = connection.createNetConnection();
+        netCon.register((error: BusinessError) => {
+          console.log(`${caseName} register error ${JSON.stringify(error)}`);
+          if (error) {
+            ExpectFail();
+            console.info(`${caseName}---End`);
+            done();
+          }
+        });
+        netCon.on('netUnavailable', () => {
+          console.info(`${caseName} Succeeded netUnavailable`);
+          ExpectTrue(true);
+          console.info(`${caseName}---End`);
+          done();
+        });
+      } catch (err) {
+        console.info(`${caseName} catch: err->${JSON.stringify(err)}`);
+        ExpectFail();
+        console.info(`${caseName}---End`);
+        done();
+      }
+    });
   });
 }
