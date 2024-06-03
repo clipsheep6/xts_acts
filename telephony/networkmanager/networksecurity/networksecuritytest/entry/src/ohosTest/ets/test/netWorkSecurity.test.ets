@@ -60,7 +60,6 @@ async function writeFile(path: string) {
     const model_buffer = await getRawFileContentWrapper(path);
     console.log(`[rawfile_copy_to_sandbox]${model_buffer} ${model_buffer.toString()} `);
     let file = fs.openSync(derPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-
     fs.writeSync(file.fd, model_buffer.buffer);
     fs.closeSync(file);
   } catch (error) {
@@ -70,9 +69,9 @@ async function writeFile(path: string) {
 
 export default function netWorkSecurityTest() {
 
-  const yetVaild: string = '-----BEGIN CERTIFICATE-----\nMIIDXTCCAkWgAwIBAgIUZNN5YpND296S+Drwc6FebDpLorYwDQYJKoZIhvcNAQELBQAwPjEVMBMGA1UEAwwMbXlzZXJ2ZXIuY29tMRgwFgYDVQQKDA9NeSBPcmdhbml6YXRpb24xCzAJBgNVBAYTAlVTMB4XDTI0MDUwNjA3NTkxMloXDTI1MDUwNjA3NTkxMlowPjEVMBMGA1UEAwwMbXlzZXJ2ZXIuY29tMRgwFgYDVQQKDA9NeSBPcmdhbml6YXRpb24xCzAJBgNVBAYTAlVTMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxqHLFAiz+Wq2a+CoYA5bQVn1DxHQOJDBks689RQRx8gtosb0bsFRWGXSr3rcTwp7s/VUOpwtKfG4PuMvDPiJ2LZ9JQgKB86ptxRs9hfHtmWE1bo3SYw9xfDDNm4xPbvE5s/kmlbKtOxKKWQS+NWIHM8Aa3ZiofJ9bX9/QFyNar+AGDNvf/v/e6yDNHoMs+k1gwBGt2iiPOWawrXe4gJQ7HwcNfXXbpnUCt+h/qMaEgMfD6absvZ3DiAeVbirRTGShjSoconZUKZ5y0t9kvyQ6n92dqSFLXyoZbWmoVxk6KhF9uqicceBfXHRkZCR3SvkBqhA6tfGwzXU3IKFM8ccQwIDAQABo1MwUTAdBgNVHQ4EFgQUwUpC4vq7DtpDsbZeE7ngqECAb7swHwYDVR0jBBgwFoAUwUpC4vq7DtpDsbZeE7ngqECAb7swDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAjNcrSZaDNZu1e99Mko+OKBWvGckLImv36hUAP83HpPMHqKgcbCZyljcLnX/tiLukPgU6//RlAUKwDxr+UpGQ4zyymw16rRwVCEdL4K/Fxt/429ddaxDAvsofhooiYsXWNBIoceLXZEBIavQN7f4gvTioIrDLBqvcmbpKSo8FRPOrPImKPP1WzvS4s5rP1iLNHKF4eJejZLomL8bs4hbm+XSApb8TfJOQR1+ZF8npjWJFKO6texUha95Gdc2XGaJFKWb4Gdzs1ftEVL0DrjJ7eiP2Hd3CJE3XBSA3/wM2stfcT2XpQx01Dkd1ZZvs4BzOW6uLALUAB47ebjfr5mMpRw==\n-----END CERTIFICATE-----';
   const perSuccess: string = '-----BEGIN CERTIFICATE-----\nMIIDdzCCAl+gAwIBAgIEAgAAuTANBgkqhkiG9w0BAQUFADBaMQswCQYDVQQGEwJJRTESMBAGA1UEChMJQmFsdGltb3JlMRMwEQYDVQQLEwpDeWJlclRydXN0MSIwIAYDVQQDExlCYWx0aW1vcmUgQ3liZXJUcnVzdCBSb290MB4XDTAwMDUxMjE4NDYwMFoXDTI1MDUxMjIzNTkwMFowWjELMAkGA1UEBhMCSUUxEjAQBgNVBAoTCUJhbHRpbW9yZTETMBEGA1UECxMKQ3liZXJUcnVzdDEiMCAGA1UEAxMZQmFsdGltb3JlIEN5YmVyVHJ1c3QgUm9vdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKMEuyKrmD1X6CZymrV51Cni4eiVgLGw41uOKymaZN+hXe2wCQVt2yguzmKiYv60iNoS6zjrIZ3AQSsBUnuId9Mcj8e6uYi1agnnc+gRQKfRzMpijS3ljwumUNKoUMMo6vWrJYeKmpYcqWe4PwzV9/lSEy/CG9VwcPCPwBLKBsua4dnKM3p31vjsufFoREJIE9LAwqSuXmD+tqYF/LTdB1kC1FkYmGP1pWPgkAx9XbIGevOF6uvUA65ehD5f/xXtabz5OTZydc93Uk3zyZAsuT3lySNTPx8kmCFcB5kpvcY67Oduhjprl3RjM71oGDHweI12v/yejl0qhqdNkNwnGjkCAwEAAaNFMEMwHQYDVR0OBBYEFOWdWTCCR1jMrPoIVDaGezq1BE3wMBIGA1UdEwEB/wQIMAYBAf8CAQMwDgYDVR0PAQH/BAQDAgEGMA0GCSqGSIb3DQEBBQUAA4IBAQCFDF2O5G9RaEIFoN27TyclhAO992T9Ldcw46QQF+vaKSm2eT929hkTI7gQCvlYpNRhcL0EYWoSihfVCr3FvDB81ukMJY2GQE/szKN+OMY3EU/t3WgxjkzSswF07r51XgdIGn9w/xZchMB5hbgF/X++ZRGjD8ACtPhSNzkE1akxehi/oCr0Epn3o0WC4zxe9Z2etciefC7IpJ5OCBRLbf1wbWsaY71k5h+3zvDyny67G7fyUIhzksLi4xaNmjICq44Y3ekQEe5+NauQrz4wlHrQMz2nZQ/1/I6eYs9HRCwBXbsdtTLSR9I4LtD+gdwyah617jzV/OeBHRnDJELqYzmp\n-----END CERTIFICATE-----';
   const lastCA: string = '-----BEGIN CERTIFICATE-----\nMIICrTCCAhYCAQEwDQYJKoZIhvcNAQEEBQAwgZ4xIDAeBgNVBAoTF01pY3Jvc29mdCBUcnVzdCBOZXR3b3JrMR4wHAYDVQQLExVNaWNyb3NvZnQgQ29ycG9yYXRpb24xLTArBgNVBAsTJE1pY3Jvc29mdCBUaW1lIFN0YW1waW5nIFNlcnZpY2UgUm9vdDErMCkGA1UECxMiQ29weXJpZ2h0IChjKSAxOTk3IE1pY3Jvc29mdCBDb3JwLjAeFw05NzA1MTMxNjEyNTlaFw05OTEyMzAyMzU5NTlaMIGeMSAwHgYDVQQKExdNaWNyb3NvZnQgVHJ1c3QgTmV0d29yazEeMBwGA1UECxMVTWljcm9zb2Z0IENvcnBvcmF0aW9uMS0wKwYDVQQLEyRNaWNyb3NvZnQgVGltZSBTdGFtcGluZyBTZXJ2aWNlIFJvb3QxKzApBgNVBAsTIkNvcHlyaWdodCAoYykgMTk5NyBNaWNyb3NvZnQgQ29ycC4wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALdaOPUfN8ypQ8TcJBi+8oVStB1bXxi5C49Lbaj/zUBQbNOg01xHwrn3huTNfTUFaTcfrz3dH/2PFTTCxHnMWXSKb4wOw+gR64Q4R5hT4fEMDeQBDPAbHiDaKno9whVSjor/ezK/WB4lmIMmy4rJxAcUJLxJntd6s4caJTO8bQhHAgMBAAEwDQYJKoZIhvcNAQEEBQADgYEAUFvFa2+NUlsNyb2sNHOYygqHyq5MSroUpOtScJUh4LWhYE73QwJRAa8eOnDOvxi2hiiZZ+sI6JdAXBaC/bgl+zZvb3Y+xUyO4qdR+srBY7pegyRHC5Ny9kSazqeVOo9QEJ4dsVkWq88+34OLx/rDa9xkn0ArH0UkBK5JL/bfDJE=\n-----END CERTIFICATE-----';
+  const yetVaild:string='-----BEGIN CERTIFICATE-----\nMIIDYTCCAkmgAwIBAgIUIewAwnXfv05454CM/TFKk+hHxG8wDQYJKoZIhvcNAQELBQAwPjEVMBMGA1UEAwwMbXlzZXJ2ZXIuY29tMRgwFgYDVQQKDA9NeSBPcmdhbml6YXRpb24xCzAJBgNVBAYTAlVTMCIYDzIwNTQwNTEwMDc1MDUzWhgPMjA1NDA2MTQwNzUwNTNaMD4xFTATBgNVBAMMDG15c2VydmVyLmNvbTEYMBYGA1UECgwPTXkgT3JnYW5pemF0aW9uMQswCQYDVQQGEwJVUzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKpFHPQ8xsHOit/gE9UilNRSKEKar2MbM2yLChjwAyD0o6F2pxsh5j/LKpW2SfJDuuss29fYFL6uz5cOe9L/iYAokvsfnkgROw9A32IWbYI8xp1oTBj7gWbaFa13bTNPNKNBL853HDLDq2j5iuwj/nfy5jJ4gjT6gIN+aIifIpHrAzbTddshLjtOnHd3qcIAKuS77bMZUDso3KLoBwf4cYRFnbzawHzbUB/+lF0oCKpVQaWPwR3/h/mk0whmtgCWFzudWeUUMg7oGi8EDs+yplIUKBzY+EJnMKgwb+cQmsvJwlKocT5emfBcgeZVa6D9IRsCY3M3KGu9Oj7CLwo1qmcCAwEAAaNTMFEwHQYDVR0OBBYEFHEcqcAomUhPIspbIbdX8GgTD+PpMB8GA1UdIwQYMBaAFHEcqcAomUhPIspbIbdX8GgTD+PpMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAIUnxVQZ1kC5MEUoIMMsFABx7gbnnlxhFmj5JSYVouE8/2ywjmxjTiY7vx9vLJVw/m8pVCCsNdKHcRnmtWqNF6P9ZuUrJwj81HNpEuGIzFlzQX6gJcaFu/uKd/f9R1NBSlz8ot4Fdb/4gU8J5o2LNV69BMIsgtrsVw/UkVGM+h+376ox2xXXt2zx2aq8/WOmHW0S7iL/RuUNAD8RoD6kHdECPvu1O6TWP1NXb3U35V6cmr+PAXF/zxCCvREvTe7sF6k7uPHosiqikH5PKgYfb+hYbV2pZm2yDwqh/90b0/xb4phJmCH2J+XoYlMaBX8v0N6WEz1+znNYU/tF99d/mL0=\n-----END CERTIFICATE-----'
   describe('netWorkSecurityTest', () => {
 
     /**
@@ -101,7 +100,7 @@ export default function netWorkSecurityTest() {
           done();
         }).catch((error: BusinessError) => {
           console.error(`${caseName} Certificate verification failed:', ${JSON.stringify(error)}`);
-          expectTrue(error.code == 2305001, caseName);
+          expectTrue(error.code == 2305069, caseName);
           done();
         });
       } catch (err) {
@@ -175,7 +174,7 @@ export default function netWorkSecurityTest() {
           done();
         }).catch((error: BusinessError) => {
           console.error(`${caseName} Certificate verification failed:', ${JSON.stringify(error)}`);
-          expectTrue(error.code == 2305001, caseName);
+          expectTrue(error.code == 2305069, caseName);
           done();
         });
       } catch (err) {
@@ -346,7 +345,7 @@ export default function netWorkSecurityTest() {
       let caseName: string = 'testNetworkMgrNetworkSecurityCertVerification0800';
       console.info(`${caseName} test start`);
       try {
-        await writeFile('09.der')
+        await writeFile('mycert.der')
         let file = fs.openSync(derPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         let buffer = new ArrayBuffer(4096);
         fs.readSync(file.fd, buffer);
@@ -435,7 +434,7 @@ export default function netWorkSecurityTest() {
         try {
           let resultSync: number = networkSecurity.certVerificationSync(cert, caCert);
           console.info(`${caseName} Synchronous Verification Result:, ${JSON.stringify(resultSync)}`);
-          expectTrue(resultSync == 2305001, caseName);
+          expectTrue(resultSync == 2305069, caseName);
           done();
         } catch (err) {
           console.info(`${caseName}  err:${err}`);
@@ -512,7 +511,7 @@ export default function netWorkSecurityTest() {
         try {
           let resultSync: number = networkSecurity.certVerificationSync(cert, caCert);
           console.info(`${caseName} Synchronous CERT_TYPE_DER Result:, ${JSON.stringify(resultSync)}`);
-          expectTrue(resultSync == 2305001, caseName);
+          expectTrue(resultSync == 2305069, caseName);
           done();
         } catch (err) {
           let e: BusinessError = err as BusinessError;
@@ -697,7 +696,7 @@ export default function netWorkSecurityTest() {
       let caseName: string = 'testNetworkMgrNetworkSecurityCertVerificationSync0800';
       console.info(`${caseName} test start`);
       try {
-        await writeFile('09.der')
+        await writeFile('mycert.der')
         let file = fs.openSync(derPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         let buffer = new ArrayBuffer(4096);
         fs.readSync(file.fd, buffer);
