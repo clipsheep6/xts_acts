@@ -12,11 +12,7 @@
       "target": 7
     }
   },
-  "deviceConfig": {
-    "default": {
-      "debug": true
-    }
-  },
+  "deviceConfig": {},
   "module": {
     "package": "ohos.acts.multimedia.audio.avrecorder",
     "name": ".entry_test",
