@@ -1,24 +1,31 @@
 {
-    "description": "Configuration for hjunit demo Tests",
-    "driver": {
-        "type": "OHJSUnitTest",
-        "test-timeout": "120000",
-        "shell-timeout": "120000",
-        "bundle-name": "com.example.actsbmsaccesstokentest",
-        "package-name": "com.example.actsbmsaccesstokentest"
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "120000",
+    "shell-timeout": "120000",
+    "bundle-name": "com.example.actsbmsaccesstokentest",
+    "package-name": "com.example.actsbmsaccesstokentest"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsBmsAccessTokenTest.hap",
+        "bmsAccessTokenTest1.hap",
+        "bmsAccessTokenTest4.hap",
+        "bmsAccessTokenTest3.hap",
+        "bmsAccessTokenTest2.hap",
+        "bmsAccessTokenTest5.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
     },
-    "kits": [
-        {
-            "test-file-name": [
-                "ActsBmsAccessTokenTest.hap",
-                "bmsAccessTokenTest1.hap",
-                "bmsAccessTokenTest4.hap",
-                "bmsAccessTokenTest3.hap",
-                "bmsAccessTokenTest2.hap",
-                "bmsAccessTokenTest5.hap"
-            ],
-            "type": "AppInstallKit",
-            "cleanup-apps": true
-        }
-    ]
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "power-shell wakeup",
+        "power-shell setmode 602"
+      ]
+    }
+  ]
 }
