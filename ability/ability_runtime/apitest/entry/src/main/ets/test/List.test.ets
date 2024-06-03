@@ -13,7 +13,9 @@
 * limitations under the License.
 */
 import abilityTest from './Ability.test'
+import WantAgentTriggerNormalTest from './WantAgentTriggerNormal.test'
 
 export default function testsuite() {
-  abilityTest()
+  abilityTest();
+  WantAgentTriggerNormalTest();
 }
