@@ -26,7 +26,6 @@ function readUri(uri: string | undefined) {
     log(`open file successfully!`);
     let buf = new ArrayBuffer(1024);
     let readLen = fs.readSync(file.fd, buf, { offset: 0 });
-    //let fileContent = String.fromCharCode.apply(null, new Uint8Array(buf.slice(0, readLen)));
     log("read ok!" + readLen);
     fs.closeSync(file);
     return "read ok!";
