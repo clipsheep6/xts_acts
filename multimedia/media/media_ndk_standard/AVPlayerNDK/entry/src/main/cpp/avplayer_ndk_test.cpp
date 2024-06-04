@@ -639,6 +639,12 @@ static napi_value Init(napi_env env, napi_value exports)
         {"OhCloseFile", nullptr, OhCloseFile, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerSetFdPathSourceTwo", nullptr, OhAvPlayerSetFdPathSourceTwo, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"OhAvPlayerSetAudioRendererInfo", nullptr, OhAvPlayerSetAudioRendererInfo, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+         {"OhAvPlayerSetAudioInterruptMode", nullptr, OhAvPlayerSetAudioInterruptMode, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
+         {"OhAvPlayerSetAudioEffectMode", nullptr, OhAvPlayerSetAudioEffectMode, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

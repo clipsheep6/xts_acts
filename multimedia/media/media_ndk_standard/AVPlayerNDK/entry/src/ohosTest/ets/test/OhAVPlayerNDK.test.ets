@@ -62,6 +62,29 @@ const sleep1500: number = 1500;
 const sleep2000: number = 2000;
 const sleep5000: number = 5000;
 
+// streamUsage;
+const AUDIOSTREAM_USAGE_UNKNOWN = 0;
+const AUDIOSTREAM_USAGE_MUSIC = 1;
+const AUDIOSTREAM_USAGE_VOICE_COMMUNICATION = 2;
+const AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3;
+const AUDIOSTREAM_USAGE_ALARM = 4;
+const AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5;
+const AUDIOSTREAM_USAGE_RINGTONE = 6;
+const AUDIOSTREAM_USAGE_NOTIFICATION = 7;
+const AUDIOSTREAM_USAGE_ACCESSIBILITY = 8;
+const AUDIOSTREAM_USAGE_MOVIE = 10;
+const AUDIOSTREAM_USAGE_GAME = 11;
+const AUDIOSTREAM_USAGE_AUDIOBOOK = 12;
+const AUDIOSTREAM_USAGE_NAVIGATION = 13;
+
+// interruptMode;
+const AUDIOSTREAM_INTERRUPT_MODE_SHARE = 0;
+const AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT = 1;
+
+// effectMode;
+const EFFECT_NONE = 0,
+const EFFECT_DEFAULT = 1,
+
 
 function getContext(): Context {
   let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -120,6 +143,69 @@ export default function OhAVPlayerNDKTest() { // L2
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     });
+
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYSETAUDIORENDERERINFO_0100
+     * @tc.name       : testOhAvPlayerSetAudioRendererInfo001
+     * @tc.desc       : Set the stream usage of the player's audio renderer.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOhAvPlayerSetAudioRendererInfo001', 0, async (done: Function) => {
+      console.info(`testOhAvPlayerSetAudioRendererInfo001 test start `);
+      try {
+        let player: number = await avplayer.OhAvPlayerSetAudioRendererInfo(AUDIOSTREAM_USAGE_UNKNOWN);
+        expect(player).assertEqual(AV_ERR_OK);
+        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioRendererInfo001:${player}`);
+      } catch (error) {
+        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioRendererInfo001:${error}`);
+      }
+      console.info(`testOhAvPlayerSetAudioRendererInfo001 test end `);
+      done();
+    });
+
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYSETAUDIOINTERRUPTMODE_0100
+     * @tc.name       : testOhAvPlayerSetAudioInterruptMode001
+     * @tc.desc       : Set the interrupt mode of the player's audio renderer.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOhAvPlayerSetAudioInterruptMode001', 0, async (done: Function) => {
+      console.info(`testOhAvPlayerSetAudioInterruptMode001 test start `);
+      try {
+        let player: number = await avplayer.OhAvPlayerSetAudioInterruptMode(AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT);
+        expect(player).assertEqual(AV_ERR_OK);
+        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioInterruptMode001:${player}`);
+      } catch (error) {
+        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioInterruptMode001:${error}`);
+      }
+      console.info(`testOhAvPlayerSetAudioInterruptMode001 test end `);
+      done();
+    }); 
+
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYSETAUDIOEFFECTMODE_0100
+     * @tc.name       : testOhAvPlayerSetAudioEffectMode001
+     * @tc.desc       : Set the effect mode of the player's audio renderer.
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOhAvPlayerSetAudioEffectMode001', 0, async (done: Function) => {
+      console.info(`testOhAvPlayerSetAudioEffectMode001 test start `);
+      try {
+        let player: number = await avplayer.OhAvPlayerSetAudioEffectMode(EFFECT_NONE);
+        expect(player).assertEqual(AV_ERR_OK);
+        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioEffectMode001:${player}`);
+      } catch (error) {
+        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioEffectMode001:${error}`);
+      }
+      console.info(`testOhAvPlayerSetAudioEffectMode001 test end `);
+      done();
+    });           
 
     /**
      * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERPREPARE_0100
