@@ -20,38 +20,46 @@ import fs from '@ohos.file.fs'
 import wantConstant from '@ohos.ability.wantConstant';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import systemParameterEnhance from '@ohos.systemParameterEnhance';
+import { BusinessError } from '@ohos.base';
+import commonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+
+function sleep(time:number) {
+  return new Promise((resolve: (value: string) => void) => {
+    setTimeout(() => {
+      resolve("ok");
+    }, time)
+  });
+}
 
 let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 export default function UriPermissionTest() {
 
-  describe('UriPermissionTest', function () {
+  describe('UriPermissionTest', () => {
 
     console.info("-----------------UriPermissionTest is start----------------")
-    beforeEach(async function (done) {
+    beforeEach(async (done:Function) => {
       console.info('UriPermissionTest before each called');
       await sleep(1000);
       done()
     });
 
-    let abilityContext = globalThis.abilityContext;
-    afterEach(async function (done) {
+    let abilityContext:common.UIAbilityContext = globalThis.abilityContext;
+    afterEach(async (done:Function) => {
       console.info('UriPermissionTest after each called');
-      let wantInfo = {
+      let wantInfo:Want = {
         bundleName: 'com.example.stageautosign',
         abilityName: 'com.example.stageautosign.MainAbility'
       }
       await abilityContext.startAbility(wantInfo).then(() => {
         console.info('afterEach startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info('afterEach error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
       done();
     });
-
-    function sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time))
-    }
 
     /*
      * @tc.number  Temp_UriPermissionTest_0100
@@ -59,7 +67,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_0100", 0, async function (done) {
+    it("Temp_UriPermissionTest_0100", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_0100 is start---------------")
       let TAG1 = "Temp_UriPermissionTest_0100";
       let filePath : string = abilityContext.filesDir + "/test_1.txt";
@@ -73,7 +81,7 @@ export default function UriPermissionTest() {
       });
       let uri_1 : string = fileUri.getUriFromPath(filePath);
 
-      let want = {
+      let want:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
@@ -87,15 +95,15 @@ export default function UriPermissionTest() {
 
       let eventName1_1 : string = 'Temp_UriPermissionTest_0100_Read_Successfully';
       let eventName1_2 : string = 'Temp_UriPermissionTest_0100_Read_Failed';
-      let subscribeInfo1_1 = {
+      let subscribeInfo1_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName1_1, eventName1_2]
       }
-      let subscriber1_1;
-      function UnSubscribeInfoCallback1_1(err, data) {
+      let subscriber1_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback1_1 = ():void => {
         console.info(TAG1 + "===UnSubscribeInfoCallback1_1===")
       }
 
-      function SubscribeCallBackContext1_1(err, data) {
+      let SubscribeCallBackContext1_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG1 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName1_1) {
               console.info(TAG1 + 'read file succeed.');
@@ -116,15 +124,15 @@ export default function UriPermissionTest() {
 
       let eventName1_3 : string = 'Temp_UriPermissionTest_0100_Write_Successfully';
       let eventName1_4 : string = 'Temp_UriPermissionTest_0100_Write_Failed';
-      let subscribeInfo1_2 = {
+      let subscribeInfo1_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName1_3, eventName1_4]
       }
-      let subscriber1_2;
-      function UnSubscribeInfoCallback1_2(err, data) {
+      let subscriber1_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback1_2 = ():void => {
         console.info(TAG1 + "===UnSubscribeInfoCallback1_2===")
       }
 
-      function SubscribeCallBackContext1_2(err, data) {
+      let SubscribeCallBackContext1_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG1 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName1_3) {
               console.info(TAG1 + 'write file succeed.');
@@ -150,7 +158,7 @@ export default function UriPermissionTest() {
 
       await abilityContext.startAbility(want).then(() => {
         console.info(TAG1 + 'startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG1 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -169,7 +177,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_0200", 0, async function (done) {
+    it("Temp_UriPermissionTest_0200", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_0200 is start---------------")
       let TAG2 = "Temp_UriPermissionTest_0200";
       let filePath : string = abilityContext.filesDir + "/test_2.txt";
@@ -183,7 +191,7 @@ export default function UriPermissionTest() {
       });
       let uri_2 : string = fileUri.getUriFromPath(filePath);
 
-      let want = {
+      let want:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
@@ -191,7 +199,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want).then(() => {
         console.info('TAG2 + startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG2 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -201,15 +209,15 @@ export default function UriPermissionTest() {
 
       let eventName2_1 : string = 'Temp_UriPermissionTest_0200_Read_Successfully';
       let eventName2_2 : string = 'Temp_UriPermissionTest_0200_Read_Failed';
-      let subscribeInfo2_1 = {
+      let subscribeInfo2_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName2_1, eventName2_2]
       }
-      let subscriber2_1;
-      function UnSubscribeInfoCallback2_1(err, data) {
+      let subscriber2_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback2_1 = ():void => {
         console.info(TAG2 + "===UnSubscribeInfoCallback2_1===")
       }
 
-      function SubscribeCallBackContext2_1(err, data) {
+      let SubscribeCallBackContext2_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG2 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName2_1) {
               console.info(TAG2 + 'read file succeed.');
@@ -230,15 +238,15 @@ export default function UriPermissionTest() {
 
       let eventName2_3 : string = 'Temp_UriPermissionTest_0200_Write_Successfully';
       let eventName2_4 : string = 'Temp_UriPermissionTest_0200_Write_Failed';
-      let subscribeInfo2_2 = {
+      let subscribeInfo2_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName2_3, eventName2_4]
       }
-      let subscriber2_2;
-      function UnSubscribeInfoCallback2_2(err, data) {
+      let subscriber2_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback2_2 = ():void => {
         console.info(TAG2 + "===UnSubscribeInfoCallback2_2===")
       }
 
-      function SubscribeCallBackContext2_2(err, data) {
+      let SubscribeCallBackContext2_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG2 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName2_3) {
               console.info(TAG2 + 'write file succeed.');
@@ -257,7 +265,7 @@ export default function UriPermissionTest() {
         await commonEvent.subscribe(subscriber2_2, SubscribeCallBackContext2_2);
       });
 
-      let want2 = {
+      let want2:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility2",
@@ -268,7 +276,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want2).then(() => {
         console.info(TAG2 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG2 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -287,7 +295,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_0300", 0, async function (done) {
+    it("Temp_UriPermissionTest_0300", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_0300 is start---------------")
       let TAG3 = "Temp_UriPermissionTest_0300";
       let filePath : string = abilityContext.filesDir + "/test_3.txt";
@@ -301,7 +309,7 @@ export default function UriPermissionTest() {
       });
       let uri_3 : string = fileUri.getUriFromPath(filePath);
 
-      let want = {
+      let want:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
         "action": "action.system.uripermissiontest",
         "entities": [ "entity.system.uripermissiontest" ],
@@ -309,7 +317,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want).then(() => {
         console.info(TAG3 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG3 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -319,15 +327,15 @@ export default function UriPermissionTest() {
 
       let eventName3_1 : string = 'Temp_UriPermissionTest_0300_Read_Successfully';
       let eventName3_2 : string = 'Temp_UriPermissionTest_0300_Read_Failed';
-      let subscribeInfo3_1 = {
+      let subscribeInfo3_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName3_1, eventName3_2]
       }
-      let subscriber3_1;
-      function UnSubscribeInfoCallback3_1(err, data) {
+      let subscriber3_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback3_1 = ():void => {
         console.info(TAG3 + "===UnSubscribeInfoCallback3_1===")
       }
 
-      function SubscribeCallBackContext3_1(err, data) {
+      let SubscribeCallBackContext3_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG3 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName3_1) {
               console.info(TAG3 + 'read file succeed.');
@@ -348,15 +356,15 @@ export default function UriPermissionTest() {
 
       let eventName3_3 : string = 'Temp_UriPermissionTest_0300_Write_Successfully';
       let eventName3_4 : string = 'Temp_UriPermissionTest_0300_Write_Failed';
-      let subscribeInfo3_2 = {
+      let subscribeInfo3_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName3_3, eventName3_4]
       }
-      let subscriber3_2;
-      function UnSubscribeInfoCallback3_2(err, data) {
+      let subscriber3_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback3_2 = ():void => {
         console.info(TAG3 + "===UnSubscribeInfoCallback3_2===")
       }
 
-      function SubscribeCallBackContext3_2(err, data) {
+      let SubscribeCallBackContext3_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG3 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName3_3) {
               console.info(TAG3 + 'write file succeed.');
@@ -382,15 +390,15 @@ export default function UriPermissionTest() {
 
       let eventName3_5 : string = 'Temp_UriPermissionTest_0300_Read_Successfully_';
       let eventName3_6 : string = 'Temp_UriPermissionTest_0300_Read_Failed_';
-      let subscribeInfo3_3 = {
+      let subscribeInfo3_3:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName3_5, eventName3_6]
       }
-      let subscriber3_3;
-      function UnSubscribeInfoCallback3_3(err, data) {
+      let subscriber3_3:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback3_3 = ():void => {
         console.info(TAG3 + "===UnSubscribeInfoCallback3_3===")
       }
 
-      function SubscribeCallBackContext3_3(err, data) {
+      let SubscribeCallBackContext3_3 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG3 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName3_5) {
               console.info(TAG3 + 'read file succeed.');
@@ -410,13 +418,13 @@ export default function UriPermissionTest() {
       });
       await sleep(1000);
 
-      let want2 = {
+      let want2:Want = {
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility4",
       }
       await abilityContext.startAbility(want2).then(() => {
         console.info(TAG3 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG3 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -435,7 +443,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_0400", 0, async function (done) {
+    it("Temp_UriPermissionTest_0400", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_0400 is start---------------")
       let TAG4 = "Temp_UriPermissionTest_0400";
       let filePath : string = abilityContext.filesDir + "/test_4.txt";
@@ -454,15 +462,15 @@ export default function UriPermissionTest() {
 
       let eventName4_1 : string = 'Temp_UriPermissionTest_0400_Read_Successfully';
       let eventName4_2 : string = 'Temp_UriPermissionTest_0400_Read_Failed';
-      let subscribeInfo4_1 = {
+      let subscribeInfo4_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName4_1, eventName4_2]
       }
-      let subscriber4_1;
-      function UnSubscribeInfoCallback4_1(err, data) {
+      let subscriber4_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback4_1 = ():void => {
         console.info(TAG4 + "===UnSubscribeInfoCallback4_1===")
       }
 
-      function SubscribeCallBackContext4_1(err, data) {
+      let SubscribeCallBackContext4_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG4 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName4_1) {
               console.info(TAG4 + 'read file succeed.');
@@ -483,15 +491,15 @@ export default function UriPermissionTest() {
 
       let eventName4_3 : string = 'Temp_UriPermissionTest_0400_Write_Successfully';
       let eventName4_4 : string = 'Temp_UriPermissionTest_0400_Write_Failed';
-      let subscribeInfo4_2 = {
+      let subscribeInfo4_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName4_3, eventName4_4]
       }
-      let subscriber4_2;
-      function UnSubscribeInfoCallback4_2(err, data) {
+      let subscriber4_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback4_2 = ():void => {
         console.info(TAG4 + "===UnSubscribeInfoCallback4_2===")
       }
 
-      function SubscribeCallBackContext4_2(err, data) {
+      let SubscribeCallBackContext4_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG4 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName4_3) {
               console.info(TAG4 + 'write file succeed.');
@@ -510,7 +518,7 @@ export default function UriPermissionTest() {
         await commonEvent.subscribe(subscriber4_2, SubscribeCallBackContext4_2);
       });
 
-      let want = {
+      let want:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION,
         "action": "action.system.uripermissiontest",
         "entities": [ "entity.system.uripermissiontest" ],
@@ -521,7 +529,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want).then(() => {
         console.info(TAG4 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG4 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -529,15 +537,15 @@ export default function UriPermissionTest() {
 
       let eventName4_5 : string = 'Temp_UriPermissionTest_0400_Read_Successfully_';
       let eventName4_6 : string = 'Temp_UriPermissionTest_0400_Read_Failed_';
-      let subscribeInfo4_3 = {
+      let subscribeInfo4_3:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName4_5, eventName4_6]
       }
-      let subscriber4_3;
-      function UnSubscribeInfoCallback4_3(err, data) {
+      let subscriber4_3:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback4_3 = ():void => {
         console.info(TAG4 + "===UnSubscribeInfoCallback4_3===")
       }
 
-      function SubscribeCallBackContext4_3(err, data) {
+      let SubscribeCallBackContext4_3 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG4 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName4_5) {
               console.info(TAG4 + 'read file succeed.');
@@ -561,7 +569,7 @@ export default function UriPermissionTest() {
         await commonEvent.subscribe(subscriber4_3, SubscribeCallBackContext4_3);
       });
 
-      let want2 = {
+      let want2:Want = {
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility3",
         parameters : {
@@ -571,7 +579,7 @@ export default function UriPermissionTest() {
       console.info(TAG4 + ' startAbility want2');
       await abilityContext.startAbility(want2).then(() => {
         console.info(TAG4 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG4 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -590,7 +598,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_0500", 0, async function (done) {
+    it("Temp_UriPermissionTest_0500", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_0500 is start---------------")
       let TAG5 = "Temp_UriPermissionTest_0500";
       let filePath : string = abilityContext.filesDir + "/test_5.txt";
@@ -606,7 +614,7 @@ export default function UriPermissionTest() {
       let flag5_1 = false;
       let flag5_2 = false;
 
-      let want = {
+      let want:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
@@ -614,7 +622,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startRecentAbility(want).then(() => {
         console.info(TAG5 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG5 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -622,15 +630,15 @@ export default function UriPermissionTest() {
 
       let eventName5_1 : string = 'Temp_UriPermissionTest_0500_Read_Successfully';
       let eventName5_2 : string = 'Temp_UriPermissionTest_0500_Read_Failed';
-      let subscribeInfo5_1 = {
+      let subscribeInfo5_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName5_1, eventName5_2]
       }
-      let subscriber5_1;
-      function UnSubscribeInfoCallback5_1(err, data) {
+      let subscriber5_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback5_1 = ():void => {
         console.info(TAG5 + "===UnSubscribeInfoCallback5_1===")
       }
 
-      function SubscribeCallBackContext5_1(err, data) {
+      let SubscribeCallBackContext5_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG5 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName5_1) {
               console.info(TAG5 + 'read file succeed.');
@@ -651,15 +659,15 @@ export default function UriPermissionTest() {
 
       let eventName5_3 : string = 'Temp_UriPermissionTest_0500_Write_Successfully';
       let eventName5_4 : string = 'Temp_UriPermissionTest_0500_Write_Failed';
-      let subscribeInfo5_2 = {
+      let subscribeInfo5_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName5_3, eventName5_4]
       }
-      let subscriber5_2;
-      function UnSubscribeInfoCallback5_2(err, data) {
+      let subscriber5_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback5_2 = ():void => {
         console.info(TAG5 + "===UnSubscribeInfoCallback5_2===")
       }
 
-      function SubscribeCallBackContext5_2(err, data) {
+      let SubscribeCallBackContext5_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG5 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName5_3) {
               console.info(TAG5 + 'write file succeed.');
@@ -678,14 +686,14 @@ export default function UriPermissionTest() {
         await commonEvent.subscribe(subscriber5_2, SubscribeCallBackContext5_2);
       });
 
-      let want2 = {
+      let want2:Want = {
         bundleName : "com.acts.authorizeduriapplication",
         moduleName : 'hap4',
         abilityName : "Hap4MainAbility1",
       }
       await abilityContext.startAbility(want2).then(() => {
         console.info(TAG5 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG5 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -704,7 +712,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_0600", 0, async function (done) {
+    it("Temp_UriPermissionTest_0600", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_0600 is start---------------")
       if (deviceType === '2in1') {
         done();
@@ -727,15 +735,15 @@ export default function UriPermissionTest() {
 
       let eventName6_1 : string = 'Temp_UriPermissionTest_0600_Read_Successfully_';
       let eventName6_2 : string = 'Temp_UriPermissionTest_0600_Read_Failed_';
-      let subscribeInfo6_1 = {
+      let subscribeInfo6_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName6_1, eventName6_2]
       }
-      let subscriber6_1;
-      function UnSubscribeInfoCallback6_1(err, data) {
+      let subscriber6_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback6_1 = ():void => {
         console.info(TAG6 + "===UnSubscribeInfoCallback6_1===")
       }
 
-      function SubscribeCallBackContext6_1(err, data) {
+      let SubscribeCallBackContext6_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG6 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName6_1) {
               console.info(TAG6 + 'read file succeed.');
@@ -754,7 +762,7 @@ export default function UriPermissionTest() {
         await commonEvent.subscribe(subscriber6_1, SubscribeCallBackContext6_1);
       });
 
-      let want = {
+      let want:Want = {
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
         uri : uri_6,
@@ -764,7 +772,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want).then(() => {
         console.info(TAG6 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG6 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -772,15 +780,15 @@ export default function UriPermissionTest() {
 
       let eventName6_3 : string = 'Temp_UriPermissionTest_0600_Read_Successfully';
       let eventName6_4 : string = 'Temp_UriPermissionTest_0600_Read_Failed';
-      let subscribeInfo6_2 = {
+      let subscribeInfo6_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName6_3, eventName6_4]
       }
-      let subscriber6_2;
-      function UnSubscribeInfoCallback6_2(err, data) {
+      let subscriber6_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback6_2 = ():void => {
         console.info(TAG6 + "===UnSubscribeInfoCallback6_2===")
       }
 
-      function SubscribeCallBackContext6_2(err, data) {
+      let SubscribeCallBackContext6_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG6 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName6_3) {
               console.info(TAG6 + 'read file succeed.');
@@ -801,15 +809,15 @@ export default function UriPermissionTest() {
 
       let eventName6_5 : string = 'Temp_UriPermissionTest_0600_Write_Successfully';
       let eventName6_6 : string = 'Temp_UriPermissionTest_0600_Write_Failed';
-      let subscribeInfo6_3 = {
+      let subscribeInfo6_3:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName6_5, eventName6_6]
       }
-      let subscriber6_3;
-      function UnSubscribeInfoCallback6_3(err, data) {
+      let subscriber6_3:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback6_3 = ():void => {
         console.info(TAG6 + "===UnSubscribeInfoCallback6_3===")
       }
 
-      function SubscribeCallBackContext6_3(err, data) {
+      let SubscribeCallBackContext6_3 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG6 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName6_5) {
               console.info(TAG6 + 'write file succeed.');
@@ -829,7 +837,7 @@ export default function UriPermissionTest() {
       });
       await sleep(1000);
 
-      let want2 = {
+      let want2:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
@@ -839,9 +847,9 @@ export default function UriPermissionTest() {
         }
       }
       console.info(TAG6 + ' startAbilityForResult want2');
-      abilityContext.startAbilityForResult(want2).then((AbilityResult) => {
+      abilityContext.startAbilityForResult(want2).then((AbilityResult:common.AbilityResult) => {
         console.info(TAG6 + ' startAbilityForResult succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG6 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -860,7 +868,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_0700", 0, async function (done) {
+    it("Temp_UriPermissionTest_0700", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_0700 is start---------------")
       if (deviceType === '2in1') {
         done();
@@ -878,7 +886,7 @@ export default function UriPermissionTest() {
       });
       let uri_7 : string = fileUri.getUriFromPath(filePath);
 
-      let want = {
+      let want:Want = {
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
         parameters : {
@@ -887,7 +895,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want).then(() => {
         console.info(TAG7 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG7 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -897,15 +905,15 @@ export default function UriPermissionTest() {
 
       let eventName7_1 : string = 'Temp_UriPermissionTest_0700_Read_Successfully';
       let eventName7_2 : string = 'Temp_UriPermissionTest_0700_Read_Failed';
-      let subscribeInfo7_1 = {
+      let subscribeInfo7_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName7_1, eventName7_2]
       }
-      let subscriber7_1;
-      function UnSubscribeInfoCallback7_1(err, data) {
+      let subscriber7_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback7_1 = ():void => {
         console.info(TAG7 + "===UnSubscribeInfoCallback7_1===")
       }
 
-      function SubscribeCallBackContext7_1(err, data) {
+      let SubscribeCallBackContext7_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG7 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName7_1) {
               console.info(TAG7 + 'read file succeed.');
@@ -926,15 +934,15 @@ export default function UriPermissionTest() {
 
       let eventName7_3 : string = 'Temp_UriPermissionTest_0700_Write_Successfully';
       let eventName7_4 : string = 'Temp_UriPermissionTest_0700_Write_Failed';
-      let subscribeInfo7_2 = {
+      let subscribeInfo7_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName7_3, eventName7_4]
       }
-      let subscriber7_2;
-      function UnSubscribeInfoCallback7_2(err, data) {
+      let subscriber7_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback7_2 = ():void => {
         console.info(TAG7 + "===UnSubscribeInfoCallback7_2===")
       }
 
-      function SubscribeCallBackContext7_2(err, data) {
+      let SubscribeCallBackContext7_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG7 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName7_3) {
               console.info(TAG7 + 'write file succeed.');
@@ -954,7 +962,7 @@ export default function UriPermissionTest() {
       });
       await sleep(1000);
 
-      let want2 = {
+      let want2:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility2",
@@ -963,9 +971,9 @@ export default function UriPermissionTest() {
           'number' : 21
         }
       }
-      abilityContext.startAbilityForResult(want2).then((AbilityResult) => {
+      abilityContext.startAbilityForResult(want2).then((AbilityResult:common.AbilityResult) => {
         console.info(TAG7 + ' startAbilityForResult succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG7 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -984,7 +992,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_0800", 0, async function (done) {
+    it("Temp_UriPermissionTest_0800", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_0800 is start---------------")
       if (deviceType === '2in1') {
         done();
@@ -1008,15 +1016,15 @@ export default function UriPermissionTest() {
 
       let eventName8_1 : string = 'Temp_UriPermissionTest_0800_Read_Successfully';
       let eventName8_2 : string = 'Temp_UriPermissionTest_0800_Read_Failed';
-      let subscribeInfo8_1 = {
+      let subscribeInfo8_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName8_1, eventName8_2]
       }
-      let subscriber8_1;
-      function UnSubscribeInfoCallback8_1(err, data) {
+      let subscriber8_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback8_1 = ():void => {
         console.info(TAG8 + "===UnSubscribeInfoCallback8_1===")
       }
 
-      function SubscribeCallBackContext8_1(err, data) {
+      let SubscribeCallBackContext8_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG8 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName8_1) {
               console.info(TAG8 + 'read file succeed.');
@@ -1037,15 +1045,15 @@ export default function UriPermissionTest() {
 
       let eventName8_3 : string = 'Temp_UriPermissionTest_0800_Write_Successfully';
       let eventName8_4 : string = 'Temp_UriPermissionTest_0800_Write_Failed';
-      let subscribeInfo8_2 = {
+      let subscribeInfo8_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName8_3, eventName8_4]
       }
-      let subscriber8_2;
-      function UnSubscribeInfoCallback8_2(err, data) {
+      let subscriber8_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback8_2 = ():void => {
         console.info(TAG8 + "===UnSubscribeInfoCallback8_2===")
       }
 
-      function SubscribeCallBackContext8_2(err, data) {
+      let SubscribeCallBackContext8_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG8 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName8_3) {
               console.info(TAG8 + 'write file succeed.');
@@ -1065,7 +1073,7 @@ export default function UriPermissionTest() {
       });
       await sleep(300);
 
-      let want = {
+      let want:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
@@ -1074,9 +1082,9 @@ export default function UriPermissionTest() {
           'number' : 13
         }
       }
-      await abilityContext.startAbilityForResult(want).then((result) => {
+      await abilityContext.startAbilityForResult(want).then((result:common.AbilityResult) => {
         console.info(TAG8 + ' startAbilityForResult succeed');
-        let uri : string = result.want.uri;
+        let uri : string | undefined = result.want!.uri;
         if (uri == null || uri == undefined) {
           console.info(TAG8 + " uri is invalid");
           expect().assertFail();
@@ -1085,7 +1093,7 @@ export default function UriPermissionTest() {
         fs.open(uri, fs.OpenMode.READ_ONLY).then((file) => {
           console.info(TAG8 + "file fd: " + file.fd);
           flag8_3 = true;
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           console.info(TAG8 + "open file failed with error message: " + err.message + ", error code: " + err.code);
           expect().assertFail();
         });
@@ -1093,11 +1101,11 @@ export default function UriPermissionTest() {
         fs.open(uri, fs.OpenMode.READ_WRITE).then((file) => {
           console.info(TAG8 + "file fd: " + file.fd);
           flag8_4 = true;
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           expect().assertFail();
           console.info(TAG8 + "open file failed with error message: " + err.message + ", error code: " + err.code);
         });
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG8 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -1116,7 +1124,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_1000", 0, async function (done) {
+    it("Temp_UriPermissionTest_1000", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_1000 is start---------------")
       if (deviceType === '2in1') {
         done();
@@ -1149,15 +1157,15 @@ export default function UriPermissionTest() {
 
       let eventName10_1 : string = 'Temp_UriPermissionTest_1001_Write_Successfully';
       let eventName10_2 : string = 'Temp_UriPermissionTest_1001_Write_Failed';
-      let subscribeInfo10_1 = {
+      let subscribeInfo10_1:commonEventManager.CommonEventSubscribeInfo = {
         events: [eventName10_1, eventName10_2]
       }
-      let subscriber10_1;
-      function UnSubscribeInfoCallback10_1(err, data) {
+      let subscriber10_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback10_1 = ():void => {
         console.info(TAG10 + "===UnSubscribeInfoCallback10_1===")
       }
 
-      function SubscribeCallBackContext10_1(err, data) {
+      let SubscribeCallBackContext10_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
         console.info(TAG10 + ' Subscribe CallBack data:' + JSON.stringify(data));
         if (data.event === eventName10_1) {
           console.info(TAG10 + 'write file succeed.');
@@ -1178,15 +1186,15 @@ export default function UriPermissionTest() {
 
       let eventName10_3 : string = 'Temp_UriPermissionTest_1002_Write_Successfully';
       let eventName10_4 : string = 'Temp_UriPermissionTest_1002_Write_Failed';
-      let subscribeInfo10_2 = {
+      let subscribeInfo10_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName10_3, eventName10_4]
       }
-      let subscriber10_2;
-      function UnSubscribeInfoCallback10_2(err, data) {
+      let subscriber10_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback10_2 = ():void => {
         console.info(TAG10 + "===UnSubscribeInfoCallback10_2===")
       }
 
-      function SubscribeCallBackContext10_2(err, data) {
+      let SubscribeCallBackContext10_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG10 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName10_3) {
               console.info(TAG10 + 'write file succeed.');
@@ -1206,7 +1214,7 @@ export default function UriPermissionTest() {
       });
 
       let uris: string[] = [uri_9, uri_10]
-      let want = {
+      let want:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
@@ -1217,7 +1225,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want).then(() => {
         console.info(TAG10 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG10 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -1236,7 +1244,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_1100", 0, async function (done) {
+    it("Temp_UriPermissionTest_1100", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_1100 is start---------------")
       if (deviceType === '2in1') {
         done();
@@ -1247,15 +1255,15 @@ export default function UriPermissionTest() {
       let flag11_2 = false;
       let eventName11_1 : string = 'Temp_UriPermissionTest_1100_Read_Successfully';
       let eventName11_2 : string = 'Temp_UriPermissionTest_1100_Read_Failed';
-      let subscribeInfo11_1 = {
+      let subscribeInfo11_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName11_1, eventName11_2]
       }
-      let subscriber11_1;
-      function UnSubscribeInfoCallback11_1(err, data) {
+      let subscriber11_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback11_1 = ():void => {
         console.info(TAG11 + "===UnSubscribeInfoCallback11_1===")
       }
 
-      function SubscribeCallBackContext11_1(err, data) {
+      let SubscribeCallBackContext11_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG11 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName11_1) {
               console.info(TAG11 + 'read file succeed.');
@@ -1276,15 +1284,15 @@ export default function UriPermissionTest() {
 
       let eventName11_3 : string = 'Temp_UriPermissionTest_1100_Write_Successfully';
       let eventName11_4 : string = 'Temp_UriPermissionTest_1100_Write_Failed';
-      let subscribeInfo11_2 = {
+      let subscribeInfo11_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName11_3, eventName11_4]
       }
-      let subscriber11_2;
-      function UnSubscribeInfoCallback11_2(err, data) {
+      let subscriber11_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback11_2 = ():void => {
         console.info(TAG11 + "===UnSubscribeInfoCallback11_2===")
       }
 
-      function SubscribeCallBackContext11_2(err, data) {
+      let SubscribeCallBackContext11_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG11 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName11_3) {
               console.info(TAG11 + 'write file succeed.');
@@ -1303,13 +1311,13 @@ export default function UriPermissionTest() {
         await commonEvent.subscribe(subscriber11_2, SubscribeCallBackContext11_2);
       });
 
-      let want = {
+      let want:Want = {
         bundleName : "com.example.faapplication",
         abilityName : "com.example.faapplication.MainAbility",
       }
       await abilityContext.startAbility(want).then(() => {
         console.info(TAG11 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG11 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -1328,7 +1336,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_1200", 0, async function (done) {
+    it("Temp_UriPermissionTest_1200", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_1200 is start---------------")
       if (deviceType === '2in1') {
         done();
@@ -1346,7 +1354,7 @@ export default function UriPermissionTest() {
       });
       let uri_11 : string = fileUri.getUriFromPath(filePath);
 
-      let want = {
+      let want:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "ServiceAbility",
@@ -1354,7 +1362,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startServiceExtensionAbility(want).then(() => {
         console.info(TAG12 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG12 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -1363,15 +1371,15 @@ export default function UriPermissionTest() {
 
       let eventName12_1 : string = 'Temp_UriPermissionTest_1200_Write_Successfully';
       let eventName12_2 : string = 'Temp_UriPermissionTest_1200_Write_Failed';
-      let subscribeInfo12_1 = {
+      let subscribeInfo12_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName12_1, eventName12_2]
       }
-      let subscriber12_1;
-      function UnSubscribeInfoCallback12_1(err, data) {
+      let subscriber12_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback12_1 = ():void => {
         console.info(TAG12 + "===UnSubscribeInfoCallback12_1===")
       }
 
-      function SubscribeCallBackContext12_1(err, data) {
+      let SubscribeCallBackContext12_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG12 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName12_1) {
               console.info(TAG12 + 'write file succeed.');
@@ -1390,7 +1398,7 @@ export default function UriPermissionTest() {
         await commonEvent.subscribe(subscriber12_1, SubscribeCallBackContext12_1);
       });
 
-      let want2 = {
+      let want2:Want = {
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
         uri : uri_11,
@@ -1400,7 +1408,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want2).then(() => {
         console.info(TAG12 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG12 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -1419,7 +1427,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_1400", 0, async function (done) {
+    it("Temp_UriPermissionTest_1400", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_1400 is start---------------")
       if (deviceType === '2in1') {
         done();
@@ -1441,15 +1449,15 @@ export default function UriPermissionTest() {
 
       let eventName14_1 : string = 'Temp_UriPermissionTest_1400_Read_Successfully';
       let eventName14_2 : string = 'Temp_UriPermissionTest_1400_Read_Failed';
-      let subscribeInfo14_1 = {
+      let subscribeInfo14_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName14_1, eventName14_2]
       }
-      let subscriber14_1;
-      function UnSubscribeInfoCallback14_1(err, data) {
+      let subscriber14_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback14_1 = ():void => {
         console.info(TAG14 + "===UnSubscribeInfoCallback14_1===")
       }
 
-      function SubscribeCallBackContext14_1(err, data) {
+      let SubscribeCallBackContext14_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG14 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName14_1) {
               console.info(TAG14 + 'read file succeed.');
@@ -1470,15 +1478,15 @@ export default function UriPermissionTest() {
 
       let eventName14_3 : string = 'Temp_UriPermissionTest_1400_Write_Successfully';
       let eventName14_4 : string = 'Temp_UriPermissionTest_1400_Write_Failed';
-      let subscribeInfo14_2 = {
+      let subscribeInfo14_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName14_3, eventName14_4]
       }
-      let subscriber14_2;
-      function UnSubscribeInfoCallback14_2(err, data) {
+      let subscriber14_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback14_2 = ():void => {
         console.info(TAG14 + "===UnSubscribeInfoCallback14_2===")
       }
 
-      function SubscribeCallBackContext14_2(err, data) {
+      let SubscribeCallBackContext14_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG14 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName14_3) {
               console.info(TAG14 + 'write file succeed.');
@@ -1497,7 +1505,7 @@ export default function UriPermissionTest() {
         await commonEvent.subscribe(subscriber14_2, SubscribeCallBackContext14_2);
       });
 
-      let want = {
+      let want:Want = {
         flags : 0,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
@@ -1508,7 +1516,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want).then(() => {
         console.info(TAG14 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG14 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -1527,7 +1535,7 @@ export default function UriPermissionTest() {
      * @tc.desc    Function test
      * @tc.level   0
      */
-    it("Temp_UriPermissionTest_1500", 0, async function (done) {
+    it("Temp_UriPermissionTest_1500", 0, async (done:Function) => {
       console.info("---------------Temp_UriPermissionTest_1500 is start---------------")
       if (deviceType === '2in1') {
         done();
@@ -1550,15 +1558,15 @@ export default function UriPermissionTest() {
 
       let eventName15_1 : string = 'Temp_UriPermissionTest_1500_Read_Successfully';
       let eventName15_2 : string = 'Temp_UriPermissionTest_1500_Read_Failed';
-      let subscribeInfo15_1 = {
+      let subscribeInfo15_1:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName15_1, eventName15_2]
       }
-      let subscriber15_1;
-      function UnSubscribeInfoCallback15_1(err, data) {
+      let subscriber15_1:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback15_1 = ():void => {
         console.info(TAG15 + "===UnSubscribeInfoCallback15_1===")
       }
 
-      function SubscribeCallBackContext15_1(err, data) {
+      let SubscribeCallBackContext15_1 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG15 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName15_1) {
               console.info(TAG15 + 'read file succeed.');
@@ -1579,15 +1587,15 @@ export default function UriPermissionTest() {
 
       let eventName15_3 : string = 'Temp_UriPermissionTest_1500_Write_Successfully';
       let eventName15_4 : string = 'Temp_UriPermissionTest_1500_Write_Failed';
-      let subscribeInfo15_2 = {
+      let subscribeInfo15_2:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName15_3, eventName15_4]
       }
-      let subscriber15_2;
-      function UnSubscribeInfoCallback15_2(err, data) {
+      let subscriber15_2:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback15_2 = ():void => {
         console.info(TAG15 + "===UnSubscribeInfoCallback15_2===")
       }
 
-      function SubscribeCallBackContext15_2(err, data) {
+      let SubscribeCallBackContext15_2 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG15 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName15_3) {
               console.info(TAG15 + 'write file succeed.');
@@ -1606,7 +1614,7 @@ export default function UriPermissionTest() {
         await commonEvent.subscribe(subscriber15_2, SubscribeCallBackContext15_2);
       });
 
-      let want = {
+      let want:Want = {
         flags : wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
@@ -1617,7 +1625,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want).then(() => {
         console.info(TAG15 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG15 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
@@ -1626,22 +1634,22 @@ export default function UriPermissionTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       await abilityDelegator.executeShellCommand("aa force-stop com.acts.authorizeduriapplication").then(data => {
         console.info(TAG15 + "force-stop data is: " + JSON.stringify(data))
-      }).catch(err => {
+      }).catch((err:BusinessError) => {
         console.info(TAG15 + "force-stop err is: " + JSON.stringify(err))
       })
       await sleep(3000);
 
       let eventName15_5 : string = 'Temp_UriPermissionTest_1500_Read_Successfully_';
       let eventName15_6 : string = 'Temp_UriPermissionTest_1500_Read_Failed_';
-      let subscribeInfo15_3 = {
+      let subscribeInfo15_3:commonEventManager.CommonEventSubscribeInfo = {
           events: [eventName15_5, eventName15_6]
       }
-      let subscriber15_3;
-      function UnSubscribeInfoCallback15_3(err, data) {
+      let subscriber15_3:commonEventManager.CommonEventSubscriber;
+      let UnSubscribeInfoCallback15_3 = ():void => {
         console.info(TAG15 + "===UnSubscribeInfoCallback15_3===")
       }
 
-      function SubscribeCallBackContext15_3(err, data) {
+      let SubscribeCallBackContext15_3 = (err:BusinessError, data:commonEventManager.CommonEventData):void => {
           console.info(TAG15 + ' Subscribe CallBack data:' + JSON.stringify(data));
           if (data.event === eventName15_5) {
               console.info(TAG15 + 'read file succeed.');
@@ -1660,7 +1668,7 @@ export default function UriPermissionTest() {
         await commonEvent.subscribe(subscriber15_3, SubscribeCallBackContext15_3);
       });
 
-      let want2 = {
+      let want2:Want = {
         bundleName : "com.acts.authorizeduriapplication",
         abilityName : "Hap2MainAbility1",
         uri : uri_13,
@@ -1670,7 +1678,7 @@ export default function UriPermissionTest() {
       }
       await abilityContext.startAbility(want2).then(() => {
         console.info(TAG15 + ' startAbility succeed');
-      }).catch((error) => {
+      }).catch((error:BusinessError) => {
         console.info(TAG15 + 'error.code: ' + JSON.stringify(error.code) + ' error.message: ' +
           JSON.stringify(error.message));
       });
