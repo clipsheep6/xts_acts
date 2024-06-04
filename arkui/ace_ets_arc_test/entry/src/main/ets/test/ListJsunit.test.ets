@@ -48,6 +48,8 @@ export default function ListJsunit() {
     * @tc.name  : testOnDigitalCrown
     * @tc.desc  : The OnDigitalCrown method for testing the listitem component.
     * @tc.level : Level 1
+    * @tc.type :
+    * @tc.size :
     */
     it('ArkUI_Stage_List_OnDigitalCrown_0100', 0, async function (done) {
       // Verify the functions of the ListItem component
@@ -68,6 +70,8 @@ export default function ListJsunit() {
     * @tc.name  : testOnDigitalCrown.
     * @tc.desc  : The OnDigitalCrown method for testing the listitem component with undefine scene.
     * @tc.level : Level 2
+    * @tc.type :
+    * @tc.size :
     */
     it('ArkUI_Stage_List_OnDigitalCrown_0200', 0, async function (done) {
       // Verify the functions of the ListItem component
@@ -88,6 +92,8 @@ export default function ListJsunit() {
     * @tc.name  : testOnDigitalCrown
     * @tc.desc  : The OnDigitalCrown method for testing the button component.
     * @tc.level : Level 1
+    * @tc.type :
+    * @tc.size :
     */
     it('ArkUI_Stage_List_OnDigitalCrown_0300', 0, async function (done) {
       // Verify the functions of the button component
@@ -108,6 +114,8 @@ export default function ListJsunit() {
     * @tc.name  : testOnDigitalCrown
     * @tc.desc  : The OnDigitalCrown method for testing the button component with undefine scene.
     * @tc.level : Level 2
+    * @tc.type :
+    * @tc.size :
     */
     it('ArkUI_Stage_List_OnDigitalCrown_0400', 0, async function (done) {
       // Verify the functions of the button component
@@ -128,6 +136,8 @@ export default function ListJsunit() {
     * @tc.name  : testOnDigitalCrown
     * @tc.desc  : The OnDigitalCrown method for testing the text component.
     * @tc.level : Level 1
+    * @tc.type :
+    * @tc.size :
     */
     it('ArkUI_Stage_List_OnDigitalCrown_0500', 0, async function (done) {
       // Verify the functions of the text component
@@ -148,6 +158,8 @@ export default function ListJsunit() {
     * @tc.name  : testOnDigitalCrown
     * @tc.desc  : The OnDigitalCrown method for testing the text component with undefine scene.
     * @tc.level : Level 2
+    * @tc.type :
+    * @tc.size :
     */
     it('ArkUI_Stage_List_OnDigitalCrown_0600', 0, async function (done) {
       // Verify the functions of the text component
