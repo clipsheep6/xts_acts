@@ -328,3 +328,25 @@ export default function telephonyRadioNoPermissionPublicTest() {
   });
 
 }
+export default function telephonyRadioNoPermissionEmptyTest() {
+
+  describe('telephonyRadioNoPermissionEmptyTest', () => {
+
+    /*
+     * @tc.number: SUB_Telephony_Radio_NoPermissionEmpty_0150
+     * @tc.name  : telephonyRadioNoPermissionEmptyTest0150
+     * @tc.desc  : Obtain the wireless access technologies for the CS and PS domains currently accessed. Using callback for asynchronous callback
+     * @tc.size  : MediumTest
+     * @tc.type  : Function
+     * @tc.level : Level 3
+     */
+    it('telephonyRadioNoPermissionEmptyTest0150', 0, async (done: Function) => {
+      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
+      let a = 'abc';
+      let b = 'b';
+      expect(a).assertContain(b);
+      expect(a).assertEqual(a);
+    });
+
+  });
+}

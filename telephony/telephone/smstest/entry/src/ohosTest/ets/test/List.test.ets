@@ -14,7 +14,15 @@
  */
 
 import smsTextPublic from './smsTextPublic.test';
+import sim from '@ohos.telephony.sim';
+
+let hasSimCard: Boolean = sim.hasSimCardSync(0);
 
 export default function testsuite() {
-  smsTextPublic();
+  if(hasSimCard){
+    smsTextPublic();
+    smsTextNoCardPublic();
+  } else {
+    smsTextNoCardPublic();
+  }
 }
