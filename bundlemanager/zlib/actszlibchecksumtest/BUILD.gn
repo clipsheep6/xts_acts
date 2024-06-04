@@ -21,7 +21,5 @@ ohos_js_app_suite("ActsChecksumTest") {
 
   # 部件名称，真实数据，需要子系统对应
 
-
   # 子系统名称，真实数据，需要部件对应
- 
 }
