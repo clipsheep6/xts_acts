@@ -1,15 +1,20 @@
 {
-    "description": "Configuration for audioRecorder Tests",
+    "description": "Configuration for hjunit demo Tests",
     "driver": {
         "type": "OHJSUnitTest",
-        "test-timeout": "1000000",
-        "shell-timeout": "1000000",
-        "testcase-timeout": 60000,
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
         "bundle-name": "ohos.acts.multimedia.audio.audiorecorder",
         "package-name": "ohos.acts.multimedia.audio.audiorecorder"
     },
     "kits": [
         {
+            "test-file-name": [
+                "ActsAudioRecorderJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
             "type": "ShellKit",
             "run-command": [
                 "rm -rf /storage/media/100/local/files/Audios/audio_*",
@@ -25,13 +30,6 @@
             "teardown-command":[
                 "power-shell setmode 600"
             ]
-        },
-        {
-            "test-file-name": [
-                "ActsAudioRecorderJsTest.hap"
-            ],
-            "type": "AppInstallKit",
-            "cleanup-apps": true
         }
     ]
 }
