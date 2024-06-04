@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index";
 
 export default function getPermissionTest() {
@@ -21,16 +21,7 @@ export default function getPermissionTest() {
      describe("getPermissionTest", () => {
 
         beforeAll(async () => {
-            console.info("beforeAll case");
-        });
-        beforeEach(() => {
-            console.info("beforeEach case");
-        });
-        afterEach(async () => {
-            console.info("afterEach case");
-        });
-        afterAll(() => {
-            console.info("afterAll case");
+            console.info("getPermissionTest beforeAll case");
         });
 
         /**
@@ -42,17 +33,26 @@ export default function getPermissionTest() {
          * @tc.level     : Level 0
          */
         it("get_medialibrary_permission_001", 0, async (done) => {
-            let testNum: string = "get_medialibrary_instance_001";
+            let testNum: string = "get_medialibrary_permission_001";
             try {
-                let media: mediaLibrary.MediaLibrary = mediaLibrary.getMediaLibrary(globalThis.abilityContext); 
-                console.error(`${testNum} :: create MediaLibrary instance success, expect failed !`);
+                let permissions = ['ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA'];
+                let atManager = abilityAccessCtrl.createAtManager();
+                atManager.requestPermissionsFromUser(context, permissions, (err, result) => {
+                    if (err) {
+                        console.info(`${testNum} :: get permission failed :: ${err}`);
+                        except(true).assertTrue();
+                        done();
+                    } else {
+                        console.info(`${testNum} :: getPermission success, expect failed :: ${result}`);
+                        expect(false).assertTrue();
+                        done();
+                    }
+                });
+            } catch(error) {
+                console.error(`${testNum} :: unknow error :: ${error}`);
                 expect(false).assertTrue();
                 done();
-            } catch(error) {
-                console.log(`${testNum}:: create mediaLibrary instance failed :: ${error}`)
-                expect(true).assertTrue();
-                done();
-            }
+            } 
         });
         
      });
