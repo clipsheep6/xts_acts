@@ -33,7 +33,7 @@ export default function ListLanes05() {
         if (!("ListLanes05" == pages.name)) {
           console.info("get ListLanes05 state pages.name: " + JSON.stringify(pages.name));
           let result = await router.push(options);
-          await CommonFunc.sleep(2000);
+          await CommonFunc.sleep(3500);
           console.info("push ListLanes05 page result: " + JSON.stringify(result));
         }
       } catch (err) {
