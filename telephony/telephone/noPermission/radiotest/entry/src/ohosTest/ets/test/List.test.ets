@@ -14,6 +14,7 @@
  */
 
 import telephonyRadioNoPermissionPublicTest from './TelephonyRadioNoPermissionPublic.test';
+import telephonyRadioNoPermissionEmptyTest from './TelephonyRadioNoPermissionPublic1.test';
 import sim from '@ohos.telephony.sim';
 
 let hasSimCard: Boolean = sim.hasSimCardSync(0);

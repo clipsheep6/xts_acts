@@ -15,6 +15,8 @@
  
 import HasCard1PublicTest from './TelephonyCallHasCard1Public.test';
 import HasCard2PublicTest from './TelephonyCallHasCard2Public.test';
+import HasCard3PublicTest from './TelephonyCallHasCard3Public.test';
+
 import sim from '@ohos.telephony.sim';
 
 let hasSimCard: Boolean = sim.hasSimCardSync(0);

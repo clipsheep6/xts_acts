@@ -1250,22 +1250,3 @@ export default function dataManagerTest() {
   }
   );
 }
-export default function dataManagerEmptyTest() {
-  describe("testEmpty", () => {
-    /*
-        * @tc.number: SUB_Data_Manager_Empty_0100
-        * @tc.name  : telephonyRadioNoPermissionEmptyTest0100
-        * @tc.desc  : Obtain the wireless access technologies for the CS and PS domains currently accessed. Using callback for asynchronous callback
-        * @tc.size  : MediumTest
-        * @tc.type  : Function
-        * @tc.level : Level 3
-        */
-    it('telephonyDataManagerEmptyTest0100', 0, async (done: Function) => {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc';
-      let b = 'b';
-      expect(a).assertContain(b);
-      expect(a).assertEqual(a);
-    });
-  });
-}

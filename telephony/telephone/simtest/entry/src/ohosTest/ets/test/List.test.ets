@@ -15,6 +15,8 @@
 
 import Sim1Public from './Sim1Public.test';
 import Sim2Public from './Sim2Public.test';
+import Sim3Public from './Sim3Public.test';
+
 import sim from '@ohos.telephony.sim';
 
 let hasSimCard: Boolean = sim.hasSimCardSync(0);

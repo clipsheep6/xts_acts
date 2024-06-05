@@ -1,5 +1,6 @@
+
 /*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,15 +14,15 @@
  * limitations under the License.
  */
 
-import telephonyRadioPublicTest from './TelephonyRadioPublic.test';
+import dataManagerHasCartTest from './DataManagerHasCard.test';
+import dataManagerEmptyTest from './DataManagerEmpty.test';
 import sim from '@ohos.telephony.sim';
 
 let hasSimCard: Boolean = sim.hasSimCardSync(0);
 
 export default function testsuite() {
-
   if(hasSimCard){
-    dataManagerTest();
+    dataManagerHasCartTest();
   }else{
     dataManagerEmptyTest();
   }

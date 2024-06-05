@@ -14,6 +14,7 @@
  */
 
 import smsTextPublic from './smsTextPublic.test';
+import smsTextNoCardPublic from './smsTextPublic1.test';
 import sim from '@ohos.telephony.sim';
 
 let hasSimCard: Boolean = sim.hasSimCardSync(0);
