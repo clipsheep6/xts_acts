@@ -17,6 +17,7 @@ import { describe, beforeAll, afterAll, it, expect } from '@ohos/hypium'
 import radio from '@ohos.telephony.radio';
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const SLOT_0: number = 0;
 const SLOT_1: number = 1;

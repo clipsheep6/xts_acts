@@ -17,6 +17,7 @@ import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
 import data from '@ohos.telephony.data';
 import { BusinessError } from '@ohos.base';
 import sim from '@ohos.telephony.sim';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 const ExpectTrue: (n: boolean) => void = (n: boolean) => {
   try {
