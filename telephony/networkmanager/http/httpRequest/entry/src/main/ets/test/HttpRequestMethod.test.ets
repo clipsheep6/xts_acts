@@ -243,9 +243,7 @@ export default function HttpRequestMethodTest() {
             }, (err: BusinessError, data: http.HttpResponse) => {
               if (err) {
                 console.info(`${caseName} httpRequest fail ${JSON.stringify(err)}`);
-
                 ExpectTrue(err.code == 2300999);//The device does not support HTTP3
->>>>>>> master
                 httpRequest.destroy();
                 done();
               } else {
