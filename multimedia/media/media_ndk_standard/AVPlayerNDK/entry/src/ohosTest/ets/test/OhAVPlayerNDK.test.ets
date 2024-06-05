@@ -82,8 +82,8 @@ const AUDIOSTREAM_INTERRUPT_MODE_SHARE = 0;
 const AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT = 1;
 
 // effectMode;
-const EFFECT_NONE = 0,
-const EFFECT_DEFAULT = 1,
+const EFFECT_NONE = 0;
+const EFFECT_DEFAULT = 1;
 
 
 function getContext(): Context {
