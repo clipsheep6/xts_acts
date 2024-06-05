@@ -42,6 +42,14 @@
 #define KNUMBER3 3
 #define KNUMBER4 4
 #define KNUMBER5 5
+#define KNUMBER6 6
+#define KNUMBER7 7
+#define KNUMBER8 8
+#define KNUMBER9 9
+#define KNUMBER10 10
+#define KNUMBER11 11
+#define KNUMBER12 12
+#define KNUMBER13 13
 
 static int32_t g_gPlaytime = 1;
 static int32_t g_lPlaytime = 1;
@@ -541,8 +549,59 @@ static napi_value OhAvPlayerSetVideoSurface(napi_env env, napi_callback_info inf
 static napi_value OhAvPlayerSetAudioRendererInfo(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
-    OH_AudioStream_Usage streamUsage = OH_AudioStream_Usage::AUDIOSTREAM_USAGE_UNKNOWN;
-    OH_AVErrCode avErrCode = OH_AVPlayer_SetAudioRendererInfo(mainPlayer, streamUsage)
+    OH_AudioStream_Usage streamUsage;
+    OH_AVErrCode avErrCode;
+    size_t argc = PARAM_1;
+    napi_value args[PARAM_1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    int index;
+    napi_get_value_int32(env, args[PARAM_0], &index);
+    switch (index) {
+    case KNUMBER0:
+        streamUsage = AUDIOSTREAM_USAGE_UNKNOWN;
+        break;
+    case KNUMBER1:
+        streamUsage = AUDIOSTREAM_USAGE_MUSIC;
+        break;
+    case KNUMBER2:
+        streamUsage = AUDIOSTREAM_USAGE_VOICE_COMMUNICATION;
+        break;
+    case KNUMBER3:
+        streamUsage = AUDIOSTREAM_USAGE_VOICE_ASSISTANT;
+        break;
+    case KNUMBER4:
+        streamUsage = AUDIOSTREAM_USAGE_ALARM;
+        break;
+    case KNUMBER5:
+        streamUsage = AUDIOSTREAM_USAGE_VOICE_MESSAGE;
+        break;
+    case KNUMBER6:
+        streamUsage = AUDIOSTREAM_USAGE_RINGTONE;
+        break;
+    case KNUMBER7:
+        streamUsage = AUDIOSTREAM_USAGE_NOTIFICATION;
+        break;
+    case KNUMBER8:
+        streamUsage = AUDIOSTREAM_USAGE_ACCESSIBILITY;
+        break;
+    case KNUMBER10:
+        streamUsage = AUDIOSTREAM_USAGE_MOVIE;
+        break;
+    case KNUMBER11:
+        streamUsage = AUDIOSTREAM_USAGE_GAME;
+        break;   
+    case KNUMBER12:
+        streamUsage = AUDIOSTREAM_USAGE_AUDIOBOOK;
+        break;  
+    case KNUMBER13:
+        streamUsage = AUDIOSTREAM_USAGE_NAVIGATION;
+        break;       
+    default:
+        avErrCode = AV_ERR_INVALID_VAL;
+        napi_create_int32(env, avErrCode, &result);
+        return result;
+    }
+    avErrCode = OH_AVPlayer_SetAudioRendererInfo(mainPlayer, streamUsage)
     napi_create_int32(env, avErrCode, &result);
     return result;
 }
@@ -551,8 +610,26 @@ static napi_value OhAvPlayerSetAudioRendererInfo(napi_env env, napi_callback_inf
 static napi_value OhAvPlayerSetAudioInterruptMode(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
-    OH_AudioInterrupt_Mode interruptMode = OH_AudioInterrupt_Mode::AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
-    OH_AVErrCode avErrCode = OH_AVPlayer_SetAudioInterruptMode(mainPlayer, interruptMode);
+    OH_AudioInterrupt_Mode interruptMode;
+    OH_AVErrCode avErrCode;
+    size_t argc = PARAM_1;
+    napi_value args[PARAM_1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    int index;
+    napi_get_value_int32(env, args[PARAM_0], &index);
+    switch (index) {
+    case KNUMBER0:
+        interruptMode = AUDIOSTREAM_INTERRUPT_MODE_SHARE;
+        break;
+    case KNUMBER1:
+        interruptMode = AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
+        break;
+    default:
+        avErrCode = AV_ERR_INVALID_VAL;
+        napi_create_int32(env, avErrCode, &result);
+        return result;
+    }
+    avErrCode = OH_AVPlayer_SetAudioInterruptMode(mainPlayer, interruptMode);
     napi_create_int32(env, avErrCode, &result);
     return result;
 }
@@ -561,8 +638,26 @@ static napi_value OhAvPlayerSetAudioInterruptMode(napi_env env, napi_callback_in
 static napi_value OhAvPlayerSetAudioEffectMode(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
-    OH_AudioStream_AudioEffectMode effectMode = OH_AudioStream_AudioEffectMode::EFFECT_NONE;
-    OH_AVErrCode avErrCode = OH_AVPlayer_SetAudioEffectMode(mainPlayer, effectMode);
+    OH_AudioStream_AudioEffectMode effectMode;
+    OH_AVErrCode avErrCode;
+    size_t argc = PARAM_1;
+    napi_value args[PARAM_1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    int index;
+    napi_get_value_int32(env, args[PARAM_0], &index);
+    switch (index) {
+    case KNUMBER0:
+        effectMode = EFFECT_NONE;
+        break;
+    case KNUMBER1:
+        effectMode = EFFECT_DEFAULT;
+        break;
+    default:
+        avErrCode = AV_ERR_INVALID_VAL;
+        napi_create_int32(env, avErrCode, &result);
+        return result;
+    }
+    avErrCode = OH_AVPlayer_SetAudioEffectMode(mainPlayer, effectMode);
     napi_create_int32(env, avErrCode, &result);
     return result;
 }
