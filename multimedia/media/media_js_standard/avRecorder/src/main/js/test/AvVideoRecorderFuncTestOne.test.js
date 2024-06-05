@@ -298,6 +298,7 @@ export default function avVideoRecorderTestOne() {
             console.info('beforeEach case');
             if (isSupportCameraVideoProfiles) {
                 await avRecorderTestBase.sleep(1000);
+                fdObject = null;
             }
         })
 
@@ -310,13 +311,12 @@ export default function avVideoRecorderTestOne() {
                         console.info(TAG + 'this testCase execution completed')
                     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
                 }
-                await mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
+                await mediaTestBase.closeFd(fdObject?.fdNumber);
                 await avRecorderTestBase.sleep(1000);
             }
         })
 
         afterAll(function () {
-            // mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
             console.info('afterAll case');
         })
 
