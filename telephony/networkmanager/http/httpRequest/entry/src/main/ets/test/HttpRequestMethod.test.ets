@@ -243,7 +243,9 @@ export default function HttpRequestMethodTest() {
             }, (err: BusinessError, data: http.HttpResponse) => {
               if (err) {
                 console.info(`${caseName} httpRequest fail ${JSON.stringify(err)}`);
-                ExpectTure(err.code == 2300999);
+
+                ExpectTrue(err.code == 2300999);//The device does not support HTTP3
+>>>>>>> master
                 httpRequest.destroy();
                 done();
               } else {
@@ -293,7 +295,7 @@ export default function HttpRequestMethodTest() {
               done();
             }).catch((err: BusinessError) => {
               console.info(`${caseName}  httpRequest fail ${JSON.stringify(err)}`);
-              ExpectTure(err.code == 2300999);
+              ExpectTrue(err.code == 2300999);//The device does not support HTTP3
               httpRequest.destroy();
               done();
             });
