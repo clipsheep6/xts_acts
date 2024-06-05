@@ -5,13 +5,18 @@
     "version": {
       "code": 1000000,
       "name": "1.0.0"
+    },
+    "apiVersion": {
+        "compatible": 6,
+        "releaseType": "Beta1",
+        "target": 7
     }
   },
   "deviceConfig": {},
   "module": {
     "package": "ohos.acts.multimedia.video.videoplayer",
-    "name": ".entry_test",
-    "mainAbility": ".TestAbility",
+    "name": ".entry",
+    "mainAbility": ".MainAbility",
     "deviceType": [
       "default",
       "tablet",
@@ -19,23 +24,10 @@
     ],
     "distro": {
       "deliveryWithInstall": true,
-      "moduleName": "entry_test",
-      "moduleType": "feature",
+      "moduleName": "entry",
+      "moduleType": "entry",
       "installationFree": false
     },
-    "defPermissions": [
-      {
-        "availableScope": [],
-        "grantMode": "system_grant",
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-      }
-    ],
-    "reqPermissions": [
-      {
-        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
-        "reason": "ceshi"
-      }
-    ],
     "abilities": [
       {
         "skills": [
@@ -48,6 +40,19 @@
             ]
           }
         ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".MainAbility",
+        "srcLanguage": "js",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "standard"
+      },
+      {
         "orientation": "unspecified",
         "formsEnabled": false,
         "name": ".TestAbility",
@@ -64,6 +69,18 @@
     "js": [
       {
         "pages": [
+          "pages/index/index",
+          "pages/surfaceTest/surfaceTest",
+          "pages/surfaceTest2/surfaceTest2"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
+      },
+      {
+        "pages": [
           "pages/index/index"
         ],
         "name": ".TestAbility",
@@ -76,6 +93,7 @@
     "testRunner": {
       "name": "OpenHarmonyTestRunner",
       "srcPath": "TestRunner"
-    }
+    },
+    "srcPath": ""
   }
 }

@@ -24,7 +24,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
         var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
         var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
 
-        var testAbilityName = abilityDelegatorArguments.parameters['-p'] + '.TestAbility'
+        var testAbilityName = abilityDelegatorArguments.parameters['-p'] + '.MainAbility'
         var cmd = 'aa start -d 0 -a ' + testAbilityName + ' -b ' + abilityDelegatorArguments.bundleName
         var debug = abilityDelegatorArguments.parameters["-D"]
         if (debug == 'true')
