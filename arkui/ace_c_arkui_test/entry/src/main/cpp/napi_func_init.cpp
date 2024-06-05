@@ -476,6 +476,7 @@
 #include "textinput/textinput_stopediting_test.cpp"
 #include "textinput/textinput_lineheight_test.cpp"
 #include "textinput/textinput_defaultfocus_test.cpp"
+#include "animation/animation.cpp"
 
 namespace ArkUICapiTest {
 EXTERN_C_START
@@ -4257,6 +4258,12 @@ static napi_value Init(napi_env env, napi_value exports)
          napi_default, nullptr},
         {"testTextPickerDefaultPickerItemHeight004", nullptr, TestTextPickerDefaultPickerItemHeight004, nullptr,
          nullptr, nullptr, napi_default, nullptr},
+    
+        {"testAnimation_001", nullptr, testAnimation_001, nullptr , nullptr, nullptr, napi_default, nullptr},
+        {"testAnimation_002", nullptr, testAnimation_002, nullptr , nullptr, nullptr, napi_default, nullptr},
+        {"testAnimation_003", nullptr, testAnimation_003, nullptr , nullptr, nullptr, napi_default, nullptr},
+        {"testAnimation_004", nullptr, testAnimation_004, nullptr , nullptr, nullptr, napi_default, nullptr},
+        {"testAnimation_005", nullptr, testAnimation_005, nullptr , nullptr, nullptr, napi_default, nullptr},
     };
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");

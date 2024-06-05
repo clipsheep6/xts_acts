@@ -4741,3 +4741,9 @@ export const testTextInputStopEditing003: () => number;
 export const testTextInputStopEditing004: () => number;
 
 export const testTextInputStopEditing005: () => number;
+
+export const testAnimation_001: () => number;
+export const testAnimation_002: () => number;
+export const testAnimation_003: () => number;
+export const testAnimation_004: () => number;
+export const testAnimation_005: () => number;
