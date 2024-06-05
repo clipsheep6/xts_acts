@@ -24,22 +24,18 @@
     ],
      "requestPermissions":[
         {
-			"name" : "ohos.permission.GET_WIFI_INFO",
-			"reason" : "use ohos.permission.GET_WIFI_INFO"
+			"name" :"ohos.permission.GET_WIFI_INFO",
 		},
        {
 			"name" : "ohos.permission.SET_WIFI_INFO",
-			"reason" : "use ohos.permission.SET_WIFI_INFO"
 		},
 		{
 			"name" : "ohos.permission.MANAGE_WIFI_CONNECTION",
-			"reason" : "use ohos.permission.MANAGE_WIFI_CONNECTION"
 		},
 		{
 			"name": "ohos.permission.LOCATION",
-			"reason": "need use ohos.permission.LOCATION",
 			"usedScene": {
-             "ability": [
+             "abilities": [
                  "ohos.acts.location.geolocation.function.MainAbility"
              ],
             "when": "inuse"
