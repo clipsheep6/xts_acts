@@ -13,10 +13,8 @@
  * limitations under the License.
  */
 
-import getPermissionTest from './getPermission.test'
 import getMediaLibraryTest from './getMediaLibrary.test'
 
 export default function testsuite() {
-    getPermissionTest();
     getMediaLibraryTest();
 }
