@@ -14,7 +14,8 @@
  */
 
 import mediaLibrary from "@ohos.multimedia.mediaLibrary";
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index";
+import { BusinessError } from '@ohos.base';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 
 export default function getMediaLibraryTest() {
 
@@ -48,9 +49,11 @@ export default function getMediaLibraryTest() {
                 console.error(`${testNum} :: create MediaLibrary instance success, expect failed !`);
                 expect(false).assertTrue();
                 done();
-            } catch(error) {
+            } catch(error: BusinessError) {
+                console.log(`${testNum} :: ${error.code}`);
                 console.log(`${testNum}:: create mediaLibrary instance failed :: ${error}`)
-                expect(true).assertTrue();
+                // 20200001 媒体库内部业务定义的错误码
+                expect(Number(error.code)).assertEqual(20200001);
                 done();
             }
         });
