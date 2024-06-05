@@ -22,7 +22,7 @@ const ExpectFail: () => void = () => {
   try {
     expect().assertFail();
   } catch (err) {
-    console.info(` exportFail failed err: ${JSON.stringify(err)}`);
+    console.info(`exportFail failed err: ${JSON.stringify(err)}`);
   }
 };
 
@@ -30,7 +30,7 @@ const ExpectTrue: (n: boolean) => void = (n: boolean) => {
   try {
     expect(n).assertTrue();
   } catch (err) {
-    console.info(` exportTrue failed err: ${JSON.stringify(err)}`);
+    console.info(`exportTrue failed err: ${JSON.stringify(err)}`);
   }
 };
 
@@ -284,7 +284,6 @@ export default function ConnectionPublicTest() {
       console.info(`${caseName} test start`);
       try {
         connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-          netHandle.netId = 100;
           connection.reportNetConnected(netHandle, (error: BusinessError) => {
             if (error) {
               console.info(`${caseName} reportNetConnected: BusinessError>${JSON.stringify(error)}`);
@@ -645,7 +644,6 @@ export default function ConnectionPublicTest() {
       console.info(`${caseName} test start`);
       try {
         connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-          netHandle.netId = 101;
           connection.reportNetDisconnected(netHandle, (error: BusinessError) => {
             if (error) {
               console.info(`${caseName} reportNetDisconnected: BusinessError>${JSON.stringify(error)}`);
@@ -835,7 +833,6 @@ export default function ConnectionPublicTest() {
       console.info(`${caseName} test start`);
       try {
         connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-          netHandle.netId = 100;
           connection.reportNetDisconnected(netHandle, (error: BusinessError) => {
             if (error) {
               console.info(`${caseName} reportNetDisconnected: BusinessError>${JSON.stringify(error)}`);
@@ -917,7 +914,6 @@ export default function ConnectionPublicTest() {
       console.info(`${caseName} test start`);
       try {
         connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-          netHandle.netId = 101;
           connection.reportNetDisconnected(netHandle).then(() => {
             console.info(`${caseName}: reportNetDisconnected: success`);
             ExpectTrue(true);
@@ -1092,7 +1088,6 @@ export default function ConnectionPublicTest() {
       console.info(`${caseName} test start`);
       try {
         connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
-          netHandle.netId = 100;
           connection.reportNetDisconnected(netHandle).then(() => {
             console.info(`${caseName}: reportNetDisconnected: success`);
             ExpectTrue(true);
@@ -4448,7 +4443,7 @@ export default function ConnectionPublicTest() {
             family: 1
           } as socket.NetAddress, (error: BusinessError) => {
             console.info(`${caseName} bind error: ${JSON.stringify(error)}`);
-            netHandle.netId = 23;
+            netHandle.netId = 53;
             netHandle.bindSocket(tcp, (error: BusinessError, data: void) => {
               if (error) {
                 console.info(`${caseName} bindSocket failed error: ${JSON.stringify(error)}`);
@@ -4620,7 +4615,7 @@ export default function ConnectionPublicTest() {
             family: 1
           } as socket.NetAddress, (error: BusinessError) => {
             console.info(`${caseName} bind error: ${JSON.stringify(error)}`);
-            netHandle.netId = 23;
+            netHandle.netId = 53;
             netHandle.bindSocket(tcp).then((data: void) => {
               console.info(`${caseName} bindSocket data: ${JSON.stringify(data)}`);
               ExpectFail();
@@ -6597,6 +6592,29 @@ export default function ConnectionPublicTest() {
     });
 
     /**
+     * @tc.number     : SUB_NetworkMgr_Connection_NetCap_0600
+     * @tc.name       : testNetworkMgrConnectionNetCap0600
+     * @tc.desc       : Specific network capabilities .
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testNetworkMgrConnectionNetCap0600', 0, async (done: Function) => {
+      const caseName: string = "testNetworkMgrConnectionNetCap0600";
+      console.info(`${caseName} test start`);
+      try {
+        ExpectTrue(connection.NetCap.NET_CAPABILITY_PORTAL == 17);
+        console.info(`${caseName}---End`);
+        done();
+      } catch (err) {
+        console.info(`${caseName} catch: err->${JSON.stringify(err)}`);
+        ExpectFail();
+        console.info(`${caseName}---End`);
+        done();
+      }
+    });
+
+    /**
      * @tc.number : SUB_NetworkMgr_Connection_HttpProxy_0100
      * @tc.name   : testNetworkMgrConnectionHttpProxy0100
      * @tc.desc   : Network proxy configuration information.
@@ -8107,6 +8125,8 @@ export default function ConnectionPublicTest() {
             ExpectFail();
             console.info(`${caseName}---End`);
             done();
+          } else {
+            console.info(`${caseName}register success`);
           }
         });
         netCon.on('netAvailable', (data: connection.NetHandle) => {
@@ -8142,6 +8162,8 @@ export default function ConnectionPublicTest() {
             ExpectFail();
             console.info(`${caseName}---End`);
             done();
+          } else {
+            console.info(`${caseName}register success`);
           }
         });
         netCon.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
@@ -8177,6 +8199,8 @@ export default function ConnectionPublicTest() {
             ExpectFail();
             console.info(`${caseName}---End`);
             done();
+          } else {
+            console.info(`${caseName}register success`);
           }
         });
         netCon.on('netConnectionPropertiesChange', (data: connection.NetConnectionPropertyInfo) => {
@@ -8218,7 +8242,15 @@ export default function ConnectionPublicTest() {
             done();
           }
         });
-        netCon.unregister(() => {
+        netCon.unregister((error: BusinessError) => {
+          if (error) {
+            console.info(`${caseName} unregister fail error ${JSON.stringify(error)}`);
+            ExpectFail();
+            console.info(`${caseName}---End`);
+            done();
+          } else {
+            console.info(`${caseName} unregister fail success`);
+          }
         });
       } catch (err) {
         console.info(`${caseName} catch: err->${JSON.stringify(err)}`);

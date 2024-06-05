@@ -14,8 +14,7 @@
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
-        },
-        {
+        },{
             "type": "ShellKit",
             "run-command": [
                 "power-shell wakeup",
@@ -27,7 +26,7 @@
 			"teardown-command":[
 			    "power-shell setmode 600",
 			    "param set persist.bms.ohCert.verify false"
-			]
+            ]
         }
     ]
 }

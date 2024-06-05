@@ -16,12 +16,11 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import relationalStore from "@ohos.data.relationalStore";
 import curves from "@ohos.curves";
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { BusinessError } from '@ohos.base';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import common from "@ohos.app.ability.common";
 
-let context: Context;
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let context: common.UIAbilityContext;
 const TAG = "[RDB_JSKITS_TEST]";
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -39,8 +38,7 @@ export default function relationalStoreTest() {
   describe("relationalStoreTest", () => {
     beforeAll(async () => {
       console.info(TAG + "beforeAll");
-      let ability = await delegator.getCurrentTopAbility();
-      context = ability.context;
+      context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
       console.info(TAG + 'Get context successful. context=' + context);
     });
 
@@ -805,8 +803,8 @@ export default function relationalStoreTest() {
         expect().assertFail();
       }).catch((err: BusinessError) => {
         console.log(TAG + " testConflictResolution001 insert with wrong valuebucket2 and ConflictResolution is default");
-        expect(err.code == 14800000).assertTrue();
         done();
+        expect(err.code == 14800032).assertTrue();
       })
 
       console.log(TAG + "************* testConflictResolution001 end   *************");
@@ -1631,7 +1629,7 @@ export default function relationalStoreTest() {
       rdbStore.insert("test", valueBucket2, relationalStore.ConflictResolution.ON_CONFLICT_NONE, async (err, ret) => {
         if (err) {
           console.log(TAG + " testConflictResolution012 insert with wrong valuebucket2 and ConflictResolution is default");
-          expect(err.code == 14800000).assertTrue();
+          expect(err.code == 14800032).assertTrue();
           done();
           return;
         }

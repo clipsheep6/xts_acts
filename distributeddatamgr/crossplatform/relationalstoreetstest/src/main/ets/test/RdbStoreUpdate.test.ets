@@ -14,12 +14,11 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import relationalStore from "@ohos.data.relationalStore";
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from '@ohos.base';
+import common from "@ohos.app.ability.common";
 
-let context: Context;
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let context: common.UIAbilityContext;
 const TAG = "[RDB_JSKITS_TEST]";
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT UNIQUE, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -48,8 +47,7 @@ export default function rdbStoreUpdateTest() {
   describe("rdbStoreUpdateTest", () => {
     beforeAll(async () => {
       console.info(TAG + "beforeAll");
-      let ability = await delegator.getCurrentTopAbility();
-      context = ability.context;
+      context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
       console.info(TAG + 'Get context successful. context=' + context);
     });
 
@@ -137,27 +135,18 @@ export default function rdbStoreUpdateTest() {
      * @tc.type   : Function
      * @tc.level  : Level 2
      */
-    it("testRdbStoreUpdate002", 0, async (done: Function) => {
+    it("testRdbStoreUpdate002", 0, async () => {
       console.info(TAG + "************* testRdbStoreUpdate002 start *************");
       try {
         const emptyBucket : ValuesBucket = {};
         let predicates = new relationalStore.RdbPredicates("test");
         predicates.equalTo("id", "1");
-        rdbStore.update(emptyBucket, predicates, async (err, rows) => {
-          if (err) {
-            console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-            expect(err.code === 14800000).assertTrue();
-            console.info(TAG + "update with wrong valueBucket");
-            done();
-            return;
-          }
-          console.info(`Updated row count: ${rows}`);
-          expect(rows > 0).assertFail();
-        });
-        expect(rdbStore !== null).assertTrue();
-      } catch (e) {
-        console.info("update error " + e);
-        expect(!e).assertTrue();
+        await rdbStore.update(emptyBucket, predicates);
+        expect(true).asserFail();
+      } catch (err) {
+        console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+        expect(err.code === '401').assertTrue();
+        console.info(TAG + "update with wrong ValuesBucket");
       }
       console.info(TAG + "************* testRdbStoreUpdate002 end *************");
     });
@@ -185,9 +174,9 @@ export default function rdbStoreUpdateTest() {
         rdbStore.update(valueBucket, predicates, async (err, rows) => {
           if (err) {
             console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-            expect(err.code === 14800000).assertTrue();
-            console.info(TAG + "update with wrong condition");
             done();
+            expect(err.code === 14800021).assertTrue();
+            console.info(TAG + "update with wrong condition");
             return;
           }
           console.info(`Updated row count: ${rows}`);
@@ -219,23 +208,24 @@ export default function rdbStoreUpdateTest() {
           blobType: new Uint8Array([1, 2, 3]),
           wrongColumn: 100.5,
         };
-
         let predicates = new relationalStore.RdbPredicates("wrongTable");
         predicates.equalTo("id", "1");
         rdbStore.update(valueBucket, predicates, async (err, rows) => {
           if (err) {
             console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-            expect(err.code === 14800000).assertTrue();
+            expect(err.code === 14800021).assertTrue();
             console.info(TAG + "update with wrong table name");
             done();
             return;
           }
           console.info(`Updated row count: ${rows}`);
+          done();
           expect(rows > 0).assertFail();
         });
         expect(rdbStore !== null).assertTrue();
       } catch (e) {
         console.info("update error " + e);
+        done();
         expect(!e).assertTrue();
       }
       console.info(TAG + "************* testRdbStoreUpdate004 end *************");
@@ -265,7 +255,7 @@ export default function rdbStoreUpdateTest() {
         rdbStore.update(valueBucket, predicates, async (err, rows) => {
           if (err) {
             console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-            expect(err.code === 14800000).assertTrue();
+            expect(err.code === 14800021).assertTrue();
             console.info(TAG + "update with wrong column name");
             done();
             return;
@@ -278,7 +268,6 @@ export default function rdbStoreUpdateTest() {
         console.info("update error " + e);
         expect(!e).assertTrue();
       }
-      done();
       console.info(TAG + "************* testRdbStoreUpdate005 end *************");
     });
 
@@ -336,29 +325,19 @@ export default function rdbStoreUpdateTest() {
      * @tc.type   : Function
      * @tc.level  : Level 2
      */
-    it("testRdbStoreUpdate007", 0, async (done: Function) => {
+    it("testRdbStoreUpdate007", 0, async () => {
       console.info(TAG + "************* testRdbStoreUpdate007 start *************");
       try {
         const emptyBucket: ValuesBucket = {};
 
         let predicates = new relationalStore.RdbPredicates("test");
         predicates.equalTo("id", "1");
-        let promise = rdbStore.update(emptyBucket, predicates);
-        promise
-          .then(async (rows) => {
-            console.info(`Updated row count: ${rows}`);
-            expect(rows > 0).assertFalse();
-          })
-          .catch((err: BusinessError) => {
-            console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-            expect(err.code === 14800000).assertTrue();
-            console.info(TAG + "update with wrong valueBucket");
-            done();
-          });
-        expect(rdbStore !== null).assertTrue();
-      } catch (e) {
-        console.info("update error " + e);
-        expect(!e).assertTrue();
+        await rdbStore.update(emptyBucket, predicates);
+        expect(true).asserFail();
+      } catch (err) {
+        console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+        expect(err.code === '401').assertTrue();
+        console.info(TAG + "update with wrong valueBucket");
       }
       console.info(TAG + "************* testRdbStoreUpdate007 end *************");
     });
@@ -391,9 +370,9 @@ export default function rdbStoreUpdateTest() {
           })
           .catch((err: BusinessError) => {
             console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-            expect(err.code === 14800000).assertTrue();
-            console.info(TAG + "update with wrong condition");
             done();
+            expect(err.code === 14800021).assertTrue();
+            console.info(TAG + "update with wrong condition");
           });
         expect(rdbStore !== null).assertTrue();
       } catch (e) {
@@ -411,7 +390,7 @@ export default function rdbStoreUpdateTest() {
      * @tc.type   : Function
      * @tc.level  : Level 2
      */
-    it("testRdbStoreUpdate009", 0, async (done: Function) => {
+    it("testRdbStoreUpdate009", 0, async () => {
       console.info(TAG + "************* testRdbStoreUpdate009 start *************");
       try {
         const valueBucket: ValuesBucket = {
@@ -424,22 +403,12 @@ export default function rdbStoreUpdateTest() {
 
         let predicates = new relationalStore.RdbPredicates("wrongTable");
         predicates.equalTo("id", "1");
-        let promise = rdbStore.update(valueBucket, predicates);
-        promise
-          .then(async (rows) => {
-            console.info(`Updated row count: ${rows}`);
-            expect(rows > 0).assertTrue();
-          })
-          .catch((err: BusinessError) => {
-            console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-            expect(err.code === 14800000).assertTrue();
-            console.info(TAG + "update with null table name");
-            done();
-          });
-        expect(rdbStore !== null).assertTrue();
-      } catch (e) {
-        console.info("update error " + e);
-        expect(!e).assertTrue();
+        await rdbStore.update(valueBucket, predicates);
+        expect(true).assertFail();
+      } catch (err) {
+        console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+        expect(err.code === 14800021).assertTrue();
+        console.info(TAG + "update with null table name");
       }
       console.info(TAG + "************* testRdbStoreUpdate009 end *************");
     });
@@ -452,7 +421,7 @@ export default function rdbStoreUpdateTest() {
      * @tc.type   : Function
      * @tc.level  : Level 2
      */
-    it("testRdbStoreUpdate010", 0, async (done: Function) => {
+    it("testRdbStoreUpdate010", 0, async () => {
       console.info(TAG + "************* testRdbStoreUpdate010 start *************");
       try {
         const valueBucket: ValuesBucket = {
@@ -465,22 +434,12 @@ export default function rdbStoreUpdateTest() {
 
         let predicates = new relationalStore.RdbPredicates("test");
         predicates.equalTo("id", "1");
-        let promise = rdbStore.update(valueBucket, predicates);
-        promise
-          .then(async (rows) => {
-            console.info(`Updated row count: ${rows}`);
-            expect(rows > 0).assertTrue();
-          })
-          .catch((err: BusinessError) => {
-            console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
-            expect(err.code === 14800000).assertTrue();
-            console.info(TAG + "update with wrong column name");
-            done();
-          });
-        expect(rdbStore !== null).assertTrue();
-      } catch (e) {
-        console.info("update error " + e);
-        expect(!e).assertTrue();
+        await rdbStore.update(valueBucket, predicates);
+        expect(true).assertFail();
+      } catch (err) {
+        console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
+        expect(err.code === 14800021).assertTrue();
+        console.info(TAG + "update with wrong column name");
       }
       console.info(TAG + "************* testRdbStoreUpdate010 end *************");
     });

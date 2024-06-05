@@ -17,13 +17,21 @@ group("graphic") {
   if (is_standard_system) {
     deps = [
       "LandscapeWindow:LandscapeWindow_Test",
+      "acts_animator:ActsAnimatorTest",
+      "acts_display:ActsDisplayTest",
+      "acts_graphicXTSDrawing:ActsGraphicXTSDrawingTest",
+      "acts_graphicXTSDrawingNapi:ActsGraphicXTSDrawingNapiTest",
+      "acts_pipwindow:ActsPipWindowTest",
+      "displayManager:ActsDisplayManagerTest",
       "effectKit:ActsEffectKitTest",
+      "graphic3D:ActsGraphic3DTest",
       "graphicColorSpace:ActsColorSpaceManagerTest",
       "graphicDrawing:ActsGraphicDrawingTest",
       "graphicEGL:ActsGraphicEglTest",
+      "graphicEffectFliterTest:ActsGraphicEffectFliterTest",
       "graphicGLES3:ActsGraphicGles3Test",
       "graphicGlesExtension:ActsGraphicGlesExtensionTest",
-      "graphicText:ActsGraphicTextTest",
+      "graphicImage:ActsGraphicImageTest",
       "graphicnapidrawingtest:ActsGraphicNapiDrawingTest",
       "graphicnapitest:ActsGraphicNapiTest",
       "graphicvulkannapitest:ActsGraphicVulkanTest",
@@ -41,7 +49,7 @@ group("graphic") {
       deps += [
         "vkgl:cpvkgl",
         #"vulkan:cpvktest",
-        #"vktest:vulkanTest",
+        #"vktest:cpVulkan",
       ]
     }
   } else {

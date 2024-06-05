@@ -14,12 +14,11 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import relationalStore from "@ohos.data.relationalStore";
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from '@ohos.base';
+import common from "@ohos.app.ability.common";
 
-let context: Context;
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let context: common.UIAbilityContext;
 const TAG = "[RDB_JSKITS_TEST]";
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -38,8 +37,7 @@ export default function InsertTest() {
   describe("InsertTest", () => {
     beforeAll(async () => {
       console.info(TAG + "beforeAll");
-      let ability = await delegator.getCurrentTopAbility();
-      context = ability.context;
+      context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
       console.info(TAG + 'Get context successful. context=' + context);
     });
 
@@ -181,7 +179,7 @@ export default function InsertTest() {
       rdbStore.insert("test1", valueBucket, async (err, rowId) => {
         if (err) {
           console.error(`testRdbStoreInsertError0011:Insert is failed, code is ${err.code},message is ${err.message}`);
-          expect(err.code == 14800000).assertTrue();
+          expect(err.code == 14800021).assertTrue();
           done();
           return;
         }
@@ -209,7 +207,7 @@ export default function InsertTest() {
       rdbStore.insert("test", valueBucket, async (err, rowId) => {
         if (err) {
           console.error(`testRdbStoreInsertError0012:Insert is failed, code is ${err.code},message is ${err.message}`);
-          expect(err.code == 14800000).assertTrue();
+          expect(err.code == 14800021).assertTrue();
           done();
           return;
         }
@@ -286,7 +284,7 @@ export default function InsertTest() {
         done();
       }).catch((err: BusinessError) => {
         console.error(`testRdbStoreInsertError0021:Insert is failed, code is ${err.code},message is ${err.message}`);
-        expect(err.code == 14800000).assertTrue();
+        expect(err.code == 14800021).assertTrue();
         done();
       });
       console.info(TAG + "************* testRdbStoreInsertError0021 end *************");
@@ -315,7 +313,7 @@ export default function InsertTest() {
         done();
       }).catch((err: BusinessError) => {
         console.error(`testRdbStoreInsertError0022:Insert is failed, code is ${err.code},message is ${err.message}`);
-        expect(err.code == 14800000).assertTrue();
+        expect(err.code == 14800021).assertTrue();
         done();
       });
       console.info(TAG + "************* testRdbStoreInsertError0022 end *************");
@@ -400,7 +398,7 @@ export default function InsertTest() {
       rdbStore.insert("test1", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_ROLLBACK, async (err, rowId) => {
         if (err) {
           console.error(`testRdbStoreInsertError0031:Insert is failed, code is ${err.code},message is ${err.message}`);
-          expect(err.code == 14800000).assertTrue();
+          expect(err.code == 14800021).assertTrue();
           done();
           return;
         }
@@ -429,7 +427,7 @@ export default function InsertTest() {
       rdbStore.insert("test", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_ROLLBACK, async (err, rowId) => {
         if (err) {
           console.error(`testRdbStoreInsertError0032:Insert is failed, code is ${err.code},message is ${err.message}`);
-          expect(err.code == 14800000).assertTrue();
+          expect(err.code == 14800021).assertTrue();
           done();
           return;
         }
@@ -507,7 +505,7 @@ export default function InsertTest() {
         done();
       }).catch((err: BusinessError) => {
         console.error(`testRdbStoreInsertError0041:Insert is failed, code is ${err.code},message is ${err.message}`);
-        expect(err.code == 14800000).assertTrue();
+        expect(err.code == 14800021).assertTrue();
         done();
       });
 
@@ -537,7 +535,7 @@ export default function InsertTest() {
         done();
       }).catch((err: BusinessError) => {
         console.error(`testRdbStoreInsertError0042:Insert is failed, code is ${err.code},message is ${err.message}`);
-        expect(err.code == 14800000).assertTrue();
+        expect(err.code == 14800021).assertTrue();
         done();
       });
       console.info(TAG + "************* testRdbStoreInsertError0042 end *************");

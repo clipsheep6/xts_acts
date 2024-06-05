@@ -3,10 +3,10 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "300000",
-        "bundle-name": "com.example.configuration",
-        "package-name": "com.example.configuration",
         "shell-timeout": "600000",
-		"testcase-timeout": 10000
+        "testcase-timeout": "10000",
+        "bundle-name": "com.example.configuration",
+        "package-name": "com.example.configuration"
     },
     "kits": [
         {
@@ -15,6 +15,12 @@
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
         }
     ]
 }

@@ -81,6 +81,8 @@ import SideBarContainerType_DefaultValue2 from './SideBarContainerTest/SideBarCo
 import SideBarContainerType_DefaultValue3 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue3.test';
 import SideBarContainerDivider from './SideBarContainerTest/SideBarContainerDivider/SideBarContainerDivider.test';
 import stepperUIJsunit from './stepperTest/stepperUIJsunit.test.ets';
+import transitionJsunit from './Navigator/TransitionJsunit.test';
+import sharedTransitionJsunit from './Navigator/SharedTransitionJsunit.test';
 import NavigationApiFirst from './NavigationTest/NavigationApiFirst.test';
 import sidebarIconsJsunit from './SideBarContainerTest/sidebarfirst.test'
 import stepperItemDisabledJsunit from './stepperTest/stepperItem.test';
@@ -88,6 +90,8 @@ import NavigationApiOther from './NavigationTest/NavigationApiOther.test.ets';
 import navigatorTargetJsunit from './NavigationTest/navigator.test'
 import pageRouteTest from './pageRouteTest/pageRoute.test'
 import searchOnCutJsunit from './SearchTest/search.test'
+import navigationJsunittt from './Navigation/NavigationJsunittt.test.ets';
+import navigatorCodeJsunit from './Navigation/NavigatorCodeJsunit.test.ets';
 
 export default function testsuite() {
   navigationTypeTest();
@@ -159,6 +163,8 @@ export default function testsuite() {
   SideBarContainerType_DefaultValue3();
   SideBarContainerDivider();
   stepperUIJsunit();
+  transitionJsunit();
+  sharedTransitionJsunit();
   
   navigationTypeTest();
   NavigationApiFirst()
@@ -168,4 +174,6 @@ export default function testsuite() {
   navigatorTargetJsunit()
   pageRouteTest()
   searchOnCutJsunit()
+   navigationJsunittt();
+  navigatorCodeJsunit();
 }

@@ -1,0 +1,92 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import borderRadiuses from './GraphicsTest/borderRadiuses.test';
+import borderStyles from './GraphicsTest/borderStyles.test';
+import edgeColors from './GraphicsTest/edgeColors.test';
+import edgeWidths from './GraphicsTest/edgeWidths.test';
+import graphicGetInterfaceTest from './GraphicsTest/graphicGetInterface.test';
+import renderNodeGetInterfaceTest from './renderNode/renderNodeTestInterface.test';
+import disposeTest from './FrameNodeTest/dispose.test';
+import getAttrsTest from './FrameNodeTest/getAttrs.test';
+import RenderNodeAttributeTest from './renderNode/RenderNodeAttributeTest.test';
+import setRectShape from './GraphicsTest/setRectShape.test';
+import LengthUnitTest from './GraphicsTest/LengthUnit.test'
+import getBlendColor from './GraphicsTest/getBlendColor.test';
+import resourceColor from './GraphicsTest/resourceColor.test';
+import getNumeric from './GraphicsTest/getNumeric.test';
+import getAlpha from './GraphicsTest/getAlpha.test';
+import getBlue from './GraphicsTest/getBlue.test';
+import getGreen from './GraphicsTest/getGreen.test';
+import getRed from './GraphicsTest/getRed.test';
+import onAppear from './FrameNodeTest/onAppear.test';
+import setMeasureSizeTest from './FrameNodeTest/setMeasureSize.test';
+import createNodeBlank from './FrameNodeTest/createNodeBlank.test';
+import createNodeColumn from './FrameNodeTest/createNodeColumn.test';
+import createNodeDivider from './FrameNodeTest/createNodeDivider.test';
+import createNodeFlex from './FrameNodeTest/createNodeFlex.test';
+import createNodeGrid from './FrameNodeTest/createNodeGrid.test';
+import createNodeImage from './FrameNodeTest/createNodeImage.test';
+import createNodeList from './FrameNodeTest/createNodeList.test';
+import createNodeLoad from './FrameNodeTest/createNodeLoad.test';
+import createNodeScroll from './FrameNodeTest/createNodeScroll.test';
+import createNodeSearch from './FrameNodeTest/createNodeSearch.test';
+import createNodeStack from './FrameNodeTest/createNodeStack.test';
+import createNodeText from './FrameNodeTest/createNodeText.test';
+import setCircleShapeTest from './GraphicsTest/setCircleShape.test';
+import commonEventTest1 from './FrameNodeTest/commonEventTest1.test';
+
+import CornerTest from './GraphicsTest/GraphicsApiTest/CornerTest.test';
+import LengthMetricsUnitTest from './GraphicsTest/GraphicsApiTest/LengthMetricsUnitTest.test';
+import PercentReferenceTest from './GraphicsTest/GraphicsApiTest/PercentReferenceTest.test';
+
+export default function testsuite() {
+  borderRadiuses();
+  borderStyles();
+  edgeColors();
+  edgeWidths();
+  renderNodeGetInterfaceTest();
+  disposeTest();
+  getAttrsTest();
+  RenderNodeAttributeTest();
+  setRectShape();
+  LengthUnitTest();
+  getBlendColor();
+  resourceColor();
+  getNumeric();
+  getAlpha();
+  getBlue();
+  getGreen();
+  getRed();
+  onAppear();
+  setMeasureSizeTest();
+  createNodeBlank();
+  createNodeColumn();
+  createNodeDivider();
+  createNodeFlex();
+  createNodeGrid();
+  createNodeImage();
+  createNodeList();
+  createNodeLoad();
+  createNodeScroll();
+  createNodeSearch();
+  createNodeStack();
+  createNodeText();
+  commonEventTest1();
+  CornerTest();
+  LengthMetricsUnitTest();
+  PercentReferenceTest();
+  setCircleShapeTest();
+  graphicGetInterfaceTest();
+}

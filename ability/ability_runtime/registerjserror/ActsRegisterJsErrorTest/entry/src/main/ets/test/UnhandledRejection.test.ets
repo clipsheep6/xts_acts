@@ -20,15 +20,18 @@ let sleep = (time: number) => {
   return new Promise<number>((resolve) => setTimeout(resolve, time));
 }
 
+const SLEEP_DURATION = 800;
+const TIMEOUT_DUARATION = 300;
+
 export default function unhandledRejectionTest() {
   describe('ActsUnhandledRejectionTest', function () {
     beforeEach(async () => {
       errorManager.off("unhandledRejection");
-      await sleep(1000);
+      await sleep(SLEEP_DURATION);
     })
     afterEach(async () => {
       errorManager.off("unhandledRejection");
-      await sleep(1000);
+      await sleep(SLEEP_DURATION);
     })    
 
     /*
@@ -56,8 +59,8 @@ export default function unhandledRejectionTest() {
           expect().assertFail();
         }
         done();
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
@@ -85,8 +88,8 @@ export default function unhandledRejectionTest() {
           expect().assertFail();
         }
         done();
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
@@ -118,8 +121,8 @@ export default function unhandledRejectionTest() {
           expect().assertFail();
         }
         done();
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
@@ -150,8 +153,8 @@ export default function unhandledRejectionTest() {
           expect().assertFail();
         }
         done();
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
@@ -177,34 +180,34 @@ export default function unhandledRejectionTest() {
           expect().assertFail();
         }
         done();
-     }, 1000);
-     await sleep(1000);
+     }, TIMEOUT_DUARATION);
+     await sleep(SLEEP_DURATION);
     })
 
     /*
      * @tc.number: ACTS_Register_JsErrorCallback_UnhandledRejection_0600
      * @tc.name: JsError unhandled rejection callback enhancement
-     * @tc.desc: When trying to register UnhandledRejectionObserver in worker thread a 16200001 will occur.
+     * @tc.desc: When trying to register UnhandledRejectionObserver in worker thread.
      */
     it('ACTS_Register_JsErrorCallback_UnhandledRejection_0600', 0, async (done) => {
       let flag = false;
       console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_0600<=====");
       let threadWorker: worker.ThreadWorker;
       threadWorker = new worker.ThreadWorker('entry_test/ets/workers/workerTestRegisterObservers.ts');
-      threadWorker.postMessage("InTest host to worker");
       threadWorker.onmessage = (evt: MessageEvents) => {
-        console.log('Received event from WorkerTestRegisterObservers');
-        expect(Number(evt.data)).assertEqual(16200001);
-        flag = !flag;
+        console.log("Worker_Main_Thread, onmessage: ", JSON.stringify(evt.data));
+        expect(evt.data).assertEqual("WorkerThread");
+        flag = true;
       }
+      threadWorker.postMessage("InTest host to worker");
 
       setTimeout(() => {
         if (!flag) {
           expect().assertFail();
         }
         done();
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
@@ -269,9 +272,9 @@ export default function unhandledRejectionTest() {
       setTimeout(() => {
         expect(flag).assertTrue();
         done();
-      }, 1000);
+      }, TIMEOUT_DUARATION);
 
-      await sleep(1000);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
@@ -321,9 +324,9 @@ export default function unhandledRejectionTest() {
       setTimeout(() => {
         expect(flag).assertTrue();
         done();
-      }, 1000);
+      }, TIMEOUT_DUARATION);
 
-      await sleep(1000);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
@@ -340,8 +343,8 @@ export default function unhandledRejectionTest() {
 
       setTimeout(() => {
         errorManager.off("unhandledRejection", oldObserver)
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
 
       let flag = false;
       let newObserver: errorManager.UnhandledRejectionObserver = (reason: Error) => {
@@ -363,8 +366,8 @@ export default function unhandledRejectionTest() {
           expect().assertFail();
         }
         done();
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
@@ -389,8 +392,8 @@ export default function unhandledRejectionTest() {
 
       setTimeout(() => {
         errorManager.off("unhandledRejection")
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
 
       let flag = false;
       let newObserver: errorManager.UnhandledRejectionObserver = (reason: Error) => {
@@ -412,8 +415,8 @@ export default function unhandledRejectionTest() {
           expect().assertFail();
         }
         done();
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
@@ -434,8 +437,8 @@ export default function unhandledRejectionTest() {
 
       setTimeout(() => {
         done();
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
@@ -457,14 +460,14 @@ export default function unhandledRejectionTest() {
 
       setTimeout(() => {
         done();
-      }, 1000);
-      await sleep(1000);
+      }, TIMEOUT_DUARATION);
+      await sleep(SLEEP_DURATION);
     })
 
     /*
      * @tc.number: ACTS_Unregister_JsErrorCallback_UnhandledRejection_0500
      * @tc.name: JsError unhandled rejection callback enhancement
-     * @tc.desc: Trying to unregister UnhandledRejectionObserver in worker will end up with a 16200001 error.
+     * @tc.desc: Trying to unregister UnhandledRejectionObserver in worker.
      */
     it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0500', 0, async (done) => {
       let flag = false;
@@ -478,22 +481,22 @@ export default function unhandledRejectionTest() {
 
       let threadWorker: worker.ThreadWorker;
       threadWorker = new worker.ThreadWorker('entry_test/ets/workers/workerTestUnregisterObservers.ts');
-      threadWorker.postMessage("from main thread");
       threadWorker.onmessage = (evt: MessageEvents) => {
-        console.log('Received event from WorkerTestUnregisterObservers');
-        expect(Number(evt.data)).assertEqual(16200001);
-        flag = !flag;
+        console.log("Worker_Main_Thread, onmessage: ", JSON.stringify(evt.data));
+        expect(evt.data).assertEqual("WorkerThread");
+        flag = true;
       }
-      await sleep(1000);
+      threadWorker.postMessage("InTest host to worker");
+      await sleep(SLEEP_DURATION);
 
       setTimeout(() => {
         if (!flag) {
           expect().assertFail();
         }
         done();
-      }, 2000);
+      }, SLEEP_DURATION);
 
-      await sleep(1000);
+      await sleep(SLEEP_DURATION);
     })
   })
 }

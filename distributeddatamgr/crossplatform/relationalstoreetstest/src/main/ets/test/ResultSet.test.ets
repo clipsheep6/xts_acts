@@ -14,11 +14,10 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import relationalStore from "@ohos.data.relationalStore";
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import common from "@ohos.app.ability.common";
 
-let context: Context;
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let context: common.UIAbilityContext;
 const TAG = "[RDB_JSKITS_TEST]";
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "data1 text," + "data2 long, " + "data3 double," + "data4 blob)";
 
@@ -68,8 +67,7 @@ export default function rdbResultSetTest() {
   describe("rdbResultSetTest", () => {
     beforeAll(async () => {
       console.info(TAG + "beforeAll");
-      let ability = await delegator.getCurrentTopAbility();
-      context = ability.context;
+      context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
       console.info(TAG + 'Get context successful. context=' + context);
     });
 
@@ -1876,7 +1874,7 @@ export default function rdbResultSetTest() {
         }
       } catch (e) {
         console.info(TAG + "************* testResultSetGetLong005 err " + e);
-        expect(e.code == 14800000).assertTrue();
+        expect(e.code == 14800013).assertTrue();
       }
       resultSet.close();
       expect(true).assertEqual(resultSet.isClosed);
@@ -2067,7 +2065,7 @@ export default function rdbResultSetTest() {
             expect(!data).assertTrue();
           } catch (e) {
             console.info(TAG + "************* testResultSetGetDouble006 err " + e);
-            expect(e.code == 14800000).assertTrue();
+            expect(e.code == 14800013).assertTrue();
           }
           expect(resultSet !== null).assertTrue();
           resultSet.close();
@@ -2240,7 +2238,7 @@ export default function rdbResultSetTest() {
             expect(!data).assertTrue();
           } catch (e) {
             console.info(TAG + "************* testResultSetIsColumnNull005 err " + e);
-            expect(e.code == 14800000).assertTrue();
+            expect(e.code == 14800013).assertTrue();
           }
           expect(resultSet !== null).assertTrue();
           resultSet.close();

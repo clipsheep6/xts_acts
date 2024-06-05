@@ -32,8 +32,32 @@ import CalendarDialogCallback from './CalendarPickerDialogTest/CalendarDialogCal
 import DatePickerDialogCallback from './DatePickerDialogTest/DatePickerDialogCallback.test.ets'
 import TextPickerDialogCallback from './TextPickerDialogTest/TextPickerDialogCallback.test.ets'
 import TimePickerDialogCallback from './TimePickerDialogTest/TimePickerDialogCallback.test.ets'
+import closeCustomDialog from './promptActionTest/closeCustomDialog.test'
+import openCustomDialog from './promptActionTest/openCustomDialog.test'
+import updateCustomDialog from './promptActionTest/updateCustomDialog.test'
+import onHeightDidChange from './onHeightDidChange.test'
+
+import TimePickerDialog_Accept_Test from './TimePickerDialogTest/ButtonStyleTest/TimePickerDialog_Accept_Test.test.ets'
+import TimePickerDialog_Cancel_Test from './TimePickerDialogTest/ButtonStyleTest/TimePickerDialog_Cancel_Test.test.ets'
+import TextPickerDialog_Accept_Test from './TextPickerDialogTest/ButtonStyleTest/TextPickerDialog_Accept_Test.test.ets'
+import TextPickerDialog_Cancel_Test from './TextPickerDialogTest/ButtonStyleTest/TextPickerDialog_Cancel_Test.test.ets'
+import CloseCustomDialogTest from './CustomDialogTest/UIContextTest/CloseCustomDialog.test.ets'
+import openCustomDialogTest from './CustomDialogTest/UIContextTest/OpenCustomDialog.test.ets'
+import UpdateCustomDialogTest from './CustomDialogTest/UIContextTest/UpdateCustomDialog.test.ets'
+import ButtonStyle from './CalendarPickerDialogTest/ButtonStyle.test'
+import DateButtonStyle from './DatePickerDialogTest/DateButtonStyle.test'
+import dialogApi from './Dialog/dialogApi.test'
+import CustomDialogRouter from './CustomDialogTest/CustomDialogRouter.test.ets'
+import MenuApi1 from './Menu/MenuApi1.test'
+import IconApiTest from './MenuTest/MenuApiTest/IconApiTest.test'
+import PopupOptionsTest from './PopupTest/PopupApiTest/PopupApiTest.test'
+import menuItemGroupDivider from './Menu/menuItemGroupDivider.test.ets';
+import DismissReasonTest from './PopupTest/DismissReason.test'
+import SubMenuExpandingModeTest_SIDE from './MenuTest/MenuApiTest/SubMenuExpandingModeTest_SIDE.test'
+import SubMenuExpandingModeTest_EMBEDDED from './MenuTest/MenuApiTest/SubMenuExpandingModeTest_EMBEDDED.test'
 
 export default function testsuite() {
+  dialogApi()
   TextPickerDialog()
   DatePickerDialog()
   TimePickerDialog()
@@ -54,4 +78,25 @@ export default function testsuite() {
   DatePickerDialogCallback();
   TextPickerDialogCallback();
   TimePickerDialogCallback();
+  onHeightDidChange();
+  closeCustomDialog()
+  openCustomDialog()
+  updateCustomDialog()
+  TimePickerDialog_Accept_Test();
+  TimePickerDialog_Cancel_Test();
+  TextPickerDialog_Accept_Test();
+  TextPickerDialog_Cancel_Test();
+  CloseCustomDialogTest();
+  openCustomDialogTest();
+  UpdateCustomDialogTest();
+  ButtonStyle()
+  DateButtonStyle()
+  CustomDialogRouter()
+  MenuApi1()
+  IconApiTest();
+  PopupOptionsTest();
+  menuItemGroupDivider();
+  DismissReasonTest();
+  SubMenuExpandingModeTest_SIDE();
+  SubMenuExpandingModeTest_EMBEDDED();
 }

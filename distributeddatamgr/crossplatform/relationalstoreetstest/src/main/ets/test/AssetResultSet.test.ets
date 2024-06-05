@@ -15,10 +15,9 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import data_relationalStore from '@ohos.data.relationalStore'
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import common from "@ohos.app.ability.common";
 
-let context: Context;
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let context: common.UIAbilityContext;
 const TAG = "[RDB_JSKITS _TEST]";
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
   "data1 asset, " + "data2 asset, " + "data3 assets )";
@@ -86,8 +85,7 @@ export default function relationalStoreAssetResultSetTest() {
   describe('relationalStoreAssetResultSetTest', () => {
     beforeAll(async () => {
       console.info(TAG + 'beforeAll')
-      let ability = await delegator.getCurrentTopAbility();
-      context = ability.context;
+      context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
       console.info(TAG + 'Get context successful. context=' + context);
       rdbStore = await data_relationalStore.getRdbStore(context, STORE_CONFIG);
     })
@@ -151,7 +149,7 @@ export default function relationalStoreAssetResultSetTest() {
      * @tc.type   : Function
      * @tc.level  : Level 2
      */
-    it('testAssetResultSetGetAsset0002', 0, async (done: Function) => {
+    it('testAssetResultSetGetAsset0002', 0, async () => {
       await createTest();
       console.log(TAG + "************* testAssetResultSetGetAsset0002 start *************");
       let predicates = await new data_relationalStore.RdbPredicates("test")
@@ -160,16 +158,12 @@ export default function relationalStoreAssetResultSetTest() {
         expect(true).assertEqual(resultSet.goToFirstRow())
         const id = resultSet.getLong(resultSet.getColumnIndex("id"))
         const data111 = resultSet.getAsset(resultSet.getColumnIndex("data111"))
-        console.log(TAG + "id=" + id + ", data1=" + data111);
-        expect(0).assertEqual(data111.length);
-        resultSet.close();
-        expect(true).assertEqual(resultSet.isClosed)
+        expect(true).asserFail();
       } catch (e) {
         console.info(TAG + " getAsset can not find item", e);
-        expect('14800000').assertEqual(e.code);
+        expect('14800013').assertEqual(e.code);
       }
-      resultSet = null
-      done();
+      resultSet.close();
       console.log(TAG + "************* testAssetResultSetGetAsset0002 end *************");
     })
 
@@ -218,7 +212,7 @@ export default function relationalStoreAssetResultSetTest() {
      * @tc.type   : Function
      * @tc.level  : Level 2
      */
-    it('testAssetResultSetGetAssets0002', 0, async (done: Function) => {
+    it('testAssetResultSetGetAssets0002', 0, async () => {
       await createTest();
       console.log(TAG + "************* testAssetResultSetGetAssets0002 start *************");
       let predicates = await new data_relationalStore.RdbPredicates("test")
@@ -227,16 +221,12 @@ export default function relationalStoreAssetResultSetTest() {
         expect(true).assertEqual(resultSet.goToFirstRow())
         const id = resultSet.getLong(resultSet.getColumnIndex("id"))
         const data333 = resultSet.getAssets(resultSet.getColumnIndex("data333"))
-        console.log(TAG + "id=" + id + ", data3=" + data333);
-        expect(0).assertEqual(data333.length);
-        resultSet.close();
-        expect(true).assertEqual(resultSet.isClosed)
+        expect(true).asserFail();
       } catch (e) {
         console.info(TAG + " getAssets can not find item", e);
-        expect('14800000').assertEqual(e.code);
+        expect('14800013').assertEqual(e.code);
       }
-      resultSet = null
-      done();
+      resultSet.close();
       console.log(TAG + "************* testAssetResultSetGetAssets0002 end *************");
     })
   })

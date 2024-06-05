@@ -45,6 +45,7 @@
 #include <threads.h>
 #include <unistd.h>
 #include <utmp.h>
+#include <atomic>
 
 #define NAMELEN 16
 #define NSEC_PER_SEC 1000000000
@@ -86,6 +87,7 @@
 #ifndef tls_mod_off_t
 #define tls_mod_off_t size_t
 #define PARAM_72 72
+#define SLEEPTIME 1
 #endif
 
 extern "C" mode_t __umask_chk(mode_t);
@@ -102,7 +104,6 @@ extern "C" void *__tls_get_addr(tls_mod_off_t *a);
 extern "C" void _pthread_cleanup_pop(struct __ptcb *, int a);
 extern "C" void _pthread_cleanup_push(struct __ptcb *, void (*)(void *), void *);
 extern "C" int delete_module(const char *a, unsigned b);
-extern "C" int pivot_root(const char *a, const char *old);
 extern "C" pid_t pthread_gettid_np(pthread_t t);
 
 static napi_value DlaDdr(napi_env env, napi_callback_info info)
@@ -845,21 +846,6 @@ static napi_value Deletemodule(napi_env env, napi_callback_info info)
     napi_create_int32(env, backInfo, &result);
     return result;
 }
-static napi_value Pivotroot(napi_env env, napi_callback_info info)
-{
-    int backInfo = SUCCESS;
-    errno = NO_ERROR;
-    pid_t pid = fork();
-    if (pid == NO_ERROR) {
-        const char *put_old = nullptr;
-        const char *newRoot = nullptr;
-        backInfo = pivot_root(newRoot, put_old);
-        exit(PARAM_0);
-    }
-    napi_value result = nullptr;
-    napi_create_int32(env, backInfo, &result);
-    return result;
-}
 
 static napi_value Quickexit(napi_env env, napi_callback_info info)
 {
@@ -883,9 +869,16 @@ static napi_value Optresets(napi_env env, napi_callback_info info)
     napi_create_int32(env, optreset, &result);
     return result;
 }
+
+std::atomic<bool> isPthreadTestRun  (true);
+
 void *pthread_test(void *arg)
 {
     *((pid_t *)arg) = gettid();
+    while(isPthreadTestRun)
+    {
+        sleep(SLEEPTIME);
+    }
     return nullptr;
 }
 static napi_value Pthreadgettidnp(napi_env env, napi_callback_info info)
@@ -895,6 +888,8 @@ static napi_value Pthreadgettidnp(napi_env env, napi_callback_info info)
     int backInfo = FAILD;
     pthread_create(&t, nullptr, pthread_test, &tid);
     pid_t recv_result = pthread_gettid_np(t);
+    isPthreadTestRun = false;
+    pthread_join(t,nullptr);
     if (recv_result > NO_ERROR) {
         backInfo = SUCCESS;
     }
@@ -1328,7 +1323,6 @@ static napi_value Init(napi_env env, napi_value exports)
         {"accept", nullptr, Accept, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"accept4", nullptr, Accept4, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"delete_module", nullptr, Deletemodule, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"pivotroot", nullptr, Pivotroot, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"pthreadgettidnp", nullptr, Pthreadgettidnp, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"quickexit", nullptr, Quickexit, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"optreset", nullptr, Optresets, nullptr, nullptr, nullptr, napi_default, nullptr},
