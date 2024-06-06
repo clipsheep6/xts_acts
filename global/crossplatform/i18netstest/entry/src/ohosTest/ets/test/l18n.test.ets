@@ -18,7 +18,7 @@ import intl from '@ohos.intl'
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
 export default function I18nTest() {
-describe('I18nTest', function () {
+describe('I18nTest',  () => {
     console.log('*************start I18NTest*************');
 
     let hour = I18n.is24HourClock();
@@ -27,7 +27,7 @@ describe('I18nTest', function () {
     /* *
     * execute this step before all testcases
     */
-    beforeAll(function(){
+    beforeAll(() => {
         console.log('step before all cases in I18n.'
         + ' 24hour: ' + I18n.is24HourClock()
         + ' syslocale: ' + I18n.getSystemLocale());
@@ -36,21 +36,21 @@ describe('I18nTest', function () {
     /* *
     * execute this step before every testcase
     */
-    beforeEach(function(){
+    beforeEach(() => {
         console.log('step before every case in I18n.');
     })
 
     /* *
     * execute this step after every testcase
     */
-    afterEach(function(){
+    afterEach(() => {
         console.log('step after every case in I18n.');
     })
 
     /* *
     * execute this step after all testcases
     */
-    afterAll(function(){
+    afterAll(() => {
         console.log('step after all cases in I18n.'
         + ' 24hour: ' + I18n.is24HourClock()
         + ' syslocale: ' + I18n.getSystemLocale());
@@ -64,7 +64,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayCountry001', 0, function () {
+    it('testGetDisplayCountry001', 0,  () => {
         let value = I18n.System.getDisplayCountry('zh-Hans-CN', 'en-US', true);
         console.log('testGetDisplayCountry001 ' + value);
         expect(value).assertEqual('China');
@@ -78,7 +78,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayCountry002', 0, function () {
+    it('testGetDisplayCountry002', 0,  () => {
         let value = I18n.System.getDisplayCountry('zh-Hans-CN', 'en-US', undefined);
         console.log('testGetDisplayCountry002 ' + value);
         expect(value).assertEqual('China');
@@ -92,7 +92,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayCountry003', 0, function () {
+    it('testGetDisplayCountry003', 0,  () => {
         let value = I18n.System.getDisplayCountry('zh-Hans-CN', 'en-US', null);
         console.log('testGetDisplayCountry003 ' + value);
         expect(value).assertEqual('China');
@@ -106,9 +106,9 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayCountry004', 0, function () {
+    it('testGetDisplayCountry004', 0,  () => {
         try{
-            //@ts-ignore
+           
             let value = I18n.System.getDisplayCountry('zh', 'en-US', true);
             console.log('testGetDisplayCountry004 ' + value);
             expect(value).assertEqual('');
@@ -116,7 +116,7 @@ describe('I18nTest', function () {
             console.log('testGetDisplayCountry004 ' + e.code);
             console.log('testGetDisplayCountry004 ' + e.message);
             expect(e.code).assertEqual('890001');
-            expect(e.message).assertEqual('Invalid parameter, the country must be a valid region.');
+            expect(e.message).assertEqual('Param value not valid, the country must be a valid region.');
         }
     })
 
@@ -128,7 +128,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayCountry005', 0, function () {
+    it('testGetDisplayCountry005', 0,  () => {
         let value = I18n.System.getDisplayCountry('zh-CN', 'en-US', true);
         console.log('testGetDisplayCountry005 ' + value);
         expect(value).assertEqual('China');
@@ -142,9 +142,9 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayCountry006', 0, function () {
+    it('testGetDisplayCountry006', 0,  () => {
         try{
-            //@ts-ignore
+            
             let value = I18n.System.getDisplayCountry('zh-Hans', 'en-US', true);
             console.log('testGetDisplayCountry006 ' + value);
             expect(value).assertEqual('');
@@ -152,7 +152,7 @@ describe('I18nTest', function () {
             console.log('testGetDisplayCountry006 ' + e.code);
             console.log('testGetDisplayCountry006 ' + e.message);
             expect(e.code).assertEqual('890001');
-            expect(e.message).assertEqual('Invalid parameter, the country must be a valid region.');
+            expect(e.message).assertEqual('Param value not valid, the country must be a valid region.');
         }
     })
 
@@ -164,7 +164,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayCountry007', 0, function () {
+    it('testGetDisplayCountry007', 0,  () => {
         let value = I18n.System.getDisplayCountry('zh-Hans-CN', 'en-US', false);
         console.log('testGetDisplayCountry007 ' + value);
         expect(value).assertEqual('China');
@@ -178,7 +178,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayCountry008', 0, function () {
+    it('testGetDisplayCountry008', 0,  () => {
         let value = I18n.System.getDisplayCountry('zh-Hans-CN', 'en-US');
         console.log('testGetDisplayCountry008 ' + value);
         expect(value).assertEqual('China');
@@ -192,10 +192,10 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayCountry009', 0, function () {
+    it('testGetDisplayCountry009', 0,  () => {
         try{
-            //@ts-ignore
-            let value = I18n.System.getDisplayCountry('zh-Hans-CN');
+           
+            let value = I18n.System.getDisplayCountry('zh-Hans-CN', '12345');
             console.log('testGetDisplayCountry009 ' + value);
             expect(value).assertEqual('China');
         }catch(e){
@@ -214,10 +214,9 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayCountry010', 0, function () {
+    it('testGetDisplayCountry010', 0,  () => {
         try{
-            //@ts-ignore
-            let value = I18n.System.getDisplayCountry('zh-Hans-CN', 12345);
+            let value = I18n.System.getDisplayCountry('zh-Hans-CN', '12345');
             console.log('testGetDisplayCountry010 ' + value);
             expect(value).assertEqual('China');
         }catch(e){
@@ -236,7 +235,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage001', 0, function () {
+    it('testGetDisplayLanguage001', 0,  () => {
         let value = I18n.System.getDisplayLanguage('zh-Hans-CN', 'en-US', true);
         console.log('testGetDisplayLanguage001 ' + value);
         expect(['Chinese', 'Simplified Chinese'].indexOf(value) != -1).assertTrue();
@@ -250,7 +249,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage002', 0, function () {
+    it('testGetDisplayLanguage002', 0,  () => {
         let value = I18n.System.getDisplayLanguage('zh-Hans-CN', 'en-US', undefined);
         console.log('testGetDisplayLanguage002 ' + value);
         expect(['Chinese', 'Simplified Chinese'].indexOf(value) != -1).assertTrue();
@@ -264,7 +263,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage003', 0, function () {
+    it('testGetDisplayLanguage003', 0,  () => {
         let value = I18n.System.getDisplayLanguage('zh-Hans-CN', 'en-US', null);
         console.log('testGetDisplayLanguage003 ' + value);
         expect(['Chinese', 'Simplified Chinese'].indexOf(value) != -1).assertTrue();
@@ -278,7 +277,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage004', 0, function () {
+    it('testGetDisplayLanguage004', 0,  () => {
         let value = I18n.System.getDisplayLanguage('zh-Hans-CN', 'en-GB', true);
         console.log('testGetDisplayLanguage004 ' + value);
         expect(['Chinese', 'Simplified Chinese'].indexOf(value) != -1).assertTrue();
@@ -292,7 +291,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage005', 0, function () {
+    it('testGetDisplayLanguage005', 0,  () => {
         let value = I18n.System.getDisplayLanguage('zh', 'en-US', true);
         console.log('testGetDisplayLanguage005 ' + value);
         expect(value).assertEqual('Chinese');
@@ -306,7 +305,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage006', 0, function () {
+    it('testGetDisplayLanguage006', 0,  () => {
         let value = I18n.System.getDisplayLanguage('zh-CN', 'en-US', true);
         console.log('testGetDisplayLanguage006 ' + value);
         expect(value).assertEqual('Chinese');
@@ -320,7 +319,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage007', 0, function () {
+    it('testGetDisplayLanguage007', 0,  () => {
         let value = I18n.System.getDisplayLanguage('zh-Hans', 'en-US', true);
         console.log('testGetDisplayLanguage007 ' + value);
         expect(['Chinese', 'Simplified Chinese'].indexOf(value) != -1).assertTrue();
@@ -334,7 +333,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage008', 0, function () {
+    it('testGetDisplayLanguage008', 0,  () => {
         let value = I18n.System.getDisplayLanguage('zh-Hans-CN', 'en-US', false);
         console.log('testGetDisplayLanguage008 ' + value);
         expect(['Chinese', 'Simplified Chinese'].indexOf(value) != -1).assertTrue();
@@ -348,7 +347,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage009', 0, function () {
+    it('testGetDisplayLanguage009', 0,  () => {
         let value = I18n.System.getDisplayLanguage('zh-Hans-CN', 'en-US');
         console.log('testGetDisplayLanguage009 ' + value);
         expect(['Chinese', 'Simplified Chinese'].indexOf(value) != -1).assertTrue();
@@ -362,10 +361,9 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage010', 0, function () {
+    it('testGetDisplayLanguage010', 0,  () => {
         try{
-            //@ts-ignore
-            let value = I18n.System.getDisplayLanguage('zh-Hans-CN');
+            let value = I18n.System.getDisplayLanguage('zh-Hans-CN', '12345');
             console.log('testGetDisplayLanguage010 ' + value);
             expect(value).assertEqual('Simplified Chinese');
         }catch(e){
@@ -384,10 +382,9 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDisplayLanguage011', 0, function () {
+    it('testGetDisplayLanguage011', 0,  () => {
         try{
-            //@ts-ignore
-            let value = I18n.System.getDisplayLanguage('zh-Hans-CN', 12345);
+            let value = I18n.System.getDisplayLanguage('zh-Hans-CN', '12345');
             console.log('testGetDisplayLanguage011 ' + value);
             expect(value).assertEqual('Simplified Chinese');
         }catch(e){
@@ -407,7 +404,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSystemLanguage001', 0, function () {
+    it('testSystemLanguage001', 0,  () => {
         let lang = I18n.System.getSystemLanguage();
         console.log('testSystemLanguage001 ' + lang);
         expect(lang).assertInstanceOf('String');
@@ -422,7 +419,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetSystemRegion001', 0, function () {
+    it('testGetSystemRegion001', 0,  () => {
         let region = I18n.System.getSystemRegion();
         console.log(' testGetSystemRegion001 ' + region);
         expect(region).assertInstanceOf('String');
@@ -437,7 +434,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it(' testGetSystemLocale001', 0, function () {
+    it(' testGetSystemLocale001', 0,  () => {
         let locale = I18n.System.getSystemLocale();
         console.log(' testGetSystemLocale001 ' + locale);
         expect(locale).assertInstanceOf('String');
@@ -452,7 +449,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIs24HourClock001', 0, function () {
+    it('testIs24HourClock001', 0,  () => {
         let value = I18n.System.is24HourClock();
         console.log('testIs24HourClock001 ' + value);
         expect(value != null).assertTrue
@@ -467,7 +464,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDateOrder001', 0, function () {
+    it('testGetDateOrder001', 0,  () => {
         console.log('testGetDateOrder001 ' + 'start');
         let value = I18n.I18NUtil.getDateOrder('en');
         console.log('testGetDateOrder001 ' + value);
@@ -482,7 +479,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDateOrder002', 0, function () {
+    it('testGetDateOrder002', 0,  () => {
         console.log('testGetDateOrder002 ' + 'start');
         let value = I18n.I18NUtil.getDateOrder('th');
         console.log('testGetDateOrder002 ' + value);
@@ -497,7 +494,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetDateOrder003', 0, function () {
+    it('testGetDateOrder003', 0,  () => {
         console.log('testGetDateOrder003 ' + 'start');
         let value = I18n.I18NUtil.getDateOrder('jp');
         console.log('testGetDateOrder003 ' + value);
@@ -512,7 +509,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-     it(' testGetCalendar001', 0, function () {
+     it(' testGetCalendar001', 0,  () => {
         console.log(' testGetCalendar001 ' + 'start');
         let calendar = I18n.getCalendar('ja', 'japanese');
         expect(calendar != null).assertTrue();
@@ -526,7 +523,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSetTime001', 0, function () {
+    it('testSetTime001', 0,  () => {
         console.log('testSetTime001 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         //actuall month is 9
@@ -545,7 +542,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSetTime002', 0, function () {
+    it('testSetTime002', 0,  () => {
         console.log('testSetTime002 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         let date1 = new Date(2021, 18, 8, 8, 8, 8, 8);
@@ -563,7 +560,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSetTime003', 0, function () {
+    it('testSetTime003', 0,  () => {
         console.log('testSetTime003 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setTime(10540800000);
@@ -581,7 +578,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSet001', 0, function () {
+    it('testSet001', 0,  () => {
         console.log('testSet001 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.set(2021, 11, 11);
@@ -598,7 +595,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSet002', 0, function () {
+    it('testSet002', 0,  () => {
         console.log('testSet002 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.set(2021, 11, 11, 10, 10, 10);
@@ -615,7 +612,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSet003', 0, function () {
+    it('testSet003', 0,  () => {
         console.log('testSet003 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.set(2021, 11, 11, 10, 10);
@@ -632,7 +629,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSetTimeZoneAndGetTimeZone001', 0, function () {
+    it('testSetTimeZoneAndGetTimeZone001', 0,  () => {
         console.log('testSetTimeZoneAndGetTimeZone001 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setTimeZone('Asia/Shanghai');
@@ -649,7 +646,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSetTimeZoneAndGetTimeZone002', 0, function () {
+    it('testSetTimeZoneAndGetTimeZone002', 0,  () => {
         console.log('testSetTimeZoneAndGetTimeZone002 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setTimeZone('AAA');
@@ -667,7 +664,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetFirstDayOfWeekAndSetFirstDayOfWeek001', 0, function () {
+    it('testGetFirstDayOfWeekAndSetFirstDayOfWeek001', 0,  () => {
         console.log('testGetFirstDayOfWeekAndSetFirstDayOfWeek001 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setFirstDayOfWeek(1);
@@ -684,7 +681,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetFirstDayOfWeekAndSetFirstDayOfWeek002', 0, function () {
+    it('testGetFirstDayOfWeekAndSetFirstDayOfWeek002', 0,  () => {
         console.log('testGetFirstDayOfWeekAndSetFirstDayOfWeek002 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setFirstDayOfWeek(0);
@@ -701,7 +698,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetFirstDayOfWeekAndSetFirstDayOfWeek003', 0, function () {
+    it('testGetFirstDayOfWeekAndSetFirstDayOfWeek003', 0,  () => {
         console.log('testGetFirstDayOfWeekAndSetFirstDayOfWeek003 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setFirstDayOfWeek(7);
@@ -718,7 +715,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetFirstDayOfWeekAndSetFirstDayOfWeek004', 0, function () {
+    it('testGetFirstDayOfWeekAndSetFirstDayOfWeek004', 0,  () => {
         console.log('testGetFirstDayOfWeekAndSetFirstDayOfWeek004 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setFirstDayOfWeek(8);
@@ -735,7 +732,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek001', 0, function () {
+    it('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek001', 0,  () => {
         console.log('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek001 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setMinimalDaysInFirstWeek(1);
@@ -752,7 +749,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek002', 0, function () {
+    it('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek002', 0,  () => {
         console.log('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek002 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setMinimalDaysInFirstWeek(0);
@@ -769,7 +766,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek003', 0, function () {
+    it('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek003', 0,  () => {
         console.log('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek003 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setMinimalDaysInFirstWeek(8);
@@ -786,7 +783,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek004', 0, function () {
+    it('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek004', 0,  () => {
         console.log('testSetMinimalDaysInFirstWeekAndGetMinimalDaysInFirstWeek004 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         calendar.setMinimalDaysInFirstWeek(7);
@@ -804,7 +801,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGet001', 0, function () {
+    it('testGet001', 0,  () => {
         console.log('testGet001 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         let value = calendar.get('year');
@@ -820,7 +817,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-     it('testGet002', 0, function () {
+     it('testGet002', 0,  () => {
         console.log('testGet002 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         let date1 = new Date(2021, 8, 8, 8, 8, 8, 8);
@@ -838,7 +835,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGet003', 0, function () {
+    it('testGet003', 0,  () => {
         console.log('testGet003 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         let value = calendar.get('day_of_year');
@@ -854,7 +851,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsWeekend001', 0, function () {
+    it('testIsWeekend001', 0,  () => {
         console.log('testIsWeekend001 ' + 'start');
         let calendar = I18n.getCalendar('zh');
         let value = calendar.isWeekend(new Date(2021, 10, 1, 10, 0, 0, 0));
@@ -871,7 +868,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testI18n.IsRTL001', 0, function () {
+    it('testI18n.IsRTL001', 0,  () => {
         console.log('testI18n.IsRTL001 ' + 'start');
         let value = I18n.isRTL('zh-CN');
         console.log('testI18n.IsRTL001 ' + value);
@@ -886,7 +883,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testI18n.IsRTL002', 0, function () {
+    it('testI18n.IsRTL002', 0,  () => {
         console.log('testI18n.IsRTL002 ' + 'start');
         let value = I18n.isRTL('en-US');
         console.log('testI18n.IsRTL002 ' + value);
@@ -901,7 +898,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testI18n.IsRTL003', 0, function () {
+    it('testI18n.IsRTL003', 0,  () => {
         console.log('testI18n.IsRTL003 ' + 'start');
         let value = I18n.isRTL('ar');
         console.log('testI18n.IsRTL003 ' + value);
@@ -916,7 +913,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsDigit001', 0, function () {
+    it('testIsDigit001', 0,  () => {
         console.log('testIsDigit001 ' + 'start');
         let value = I18n.Unicode.isDigit('abc');
         console.log('testIsDigit001 ' + value);
@@ -931,7 +928,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsDigit002', 0, function () {
+    it('testIsDigit002', 0,  () => {
         console.log('testIsDigit002 ' + 'start');
         let value = I18n.Unicode.isDigit('123');
         console.log('testIsDigit002 ' + value);
@@ -946,7 +943,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsDigit003', 0, function () {
+    it('testIsDigit003', 0,  () => {
         console.log('testIsDigit003 ' + 'start');
         let value = I18n.Unicode.isDigit('123abc');
         console.log('testIsDigit003 ' + value);
@@ -961,7 +958,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsDigit004', 0, function () {
+    it('testIsDigit004', 0,  () => {
         console.log('testIsDigit004 ' + 'start');
         let value = I18n.Unicode.isDigit('abc123');
         console.log('testIsDigit004 ' + value);
@@ -976,7 +973,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsDigit005', 0, function () {
+    it('testIsDigit005', 0,  () => {
         console.log('testIsDigit005 ' + 'start');
         let value = I18n.Unicode.isDigit('');
         console.log('testIsDigit005 ' + value);
@@ -992,7 +989,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsSpaceChar001', 0, function () {
+    it('testIsSpaceChar001', 0,  () => {
         console.log('testIsSpaceChar001 ' + 'start');
         let value = I18n.Unicode.isSpaceChar('abc');
         console.log('testIsSpaceChar001 ' + value);
@@ -1007,7 +1004,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsSpaceChar002', 0, function () {
+    it('testIsSpaceChar002', 0,  () => {
         console.log('testIsSpaceChar002 ' + 'start');
         let value = I18n.Unicode.isSpaceChar(' ');
         console.log('testIsSpaceChar002 ' + value);
@@ -1022,7 +1019,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsSpaceChar003', 0, function () {
+    it('testIsSpaceChar003', 0,  () => {
         console.log('testIsSpaceChar003 ' + 'start');
         let value = I18n.Unicode.isSpaceChar('   ');
         console.log('testIsSpaceChar003--' + value + '--');
@@ -1038,7 +1035,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsWhitespace001', 0, function () {
+    it('testIsWhitespace001', 0,  () => {
         console.log('testIsWhitespace001 ' + 'start');
         let value = I18n.Unicode.isWhitespace('abc');
         console.log('testIsWhitespace001 ' + value);
@@ -1053,7 +1050,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsWhitespace002', 0, function () {
+    it('testIsWhitespace002', 0,  () => {
         console.log('testIsWhitespace002 ' + 'start');
         let value = I18n.Unicode.isWhitespace('\u0009');
         console.log('testIsWhitespace002--' + value + '--');
@@ -1069,7 +1066,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testI18n.Unicode.IsRTL001', 0, function () {
+    it('testI18n.Unicode.IsRTL001', 0,  () => {
         console.log('testI18n.Unicode.IsRTL001 ' + 'start');
         let value = I18n.Unicode.isRTL('abc');
         console.log('testI18n.Unicode.IsRTL001 ' + value);
@@ -1084,7 +1081,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testI18n.Unicode.IsRTL002', 0, function () {
+    it('testI18n.Unicode.IsRTL002', 0,  () => {
         console.log('testI18n.Unicode.IsRTL002 ' + 'start');
         let value = I18n.Unicode.isRTL('١٢٣٤٥٦٧');
         console.log('testI18n.Unicode.IsRTL002 ' + value);
@@ -1099,7 +1096,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testI18n.Unicode.IsRTL003', 0, function () {
+    it('testI18n.Unicode.IsRTL003', 0,  () => {
         console.log('testI18n.Unicode.IsRTL003 ' + 'start');
         let value = I18n.Unicode.isRTL('我是小明');
         console.log('testI18n.Unicode.IsRTL003 ' + value);
@@ -1114,7 +1111,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testI18n.Unicode.IsRTL004', 0, function () {
+    it('testI18n.Unicode.IsRTL004', 0,  () => {
         console.log('testI18n.Unicode.IsRTL004 ' + 'start');
         let value = I18n.Unicode.isRTL('نحن');
         console.log('testI18n.Unicode.IsRTL004 ' + value);
@@ -1129,7 +1126,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsIdeograph001', 0, function () {
+    it('testIsIdeograph001', 0,  () => {
         console.log('testIsIdeograph001 ' + 'start');
         let value = I18n.Unicode.isIdeograph('abc');
         console.log('testIsIdeograph001 ' + value);
@@ -1144,7 +1141,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsIdeograph002', 0, function () {
+    it('testIsIdeograph002', 0,  () => {
         console.log('testIsIdeograph002 ' + 'start');
         let value = I18n.Unicode.isIdeograph('我');
         console.log('testIsIdeograph002 ' + value);
@@ -1159,7 +1156,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsIdeograph003', 0, function () {
+    it('testIsIdeograph003', 0,  () => {
         console.log('testIsIdeograph003 ' + 'start');
         let value = I18n.Unicode.isIdeograph('우리');
         console.log('testIsIdeograph003 ' + value);
@@ -1174,7 +1171,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsIdeograph004', 0, function () {
+    it('testIsIdeograph004', 0,  () => {
         console.log('testIsIdeograph004 ' + 'start');
         let value = I18n.Unicode.isIdeograph('私たち');
         console.log('testIsIdeograph004 ' + value);
@@ -1189,7 +1186,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsLetter001', 0, function () {
+    it('testIsLetter001', 0,  () => {
         console.log('testIsLetter001 ' + 'start');
         let value = I18n.Unicode.isLetter('abc');
         console.log('testIsLetter001 ' + value);
@@ -1204,7 +1201,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsLetter002', 0, function () {
+    it('testIsLetter002', 0,  () => {
         console.log('testIsLetter002 ' + 'start');
         let value = I18n.Unicode.isLetter('123');
         console.log('testIsLetter002 ' + value);
@@ -1219,7 +1216,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsLetter003', 0, function () {
+    it('testIsLetter003', 0,  () => {
         console.log('testIsLetter003 ' + 'start');
         let value = I18n.Unicode.isLetter('abc123');
         console.log('testIsLetter003 ' + value);
@@ -1234,7 +1231,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsLetter004', 0, function () {
+    it('testIsLetter004', 0,  () => {
         console.log('testIsLetter004 ' + 'start');
         let value = I18n.Unicode.isLetter('123abc');
         console.log('testIsLetter004 ' + value);
@@ -1250,7 +1247,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsLowerCase001', 0, function () {
+    it('testIsLowerCase001', 0,  () => {
         console.log('testIsLowerCase001 ' + 'start');
         let value = I18n.Unicode.isLowerCase('abc');
         console.log('testIsLowerCase001 ' + value);
@@ -1265,7 +1262,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsLowerCase002', 0, function () {
+    it('testIsLowerCase002', 0,  () => {
         console.log('testIsLowerCase002 ' + 'start');
         let value = I18n.Unicode.isLowerCase('ABC');
         console.log('testIsLowerCase002 ' + value);
@@ -1280,7 +1277,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsLowerCase003', 0, function () {
+    it('testIsLowerCase003', 0,  () => {
         console.log('testIsLowerCase003 ' + 'start');
         let value = I18n.Unicode.isLowerCase('abcDEF');
         console.log('testIsLowerCase003 ' + value);
@@ -1295,7 +1292,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsLowerCase004', 0, function () {
+    it('testIsLowerCase004', 0,  () => {
         console.log('testIsLowerCase004 ' + 'start');
         let value = I18n.Unicode.isLowerCase('ABCdef');
         console.log('testIsLowerCase004 ' + value);
@@ -1311,7 +1308,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsUpperCase001', 0, function () {
+    it('testIsUpperCase001', 0,  () => {
         console.log('testIsUpperCase001 ' + 'start');
         let value = I18n.Unicode.isUpperCase('ABC');
         console.log('testIsUpperCase001 ' + value);
@@ -1326,7 +1323,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsUpperCase002', 0, function () {
+    it('testIsUpperCase002', 0,  () => {
         console.log('testIsUpperCase002 ' + 'start');
         let value = I18n.Unicode.isUpperCase('abc');
         console.log('testIsUpperCase002 ' + value);
@@ -1341,7 +1338,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsUpperCase003', 0, function () {
+    it('testIsUpperCase003', 0,  () => {
         console.log('testIsUpperCase003 ' + 'start');
         let value = I18n.Unicode.isUpperCase('ABCdef');
         console.log('testIsUpperCase003 ' + value);
@@ -1356,7 +1353,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testIsUpperCase004', 0, function () {
+    it('testIsUpperCase004', 0,  () => {
         console.log('testIsUpperCase004 ' + 'start');
         let value = I18n.Unicode.isUpperCase('abcDEF');
         console.log('testIsUpperCase004 ' + value);
@@ -1371,7 +1368,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetType001', 0, function () {
+    it('testGetType001', 0,  () => {
         console.log('testGetType001 ' + 'start');
         let value = I18n.Unicode.getType('a');
         console.log('testGetType001 ' + value);
@@ -1386,7 +1383,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetType002', 0, function () {
+    it('testGetType002', 0,  () => {
         console.log('testGetType002 ' + 'start');
         let value = I18n.Unicode.getType('ABC');
         console.log('testGetType002 ' + value);
@@ -1401,7 +1398,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetType003', 0, function () {
+    it('testGetType003', 0,  () => {
         console.log('testGetType003 ' + 'start');
         let value = I18n.Unicode.getType('ABCdef');
         console.log('testGetType003 ' + value);
@@ -1416,7 +1413,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetType004', 0, function () {
+    it('testGetType004', 0,  () => {
         console.log('testGetType004 ' + 'start');
         let value = I18n.Unicode.getType('123');
         console.log('testGetType004 ' + value);
@@ -1431,7 +1428,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetType005', 0, function () {
+    it('testGetType005', 0,  () => {
         console.log('testGetType005 ' + 'start');
         let value = I18n.Unicode.getType('123abc');
         console.log('testGetType005 ' + value);
@@ -1446,7 +1443,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetType006', 0, function () {
+    it('testGetType006', 0,  () => {
         console.log('testGetType006 ' + 'start');
         let value = I18n.Unicode.getType('١٢٣٤٥٦٧');
         console.log('testGetType006 ' + value);
@@ -1461,7 +1458,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetType007', 0, function () {
+    it('testGetType007', 0,  () => {
         console.log('testGetType007 ' + 'start');
         let value = I18n.Unicode.getType('   ');
         console.log('testGetType007 ' + value);
@@ -1477,7 +1474,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetTimeZone001', 0, function () {
+    it('testGetTimeZone001', 0,  () => {
         console.log('testGetTimeZone001 ' + 'start');
         let timezone = I18n.getTimeZone();
         let value = timezone.getID();
@@ -1494,7 +1491,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetID001', 0, function () {
+    it('testGetID001', 0,  () => {
         console.log('testGetID001 ' + 'start');
         let timezone = I18n.getTimeZone('ACT');
         let value = timezone.getID();
@@ -1511,7 +1508,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetRawOffSet001', 0, function () {
+    it('testGetRawOffSet001', 0,  () => {
         console.log('testGetRawOffSet001 ' + 'start');
         let timezone = I18n.getTimeZone();
         let value = timezone.getRawOffset();
@@ -1528,7 +1525,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetOffSet001', 0, function () {
+    it('testGetOffSet001', 0,  () => {
         console.log('testGetOffSet001 ' + 'start');
         let timezone = I18n.getTimeZone();
         let value = timezone.getOffset();
@@ -1544,7 +1541,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetOffSet002', 0, function () {
+    it('testGetOffSet002', 0,  () => {
         console.log('testGetOffSet002 ' + 'start');
         let timezone = I18n.getTimeZone();
         let value = timezone.getOffset(10540800000);
@@ -1561,7 +1558,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetOffSet003', 0, function () {
+    it('testGetOffSet003', 0,  () => {
         console.log('testGetOffSet003 ' + 'start');
         let timezone = I18n.getTimeZone('ACT');
         let value = timezone.getOffset();
@@ -1577,7 +1574,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetOffSet004', 0, function () {
+    it('testGetOffSet004', 0,  () => {
         console.log('testGetOffSet004 ' + 'start');
         let timezone = I18n.getTimeZone('ACT');
         let value = timezone.getOffset(10540800000);
@@ -1594,7 +1591,7 @@ describe('I18nTest', function () {
     * @tc.type    Method
     * @tc.level   Level 2
     */
-    it('testGetAvailableIDs001', 0, function () {
+    it('testGetAvailableIDs001', 0,  () => {
         console.log('testGetAvailableIDs001 ' + 'start');
         let value = I18n.TimeZone.getAvailableIDs();
         console.log('testGetAvailableIDs001 ' + value);
