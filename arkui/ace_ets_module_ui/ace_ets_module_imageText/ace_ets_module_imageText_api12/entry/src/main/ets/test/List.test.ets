@@ -66,7 +66,6 @@ import TextInputTextAreaSearch from './RichEditorEnhance/TextInputTextAreaSearch
 import TextAreaApi1 from './TextArea/TextAreaApi1.test'
 import TextAreaApi2 from './TextArea/TextAreaApi2.test'
 import TextAreaApi3 from './TextArea/TextAreaApi3.test'
-import textApi1 from './Text/TextApi1.test'
 
 import TextArea_lineBreakStrategyTest from './TextAreaTest/TextAreaAPITest/TextArea_lineBreakStrategyTest.test'
 import TextArea_lineSpacingTest from './TextAreaTest/TextAreaAPITest/TextArea_lineSpacingTest.test'
@@ -83,7 +82,6 @@ import SelectionMenuApi from './RichEditor/SelectionMenuApi.test'
 import TextAreaApi1 from './TextArea/TextAreaApi1.test'
 import TextAreaApi2 from './TextArea/TextAreaApi2.test'
 import TextAreaApi3 from './TextArea/TextAreaApi3.test'
-import textApi1 from './Text/TextApi1.test'
 import textStrategyJsunit from './TextTest/textStrategyJsunit.test';
 import EffectFillStyle from './SymbolGlyph/EffectFillStyle.test'
 import EffectScope from './SymbolGlyph/EffectScope.test'
@@ -153,7 +151,6 @@ export default function testsuite() {
   TextAreaApi1();
   TextAreaApi2();
   TextAreaApi3();
-  textApi1();
 
   TextArea_lineBreakStrategyTest();
   TextArea_lineSpacingTest();
