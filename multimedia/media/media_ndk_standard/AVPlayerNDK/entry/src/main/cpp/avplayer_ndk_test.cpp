@@ -578,10 +578,10 @@ void checkAudioStreamUsage(int index, OH_AudioStream_Usage &streamUsage, OH_AVEr
         break;
     case KNUMBER10:
         streamUsage = AUDIOSTREAM_USAGE_MOVIE;
-        break; 
+        break;
     case KNUMBER11:
         streamUsage = AUDIOSTREAM_USAGE_GAME;
-        break; 
+        break;
     case KNUMBER12:
         streamUsage = AUDIOSTREAM_USAGE_AUDIOBOOK;
         break;
@@ -706,7 +706,7 @@ static napi_value InitSetAudioInfo(napi_env env, napi_value exports)
         {"OhAvPlayerSetAudioRendererInfo", nullptr, OhAvPlayerSetAudioRendererInfo, nullptr, nullptr, nullptr,
          napi_default, nullptr},
         {"OhAvPlayerSetAudioInterruptMode", nullptr, OhAvPlayerSetAudioInterruptMode, nullptr, nullptr, nullptr,
-         api_default, nullptr},
+         napi_default, nullptr},
         {"OhAvPlayerSetAudioEffectMode", nullptr, OhAvPlayerSetAudioEffectMode, nullptr, nullptr, nullptr,
          napi_default, nullptr},
     };
