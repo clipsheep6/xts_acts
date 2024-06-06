@@ -15,15 +15,6 @@
  */
 import events_emitter from '@ohos.events.emitter';
 
-//class MyImageSpanComponentModifier implements AttributeModifier<ImageSpanAttribute> {
-//  verticalAlignValue: ImageSpanAlignment = ImageSpanAlignment.BOTTOM
-//  objectFitValue: ImageFit = ImageFit.Cover
-//  applyNormalAttribute(instance: ImageAttribute): void {
-//    instance.verticalAlign(this.verticalAlignValue)
-//    instance.objectFit(this.objectFitValue)
-//  }
-//}
-
 class MyImageSpanComponentModifier implements AttributeModifier<ImageSpanAttribute> {
   verticalAlignValue: ImageSpanAlignment = ImageSpanAlignment.BOTTOM;
   objectFitValue: ImageFit = ImageFit.Cover;

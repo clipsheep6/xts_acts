@@ -43,55 +43,43 @@ struct DividerExample  {
       if(eventData.data!.typeValue === 0)
       {
         console.info(`Divider.Color=>Color.Black`)
-        // this.mod.color(Color.Black)
         this.mod.color = Color.Black
          //old test
         this.color = Color.Black;
       } else if(eventData.data!.typeValue === 1){
         console.info(`Divider.Color=>#FF0000FF`)
-        // this.mod.color("#FF0000FF")
         this.mod.color = "#FF0000FF"
            //old test
         this.color = "#FF0000FF";
       } else if(eventData.data!.typeValue === 2){
         console.info(`Divider.Color=>#ff0000`)
-        // this.mod.color("#ff0000")
         this.mod.color = "#ff0000"
       } else if(eventData.data!.typeValue === 3){
         console.info(`Divider.color=>rgb(255, 100, 255)`)
-        // this.mod.color("rgb(255, 100, 255)")
         this.mod.color = "rgb(255, 100, 255)"
       } else if(eventData.data!.typeValue === 4){
         console.info(`Divider.color=>rgba(255, 100, 255, 0.5)`)
-        // this.mod.color("rgba(255, 100, 255, 0.5)")
         this.mod.color = "rgba(255, 100, 255, 0.5)"
       } else if(eventData.data!.typeValue === 5){
         console.info(`Divider.lineCap=>LineCapStyle.Butt`)
-        // this.mod.lineCap(LineCapStyle.Butt)
         this.mod.lineCap = LineCapStyle.Butt
       } else if(eventData.data!.typeValue === 6){
         console.info(`Divider.lineCap=>LineCapStyle.Round`)
-        // this.mod.lineCap(LineCapStyle.Round)
         this.mod.lineCap = LineCapStyle.Round
       } else if(eventData.data!.typeValue === 7){
         console.info(`Divider.lineCap=>LineCapStyle.Square`)
-        // this.mod.lineCap(100)
         this.mod.lineCap = 100
       } else if(eventData.data!.typeValue === 8){
         console.info(`Divider.strokeWidth=>2`)
-        // this.mod.strokeWidth(2)
         this.mod.strokeWidth = 2
       } else if(eventData.data!.typeValue === 9){
         console.info(`Divider.strokeWidth=>10px`)
-        // this.mod.strokeWidth("10px")
         this.mod.strokeWidth = "10px"
       } else if(eventData.data!.typeValue === 10){
         console.info(`Divider.vertical=>true`)
-        // this.mod.vertical(true)
         this.mod.vertical = true
       } else if(eventData.data!.typeValue === 11){
         console.info(`Divider.vertical=>false`)
-        // this.mod.vertical(false)
         this.mod.vertical = false
       }
     }
@@ -155,8 +143,6 @@ struct DividerExample  {
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent10, this.stateChangCallBack);
-    
-    // events_emitter.on(stateChangeEvent5, this.stateChangCallBack);
   }
   build() {
     Row() {
