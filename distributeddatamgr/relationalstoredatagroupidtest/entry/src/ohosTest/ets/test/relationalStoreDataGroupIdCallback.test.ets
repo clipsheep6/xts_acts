@@ -62,7 +62,7 @@ export default function relationalStoreDataGroupIdCallback() {
       const STORE_CONFIG: relationalStore.StoreConfig = {
         name: "RdbTest.db",
         securityLevel: relationalStore.SecurityLevel.S1,
-        dataGroupId: null,
+        dataGroupId: undefined,
       };
       try {
         relationalStore.getRdbStore(context, STORE_CONFIG, async (err, rdbStore) => {
@@ -71,9 +71,9 @@ export default function relationalStoreDataGroupIdCallback() {
             console.info(TAG, `Get RdbStore failed.` + `  rdbStore = ${rdbStore} , err = ${err}`);
             expect().assertFail();
           }
+          done();
           expect(rdbStore != undefined).assertTrue();
           await relationalStore.deleteRdbStore(context, STORE_CONFIG);
-          done();
         })
       } catch (errInfo) {
         console.error(TAG, `failed, code is ${errInfo.code},message is ${errInfo.message}`);

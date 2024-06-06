@@ -28,7 +28,7 @@ const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test ("
   + "salary REAL, "
   + "blobType BLOB)";
 
-let rdbStore;
+let rdbStore : relationalStore.RdbStore | undefined;;
 
 
 export default function relationalStoreDataGroupIdPromise() {
@@ -64,7 +64,7 @@ export default function relationalStoreDataGroupIdPromise() {
       const STORE_CONFIG: relationalStore.StoreConfig = {
         name: "RdbTest.db",
         securityLevel: relationalStore.SecurityLevel.S1,
-        dataGroupId: null,
+        dataGroupId : undefined,
       };
       try {
         let rdbStore = await relationalStore.getRdbStore(context, STORE_CONFIG);
