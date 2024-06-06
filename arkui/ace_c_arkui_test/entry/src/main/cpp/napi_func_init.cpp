@@ -478,6 +478,7 @@
 #include "textinput/textinput_lineheight_test.cpp"
 #include "textinput/textinput_defaultfocus_test.cpp"
 #include "arkApi/arkApi.cpp"
+#include "arkApi/arkUIAPi.cpp"
 
 namespace ArkUICapiTest {
 EXTERN_C_START
@@ -4266,6 +4267,14 @@ static napi_value Init(napi_env env, napi_value exports)
         {"TestArkUIAddApi004", nullptr, TestArkUIAddApi004, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"TestArkUIAddApi005", nullptr, TestArkUIAddApi005, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"TestArkUIAddApi006", nullptr, TestArkUIAddApi006, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testArkUI001", nullptr, testArkUI001, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testArkUI002", nullptr, testArkUI002, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testArkUI003", nullptr, testArkUI003, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testArkUI004", nullptr, testArkUI004, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testArkUI005", nullptr, testArkUI005, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testArkUI006", nullptr, testArkUI006, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testArkUI007", nullptr, testArkUI007, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testArkUI008", nullptr, testArkUI008, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");

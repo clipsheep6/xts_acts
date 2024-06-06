@@ -4754,3 +4754,19 @@ export const TestArkUIAddApi004: () => number;
 export const TestArkUIAddApi005: () => number;
 
 export const TestArkUIAddApi006: () => number;
+
+export const testArkUI001: () => number;
+
+export const testArkUI002: () => number;
+
+export const testArkUI003: () => number;
+
+export const testArkUI004: () => number;
+
+export const testArkUI005: () => number;
+
+export const testArkUI006: () => number;
+
+export const testArkUI007: () => number;
+
+export const testArkUI008: () => number;
