@@ -1,12 +1,16 @@
 {
   "string": [
     {
-      "name": "app_name",
-      "value": "ActsAceEtsComponentCommonAttrsLayoutWeightTest"
+      "name": "module_desc",
+      "value": "module description"
     },
     {
-      "name": "description_application",
-      "value": "ActsAceEtsComponentCommonAttrsLayoutWeightTest"
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
     }
   ]
 }
