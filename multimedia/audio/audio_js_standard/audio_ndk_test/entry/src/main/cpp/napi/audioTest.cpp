@@ -880,6 +880,20 @@ static napi_value AudioStreamBuilderSetRendererInfo(napi_env env, napi_callback_
     return res;
 }
 
+static napi_value AudioStreamBuilderSetRendererPrivacy(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder;
+    OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
+    OH_AudioStreamBuilder_Create(&builder, type);
+    OH_AudioStream_PrivacyType privacy = AUDIO_STREAM_PRIVACY_TYPE_PUBLIC;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererPrivacy(builder, privacy);
+
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
 
 static napi_value AudioStreamBuilderSetCapturerInfo(napi_env env, napi_callback_info info)
 {
@@ -3214,6 +3228,8 @@ static napi_value Init(napi_env env, napi_value exports)
             nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioStreamBuilderSetRendererInfo", nullptr, AudioStreamBuilderSetRendererInfo,
             nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioStreamBuilderSetRendererPrivacy", nullptr, AudioStreamBuilderSetRendererPrivacy, nullptr, nullptr,
+            nullptr, napi_default, nullptr},
         {"audioStreamBuilderSetCapturerInfo", nullptr, AudioStreamBuilderSetCapturerInfo,
             nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioStreamBuilderSetRendererCallback", nullptr, AudioStreamBuilderSetRendererCallback,

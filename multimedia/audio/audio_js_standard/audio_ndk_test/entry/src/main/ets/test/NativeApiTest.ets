@@ -878,6 +878,20 @@ export default function audioNDK() {
       done()
     })
     /* *
+       * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_STREAM_BUILDER_SET_RENDERER_PRIVACY_0100
+       * @tc.name      : set PRIVACY_TYPE_PUBLIC privacy type after create audioStreamBuilder
+       * @tc.desc      : test OH_AudioStreamBuilder_SetRendererPrivacy
+       * @tc.size      : MediumTest
+       * @tc.type      : Function
+       * @tc.level     : Level2
+   */
+    it('SUB_MULTIMEDIA_AUDIO_NDK_STREAM_BUILDER_SET_RENDERER_PRIVACY_0100', 0, async (done: Function) => {
+      let a = myaudioNdk.audioStreamBuilderSetRendererPrivacy();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_STREAM_BUILDER_SET_RENDERER_PRIVACY_0100 audioStreamBuilderSetRendererPrivacy: ${a}`);
+      expect(a).assertEqual(0)
+      done()
+    })
+    /* *
        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_STREAM_BUILDER_SET_CAPTURER_INFO_0100
        * @tc.name      : set captureInfo AUDIOSTREAM_SOURCE_TYPE_MIC after create audioStreamBuilder
        * @tc.desc      : test OH_AudioStreamBuilder_SetCapturerInfo
