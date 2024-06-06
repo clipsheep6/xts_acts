@@ -424,7 +424,7 @@ static napi_value OhAvPlayerSeek(napi_env env, napi_callback_info info)
     int32_t speed = getParamAtIndex(ONEVAL, env, info);
     AVPlayerSeekMode mode;
     if (speed == 0) {
-        mode == AV_SEEK_NEXT_SYNC;
+        mode = AV_SEEK_NEXT_SYNC;
     } else if (speed == 1) {
         mode = AV_SEEK_PREVIOUS_SYNC;
     } else {
@@ -545,17 +545,9 @@ static napi_value OhAvPlayerSetVideoSurface(napi_env env, napi_callback_info inf
     return result;
 }
 
-// 设置音频流类型
-static napi_value OhAvPlayerSetAudioRendererInfo(napi_env env, napi_callback_info info)
+void checkAudioStreamUsage(int index, OH_AudioStream_Usage &streamUsage, OH_AVErrCode &avErrCode)
 {
-    napi_value result = nullptr;
-    OH_AudioStream_Usage streamUsage;
-    OH_AVErrCode avErrCode;
-    size_t argc = PARAM_1;
-    napi_value args[PARAM_1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int index;
-    napi_get_value_int32(env, args[PARAM_0], &index);
+    avErrCode = AV_ERR_OK;
     switch (index) {
     case KNUMBER0:
         streamUsage = AUDIOSTREAM_USAGE_UNKNOWN;
@@ -586,22 +578,39 @@ static napi_value OhAvPlayerSetAudioRendererInfo(napi_env env, napi_callback_inf
         break;
     case KNUMBER10:
         streamUsage = AUDIOSTREAM_USAGE_MOVIE;
-        break;
+        break; 
     case KNUMBER11:
         streamUsage = AUDIOSTREAM_USAGE_GAME;
-        break;   
+        break; 
     case KNUMBER12:
         streamUsage = AUDIOSTREAM_USAGE_AUDIOBOOK;
-        break;  
+        break;
     case KNUMBER13:
         streamUsage = AUDIOSTREAM_USAGE_NAVIGATION;
-        break;       
+        break;
     default:
         avErrCode = AV_ERR_INVALID_VAL;
+    }
+    return;
+}
+
+// 设置音频流类型
+static napi_value OhAvPlayerSetAudioRendererInfo(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    OH_AudioStream_Usage streamUsage;
+    OH_AVErrCode avErrCode;
+    size_t argc = PARAM_1;
+    napi_value args[PARAM_1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    int index;
+    napi_get_value_int32(env, args[PARAM_0], &index);
+    checkAudioStreamUsage(index, streamUsage, avErrCode);
+    if (avErrCode == AV_ERR_INVALID_VAL) {
         napi_create_int32(env, avErrCode, &result);
         return result;
     }
-    avErrCode = OH_AVPlayer_SetAudioRendererInfo(mainPlayer, streamUsage)
+    avErrCode = OH_AVPlayer_SetAudioRendererInfo(mainPlayer, streamUsage);
     napi_create_int32(env, avErrCode, &result);
     return result;
 }
@@ -691,6 +700,19 @@ static napi_value OhAvPlayerStop(napi_env env, napi_callback_info info)
 
 
 EXTERN_C_START
+static napi_value InitSetAudioInfo(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {
+        {"OhAvPlayerSetAudioRendererInfo", nullptr, OhAvPlayerSetAudioRendererInfo, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"OhAvPlayerSetAudioInterruptMode", nullptr, OhAvPlayerSetAudioInterruptMode, nullptr, nullptr, nullptr,
+         api_default, nullptr},
+        {"OhAvPlayerSetAudioEffectMode", nullptr, OhAvPlayerSetAudioEffectMode, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+    };
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    return exports;
+}
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
@@ -734,13 +756,8 @@ static napi_value Init(napi_env env, napi_value exports)
         {"OhCloseFile", nullptr, OhCloseFile, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerSetFdPathSourceTwo", nullptr, OhAvPlayerSetFdPathSourceTwo, nullptr, nullptr, nullptr, napi_default,
          nullptr},
-        {"OhAvPlayerSetAudioRendererInfo", nullptr, OhAvPlayerSetAudioRendererInfo, nullptr, nullptr, nullptr, napi_default,
-         nullptr},
-         {"OhAvPlayerSetAudioInterruptMode", nullptr, OhAvPlayerSetAudioInterruptMode, nullptr, nullptr, nullptr, napi_default,
-         nullptr},
-         {"OhAvPlayerSetAudioEffectMode", nullptr, OhAvPlayerSetAudioEffectMode, nullptr, nullptr, nullptr, napi_default,
-         nullptr},
     };
+    exports = InitSetAudioInfo(env, exports);
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
