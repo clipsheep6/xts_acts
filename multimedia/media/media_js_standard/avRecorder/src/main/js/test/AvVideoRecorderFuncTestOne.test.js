@@ -301,7 +301,6 @@ export default function avVideoRecorderTestOne() {
                 }
                 avConfigH264.profile.videoBitrate = 280000;
                 avConfigH264Aac.profile.videoBitrate = 280000;
-    
                 console.info('beforeAll out');
 
             } else {
@@ -317,6 +316,7 @@ export default function avVideoRecorderTestOne() {
             console.info('beforeEach case');
             if (isSupportCameraVideoProfiles) {
                 await avRecorderTestBase.sleep(1000);
+                fdObject = null;
             }
         })
 
@@ -329,13 +329,12 @@ export default function avVideoRecorderTestOne() {
                         console.info(TAG + 'this testCase execution completed')
                     }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
                 }
-                await mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
+                await mediaTestBase.closeFd(fdObject?.fdNumber);
                 await avRecorderTestBase.sleep(1000);
             }
         })
 
         afterAll(function () {
-            // mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
             console.info('afterAll case');
         })
 
@@ -9708,7 +9707,7 @@ export default function avVideoRecorderTestOne() {
 
             let mySteps = new Array(
                 // init avRecorder
-                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, 
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT,
                 //prepare avRecorder
                 PREPARE_CALLBACK_EVENT,
                 //update rotation
