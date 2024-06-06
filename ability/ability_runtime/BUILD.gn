@@ -61,6 +61,7 @@ group("ability_runtime") {
       "actsstartupruleoptimizetest:actsstartupruleoptimizetest",
       "actsstserviceabilityclientcase:ActsStServiceAbilityClientCaseTest",
       "actssupportfunction:actssupportfunction",
+      "actsswitchuserextension:actsswitchuserextension",
       "actssystemapitest:ActsSystemAPITest",
       "actsturipermisssiontest:actsturipermisssiontest",
       "actsuiabilitycontext:actsuiabilitycontext",

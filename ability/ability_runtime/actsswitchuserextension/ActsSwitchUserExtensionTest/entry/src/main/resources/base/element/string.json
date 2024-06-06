@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "accept",
+      "value": "允许"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "Type_system_alert",
+      "value": "TYPE_SYSTEM_ALERT"
+    },
+    {
+      "name": "Type_input_method",
+      "value": "TYPE_INPUT_METHOD"
+    },
+    {
+      "name": "Type_status_bar",
+      "value": "TYPE_STATUS_BAR"
+    },
+    {
+      "name": "Type_panel",
+      "value": "TYPE_PANEL"
+    },
+    {
+      "name": "Type_keyguard",
+      "value": "TYPE_KEYGUARD"
+    },
+    {
+      "name": "Type_volume_overlay",
+      "value": "TYPE_VOLUME_OVERLAY"
+    },
+    {
+      "name": "Type_navigation_bar",
+      "value": "TYPE_NAVIGATION_BAR"
+    },
+    {
+      "name": "Type_float",
+      "value": "TYPE_FLOAT"
+    },
+    {
+      "name": "Type_launcher_recent",
+      "value": "TYPE_LAUNCHER_RECENT"
+    },
+    {
+      "name": "Type_launcher_dock",
+      "value": "TYPE_LAUNCHER_DOCK"
+    },
+    {
+      "name": "Type_voice_interaction",
+      "value": "TYPE_VOICE_INTERACTION"
+    },
+    {
+      "name": "Type_pointer",
+      "value": "TYPE_POINTER"
+    },
+    {
+      "name": "Type_float_camera",
+      "value": "TYPE_FLOAT_CAMERA"
+    },
+    {
+      "name": "Type_screenshot",
+      "value": "TYPE_SCREENSHOT"
+    }
+  ]
+}
