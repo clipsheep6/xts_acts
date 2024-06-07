@@ -33,7 +33,10 @@ ohos_shared_library("AudioNDK") {
     "//foundation/multimedia/audio_framework/interfaces/kits/c/common",
     "//foundation/multimedia/media_foundation/interface/kits/c/",
   ]
-  external_deps = [ "napi:ace_napi" ]
+  external_deps = [
+    "hilog:libhilog",
+    "napi:ace_napi",
+  ]
   deps = [ "$MEDIA_ROOT_DIR/interfaces/kits/c:avplayer" ]
   configs = [ ":config" ]
   output_extension = "so"
