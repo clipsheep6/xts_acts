@@ -15,6 +15,7 @@
 
 #include "common/common.h"
 #include <ace/xcomponent/native_interface_xcomponent.h>
+#define res -2
 
 
 namespace ArkUICapiTest {
@@ -22,21 +23,21 @@ namespace ArkUICapiTest {
 static napi_value testArkUI001(napi_env env, napi_callback_info info)
 {
     auto ret = OH_NativeXComponent_SetNeedSoftKeyboard(nullptr, false);
-    ASSERT_EQ(ret, -2);
+    ASSERT_EQ(ret, res);
     NAPI_END;
 }
 
 static napi_value testArkUI002(napi_env env, napi_callback_info info)
 {
     auto ret = OH_NativeXComponent_RegisterSurfaceShowCallback(nullptr, nullptr);
-    ASSERT_EQ(ret, -2);
+    ASSERT_EQ(ret, res);
     NAPI_END;
 }
 
 static napi_value testArkUI003(napi_env env, napi_callback_info info)
 {
     auto ret = OH_NativeXComponent_RegisterSurfaceHideCallback(nullptr, nullptr);
-    ASSERT_EQ(ret, -2);
+    ASSERT_EQ(ret, res);
     NAPI_END;
 }
 
