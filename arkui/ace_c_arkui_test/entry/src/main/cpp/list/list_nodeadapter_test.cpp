@@ -75,7 +75,7 @@ napi_value static TestListNodeAdapter003(napi_env env, napi_callback_info info)
         auto type = OH_ArkUI_NodeAdapterEvent_GetType(adapterEvent);
         switch (type) {
             case NODE_ADAPTER_EVENT_WILL_ATTACH_TO_NODE: {
-                // 通知Adapter进行局部元素插入，插入10个
+                // 通知Adapter进行局部元素插入
                 uint32_t startPosition = 0;
                 uint32_t itemCount = 10;
                 int32_t ret_inner = OH_ArkUI_NodeAdapter_InsertItem(adapter, startPosition, itemCount);
