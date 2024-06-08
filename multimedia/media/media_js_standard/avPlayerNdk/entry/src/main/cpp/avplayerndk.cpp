@@ -220,7 +220,7 @@ static napi_value OhAvPlayerSetAudioInterruptMode(napi_env env, napi_callback_in
     OH_AVPlayer *player = OH_AVPlayer_Create();
     if (GetFDSourceInfo(player) == AV_ERR_OK) {
         OH_AVErrCode errCode = OH_AVPlayer_SetAudioInterruptMode(player,
-                                    AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT);
+            AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT);
         if (errCode == AV_ERR_OK) {
             backParam = SUCCESS;
         }
