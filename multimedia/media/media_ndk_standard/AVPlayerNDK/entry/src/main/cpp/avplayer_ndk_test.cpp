@@ -545,132 +545,6 @@ static napi_value OhAvPlayerSetVideoSurface(napi_env env, napi_callback_info inf
     return result;
 }
 
-void checkAudioStreamUsage(int index, OH_AudioStream_Usage &streamUsage, OH_AVErrCode &avErrCode)
-{
-    avErrCode = AV_ERR_OK;
-    switch (index) {
-    case KNUMBER0:
-        streamUsage = AUDIOSTREAM_USAGE_UNKNOWN;
-        break;
-    case KNUMBER1:
-        streamUsage = AUDIOSTREAM_USAGE_MUSIC;
-        break;
-    case KNUMBER2:
-        streamUsage = AUDIOSTREAM_USAGE_VOICE_COMMUNICATION;
-        break;
-    case KNUMBER3:
-        streamUsage = AUDIOSTREAM_USAGE_VOICE_ASSISTANT;
-        break;
-    case KNUMBER4:
-        streamUsage = AUDIOSTREAM_USAGE_ALARM;
-        break;
-    case KNUMBER5:
-        streamUsage = AUDIOSTREAM_USAGE_VOICE_MESSAGE;
-        break;
-    case KNUMBER6:
-        streamUsage = AUDIOSTREAM_USAGE_RINGTONE;
-        break;
-    case KNUMBER7:
-        streamUsage = AUDIOSTREAM_USAGE_NOTIFICATION;
-        break;
-    case KNUMBER8:
-        streamUsage = AUDIOSTREAM_USAGE_ACCESSIBILITY;
-        break;
-    case KNUMBER10:
-        streamUsage = AUDIOSTREAM_USAGE_MOVIE;
-        break;
-    case KNUMBER11:
-        streamUsage = AUDIOSTREAM_USAGE_GAME;
-        break;
-    case KNUMBER12:
-        streamUsage = AUDIOSTREAM_USAGE_AUDIOBOOK;
-        break;
-    case KNUMBER13:
-        streamUsage = AUDIOSTREAM_USAGE_NAVIGATION;
-        break;
-    default:
-        avErrCode = AV_ERR_INVALID_VAL;
-    }
-    return;
-}
-
-// 设置音频流类型
-static napi_value OhAvPlayerSetAudioRendererInfo(napi_env env, napi_callback_info info)
-{
-    napi_value result = nullptr;
-    OH_AudioStream_Usage streamUsage;
-    OH_AVErrCode avErrCode;
-    size_t argc = PARAM_1;
-    napi_value args[PARAM_1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int index;
-    napi_get_value_int32(env, args[PARAM_0], &index);
-    checkAudioStreamUsage(index, streamUsage, avErrCode);
-    if (avErrCode == AV_ERR_INVALID_VAL) {
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    avErrCode = OH_AVPlayer_SetAudioRendererInfo(mainPlayer, streamUsage);
-    napi_create_int32(env, avErrCode, &result);
-    return result;
-}
-
-// 设置音频流打断模式
-static napi_value OhAvPlayerSetAudioInterruptMode(napi_env env, napi_callback_info info)
-{
-    napi_value result = nullptr;
-    OH_AudioInterrupt_Mode interruptMode;
-    OH_AVErrCode avErrCode;
-    size_t argc = PARAM_1;
-    napi_value args[PARAM_1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int index;
-    napi_get_value_int32(env, args[PARAM_0], &index);
-    switch (index) {
-    case KNUMBER0:
-        interruptMode = AUDIOSTREAM_INTERRUPT_MODE_SHARE;
-        break;
-    case KNUMBER1:
-        interruptMode = AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
-        break;
-    default:
-        avErrCode = AV_ERR_INVALID_VAL;
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    avErrCode = OH_AVPlayer_SetAudioInterruptMode(mainPlayer, interruptMode);
-    napi_create_int32(env, avErrCode, &result);
-    return result;
-}
-
-// 设置音频流音效模式
-static napi_value OhAvPlayerSetAudioEffectMode(napi_env env, napi_callback_info info)
-{
-    napi_value result = nullptr;
-    OH_AudioStream_AudioEffectMode effectMode;
-    OH_AVErrCode avErrCode;
-    size_t argc = PARAM_1;
-    napi_value args[PARAM_1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int index;
-    napi_get_value_int32(env, args[PARAM_0], &index);
-    switch (index) {
-    case KNUMBER0:
-        effectMode = EFFECT_NONE;
-        break;
-    case KNUMBER1:
-        effectMode = EFFECT_DEFAULT;
-        break;
-    default:
-        avErrCode = AV_ERR_INVALID_VAL;
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    avErrCode = OH_AVPlayer_SetAudioEffectMode(mainPlayer, effectMode);
-    napi_create_int32(env, avErrCode, &result);
-    return result;
-}
-
 // 设置播放器的音量
 static napi_value OhAvPlayerSetVolume(napi_env env, napi_callback_info info)
 {
@@ -700,19 +574,6 @@ static napi_value OhAvPlayerStop(napi_env env, napi_callback_info info)
 
 
 EXTERN_C_START
-static napi_value InitSetAudioInfo(napi_env env, napi_value exports)
-{
-    napi_property_descriptor desc[] = {
-        {"OhAvPlayerSetAudioRendererInfo", nullptr, OhAvPlayerSetAudioRendererInfo, nullptr, nullptr, nullptr,
-         napi_default, nullptr},
-        {"OhAvPlayerSetAudioInterruptMode", nullptr, OhAvPlayerSetAudioInterruptMode, nullptr, nullptr, nullptr,
-         napi_default, nullptr},
-        {"OhAvPlayerSetAudioEffectMode", nullptr, OhAvPlayerSetAudioEffectMode, nullptr, nullptr, nullptr,
-         napi_default, nullptr},
-    };
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
@@ -757,7 +618,6 @@ static napi_value Init(napi_env env, napi_value exports)
         {"OhAvPlayerSetFdPathSourceTwo", nullptr, OhAvPlayerSetFdPathSourceTwo, nullptr, nullptr, nullptr, napi_default,
          nullptr},
     };
-    exports = InitSetAudioInfo(env, exports);
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
