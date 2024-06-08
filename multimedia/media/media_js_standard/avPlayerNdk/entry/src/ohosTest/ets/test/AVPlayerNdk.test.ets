@@ -176,7 +176,7 @@ export default function AVPlayerNdkTest() {
      * @tc.level      : Level 0
      */
     it('testOhAvPlayerSetAudioRendererInfo001', 0, async (done: Function) => {
-      let result: number = avplayer.OhAvPlayerSetAudioRendererInfo();;
+      let result: number = avplayer.OhAvPlayerSetAudioRendererInfo();
       expect(result).assertEqual(0);
       done();
     });
@@ -190,7 +190,7 @@ export default function AVPlayerNdkTest() {
      * @tc.level      : Level 0
      */
     it('testOhAvPlayerSetAudioInterruptMode001', 0, async (done: Function) => {
-      let result: number = avplayer.OhAvPlayerSetAudioInterruptMode();;
+      let result: number = avplayer.OhAvPlayerSetAudioInterruptMode();
       expect(result).assertEqual(0);
       done();
     });
@@ -204,7 +204,7 @@ export default function AVPlayerNdkTest() {
      * @tc.level      : Level 0
      */
     it('testOhAvPlayerSetAudioEffectMode001', 0, async (done: Function) => {
-      let result: number = avplayer.OhAvPlayerSetAudioEffectMode();;
+      let result: number = avplayer.OhAvPlayerSetAudioEffectMode();
       expect(result).assertEqual(0);
       done();
     });
