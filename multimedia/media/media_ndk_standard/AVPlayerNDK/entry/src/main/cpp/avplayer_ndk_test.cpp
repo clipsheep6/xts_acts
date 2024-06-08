@@ -416,7 +416,7 @@ static napi_value OhAvPlayerSeek(napi_env env, napi_callback_info info)
     int32_t speed = getParamAtIndex(ONEVAL, env, info);
     AVPlayerSeekMode mode;
     if (speed == 0) {
-        mode == AV_SEEK_NEXT_SYNC;
+        mode = AV_SEEK_NEXT_SYNC;
     } else if (speed == 1) {
         mode = AV_SEEK_PREVIOUS_SYNC;
     } else {
