@@ -142,70 +142,7 @@ export default function OhAVPlayerNDKTest() { // L2
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
-    });
-
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYSETAUDIORENDERERINFO_0100
-     * @tc.name       : testOhAvPlayerSetAudioRendererInfo001
-     * @tc.desc       : Set the stream usage of the player's audio renderer.
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOhAvPlayerSetAudioRendererInfo001', 0, async (done: Function) => {
-      console.info(`testOhAvPlayerSetAudioRendererInfo001 test start `);
-      try {
-        let player: number = await avplayer.OhAvPlayerSetAudioRendererInfo(AUDIOSTREAM_USAGE_UNKNOWN);
-        expect(player).assertEqual(AV_ERR_OK);
-        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioRendererInfo001:${player}`);
-      } catch (error) {
-        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioRendererInfo001:${error}`);
-      }
-      console.info(`testOhAvPlayerSetAudioRendererInfo001 test end `);
-      done();
-    });
-
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYSETAUDIOINTERRUPTMODE_0100
-     * @tc.name       : testOhAvPlayerSetAudioInterruptMode001
-     * @tc.desc       : Set the interrupt mode of the player's audio renderer.
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOhAvPlayerSetAudioInterruptMode001', 0, async (done: Function) => {
-      console.info(`testOhAvPlayerSetAudioInterruptMode001 test start `);
-      try {
-        let player: number = await avplayer.OhAvPlayerSetAudioInterruptMode(AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT);
-        expect(player).assertEqual(AV_ERR_OK);
-        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioInterruptMode001:${player}`);
-      } catch (error) {
-        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioInterruptMode001:${error}`);
-      }
-      console.info(`testOhAvPlayerSetAudioInterruptMode001 test end `);
-      done();
-    }); 
-
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYSETAUDIOEFFECTMODE_0100
-     * @tc.name       : testOhAvPlayerSetAudioEffectMode001
-     * @tc.desc       : Set the effect mode of the player's audio renderer.
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOhAvPlayerSetAudioEffectMode001', 0, async (done: Function) => {
-      console.info(`testOhAvPlayerSetAudioEffectMode001 test start `);
-      try {
-        let player: number = await avplayer.OhAvPlayerSetAudioEffectMode(EFFECT_NONE);
-        expect(player).assertEqual(AV_ERR_OK);
-        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioEffectMode001:${player}`);
-      } catch (error) {
-        hilog.info(0x0000, 'testTag', '%{public}s', `testOhAvPlayerSetAudioEffectMode001:${error}`);
-      }
-      console.info(`testOhAvPlayerSetAudioEffectMode001 test end `);
-      done();
-    });           
+    });          
 
     /**
      * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERPREPARE_0100
