@@ -700,19 +700,6 @@ static napi_value OhAvPlayerStop(napi_env env, napi_callback_info info)
 
 
 EXTERN_C_START
-static napi_value InitSetAudioInfo(napi_env env, napi_value exports)
-{
-    napi_property_descriptor desc[] = {
-        {"OhAvPlayerSetAudioRendererInfo", nullptr, OhAvPlayerSetAudioRendererInfo, nullptr, nullptr, nullptr,
-         napi_default, nullptr},
-        {"OhAvPlayerSetAudioInterruptMode", nullptr, OhAvPlayerSetAudioInterruptMode, nullptr, nullptr, nullptr,
-         napi_default, nullptr},
-        {"OhAvPlayerSetAudioEffectMode", nullptr, OhAvPlayerSetAudioEffectMode, nullptr, nullptr, nullptr,
-         napi_default, nullptr},
-    };
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
@@ -756,8 +743,13 @@ static napi_value Init(napi_env env, napi_value exports)
         {"OhCloseFile", nullptr, OhCloseFile, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerSetFdPathSourceTwo", nullptr, OhAvPlayerSetFdPathSourceTwo, nullptr, nullptr, nullptr, napi_default,
          nullptr},
+        {"OhAvPlayerSetAudioRendererInfo", nullptr, OhAvPlayerSetAudioRendererInfo, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"OhAvPlayerSetAudioInterruptMode", nullptr, OhAvPlayerSetAudioInterruptMode, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"OhAvPlayerSetAudioEffectMode", nullptr, OhAvPlayerSetAudioEffectMode, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
     };
-    exports = InitSetAudioInfo(env, exports);
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
