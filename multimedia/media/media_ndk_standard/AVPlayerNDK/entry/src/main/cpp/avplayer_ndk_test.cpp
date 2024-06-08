@@ -42,14 +42,6 @@
 #define KNUMBER3 3
 #define KNUMBER4 4
 #define KNUMBER5 5
-#define KNUMBER6 6
-#define KNUMBER7 7
-#define KNUMBER8 8
-#define KNUMBER9 9
-#define KNUMBER10 10
-#define KNUMBER11 11
-#define KNUMBER12 12
-#define KNUMBER13 13
 
 static int32_t g_gPlaytime = 1;
 static int32_t g_lPlaytime = 1;

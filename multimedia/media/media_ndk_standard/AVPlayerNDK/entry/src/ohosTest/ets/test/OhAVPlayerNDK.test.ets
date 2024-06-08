@@ -62,29 +62,6 @@ const sleep1500: number = 1500;
 const sleep2000: number = 2000;
 const sleep5000: number = 5000;
 
-// streamUsage;
-const AUDIOSTREAM_USAGE_UNKNOWN = 0;
-const AUDIOSTREAM_USAGE_MUSIC = 1;
-const AUDIOSTREAM_USAGE_VOICE_COMMUNICATION = 2;
-const AUDIOSTREAM_USAGE_VOICE_ASSISTANT = 3;
-const AUDIOSTREAM_USAGE_ALARM = 4;
-const AUDIOSTREAM_USAGE_VOICE_MESSAGE = 5;
-const AUDIOSTREAM_USAGE_RINGTONE = 6;
-const AUDIOSTREAM_USAGE_NOTIFICATION = 7;
-const AUDIOSTREAM_USAGE_ACCESSIBILITY = 8;
-const AUDIOSTREAM_USAGE_MOVIE = 10;
-const AUDIOSTREAM_USAGE_GAME = 11;
-const AUDIOSTREAM_USAGE_AUDIOBOOK = 12;
-const AUDIOSTREAM_USAGE_NAVIGATION = 13;
-
-// interruptMode;
-const AUDIOSTREAM_INTERRUPT_MODE_SHARE = 0;
-const AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT = 1;
-
-// effectMode;
-const EFFECT_NONE = 0;
-const EFFECT_DEFAULT = 1;
-
 
 function getContext(): Context {
   let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
