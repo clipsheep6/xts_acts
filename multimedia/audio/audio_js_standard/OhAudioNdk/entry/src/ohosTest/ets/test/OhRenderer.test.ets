@@ -1739,7 +1739,9 @@ export default function OhRendererTest() {
     beforeAll(async () => {
       console.info('beforeAll case');
       await copyAllWavFile();
-      await Utils.sleep(sleep5000);
+      console.log(`fuck in `);
+      await Utils.sleep(sleep2000);
+      console.log(`fuck out `);
     });
     beforeEach(() => {
       console.info('beforeEach case');
