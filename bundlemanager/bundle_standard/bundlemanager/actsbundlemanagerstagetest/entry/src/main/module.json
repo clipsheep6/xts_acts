@@ -173,6 +173,39 @@
                 "launchType": "specified",
                 "orientation": "locked",
                 "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility11",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_unspecified",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility12",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "follow_recent",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility13",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "follow_desktop",
+                "skills": []
             }
         ],
         "extensionAbilities": [

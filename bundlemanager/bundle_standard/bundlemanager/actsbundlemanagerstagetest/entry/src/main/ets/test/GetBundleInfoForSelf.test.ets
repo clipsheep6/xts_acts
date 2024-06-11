@@ -305,7 +305,7 @@ export default function getBundleInfoForSelf() {
         checkCommonBundleInfo(data);
         checkCommonHapModuleInfo(data);
         expect(data.appInfo).assertEqual(null);
-        expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(11);
+        expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(14);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].bundleName).assertEqual(BUNDLE_NAME);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].moduleName).assertEqual("testModule");
         expect(data.hapModulesInfo[0].abilitiesInfo[0].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility");
@@ -372,6 +372,15 @@ export default function getBundleInfoForSelf() {
         expect(data.hapModulesInfo[0].abilitiesInfo[10].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility9");
         expect(data.hapModulesInfo[0].abilitiesInfo[10].orientation)
           .assertEqual(bundle.DisplayOrientation.AUTO_ROTATION_PORTRAIT_RESTRICTED);
+        expect(data.hapModulesInfo[0].abilitiesInfo[11].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility11");
+        expect(data.hapModulesInfo[0].abilitiesInfo[11].orientation)
+          .assertEqual(bundle.DisplayOrientation.AUTO_ROTATION_UNSPECIFIED);
+        expect(data.hapModulesInfo[0].abilitiesInfo[12].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility12");
+        expect(data.hapModulesInfo[0].abilitiesInfo[12].orientation)
+          .assertEqual(bundle.DisplayOrientation.FOLLOWRECENT);
+        expect(data.hapModulesInfo[0].abilitiesInfo[13].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility13");
+        expect(data.hapModulesInfo[0].abilitiesInfo[13].orientation)
+          .assertEqual(bundle.DisplayOrientation.FOLLOW_DESKTOP);
         checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[1])
         checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[2])
         checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[3])
@@ -382,6 +391,9 @@ export default function getBundleInfoForSelf() {
         checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[8])
         checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[9])
         checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[10])
+        checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[11])
+        checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[12])
+        checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[13])
         expect(data.hapModulesInfo[0].extensionAbilitiesInfo.length).assertEqual(0);
         expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
         expect(data.reqPermissionDetails.length).assertEqual(0);
@@ -408,7 +420,7 @@ export default function getBundleInfoForSelf() {
           checkCommonBundleInfo(data);
           checkCommonHapModuleInfo(data);
           expect(data.appInfo).assertEqual(null);
-          expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(11);
+          expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(14);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].bundleName).assertEqual(BUNDLE_NAME);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].moduleName).assertEqual("testModule");
           expect(data.hapModulesInfo[0].abilitiesInfo[0].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility");
@@ -475,6 +487,15 @@ export default function getBundleInfoForSelf() {
           expect(data.hapModulesInfo[0].abilitiesInfo[10].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility9");
           expect(data.hapModulesInfo[0].abilitiesInfo[10].orientation)
             .assertEqual(bundle.DisplayOrientation.AUTO_ROTATION_PORTRAIT_RESTRICTED);
+          expect(data.hapModulesInfo[0].abilitiesInfo[11].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility11");
+          expect(data.hapModulesInfo[0].abilitiesInfo[11].orientation)
+            .assertEqual(bundle.DisplayOrientation.AUTO_ROTATION_UNSPECIFIED);
+          expect(data.hapModulesInfo[0].abilitiesInfo[12].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility12");
+          expect(data.hapModulesInfo[0].abilitiesInfo[12].orientation)
+            .assertEqual(bundle.DisplayOrientation.FOLLOWRECENT);
+          expect(data.hapModulesInfo[0].abilitiesInfo[13].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility13");
+          expect(data.hapModulesInfo[0].abilitiesInfo[13].orientation)
+            .assertEqual(bundle.DisplayOrientation.FOLLOW_DESKTOP);
           checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[1])
           checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[2])
           checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[3])
@@ -485,6 +506,9 @@ export default function getBundleInfoForSelf() {
           checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[8])
           checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[9])
           checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[10])
+          checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[11])
+          checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[12])
+          checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[13])
           expect(data.hapModulesInfo[0].extensionAbilitiesInfo.length).assertEqual(0);
           expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
           expect(data.reqPermissionDetails.length).assertEqual(0);
@@ -1277,7 +1301,7 @@ export default function getBundleInfoForSelf() {
       checkCommonBundleInfo(data);
       checkCommonHapModuleInfo(data);
       expect(data.appInfo).assertEqual(null);
-      expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(11);
+      expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(14);
       expect(data.hapModulesInfo[0].abilitiesInfo[0].bundleName).assertEqual(BUNDLE_NAME);
       expect(data.hapModulesInfo[0].abilitiesInfo[0].moduleName).assertEqual("testModule");
       expect(data.hapModulesInfo[0].abilitiesInfo[0].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility");
@@ -1344,6 +1368,15 @@ export default function getBundleInfoForSelf() {
       expect(data.hapModulesInfo[0].abilitiesInfo[10].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility9");
       expect(data.hapModulesInfo[0].abilitiesInfo[10].orientation)
         .assertEqual(bundle.DisplayOrientation.AUTO_ROTATION_PORTRAIT_RESTRICTED);
+      expect(data.hapModulesInfo[0].abilitiesInfo[11].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility11");
+      expect(data.hapModulesInfo[0].abilitiesInfo[11].orientation)
+        .assertEqual(bundle.DisplayOrientation.AUTO_ROTATION_UNSPECIFIED);
+      expect(data.hapModulesInfo[0].abilitiesInfo[12].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility12");
+      expect(data.hapModulesInfo[0].abilitiesInfo[12].orientation)
+        .assertEqual(bundle.DisplayOrientation.FOLLOWRECENT);
+      expect(data.hapModulesInfo[0].abilitiesInfo[13].name).assertEqual("ohos.acts.bundle.stage.test.MainAbility13");
+      expect(data.hapModulesInfo[0].abilitiesInfo[13].orientation)
+        .assertEqual(bundle.DisplayOrientation.FOLLOW_DESKTOP);
       checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[1])
       checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[2])
       checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[3])
@@ -1354,6 +1387,9 @@ export default function getBundleInfoForSelf() {
       checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[8])
       checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[9])
       checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[10])
+      checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[11])
+      checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[12])
+      checkCommonAbilityInfo(data.hapModulesInfo[0].abilitiesInfo[13])
       expect(data.hapModulesInfo[0].extensionAbilitiesInfo.length).assertEqual(0);
       expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
       expect(data.reqPermissionDetails.length).assertEqual(0);
