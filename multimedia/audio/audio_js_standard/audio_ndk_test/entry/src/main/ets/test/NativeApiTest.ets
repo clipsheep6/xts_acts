@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,6 +20,9 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import myaudioNdk from "libaudioNdkTest.so"
 
 const Tag = 'audio_ndk_test:'
+
+let AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM = 6800101;
+let AUDIOCOMMON_RESULT_ERROR_NO_MEMORY = 6800102;
 
 function sleep(ms: number) {
   return new Promise<number>(resolve => setTimeout(resolve, ms));
@@ -947,7 +950,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_GETVOLUME_0100', 0, async function (done) {
         let a = myaudioNdk.audioRendererGetVolume_01();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_GETVOLUME_0100 audioRendererGetVolume: ${a}`);
-        expect(a).assertEqual(1.0)
+        expect(a).assertEqual(1)
         done()
     })
 
@@ -1442,7 +1445,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0100', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerGetDevices_01();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0100 audioRoutingManagerGetDevices: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_NO_MEMORY)
         done()
     })
 
@@ -1502,7 +1505,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0500', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerGetDevices_05();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0500 audioRoutingManagerGetDevices: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1517,7 +1520,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0600', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerGetDevices_06();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0600 audioRoutingManagerGetDevices: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1532,7 +1535,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0700', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerGetDevices_07();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0700 audioRoutingManagerGetDevices: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1607,7 +1610,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0500', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_005();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0500 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1622,7 +1625,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0600', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_006();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0600 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1637,7 +1640,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0700', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_007();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0700 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1652,7 +1655,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0800', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_008();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0800 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1682,7 +1685,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0200', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerUnregisterDeviceChangeCallback_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0200 audioRoutingManagerUnRegisterDeviceChangeCallback: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1697,7 +1700,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0300', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerUnregisterDeviceChangeCallback_003();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0300 audioRoutingManagerUnRegisterDeviceChangeCallback: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1712,7 +1715,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0100', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerReleaseDevices_001();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0100 audioRoutingManagerReleaseDevices: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1727,7 +1730,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0200', 0, async function (done) {
         let a = myaudioNdk.audioRoutingManagerReleaseDevices_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0200 audioRoutingManagerReleaseDevices: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1757,7 +1760,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0200', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceType_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0200 audioAudioDeviceDescriptorGetDeviceType: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1772,7 +1775,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0300', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceType_003();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0300 audioAudioDeviceDescriptorGetDeviceType: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1802,7 +1805,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0200', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceRole_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0200 audioAudioDeviceDescriptorGetDeviceRole: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1817,7 +1820,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0300', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceRole_003();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0300 audioAudioDeviceDescriptorGetDeviceRole: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1847,7 +1850,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0200', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceId_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0200 audioAudioDeviceDescriptorGetDeviceId: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1862,7 +1865,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0300', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceId_003();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0300 audioAudioDeviceDescriptorGetDeviceId: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1892,7 +1895,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0200', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceName_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0200 audioAudioDeviceDescriptorGetDeviceName: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1907,7 +1910,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0300', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceName_003();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0300 audioAudioDeviceDescriptorGetDeviceName: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1937,7 +1940,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0200', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceAddress_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0200 audioAudioDeviceDescriptorGetDeviceAddress: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1952,7 +1955,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0300', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceAddress_003();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0300 audioAudioDeviceDescriptorGetDeviceAddress: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1982,7 +1985,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0200', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0200 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -1997,7 +2000,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0300', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_003();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0300 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -2012,7 +2015,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0400', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_004();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0400 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -2042,7 +2045,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0200', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0200 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -2057,7 +2060,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0300', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_003();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0300 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -2072,7 +2075,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0400', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_004();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0400 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -2102,7 +2105,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0200', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceDisplayName_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0200 audioAudioDeviceDescriptorGetDeviceDisplayName: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -2117,7 +2120,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0300', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceDisplayName_003();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0300 audioAudioDeviceDescriptorGetDeviceDisplayName: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -2147,7 +2150,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0200', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_002();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0200 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -2162,7 +2165,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0300', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_003();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0300 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
-        expect(a).assertEqual(0)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 
@@ -2177,7 +2180,7 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0400', 0, async function (done) {
         let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_004();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0400 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
-        expect(a).assertEqual(6800101)
+        expect(a).assertEqual(AUDIOCOMMON_RESULT_ERROR_INVALID_PARAM)
         done()
     })
 

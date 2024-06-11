@@ -12119,6 +12119,7 @@ export default function audioRendererTest() {
           console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
         }).catch((err) => {
           console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+          expect(false).assertTrue();
         });
 
         let inputVolume = 0;
@@ -12143,6 +12144,7 @@ export default function audioRendererTest() {
         console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
       }).catch((err) => {
         console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+        expect(false).assertTrue();
       });
       done();
     })
@@ -12180,6 +12182,7 @@ export default function audioRendererTest() {
           console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
         }).catch((err) => {
           console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+          expect(false).assertTrue();
         });
 
         let inputVolume = 0.5;
@@ -12204,6 +12207,7 @@ export default function audioRendererTest() {
         console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
       }).catch((err) => {
         console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+        expect(false).assertTrue();
       });
       done();
     })
@@ -12241,6 +12245,7 @@ export default function audioRendererTest() {
           console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
         }).catch((err) => {
           console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+          expect(false).assertTrue();
         });
 
         let inputVolume = 1;
@@ -12265,6 +12270,7 @@ export default function audioRendererTest() {
         console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
       }).catch((err) => {
         console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+        expect(false).assertTrue();
       });
       done();
     })
@@ -12302,6 +12308,7 @@ export default function audioRendererTest() {
           console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
         }).catch((err) => {
           console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+          expect(false).assertTrue();
         });
 
         let data = audioRen.getVolume();
@@ -12317,6 +12324,7 @@ export default function audioRendererTest() {
         console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
       }).catch((err) => {
         console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+        expect(false).assertTrue();
       });
       done();
     })
@@ -12354,6 +12362,7 @@ export default function audioRendererTest() {
           console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
         }).catch((err) => {
           console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+          expect(false).assertTrue();
         });
 
         let inputVolume = 0;
@@ -12380,6 +12389,7 @@ export default function audioRendererTest() {
         console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
       }).catch((err) => {
         console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+        expect(false).assertTrue();
       });
       done();
     })
@@ -12417,6 +12427,7 @@ export default function audioRendererTest() {
           console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
         }).catch((err) => {
           console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+          expect(false).assertTrue();
         });
 
         let inputVolume = 0.5;
@@ -12443,6 +12454,7 @@ export default function audioRendererTest() {
         console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
       }).catch((err) => {
         console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+        expect(false).assertTrue();
       });
       done();
     })
@@ -12480,6 +12492,7 @@ export default function audioRendererTest() {
           console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
         }).catch((err) => {
           console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+          expect(false).assertTrue();
         });
 
         let inputVolume = 1;
@@ -12506,6 +12519,7 @@ export default function audioRendererTest() {
         console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
       }).catch((err) => {
         console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+        expect(false).assertTrue();
       });
       done();
     })
