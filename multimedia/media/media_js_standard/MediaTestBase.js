@@ -99,6 +99,18 @@ export async function getStageFileDescriptor(fileName) {
     });
     return fileDescriptor;
 }
+
+export async function getMutiTrackRawFd(fileName) {
+    let fileDescriptor = undefined;
+    let mgr = globalThis.abilityContext.resourceManager
+    await mgr.getRawFd(fileName).then(value => {
+        fileDescriptor = {fd: value.fd, offset: value.offset, length: value.length};
+        console.log('case getRawFd success fileName: ' + fileName);
+    }).catch(error => {
+        console.log('case getRawFd err: ' + error);
+    });
+    return fileDescriptor;
+}
 export async function closeFileDescriptor(fileName) {
     await resourceManager.getResourceManager().then(async (mgr) => {
         await mgr.closeRawFileDescriptor(fileName).then(()=> {
