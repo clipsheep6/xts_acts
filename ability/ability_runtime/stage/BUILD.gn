@@ -30,6 +30,9 @@ group("stage") {
       "actsuripermission:ActsUriPermission",
       "actswindowstagelifecyclemultihaptest:ActsWindowStageLifecycleMultiHapTest",
       "actswindowstagelifecyclesinglehaptest:ActsWindowStageLifecycleSingleHapTest",
+      "hitssetpublishformresult:HitsSetPublishFormResultTest",
+      "hitssetpublishformresultauthority:HitsSetPublishFormResultAuthorityTest",
+      "hitssetpublishformresultnormal:HitssetpublishFormResultNormalTest",
     ]
   }
 }
