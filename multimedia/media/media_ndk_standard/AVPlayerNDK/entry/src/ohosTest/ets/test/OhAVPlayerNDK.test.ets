@@ -119,7 +119,7 @@ export default function OhAVPlayerNDKTest() { // L2
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
-    });
+    });          
 
     /**
      * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERPREPARE_0100
