@@ -13,11 +13,20 @@
  * limitations under the License.
  */
 
-import worker from '@ohos.worker'
+import worker, { MessageEvents } from '@ohos.worker'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-var TAG = ''
+let TAG = ''
+
+function sleep(time:number) {
+  return new Promise((resolve: (value: string) => void) => {
+    setTimeout(() => {
+      resolve("ok");
+    }, time)
+  });
+}
+
 export default function WorkerTransmitTest() {
-    describe('WorkerTransmitTest', function () {
+    describe('WorkerTransmitTest', () => {
         beforeAll(() => {
             console.info("TransContext start")
         })
@@ -25,18 +34,13 @@ export default function WorkerTransmitTest() {
             console.info("TransContext end")
         })
 
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-
         /*
          * @tc.number  SUB_AA_AMS_Stage_StageContextSupportsWorker_0100
          * @tc.name    .
          * @tc.desc    Function test
          * @tc.level   3
          */
-        it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0100',0, async function (done) {
+        it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0100',0, async (done:Function) => {
             TAG = 'SUB_AA_AMS_Stage_StageContextSupportsWorker_0100 == '
             console.info(TAG + "start")
             let trans = new worker.Worker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0100.js')
@@ -44,22 +48,22 @@ export default function WorkerTransmitTest() {
             let flag = false
             let expectValue = undefined
 
-            trans.onexit = function() {
+            trans.onexit = ():void => {
                 console.info(TAG + "onexit")
                 isTerminate = true
             }
 
-            trans.onerror = function() {
+            trans.onerror = ():void => {
                 console.info(TAG + "onerror")
                 flag = true
             }
 
-            trans.onmessageerror = function() {
+            trans.onmessageerror = ():void => {
                 console.info(TAG + "onmessageerror")
                 flag = true
             }
 
-            trans.onmessage = function(message) {
+            trans.onmessage = (message:MessageEvents):void => {
                 console.info(TAG + "onmessage")
                 expectValue = message.data
                 flag = true
@@ -88,7 +92,7 @@ export default function WorkerTransmitTest() {
          * @tc.desc    Function test
          * @tc.level   3
          */
-        it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0300',0, async function (done) {
+        it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0300',0, async (done:Function) => {
             TAG = 'SUB_AA_AMS_Stage_StageContextSupportsWorker_0300 == '
             console.info(TAG + "start")
             let trans = new worker.Worker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0300.js')
@@ -96,22 +100,22 @@ export default function WorkerTransmitTest() {
             let flag = false
             let expectValue = undefined
 
-            trans.onexit = function() {
+            trans.onexit = ():void => {
                 console.info(TAG + "onexit")
                 isTerminate = true
             }
 
-            trans.onerror = function() {
+            trans.onerror = ():void => {
                 console.info(TAG + "onerror")
                 flag = true
             }
 
-            trans.onmessageerror = function() {
+            trans.onmessageerror = ():void => {
                 console.info(TAG + "onmessageerror")
                 flag = true
             }
 
-            trans.onmessage = function(message) {
+            trans.onmessage = (message:MessageEvents):void => {
                 console.info(TAG + "onmessage")
                 expectValue = message.data
                 flag = true
@@ -140,7 +144,7 @@ export default function WorkerTransmitTest() {
          * @tc.desc    Function test
          * @tc.level   3
          */
-        it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0400',0, async function (done) {
+        it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0400',0, async (done:Function) => {
             TAG = 'SUB_AA_AMS_Stage_StageContextSupportsWorker_0400 == '
             console.info(TAG + "start")
             let trans = new worker.Worker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0400.js')
@@ -148,22 +152,22 @@ export default function WorkerTransmitTest() {
             let flag = false
             let expectValue = undefined
 
-            trans.onexit = function() {
+            trans.onexit = ():void => {
                 console.info(TAG + "onexit")
                 isTerminate = true
             }
 
-            trans.onerror = function() {
+            trans.onerror = ():void => {
                 console.info(TAG + "onerror")
                 flag = true
             }
 
-            trans.onmessageerror = function() {
+            trans.onmessageerror = ():void => {
                 console.info(TAG + "onmessageerror")
                 flag = true
             }
 
-            trans.onmessage = function(message) {
+            trans.onmessage = (message:MessageEvents):void => {
                 console.info(TAG + "onmessage")
                 expectValue = message.data
                 flag = true
@@ -192,7 +196,7 @@ export default function WorkerTransmitTest() {
         * @tc.desc    Function test
         * @tc.level   3
         */
-        it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0800',0, async function (done) {
+        it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0800',0, async (done:Function) => {
             TAG = 'SUB_AA_AMS_Stage_StageContextSupportsWorker_0800 == '
             console.info(TAG + "start")
             let trans = new worker.Worker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0800.js')
@@ -200,22 +204,22 @@ export default function WorkerTransmitTest() {
             let flag = false
             let expectValue = undefined
 
-            trans.onexit = function() {
+            trans.onexit = ():void => {
                 console.info(TAG + "onexit")
                 isTerminate = true
             }
 
-            trans.onerror = function() {
+            trans.onerror = ():void => {
                 console.info(TAG + "onerror")
                 flag = true
             }
 
-            trans.onmessageerror = function() {
+            trans.onmessageerror = ():void => {
                 console.info(TAG + "onmessageerror")
                 flag = true
             }
 
-            trans.onmessage = function(message) {
+            trans.onmessage = (message:MessageEvents):void => {
                 console.info(TAG + "onmessage")
                 expectValue = message.data
                 flag = true
