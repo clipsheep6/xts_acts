@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import events_emitter from '@ohos.events.emitter';
 
 @Entry
@@ -23,7 +23,7 @@ struct ImageAnimatorExample {
   @State iterations: number = 1;
 
   build() {
-    Column({ space:5 }) {
+    Column({ space: 5 }) {
       ImageAnimator()
         .key('ImageAnimator')
         .images([
@@ -60,80 +60,109 @@ struct ImageAnimatorExample {
             left: 0
           }
         ])
-        .state(this.state).reverse(this.reverse).fixedSize(false).preDecode(2)
-        .fillMode(FillMode.None).iterations(this.iterations).width(325).height(210)
-        .margin({top:100})
-        .onStart(() => { 
-          console.info('Start')
+        .state(this.state)
+        .reverse(this.reverse)
+        .fixedSize(false)
+        .preDecode(2)
+        .fillMode(FillMode.None)
+        .iterations(this.iterations)
+        .width(325)
+        .height(210)
+        .margin({ top: 100 })
+        .onStart(() => {
+          console.info('Start');
         })
         .onPause(() => {
-          console.info('Pause')
+          console.info('Pause');
         })
         .onRepeat(() => {
-          console.info('Repeat')
+          console.info('Repeat');
         })
         .onCancel(() => {
-          console.info('Cancel')
+          console.info('Cancel');
         })
         .onFinish(() => {
-          console.info('Finish')
+          console.info('Finish');
         })
 
       Row() {
-        Button('start').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Running
-        })
+        Button('start')
+          .width(100)
+          .padding(5)
+          .onClick(() => {
+            this.state = AnimationStatus.Running;
+          })
 
-        Button('pause').key('button2').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused
-          try {
-            var backData = {
-              data: {
-                "animationStatus": this.state,
+        Button('pause')
+          .key('button2')
+          .width(100)
+          .padding(5)
+          .onClick(() => {
+            this.state = AnimationStatus.Paused;
+            try {
+              let backData: events_emitter.EventData = {
+                data: {
+                  "animationStatus": this.state,
+                }
               }
+              let backEvent: events_emitter.InnerEvent = {
+                eventId: 56,
+                priority: events_emitter.EventPriority.LOW
+              }
+              console.info("button2 start to emit action state");
+              events_emitter.emit(backEvent, backData);
+            } catch (err) {
+              console.info("button2 emit action state err: " + JSON.stringify(err.message));
             }
-            var backEvent = {
-              eventId: 56,
-              priority: events_emitter.EventPriority.LOW
-            }
-            console.info("button2 start to emit action state")
-            events_emitter.emit(backEvent, backData)
-          } catch (err) {
-            console.info("button2 emit action state err: " + JSON.stringify(err.message))
-          }
-        })
+          })
 
-        Button('stop').key('button3').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped
-          try {
-            var backData = {
-              data: {
-                "animationStatus": this.state,
+        Button('stop')
+          .key('button3')
+          .width(100)
+          .padding(5)
+          .onClick(() => {
+            this.state = AnimationStatus.Stopped;
+            try {
+              let backData: events_emitter.EventData = {
+                data: {
+                  "animationStatus": this.state,
+                }
               }
+              let backEvent: events_emitter.InnerEvent = {
+                eventId: 57,
+                priority: events_emitter.EventPriority.LOW
+              }
+              console.info("button3 start to emit action state");
+              events_emitter.emit(backEvent, backData);
+            } catch (err) {
+              console.info("button3 emit action state err: " + JSON.stringify(err.message));
             }
-            var backEvent = {
-              eventId: 57,
-              priority: events_emitter.EventPriority.LOW
-            }
-            console.info("button3 start to emit action state")
-            events_emitter.emit(backEvent, backData)
-          } catch (err) {
-            console.info("button3 emit action state err: " + JSON.stringify(err.message))
-          }
-        })
+          })
       }
 
       Row() {
-        Button('reverse').width(100).padding(5).onClick(() => {
-          this.reverse = !this.reverse
-        })
-        Button('once').width(100).padding(5).onClick(() => {
-          this.iterations = 1
-        })
-        Button('iteration').width(100).padding(5).onClick(() => {
-          this.iterations = -1
-        })
+        Button('reverse')
+          .width(100)
+          .padding(5)
+          .onClick(() => {
+            this.reverse = !this.reverse;
+          })
+        Button('once')
+          .width(100)
+          .padding(5)
+          .onClick(() => {
+            this.iterations = 1;
+          })
+        Button('iteration')
+          .width(100)
+          .padding(5)
+          .onClick(() => {
+            this.iterations = -1;
+          })
       }
-    }.width('100%').height('100%').backgroundColor(0xF1F3F5)
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xF1F3F5)
   }
 }

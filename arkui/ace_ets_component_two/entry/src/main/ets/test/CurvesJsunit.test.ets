@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
-import router from '@system.router';
+
+import { describe, beforeEach, afterEach } from "@ohos/hypium";
+import router from '@ohos.router';
 import Utils from './Utils';
 
 export default function curvesJsunit() {
-  describe('appInfoTest_two_2', function () {
-    beforeEach(async function (done) {
+  describe('appInfoTest_two_2', () => {
+    beforeEach(async (done: Function) => {
       console.info("curves beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/curves',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/curves',
       }
       try {
         router.clear();
@@ -30,17 +30,17 @@ export default function curvesJsunit() {
         console.info("get curves state pages:" + JSON.stringify(pages));
         if (!("curves" == pages.name)) {
           console.info("get curves state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push curves page result:" + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push curves page error:" + err);
       }
-      done()
+      done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("curves after each called");
     });

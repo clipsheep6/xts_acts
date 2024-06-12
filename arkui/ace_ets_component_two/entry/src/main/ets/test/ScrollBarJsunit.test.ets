@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+
+import { afterEach, beforeEach, describe, expect, it } from '@ohos/hypium';
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function scrollBarJsunit() {
-  describe('appInfoTest_two_8', function () {
-    beforeEach(async function (done) {
-      let options = {
-        uri: 'MainAbility/pages/scrollBar',
+  describe('appInfoTest_two_8', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/scrollBar',
       }
       try {
         router.clear();
@@ -30,44 +30,44 @@ export default function scrollBarJsunit() {
         console.info("get scrollBar state success " + JSON.stringify(pages));
         if (!("span" == pages.name)) {
           console.info("get scrollBar success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push scrollBar page success " + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push scrollBar page error " + JSON.stringify(err));
       }
-      done()
+      done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(2000);
       console.info("scrollBar after each called");
     });
 
-    it('testScrollBar001', 0, async function (done) {
+    it('testScrollBar001', 0, async (done: Function) => {
       console.info('[testScrollBar001] START');
       await Utils.sleep(2000);
       let strJson = getInspectorByKey('scroll');
       console.info("[testScrollBar001] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testScrollBar001] direction:" + obj.$attrs.direction);
-      expect(obj.$attrs.direction).assertEqual('ScrollBarDirection.Vertical');
+      let obj: ESObject = JSON.parse(strJson);
+      console.info("[testScrollBar001] direction:" + obj!.$attrs.direction);
+      expect(obj!.$attrs.direction).assertEqual('ScrollBarDirection.Vertical');
       done();
     });
 
-    it('testScrollBar002', 0, async function (done) {
+    it('testScrollBar002', 0, async (done: Function) => {
       console.info('[testScrollBar002] START');
-      let object = {
+      let object: Record<string, string> = {
         "directionValue": "ScrollBarDirection.Horizontal"
       };
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "directionObject": JSON.stringify(object)
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 183,
           priority: events_emitter.EventPriority.LOW
         }
@@ -78,33 +78,33 @@ export default function scrollBarJsunit() {
       }
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('scroll');
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testScrollBar002] obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.direction).assertEqual('ScrollBarDirection.Vertical');
+      expect(obj!.$attrs.direction).assertEqual('ScrollBarDirection.Vertical');
       console.info('testScrollBar002 END');
       done();
     });
 
-    it('testScrollBar003', 0, async function (done) {
+    it('testScrollBar003', 0, async (done: Function) => {
       console.info('[testScrollBar003] START');
       await Utils.sleep(2000);
       let strJson = getInspectorByKey('scroll');
       console.info("[testScrollBar003] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testScrollBar003] state:" + obj.$attrs.state);
-      expect(obj.$attrs.state).assertEqual('BarState.Off');
+      let obj: ESObject = JSON.parse(strJson);
+      console.info("[testScrollBar003] state:" + obj!.$attrs.state);
+      expect(obj!.$attrs.state).assertEqual('BarState.Off');
       done();
     });
 
-    it('testScrollBar004', 0, async function (done) {
+    it('testScrollBar004', 0, async (done: Function) => {
       console.info('[testScrollBar004] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "stateValue": BarState.On
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 184,
           priority: events_emitter.EventPriority.LOW
         }
@@ -116,21 +116,21 @@ export default function scrollBarJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('scroll');
       console.info("[testScrollBar004] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testScrollBar004] state:" + obj.$attrs.state);
-      expect(obj.$attrs.state).assertEqual("BarState.On");
+      let obj: ESObject = JSON.parse(strJson);
+      console.info("[testScrollBar004] state:" + obj!.$attrs.state);
+      expect(obj!.$attrs.state).assertEqual("BarState.On");
       done();
     });
 
-    it('testScrollBar005', 0, async function (done) {
+    it('testScrollBar005', 0, async (done: Function) => {
       console.info('[testScrollBar005] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "stateValue": BarState.Auto
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 184,
           priority: events_emitter.EventPriority.LOW
         }
@@ -142,9 +142,9 @@ export default function scrollBarJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('scroll');
       console.info("[testScrollBar005] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testScrollBar005] state:" + obj.$attrs.state);
-      expect(obj.$attrs.state).assertEqual("BarState.Auto");
+      let obj: ESObject = JSON.parse(strJson);
+      console.info("[testScrollBar005] state:" + obj!.$attrs.state);
+      expect(obj!.$attrs.state).assertEqual("BarState.Auto");
       done();
     });
   })

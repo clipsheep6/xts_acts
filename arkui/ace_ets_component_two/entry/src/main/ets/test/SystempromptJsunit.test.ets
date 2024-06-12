@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+
+import { describe, beforeEach, afterEach, it } from "@ohos/hypium";
+import router from '@ohos.router';
 import Utils from './Utils';
 
 export default function transFormJsunit() {
-  describe('appInfoTest_two_11', function () {
-    beforeEach(async function (done) {
+  describe('appInfoTest_two_11', () => {
+    beforeEach(async (done: Function) => {
       console.info("prompt beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/systemPrompt',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/systemPrompt',
       }
       try {
         router.clear();
@@ -30,7 +30,7 @@ export default function transFormJsunit() {
         console.info("get prompt state pages:" + JSON.stringify(pages));
         if (!("prompt " == pages.name)) {
           console.info("get prompt state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push prompt  page result:" + JSON.stringify(result));
         }
@@ -40,22 +40,24 @@ export default function transFormJsunit() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("prompt each called");
     });
-    it('promptTest_0100', 0, async function (done) {
+
+    it('promptTest_0100', 0, async (done: Function) => {
       console.info('promptTest_0100 is start');
       await Utils.sleep(1500);
-      console.info("promptTest_0100 click result is: " + JSON.stringify(sendEventByKey('button1',10,"")));
+      console.info("promptTest_0100 click result is: " + JSON.stringify(sendEventByKey('button1', 10, "")));
       await Utils.sleep(1500);
       console.info('promptTest_0100 END');
       done();
     });
-    it('promptTest_0200', 0, async function (done) {
+
+    it('promptTest_0200', 0, async (done: Function) => {
       console.info('promptTest_0200 is start');
       await Utils.sleep(1500);
-      console.info("promptTest_0200 click result is: " + JSON.stringify(sendEventByKey('button2',10,"")));
+      console.info("promptTest_0200 click result is: " + JSON.stringify(sendEventByKey('button2', 10, "")));
       await Utils.sleep(1500);
       console.info('promptTest_0200 END');
       done();

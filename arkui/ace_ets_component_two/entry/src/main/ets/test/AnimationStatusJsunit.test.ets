@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
+import router from '@ohos.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
 
-export default function  animationStatusJsunit() {
-  describe('animationStatus', function () {
-    beforeEach(async function (done) {
-      let options = {
-        uri: 'MainAbility/pages/animationStatus',
+export default function animationStatusJsunit() {
+  describe('animationStatus', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/animationStatus',
       }
       try {
         router.clear();
@@ -30,53 +30,53 @@ export default function  animationStatusJsunit() {
         console.info("get animationStatus state success " + JSON.stringify(pages));
         if (!("animationStatus" == pages.name)) {
           console.info("get animationStatus state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(1000);
           console.info("push animationStatus page success " + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push animationStatus page error: " + err);
       }
-      done()
+      done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("animationStatus after each called");
     });
 
-    it('animationStatus01', 0, async function (done) {
+    it('animationStatus01', 0, async (done: Function) => {
       console.info('[animationStatus01] START');
       await Utils.sleep(1000);
 
       let strJson = getInspectorByKey('ImageAnimator');
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[animationStatus01] obj is: " + JSON.stringify(obj));
       expect(obj.$type).assertEqual('ImageAnimator');
       console.info('[animationStatus01] END');
       done();
     });
 
-    it('animationStatus02', 0, async function (done) {
+    it('animationStatus02', 0, async (done: Function) => {
       console.info('[animationStatus02] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('ImageAnimator');
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[animationStatus02] obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.state).assertEqual('AnimationStatus.Initial');
       console.info('[animationStatus02] END');
       done();
     });
 
-    it('animationStatus03', 0, async function (done) {
+    it('animationStatus03', 0, async (done: Function) => {
       console.info('animationStatus03 START');
       await Utils.sleep(1500);
-      let callback = (indexEvent) => {
+      let callback = (indexEvent: events_emitter.EventData) => {
         console.info("animationStatus03 get state result is: " + JSON.stringify(indexEvent));
         expect(indexEvent.data.animationStatus).assertEqual(AnimationStatus.Paused);
         done();
       }
-      let indexEvent = {
+      let indexEvent: events_emitter.InnerEvent = {
         eventId: 56,
         priority: events_emitter.EventPriority.LOW
       }
@@ -85,20 +85,20 @@ export default function  animationStatusJsunit() {
       } catch (err) {
         console.info("animationStatus03 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("animationStatus03 click result is: " + JSON.stringify(sendEventByKey('button2',10,"")));
+      console.info("animationStatus03 click result is: " + JSON.stringify(sendEventByKey('button2', 10, "")));
       await Utils.sleep(1000);
       console.info('animationStatus03 END');
     });
 
-    it('animationStatus04', 0, async function (done) {
+    it('animationStatus04', 0, async (done: Function) => {
       console.info('animationStatus04 START');
       await Utils.sleep(1500);
-      let callback = (indexEvent) => {
+      let callback = (indexEvent: events_emitter.EventData) => {
         console.info("animationStatus04 get state result is: " + JSON.stringify(indexEvent));
         expect(indexEvent.data.animationStatus).assertEqual(AnimationStatus.Stopped);
         done();
       }
-      let indexEvent = {
+      let indexEvent: events_emitter.InnerEvent = {
         eventId: 57,
         priority: events_emitter.EventPriority.LOW
       }
@@ -107,7 +107,7 @@ export default function  animationStatusJsunit() {
       } catch (err) {
         console.info("animationStatus04 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("animationStatus04 click result is: " + JSON.stringify(sendEventByKey('button3',10,"")));
+      console.info("animationStatus04 click result is: " + JSON.stringify(sendEventByKey('button3', 10, "")));
       await Utils.sleep(1000);
       console.info('animationStatus04 END');
     });

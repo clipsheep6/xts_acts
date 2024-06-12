@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
+import router from '@ohos.router';
 import Utils from './Utils';
 import events_emitter from '@ohos.events.emitter';
 
 export default function OhosRouterJsunit() {
-  describe('ohosRouterTest', function () {
-    beforeEach(async function (done) {
-      let options = {
-        uri: 'MainAbility/pages/ohosRouterA',
+  describe('ohosRouterTest', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/ohosRouterA',
       }
       try {
         router.clear();
@@ -30,28 +30,28 @@ export default function OhosRouterJsunit() {
         console.info("get ohosRouter state success " + JSON.stringify(pages));
         if (!("ohosRouter" == pages.name)) {
           console.info("get ohosRouter state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(4000);
           console.info("push ohosRouter page success " + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push ohosRouter page error " + err);
       }
-      done()
+      done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("ohosRouter after each called");
     });
 
-    it('ohosRouterTest001', 0, async function (done) {
+    it('ohosRouterTest001', 0, async (done: Function) => {
       console.info('[ohosRouterTest001] START');
-      let options = {
-        uri: 'pages/ohosRouterA',
+      let options: router.RouterOptions = {
+        url: 'pages/ohosRouterA',
       }
       try {
-        let result = await router.push(options);
+        let result = await router.pushUrl(options);
         await Utils.sleep(1000);
         console.info("[ohosRouterTest001] push page success " + JSON.stringify(result));
         let pages = router.getState();
@@ -65,23 +65,23 @@ export default function OhosRouterJsunit() {
       done();
     });
 
-    it('ohosRouterTest002', 0, async function (done) {
+    it('ohosRouterTest002', 0, async (done: Function) => {
       console.info('[ohosRouterTest002] START');
-      let options = {
-        uri: 'pages/ohosRouterA'
+      let options: router.RouterOptions = {
+        url: 'pages/ohosRouterA'
       }
       try {
-        let result = await router.push(options);
+        let result = await router.pushUrl(options);
         console.info("[ohosRouterTest002] push page success " + JSON.stringify(result));
       } catch (err) {
-        console.error("[ohosRouterTest002] push page error " + JSON.stringify(result));
+        console.error("[ohosRouterTest002] push page error " + JSON.stringify(err));
       }
       await Utils.sleep(1500);
-      let callback = (paramsEvent) => {
+      let callback = (paramsEvent: events_emitter.EventData) => {
         console.info("[ohosRouterTest002] get state result is: " + JSON.stringify(paramsEvent));
-        expect(paramsEvent.data.params).assertEqual('B Page');
+        expect(paramsEvent.data!.params).assertEqual('B Page');
       }
-      let paramsEvent = {
+      let paramsEvent: events_emitter.InnerEvent = {
         eventId: 142,
         priority: events_emitter.EventPriority.LOW
       }
@@ -91,14 +91,14 @@ export default function OhosRouterJsunit() {
         console.info("[ohosRouterTest002] on events_emitter err : " + JSON.stringify(err));
       }
       console.info("[ohosRouterTest002] click push button result is: "
-      + JSON.stringify(sendEventByKey('pushButtonA', 10, "")));
+        + JSON.stringify(sendEventByKey('pushButtonA', 10, "")));
       await Utils.sleep(1000);
       router.back();
       await Utils.sleep(1000);
       done();
     });
 
-    it('ohosRouterTest003', 0, async function (done) {
+    it('ohosRouterTest003', 0, async (done: Function) => {
       console.info('[ohosRouterTest003] START');
       await Utils.sleep(1000);
       router.clear();
@@ -110,28 +110,28 @@ export default function OhosRouterJsunit() {
       done();
     });
 
-    it('ohosRouterTest004', 0, async function (done) {
+    it('ohosRouterTest004', 0, async (done: Function) => {
       console.info('[ohosRouterTest004] START');
       router.clear();
       await Utils.sleep(1000);
-      let options = {
-        uri: 'pages/ohosRouterA'
+      let options: router.RouterOptions = {
+        url: 'pages/ohosRouterA'
       }
       try {
-        let result = await router.push(options);
+        let result = await router.pushUrl(options);
         console.info("[ohosRouterTest004] push page success " + JSON.stringify(result));
       } catch (err) {
-        console.error("[ohosRouterTest004] push page error " + JSON.stringify(result));
+        console.error("[ohosRouterTest004] push page error " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-      let optionsB = {
-        uri: 'pages/ohosRouterB'
+      let optionsB: router.RouterOptions = {
+        url: 'pages/ohosRouterB'
       }
       try {
-        let result = await router.replace(optionsB);
+        let result = await router.replaceUrl(optionsB);
         console.info("[ohosRouterTest004] push page success " + JSON.stringify(result));
       } catch (err) {
-        console.error("[ohosRouterTest004] push page error " + JSON.stringify(result));
+        console.error("[ohosRouterTest004] push page error " + JSON.stringify(err));
       }
       await Utils.sleep(1500);
       let size = router.getLength();
@@ -140,25 +140,25 @@ export default function OhosRouterJsunit() {
       done();
     });
 
-    it('ohosRouterTest005', 0, async function(done) {
+    it('ohosRouterTest005', 0, async (done: Function) => {
       console.info('[ohosRouterTest005] START');
-      let options = {
-        uri: 'pages/ohosRouterA'
+      let options: router.RouterOptions = {
+        url: 'pages/ohosRouterA'
       }
       try {
-        let result = await router.push(options);
+        let result = await router.pushUrl(options);
         console.info("[ohosRouterTest005] push page success " + JSON.stringify(result));
       } catch (err) {
-        console.error("[ohosRouterTest005] push page error " + JSON.stringify(result));
+        console.error("[ohosRouterTest005] push page error " + JSON.stringify(err));
       }
       await Utils.sleep(1000);
       router.clear();
       await Utils.sleep(1500);
-      let callback = (paramsEvent) => {
+      let callback = (paramsEvent: events_emitter.EventData) => {
         console.info("[ohosRouterTest005] get state result is: " + JSON.stringify(paramsEvent));
-        expect(paramsEvent.data.params).assertEqual('B Page');
+        expect(paramsEvent.data!.params).assertEqual('B Page');
       }
-      let paramsEvent = {
+      let paramsEvent: events_emitter.InnerEvent = {
         eventId: 142,
         priority: events_emitter.EventPriority.LOW
       }
@@ -168,7 +168,7 @@ export default function OhosRouterJsunit() {
         console.info("[ohosRouterTest005] on events_emitter err : " + JSON.stringify(err));
       }
       console.info("[ohosRouterTest005] click replace button result is: "
-      + JSON.stringify(sendEventByKey('ReplaceButtonA', 10, "")));
+        + JSON.stringify(sendEventByKey('ReplaceButtonA', 10, "")));
       done();
     });
   });

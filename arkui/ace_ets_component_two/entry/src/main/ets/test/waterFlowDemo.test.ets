@@ -13,18 +13,16 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
-import events_emitter from '@ohos.events.emitter';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "hypium/index"
-import Utils from './Utils.ets'
-
+import router from '@ohos.router';
+import { describe, beforeAll, afterEach, it, expect } from "@ohos/hypium";
+import Utils from './Utils';
 
 export default function waterFlowDemoJsunit() {
-  describe('waterFlowDemoTest', function () {
-    beforeAll(async function (done) {
+  describe('waterFlowDemoTest', () => {
+    beforeAll(async (done: Function) => {
       console.info("waterFlow beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/WaterflowDemo',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/WaterflowDemo',
       }
       try {
         router.clear();
@@ -32,17 +30,17 @@ export default function waterFlowDemoJsunit() {
         console.info("get waterflowDemo state success " + JSON.stringify(pages));
         if (!("waterflowDemo" == pages.name)) {
           console.info("get waterflowDemo state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push waterflowDemo page success " + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push waterflowDemo page error: " + err);
       }
-      done()
+      done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("waterflowDemo after each called");
     });
@@ -52,15 +50,14 @@ export default function waterFlowDemoJsunit() {
      * @tc.name         waterflowTest0001
      * @tc.desic        'waterflowTest0001
      */
-    it('waterflowTest0001', 0, async function (done) {
+    it('waterflowTest0001', 0, async (done: Function) => {
       console.info('waterflowDemo testalphabetIndexerWidth0001 START');
       await Utils.sleep(2000);
       let strJson = getInspectorByKey('waterFlow');
       console.info("[waterflowTest0001] component width strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      expect(obj.$type).assertEqual('WaterFlow');
+      let obj: ESObject = JSON.parse(strJson);
+      expect(obj!.$type).assertEqual('WaterFlow');
       done();
     });
-
   })
 }

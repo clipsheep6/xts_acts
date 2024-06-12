@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,17 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
-import router from '@system.router';
+
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function aboutToDisappearJsunit() {
-  describe('bindMenuTest', function () {
-    beforeEach(async function (done) {
+  describe('bindMenuTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("bindMenu beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/bindMenu',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/bindMenu',
       }
       try {
         router.clear();
@@ -31,31 +31,31 @@ export default function aboutToDisappearJsunit() {
         console.info("get bindMenu state pages:" + JSON.stringify(pages));
         if (!("bindMenu" == pages.name)) {
           console.info("get bindMenu state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push bindMenu page result:" + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push bindMenu page error:" + err);
       }
-      done()
+      done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("bindMenu after each called");
     });
 
-    it('bindMenuTest_0100', 0, async function (done) {
+    it('bindMenuTest_0100', 0, async (done: Function) => {
       console.info('bindMenuTest_0100 START');
-      console.info("bindMenuTest_0100 text click result is: " + JSON.stringify(sendEventByKey('text',10,"")));
+      console.info("bindMenuTest_0100 text click result is: " + JSON.stringify(sendEventByKey('text', 10, "")));
       await Utils.sleep(1500);
-      let callback = (indexEvent) => {
+      let callback = (indexEvent: events_emitter.EventData) => {
         console.info("bindMenuTest_0100 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.ACTION).assertEqual(true);
+        expect(indexEvent!.data!.ACTION).assertEqual(true);
         done();
       }
-      let indexEvent = {
+      let indexEvent: events_emitter.InnerEvent = {
         eventId: 64,
         priority: events_emitter.EventPriority.LOW
       }
@@ -64,7 +64,7 @@ export default function aboutToDisappearJsunit() {
       } catch (err) {
         console.info("bindMenuTest_0100 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("bindMenuTest_0100 button click result is: " + JSON.stringify(sendEventByKey('button',10,"")));
+      console.info("bindMenuTest_0100 button click result is: " + JSON.stringify(sendEventByKey('button', 10, "")));
       await Utils.sleep(1000);
       console.info('bindMenuTest_0100 END');
     });

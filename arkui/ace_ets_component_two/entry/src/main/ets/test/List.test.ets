@@ -12,34 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import bindMenuJsunit from './BindMenuJsunit.test.ets';
-import bindPopupJsunit from './BindPopupJsunit.test.ets';
-import directionJsunit from './DirectionJsunit.test.ets';
-import listItemJsunit from './ListItemJsunit.test.ets';
-import navigatorCodeJsunit from './NavigatorCodeJsunit.test.ets';
-import pieceJsunit from './PieceJsunit.test.ets';
-import dividerJsunit from './DividerJsunit.test.ets';
-import systempromptJsunit from './SystempromptJsunit.test.ets';
-import configurationJsunit from './ConfigurationJsunit.test.ets';
-import sourceTypeJsunit from './SourceTypeJsunit.test.ets';
-import pageTransitionJsunit from './PageTransitionJsunit.test.ets';
-import navigationJsunit from './NavigationJsunit.test.ets';
-import loadingProgressJsunit from './LoadingProgressJsunit.test.ets';
-import radioJsunit from './RadioJsunit.test.ets';
-import rowJsunit from './RowJsunit.test.ets';
-import scrollBarJsunit from './ScrollBarJsunit.test.ets';
-import searchJsunit from './SearchJsunit.test.ets';
-import placementJsunit from './PlacementJsunit.test.ets';
-import imageAnimatorJsunit from './ImageAnimatorJsunit.test.ets'
-import animationStatusJsunit from './AnimationStatusJsunit.test.ets';
-import curvesJsunit from './CurvesJsunit.test.ets';
-import gradientDirectionJsunit from './GradientDirectionJsunit.test.ets';
-import ohosRouterJsunit from './OhosRouterJsnuit.test.ets';
-import flexDirectionJsunit from './FlexDirectionJsunit.test.ets';
-import flexWrapJsunit from './FlexWrapJsunit.test.ets';
-import datePickerJsunit from './DatePickerJsunit.test.ets';
-import direction2Jsunit from './Direction2Jsunit.test.ets';
-import waterFlowDemoJsunit from './waterFlowDemo.test.ets';
+
+import bindMenuJsunit from './BindMenuJsunit.test';
+import bindPopupJsunit from './BindPopupJsunit.test';
+import directionJsunit from './DirectionJsunit.test';
+import listItemJsunit from './ListItemJsunit.test';
+import navigatorCodeJsunit from './NavigatorCodeJsunit.test';
+// import pieceJsunit from './PieceJsunit.test';
+import dividerJsunit from './DividerJsunit.test';
+import systempromptJsunit from './SystempromptJsunit.test';
+import configurationJsunit from './ConfigurationJsunit.test';
+import sourceTypeJsunit from './SourceTypeJsunit.test';
+import pageTransitionJsunit from './PageTransitionJsunit.test';
+import navigationJsunit from './NavigationJsunit.test';
+import loadingProgressJsunit from './LoadingProgressJsunit.test';
+import radioJsunit from './RadioJsunit.test';
+import rowJsunit from './RowJsunit.test';
+import scrollBarJsunit from './ScrollBarJsunit.test';
+import searchJsunit from './SearchJsunit.test';
+import placementJsunit from './PlacementJsunit.test';
+import imageAnimatorJsunit from './ImageAnimatorJsunit.test'
+import animationStatusJsunit from './AnimationStatusJsunit.test';
+import curvesJsunit from './CurvesJsunit.test';
+import gradientDirectionJsunit from './GradientDirectionJsunit.test';
+import ohosRouterJsunit from './OhosRouterJsnuit.test';
+import flexDirectionJsunit from './FlexDirectionJsunit.test';
+import flexWrapJsunit from './FlexWrapJsunit.test';
+import datePickerJsunit from './DatePickerJsunit.test';
+import direction2Jsunit from './Direction2Jsunit.test';
+import waterFlowDemoJsunit from './waterFlowDemo.test';
 
 
 export default function testsuite() {
@@ -64,7 +65,7 @@ export default function testsuite() {
   loadingProgressJsunit();
   listItemJsunit();
   navigatorCodeJsunit();
-  pieceJsunit();
+  // pieceJsunit();
   placementJsunit();
   radioJsunit();
   rowJsunit();

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,25 +12,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function transFormJsunit() {
-  describe('appInfoTest_two_1', function () {
-    beforeEach(async function (done) {
+  describe('appInfoTest_two_1', () => {
+    beforeEach(async (done: Function) => {
       console.info("prompt beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/configuration',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/configuration',
       }
+
       try {
         router.clear();
         let pages = router.getState();
         console.info("get prompt state pages:" + JSON.stringify(pages));
         if (!("prompt " == pages.name)) {
           console.info("get prompt state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push prompt  page result:" + JSON.stringify(result));
         }
@@ -41,20 +42,20 @@ export default function transFormJsunit() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("prompt each called");
     });
-    it('configurationTest_0100', 0, async function (done) {
+    it('configurationTest_0100', 0, async (done: Function) => {
       console.info('configurationTest_0100 is start');
       try {
-        let callBackConfiguration = (backData) => {
+        let callBackConfiguration = (backData: events_emitter.EventData) => {
           console.info("configurationTest_0100 get configurationEvent result is: " + JSON.stringify(backData));
-          expect(backData.data.COUNTRY).assertEqual('CN');
-          expect(backData.data.DIR).assertEqual('ltr');
+          expect(backData!.data!.COUNTRY).assertEqual('CN');
+          expect(backData!.data!.DIR).assertEqual('ltr');
           done();
         }
-        var configurationEvent = {
+        let configurationEvent: events_emitter.InnerEvent = {
           eventId: 78,
           priority: events_emitter.EventPriority.LOW
         }

@@ -2,7 +2,7 @@
     "module": {
         "name": "phone",
         "type": "entry",
-        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "srcEntrance": "./ets/Application/AbilityStage.ets",
         "description": "$string:phone_entry_dsc",
         "mainElement": "MainAbility",
         "deviceTypes": [
@@ -17,7 +17,7 @@
         "pages": "$profile:main_pages",
         "abilities": [{
             "name": "com.open.harmony.acetesttwo.MainAbility",
-            "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+            "srcEntrance": "./ets/MainAbility/MainAbility.ets",
             "description": "$string:phone_entry_main",
             "icon": "$media:icon",
             "label": "$string:entry_label",

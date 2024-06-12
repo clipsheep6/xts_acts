@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,17 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
-import Utils from './Utils.ets';
+import Utils from './Utils';
 
 export default function sourceTypeJsunit() {
-  describe('appInfoTest_two_9', function () {
-    beforeEach(async function (done) {
+  describe('appInfoTest_two_9', () => {
+    beforeEach(async (done: Function) => {
       console.info("sourceType beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/sourceType',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/sourceType',
       }
       try {
         router.clear();
@@ -31,37 +31,36 @@ export default function sourceTypeJsunit() {
         console.info("get sourceType state pages:" + JSON.stringify(pages));
         if (!("sourceType" == pages.name)) {
           console.info("get sourceType state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push sourceType page result:" + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push sourceType page error:" + err);
       }
-      done()
+      done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("sourceType after each called");
     });
 
-    it('sourceTypeTest_0100', 0, async function (done) {
+    it('sourceTypeTest_0100', 0, async (done: Function) => {
       await Utils.sleep(1000)
-      let rect = await Utils.getComponentRect('button')
+      let rect = Utils.getComponentRect('button')
       console.info("sourceTypeTest_0100 rectInfo is " + JSON.stringify(rect));
       let x_value = rect.left + (rect.right - rect.left) / 2
       let y_value = rect.top + (rect.bottom - rect.top) / 2
       console.info("sourceTypeTest_0100 onTouch location is: " + "[x]=== " + x_value + "   [y]===" + y_value);
-      let point: TouchObject = {
-        id: 1, x: x_value, y: y_value, type: TouchType.Down,
-      }
-      var callback = (eventData) => {
+      let point: TouchObject = Utils.createTouchObject(x_value, y_value, TouchType.Down)
+
+      let callback = (eventData: events_emitter.EventData) => {
         console.info("sourceTypeTest_0100 get event state result is: " + JSON.stringify(eventData));
-        let event = JSON.parse(eventData.data.event);
-        expect(event.source).assertEqual(0)
+        let event: ESObject = JSON.parse(eventData!.data!.event);
+        expect(event!.source).assertEqual(0)
       }
-      var innerEvent = {
+      let innerEvent: events_emitter.InnerEvent = {
         eventId: 198,
         priority: events_emitter.EventPriority.LOW
       }

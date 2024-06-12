@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,48 +12,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct NavigationExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5]
-  @State hideBar: boolean = true
-  @State toolBar: boolean = true
-  @State hideToolBar: boolean = false
-  @State hideTitleBar: boolean = false
-  @State hideBackButton: boolean = false
-  @State onActionCalled: boolean = false
-  @State titleMode: NavigationTitleMode = NavigationTitleMode.Free
-
-  private stateChangCallBack = (eventData) => {
+  private arr: number[] = [0, 1, 2, 3, 4, 5];
+  @State hideBar: boolean = true;
+  @State toolBar: boolean = true;
+  @State hideToolBar: boolean = false;
+  @State hideTitleBar: boolean = false;
+  @State hideBackButton: boolean = false;
+  @State onActionCalled: boolean = false;
+  @State titleMode: NavigationTitleMode = NavigationTitleMode.Free;
+  private stateChangCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.info("tabs page state change called:" + JSON.stringify(eventData));
-      if (eventData.data.vertical != null) {
-        this.titleMode = eventData.data.titleMode;
+      if (eventData.data!.vertical != null) {
+        this.titleMode = eventData.data!.titleMode;
       }
-      if (eventData.data.hideToolBar != null) {
-        this.hideToolBar = parseInt(eventData.data.hideToolBar);
+      if (eventData.data!.hideToolBar != null) {
+        this.hideToolBar = !!parseInt(eventData.data!.hideToolBar);
       }
-      if (eventData.data.hideTitleBar != null) {
-        this.hideTitleBar = parseInt(eventData.data.hideTitleBar);
+      if (eventData.data!.hideTitleBar != null) {
+        this.hideTitleBar = !!parseInt(eventData.data!.hideTitleBar);
       }
-      if (eventData.data.hideBackButton != null) {
-        this.hideBackButton = parseInt(eventData.data.hideBackButton);
+      if (eventData.data!.hideBackButton != null) {
+        this.hideBackButton = !!parseInt(eventData.data!.hideBackButton);
       }
     }
   }
 
   onPageShow() {
     console.info('progress page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 135,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
 
-  @Builder NavigationTitle() {
+  @Builder
+  NavigationTitle() {
     Column() {
       Text('title')
         .width(80)
@@ -63,11 +63,12 @@ struct NavigationExample {
         .fontSize(30)
     }
     .onClick(() => {
-      console.log("title")
+      console.log("title");
     })
   }
 
-  @Builder NavigationMenus() {
+  @Builder
+  NavigationMenus() {
     Row() {
       Image('images/add.png')
         .width(25)
@@ -76,15 +77,18 @@ struct NavigationExample {
         .width(25)
         .height(25)
         .margin({ left: 30 })
-    }.width(100)
+    }
+    .width(100)
   }
 
   build() {
     Column() {
       Navigation() {
-        Search({ value: '', placeholder: "" }).width('85%').margin(26)
+        Search({ value: '', placeholder: "" })
+          .width('85%')
+          .margin(26)
         List({ space: 5, initialIndex: 0 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item: number) => {
             ListItem() {
               Text('' + item)
                 .width('90%')
@@ -93,8 +97,9 @@ struct NavigationExample {
                 .borderRadius(15)
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
-          }, item => item)
+            }
+            .editable(true)
+          }, (item: number) => item.toString())
         }
         .listDirection(Axis.Vertical)
         .key('Navigation')
@@ -103,25 +108,28 @@ struct NavigationExample {
         .width('100%')
 
         Button(this.hideBar ? "tool bar" : "hide bar")
-          .backgroundColor(0x2788D9).width(200).height(100).fontSize(20)
+          .backgroundColor(0x2788D9)
+          .width(200)
+          .height(100)
+          .fontSize(20)
           .key('NavigationContent1')
           .onClick(() => {
             this.hideBar = !this.hideBar;
             console.info('navigationContent1 current action state is: ' + this.hideBar);
             try {
-              var backData = {
+              let backData: events_emitter.EventData = {
                 data: {
                   "ACTION": this.hideBar,
                 }
               }
-              var backEvent = {
+              let backEvent: events_emitter.InnerEvent = {
                 eventId: 1366,
                 priority: events_emitter.EventPriority.LOW
               }
-              console.info("navigationContent1 start to emit action state")
-              events_emitter.emit(backEvent, backData)
+              console.info("navigationContent1 start to emit action state");
+              events_emitter.emit(backEvent, backData);
             } catch (err) {
-              console.info("navigationContent1 emit action state err: " + JSON.stringify(err.message))
+              console.info("navigationContent1 emit action state err: " + JSON.stringify(err.message));
             }
           })
           .margin({ left: 135, top: 60 })
@@ -135,16 +143,25 @@ struct NavigationExample {
       .onTitleModeChange((titleModel: NavigationTitleMode) => {
         console.log('titleMode')
       })
-      .toolBar({ items: [
-        { value: 'app', icon: 'images/grid.svg', action: () => {
-          console.log("app")
-        } },
-        { value: 'add', icon: 'images/add.svg', action: () => {
-          console.log("add")
-        } },
-        { value: 'collect', icon: 'images/collect.svg', action: () => {
-          console.log("collect")
-        } }] })
+      .toolBar({
+        items: [
+          {
+            value: 'app', icon: 'images/grid.svg', action: () => {
+            console.log("app");
+          }
+          },
+          {
+            value: 'add', icon: 'images/add.svg', action: () => {
+            console.log("add");
+          }
+          },
+          {
+            value: 'collect', icon: 'images/collect.svg', action: () => {
+            console.log("collect");
+          }
+          }
+        ]
+      })
       .hideToolBar(this.hideBar)
     }
   }

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,15 +21,15 @@ struct NavigatorCode {
   @State active: boolean = false;
   @State Text: string = 'news';
   @State typeValue: NavigationType = NavigationType.Back;
-  private stateChangCallBack = (eventData) => {
+  private stateChangCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
-      var navigationTypeValue = eventData.data.typeValue;
+      let navigationTypeValue: NavigationType = eventData.data!.typeValue;
       console.info("navigationTypeValue:" + navigationTypeValue);
       if (navigationTypeValue != null) {
         this.typeValue = navigationTypeValue;
         console.info("this.typeValue:" + this.typeValue);
       } else {
-        console.info("navigationTypeValue is null or empty " + NavigatorCode);
+        console.info("navigationTypeValue is null or empty ");
       }
     } else {
       console.info("NavigatorCode page color not change called:" + JSON.stringify(eventData));
@@ -39,31 +38,42 @@ struct NavigatorCode {
 
   onPageShow() {
     console.info('navigatorCode page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent1: events_emitter.InnerEvent = {
       eventId: 137,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
+    events_emitter.on(stateChangeEvent1, this.stateChangCallBack);
 
-    var stateChangeEvent = {
+    let stateChangeEvent2: events_emitter.InnerEvent = {
       eventId: 138,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+    events_emitter.on(stateChangeEvent2, this.stateChangCallBack);
   }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Navigator({ target: 'pages/NavigatorDetailCode', type: NavigationType.Push }) {
-        Text('Go to ' + this.Text + ' page').width('100%').textAlign(TextAlign.Center)
-      }.params({ text: this.Text }).key('button')
+        Text('Go to ' + this.Text + ' page')
+          .width('100%')
+          .textAlign(TextAlign.Center)
+      }
+      .params({ text: this.Text })
+      .key('button')
 
       Navigator() {
-        Text('Back to previous page').width('100%').textAlign(TextAlign.Center)
-      }.active(this.active).key('NavigatorType')
+        Text('Back to previous page')
+          .width('100%')
+          .textAlign(TextAlign.Center)
+      }
+      .active(this.active)
+      .key('NavigatorType')
       .onClick(() => {
         this.active = true
       })
-    }.height(150).width(350).padding(35)
+    }
+    .height(150)
+    .width(350)
+    .padding(35)
   }
 }

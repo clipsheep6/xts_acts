@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,13 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import events_emitter from '@ohos.events.emitter'
+
+import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct MenuExample {
-  @State onActionCalled: boolean = true
-  @Builder MenuBuilder() {
+  @State onActionCalled: boolean = true;
+
+  @Builder
+  MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Text('text1')
         .fontSize(20)
@@ -32,31 +34,33 @@ struct MenuExample {
         .width(100)
         .height(50)
         .textAlign(TextAlign.Center)
-      Divider().height(10)
+      Divider()
+        .height(10)
       Button('button')
         .key('button')
         .fontSize(20)
         .width(100)
         .height(50)
         .onClick(() => {
-          console.info("bindMenu button START")
+          console.info("bindMenu button START");
           try {
-            var backData = {
+            let backData: events_emitter.EventData = {
               data: {
                 "ACTION": this.onActionCalled,
               }
             }
-            var backEvent = {
+            let backEvent: events_emitter.InnerEvent = {
               eventId: 64,
               priority: events_emitter.EventPriority.LOW
             }
-            console.info("bindMenuTest_0100 start to emit action state")
-            events_emitter.emit(backEvent, backData)
+            console.info("bindMenuTest_0100 start to emit action state");
+            events_emitter.emit(backEvent, backData);
           } catch (err) {
-            console.info("bindMenuTest_0100 emit action state err: " + JSON.stringify(err.message))
+            console.info("bindMenuTest_0100 emit action state err: " + JSON.stringify(err.message));
           }
         })
-    }.width(100)
+    }
+    .width(100)
   }
 
   build() {
