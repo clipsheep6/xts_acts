@@ -16,5 +16,5 @@
 import threadWorkerTest from './ThreadWorker.test.js'
 
 export default function List() {
-  threadWorkerTest()
+    threadWorkerTest()
 }
