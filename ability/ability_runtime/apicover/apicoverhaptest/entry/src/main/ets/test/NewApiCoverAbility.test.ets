@@ -18,6 +18,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 import errorManager from '@ohos.app.ability.errorManager';
 import { BusinessError } from '@ohos.base';
 import { Configuration } from '@ohos.app.ability.Configuration';
+import commonEvent from '@ohos.commonEvent';
 
 function sleep(time: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, time));
@@ -247,5 +248,56 @@ export default function NewApiCoverTest() {
           done();
         });
     })
+
+    /*
+     * @tc.number  SUB_AA_UpdateConfiguration_0300
+     * @tc.name    Test updateConfiguration.
+     * @tc.desc    Function test
+     * @tc.level   3
+     */
+    it('SUB_AA_UpdateConfiguration_0300', 0, async (done: Function) => {
+      console.info("SUB_AA_UpdateConfiguration_0300 start");
+      try {
+        // init for repeat test
+        let configInit: Configuration = {
+          language: 'english'
+        }
+        await abilityManager.updateConfiguration(configInit, (err, data) => {
+          console.info("SUB_AA_UpdateConfiguration_0300 updateConfiguration en success " + JSON.stringify(data));
+        });
+
+        let config: Configuration = {
+          language: 'chinese'
+        }
+
+        let subscriberInfo = {
+            events: ["UpdateConfig_Mcc"]
+        }
+        let subscriber;
+        commonEvent.createSubscriber(subscriberInfo).then(async (data) => {
+          subscriber = data;
+          commonEvent.subscribe(data, subscribeCallBack);
+          function subscribeCallBack(err, data) {
+              expect(data.event == 'UpdateConfig_Mcc').assertTrue();
+              expect(typeof (data.parameters["mcc"]) === 'string').assertTrue();
+              expect(typeof (data.parameters["mnc"]) === 'string').assertTrue();
+              commonEvent.unsubscribe(subscriber, async (err, data) => {
+                  done();
+              });
+            }
+        });
+
+        await abilityManager.updateConfiguration(config)
+          .then(()={}).catch((err: BusinessError) => {
+            console.info("SUB_AA_UpdateConfiguration_0300 updateConfiguration ch fail " + JSON.stringify(err));
+            expect().assertFail();
+            done();
+          })
+      } catch (error) {
+        console.info("SUB_AA_UpdateConfiguration_0300 updateConfiguration fail " + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      }
+    });
   })
 }

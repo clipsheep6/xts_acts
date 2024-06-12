@@ -18,6 +18,7 @@ import common from '@ohos.app.ability.common';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import window from '@ohos.window';
+import commonEvent from '@ohos.commonEvent';
 
 export default class MainAbility extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -67,6 +68,20 @@ export default class MainAbility extends Ability {
   onConfigurationUpdate(config) {
     console.log('[Demo] MainAbility onConfigurationUpdate: ' + this.context.config.language);
     console.log('[Demo] MainAbility onConfigurationUpdate: ' + config.language);
+    console.log('[Demo] MainAbility onConfigurationUpdate mcc: ' + config.mcc);
+    console.log('[Demo] MainAbility onConfigurationUpdate mnc: ' + config.mnc);
+    commonEvent.publish("UpdateConfig_Mcc", {
+      parameters: {
+        "mcc": config.mcc,
+        "mnc": config.mnc
+      }
+    }, (err) => {
+      if (err.code) {
+        console.log("commonEvent publish error: " + JSON.stringify(err));
+      } else {
+        console.log("commonEvent service publish")
+      }
+    });
     if (AppStorage.get("UpdateConfiguration_0200_prepare_resolve")!) {
       AppStorage.get<Function>("UpdateConfiguration_0200_prepare_resolve")!();
     }
