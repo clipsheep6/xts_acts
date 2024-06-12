@@ -56,21 +56,7 @@ export async function driveFn(num) {
 
 export async function getAvRecorderFd(pathName, fileType) {
     console.info('case come in getAvRecorderFd')
-    let fdObject = {
-        fileAsset : null,
-        fdNumber : null
-    }
-    
-    await featureAbility.getContext().getFilesDir().then((fileDir) => {
-        console.info("case file dir is" + JSON.stringify(fileDir));
-        pathName = fileDir + '/' + pathName;
-        console.info("case pathName is" + pathName);
-    });
-    
-    let file = fs.openSync(pathName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    fdObject.fileAsset = file;
-    fdObject.fdNumber = file.fd;
-    console.info('case getFd number is: ' + fdObject.fdNumber);
+    let fdObject = await getFd(pathName);
     
     return fdObject;
 }
@@ -260,21 +246,7 @@ export async function getFd(pathName) {
 
 export async function getAudioFd(pathName) {
     console.info('case come in getAudioFd')
-    let fdObject = {
-        fileAsset : null,
-        fdNumber : null
-    }
-    
-    await featureAbility.getContext().getFilesDir().then((fileDir) => {
-        console.info("case file dir is" + JSON.stringify(fileDir));
-        pathName = fileDir + '/' + pathName;
-        console.info("case pathName is" + pathName);
-    });
-    
-    let file = fs.openSync(pathName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    fdObject.fileAsset = file;
-    fdObject.fdNumber = file.fd;
-    console.info('case getFd number is: ' + fdObject.fdNumber);
+    let fdObject = await getFd(pathName);
     
     return fdObject;
 }

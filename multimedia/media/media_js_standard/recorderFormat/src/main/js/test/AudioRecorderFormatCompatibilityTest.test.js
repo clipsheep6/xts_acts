@@ -14,8 +14,6 @@
  */
 
 import media from '@ohos.multimedia.media'
-import fs from '@ohos.file.fs';
-import featureAbility from '@ohos.ability.featureAbility'
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 
@@ -84,26 +82,15 @@ describe('AudioRecorderFormatCompatibilityTest', function () {
     })
 
     async function getFd(pathName) {
-        await featureAbility.getContext().getFilesDir().then((fileDir) => {
-            console.info("case file dir is" + JSON.stringify(fileDir));
-            pathName = fileDir + '/' + pathName;
-            console.info("case pathName is" + pathName);
-        });
-        
-        let file = fs.openSync(pathName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        fileAsset = file;
-        fdNumber = file.fd;
+        let fdObject = await mediaTestBase.getFd(pathName);
+        fileAsset = fdObject.fileAsset;
+        fdNumber = fdObject.fdNumber;
         fdPath = "fd://" + fdNumber.toString();
         console.info('case getFd number is: ' + fdNumber);
     }
 
     async function closeFd() {
-        console.info('case come in closeFd')
-        if (fdNumber != null) {
-            fs.closeSync(fdNumber);
-        } else {
-            console.info('[fs.closeSync] case fdNumber is null');
-        }
+        await mediaTestBase.closeFd(fdNumber);
     }
 
     function nextStep(mySteps, done) {
