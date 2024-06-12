@@ -13,7 +13,7 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_js_app_suite("wifi_p2p_nop_stage_ohosTest") {
+ohos_js_app_suite("ActsP2PNopStageOhosTest") {
   test_hap = true
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
