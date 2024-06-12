@@ -12,17 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- //@ts-nocheck
+//@ts-nocheck
 import hilog from '@ohos.hilog';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../../test/List.test';
+
 @Entry
 @Component
 struct Index {
   @State select: boolean = true
   @State arrowOffset: number = 0
   private iconStr: ResourceStr = $r("app.media.icon")
+
   @Builder
   ThreeLevelMenu() {
     Menu() {
@@ -32,7 +34,7 @@ struct Index {
   }
 
   @Builder
-  MyMenu(){
+  MyMenu() {
     Menu() {
       MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" }).selectIcon(true).selected(false)
       MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" }).selectIcon(true).selected(false)
@@ -42,7 +44,7 @@ struct Index {
       }).selectIcon(true).selected(false)
 
       MenuItemGroup({ header: '小标题' }) {
-        MenuItem({  startIcon: this.iconStr, content: "菜单选项" })
+        MenuItem({ startIcon: this.iconStr, content: "菜单选项" })
           .selectIcon(true)
           .selected(this.select)
           .onChange((selected) => {
@@ -62,10 +64,8 @@ struct Index {
 
   aboutToAppear() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
-    var abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
@@ -78,10 +78,10 @@ struct Index {
           .fontWeight(FontWeight.Bold)
           .fontSize(30)
           .padding({ top: 20 })
-          .bindContextMenu(this.MyMenu, ResponseType.RightClick, {enableArrow: true,arrowOffset:this.arrowOffset})
+          .bindContextMenu(this.MyMenu, ResponseType.RightClick, { enableArrow: true, arrowOffset: this.arrowOffset })
       }.height('40%')
     }.height('100%')
     .width('100%')
     .backgroundColor('#f0f0f0')
   }
- }
+}
