@@ -16,10 +16,14 @@
 import { describe, it, expect } from '@ohos/hypium'
 import formProvider from '@ohos.app.form.formProvider'
 import formBindingData from '@ohos.app.form.formBindingData'
+import { BusinessError } from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 
 let ERROR_CODE = 202;
 export default function formProviderTest() {
-  describe('formProviderTest', function () {
+  describe('formProviderTest', () => {
 
     /**
      * @tc.number: System_API_Test_Form_Provider_0100
@@ -27,9 +31,9 @@ export default function formProviderTest() {
      * @tc.desc:  Test the third-party application call requestPublishForm will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Form_Provider_0100',0, async function (done) {
+    it('System_API_Test_Form_Provider_0100',0, async (done:Function) => {
       let TAG = 'System_API_Test_Form_Provider_0100';
-      let want = {
+      let want:Want = {
         abilityName: "FormAbility",
         parameters: {
           "ohos.extra.param.key.form_dimension": 2,
@@ -61,9 +65,9 @@ export default function formProviderTest() {
      * @tc.desc:  Test the third-party application call requestPublishForm will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Form_Provider_0200',0, async function (done) {
+    it('System_API_Test_Form_Provider_0200',0, async (done:Function) => {
       let TAG = 'System_API_Test_Form_Provider_0200';
-      let want = {
+      let want:Want = {
         abilityName: "FormAbility",
         parameters: {
           "ohos.extra.param.key.form_dimension": 2,
@@ -75,7 +79,7 @@ export default function formProviderTest() {
         let obj = formBindingData.createFormBindingData({temperature:"22c", time:"22:00"});
         formProvider.requestPublishForm(want, obj).then((data) => {
           console.log(TAG + ' formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
-        }).catch((error) => {
+        }).catch((error:BusinessError) => {
           console.log(TAG + ' formProvider requestPublishForm, error: ' + JSON.stringify(error));
           expect(error.code).assertEqual(ERROR_CODE);
           done();
@@ -93,9 +97,9 @@ export default function formProviderTest() {
      * @tc.desc:  Test the third-party application call requestPublishForm will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Form_Provider_0300',0, async function (done) {
+    it('System_API_Test_Form_Provider_0300',0, async (done:Function) => {
       let TAG = 'System_API_Test_Form_Provider_0300';
-      let want = {
+      let want:Want = {
         abilityName: "FormAbility",
         parameters: {
           "ohos.extra.param.key.form_dimension": 2,
@@ -106,7 +110,7 @@ export default function formProviderTest() {
       try {
         formProvider.requestPublishForm(want).then((data) => {
           console.log(TAG + ' formProvider requestPublishForm success, form ID is :' + JSON.stringify(data));
-        }).catch((error) => {
+        }).catch((error:BusinessError) => {
           console.log(TAG + ' formProvider requestPublishForm, error: ' + JSON.stringify(error));
           expect(error.code).assertEqual(ERROR_CODE);
           done();
@@ -124,7 +128,7 @@ export default function formProviderTest() {
      * @tc.desc:  Test the third-party application call isRequestPublishFormSupported will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Form_Provider_0400',0, async function (done) {
+    it('System_API_Test_Form_Provider_0400',0, async (done:Function) => {
       let TAG = 'System_API_Test_Form_Provider_0400';
       try {
         formProvider.isRequestPublishFormSupported((error, data) => {
@@ -147,12 +151,12 @@ export default function formProviderTest() {
      * @tc.desc:  Test the third-party application call isRequestPublishFormSupported will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Form_Provider_0500',0, async function (done) {
+    it('System_API_Test_Form_Provider_0500',0, async (done:Function) => {
       let TAG = 'System_API_Test_Form_Provider_0500';
       try {
         formProvider.isRequestPublishFormSupported().then((data) => {
           console.log(TAG + ' formProvider isRequestPublishFormSupported success');
-        }).catch((error) => {
+        }).catch((error:BusinessError) => {
           console.log(TAG + ' formProvider isRequestPublishFormSupported, error: ' + JSON.stringify(error));
           expect(error.code).assertEqual(ERROR_CODE);
           done();

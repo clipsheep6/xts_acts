@@ -15,10 +15,15 @@
 
 import { describe, it, expect } from '@ohos/hypium'
 import missionManager from "@ohos.app.ability.missionManager"
+import { BusinessError } from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import image from '@ohos.multimedia.image';
 
 let ERROR_CODE = 202;
 export default function missionManagerTest() {
-  describe('missionManagerTest', function () {
+  describe('missionManagerTest', () => {
 
     /**
      * @tc.number: System_API_Test_Mission_Manager_0100
@@ -26,16 +31,16 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call missionManager.on will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_0100', 0, function (done) {
+    it('System_API_Test_Mission_Manager_0100', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_0100';
-      let listener = {
-        onMissionCreated: function (mission) { console.log("--------onMissionCreated-------") },
-        onMissionDestroyed: function (mission) { console.log("--------onMissionDestroyed-------") },
-        onMissionSnapshotChanged: function (mission) { console.log("--------onMissionSnapshotChanged-------") },
-        onMissionLabelUpdated: function (mission) { console.log("--------onMissionLabelUpdated-------") },
-        onMissionMovedToFront: function (mission) { console.log("--------onMissionMovedToFront-------") },
-        onMissionIconUpdated: function (mission, icon) { console.log("--------onMissionIconUpdated-------") },
-        onMissionClosed: function (mission) { console.log("--------onMissionClosed-------") }
+      let listener:missionManager.MissionListener = {
+        onMissionCreated:(mission:number) => { console.log("--------onMissionCreated-------") },
+        onMissionDestroyed:(mission:number) => { console.log("--------onMissionDestroyed-------") },
+        onMissionSnapshotChanged:(mission:number) => { console.log("--------onMissionSnapshotChanged-------") },
+        onMissionLabelUpdated:(mission:number) => { console.log("--------onMissionLabelUpdated-------") },
+        onMissionMovedToFront:(mission:number) => { console.log("--------onMissionMovedToFront-------") },
+        onMissionIconUpdated:(mission:number, icon:image.PixelMap) => { console.log("--------onMissionIconUpdated-------") },
+        onMissionClosed:(mission:number) => { console.log("--------onMissionClosed-------") }
       };
       try {
         const observerCode = missionManager.on("mission", listener);
@@ -53,7 +58,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call getMissionInfo will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_0200', 0, function (done) {
+    it('System_API_Test_Mission_Manager_0200', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_0200';
       let deviceId = "deviceId";
       let missionId = 0;
@@ -70,7 +75,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call getMissionInfo will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_0300', 0, function (done) {
+    it('System_API_Test_Mission_Manager_0300', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_0300';
       let deviceId = "deviceId";
       let missionId = 0;
@@ -80,7 +85,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -93,7 +98,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call getMissionInfos will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_0400', 0, function (done) {
+    it('System_API_Test_Mission_Manager_0400', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_0400';
       let deviceId = "deviceId";
       let numMax = 10;
@@ -110,7 +115,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call getMissionInfos will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_0500', 0, function (done) {
+    it('System_API_Test_Mission_Manager_0500', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_0500';
       let deviceId = "deviceId";
       let numMax = 10;
@@ -120,7 +125,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -133,7 +138,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call getMissionSnapShot will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_0600', 0, function (done) {
+    it('System_API_Test_Mission_Manager_0600', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_0600';
       let deviceId = "deviceId";
       let missionId = 0;
@@ -150,7 +155,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call isRequestPublishFormSupported will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_0700', 0, function (done) {
+    it('System_API_Test_Mission_Manager_0700', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_0700';
       let deviceId = "deviceId";
       let missionId = 0;
@@ -160,7 +165,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -173,7 +178,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call getLowResolutionMissionSnapShot will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_0800', 0, function (done) {
+    it('System_API_Test_Mission_Manager_0800', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_0800';
       let deviceId = "deviceId";
       let missionId = 0;
@@ -190,7 +195,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call getLowResolutionMissionSnapShot will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_0900', 0, function (done) {
+    it('System_API_Test_Mission_Manager_0900', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_0900';
       let deviceId = "deviceId";
       let missionId = 0;
@@ -200,7 +205,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -213,7 +218,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call lockMission will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_1000', 0, function (done) {
+    it('System_API_Test_Mission_Manager_1000', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_1000';
       let missionId = 0;
       missionManager.lockMission(missionId, (err) => {
@@ -229,7 +234,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call lockMission will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_1100', 0, function (done) {
+    it('System_API_Test_Mission_Manager_1100', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_1100';
       let missionId = 0;
       missionManager.lockMission(missionId)
@@ -238,7 +243,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -251,7 +256,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call unlockMission will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_1200', 0, function (done) {
+    it('System_API_Test_Mission_Manager_1200', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_1200';
       let missionId = 0;
       missionManager.unlockMission(missionId, (err) => {
@@ -267,7 +272,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call unlockMission will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_1300', 0, function (done) {
+    it('System_API_Test_Mission_Manager_1300', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_1300';
       let missionId = 0;
       missionManager.unlockMission(missionId)
@@ -276,7 +281,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -289,7 +294,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call clearMission will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_1400', 0, function (done) {
+    it('System_API_Test_Mission_Manager_1400', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_1400';
       let missionId = 0;
       missionManager.clearMission(missionId, (err) => {
@@ -305,7 +310,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call clearMission will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_1500', 0, function (done) {
+    it('System_API_Test_Mission_Manager_1500', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_1500';
       let missionId = 0;
       missionManager.clearMission(missionId)
@@ -314,7 +319,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -327,7 +332,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call clearAllMissions will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_1600', 0, function (done) {
+    it('System_API_Test_Mission_Manager_1600', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_1600';
       missionManager.clearAllMissions((err) => {
         console.log(TAG + "  err.code: " + err.code);
@@ -342,7 +347,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call clearAllMissions will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_1700', 0, function (done) {
+    it('System_API_Test_Mission_Manager_1700', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_1700';
       missionManager.clearAllMissions()
         .then(err => {
@@ -350,7 +355,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -363,7 +368,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call moveMissionToFront will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_1800', 0, function (done) {
+    it('System_API_Test_Mission_Manager_1800', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_1800';
       let missionId = 0;
       missionManager.moveMissionToFront(missionId, (err) => {
@@ -379,7 +384,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call moveMissionToFront will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_1900', 0, function (done) {
+    it('System_API_Test_Mission_Manager_1900', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_1900';
       let missionId = 0;
       missionManager.moveMissionToFront(missionId)
@@ -388,7 +393,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -401,7 +406,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call moveMissionToFront will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_2000', 0, function (done) {
+    it('System_API_Test_Mission_Manager_2000', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_2000';
       let missionId = 0;
       missionManager.moveMissionToFront(missionId, { windowMode: 101 }, (err) => {
@@ -417,7 +422,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call moveMissionToFront will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_2100', 0, function (done) {
+    it('System_API_Test_Mission_Manager_2100', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_2100';
       let missionId = 0;
       missionManager.moveMissionToFront(missionId, { windowMode: 101 })
@@ -426,7 +431,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -439,7 +444,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call moveMissionsToForeground will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_2200', 0, function (done) {
+    it('System_API_Test_Mission_Manager_2200', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_2200';
       let missionIds = [1, 2, 3];
       missionManager.moveMissionsToForeground(missionIds, (err) => {
@@ -455,7 +460,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call moveMissionsToForeground will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_2300', 0, function (done) {
+    it('System_API_Test_Mission_Manager_2300', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_2300';
       let missionIds = [1, 2, 3];
       missionManager.moveMissionsToForeground(missionIds)
@@ -464,7 +469,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -477,7 +482,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call moveMissionsToForeground will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_2400', 0, function (done) {
+    it('System_API_Test_Mission_Manager_2400', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_2400';
       let missionIds = [1, 2, 3];
       let topMission = 2;
@@ -494,7 +499,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call moveMissionsToForeground will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_2500', 0, function (done) {
+    it('System_API_Test_Mission_Manager_2500', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_2500';
       let missionIds = [1, 2, 3];
       let topMission = 2;
@@ -504,7 +509,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();
@@ -517,7 +522,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call moveMissionsToBackground will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_2600', 0, function (done) {
+    it('System_API_Test_Mission_Manager_2600', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_2600';
       let missionIds = [1, 2, 3];
       missionManager.moveMissionsToBackground(missionIds, (err) => {
@@ -533,7 +538,7 @@ export default function missionManagerTest() {
      * @tc.desc:  Test the third-party application call moveMissionsToBackground will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Mission_Manager_2700', 0, function (done) {
+    it('System_API_Test_Mission_Manager_2700', 0, (done:Function) => {
       let TAG = 'System_API_Test_Mission_Manager_2700';
       let missionIds = [1, 2, 3];
       missionManager.moveMissionsToBackground(missionIds)
@@ -542,7 +547,7 @@ export default function missionManagerTest() {
           expect().assertFail();
           done();
         })
-        .catch(err => {
+        .catch((err:BusinessError) => {
           console.log(TAG + "  err.code: " + err.code);
           expect(err.code).assertEqual(ERROR_CODE);
           done();

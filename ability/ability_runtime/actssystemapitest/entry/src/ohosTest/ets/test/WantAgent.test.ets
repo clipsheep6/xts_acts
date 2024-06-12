@@ -14,12 +14,16 @@
  */
 
 import { describe, it, expect } from '@ohos/hypium'
-import WantAgent from '@ohos.app.ability.wantAgent'
+import { BusinessError } from '@ohos.base';
+import CommonEventManager from '@ohos.commonEventManager';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import WantAgent, { WantAgent as _WantAgent} from '@ohos.app.ability.wantAgent';
 
 let ERROR_CODE = 202;
 
 export default function wantAgentTest() {
-  describe('wantAgentTest', function () {
+  describe('wantAgentTest', () => {
 
     /**
      * @tc.number: SUB_AA_OpenHarmony_Context_0100
@@ -27,9 +31,9 @@ export default function wantAgentTest() {
      * @tc.desc:  Test the third-party application call getWant will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_WantAgent_Manager_0100',0, async function (done) {
+    it('System_API_Test_WantAgent_Manager_0100',0, async (done:Function) => {
       let TAG = 'System_API_Test_WantAgent_Manager_0100';
-      let wantAgent;
+      let wantAgent:_WantAgent | null = null;
       try {
         WantAgent.getWant(wantAgent, (error, data) => {
           console.info(TAG + " ==========================>getWantCallback=======================>");
@@ -47,9 +51,9 @@ export default function wantAgentTest() {
      * @tc.desc:  Test the third-party application call getWant will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_QuickFix_Manager_0200',0, async function (done) {
+    it('System_API_Test_QuickFix_Manager_0200',0, async (done:Function) => {
       let TAG = 'System_API_Test_QuickFix_Manager_0200';
-      let wantAgent;
+      let wantAgent:_WantAgent | null = null;
       try {
         WantAgent.getWant(wantAgent).then().catch();
       } catch (error) {
