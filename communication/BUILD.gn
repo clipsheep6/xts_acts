@@ -42,6 +42,7 @@ group("communication") {
       "wifi_ets_standard:ActsEtsWifiTest",
       "wifi_p2p:ActsP2PJSTest",
       "wifi_standard:ActsWifiJSTest",
+      "wifi_p2p_nop:wifi_p2p_nop_stage_ohosTest",
     ]
   } else {
     deps = [ "wifi_standard:ActsWifiJSTest" ]
