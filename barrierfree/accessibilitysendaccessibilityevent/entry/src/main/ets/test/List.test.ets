@@ -15,5 +15,5 @@
 import abilityTest from './AccessibilitySendAccessibilityEvent.test.ets'
 
 export default function testsuite() {
-    abilityTest()
+  abilityTest()
 }
