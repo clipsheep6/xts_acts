@@ -12,74 +12,77 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import Subscriber from '@ohos.commonEvent'
 
-var commonEventSubscribeInfo = { events: ["MainAbility5_onWindowStageDestroy"] };
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import Subscriber from '@ohos.commonEvent';
+import commonEventManager from '@ohos.commonEventManager';
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let commonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+  events: ["MainAbility5_onWindowStageDestroy"]
+}
+
+function sleep(time: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, time));
+}
 
 export default function abilityTestSync() {
-
-  let monitor = undefined;
-  describe('ActsAbilityMonitorSync', function () {
-
-    function sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
-
-    afterEach(async function (done) {
+  let monitor: abilityDelegatorRegistry.AbilityMonitor;
+  let abilitydelegator: abilityDelegatorRegistry.AbilityDelegator = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator");
+  describe('ActsAbilityMonitorSync', () => {
+    afterEach(async (done: Function) => {
       console.info("afterEach each called");
       if (monitor) {
         console.info("afterEach removeAbilityMonitor monitor");
-        globalThis.abilitydelegator.removeAbilityMonitor(monitor, () => {
+        abilitydelegator.removeAbilityMonitor(monitor, () => {
           monitor = undefined;
         });
         await sleep(100);
       }
       done();
-    });
+    })
 
     /**
      * @tc.number: ACTS_AddAbilityMonitorSync_0100
      * @tc.name: Verify that the addAbilityMonitorSync interface functions normally.
      * @tc.desc: Use addAbilityMonitorSync to add a monitor then use startAbility to trigger onAbilityCreate (Callback).
      */
-    it('ACTS_AddAbilityMonitorSync_0100', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_AddAbilityMonitorSync_0100', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0100--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(1)
-          done()
+          expect(CallbackFlag).assertEqual(1);
+          done();
         })
       })
 
-      function onAbilityCreate() {
-        console.log("====>ACTS_AddAbilityMonitorSync_0100--onAbilityCreate====>");
-        CallbackFlag = 1;
-      }
 
       console.log("====>ACTS_AddAbilityMonitorSync_0100--addAbilityMonitorSync--start====>");
       monitor = {
         abilityName: 'MainAbility5',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: () => {
+          console.log("====>ACTS_AddAbilityMonitorSync_0100--onAbilityCreate====>");
+          CallbackFlag = 1;
+        }
       }
       try {
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor);
+        abilitydelegator.addAbilityMonitorSync(monitor);
       } catch (err) {
-        expect().assertFail()
+        expect().assertFail();
         console.log("====>ACTS_AddAbilityMonitorSync_0100--addAbilityMonitorSync--fail====>" + JSON.stringify(err));
-        done()
+        done();
       }
       console.log("====>ACTS_AddAbilityMonitorSync_0100--addAbilityMonitorSync--end====>");
 
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
         }).then(async () => {
         console.log("====>ACTS_AddAbilityMonitorSync_0100--startAbility success====>");
-      });
+      })
     })
 
     /**
@@ -88,8 +91,8 @@ export default function abilityTestSync() {
      * @tc.desc: Use addAbilityMonitorSync to add a monitor then use startAbility to
      * trigger onAbilityForeground (Callback).
      */
-    it('ACTS_AddAbilityMonitorSync_0200', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_AddAbilityMonitorSync_0200', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0200--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
@@ -99,21 +102,19 @@ export default function abilityTestSync() {
         })
       })
 
-      function onAbilityForeground() {
-        console.log("====>ACTS_AddAbilityMonitorSync_0200--onAbilityCreate====>");
-        CallbackFlag = 1;
-      }
-
       console.log("====>ACTS_AddAbilityMonitorSync_0200--addAbilityMonitorSync--start====>");
       monitor = {
         abilityName: 'MainAbility5',
-        onAbilityForeground: onAbilityForeground,
+        onAbilityForeground: () => {
+          console.log("====>ACTS_AddAbilityMonitorSync_0200--onAbilityCreate====>");
+          CallbackFlag = 1;
+        },
         onWindowStageRestore: (Ability) => {
           console.info("===>ACTS_AddAbilityMonitorSync_0200 onWindowStageRestore");
         }
       }
       try {
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
       } catch (err) {
         expect().assertFail()
         console.log("====>ACTS_AddAbilityMonitorSync_0200--addAbilityMonitorSync--fail====>" + JSON.stringify(err));
@@ -121,7 +122,7 @@ export default function abilityTestSync() {
       }
       console.log("====>ACTS_AddAbilityMonitorSync_0200--end addAbilityMonitorSync====>");
 
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
@@ -136,37 +137,35 @@ export default function abilityTestSync() {
      * @tc.desc: Use addAbilityMonitorSync to add a monitor then use startAbility to trigger
      * onAbilityBackground (Callback).
      */
-    it('ACTS_AddAbilityMonitorSync_0300', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_AddAbilityMonitorSync_0300', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0300--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(1)
-          done()
+          expect(CallbackFlag).assertEqual(1);
+          done();
         })
       })
-
-      function onAbilityBackgroundPromise() {
-        console.log("====>ACTS_AddAbilityMonitorSync_0300 onAbilityBackgroundPromise ====>");
-        CallbackFlag = 1;
-      }
 
       console.log("====>ACTS_AddAbilityMonitorSync_0300--addAbilityMonitorSync--start====>");
       monitor = {
         abilityName: 'MainAbility5',
-        onAbilityBackground: onAbilityBackgroundPromise
+        onAbilityBackground: () => {
+          console.log("====>ACTS_AddAbilityMonitorSync_0300 onAbilityBackgroundPromise ====>");
+          CallbackFlag = 1;
+        }
       }
       try {
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
       } catch (err) {
         console.log("====>ACTS_AddAbilityMonitorSync_0300--error addAbilityMonitorSync====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
       console.log("====>ACTS_AddAbilityMonitorSync_0300--addAbilityMonitorSync--end====>");
 
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
@@ -181,40 +180,36 @@ export default function abilityTestSync() {
      * @tc.desc: Use addAbilityMonitorSync to add a monitor then use startAbility
      * to trigger onAbilityDestroy (Callback).
      */
-    it('ACTS_AddAbilityMonitorSync_0400', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_AddAbilityMonitorSync_0400', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0400--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(1)
-          done()
+          expect(CallbackFlag).assertEqual(1);
+          done();
         })
       })
 
-      function onAbilityDestroy() {
-        console.log("====>ACTS_AddAbilityMonitorSync_0400 onAbilityDestroy ====>");
-        CallbackFlag = 1;
-      }
-
       console.log("====>ACTS_AddAbilityMonitorSync_0400--addAbilityMonitorSync--start====>");
       try {
-        globalThis.abilitydelegator.addAbilityMonitorSync(
+        abilitydelegator.addAbilityMonitorSync(
           {
             abilityName: 'MainAbility5',
-            onAbilityDestroy: onAbilityDestroy
+            onAbilityDestroy: () => {
+              console.log("====>ACTS_AddAbilityMonitorSync_0400 onAbilityDestroy ====>");
+              CallbackFlag = 1;
+            }
           })
       } catch (err) {
         console.log("====>ACTS_AddAbilityMonitorSync_0400--addAbilityMonitorSync--error====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
       console.log("====>ACTS_AddAbilityMonitorSync_0400--addAbilityMonitorSync--end====>");
-      monitor = {
-        bundleName: 'com.example.abilitymonitortest',
-        abilityName: 'MainAbility5'
-      }
-      globalThis.abilitydelegator.startAbility(monitor).then(async () => {
+      abilitydelegator.startAbility({
+        bundleName: 'com.example.abilitymonitortest', abilityName: 'MainAbility5'
+      }).then(async () => {
         console.log("====>ACTS_AddAbilityMonitorSync_0400--startAbility success====>");
       })
     })
@@ -225,37 +220,35 @@ export default function abilityTestSync() {
      * @tc.desc: Use addAbilityMonitorSync to add a monitor then use startAbility
      * to trigger onWindowStageCreate (Callback).
      */
-    it('ACTS_AddAbilityMonitorSync_0500', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_AddAbilityMonitorSync_0500', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0500--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(1)
-          done()
+          expect(CallbackFlag).assertEqual(1);
+          done();
         })
       })
-
-      function onWindowStageCreate() {
-        console.log("====>ACTS_AddAbilityMonitorSync_0500 onWindowStageCreate ====>");
-        CallbackFlag = 1;
-      }
 
       console.log("====>ACTS_AddAbilityMonitorSync_0500--addAbilityMonitorSync--start====>");
       monitor = {
         abilityName: 'MainAbility5',
-        onWindowStageCreate: onWindowStageCreate
+        onWindowStageCreate: () => {
+          console.log("====>ACTS_AddAbilityMonitorSync_0500 onWindowStageCreate ====>");
+          CallbackFlag = 1;
+        }
       }
       try {
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
       } catch (err) {
         console.log("====>ACTS_AddAbilityMonitorSync_0500--addAbilityMonitorSync--error====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
       console.log("====>ACTS_AddAbilityMonitorSync_0500--addAbilityMonitorSync--end====>");
 
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
@@ -270,37 +263,35 @@ export default function abilityTestSync() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility
      * to trigger onWindowStageDestroy (Callback).
      */
-    it('ACTS_AddAbilityMonitorSync_0600', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_AddAbilityMonitorSync_0600', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0600--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(1)
-          done()
+          expect(CallbackFlag).assertEqual(1);
+          done();
         })
       })
-
-      function onWindowStageDestroy() {
-        console.log("====>ACTS_AddAbilityMonitor_0600 onWindowStageDestroy ====>");
-        CallbackFlag = 1;
-      }
 
       console.log("====>ACTS_AddAbilityMonitorSync_0600--addAbilityMonitorSync--start====>");
       monitor = {
         abilityName: 'MainAbility5',
-        onWindowStageDestroy: onWindowStageDestroy
+        onWindowStageDestroy: () => {
+          console.log("====>ACTS_AddAbilityMonitor_0600 onWindowStageDestroy ====>");
+          CallbackFlag = 1;
+        }
       }
       try {
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
       } catch (err) {
         console.log("====>ACTS_AddAbilityMonitorSync_0600--addAbilityMonitorSync--error====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
 
       console.log("====>ACTS_AddAbilityMonitorSync_0600--addAbilityMonitorSync--end====>");
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
@@ -317,40 +308,37 @@ export default function abilityTestSync() {
      * to remove monitor then trigger
      *           onAbilityCreate (Callback).
      */
-    it('ACTS_RemoveAbilityMonitorSync_0100', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_RemoveAbilityMonitorSync_0100', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0600--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(0)
-          done()
+          expect(CallbackFlag).assertEqual(0);
+          done();
         })
       })
-
-      function onAbilityCreate() {
-        CallbackFlag = -1
-        console.log("====>ACTS_RemoveAbilityMonitorSync_0100 onAbilityCreate ====>");
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility5',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: () => {
+          CallbackFlag = -1;
+          console.log("====>ACTS_RemoveAbilityMonitorSync_0100 onAbilityCreate ====>");
+        }
       }
 
       try {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0100 addAbilityMonitorSync start====>");
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
         console.log("====>ACTS_RemoveAbilityMonitorSync_0100 ACTS_RemoveAbilityMonitorSync_0100 start====>");
-        globalThis.abilitydelegator.removeAbilityMonitorSync(monitor)
+        abilitydelegator.removeAbilityMonitorSync(monitor);
       } catch (err) {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0100 catch error ====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
 
       console.log("====>ACTS_RemoveAbilityMonitorSync_0100 startAbility ====>");
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
@@ -366,39 +354,37 @@ export default function abilityTestSync() {
      * to remove monitor then trigger
      *           onAbilityForeground (Callback).
      */
-    it('ACTS_RemoveAbilityMonitorSync_0200', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_RemoveAbilityMonitorSync_0200', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0600--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(0)
-          done()
+          expect(CallbackFlag).assertEqual(0);
+          done();
         })
       })
 
-      function onAbilityForeground() {
-        CallbackFlag = -1
-        console.log("====>ACTS_RemoveAbilityMonitorSync_0200 onAbilityForeground ====>");
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility5',
-        onAbilityForeground: onAbilityForeground
+        onAbilityForeground: () => {
+          CallbackFlag = -1;
+          console.log("====>ACTS_RemoveAbilityMonitorSync_0200 onAbilityForeground ====>");
+        }
       }
       try {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0200 addAbilityMonitorSync start====>");
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
         console.log("====>ACTS_RemoveAbilityMonitorSync_0200 ACTS_RemoveAbilityMonitorSync_0100 start====>");
-        globalThis.abilitydelegator.removeAbilityMonitorSync(monitor)
+        abilitydelegator.removeAbilityMonitorSync(monitor);
       } catch (err) {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0200 catch error ====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
 
       console.log("====>ACTS_RemoveAbilityMonitorSync_0200 startAbility ====>");
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
@@ -414,39 +400,37 @@ export default function abilityTestSync() {
      * to remove monitor then trigger
      *           onAbilityBackground (Callback).
      */
-    it('ACTS_RemoveAbilityMonitorSync_0300', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_RemoveAbilityMonitorSync_0300', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0600--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(0)
-          done()
+          expect(CallbackFlag).assertEqual(0);
+          done();
         })
       })
 
-      function onAbilityBackground() {
-        CallbackFlag = -1
-        console.log("====>ACTS_RemoveAbilityMonitorSync_0300 onAbilityBackground ====>");
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility5',
-        onAbilityBackground: onAbilityBackground
+        onAbilityBackground: () => {
+          CallbackFlag = -1;
+          console.log("====>ACTS_RemoveAbilityMonitorSync_0300 onAbilityBackground ====>");
+        }
       }
       try {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0300 addAbilityMonitorSync start====>");
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
         console.log("====>ACTS_RemoveAbilityMonitorSync_0100 ACTS_RemoveAbilityMonitorSync_0100 start====>");
-        globalThis.abilitydelegator.removeAbilityMonitorSync(monitor)
+        abilitydelegator.removeAbilityMonitorSync(monitor);
       } catch (err) {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0300 catch error ====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
 
       console.log("====>ACTS_RemoveAbilityMonitorSync_0300 startAbility ====>");
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
@@ -462,39 +446,37 @@ export default function abilityTestSync() {
      * to remove monitor then trigger
      *           onAbilityDestroy (Callback).
      */
-    it('ACTS_RemoveAbilityMonitor_0400', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_RemoveAbilityMonitor_0400', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0400--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(0)
-          done()
+          expect(CallbackFlag).assertEqual(0);
+          done();
         })
       })
 
-      function onAbilityDestroy() {
-        CallbackFlag = -1
-        console.log("====>ACTS_RemoveAbilityMonitor_0400 onAbilityDestroy ====>");
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility5',
-        onAbilityDestroy: onAbilityDestroy
+        onAbilityDestroy: () => {
+          CallbackFlag = -1;
+          console.log("====>ACTS_RemoveAbilityMonitor_0400 onAbilityDestroy ====>");
+        }
       }
       try {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0400 addAbilityMonitorSync start====>");
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
         console.log("====>ACTS_RemoveAbilityMonitorSync_0400 ACTS_RemoveAbilityMonitorSync_0100 start====>");
-        globalThis.abilitydelegator.removeAbilityMonitorSync(monitor)
+        abilitydelegator.removeAbilityMonitorSync(monitor);
       } catch (err) {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0400 catch error ====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
 
       console.log("====>ACTS_RemoveAbilityMonitorSync_0400 startAbility ====>");
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
@@ -510,39 +492,37 @@ export default function abilityTestSync() {
      * to remove monitor then trigger
      *           onWindowStageCreate (Callback).
      */
-    it('ACTS_RemoveAbilityMonitorSync_0500', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_RemoveAbilityMonitorSync_0500', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0600--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(0)
-          done()
+          expect(CallbackFlag).assertEqual(0);
+          done();
         })
       })
 
-      function onWindowStageCreate() {
-        CallbackFlag = -1
-        console.log("====>onWindowStageCreate ====>");
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility5',
-        onWindowStageCreate: onWindowStageCreate
+        onWindowStageCreate: () => {
+          CallbackFlag = -1;
+          console.log("====>onWindowStageCreate ====>");
+        }
       }
       try {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0500 addAbilityMonitorSync start====>");
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
         console.log("====>ACTS_RemoveAbilityMonitorSync_0500 ACTS_RemoveAbilityMonitorSync_0100 start====>");
-        globalThis.abilitydelegator.removeAbilityMonitorSync(monitor)
+        abilitydelegator.removeAbilityMonitorSync(monitor);
       } catch (err) {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0500 catch error ====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
 
       console.log("====>ACTS_RemoveAbilityMonitorSync_0500 startAbility ====>");
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
@@ -558,39 +538,37 @@ export default function abilityTestSync() {
      * to remove monitor then trigger
      *           onWindowStageDestroy (Callback).
      */
-    it('ACTS_RemoveAbilityMonitorSync_0600', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_RemoveAbilityMonitorSync_0600', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0600--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(0)
-          done()
+          expect(CallbackFlag).assertEqual(0);
+          done();
         })
       })
 
-      function onWindowStageDestroy() {
-        CallbackFlag = -1
-        console.log("====>ACTS_RemoveAbilityMonitorSync_0600 onWindowStageDestroy ====>");
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility5',
-        onWindowStageDestroy: onWindowStageDestroy
+        onWindowStageDestroy: () => {
+          CallbackFlag = -1;
+          console.log("====>ACTS_RemoveAbilityMonitorSync_0600 onWindowStageDestroy ====>");
+        }
       }
       try {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0600 addAbilityMonitorSync start====>");
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
         console.log("====>ACTS_RemoveAbilityMonitorSync_0600 ACTS_RemoveAbilityMonitorSync_0100 start====>");
-        globalThis.abilitydelegator.removeAbilityMonitorSync(monitor)
+        abilitydelegator.removeAbilityMonitorSync(monitor);
       } catch (err) {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0600 catch error ====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
 
       console.log("====>ACTS_RemoveAbilityMonitorSync_0600 startAbility ====>");
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'
@@ -606,23 +584,20 @@ export default function abilityTestSync() {
      * to remove monitor then trigger
      *           onAbilityCreate (Callback).
      */
-    it('ACTS_RemoveAbilityMonitorSync_0700', 0, async function (done) {
-
-      function onAbilityCreate() {
-        console.log("====>onAbilityCreate====>");
-      }
-
+    it('ACTS_RemoveAbilityMonitorSync_0700', 0, async (done: Function) => {
       try {
-        globalThis.abilitydelegator.removeAbilityMonitorSync({
+        abilitydelegator.removeAbilityMonitorSync({
           abilityName: 'WrongName',
-          onAbilityCreate: onAbilityCreate
+          onAbilityCreate: () => {
+            console.log("====>onAbilityCreate====>");
+          }
         })
         console.log("====>ACTS_RemoveAbilityMonitorSync_0700 success====>");
-        expect(true).assertTrue()
+        expect(true).assertTrue();
         done();
       } catch (err) {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0700 fail====>");
-        expect().assertFail()
+        expect().assertFail();
         done();
       }
     })
@@ -634,39 +609,37 @@ export default function abilityTestSync() {
      * to remove monitor then trigger
      *           onAbilityCreate (Callback).
      */
-    it('ACTS_RemoveAbilityMonitorSync_0800', 0, async function (done) {
-      var CallbackFlag = 0
+    it('ACTS_RemoveAbilityMonitorSync_0800', 0, async (done: Function) => {
+      let CallbackFlag = 0;
       console.log("====>ACTS_AddAbilityMonitorSync_0600--addAbilityMonitorSync--Subscriber====>");
       Subscriber.createSubscriber(commonEventSubscribeInfo, (err, sub) => {
         Subscriber.subscribe(sub, (err, msg) => {
           Subscriber.unsubscribe(sub);
-          expect(CallbackFlag).assertEqual(0)
-          done()
+          expect(CallbackFlag).assertEqual(0);
+          done();
         })
       })
 
-      function onAbilityCreate() {
-        CallbackFlag = -1
-        console.log("====>ACTS_RemoveAbilityMonitorSync_0800 onAbilityCreate ====>");
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility5',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: () => {
+          CallbackFlag = -1;
+          console.log("====>ACTS_RemoveAbilityMonitorSync_0800 onAbilityCreate ====>");
+        }
       }
       try {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0800 addAbilityMonitorSync start====>");
-        globalThis.abilitydelegator.addAbilityMonitorSync(monitor)
+        abilitydelegator.addAbilityMonitorSync(monitor);
         console.log("====>ACTS_RemoveAbilityMonitorSync_0800 ACTS_RemoveAbilityMonitorSync_0100 start====>");
-        globalThis.abilitydelegator.removeAbilityMonitorSync(monitor)
+        abilitydelegator.removeAbilityMonitorSync(monitor);
       } catch (err) {
         console.log("====>ACTS_RemoveAbilityMonitorSync_0800 catch error ====>" + JSON.stringify(err));
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
 
       console.log("====>ACTS_RemoveAbilityMonitorSync_0800 startAbility ====>");
-      globalThis.abilitydelegator.startAbility(
+      abilitydelegator.startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility5'

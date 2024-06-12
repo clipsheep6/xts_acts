@@ -12,27 +12,37 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import window from '@ohos.window';
 
 export default class MainAbility4 extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+        console.log("[Demo] MainAbility onCreate");
         globalThis.abilityWant = want;
-        globalThis.abilityContext = this.context
+        globalThis.abilityContext = this.context;
+        // AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", this.context);
     }
 
     onDestroy() {
-        console.log("[Demo] MainAbility onDestroy")
+        console.log("[Demo] MainAbility onDestroy");
         globalThis.abilityContext = undefined;
+        // AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", undefined);
     }
 
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate")
+        console.log("[Demo] MainAbility onWindowStageCreate");
 
-        windowStage.setUIContent(this.context, "pages/index", null)
+        windowStage.loadContent("pages/index", null);
         setTimeout(()=>{
-            globalThis.abilityContext.terminateSelf().then(()=>{
+            // AppStorage.get<common.UIAbilityContext>("abilityContext").terminateSelf().then(()=>{
+            //     console.log("====>in terminateSelf====>");
+            // })
+            this.context.terminateSelf().then(()=>{
                 console.log("====>in terminateSelf====>");
             })
         },2000)
@@ -40,16 +50,16 @@ export default class MainAbility4 extends Ability {
 
     onWindowStageDestroy() {
         // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility onWindowStageDestroy")
+        console.log("[Demo] MainAbility onWindowStageDestroy");
     }
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] MainAbility onForeground")
+        console.log("[Demo] MainAbility onForeground");
     }
 
     onBackground() {
         // Ability has back to background
-        console.log("[Demo] MainAbility onBackground")
+        console.log("[Demo] MainAbility onBackground");
     }
-};
+}

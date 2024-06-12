@@ -12,8 +12,13 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+
 import Ability from '@ohos.app.ability.UIAbility';
 import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import window from '@ohos.window';
 
 let EVENT_TIME = 500;
 
@@ -22,27 +27,25 @@ function publishCallBack(): void {
 }
 
 export default class MainAbility5 extends Ability {
-  onCreate(want, launchParam): void {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     console.log('[Demo] MainAbility5 onCreate');
-    globalThis.abilityWant = want;
-    globalThis.abilityContext = this.context;
+    AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", this.context);
     setTimeout(() => {
-      globalThis.abilityContext.terminateSelf().then(() => {
+      AppStorage.get<common.UIAbilityContext>("abilityContext").terminateSelf().then(() => {
         console.log('====>in terminateSelf====>');
-      });
-    }, EVENT_TIME);
+      })
+    }, EVENT_TIME)
   }
 
   onDestroy(): void {
     console.log('[Demo] MainAbility5 onDestroy');
-    globalThis.abilityContext = undefined;
+    AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", undefined);
   }
 
-  onWindowStageCreate(windowStage): void {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     console.log('[Demo] MainAbility5 onWindowStageCreate');
-
-    windowStage.setUIContent(this.context, 'pages/index', null);
+    windowStage.loadContent('pages/index', null);
   }
 
   onWindowStageDestroy(): void {
@@ -50,7 +53,7 @@ export default class MainAbility5 extends Ability {
     console.log('[Demo] MainAbility5 onWindowStageDestroy');
     setTimeout(() => {
       commonEvent.publish('MainAbility5_onWindowStageDestroy', publishCallBack);
-    }, EVENT_TIME);
+    }, EVENT_TIME)
   }
 
   onForeground(): void {
@@ -62,4 +65,4 @@ export default class MainAbility5 extends Ability {
     // Ability has back to background
     console.log('[Demo] MainAbility5 onBackground');
   }
-};
+}

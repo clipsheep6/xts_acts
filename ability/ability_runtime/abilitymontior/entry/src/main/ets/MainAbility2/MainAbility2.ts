@@ -12,44 +12,52 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
+import window from '@ohos.window';
 
 export default class MainAbility2 extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility2 onCreate")
-        globalThis.abilityWant = want;
-        globalThis.abilityContext = this.context
-    }
+  onCreate(want, launchParam) {
+    console.log("[Demo] MainAbility2 onCreate");
+    globalThis.abilityWant = want;
+    globalThis.abilityContext = this.context;
+    // AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", this.context);
+  }
 
-    onDestroy() {
-        console.log("[Demo] MainAbility2 onDestroy")
-        globalThis.abilityContext = undefined;
-    }
+  onDestroy() {
+    console.log("[Demo] MainAbility2 onDestroy");
+    globalThis.abilityContext = undefined;
+    // AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", undefined);
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility2 onWindowStageCreate")
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] MainAbility2 onWindowStageCreate");
 
-        windowStage.setUIContent(this.context, "pages/index", null)
-        setTimeout(()=>{
-            globalThis.abilityContext.terminateSelf().then(()=>{
-                console.log("====>in terminateSelf====>");
-            })
-        },2000)
-    }
+    windowStage.loadContent("pages/index", null);
+    setTimeout(() => {
+      // AppStorage.get<common.UIAbilityContext>("abilityContext")!.terminateSelf().then(() => {
+      //   console.log("====>in terminateSelf====>");
+      // })
+      this.context.terminateSelf().then(() => {
+        console.log("====>in terminateSelf====>");
+      })
+    }, 2000)
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility2 onWindowStageDestroy")
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("[Demo] MainAbility2 onWindowStageDestroy");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] MainAbility2 onForeground")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("[Demo] MainAbility2 onForeground");
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] MainAbility2 onBackground")
-    }
-};
+  onBackground() {
+    // Ability has back to background
+    console.log("[Demo] MainAbility2 onBackground");
+  }
+}

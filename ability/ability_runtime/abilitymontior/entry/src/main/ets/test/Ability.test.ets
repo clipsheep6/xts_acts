@@ -12,77 +12,90 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import Subscriber from '@ohos.commonEventManager';
-import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import common from '@ohos.app.ability.common';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import commonEventManager from '@ohos.commonEventManager';
+import { BusinessError } from '@ohos.base';
+
+function sleep(time: number) {
+  return new Promise<number>((resolve) => setTimeout(resolve, time));
+}
 
 export default function abilityTest() {
-
-  let delegator = abilityDelegatorRegistry.getAbilityDelegator();
-  let monitor = undefined;
-  let monitor1 = undefined;
+  let delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+  let monitor: abilityDelegatorRegistry.AbilityMonitor;
+  let monitor1: abilityDelegatorRegistry.AbilityMonitor;
   let TAG = "";
 
-  function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-  }
-
-  describe('ActsAbilityMonitor', function () {
-    afterEach(async function (done) {
+  describe('ActsAbilityMonitor', () => {
+    afterEach(async (done: Function) => {
       console.info(TAG + " afterEach each called");
       if (monitor) {
         console.info(TAG + " afterEach removeAbilityMonitor monitor");
         delegator.removeAbilityMonitor(monitor, () => {
           monitor = undefined;
-        });
+        })
         await sleep(100);
       }
       if (monitor1) {
         console.info(TAG + " afterEach removeAbilityMonitor monitor1");
         delegator.removeAbilityMonitor(monitor1, () => {
           monitor1 = undefined;
-        });
+        })
         await sleep(100);
       }
-      if (globalThis.abilityContext) {
+      if (AppStorage.get<common.UIAbilityContext>("abilityContext")) {
         console.info(TAG + " wait abiltiy terminateSelf");
         await sleep(2500);
         done();
       } else {
         done();
       }
-    });
+    })
 
     /**
      * @tc.number: ACTS_AddAbilityMonitor_Callback_0100
      * @tc.name: Verify that the addAbilityMonitor interface functions normally.
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility to trigger onAbilityCreate (Callback).
      */
-    it('ACTS_AddAbilityMonitor_Callback_0100', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Callback_0100', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Callback_0100";
-      console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 onAbilityCreate");
-        expect(ability != null).assertTrue();
-        done();
-      }
+      console.log(TAG + "====> start");
 
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
-      };
+        onAbilityCreate: (ability: UIAbility) => {
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 onAbilityCreate");
+          expect(ability != null).assertTrue();
+          done();
+        }
+      }
       console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 start");
-      delegator.addAbilityMonitor(monitor, (async (err) => {
-        console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor err: " + err.code);
-        delegator.startAbility(
-          {
-            bundleName: 'com.example.abilitymonitortest',
-            abilityName: 'MainAbility2'
-          }).then(async () => {
-          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 success");
-        });
-      }));
+      console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 begin");
+      try {
+        delegator = abilityDelegatorRegistry.getAbilityDelegator();
+        if (delegator) {
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 delegator exists");
+        } else {
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 delegator is not exists");
+        }
+        delegator.addAbilityMonitor(monitor, (async (err) => {
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor err: " + err.code);
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor successfully " );
+          delegator.startAbility(
+            {
+              bundleName: 'com.example.abilitymonitortest',
+              abilityName: 'MainAbility2'
+            }).then(async () => {
+            console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 success");
+          })
+        }))
+      } catch (e) {
+        console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor failed: " + JSON.stringify(e));
+      }
     })
 
     /**
@@ -91,34 +104,36 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility to
      * trigger onAbilityForeground (Callback).
      */
-    it('ACTS_AddAbilityMonitor_Callback_0200', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Callback_0200', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Callback_0200";
       console.log(TAG + " start");
-
-      function onAbilityForeground(ability) {
-        console.log(TAG + " onAbilityForeground");
-        expect(ability != null).assertTrue();
-        done()
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityForeground: onAbilityForeground,
+        onAbilityForeground: (ability: UIAbility) => {
+          console.log(TAG + " onAbilityForeground");
+          expect(ability != null).assertTrue();
+          done();
+        },
         onWindowStageRestore: (Ability) => {
           console.info(TAG + "===>onWindowStageRestore");
         }
-      };
+      }
       console.log(TAG + " addAbilityMonitor start");
-      delegator.addAbilityMonitor(monitor, (async (err) => {
-        console.log(TAG + " addAbilityMonitor====>" + err.code);
-        await delegator.startAbility(
-          {
-            bundleName: 'com.example.abilitymonitortest',
-            abilityName: 'MainAbility2'
-          }).then(async () => {
-          console.log(TAG + "====>0200startAbility success====>");
-        })
-      }))
+      try {
+        delegator.addAbilityMonitor(monitor, (async (err) => {
+          console.log(TAG + " addAbilityMonitor====>" + err.code);
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0200 addAbilityMonitor successfully " );
+          await delegator.startAbility(
+            {
+              bundleName: 'com.example.abilitymonitortest',
+              abilityName: 'MainAbility2'
+            }).then(async () => {
+            console.log(TAG + "====>0200startAbility success====>");
+          })
+        }))
+      } catch (e) {
+        console.info(TAG + "====>ACTS_AddAbilityMonitor_0200 addAbilityMonitor failed: " + JSON.stringify(e));
+      }
     })
 
     /**
@@ -127,43 +142,20 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility to trigger
      * onAbilityBackground (Callback).
      */
-    it('ACTS_AddAbilityMonitor_Callback_0300', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Callback_0300', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Callback_0300";
       console.log(TAG + " start");
-
-      function onAbilityBackgroundPromise(ability) {
-        console.log(TAG + "====>onAbilityBackgroundPromise ====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
-      function UnSubscribeCallback() {
-        console.log(TAG + "====>commonEvent_foreground UnSubscribeCallback====>");
-      }
-
-      function SubscribeCallBack(err, data) {
-        console.log(TAG + "====>Subscribe CallBack data:====>" + JSON.stringify(data));
-        Subscriber.unsubscribe(subscriber, UnSubscribeCallback);
-        delegator.getCurrentTopAbility().then((ability) => {
-          console.info(TAG + "===ability " + JSON.stringify(ability).length);
-          delegator.doAbilityBackground(ability).then(async (data) => {
-            console.info(TAG + "===data succeed.");
-            expect(true).assertTrue();
-          }).catch((err: any) => {
-            console.info(TAG + "===data failed.");
-            expect(false).assertTrue();
-            done();
-          });
-        })
-      }
-
-      var subscriber
-      var commonEvent_Foreground = {
+      let subscriber: commonEventManager.CommonEventSubscriber;
+      let commonEvent_Foreground: commonEventManager.CommonEventSubscribeInfo = {
         events: ["commonEvent_foreground"]
       };
       monitor = {
         abilityName: 'MainAbility3',
-        onAbilityBackground: onAbilityBackgroundPromise
+        onAbilityBackground: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityBackgroundPromise ====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
@@ -173,7 +165,23 @@ export default function abilityTest() {
       Subscriber.createSubscriber(commonEvent_Foreground, async (err, data) => {
         console.log(TAG + "====>Create Subscriber====>");
         subscriber = data;
-        Subscriber.subscribe(subscriber, SubscribeCallBack);
+        Subscriber.subscribe(subscriber, (err, data) => {
+          console.log(TAG + "====>Subscribe CallBack data:====>" + JSON.stringify(data));
+          Subscriber.unsubscribe(subscriber, () => {
+            console.log(TAG + "====>commonEvent_foreground UnSubscribeCallback====>");
+          })
+          delegator.getCurrentTopAbility().then((ability) => {
+            console.info(TAG + "===ability " + JSON.stringify(ability).length);
+            delegator.doAbilityBackground(ability).then(async (data) => {
+              console.info(TAG + "===data succeed.");
+              expect(true).assertTrue();
+            }).catch((err: BusinessError) => {
+              console.info(TAG + "===data failed.");
+              expect(false).assertTrue();
+              done();
+            })
+          })
+        })
         console.log(TAG + " startAbility start");
         delegator.startAbility(
           {
@@ -191,20 +199,17 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility
      * to trigger onAbilityDestroy (Callback).
      */
-    it('ACTS_AddAbilityMonitor_Callback_0400', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Callback_0400', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Callback_0400";
       console.log(TAG + " start");
-
-      function onAbilityDestroy(ability) {
-        console.log(TAG + " onAbilityDestroy====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility4',
-        onAbilityDestroy: onAbilityDestroy
-      };
+        onAbilityDestroy: (ability: UIAbility) => {
+          console.log(TAG + " onAbilityDestroy====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
+      }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
         console.log(TAG + "====> success====>" + err.code);
@@ -224,19 +229,16 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility
      * to trigger onWindowStageCreate (Callback).
      */
-    it('ACTS_AddAbilityMonitor_Callback_0500', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Callback_0500', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Callback_0500";
       console.log(TAG + " start");
-
-      function onWindowStageCreate(ability) {
-        console.log(TAG + "====>onWindowStageCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onWindowStageCreate: onWindowStageCreate
+        onWindowStageCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onWindowStageCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
@@ -257,19 +259,16 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility
      * to trigger onWindowStageDestroy (Callback).
      */
-    it('ACTS_AddAbilityMonitor_Callback_0600', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Callback_0600', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Callback_0600";
       console.log(TAG + " start");
-
-      function onWindowStageDestroy(ability) {
-        console.log(TAG + "====>onWindowStageDestroy====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility4',
-        onWindowStageDestroy: onWindowStageDestroy
+        onWindowStageDestroy: (ability: UIAbility) => {
+          console.log(TAG + "====>onWindowStageDestroy====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
@@ -291,28 +290,21 @@ export default function abilityTest() {
      * to trigger onAbilityCreate with many
      *           a time (Callback).
      */
-    it('ACTS_AddAbilityMonitor_Callback_0700', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Callback_0700', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Callback_0700";
       console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>0700--onAbilityCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
-      };
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>0700--onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
+      }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
         console.log(TAG + "====>ACTS_AddAbilityMonitor_0700 addAbilityMonitorfir====>" + err.code);
-        delegator.addAbilityMonitor(
-          {
-            abilityName: 'MainAbility2',
-            onAbilityCreate: onAbilityCreate
-          }, (async (err) => {
+        delegator.addAbilityMonitor(monitor, (async (err) => {
           console.log(TAG + "====>ACTS_AddAbilityMonitor_0700 addAbilityMonitorsec====>" + err.code);
           delegator.startAbility(
             {
@@ -331,20 +323,17 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility
      * to trigger onAbilityCreate (promise).
      */
-    it('ACTS_AddAbilityMonitor_Promise_0100', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Promise_0100', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Promise_0100";
       console.log(TAG + " start");
-
-      function onAbilityCreatePromise(ability) {
-        console.log(TAG + "====>onAbilityCreatePromise ====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreatePromise
-      };
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreatePromise ====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
+      }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor).then(() => {
         console.log(TAG + "====>ACTS_AddAbilityMonitor_0800 success====>");
@@ -364,19 +353,16 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility
      * to trigger onAbilityForeground (promise).
      */
-    it('ACTS_AddAbilityMonitor_Promise_0200', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Promise_0200', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Promise_0200";
       console.log(TAG + " start");
-
-      function onAbilityForegroundPromise(ability) {
-        console.log(TAG + "====>onAbilityForegroundPromise ====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityForeground: onAbilityForegroundPromise
+        onAbilityForeground: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityForegroundPromise ====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor).then(async () => {
@@ -397,49 +383,44 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility
      * to trigger onAbilityBackground (promise).
      */
-    it('ACTS_AddAbilityMonitor_Promise_0300', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Promise_0300', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Promise_0300";
       console.log(TAG + " start");
-
-      function onAbilityBackgroundPromise(ability) {
-        console.log(TAG + "====>onAbilityBackgroundPromise ====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
-      function SubscribeCallBack(err, data) {
-        console.log(TAG + "====>Subscribe CallBack data:====>" + JSON.stringify(data));
-        delegator.getCurrentTopAbility().then((ability) => {
-          console.info(TAG + "===ACTS_AddAbilityMonitor_1000===ability" + JSON.stringify(ability).length);
-          delegator.doAbilityBackground(ability).then(async () => {
-            console.info(TAG + "===ACTS_AddAbilityMonitor_1000===data succeed.");
-            expect(true).assertTrue();
-          }).catch(() => {
-            console.info(TAG + "===ACTS_AddAbilityMonitor_1000===data succeed.");
-            expect(false).assertTrue();
-          });
-        })
-      }
-
-      var subscriber
-      var commonEvent_Foreground = {
+      let subscriber: commonEventManager.CommonEventSubscriber;
+      let commonEvent_Foreground: commonEventManager.CommonEventSubscribeInfo = {
         events: ["commonEvent_foreground"]
-      };
+      }
       monitor = {
         abilityName: 'MainAbility3',
-        onAbilityBackground: onAbilityBackgroundPromise
+        onAbilityBackground: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityBackgroundPromise ====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor).then(async () => {
         console.log(TAG + "====>ACTS_AddAbilityMonitor_1000 success====>");
       })
       console.log(TAG + " createSubscriber start");
-      await Subscriber.createSubscriber(commonEvent_Foreground, async (err, data) => {
+      Subscriber.createSubscriber(commonEvent_Foreground, async (err, data) => {
         console.log(TAG + "====>Create Subscriber====>");
         subscriber = data;
-        Subscriber.subscribe(subscriber, SubscribeCallBack);
+        Subscriber.subscribe(subscriber, (err, data) => {
+          console.log(TAG + "====>Subscribe CallBack data:====>" + JSON.stringify(data));
+          delegator.getCurrentTopAbility().then((ability) => {
+            console.info(TAG + "===ACTS_AddAbilityMonitor_1000===ability" + JSON.stringify(ability).length);
+            delegator.doAbilityBackground(ability).then(async () => {
+              console.info(TAG + "===ACTS_AddAbilityMonitor_1000===data succeed.");
+              expect(true).assertTrue();
+            }).catch(() => {
+              console.info(TAG + "===ACTS_AddAbilityMonitor_1000===data succeed.");
+              expect(false).assertTrue();
+            })
+          })
+        })
         console.log(TAG + " startAbility start");
-        await globalThis.abilitydelegator.startAbility(
+        await AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
           {
             bundleName: 'com.example.abilitymonitortest',
             abilityName: 'MainAbility3'
@@ -455,19 +436,16 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility
      * to trigger onAbilityDestroy (promise).
      */
-    it('ACTS_AddAbilityMonitor_Promise_0400', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Promise_0400', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Promise_0400";
       console.log(TAG + " start");
-
-      function onAbilityDestroyPromise(ability) {
-        console.log(TAG + "====>onAbilityDestroyPromise====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility4',
-        onAbilityDestroy: onAbilityDestroyPromise
+        onAbilityDestroy: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityDestroyPromise====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor).then(async () => {
@@ -489,19 +467,16 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility
      * to trigger onWindowStageCreate (promise).
      */
-    it('ACTS_AddAbilityMonitor_Promise_0500', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Promise_0500', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Promise_0500";
       console.log(TAG + " start");
-
-      function onWindowStageCreatePromise(ability) {
-        console.log(TAG + "====>onWindowStageCreatePromise====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onWindowStageCreate: onWindowStageCreatePromise
+        onWindowStageCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onWindowStageCreatePromise====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor).then(async () => {
@@ -522,19 +497,16 @@ export default function abilityTest() {
      * @tc.desc: Use addAbilityMonitor to add a monitor then use startAbility
      * to trigger onWindowStageDestroy (promise).
      */
-    it('ACTS_AddAbilityMonitor_Promise_0600', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Promise_0600', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Promise_0600";
       console.log(TAG + " start");
-
-      function onWindowStageDestroyPromsie(ability) {
-        console.log(TAG + "====>onWindowStageDestroyPromsie====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility4',
-        onWindowStageDestroy: onWindowStageDestroyPromsie
+        onWindowStageDestroy: (ability: UIAbility) => {
+          console.log(TAG + "====>onWindowStageDestroyPromsie====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor).then(async () => {
@@ -556,23 +528,24 @@ export default function abilityTest() {
      * to trigger onAbilityCreate with many
      *           a time (promise).
      */
-    it('ACTS_AddAbilityMonitor_Promise_0700', 0, async function (done) {
+    it('ACTS_AddAbilityMonitor_Promise_0700', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Promise_0700";
       console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>1400--onAbilityCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>1400--onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       monitor1 = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>1400--onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor).then(async () => {
@@ -596,26 +569,23 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityCreate (Callback).
      */
-    it('ACTS_RemoveAbilityMonitor_Callback_0100', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Callback_0100', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Callback_0100";
       console.log(TAG + " start");
-
-      function onAbilityCreate() {
-        console.log(TAG + "====>onAbilityCreate ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
         console.log(TAG + "====>-addAbilityMonitor success====>" + err.code);
-        await delegator.removeAbilityMonitor(monitor, (err) => {
+        delegator.removeAbilityMonitor(monitor, (err) => {
           console.log(TAG + "====>0100removeAbilityMonitor success====>" + err.code);
-          globalThis.abilitydelegator.startAbility(
+          AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
             {
               bundleName: 'com.example.abilitymonitortest',
               abilityName: 'MainAbility2'
@@ -636,26 +606,23 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityForeground (Callback).
      */
-    it('ACTS_RemoveAbilityMonitor_Callback_0200', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Callback_0200', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Callback_0200";
       console.log(TAG + " start");
-
-      function onAbilityForeground() {
-        console.log(TAG + "====>onAbilityForeground ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onAbilityForeground: onAbilityForeground
+        onAbilityForeground: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityForeground ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
         console.log(TAG + "====>remove0200-addAbilityMonitor success====>" + err.code);
-        await delegator.removeAbilityMonitor(monitor, (err) => {
+        delegator.removeAbilityMonitor(monitor, (err) => {
           console.log(TAG + "====>0200removeAbilityMonitor success====>" + err.code);
-          globalThis.abilitydelegator.startAbility(
+          AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
             {
               bundleName: 'com.example.abilitymonitortest',
               abilityName: 'MainAbility2'
@@ -676,26 +643,23 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityBackground (Callback).
      */
-    it('ACTS_RemoveAbilityMonitor_Callback_0300', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Callback_0300', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Callback_0300";
       console.log(TAG + " start");
-
-      function onAbilityBackground() {
-        console.log(TAG + "====>onAbilityBackground ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onAbilityBackground: onAbilityBackground
+        onAbilityBackground: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityBackground ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
         console.log(TAG + "====>remove0300-addAbilityMonitor success====>" + err.code);
-        await delegator.removeAbilityMonitor(monitor, (err) => {
+        delegator.removeAbilityMonitor(monitor, (err) => {
           console.log(TAG + "====>0300removeAbilityMonitor success====>" + err.code);
-          globalThis.abilitydelegator.startAbility(
+          AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
             {
               bundleName: 'com.example.abilitymonitortest',
               abilityName: 'MainAbility2'
@@ -716,26 +680,23 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityDestroy (Callback).
      */
-    it('ACTS_RemoveAbilityMonitor_Callback_0400', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Callback_0400', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Callback_0400";
       console.log(TAG + " start");
-
-      function onAbilityDestroy() {
-        console.log("====>onAbilityDestroy ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onAbilityDestroy: onAbilityDestroy
+        onAbilityDestroy: (ability: UIAbility) => {
+          console.log("====>onAbilityDestroy ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
         console.log(TAG + "====>remove0400-addAbilityMonitor success====>" + err.code);
-        await delegator.removeAbilityMonitor(monitor, (err) => {
+        delegator.removeAbilityMonitor(monitor, (err) => {
           console.log(TAG + "====>0400removeAbilityMonitor success====>" + err.code);
-          globalThis.abilitydelegator.startAbility(
+          AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
             {
               bundleName: 'com.example.abilitymonitortest',
               abilityName: 'MainAbility2'
@@ -756,26 +717,23 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onWindowStageCreate (Callback).
      */
-    it('ACTS_RemoveAbilityMonitor_Callback_0500', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Callback_0500', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Callback_0500";
       console.log(TAG + " start");
-
-      function onWindowStageCreate() {
-        console.log("====>onWindowStageCreate ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onWindowStageCreate: onWindowStageCreate
+        onWindowStageCreate: (ability: UIAbility) => {
+          console.log("====>onWindowStageCreate ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log("====>start addAbilityMonitor====>");
       delegator.addAbilityMonitor(monitor, (async (err) => {
         console.log("====>remove0500-addAbilityMonitor success====>" + err.code);
-        await delegator.removeAbilityMonitor(monitor, (err) => {
+        delegator.removeAbilityMonitor(monitor, (err) => {
           console.log(TAG + "====>0500removeAbilityMonitor success====>" + err.code);
-          globalThis.abilitydelegator.startAbility(
+          AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
             {
               bundleName: 'com.example.abilitymonitortest',
               abilityName: 'MainAbility2'
@@ -796,26 +754,23 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onWindowStageDestroy (Callback).
      */
-    it('ACTS_RemoveAbilityMonitor_Callback_0600', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Callback_0600', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Callback_0600";
       console.log(TAG + " start");
-
-      function onWindowStageDestroy() {
-        console.log(TAG + "====>onWindowStageDestroy ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onWindowStageDestroy: onWindowStageDestroy
+        onWindowStageDestroy: (ability: UIAbility) => {
+          console.log(TAG + "====>onWindowStageDestroy ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
         console.log(TAG + "====>remove0600-addAbilityMonitor success====>" + err.code);
-        await delegator.removeAbilityMonitor(monitor, (err) => {
+        delegator.removeAbilityMonitor(monitor, (err) => {
           console.log(TAG + "====>0600removeAbilityMonitor success====>" + err.code);
-          globalThis.abilitydelegator.startAbility(
+          AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
             {
               bundleName: 'com.example.abilitymonitortest',
               abilityName: 'MainAbility2'
@@ -836,23 +791,20 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityCreate (Callback).
      */
-    it('ACTS_RemoveAbilityMonitor_Callback_0700', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Callback_0700', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Callback_0700";
       console.log(TAG + " start");
-
-      function onAbilityCreate() {
-        console.log(TAG + "====>onAbilityCreate====>");
-      }
-
-      var data = abilityDelegatorRegistry.getAbilityDelegator()
-      console.log(TAG + "remove0700-getAbilityDelegator data is" + JSON.stringify(data))
+      let data = abilityDelegatorRegistry.getAbilityDelegator();
+      console.log(TAG + "remove0700-getAbilityDelegator data is" + JSON.stringify(data));
       console.log(TAG + " removeAbilityMonitor start");
-      await data.removeAbilityMonitor({
+      data.removeAbilityMonitor({
         abilityName: 'WrongName',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate====>");
+        }
       }, (err) => {
         console.log(TAG + "====>0700removeAbilityMonitor success====>" + err.code);
-        expect(err.code).assertEqual(0)
+        expect(err.code).assertEqual(0);
         done();
       })
     })
@@ -864,19 +816,16 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityCreate (Callback).
      */
-    it('ACTS_RemoveAbilityMonitor_Callback_0800', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Callback_0800', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Callback_0800";
       console.log(TAG + " start");
-
-      function onAbilityCreate() {
-        console.log("====>onAbilityCreate ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log("====>onAbilityCreate ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, (async (err) => {
@@ -885,7 +834,7 @@ export default function abilityTest() {
       await sleep(500);
       delegator.removeAbilityMonitor(monitor, (err) => {
         console.log(TAG + "====>0800removeAbilityMonitor success====>" + err.code);
-        globalThis.abilitydelegator.startAbility(
+        AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
           {
             bundleName: 'com.example.abilitymonitortest',
             abilityName: 'MainAbility2'
@@ -905,26 +854,23 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityCreate (promise).
      */
-    it('ACTS_RemoveAbilityMonitor_Promise_0100', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Promise_0100', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Promise_0100";
       console.log(TAG + " start");
-
-      function onAbilityCreate() {
-        console.log(TAG + "====>onAbilityCreate ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
         console.log(TAG + "====>remove0100-addAbilityMonitor success====>" + err.code);
         await delegator.removeAbilityMonitor(monitor).then(() => {
           console.log("====>0100removeAbilityMonitor success====>");
-          globalThis.abilitydelegator.startAbility(
+          AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
             {
               bundleName: 'com.example.abilitymonitortest',
               abilityName: 'MainAbility2'
@@ -945,19 +891,16 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityForeground (promise).
      */
-    it('ACTS_RemoveAbilityMonitor_Promise_0200', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Promise_0200', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Promise_0200";
       console.log(TAG + " start");
-
-      function onAbilityForeground() {
-        console.log(TAG + "====>onAbilityForeground ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onAbilityForeground: onAbilityForeground
+        onAbilityForeground: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityForeground ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
@@ -985,19 +928,16 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityBackground (promise).
      */
-    it('ACTS_RemoveAbilityMonitor_Promise_0300', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Promise_0300', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Promise_0300";
       console.log(TAG + " start");
-
-      function onAbilityBackground() {
-        console.log("====>onAbilityBackground ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onAbilityBackground: onAbilityBackground
+        onAbilityBackground: (ability: UIAbility) => {
+          console.log("====>onAbilityBackground ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
@@ -1025,19 +965,16 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityDestroy (promise).
      */
-    it('ACTS_RemoveAbilityMonitor_Promise_0400', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Promise_0400', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Promise_0400";
       console.log(TAG + " start");
-
-      function onAbilityDestroy() {
-        console.log(TAG + "====>onAbilityCreate ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onAbilityDestroy: onAbilityDestroy
+        onAbilityDestroy: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
@@ -1065,19 +1002,16 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onWindowStageCreate (promise).
      */
-    it('ACTS_RemoveAbilityMonitor_Promise_0500', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Promise_0500', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Promise_0500";
       console.log(TAG + " start");
-
-      function onWindowStageCreate() {
-        console.log("====>onAbilityCreate ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onWindowStageCreate: onWindowStageCreate
+        onWindowStageCreate: (ability: UIAbility) => {
+          console.log("====>onAbilityCreate ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
@@ -1105,19 +1039,16 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onWindowStageDestroy (promise).
      */
-    it('ACTS_RemoveAbilityMonitor_Promise_0600', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Promise_0600', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Promise_0600";
       console.log(TAG + " start");
-
-      function onWindowStageDestroy() {
-        console.log(TAG + "====>onAbilityCreate ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onWindowStageDestroy: onWindowStageDestroy
+        onWindowStageDestroy: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " addAbilityMonitor start");
       delegator.addAbilityMonitor(monitor, (async (err) => {
@@ -1145,27 +1076,24 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityCreate (promise).
      */
-    it('ACTS_RemoveAbilityMonitor_Promise_0700', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Promise_0700', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Promise_0700";
       console.log(TAG + " start");
-
-      function onAbilityCreate() {
-        console.log(TAG + "====>onAbilityCreate====>");
-        expect().assertFail();
-        done();
-      }
-
       delegator.removeAbilityMonitor({
         abilityName: 'WrongName',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate====>");
+          expect().assertFail();
+          done();
+        }
       }).then(() => {
-        console.log(TAG + "====>0700 removeAbilityMonitorPromise====>")
+        console.log(TAG + "====>0700 removeAbilityMonitorPromise====>");
         setTimeout(() => {
           done();
         }, 2500)
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(TAG + "====>0700removeAbilityMonitorPromise success====>" + err);
-        expect().assertFail()
+        expect().assertFail();
         setTimeout(() => {
           done();
         }, 1500)
@@ -1179,19 +1107,16 @@ export default function abilityTest() {
      * to remove monitor then trigger
      *           onAbilityCreate (promise).
      */
-    it('ACTS_RemoveAbilityMonitor_Promise_0800', 0, async function (done) {
+    it('ACTS_RemoveAbilityMonitor_Promise_0800', 0, async (done: Function) => {
       TAG = "ACTS_RemoveAbilityMonitor_Promise_0800";
       console.log(TAG + " start");
-
-      function onAbilityCreate() {
-        console.log(TAG + "====>onAbilityCreate ====>");
-        expect().assertFail();
-        done();
-      }
-
-      var monitor = {
+      monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate ====>");
+          expect().assertFail();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, (async (err) => {
@@ -1199,7 +1124,7 @@ export default function abilityTest() {
       }))
       await sleep(500);
       await delegator.removeAbilityMonitor(monitor).then(() => {
-        globalThis.abilitydelegator.startAbility(
+        AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
           {
             bundleName: 'com.example.abilitymonitortest',
             abilityName: 'MainAbility2'
@@ -1218,23 +1143,20 @@ export default function abilityTest() {
      * @tc.desc: Use waitAbilityMonitor to add a monitor then use startAbility
      * to trigger onAbilityCreate (Callback).
      */
-    it('ACTS_WaitAbilityMonitor_Callback_0100', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Callback_0100', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Callback_0100";
       console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       delegator.waitAbilityMonitor(monitor, async (err, data) => {
-        console.log(TAG + '===>0100err.code is===>' + JSON.stringify(err.code))
-        expect(err.code).assertEqual(0)
+        console.log(TAG + '===>0100err.code is===>' + JSON.stringify(err.code));
+        expect(err.code).assertEqual(0);
         console.log(TAG + "====>ACTS_WaitAbilityMonitor_Callback_0100 success====>");
       })
       delegator.startAbility(
@@ -1253,26 +1175,25 @@ export default function abilityTest() {
      * to trigger onAbilityCreate exceed
      *           5s(Callback).
      */
-    it('ACTS_WaitAbilityMonitor_Callback_0200', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Callback_0200', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Callback_0200";
       console.log(TAG + " start");
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate ====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate ====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, (err, waitability) => {
         console.log(TAG + "====>ACTS_WaitAbilityMonitor_Callback_0200 success====>");
-        expect(err.code).assertEqual(-1)
-        console.log(TAG + '===>0200err.code is===>' + JSON.stringify(err.code))
+        expect(err.code).assertEqual(-1);
+        console.log(TAG + '===>0200err.code is===>' + JSON.stringify(err.code));
       })
       setTimeout(() => {
-        globalThis.abilitydelegator.startAbility(
+        AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
           {
             bundleName: 'com.example.abilitymonitortest',
             abilityName: 'MainAbility2'
@@ -1289,25 +1210,24 @@ export default function abilityTest() {
      * to trigger onAbilityCreate in
      *           1s(Callback).
      */
-    it('ACTS_WaitAbilityMonitor_Callback_0300', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Callback_0300', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Callback_0300";
       console.log(TAG + " start");
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, 1000, async (err, data) => {
-        console.log(TAG + '===>0300err.code is===>' + JSON.stringify(err.code))
-        expect(err.code).assertEqual(0)
+        console.log(TAG + '===>0300err.code is===>' + JSON.stringify(err.code));
+        expect(err.code).assertEqual(0);
         console.log(TAG + "====>ACTS_WaitAbilityMonitor_Callback_0300 success====>");
       })
-      await globalThis.abilitydelegator.startAbility(
+      await AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
         {
           bundleName: 'com.example.abilitymonitortest',
           abilityName: 'MainAbility2'
@@ -1323,29 +1243,26 @@ export default function abilityTest() {
      * to trigger onAbilityCreate exceed
      *           1s (Callback).
      */
-    it('ACTS_WaitAbilityMonitor_Callback_0400', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Callback_0400', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Callback_0400";
       console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate ====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate ====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, 1000, (err, waitability) => {
         console.log(TAG + "====>success====>");
-        expect(err.code).assertEqual(-1)
-        console.log(TAG + '===>0400err.code is===>' + JSON.stringify(err.code))
+        expect(err.code).assertEqual(-1);
+        console.log(TAG + '===>0400err.code is===>' + JSON.stringify(err.code));
       })
       setTimeout(() => {
         console.log(TAG + " startAbility start");
-        globalThis.abilitydelegator.startAbility(
+        AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
           {
             bundleName: 'com.example.abilitymonitortest',
             abilityName: 'MainAbility2'
@@ -1362,24 +1279,21 @@ export default function abilityTest() {
      * to trigger onAbilityCreate in
      *           5s (Callback).
      */
-    it('ACTS_WaitAbilityMonitor_Callback_0500', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Callback_0500', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Callback_0500";
       console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, 0, async (err, data) => {
-        console.log(TAG + '===>0500err.code is===>' + JSON.stringify(err.code))
-        expect(err.code).assertEqual(0)
+        console.log(TAG + '===>0500err.code is===>' + JSON.stringify(err.code));
+        expect(err.code).assertEqual(0);
         console.log(TAG + "====>ACTS_WaitAbilityMonitor_Callback_0500 success====>");
       })
       console.log(TAG + " startAbility start");
@@ -1399,24 +1313,21 @@ export default function abilityTest() {
      * to trigger onAbilityCreate in
      *           5s (Callback).
      */
-    it('ACTS_WaitAbilityMonitor_Callback_0600', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Callback_0600', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Callback_0600";
       console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, -1, async (err, data) => {
-        console.log(TAG + '===>0600err.code is===>' + JSON.stringify(err.code))
-        expect(err.code).assertEqual(0)
+        console.log(TAG + '===>0600err.code is===>' + JSON.stringify(err.code));
+        expect(err.code).assertEqual(0);
         console.log(TAG + "====>ACTS_WaitAbilityMonitor_Callback_0600 success====>");
       })
       console.log(TAG + " startAbility start");
@@ -1435,17 +1346,16 @@ export default function abilityTest() {
      * @tc.desc: Use waitAbilityMonitor to add a monitor then use startAbility
      * to trigger onAbilityCreate (promise).
      */
-    it('ACTS_WaitAbilityMonitor_Promise_0100', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Promise_0100', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Promise_0100";
       console.log(TAG + " start");
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor).then(async (data) => {
@@ -1469,17 +1379,16 @@ export default function abilityTest() {
      * to trigger onAbilityCreate exceed
      *           5s (promise).
      */
-    it('ACTS_WaitAbilityMonitor_Promise_0200', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Promise_0200', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Promise_0200";
       console.log(TAG + " start");
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate ====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate ====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor).then((data) => {
@@ -1487,7 +1396,7 @@ export default function abilityTest() {
       })
       setTimeout(() => {
         console.log(TAG + " startAbility start");
-        globalThis.abilitydelegator.startAbility(
+        AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
           {
             bundleName: 'com.example.abilitymonitortest',
             abilityName: 'MainAbility2'
@@ -1506,19 +1415,16 @@ export default function abilityTest() {
      * to trigger onAbilityCreate in
      *           1s (promise).
      */
-    it('ACTS_WaitAbilityMonitor_Promise_0300', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Promise_0300', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Promise_0300";
       console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, 1000).then(async (data) => {
@@ -1541,19 +1447,16 @@ export default function abilityTest() {
      * to trigger onAbilityCreate exceed
      *           1s (promise).
      */
-    it('ACTS_WaitAbilityMonitor_Promise_0400', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Promise_0400', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Promise_0400";
       console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate ====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate ====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, 1000).then((data) => {
@@ -1561,7 +1464,7 @@ export default function abilityTest() {
       })
       setTimeout(() => {
         console.log(TAG + " startAbility start");
-        globalThis.abilitydelegator.startAbility(
+        AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator").startAbility(
           {
             bundleName: 'com.example.abilitymonitortest',
             abilityName: 'MainAbility2'
@@ -1581,19 +1484,16 @@ export default function abilityTest() {
      * to trigger onAbilityCreate in
      *           5s (promise).
      */
-    it('ACTS_WaitAbilityMonitor_Promise_0500', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Promise_0500', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Promise_0500";
       console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, 100).then(async (data) => {
@@ -1616,19 +1516,16 @@ export default function abilityTest() {
      * to trigger onAbilityCreate in
      *           5s (promise).
      */
-    it('ACTS_WaitAbilityMonitor_Promise_0600', 0, async function (done) {
+    it('ACTS_WaitAbilityMonitor_Promise_0600', 0, async (done: Function) => {
       TAG = "ACTS_WaitAbilityMonitor_Promise_0500";
       console.log(TAG + " start");
-
-      function onAbilityCreate(ability) {
-        console.log(TAG + "====>onAbilityCreate====>");
-        expect(ability != null).assertTrue();
-        done();
-      }
-
       monitor = {
         abilityName: 'MainAbility2',
-        onAbilityCreate: onAbilityCreate
+        onAbilityCreate: (ability: UIAbility) => {
+          console.log(TAG + "====>onAbilityCreate====>");
+          expect(ability != null).assertTrue();
+          done();
+        }
       }
       console.log(TAG + " waitAbilityMonitor start");
       delegator.waitAbilityMonitor(monitor, -1).then(async (data) => {
