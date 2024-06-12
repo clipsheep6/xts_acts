@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.startabilityforresult",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "30000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStartAbilityForResultCaseTest.hap",
+                "StartAbilityForResultHap4.hap",
+                "StartAbilityForResultHap5.hap",
+                "ActsStartAbilityForResultAssist1Test.hap",
+                "ActsStartAbilityForResultAssist2Test.hap",
+                "StartAbilityForResultHap5800.hap",
+                "StartAbilityForResultHap5000.hap"
+
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
