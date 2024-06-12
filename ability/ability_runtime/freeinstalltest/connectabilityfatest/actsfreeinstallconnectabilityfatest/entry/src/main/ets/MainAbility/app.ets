@@ -17,12 +17,12 @@ import commonEvent from '@ohos.commonEvent'
 
 export default {
   onCreate() {
-    console.info('Application onCreate')
+    console.info('Application onCreate');
     commonEvent.publish("test_data", () => {
-      console.log("freeInstall commonEvent.publish success!")
+      console.log("freeInstall commonEvent.publish success!");
     });
   },
   onDestroy() {
-    console.info('Application onDestroy')
+    console.info('Application onDestroy');
   },
 }

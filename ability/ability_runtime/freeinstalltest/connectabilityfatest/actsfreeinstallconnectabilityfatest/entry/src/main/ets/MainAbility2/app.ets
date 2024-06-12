@@ -14,19 +14,21 @@
  */
 
 import featureAbility from '@ohos.ability.featureAbility';
+
 export default {
   onCreate() {
-    console.info('Application onCreate')
-    setTimeout(()=> {
+    console.info('Application onCreate');
+    setTimeout(() => {
       featureAbility.terminateSelf()
         .then((data) => {
           console.info('[Demo] MainAbility2 terminateself succeeded: ' + data);
-        }).catch((error) => {
-        console.error('[Demo] MainAbility2 terminateself failed. Cause: ' + error);
-      })
+        })
+        .catch((error) => {
+          console.error('[Demo] MainAbility2 terminateself failed. Cause: ' + error);
+        })
     }, 3200);
   },
   onDestroy() {
-    console.info('Application onDestroy')
+    console.info('Application onDestroy');
   },
 }
