@@ -13,17 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 
 export default function provide2() {
-  describe('provide2', function () {
-    beforeEach(async function (done) {
+  describe('provide2', () => {
+    beforeEach(async (done: Function) => {
       console.info("provide2 beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/Zhuang/provide2',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/Zhuang/provide2',
       }
       try {
         router.clear();
@@ -31,7 +44,7 @@ export default function provide2() {
         console.info("get provide2 state pages: " + JSON.stringify(pages));
         if (!("provide2" == pages.name)) {
           console.info("get provide2 state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push provide2 success: " + JSON.stringify(result));
         }
@@ -41,11 +54,11 @@ export default function provide2() {
       }
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       router.back()
     });
-    it('provide2_0100', 0, async function (done) {
+    it('provide2_0100', 0, async (done: Function) => {
       console.info('provide2_0100 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('prBtn1'));
@@ -61,7 +74,7 @@ export default function provide2() {
 
     });
 
-    it('provide2_0200', 0, async function (done) {
+    it('provide2_0200', 0, async (done: Function) => {
       console.info('provide2_0200 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('prBtn2'));
@@ -78,40 +91,40 @@ export default function provide2() {
     });
 
 
-    it('provide2_0300', 0, async function (done) {
+    it('provide2_0300', 0, async (done: Function) => {
       console.info('provide2_0300 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('prBtn3'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('prBtn3');
-      let obj = JSON.parse(strJson);
-      console.info("[provide2_0300] component obj is: " + JSON.stringify(obj));
-      console.info("[provide2_0300] title: " + JSON.stringify(obj.$attrs.fontSize));
-      expect(obj.$attrs.fontSize).assertEqual('16.00fp');
+      let strJson: string = getInspectorByKey('prBtn3');
+
+      console.info("[provide2_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[provide2_0300] title: " + JSON.stringify(JSON.parse(strJson).$attrs.fontSize));
+      expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('16.00fp');
       console.info('[provide2_0300] END');
       done();
 
     });
 
-    it('provide2_0400', 0, async function (done) {
+    it('provide2_0400', 0, async (done: Function) => {
       console.info('provide2_0400 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('prBtn4'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('prBtn4');
-      let obj = JSON.parse(strJson);
-      console.info("[provide2_0400] component obj is: " + JSON.stringify(obj));
-      console.info("[provide2_0400] title: " + JSON.stringify(obj.$attrs.fontSize));
-      expect(obj.$attrs.fontSize).assertEqual('16.00fp');
+      let strJson: string = getInspectorByKey('prBtn4');
+
+      console.info("[provide2_0400] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[provide2_0400] title: " + JSON.stringify(JSON.parse(strJson).$attrs.fontSize));
+      expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('16.00fp');
       console.info('[provide2_0400] END');
       done();
 
     });
 
 
-    it('provide2_0500', 0, async function (done) {
+    it('provide2_0500', 0, async (done: Function) => {
       console.info('provide2_0500 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('coBtn1'));
@@ -127,7 +140,7 @@ export default function provide2() {
 
     });
 
-    it('provide2_0600', 0, async function (done) {
+    it('provide2_0600', 0, async (done: Function) => {
       console.info('provide2_0600 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('coBtn2'));
@@ -144,40 +157,36 @@ export default function provide2() {
     });
 
 
-    it('provide2_0700', 0, async function (done) {
+    it('provide2_0700', 0, async (done: Function) => {
       console.info('provide2_0700 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('coBtn3'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('coBtn3');
-      let obj = JSON.parse(strJson);
-      console.info("[provide2_0700] component obj is: " + JSON.stringify(obj));
-      console.info("[provide2_0700] title: " + JSON.stringify(obj.$attrs.fontSize));
-      expect(obj.$attrs.fontSize).assertEqual('16.00fp');
+      let strJson: string = getInspectorByKey('coBtn3');
+
+      console.info("[provide2_0700] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[provide2_0700] title: " + JSON.stringify(JSON.parse(strJson).$attrs.fontSize));
+      expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('16.00fp');
       console.info('[provide2_0700] END');
       done();
 
     });
 
-    it('provide2_0800', 0, async function (done) {
+    it('provide2_0800', 0, async (done: Function) => {
       console.info('provide2_0800 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('coBtn4'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('coBtn4');
-      let obj = JSON.parse(strJson);
-      console.info("[provide2_0800] component obj is: " + JSON.stringify(obj));
-      console.info("[provide2_0800] title: " + JSON.stringify(obj.$attrs.fontSize));
-      expect(obj.$attrs.fontSize).assertEqual('16.00fp');
+      let strJson: string = getInspectorByKey('coBtn4');
+
+      console.info("[provide2_0800] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[provide2_0800] title: " + JSON.stringify(JSON.parse(strJson).$attrs.fontSize));
+      expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('16.00fp');
       console.info('[provide2_0800] END');
       done();
-
     });
-
-
-
   })
 }
 

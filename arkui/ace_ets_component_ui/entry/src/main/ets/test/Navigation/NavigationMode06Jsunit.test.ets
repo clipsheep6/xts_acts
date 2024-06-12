@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
+import router from '@ohos.router';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function NavigationMode06Jsunit() {
-  describe('NavigationMode06Jsunit', function () {
-    beforeEach(async function (done) {
+  describe('NavigationMode06Jsunit', () =>{
+    beforeEach(async (done:Function) =>{
       console.info("NavigationMode06Jsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/Navigation/NavigationModel06',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/Navigation/NavigationModel06',
       }
       try {
         router.clear();
@@ -30,7 +30,7 @@ export default function NavigationMode06Jsunit() {
         console.info("get NavigationMode06Jsunit state pages:" + JSON.stringify(pages));
         if (!("NavigationModel06" == pages.name)) {
           console.info("get NavigationMode06Jsunit state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push NavigationMode06Jsunit success " + JSON.stringify(result));
           await CommonFunc.sleep(3000);
         }
@@ -46,7 +46,7 @@ export default function NavigationMode06Jsunit() {
     * @tc.desc  : When the sum of minNavBarWidth and minContentWidth is greater than the navigation width, change minNavBarWidth to make minNavBarWidth and minContentWidth less than the navigation width.
     * @tc.level : Level 3
     */
-    it('NavigationMode06Jsunit_0100', 0, async function (done) {
+    it('NavigationMode06Jsunit_0100', 0, async (done:Function) =>{
       await CommonFunc.sleep(1000);
       let driver = await UiDriver.create()
       await CommonFunc.sleep(1000);
@@ -54,10 +54,10 @@ export default function NavigationMode06Jsunit() {
       await CZbutton.click();
       await CommonFunc.sleep(2000);
       let strcontent = getInspectorByKey('NavigationModel06Txt');
-      let obj = JSON.parse(strcontent);
+
       await CommonFunc.sleep(1000);
-      console.info('NavigationMode06Jsunit_0100 component obj is: ' + obj.$attrs.content);
-      expect(obj.$attrs.content).assertEqual('doing2');
+      console.info('NavigationMode06Jsunit_0100 component JSON.parse(strcontent) is: ' + JSON.parse(strcontent).$attrs.content);
+      expect(JSON.parse(strcontent).$attrs.content).assertEqual('doing2');
       console.info('NavigationMode06Jsunit_0100 END')
       done();
     });

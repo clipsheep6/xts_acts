@@ -13,18 +13,32 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component,MouseButton, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  MouseButton,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function textInput_caret() {
-  describe('textInput_caret', function () {
-    beforeEach(async function (done) {
+  describe('textInput_caret', () => {
+    beforeEach(async (done: Function) => {
       console.info("textInput_caret beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/TextNewInterFace/textInput_caret',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/TextNewInterFace/textInput_caret',
       }
       try {
         router.clear();
@@ -32,7 +46,7 @@ export default function textInput_caret() {
         console.info("get textInput_caret state pages: " + JSON.stringify(pages));
         if (!("search_caret" == pages.name)) {
           console.info("get textInput_caret state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push textInput_caret page result: " + JSON.stringify(result));
         }
@@ -49,11 +63,13 @@ export default function textInput_caret() {
       * @tc.desc  : Use mouse click to get CaretOffset
       * @tc.level : Level 3
       */
-    it('textInput_caret_001', 0, async function (done) {
+    it('textInput_caret_001', 0, async (done: Function) => {
 
       console.info('[textInput_caret_001] START');
       let driver = Driver.create();
-      await driver.mouseClick({x:300, y:200}, MouseButton.MOUSE_BUTTON_LEFT);
+      await driver.mouseClick({
+        x: 300, y: 200
+      }, MouseButton.MOUSE_BUTTON_LEFT);
       console.info('mouse click success');
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('inputGetCaret'));
@@ -61,13 +77,9 @@ export default function textInput_caret() {
       await CommonFunc.sleep(1000);
       console.info('textInput_caret_001 click success');
       let strJson1 = getInspectorByKey('inputCaretText');
-      let obj1 = JSON.parse(strJson1);
-      expect(obj1.$attrs.content).assertEqual('5');
-
+      expect(JSON.parse(strJson1).$attrs.content).assertEqual('5');
       console.info('[textInput_caret_001] END');
       done();
     });
-
-
   })
 }

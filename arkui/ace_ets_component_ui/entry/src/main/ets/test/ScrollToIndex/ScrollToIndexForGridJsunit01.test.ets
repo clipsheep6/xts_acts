@@ -14,15 +14,28 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function ScrollToIndexForGridJsunit01() {
   describe('ScrollToIndexForGridJsunit01', () => {
-    beforeEach(async function (done) {
+    beforeEach(async (done: Function) => {
       console.info("ScrollToIndexForGrid01 beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/ScrollToIndex/ScrollToIndexForGrid01',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/ScrollToIndex/ScrollToIndexForGrid01',
       }
       try {
         router.clear();
@@ -30,7 +43,7 @@ export default function ScrollToIndexForGridJsunit01() {
         console.info("get ScrollToIndexForGrid01 state pages: " + JSON.stringify(pages));
         if (!("ScrollToIndexForGrid01" == pages.name)) {
           console.info("get ScrollToIndexForGrid01 state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           let driver = Driver.create();
           await driver.delayMs(2000)
         }
@@ -48,9 +61,9 @@ export default function ScrollToIndexForGridJsunit01() {
      * @tc.desc set index to 30
      * @tc.size: MediumTest
      * @tc.type: Function
-     * @tc.level   2
+     * @tc.level 2
      */
-    it('ScrollToIndexForGridJsunit01_0100', 0, async (done) => {
+    it('ScrollToIndexForGridJsunit01_0100', 0, async (done: Function) => {
       console.info('[ScrollToIndexForGridJsunit01_0100] START');
 
       let driver = Driver.create();
@@ -66,15 +79,15 @@ export default function ScrollToIndexForGridJsunit01() {
       done();
     });
 
-     /**
+    /**
      * @tc.number ScrollToIndexForGridJsunit01_0200
      * @tc.name scenario testing
      * @tc.desc set index to 66,set the smooth to True
      * @tc.size: MediumTest
      * @tc.type: Function
-     * @tc.level   2
+     * @tc.level 2
      */
-    it('ScrollToIndexForGridJsunit01_0200', 0, async (done) => {
+    it('ScrollToIndexForGridJsunit01_0200', 0, async (done: Function) => {
       console.info('[ScrollToIndexForGridJsunit01_0200] START');
 
       let driver = Driver.create();
@@ -95,15 +108,15 @@ export default function ScrollToIndexForGridJsunit01() {
       done();
     });
 
-     /**
+    /**
      * @tc.number ScrollToIndexForGridJsunit01_0300
      * @tc.name scenario testing
      * @tc.desc set index to 100,set the smooth to false
      * @tc.size: MediumTest
      * @tc.type: Function
-     * @tc.level   2
+     * @tc.level 2
      */
-    it('ScrollToIndexForGridJsunit01_0300', 0, async (done) => {
+    it('ScrollToIndexForGridJsunit01_0300', 0, async (done: Function) => {
       console.info('[ScrollToIndexForGridJsunit01_0300] START');
 
       let driver = Driver.create();
@@ -129,9 +142,9 @@ export default function ScrollToIndexForGridJsunit01() {
      * @tc.desc set index to 99,set the smooth to True,set the align of Grid to ScrollAlign.START
      * @tc.size: MediumTest
      * @tc.type: Function
-     * @tc.level   2
+     * @tc.level 2
      */
-    it('ScrollToIndexForGridJsunit01_0400', 0, async (done) => {
+    it('ScrollToIndexForGridJsunit01_0400', 0, async (done: Function) => {
       console.info('[ScrollToIndexForGridJsunit01_0400] START');
 
       let driver = Driver.create();
@@ -165,9 +178,9 @@ export default function ScrollToIndexForGridJsunit01() {
      * @tc.desc set index to 128,set the smooth to True,set the align of Grid to ScrollAlign.END
      * @tc.size: MediumTest
      * @tc.type: Function
-     * @tc.level   2
+     * @tc.level 2
      */
-    it('ScrollToIndexForGridJsunit01_0500', 0, async (done) => {
+    it('ScrollToIndexForGridJsunit01_0500', 0, async (done: Function) => {
       console.info('[ScrollToIndexForGridJsunit01_0500] START');
 
       let driver = Driver.create();
@@ -207,9 +220,9 @@ export default function ScrollToIndexForGridJsunit01() {
      * @tc.desc set index to 22,set the smooth to false,set the align of Grid to ScrollAlign.CENTER
      * @tc.size: MediumTest
      * @tc.type: Function
-     * @tc.level   2
+     * @tc.level 2
      */
-    it('ScrollToIndexForGridJsunit01_0600', 0, async (done) => {
+    it('ScrollToIndexForGridJsunit01_0600', 0, async (done: Function) => {
       console.info('[ScrollToIndexForGridJsunit01_0600] START');
 
       let driver = Driver.create();
@@ -243,9 +256,9 @@ export default function ScrollToIndexForGridJsunit01() {
      * @tc.desc set index to 55,set the smooth to True,set the align of Grid to ScrollAlign.AUTO
      * @tc.size: MediumTest
      * @tc.type: Function
-     * @tc.level   2
+     * @tc.level 2
      */
-    it('ScrollToIndexForGridJsunit01_0700', 0, async (done) => {
+    it('ScrollToIndexForGridJsunit01_0700', 0, async (done: Function) => {
       let driver = Driver.create();
       console.info('[ScrollToIndexForGridJsunit01_0700] START');
 
@@ -274,9 +287,9 @@ export default function ScrollToIndexForGridJsunit01() {
      * @tc.desc set index to 128,set the smooth to True,set the align of Grid to ScrollAlign.END
      * @tc.size: MediumTest
      * @tc.type: Function
-     * @tc.level   2
+     * @tc.level 2
      */
-    it('ScrollToIndexForGridJsunit01_0800', 0, async (done) => {
+    it('ScrollToIndexForGridJsunit01_0800', 0, async (done: Function) => {
       console.info('[ScrollToIndexForGridJsunit01_0800] START');
 
       let driver = Driver.create();

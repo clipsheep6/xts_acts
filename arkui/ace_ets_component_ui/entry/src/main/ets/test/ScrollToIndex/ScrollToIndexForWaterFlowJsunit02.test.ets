@@ -13,15 +13,28 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function ScrollToIndexForWaterFlowJsunit02() {
   describe('ScrollToIndexForWaterFlowJsunit02', () => {
-    beforeEach(async function (done) {
+    beforeEach(async (done: Function) => {
       console.info("ScrollToIndexForWaterFlow02 beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/ScrollToIndex/ScrollToIndexForWaterFlow02',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/ScrollToIndex/ScrollToIndexForWaterFlow02',
       }
       try {
         router.clear();
@@ -29,7 +42,7 @@ export default function ScrollToIndexForWaterFlowJsunit02() {
         console.info("get ScrollToIndexForWaterFlow02 state pages: " + JSON.stringify(pages));
         if (!("ScrollToIndexForWaterFlow02" == pages.name)) {
           console.info("get ScrollToIndexForWaterFlow02 state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           let driver = Driver.create();
           await driver.delayMs(2000)
         }
@@ -39,17 +52,17 @@ export default function ScrollToIndexForWaterFlowJsunit02() {
       }
       done();
     });
-    
-    
+
+
     /**
      * @tc.number ScrollToIndexForWaterFlow02_0100
      * @tc.name scenario testing
      * @tc.desc set index to Item 99,set the smooth to True
      * @tc.size: MediumTest
      * @tc.type: Function
-     * @tc.level   2
+     * @tc.level 2
      */
-    it('ScrollToIndexForWaterFlow02_0100', 0, async (done)=> {
+    it('ScrollToIndexForWaterFlow02_0100', 0, async (done) => {
       console.info('[ScrollToIndexForWaterFlow02_0100] START');
       let driver = Driver.create();
 
@@ -79,9 +92,9 @@ export default function ScrollToIndexForWaterFlowJsunit02() {
      * @tc.desc set index to Item 10,set the smooth to false
      * @tc.size: MediumTest
      * @tc.type: Function
-     * @tc.level   2
+     * @tc.level 2
      */
-    it('ScrollToIndexForWaterFlow02_0200', 0, async (done)=> {
+    it('ScrollToIndexForWaterFlow02_0200', 0, async (done) => {
       console.info('[ScrollToIndexForWaterFlow02_0200] START');
       let driver = Driver.create();
 

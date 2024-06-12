@@ -13,18 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function PropHight() {
-  describe('PropHight', function () {
-    beforeEach(async function (done) {
+  describe('PropHight', () => {
+    beforeEach(async (done: Function) => {
       console.info("PropHight beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/@state/PropHight',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/@state/PropHight',
       }
       try {
         router.clear();
@@ -32,7 +44,7 @@ export default function PropHight() {
         console.info("get PropHight state pages: " + JSON.stringify(pages));
         if (!("PropHight" == pages.name)) {
           console.info("get PropHight state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push PropHight success: " + JSON.stringify(result));
         }
@@ -48,18 +60,18 @@ export default function PropHight() {
     * @tc.desc  : To test that the Prop decorator supports union types.
     * @tc.level : Level 2
     */
-    it('PropHight_0100', 0, async function (done) {
+    it('PropHight_0100', 0, async (done: Function) => {
       console.info('PropHight_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('PropHeight1'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('PropHeight1');
-      let obj = JSON.parse(strJson);
-      console.info("[PropHight_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[PropHight_0100] title: " + JSON.stringify(obj.$attrs.height));
-      expect(obj.$attrs.height).assertEqual('100.00vp');
+      let strJson: string = getInspectorByKey('PropHeight1');
+
+      console.info("[PropHight_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[PropHight_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.height));
+      expect(JSON.parse(strJson).$attrs.height).assertEqual('100.00vp');
       console.info('[PropHight_0100] END');
       done();
     });
@@ -69,18 +81,18 @@ export default function PropHight() {
     * @tc.desc  : To test that the Prop decorator supports union types.
     * @tc.level : Level 2
     */
-    it('PropHight_0200', 0, async function (done) {
+    it('PropHight_0200', 0, async (done: Function) => {
       console.info('PropHight_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('PropHeight2'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('PropHeight2');
-      let obj = JSON.parse(strJson);
-      console.info("[PropHight_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[PropHight_0100] title: " + JSON.stringify(obj.$attrs.height));
-      expect(obj.$attrs.height).assertEqual('200.00vp');
+      let strJson: string = getInspectorByKey('PropHeight2');
+
+      console.info("[PropHight_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[PropHight_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.height));
+      expect(JSON.parse(strJson).$attrs.height).assertEqual('200.00vp');
       console.info('[PropHight_0100] END');
       done();
     });
@@ -90,23 +102,21 @@ export default function PropHight() {
     * @tc.desc  : To test that the Prop decorator supports union types.
     * @tc.level : Level 2
     */
-    it('PropHight_0300', 0, async function (done) {
+    it('PropHight_0300', 0, async (done: Function) => {
       console.info('PropHight_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('PropHeight3'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('PropHeight3');
-      let obj = JSON.parse(strJson);
-      console.info("[PropHight_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[PropHight_0100] title: " + JSON.stringify(obj.$attrs.height));
-      expect(obj.$attrs.height).assertEqual('200.00vp');
+      let strJson: string = getInspectorByKey('PropHeight3');
+
+      console.info("[PropHight_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[PropHight_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.height));
+      expect(JSON.parse(strJson).$attrs.height).assertEqual('200.00vp');
       console.info('[PropHight_0100] END');
       done();
     });
-
-
   })
 }
 
