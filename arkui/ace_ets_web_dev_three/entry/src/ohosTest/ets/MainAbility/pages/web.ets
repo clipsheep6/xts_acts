@@ -49,7 +49,7 @@ function ParseX509CertInfo(x509CertArray: Array<cert.X509Cert>) {
 struct Index {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
   controllerTwo: web_webview.WebviewController = new web_webview.WebviewController();
-  dialogController: CustomDialogController;
+  dialogController?: CustomDialogController;
   scheme1: web_webview.WebCustomScheme = { schemeName: "name1", isSupportCORS: true, isSupportFetch: true };
   scheme2: web_webview.WebCustomScheme = { schemeName: "name2", isSupportCORS: true, isSupportFetch: true };
   scheme3: web_webview.WebCustomScheme = { schemeName: "name3", isSupportCORS: true, isSupportFetch: true };
@@ -72,8 +72,8 @@ struct Index {
   @State enterPageEndOff: boolean = false;
   @State outputStr: string = '';
   message: web_webview.WebMessageExt = new web_webview.WebMessageExt();
-  ports: web_webview.WebMessagePort[] = null;
-  nativePort: web_webview.WebMessagePort = null;
+  ports: web_webview.WebMessagePort[] | null = null;
+  nativePort: web_webview.WebMessagePort | null = null;
   @State webMessResult: string = ""
   testObj: ESObject = {
     testOne: (data: ESObject): ESObject => {
@@ -492,7 +492,7 @@ struct Index {
               }
               try {
                 let state = this.controller.serializeWebState();
-                let path = globalThis.AbilityContext.cacheDir;
+                let path:string = globalThis.AbilityContext.cacheDir;
                 path += '/WebState';
                 let fd = fileio.openSync(path, 0o2 | 0o100, 0o666);
                 fileio.writeSync(fd, state.buffer);
@@ -501,7 +501,7 @@ struct Index {
                 console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
               }
               try {
-                let path = globalThis.AbilityContext.cacheDir;
+                let path:string = globalThis.AbilityContext.cacheDir;
                 path += '/WebState';
                 let fd = fileio.openSync(path, 0o002, 0o666);
                 let stat = fileio.fstatSync(fd);
@@ -670,7 +670,7 @@ struct Index {
                   setTimeout(() => {
                     this.message.setType(1);
                     this.message.setString("helloFromEts");
-                    this.nativePort.postMessageEventExt(this.message);
+                    this.nativePort!.postMessageEventExt(this.message);
                   }, 2000);
                 }
                 ;
@@ -707,7 +707,7 @@ struct Index {
                   setTimeout(() => {
                     this.message.setType(2);
                     this.message.setNumber(1);
-                    this.nativePort.postMessageEventExt(this.message);
+                    this.nativePort!.postMessageEventExt(this.message);
                   }, 2000);
                 }
                 setTimeout(() => {
@@ -742,7 +742,7 @@ struct Index {
                   setTimeout(() => {
                     this.message.setType(3);
                     this.message.setBoolean(true);
-                    this.nativePort.postMessageEventExt(this.message);
+                    this.nativePort!.postMessageEventExt(this.message);
                   }, 2000);
                 }
                 setTimeout(() => {
@@ -779,7 +779,7 @@ struct Index {
                     fruits.push("apple");
                     this.message.setType(5);
                     this.message.setArray(fruits);
-                    this.nativePort.postMessageEventExt(this.message);
+                    this.nativePort!.postMessageEventExt(this.message);
                   }, 2000)
                 }
                 setTimeout(() => {
@@ -815,7 +815,7 @@ struct Index {
                     let buffer = new ArrayBuffer(8);
                     this.message.setType(4);
                     this.message.setArrayBuffer(buffer);
-                    this.nativePort.postMessageEventExt(this.message);
+                    this.nativePort!.postMessageEventExt(this.message);
                   }, 2000)
                 }
                 setTimeout(() => {
@@ -857,7 +857,7 @@ struct Index {
                     message.setType(web_webview.WebMessageType.ERROR)
                     this.message.setType(6);
                     this.message.setError(e);
-                    this.nativePort.postMessageEventExt(message);
+                    this.nativePort!.postMessageEventExt(message);
                   }, 2000)
                 }
               }
@@ -975,27 +975,27 @@ struct Index {
         .zoomAccess(this.text)
         .onDataResubmitted((event) => {
           console.log('onDataResubmitted');
-          event.handler.resend();
+          event!.handler.resend();
         })
         .onSearchResultReceive(ret => {
-          let searchResult = ret.activeMatchOrdinal.toString() +
-          ret.numberOfMatches.toString();
+          let searchResult = ret!.activeMatchOrdinal.toString() +
+          ret!.numberOfMatches.toString();
           console.log("searchResult" + searchResult);
           setTimeout(() => {
             Utils.emitEvent(searchResult, 16);
           }, 3000)
         })
         .onContextMenuShow((event) => {
-          console.info(event.param.getMediaType() + event.param.getSelectionText() + event.param.getSourceType());
-          console.info(event.param.getInputFieldType().toString());
-          console.info(event.param.isEditable().toString());
-          console.info(event.param.getEditStateFlags().toString());
-          event.result.paste();
-          event.result.cut();
+          console.info(event!.param.getMediaType() + event!.param.getSelectionText() + event!.param.getSourceType());
+          console.info(event!.param.getInputFieldType().toString());
+          console.info(event!.param.isEditable().toString());
+          console.info(event!.param.getEditStateFlags().toString());
+          event!.result.paste();
+          event!.result.cut();
           return true;
         })
         .onHttpErrorReceive((event) => {
-          event.response.setResponseIsReady(true);
+          event!.response.setResponseIsReady(true);
         })
         .onPageEnd((event) => {
           if (this.enterPageEnd) {
@@ -1025,7 +1025,7 @@ struct Index {
                     Utils.emitEvent(this.msg1, 500)
                   }
                 });
-              console.info('urlgetstring: ', event.url);
+              console.info('urlgetstring: ', event!.url);
             } catch (error) {
               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
             }
@@ -1045,7 +1045,7 @@ struct Index {
                     Utils.emitEvent(this.msg1, 501);
                   }
                 });
-              console.info('urlgetstring: ', event.url);
+              console.info('urlgetstring: ', event!.url);
             } catch (error) {
               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
             }
@@ -1065,7 +1065,7 @@ struct Index {
                     Utils.emitEvent(this.msg1, 502)
                   }
                 });
-              console.info('urlgetstring: ', event.url);
+              console.info('urlgetstring: ', event!.url);
             } catch (error) {
               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
             }
@@ -1085,7 +1085,7 @@ struct Index {
                     Utils.emitEvent(this.msg1, 503);
                   }
                 });
-              console.info('urlgetstring: ', event.url);
+              console.info('urlgetstring: ', event!.url);
             } catch (error) {
               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
             }
@@ -1100,7 +1100,7 @@ struct Index {
                     Utils.emitEvent(this.msg1 + web_webview.JsMessageType.NOT_SUPPORT, 504);
                   }
                 })
-              console.info('urlgetstring: ', event.url);
+              console.info('urlgetstring: ', event!.url);
             } catch (error) {
               console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
             }
@@ -1114,7 +1114,7 @@ struct Index {
           this.ports = this.controller.createWebMessagePorts(true);
           this.controller.postMessage("init_web_messageport", [this.ports[1]], "*");
           this.nativePort = this.ports[0];
-          this.nativePort.onMessageEventExt((result) => {
+          this.nativePort!.onMessageEventExt((result) => {
             console.log("In eTS side got message");
             try {
               this.type = result.getType();
@@ -1148,7 +1148,7 @@ struct Index {
             }
           })
 
-          console.log('url:' + event.url);
+          console.log('url:' + event!.url);
         })
         .darkMode(this.mode)
         .forceDarkAccess(false)
