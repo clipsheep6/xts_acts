@@ -5175,4 +5175,50 @@ describe('UrlFunTest', function () {
         expect(u2.params.toString()).assertEqual('phone=%2B86+9')
         expect(phone2.toString()).assertEqual('+86 9')
     })
+
+   /**
+   * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_URL_30900
+   * @tc.name: testUrlparseURL0043
+   * @tc.desc: URL constructor, which is used to instantiate a URL object.
+   * @tc.size: MediumTest
+   * @tc.type: Function
+   * @tc.level: Level 2
+   */
+    it('testUrlparseURL0043', 0, function () {
+        let uu = Url.URL.parseURL('http://www.baidu.com/sajd中文测试/aa?xx=%26');
+        let res = 'http://www.baidu.com/sajd%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/aa?xx=%26';
+        expect(uu.toString()).assertEqual(res);
+    })
+
+   /**
+   * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_URL_31000
+   * @tc.name: testUrlparseURL0044
+   * @tc.desc: URL constructor, which is used to instantiate a URL object.
+   * @tc.size: MediumTest
+   * @tc.type: Function
+   * @tc.level: Level 2
+   */
+    it('testUrlparseURL0044', 0, function () {
+        let uu = Url.URL.parseURL('http://www.baidu.com/sajd中文测试/aa?xx=%26%7D');
+        let res = 'http://www.baidu.com/sajd%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/aa?xx=%26%7D';
+        let uu2 = Url.URL.parseURL(uu.toString());
+        expect(uu2.toString()).assertEqual(res);
+    })
+
+   /**
+   * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_URL_31100
+   * @tc.name: testUrlparseURL0045
+   * @tc.desc: URL constructor, which is used to instantiate a URL object.
+   * @tc.size: MediumTest
+   * @tc.type: Function
+   * @tc.level: Level 2
+   */
+    it('testUrlparseURL0045', 0, function () {
+        let uu = Url.URL.parseURL('http://www.baidu.com/sajd中文测试/aa?xx=%26优优');
+      let uu2 = Url.URL.parseURL(uu.toString());
+      let res = 'http://www.baidu.com/sajd%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/aa?xx=%26优优';
+      expect(uu2.toString()).assertEqual(res);
+      expect(uu2.pathname).assertEqual('/sajd%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/aa');
+      expect(uu2.params.get('xx')).assertEqual('&优优');
+    })
 })}
