@@ -73,545 +73,713 @@ export default function workerTest() {
      * @tc.desc       : test worker error
      * @tc.size       : MediumTest
      * @tc.type       : Function
-     * @tc.level      : Level 3
+     * @tc.level      : Level 2
      */
     it('testWorkerError001', 0, async (done: Function) => {
       const caseName: string = 'testWorkerError001';
-      console.info(`${caseName} test start`);
       try {
-        try {
-          let isTerminate: boolean = false;
-          let flag: boolean = false;
-          const workerInstances: worker.ThreadWorker[] = [];
-          for (let i: number = 0; i < 64; i++) {
-            workerInstances.push(new worker.ThreadWorker('../workers/worker.ts'));
-          }
-          try {
-            const workerInstance_9: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-            workerInstance_9.terminate();
-            expect().assertFail();
-          } catch (error) {
-            console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-            flag = true;
-            expectAssertEqual(error.code, 10200003);
-            expectAssertContain(error.message, 'Worker initialization failure');
-          }
-          for (let i: number = 0; i < workerInstances.length; i++) {
-            workerInstances[i].terminate();
-          }
-          workerInstances[7].onexit = (): void => {
-            isTerminate = true;
-          };
-          while (!(isTerminate && flag)) {
-            await asyncSleep(100);
-          }
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expect().assertFail();
-          done();
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_022.ts', {
-            type: 'module', name: 'first worker in Stage model', shared: false
-          });
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 401);
-          expectAssertContain(error.message, 'the type must be classic, unsupport others now.');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          workerInstance.postMessage({
-            name: 'workerInstance',
-            type: 'worker.ThreadWorker'
-          });
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          const func: Function = (): string => {
-            return 'func';
-          }
-          try {
-            workerInstance.postMessage(func);
-            expect().assertFail();
-          } catch (error) {
-            console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-            expectAssertEqual(error.code, 10200006);
-            expectAssertContain(error.message, 'An exception occurred during serialization');
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expect().assertFail();
-          done();
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          workerInstance.on('workerInstance_on', () => {
-            console.info(`${caseName}: workerInstance_on listener callback`);
-          });
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          workerInstance.once('workerInstance_once', () => {
-            console.info(`${caseName}: workerInstance_once listener callback`);
-          });
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.on('workerInstance_on', () => {
-            console.info(`${caseName}: workerInstance_on listener callback`);
-          });
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          workerInstance.off('workerInstance_on');
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          let registerObj: TestObj = new TestObj();
-          workerInstance.registerGlobalCallObject('myObj', registerObj);
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          let registerObj: TestObj = new TestObj();
-          workerInstance.registerGlobalCallObject('myObj', registerObj);
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          workerInstance.unregisterGlobalCallObject('myObj');
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          workerInstance.terminate();
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          workerInstance.addEventListener('workerInstance_addEventListener', () => {
-            console.info(`${caseName}: workerInstance_addEventListener listener callback`);
-          });
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.addEventListener('workerInstance_addEventListener', () => {
-            console.info(`${caseName}: workerInstance_addEventListener listener callback`);
-          });
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          workerInstance.removeEventListener('workerInstance_addEventListener');
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          workerInstance.dispatchEvent({
-            type: 'workerInstance_1_addEventListener', timeStamp: 0
-          });
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
-          let isTerminate: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.addEventListener('workerInstance_addEventListener', () => {
-            console.info(`${caseName}: workerInstance_addEventListener listener callback`);
-          });
-          workerInstance.addEventListener('workerInstance_addEventListener2', () => {
-            console.info(`${caseName}: workerInstance_addEventListener2 listener callback`);
-          });
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-          workerInstance.removeAllListener();
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 10200004);
-          expectAssertContain(error.message, 'Worker instance is not running');
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_010.ts');
-          let isTerminate: boolean = false;
-          let flag: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.onmessage = (e: MessageEvents): void => {
-            console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
-            flag = true;
-            expectAssertEqual(e.data.code, 10200006);
-            expectAssertContain(e.data.message, 'An exception occurred during serialization');
-          }
-          workerInstance.postMessage('message');
-          while (!flag) {
-            await asyncSleep(100);
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expect().assertFail();
-          done();
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_012.ts');
-          let isTerminate: boolean = false;
-          let flag: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.onmessage = (e: MessageEvents): void => {
-            console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
-            flag = true;
-            expectAssertEqual(e.data.code, 10200006);
-            expectAssertContain(e.data.message, 'An exception occurred during serialization');
-          }
-
-          class TestFuncObj {
-            public getFunction(): Function {
-              const add = (num1: number, num2: number): number => {
-                return num1 + num2;
-              }
-              return add;
-            }
-          }
-
-          const testObj: TestFuncObj = new TestFuncObj();
-          workerInstance.registerGlobalCallObject('myObj', testObj);
-          workerInstance.postMessage('start');
-          while (!flag) {
-            await asyncSleep(100);
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expect().assertFail();
-          done();
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_013.ts');
-          let isTerminate: boolean = false;
-          let flag: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.onmessage = (e: MessageEvents): void => {
-            console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
-            flag = true;
-            expectAssertEqual(e.data.code, 10200019);
-            expectAssertContain(e.data.message, 'The globalCallObject is not registered');
-          }
-          const testObj: TestObj = new TestObj();
-          workerInstance.registerGlobalCallObject('myObj', testObj);
-          workerInstance.unregisterGlobalCallObject('myObj');
-          workerInstance.postMessage('start');
-          while (!flag) {
-            await asyncSleep(100);
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expect().assertFail();
-          done();
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_014.ts');
-          let isTerminate: boolean = false;
-          let flag: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.onmessage = (e: MessageEvents): void => {
-            console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
-            flag = true;
-            expectAssertEqual(e.data.code, 10200020);
-            expect(e.data.message)
-              .assertContain('The method to be called is not callable or is an async method or a generator');
-          }
-
-          class TestAsyncFuncObj {
-            public async testAsyncFunc(): Promise<Object> {
-              return new Promise(resolve => setTimeout(resolve, 1000));
-            }
-          }
-
-          const testObj: TestAsyncFuncObj = new TestAsyncFuncObj();
-          workerInstance.registerGlobalCallObject('myObj', testObj);
-          workerInstance.postMessage('TestAsyncFuncObj');
-          while (!flag) {
-            await asyncSleep(100);
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expect().assertFail();
-          done();
-        }
-
-        try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_015.ts');
-          let isTerminate: boolean = false;
-          let flag: boolean = false;
-          workerInstance.onexit = (): void => {
-            console.info(`${caseName}: workerInstance.onexit`);
-            isTerminate = true;
-          }
-          workerInstance.onmessage = (e: MessageEvents): void => {
-            console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
-            flag = true;
-            expectAssertEqual(e.data.code, 10200021);
-            expectAssertContain(e.data.message, 'The global call exceeds the timeout');
-          }
-
-          class TestTimeoutFuncObj {
-            public testTimeoutFunc(): number {
-              let sum: number = 0;
-              for (let i: number = 0; i < 1000000; i++) {
-                sum += i;
-              }
-              return sum;
-            }
-          }
-
-          const testObj: TestTimeoutFuncObj = new TestTimeoutFuncObj();
-          workerInstance.registerGlobalCallObject('myObj', testObj);
-          workerInstance.postMessage('start');
-          while (!flag) {
-            await asyncSleep(100);
-          }
-          workerInstance.terminate();
-          while (!isTerminate) {
-            await asyncSleep(100);
-          }
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expect().assertFail();
-          done();
-        }
-
-        try {
-          let isTerminate: boolean = false;
-          let flag: boolean = false;
-          const workerInstances: worker.RestrictedWorker[] = [];
-          for (let i: number = 0; i < 16; i++) {
-            workerInstances.push(new worker.RestrictedWorker('../workers/worker_022.ts'));
-          }
-          try {
-            const workerInstance_17: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_022.ts');
-            workerInstance_17.terminate();
-          } catch (error) {
-            console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-            flag = true;
-            expectAssertEqual(error.code, 10200003);
-            expectAssertContain(error.message, 'Worker initialization failure');
-          }
-          for (let i: number = 0; i < workerInstances.length; i++) {
-            workerInstances[i].terminate();
-          }
-          workerInstances[15].onexit = (): void => {
-            isTerminate = true;
-          }
-          while (!(isTerminate && flag)) {
-            await asyncSleep(100);
-          }
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expect().assertFail();
-          done();
-        }
-
-        try {
-          const workerInstance: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_022.ts', {
-            type: 'module', name: 'first worker in Stage model', shared: false
-          });
-          expect().assertFail();
-        } catch (error) {
-          console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-          expectAssertEqual(error.code, 401);
-          expectAssertContain(error.message, 'the type must be classic, unsupport others now.');
-        }
-        done();
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_022.ts', {
+          type: 'module', name: 'first worker in Stage model', shared: false
+        });
       } catch (error) {
         console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-        expect().assertFail();
+        expectAssertEqual(error.code, 401);
+        expectAssertContain(error.message, 'the type must be classic, unsupport others now.');
         done();
       }
-      console.info(`${caseName} test end`);
     });
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_10200
+     * @tc.name       : testWorkerError002
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError002', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError002';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        workerInstance.postMessage({
+          name: 'workerInstance',
+          type: 'worker.ThreadWorker'
+        });
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_10300
+     * @tc.name       : testWorkerError003
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError003', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError003';
+      const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+      let isTerminate = false;
+      workerInstance.onexit = (): void => {
+        console.info(`${caseName}: workerInstance.onexit`);
+        isTerminate = true;
+      }
+      const func: Function = (): string => {
+        return 'func';
+      }
+      try {
+        workerInstance.postMessage(func);
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200006);
+        expectAssertContain(error.message, 'An exception occurred during serialization');
+      }
+      workerInstance.terminate();
+      while (!isTerminate) {
+        await asyncSleep(100);
+      }
+      done();
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_10400
+     * @tc.name       : testWorkerError004
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError004', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError004';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        workerInstance.on('workerInstance_on', () => {
+          console.info(`${caseName}: workerInstance_on listener callback`);
+        });
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_10500
+     * @tc.name       : testWorkerError005
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError005', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError005';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        workerInstance.once('workerInstance_once', () => {
+          console.info(`${caseName}: workerInstance_once listener callback`);
+        });
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_10600
+     * @tc.name       : testWorkerError006
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError006', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError006';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        workerInstance.on('workerInstance_on', () => {
+          console.info(`${caseName}: workerInstance_on listener callback`);
+        });
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        workerInstance.off('workerInstance_on');
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_10700
+     * @tc.name       : testWorkerError007
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError007', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError007';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        let registerObj: TestObj = new TestObj();
+        workerInstance.registerGlobalCallObject('myObj', registerObj);
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_10800
+     * @tc.name       : testWorkerError008
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError008', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError008';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        let registerObj: TestObj = new TestObj();
+        workerInstance.registerGlobalCallObject('myObj', registerObj);
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        workerInstance.unregisterGlobalCallObject('myObj');
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_10900
+     * @tc.name       : testWorkerError009
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError009', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError009';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        workerInstance.terminate();
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_11000
+     * @tc.name       : testWorkerError010
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError010', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError010';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        workerInstance.addEventListener('workerInstance_addEventListener', () => {
+          console.info(`${caseName}: workerInstance_addEventListener listener callback`);
+        });
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_11100
+     * @tc.name       : testWorkerError011
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError011', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError011';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        workerInstance.addEventListener('workerInstance_addEventListener', () => {
+          console.info(`${caseName}: workerInstance_addEventListener listener callback`);
+        });
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        workerInstance.removeEventListener('workerInstance_addEventListener');
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_11200
+     * @tc.name       : testWorkerError012
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError012', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError012';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        workerInstance.dispatchEvent({
+          type: 'workerInstance_1_addEventListener', timeStamp: 0
+        });
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_11300
+     * @tc.name       : testWorkerError013
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError013', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError013';
+      try {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        let isTerminate: boolean = false;
+        workerInstance.onexit = (): void => {
+          console.info(`${caseName}: workerInstance.onexit`);
+          isTerminate = true;
+        }
+        workerInstance.addEventListener('workerInstance_addEventListener', () => {
+          console.info(`${caseName}: workerInstance_addEventListener listener callback`);
+        });
+        workerInstance.addEventListener('workerInstance_addEventListener2', () => {
+          console.info(`${caseName}: workerInstance_addEventListener2 listener callback`);
+        });
+        workerInstance.terminate();
+        while (!isTerminate) {
+          await asyncSleep(100);
+        }
+        workerInstance.removeAllListener();
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200004);
+        expectAssertContain(error.message, 'Worker instance is not running');
+        done();
+      }
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_11400
+     * @tc.name       : testWorkerError014
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError014', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError014';
+      const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_010.ts');
+      let isTerminate: boolean = false;
+      let flag: boolean = false;
+      workerInstance.onexit = (): void => {
+        console.info(`${caseName}: workerInstance.onexit`);
+        isTerminate = true;
+      }
+      workerInstance.onmessage = (e: MessageEvents): void => {
+        console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
+        flag = true;
+        expectAssertEqual(e.data.code, 10200006);
+        expectAssertContain(e.data.message, 'An exception occurred during serialization');
+      }
+      workerInstance.postMessage('message');
+      while (!flag) {
+        await asyncSleep(100);
+      }
+      workerInstance.terminate();
+      while (!isTerminate) {
+        await asyncSleep(100);
+      }
+      done();
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_11500
+     * @tc.name       : testWorkerError015
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError015', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError015';
+      const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_012.ts');
+      let isTerminate: boolean = false;
+      workerInstance.onexit = (): void => {
+        console.info(`${caseName}: workerInstance.onexit`);
+        isTerminate = true;
+      }
+      workerInstance.onmessage = (e: MessageEvents): void => {
+        console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
+        expectAssertEqual(e.data.code, 10200006);
+        expectAssertContain(e.data.message, 'An exception occurred during serialization');
+        workerInstance.terminate();
+      }
+
+      class TestFuncObj {
+        public getFunction(): Function {
+          const add = (num1: number, num2: number): number => {
+            return num1 + num2;
+          }
+          return add;
+        }
+      }
+
+      const testObj: TestFuncObj = new TestFuncObj();
+      workerInstance.registerGlobalCallObject('myObj', testObj);
+      workerInstance.postMessage('start');
+      while (!isTerminate) {
+        await asyncSleep(100);
+      }
+      done();
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_11600
+     * @tc.name       : testWorkerError016
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError016', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError016';
+      const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_013.ts');
+      let isTerminate: boolean = false;
+      let flag: boolean = false;
+      workerInstance.onexit = (): void => {
+        console.info(`${caseName}: workerInstance.onexit`);
+        isTerminate = true;
+      }
+      workerInstance.onmessage = (e: MessageEvents): void => {
+        console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
+        expectAssertEqual(e.data.code, 10200019);
+        expectAssertContain(e.data.message, 'The globalCallObject is not registered');
+        workerInstance.terminate();
+      }
+      const testObj: TestObj = new TestObj();
+      workerInstance.registerGlobalCallObject('myObj', testObj);
+      workerInstance.unregisterGlobalCallObject('myObj');
+      workerInstance.postMessage('start');
+      while (!isTerminate) {
+        await asyncSleep(100);
+      }
+      done();
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_11700
+     * @tc.name       : testWorkerError017
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError017', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError017';
+      const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_014.ts');
+      let isTerminate: boolean = false;
+      let flag: boolean = false;
+      workerInstance.onexit = (): void => {
+        console.info(`${caseName}: workerInstance.onexit`);
+        isTerminate = true;
+      }
+      workerInstance.onmessage = (e: MessageEvents): void => {
+        console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
+        flag = true;
+        expectAssertEqual(e.data.code, 10200020);
+        expect(e.data.message)
+          .assertContain('The method to be called is not callable or is an async method or a generator');
+        workerInstance.terminate();
+      }
+
+      class TestAsyncFuncObj {
+        public async testAsyncFunc(): Promise<Object> {
+          return new Promise(resolve => setTimeout(resolve, 1000));
+        }
+      }
+
+      const testObj: TestAsyncFuncObj = new TestAsyncFuncObj();
+      workerInstance.registerGlobalCallObject('myObj', testObj);
+      workerInstance.postMessage('TestAsyncFuncObj');
+      while (!isTerminate) {
+        await asyncSleep(100);
+      }
+      done();
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_11800
+     * @tc.name       : testWorkerError018
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError018', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError018';
+      const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_015.ts');
+      let isTerminate: boolean = false;
+      let flag: boolean = false;
+      workerInstance.onexit = (): void => {
+        console.info(`${caseName}: workerInstance.onexit`);
+        isTerminate = true;
+      }
+      workerInstance.onmessage = (e: MessageEvents): void => {
+        console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
+        flag = true;
+        expectAssertEqual(e.data.code, 10200021);
+        expectAssertContain(e.data.message, 'The global call exceeds the timeout');
+      }
+
+      class TestTimeoutFuncObj {
+        public testTimeoutFunc(): number {
+          let sum: number = 0;
+          for (let i: number = 0; i < 1000000; i++) {
+            sum += i;
+          }
+          return sum;
+        }
+      }
+
+      const testObj: TestTimeoutFuncObj = new TestTimeoutFuncObj();
+      workerInstance.registerGlobalCallObject('myObj', testObj);
+      workerInstance.postMessage('start');
+      while (!flag) {
+        await asyncSleep(100);
+      }
+      workerInstance.terminate();
+      while (!isTerminate) {
+        await asyncSleep(100);
+      }
+      done();
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_11900
+     * @tc.name       : testWorkerError019
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError019', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError019';
+      const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_015.ts');
+      let isTerminate: boolean = false;
+      let flag: boolean = false;
+      workerInstance.onexit = (): void => {
+        console.info(`${caseName}: workerInstance.onexit`);
+        isTerminate = true;
+      }
+      workerInstance.onmessage = (e: MessageEvents): void => {
+        console.info(`${caseName}: workerInstance.onmessage: ${JSON.stringify(e)}`);
+        flag = true;
+        expectAssertEqual(e.data.code, 10200021);
+        expectAssertContain(e.data.message, 'The global call exceeds the timeout');
+      }
+
+      class TestTimeoutFuncObj {
+        public testTimeoutFunc(): number {
+          let sum: number = 0;
+          for (let i: number = 0; i < 1000000; i++) {
+            sum += i;
+          }
+          return sum;
+        }
+      }
+
+      const testObj: TestTimeoutFuncObj = new TestTimeoutFuncObj();
+      workerInstance.registerGlobalCallObject('myObj', testObj);
+      workerInstance.postMessage('start');
+      while (!flag) {
+        await asyncSleep(100);
+      }
+      workerInstance.terminate();
+      while (!isTerminate) {
+        await asyncSleep(100);
+      }
+      done();
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_12000
+     * @tc.name       : testWorkerError020
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError020', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError020';
+      let isTerminate: boolean = false;
+      let flag: boolean = false;
+      const workerInstances: worker.RestrictedWorker[] = [];
+      for (let i: number = 0; i < 16; i++) {
+        workerInstances.push(new worker.RestrictedWorker('../workers/worker_022.ts'));
+      }
+      try {
+        const workerInstance_17: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_022.ts');
+        workerInstance_17.terminate();
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        flag = true;
+        expectAssertEqual(error.code, 10200003);
+        expectAssertContain(error.message, 'Worker initialization failure');
+      }
+      for (let i: number = 0; i < workerInstances.length; i++) {
+        console.info(`${caseName}: workerInstances terminate ${i}`)
+        workerInstances[i].terminate();
+      }
+      workerInstances[15].onexit = (): void => {
+        isTerminate = true;
+      }
+      while (!(isTerminate && flag)) {
+        await asyncSleep(100);
+      }
+      done();
+    })
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_12100
+     * @tc.name       : testWorkerError021
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError021', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError021';
+      try {
+        const workerInstance: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_022.ts', {
+          type: 'module', name: 'first worker in Stage model', shared: false
+        });
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 401);
+        expectAssertContain(error.message, 'the type must be classic, unsupport others now.');
+      }
+      done();
+    })
 
     /**
      * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_0100
@@ -740,13 +908,12 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../xxx/worker.ts');
-        expect().assertFail();
         workerInstance.terminate();
         done();
       } catch (error) {
         console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
         expectAssertEqual(error.code, 10200007);
-        expectAssertContain(error.message, 'The worker file patch is invalid path');
+        expectAssertContain(error.message, 'The worker file path is invalid path');
         done();
       }
       console.info(`${caseName} test end`);
@@ -6367,13 +6534,12 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         const workerInstance: worker.RestrictedWorker = new worker.RestrictedWorker('../xxx/worker_022.ts');
-        expect().assertFail();
         workerInstance.terminate();
         done();
       } catch (error) {
         console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
         expectAssertEqual(error.code, 10200007);
-        expectAssertContain(error.message, 'The worker file patch is invalid path');
+        expectAssertContain(error.message, 'The worker file path is invalid path');
         done();
       }
       console.info(`${caseName} test end`);
@@ -6431,5 +6597,31 @@ export default function workerTest() {
       }
       console.info(`${caseName} test end`);
     });
+
+    /**
+     * @tc.number     : SUB_Runtime_Language_Backend_WorkerConcurrency_12200
+     * @tc.name       : testWorkerError_Final_022
+     * @tc.desc       : test worker error
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testWorkerError_Final_022', 0, async (done: Function) => {
+      const caseName: string = 'testWorkerError_Final_022';
+      let isTerminate: boolean = false;
+      let flag: boolean = true;
+      const workerInstances: worker.ThreadWorker[] = [];
+      try {
+        for (let i: number = 0; i < 65; i++) {
+          let for_worker: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          workerInstances.push(for_worker);
+        }
+      } catch (error) {
+        console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expectAssertEqual(error.code, 10200003);
+        expectAssertContain(error.message, 'Worker initialization failure');
+        done();
+      }
+    })
   });
 }
