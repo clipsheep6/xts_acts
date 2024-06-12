@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 import Ability from '@ohos.app.ability.UIAbility'
+import Want from '@ohos.app.ability.Want'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant'
+import window from '@ohos.window'
 
 export default class TestAbility extends Ability {
-    onCreate(want, launchParam) {
+    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
         console.log('TestAbility onCreate')
     }
 
@@ -23,7 +26,7 @@ export default class TestAbility extends Ability {
         console.log('TestAbility onDestroy')
     }
 
-    onWindowStageCreate(windowStage) {
+    onWindowStageCreate(windowStage: window.WindowStage) {
         console.log('TestAbility onWindowStageCreate')
         windowStage.loadContent("TestAbility/pages/index", (err, data) => {
             if (err.code) {

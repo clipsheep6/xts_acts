@@ -506,7 +506,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1500', 0,  () => {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1500 start');
       expect(UTD.UniformDataType.JAVA_SCRIPT).assertEqual("general.java-script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.JAVA_SCRIPT);
