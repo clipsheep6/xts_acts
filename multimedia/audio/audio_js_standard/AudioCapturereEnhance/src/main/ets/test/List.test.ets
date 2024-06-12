@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import getCurrentAudioCapturerChangeInfo from'./GetCurrentAudioCapturerChangeInfo.test.ets'
+
+import getCurrentAudioCapturerChangeInfo from './GetCurrentAudioCapturerChangeInfo.test.ets'
 import getCurrentInputDevices from './GetCurrentInputDevices.test.ets'
 import onOffAudioCapturerChange from './OnOffAudioCapturerChange.test.ets'
 import onOffInputDeviceChange from './OnOffInputDeviceChange.test.ets'
