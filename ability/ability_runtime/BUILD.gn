@@ -63,6 +63,7 @@ group("ability_runtime") {
       "actssupportfunction:actssupportfunction",
       "actssystemapitest:ActsSystemAPITest",
       "actsturipermisssiontest:actsturipermisssiontest",
+      "actstwakeuptest:actstwakeuptest",
       "actsuiabilitycontext:actsuiabilitycontext",
       "actsuiextensionforresulttest:actsuiextensionforresulttest",
       "actsuiextensiontest:actsuiextensiontest",
