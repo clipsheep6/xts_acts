@@ -12,12 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AbilityStage from "@ohos.app.ability.AbilityStage"
 
-var printLog0 = 'Worker:AbilityStage:'
+import AbilityStage from "@ohos.app.ability.AbilityStage";
+import common from '@ohos.app.ability.common';
+
+let printLog0 = 'Worker:AbilityStage:';
+
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.info(printLog0 + "onCreate")
-        globalThis.abilityStageContext = this.context
-    }
+  onCreate() {
+    console.info(printLog0 + "onCreate");
+    AppStorage.setOrCreate<common.AbilityStageContext>("abilityStageContext", this.context);
+  }
 }

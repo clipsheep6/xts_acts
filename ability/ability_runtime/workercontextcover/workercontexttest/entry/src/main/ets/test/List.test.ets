@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 
-import workerTransmitTest from './WorkerTransmitTest.test'
+import workerTransmitTest from './WorkerTransmitTest.test';
 
 export default function List() {
-
-  workerTransmitTest()
+  workerTransmitTest();
 }

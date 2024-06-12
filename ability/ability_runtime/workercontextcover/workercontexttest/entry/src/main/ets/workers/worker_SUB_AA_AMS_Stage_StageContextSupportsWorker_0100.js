@@ -14,12 +14,11 @@
  */
 import worker from '@ohos.worker';
 
-let parentPort = worker.parentPort;
+let parentPort = worker.workerPort;
 var printLog = 'SUB_AA_AMS_Stage_StageContextSupportsWorker_0100 '
 parentPort.onmessage = function(message) {
     console.info(printLog + "onmessage: " + JSON.stringify(message));
-    let context = message.data
-    let ctx = context.currentHapModuleInfo.name
+    let ctx = message.data
     console.info(printLog + "ctx: " + ctx);
     let expectValue = false
     let status1 = typeof ctx == 'string'

@@ -14,7 +14,7 @@
  */
 import worker from '@ohos.worker';
 
-let parentPort = worker.parentPort;
+let parentPort = worker.workerPort;
 var printLog = 'SUB_AA_AMS_Stage_StageContextSupportsWorker_0400 '
 parentPort.onmessage = function(message) {
     console.info(printLog + "onmessage: " + JSON.stringify(message));
