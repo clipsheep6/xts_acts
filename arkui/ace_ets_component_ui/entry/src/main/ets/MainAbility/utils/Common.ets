@@ -14,6 +14,7 @@
  */
 import screen from '@ohos.screen';
 import { BusinessError } from '@ohos.base';
+import RectValue from './Rect';
 
 export default class CommonFunc {
   static rect_left;
@@ -21,18 +22,17 @@ export default class CommonFunc {
   static rect_right;
   static rect_bottom;
   static rect_value;
-  
-  static sleep(time){
-        return new Promise((resolve,reject)=>{
-            setTimeout(()=>{
-                resolve("ok")
-            },time)
-        }).then(()=>{
-            console.info(`sleep ${time} over...`)
-        })
+  static sleep(time: number) {
+    return new Promise((resolve: (value: string) => void) => {
+      setTimeout(() => {
+        resolve("ok")
+      }, time)
+    }).then(() => {
+      console.info(`sleep ${time} over...`)
+    })
   }
-  
- static getComponentRect(key) {
+
+  static getComponentRect(key) {
     let strJson = getInspectorByKey(key);
     let obj = JSON.parse(strJson);
     console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
@@ -47,7 +47,7 @@ export default class CommonFunc {
     }
   }
 
- static getComponentRectOnScreen(key) {
+  static getComponentRectOnScreen(key) {
     let strJson = getInspectorByKey(key);
     let obj = JSON.parse(strJson);
     console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
@@ -63,28 +63,29 @@ export default class CommonFunc {
     }
   }
 
-  static setScreenOrientation(orientation) {
-      // 1 -- 2 |
-       let screenClass: screen.Screen | null = null;
-       screen.getAllScreens().then(data => {
-           screenClass = data[0];
-          console.log('Succeeded in getting all screens. Data:' + JSON.stringify(data));
-             
-       }).catch((err: BusinessError) => {
-             console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
-       }); 
-       try {
-          screenClass.setOrientation(orientation, (err: BusinessError) => {
-           const errCode: number = err.code;
-           if (errCode) {
-               console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
-              return;
-            }
-          console.info('Succeeded in setting the vertical orientation.');
-          });
-       } catch (exception) {
-        console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
-     };
+  static setScreenOrientation(orientation: number) {
+    // 1 -- 2 |
+    let screenClass: screen.Screen | null = null;
+    screen.getAllScreens().then((data: Array<screen.Screen>) => {
+      screenClass = data[0];
+      console.log('Succeeded in getting all screens. Data:' + JSON.stringify(data));
+
+    }).catch((err: BusinessError) => {
+      console.log('Failed to get all screens. Cause: ' + JSON.stringify(err));
+    });
+    try {
+      screenClass.setOrientation(orientation, (err: BusinessError) => {
+        const errCode: number = err.code;
+        if (errCode) {
+          console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(err));
+          return;
+        }
+        console.info('Succeeded in setting the vertical orientation.');
+      });
+    } catch (exception) {
+      console.error('Failed to set the vertical orientation. Code: ' + JSON.stringify(exception));
+    }
+
   }
 }
 

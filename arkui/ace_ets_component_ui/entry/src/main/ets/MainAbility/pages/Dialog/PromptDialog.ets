@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import prompt from '@ohos.prompt'
+import prompt from '@ohos.prompt';
+
 @Entry
 @Component
 struct PromptExampleA {
@@ -49,6 +50,8 @@ struct PromptExampleA {
             ],
           })
         }).backgroundColor(0x317aff)
-    }.width('100%').margin({ top: 100 })
+    }
+    .width('100%')
+    .margin({ top: 100 })
   }
 }

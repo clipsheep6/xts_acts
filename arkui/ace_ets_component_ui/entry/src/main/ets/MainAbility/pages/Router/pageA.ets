@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import router from '@ohos.router'
+
 @Entry
 @Component
 struct pageA {
@@ -28,8 +29,10 @@ struct pageA {
           });
         }).id('skip_B')
 
-        Text('' + router.getState()['name']).id('pageA_name')
-        Text('' + router.getLength()).id('pageA_length')
+        Text('' + router.getState()['name'])
+          .id('pageA_name')
+        Text('' + router.getLength())
+          .id('pageA_length')
       }
       .width('100%')
     }

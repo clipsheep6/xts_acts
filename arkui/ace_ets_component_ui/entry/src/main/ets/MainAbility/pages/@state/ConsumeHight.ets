@@ -58,11 +58,15 @@ struct Ancestors_CH {
   build() {
     Column({ space: 20 }) {
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.hight)) + " number is " + JSON.stringify(this.hight))
-        .fontSize(20).margin(30).key('ConsumeHight')
+        .fontSize(20)
+        .margin(30)
+        .key('ConsumeHight')
 
       Child_CH()
 
 
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

@@ -16,8 +16,8 @@ import { PageOneTmp } from './PageOne'
 @Entry
 @Component
 struct NavDestination_onBackPressed {
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
-  @State message:string  = ''
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  @State message:string  = '';
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
@@ -38,9 +38,13 @@ struct NavDestination_onBackPressed {
             }});
           })
           .id('NavDestination_onBackPressed_btn1')
-        Text(this.message).key('NavDestination_onBackPressed_text1')
+        Text(this.message)
+          .key('NavDestination_onBackPressed_text1')
       }
-    }.title('NavIndex').navDestination(this.PageMap).height('50%')
+    }
+    .title('NavIndex')
+    .navDestination(this.PageMap)
+    .height('50%')
 
   }
 }

@@ -15,21 +15,23 @@
 @Entry
 @Component
 struct NavigationStack23 {
-  private arr: number[] = [1,2,3]
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
-  @State bool: boolean = false
-  @State text: string = 'start'
-  @State stateChange: boolean = false
-  @State flagFocus: string = 'FocusStart'
+  private arr: number[] = [1, 2, 3];
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  @State bool: boolean = false;
+  @State text: string = 'start';
+  @State stateChange: boolean = false;
+  @State flagFocus: string = 'FocusStart';
+
   build() {
-    Column(){
+    Column() {
       Navigation(this.pageInfos) {
         Column() {
-          List({space:12}){
-            ForEach(this.arr, (item:number) => {
+          List({ space: 12 }) {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
-                NavRouter(){
-                  Text("NavRouter" + item).key(`NavigationStack23ListItemText${item}`)
+                NavRouter() {
+                  Text("NavRouter" + item)
+                    .key(`NavigationStack23ListItemText${item}`)
                     .width('100%')
                     .height(60)
                     .backgroundColor('#FFFFFF')
@@ -38,21 +40,21 @@ struct NavigationStack23 {
                     .fontWeight(1000)
                     .textAlign(TextAlign.Center)
                   NavDestination() {
-                    Text(`${this.text+item}`).key('NavigationStack23TextCont')
+                    Text(`${this.text + item}`).key('NavigationStack23TextCont')
                     Button('button').key('NavigationStack23ButtonContent')
                       .onClick(() => {
                         this.text = 'clicked'
                       })
                   }.key('NavigationStack23NavDestination')
                   .backgroundColor(Color.Orange)
-                  .title("NavDestinationTitle"+ item)
+                  .title("NavDestinationTitle" + item)
 
                 }
               }.key(`NavigationStack23ListItem${item}`)
-            },(item: number) => item.toString())
+            }, (item: number) => item.toString())
           }
           .width('100%')
-          .margin({top:12})
+          .margin({ top: 12 })
         }
       }
       .onNavBarStateChange((isVisible: boolean) => {
@@ -66,11 +68,12 @@ struct NavigationStack23 {
       .hideNavBar(this.bool)
       .navBarWidth(260)
       .minContentWidth(300)
-      .navBarWidthRange([200,400])
-      .border({width: 1})
+      .navBarWidthRange([200, 400])
+      .border({ width: 1 })
       .height('70%')
       .width('100%')
       .backgroundColor(Color.Pink)
+
       Text(`${this.stateChange}`).key('NavigationStack23Blur').fontWeight(700)
       Button('隐藏导航栏')
         .key('NavigationStack23True')
@@ -83,7 +86,7 @@ struct NavigationStack23 {
           this.bool = false
         })
     }
-    .border({width:1})
+    .border({ width: 1 })
     .height('100%')
     .width(300)
   }

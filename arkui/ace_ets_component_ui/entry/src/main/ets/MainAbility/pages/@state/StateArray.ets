@@ -17,13 +17,18 @@
 struct MyComponent_AE {
   @State Array: Array<Number> | Array<boolean> | Boolean | Array<Resource> = [1];
 
-
   build() {
     Column({ space: 20 }) {
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array)) + " number is " + JSON.stringify(this.Array))
-        .fontSize(20).margin(30).key('StateArray')
-      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
-        .fontSize(20).margin(30).key('StateArrayNew')
+        .fontSize(20)
+        .margin(30)
+        .key('StateArray')
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array)) + " number is " + getContext()
+        .resourceManager
+        .getStringSync($r('app.string.number').id))
+        .fontSize(20)
+        .margin(30)
+        .key('StateArrayNew')
       Text("设置变量Array<Number>类型[1]-->[10]")
       Button('change')
         .onClick(() => {
@@ -51,8 +56,8 @@ struct MyComponent_AE {
           this.Array = [$r('app.string.number')];
         })
         .key('state4')
-
-
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

@@ -15,22 +15,24 @@
 @Entry
 @Component
 struct NavigationStack18 {
-  private arr: number[] = [1,2,3]
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
-  @State bool: boolean = false
-  @State text: string = 'start'
-  @State flagBlur: string = 'BlurStart'
-  @State flagFocus: string = 'FocusStart'
-  @State getText: string = ''
+  private arr: number[] = [1, 2, 3];
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  @State bool: boolean = false;
+  @State text: string = 'start';
+  @State flagBlur: string = 'BlurStart';
+  @State flagFocus: string = 'FocusStart';
+  @State getText: string = '';
+
   build() {
-    Column(){
+    Column() {
       Navigation() {
         Column() {
-          List({space:12}){
-            ForEach(this.arr, (item:number) => {
+          List({ space: 12 }) {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
-                NavRouter(){
-                  Text("NavRouter" + item).key(`NavigationStack18ListItemText${item}`)
+                NavRouter() {
+                  Text("NavRouter" + item)
+                    .key(`NavigationStack18ListItemText${item}`)
                     .width('100%')
                     .height(60)
                     .backgroundColor('#FFFFFF')
@@ -40,18 +42,18 @@ struct NavigationStack18 {
                     .textAlign(TextAlign.Center)
                   NavDestination()
                     .key('NavigationStack18NavDestination')
-                    .onBlur(()=>{
+                    .onBlur(() => {
                       this.flagBlur = 'BlurDone'
                     })
-                    .onFocus(()=>{
+                    .onFocus(() => {
                       this.flagFocus = 'FocusDone'
                     })
                 }
               }.key(`NavigationStack18ListItem${item}`)
-            },(item: number) => item.toString())
+            }, (item: number) => item.toString())
           }
           .width('100%')
-          .margin({top:12})
+          .margin({ top: 12 })
         }
       }
       .height('60%')
@@ -61,11 +63,12 @@ struct NavigationStack18 {
       .hideNavBar(this.bool)
       .navBarWidth(260)
       .minContentWidth(300)
-      .navBarWidthRange([200,400])
-      .border({width: 1})
+      .navBarWidthRange([200, 400])
+      .border({ width: 1 })
       .height('70%')
       .width('100%')
       .backgroundColor(Color.Pink)
+
       Text(this.getText).key('NavigationStack18getText').fontWeight(700)
       Text(this.flagBlur).key('NavigationStack18Blur').fontWeight(700)
       Text(this.flagFocus).key('NavigationStack18Focus').fontWeight(700)
@@ -84,7 +87,7 @@ struct NavigationStack18 {
           this.getText = JSON.stringify(this.pageInfos.getAllPathName()?.length)
         })
     }
-    .border({width:1})
+    .border({ width: 1 })
     .height('100%')
     .width(300)
   }

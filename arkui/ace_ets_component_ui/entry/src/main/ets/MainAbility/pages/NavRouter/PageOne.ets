@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class TmpClass{
-  count:number=10
+class TmpClass {
+  count: number = 10
 }
+
 @Component
 export struct PageOneTmp {
   @Consume('pageInfos') pageInfos: NavPathStack;
@@ -23,17 +24,13 @@ export struct PageOneTmp {
   build() {
     NavDestination() {
       Column() {
-        // Button('pop', { stateEffect: true, type: ButtonType.Capsule })
-        //   .width('80%')
-        //   .height(40)
-        //   .margin(20)
-        //   .onClick(() => {
-        //     this.pageInfos.pop()
-        //   })
-      }.width('100%').height('100%')
-    }.title('pageOne')
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .title('pageOne')
     .onBackPressed(() => {
-      this.pageInfos.pop({number: 1})
+      this.pageInfos.pop({ number: 1 })
       return true
     })
   }

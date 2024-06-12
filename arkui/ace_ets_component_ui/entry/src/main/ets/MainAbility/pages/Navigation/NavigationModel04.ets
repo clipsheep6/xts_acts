@@ -15,16 +15,17 @@
 @Entry
 @Component
 struct NavigationModel04 {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State currentIndex: number = 0
-  @State strText: string = 'doing'
-  @State Sizearr: number[] = [240,360,400,500,600,650, 100]
-  @State columnWidthIndex: number = 5
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State currentIndex: number = 0;
+  @State strText: string = 'doing';
+  @State Sizearr: number[] = [240, 360, 400, 500, 600, 650, 100];
+  @State columnWidthIndex: number = 5;
+
   build() {
     Column() {
       Navigation() {
         Button('button').key('NavigationModel04button')
-          .onClick(()=>{
+          .onClick(() => {
             this.columnWidthIndex = 2
           })
         Text(this.strText).key('NavigationModel04text')
@@ -49,9 +50,12 @@ struct NavigationModel04 {
       }
       .width(this.Sizearr[this.columnWidthIndex])
       .onNavigationModeChange(() => {
-        this.currentIndex ++
-        this.strText =  'doing' + `${ this.currentIndex }`
+        this.currentIndex++
+        this.strText = 'doing' + `${this.currentIndex}`
       })
-    }.width(600).height('100%').backgroundColor('#F1F3F5')
+    }
+    .width(600)
+    .height('100%')
+    .backgroundColor('#F1F3F5')
   }
 }

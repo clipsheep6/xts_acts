@@ -13,11 +13,10 @@
  * limitations under the License.
  */
 import router from '@ohos.router'
+
 @Entry
 @Component
 struct Index {
-
-
   build() {
     Row() {
       Column() {
@@ -27,7 +26,7 @@ struct Index {
         Button('跳转路由').onClick(() => {
           router.push({
             url: 'MainAbility/pages/Router/Router2',
-            params: {data1: 'message', data2: 12345}
+            params: { data1: 'message', data2: 12345 }
           });
         }).id('router1Button')
       }

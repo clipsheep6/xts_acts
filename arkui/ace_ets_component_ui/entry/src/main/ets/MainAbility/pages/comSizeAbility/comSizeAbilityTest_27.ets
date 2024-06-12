@@ -12,19 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import matrix4 from '@ohos.matrix4'
-let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0])
+import matrix4 from '@ohos.matrix4';
+
+let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]);
+
 @Entry
 @Component
 struct comSizeAbilityTest_27 {
-  @State currentIndex: number = 0
-  @State firstState: ItemState = ItemState.Normal
-  @State secondState: ItemState = ItemState.Normal
-  @State thirdState: ItemState = ItemState.Normal
+  @State currentIndex: number = 0;
+  @State firstState: ItemState = ItemState.Normal;
+  @State secondState: ItemState = ItemState.Normal;
+  @State thirdState: ItemState = ItemState.Normal;
+
   build() {
-    Scroll(){
+    Scroll() {
       Column({ space: 20 }) {
-        Column(){
+        Column() {
           Shape() {
             Rect().width(300).height(50)
           }
@@ -35,11 +38,25 @@ struct comSizeAbilityTest_27 {
           .key("Shape_Size")
           .size({ width: 214, height: 140 })
           .translate({ x: 1, y: 1, z: 1 })
-          .scale({ x: 1, y: 1, z: 1, centerX: 1, centerY: 1 })
-          .rotate({ x: 1, y: 1, z: 1, angle: 0, centerX: 1, centerY: 1 })
+          .scale({
+            x: 1,
+            y: 1,
+            z: 1,
+            centerX: 1,
+            centerY: 1
+          })
+          .rotate({
+            x: 1,
+            y: 1,
+            z: 1,
+            angle: 0,
+            centerX: 1,
+            centerY: 1
+          })
           .transform(matrix)
         }.key('Shape_Father')
-        Column(){
+
+        Column() {
           Stepper({
             index: this.currentIndex
           }) {
@@ -56,8 +73,21 @@ struct comSizeAbilityTest_27 {
           .id("Stepper_Size")
           .size({ width: 214, height: 140 })
           .translate({ x: 1, y: 1, z: 1 })
-          .scale({ x: 1, y: 1, z: 1, centerX: 1, centerY: 1 })
-          .rotate({ x: 1, y: 1, z: 1, angle: 0, centerX: 1, centerY: 1 })
+          .scale({
+            x: 1,
+            y: 1,
+            z: 1,
+            centerX: 1,
+            centerY: 1
+          })
+          .rotate({
+            x: 1,
+            y: 1,
+            z: 1,
+            angle: 0,
+            centerX: 1,
+            centerY: 1
+          })
           .transform(matrix)
         }.key('Stepper_Father')
       }.width('100%')
