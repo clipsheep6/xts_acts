@@ -16,11 +16,14 @@ import router from '@system.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 
 export default function ScrollTest() {
-  describe('ScrollTest', function () {
-    beforeEach(async function (done) {
+  describe('ScrollTest', () => {
+    beforeEach(async (done : Function) => {
       console.info("flex beforeEach start");
-      let options = {
-        uri: 'TestAbility/pages/Index',
+      class Option{
+        uri: string =''
+      }
+      let options : Option = {
+        uri: 'testability/pages/Index',
       }
       try {
         router.clear();
@@ -37,20 +40,34 @@ export default function ScrollTest() {
       done()
     });
 
+    interface MyObject {
+          key1: string;
+          key2: number;
+          // 其他属性...
+        }
+      interface Attrs {
+        scrollable: MyObject;
+        // 其他属性...
+      }
+
+      interface VueComponentWithAttrs {
+        $attrs: Attrs;
+      }
+
     /*
      *@tc.number ArkUX_Scroll_Visual_0010
      *@tc.name   Support modifying the scroll scrollPage hange of Scroll component
      *@tc.desc   Sets the scrollPage property parameter to true or false
      */
-    it('ArkUX_Scroll_Visual_0010', 0, async function (done) {
+    it('ArkUX_Scroll_Visual_0010', 0, async (done :Function) => {
       console.info('ArkUX_Scroll_Visual_0010 START');
       setTimeout(() => {
         try {
           let strJson = getInspectorByKey('ArkUX_Scroll_Visual_0010');
           console.info('ArkUX_Scroll_Visual_0010 START  :' + JSON.stringify(strJson));
-          let obj = JSON.parse(strJson);
+          let obj : VueComponentWithAttrs = JSON.parse(strJson);
           console.info("ArkUX_Scroll_Visual_0010 obj is: " + JSON.stringify(obj));
-          let scrollable = obj.$attrs.scrollable
+          let scrollable : MyObject = obj.$attrs.scrollable
           expect(scrollable).assertEqual("ScrollDirection.Vertical");
           console.info('ArkUX_Scroll_Visual_0010 END ');
         } catch (err) {
