@@ -41,8 +41,8 @@ group("communication") {
       "wifi_ErrorCode401:ActsErrorcode401Test",
       "wifi_ets_standard:ActsEtsWifiTest",
       "wifi_p2p:ActsP2PJSTest",
-      "wifi_standard:ActsWifiJSTest",
       "wifi_p2p_nop:ActsP2PErrorcode201StageOhosTest",
+      "wifi_standard:ActsWifiJSTest",
     ]
   } else {
     deps = [ "wifi_standard:ActsWifiJSTest" ]
