@@ -13,14 +13,14 @@
 * limitations under the License.
 */
 
-import abilityManagerTest from './AbilityManager.test'
-import appManagerTest from './AppManager.test'
-import missionManagerTest from './MissionManager.test'
-import wantAgentTest from './WantAgent.test'
-import formHostTest from './FormHost.test'
-import formProviderTest from './FormProvider.test'
-import abilityContextTest from './AbilityContext.test'
-import contextTest from './Context.test'
+import abilityManagerTest from './AbilityManager.test';
+import appManagerTest from './AppManager.test';
+import missionManagerTest from './MissionManager.test';
+import wantAgentTest from './WantAgent.test';
+import formHostTest from './FormHost.test';
+import formProviderTest from './FormProvider.test';
+import abilityContextTest from './AbilityContext.test';
+import contextTest from './Context.test';
 
 export default function testsuite() {
   abilityManagerTest();

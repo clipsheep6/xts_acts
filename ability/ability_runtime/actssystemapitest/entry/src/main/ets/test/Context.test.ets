@@ -13,14 +13,15 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, it, expect } from '@ohos/hypium';
+import common from '@ohos.app.ability.common';
 
 let ERROR_CODE = 202;
-let context;
+let context: common.UIAbilityContext;
 export default function contextTest() {
-  describe('contextTest', function () {
-    beforeAll(function () {
-      context = globalThis.abilityContext;
+  describe('contextTest', () => {
+    beforeAll(() => {
+      context = AppStorage.get<common.UIAbilityContext>("abilityContext")!;
     })
 
     /**
@@ -29,7 +30,7 @@ export default function contextTest() {
      * @tc.desc:  Test the third-party application call createBundleContext will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Context_0100',0, function (done) {
+    it('System_API_Test_Context_0100',0, (done: Function) => {
       let TAG = 'System_API_Test_Context_0100';
       console.log(`${TAG} context : ${context}`);
       try {
@@ -48,7 +49,7 @@ export default function contextTest() {
      * @tc.desc:  Test the third-party application call createBundleContext will be blocked
      * @tc.level   3
      */
-    it('System_API_Test_Context_0200',0, function (done) {
+    it('System_API_Test_Context_0200',0, (done: Function) => {
       let TAG = 'System_API_Test_Context_0200';
       try {
         let bundleName = "aaa";
