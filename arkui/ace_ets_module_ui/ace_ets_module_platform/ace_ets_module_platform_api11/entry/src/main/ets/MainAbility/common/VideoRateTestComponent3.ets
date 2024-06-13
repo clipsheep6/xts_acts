@@ -86,7 +86,7 @@ export default struct VideoRateTestComponent3 {
                 // 针对长按加速情况进行单独判断处理
                 if (this.changeRateFlag) {
                   console.log("VideoOperate9LongClick this.currentProgressRateActual:",this.currentProgressRateActual,(this.currentProgressRateActual>1));
-                  if (this.currentProgressRateActual > 1) {
+                  if (this.currentProgressRateActual > 0.9) {
                     this.isLessThanThreeTenths = true;
                   } else {
                     this.isLessThanThreeTenths = false;

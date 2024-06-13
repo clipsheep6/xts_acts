@@ -65,6 +65,7 @@ export default function VideoOperate9LongClick() {
       // 长按视频倍速播放
       await video.longClick();
       await video.longClick();
+      await video.longClick();
       // 发送退出全屏请求以便拿到Text组件
       await video.click();
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 4);
