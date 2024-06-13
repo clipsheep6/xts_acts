@@ -21,7 +21,7 @@
 @Component
 struct IA9iterations1N1 {
   @State state: AnimationStatus = AnimationStatus.Initial;
-  @State duration: number = 1000;
+  @State duration: number = 100;
   @State startFlag: boolean = false;
   @State pauseFlag: boolean = false;
   @State repeatFlag: boolean = false;
