@@ -29,7 +29,7 @@ struct VideoOperate8NotSet {
         curRateNumber: this.curRateNumber,
         videoSrc: this.videoSrc,
         previewUri: this.previewUri,
-        errorValue: 0.1
+        errorValue: 0.2
       })
     }
   }
