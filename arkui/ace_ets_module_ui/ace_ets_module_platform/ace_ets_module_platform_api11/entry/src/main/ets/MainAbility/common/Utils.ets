@@ -15,6 +15,9 @@
 import RectValue from './Rect';
 
 export default class Utils {
+
+  static WAIT_UI_READY_MS: number = 1000;
+
   static rect_left: number;
   static rect_top: number;
   static rect_right: number;
