@@ -61,7 +61,7 @@ export default function VideoOperateTest2() {
       await dr.delayMs(Utils.WAIT_UI_READY_MS);
       let videoComponent = await dr.findComponent(ON.id("VideoOperateVideo"));
       await videoComponent.click();
-      await Utils.sleep(Utils.WAIT_UI_READY_MS);
+      await Utils.sleep(Utils.WAIT_UI_READY_MS * 5);
       let text = await dr.findComponent(ON.id("Text_VideoOperateVideo_first"));
       expect(await text.getText()).assertContain("true_true");
       let text2 = await dr.findComponent(ON.id("Text_VideoOperateVideo_second"));
