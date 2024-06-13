@@ -192,48 +192,107 @@ export default function Grid_Col_Offset_GridColColumnOption() {
       console.log('assert position')
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_00.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_00.right - Grid_Col_Offset_GridColColumnOption_00.left) * 3) + vp2px(30))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_00.left:', Grid_Col_Offset_GridColColumnOption_00.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_00.right:', Grid_Col_Offset_GridColColumnOption_00.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:vp2px(30):', vp2px(30))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_01.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Grid_Col_Offset_GridColColumnOption_01.right - Grid_Col_Offset_GridColColumnOption_01.left + vp2px(10))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.left:', Grid_Col_Offset_GridColColumnOption_01.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.right:', Grid_Col_Offset_GridColColumnOption_01.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.left:', Grid_Col_Offset_GridColColumnOption_01.left)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_02.left - Grid_Col_Offset_GridColColumnOption_01.right) - (Math.round((Grid_Col_Offset_GridColColumnOption_02.right - Grid_Col_Offset_GridColColumnOption_02.left) * 3) + vp2px(40))) <= 1)
         .assertTrue();
-
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_02.left:', Grid_Col_Offset_GridColColumnOption_02.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.right:', Grid_Col_Offset_GridColColumnOption_01.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_02.right:', Grid_Col_Offset_GridColColumnOption_02.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_02.left:', Grid_Col_Offset_GridColColumnOption_02.left)
+      console.log('WXX:vp2px(40):', vp2px(40))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_03.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_03.right - Grid_Col_Offset_GridColColumnOption_03.left) * 3) + vp2px(30))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.left:', Grid_Col_Offset_GridColColumnOption_03.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.right:', Grid_Col_Offset_GridColColumnOption_03.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.left:', Grid_Col_Offset_GridColColumnOption_03.left)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_04.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Grid_Col_Offset_GridColColumnOption_04.right - Grid_Col_Offset_GridColColumnOption_04.left + vp2px(10))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.left:', Grid_Col_Offset_GridColColumnOption_04.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.right:', Grid_Col_Offset_GridColColumnOption_04.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.left:', Grid_Col_Offset_GridColColumnOption_04.left)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_05.left - Grid_Col_Offset_GridColColumnOption_04.right) - (Math.round((Grid_Col_Offset_GridColColumnOption_05.right - Grid_Col_Offset_GridColColumnOption_05.left) * 3) + vp2px(40))) <= 1)
         .assertTrue();
-
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_05.left:', Grid_Col_Offset_GridColColumnOption_05.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.right:', Grid_Col_Offset_GridColColumnOption_04.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_05.right:', Grid_Col_Offset_GridColColumnOption_05.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_05.left:', Grid_Col_Offset_GridColColumnOption_05.left)
+      console.log('WXX:vp2px(40):', vp2px(40))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_06.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_06.right - Grid_Col_Offset_GridColColumnOption_06.left) * 3) + vp2px(30))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.left:', Grid_Col_Offset_GridColColumnOption_06.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.right:', Grid_Col_Offset_GridColColumnOption_06.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.left:', Grid_Col_Offset_GridColColumnOption_06.left)
+      console.log('WXX:vp2px(10):', vp2px(30))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_07.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Grid_Col_Offset_GridColColumnOption_07.right - Grid_Col_Offset_GridColColumnOption_07.left + vp2px(10))) <= 1)
         .assertTrue();
-
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_07.left:', Grid_Col_Offset_GridColColumnOption_07.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_07.right:', Grid_Col_Offset_GridColColumnOption_07.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_07.left:', Grid_Col_Offset_GridColColumnOption_07.left)
+      console.log('WXX:vp2px(10):', vp2px(10))
 
       console.log('assert space')
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_01.top - Grid_Col_Offset_GridColColumnOption_00.bottom) - vp2px(10)) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.top:', Grid_Col_Offset_GridColColumnOption_01.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_00.bottom:', Grid_Col_Offset_GridColColumnOption_00.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_02.top - Grid_Col_Offset_GridColColumnOption_00.bottom) - vp2px(10)) <= 1)
         .assertTrue();
-
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_02.top:', Grid_Col_Offset_GridColColumnOption_02.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_00.bottom:', Grid_Col_Offset_GridColColumnOption_00.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_03.top - Grid_Col_Offset_GridColColumnOption_01.bottom) - vp2px(10)) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.top:', Grid_Col_Offset_GridColColumnOption_03.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.bottom:', Grid_Col_Offset_GridColColumnOption_01.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_03.top - Grid_Col_Offset_GridColColumnOption_02.bottom) - vp2px(10)) <= 1)
         .assertTrue();
-
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.top:', Grid_Col_Offset_GridColColumnOption_03.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_02.bottom:', Grid_Col_Offset_GridColColumnOption_02.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_04.top - Grid_Col_Offset_GridColColumnOption_03.bottom) - vp2px(10)) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.top:', Grid_Col_Offset_GridColColumnOption_04.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.bottom:', Grid_Col_Offset_GridColColumnOption_03.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_05.top - Grid_Col_Offset_GridColColumnOption_03.bottom) - vp2px(10)) <= 1)
         .assertTrue();
-
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_05.top:', Grid_Col_Offset_GridColColumnOption_05.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.bottom:', Grid_Col_Offset_GridColColumnOption_03.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_06.top - Grid_Col_Offset_GridColColumnOption_04.bottom) - vp2px(10)) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.top:', Grid_Col_Offset_GridColColumnOption_06.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.bottom:', Grid_Col_Offset_GridColColumnOption_04.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_06.top - Grid_Col_Offset_GridColColumnOption_05.bottom) - vp2px(10)) <= 1)
         .assertTrue();
-
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.top:', Grid_Col_Offset_GridColColumnOption_06.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_05.bottom:', Grid_Col_Offset_GridColColumnOption_05.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_07.top - Grid_Col_Offset_GridColColumnOption_06.bottom) - vp2px(10)) <= 1)
         .assertTrue();
-
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_07.top:', Grid_Col_Offset_GridColColumnOption_07.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.bottom:', Grid_Col_Offset_GridColColumnOption_06.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       console.info('[SUB_ACE_Grid_Col_Offset_GridColColumnOption_TEST_0300] END');
       done();
     });
@@ -334,38 +393,97 @@ export default function Grid_Col_Offset_GridColColumnOption() {
       console.log('assert position')
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_00.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_00.right - Grid_Col_Offset_GridColColumnOption_00.left) * 5) + vp2px(50))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_00.left:', Grid_Col_Offset_GridColColumnOption_00.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_00.right:', Grid_Col_Offset_GridColColumnOption_00.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_00.left:', Grid_Col_Offset_GridColColumnOption_00.left)
+      console.log('WXX:vp2px(50):', vp2px(50))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_01.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_01.right - Grid_Col_Offset_GridColColumnOption_01.left) * 5) + vp2px(50))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.left:', Grid_Col_Offset_GridColColumnOption_01.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.right:', Grid_Col_Offset_GridColColumnOption_01.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.left:', Grid_Col_Offset_GridColColumnOption_01.left)
+      console.log('WXX:vp2px(50):', vp2px(50))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_02.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_02.right - Grid_Col_Offset_GridColColumnOption_02.left) * 5) + vp2px(50))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_02.left:', Grid_Col_Offset_GridColColumnOption_02.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_02.right:', Grid_Col_Offset_GridColColumnOption_02.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_02.left:', Grid_Col_Offset_GridColColumnOption_02.left)
+      console.log('WXX:vp2px(50):', vp2px(50))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_03.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_03.right - Grid_Col_Offset_GridColColumnOption_03.left) * 5) + vp2px(50))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.left:', Grid_Col_Offset_GridColColumnOption_03.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.right:', Grid_Col_Offset_GridColColumnOption_03.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.left:', Grid_Col_Offset_GridColColumnOption_03.left)
+      console.log('WXX:vp2px(50):', vp2px(50))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_04.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_04.right - Grid_Col_Offset_GridColColumnOption_04.left) * 5) + vp2px(50))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.left:', Grid_Col_Offset_GridColColumnOption_04.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.right:', Grid_Col_Offset_GridColColumnOption_04.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.left:', Grid_Col_Offset_GridColColumnOption_04.left)
+      console.log('WXX:vp2px(50):', vp2px(50))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_05.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_05.right - Grid_Col_Offset_GridColColumnOption_05.left) * 5) + vp2px(50))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_05.left:', Grid_Col_Offset_GridColColumnOption_05.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_05.right:', Grid_Col_Offset_GridColColumnOption_05.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_05.left:', Grid_Col_Offset_GridColColumnOption_05.left)
+      console.log('WXX:vp2px(50):', vp2px(50))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_06.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_06.right - Grid_Col_Offset_GridColColumnOption_06.left) * 5) + vp2px(50))) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.left:', Grid_Col_Offset_GridColColumnOption_06.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.right:', Grid_Col_Offset_GridColColumnOption_06.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.left:', Grid_Col_Offset_GridColColumnOption_06.left)
+      console.log('WXX:vp2px(50):', vp2px(50))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_07.left - Grid_Col_Offset_GridColColumnOption_G1.left) - (Math.round((Grid_Col_Offset_GridColColumnOption_07.right - Grid_Col_Offset_GridColColumnOption_07.left) * 5) + vp2px(50))) <= 1)
         .assertTrue();
-
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_07.left:', Grid_Col_Offset_GridColColumnOption_07.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_G1.left:', Grid_Col_Offset_GridColColumnOption_G1.left)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_07.right:', Grid_Col_Offset_GridColColumnOption_07.right)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_07.left:', Grid_Col_Offset_GridColColumnOption_07.left)
+      console.log('WXX:vp2px(50):', vp2px(50))
 
       console.log('assert space')
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_01.top - Grid_Col_Offset_GridColColumnOption_00.bottom) - vp2px(10)) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.top:', Grid_Col_Offset_GridColColumnOption_01.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_00.bottom:', Grid_Col_Offset_GridColColumnOption_00.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_02.top - Grid_Col_Offset_GridColColumnOption_01.bottom) - vp2px(10)) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_02.top:', Grid_Col_Offset_GridColColumnOption_02.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_01.bottom:', Grid_Col_Offset_GridColColumnOption_01.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_03.top - Grid_Col_Offset_GridColColumnOption_02.bottom) - vp2px(10)) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.top:', Grid_Col_Offset_GridColColumnOption_03.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_02.bottom:', Grid_Col_Offset_GridColColumnOption_02.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_04.top - Grid_Col_Offset_GridColColumnOption_03.bottom) - vp2px(10)) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.top:', Grid_Col_Offset_GridColColumnOption_04.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_03.bottom:', Grid_Col_Offset_GridColColumnOption_03.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_05.top - Grid_Col_Offset_GridColColumnOption_04.bottom) - vp2px(10)) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_05.top:', Grid_Col_Offset_GridColColumnOption_05.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_04.bottom:', Grid_Col_Offset_GridColColumnOption_04.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_06.top - Grid_Col_Offset_GridColColumnOption_05.bottom) - vp2px(10)) <= 1)
         .assertTrue();
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.top:', Grid_Col_Offset_GridColColumnOption_06.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.bottom:', Grid_Col_Offset_GridColColumnOption_06.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       expect(Math.abs((Grid_Col_Offset_GridColColumnOption_07.top - Grid_Col_Offset_GridColColumnOption_06.bottom) - vp2px(10)) <= 1)
         .assertTrue();
-
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_07.top:', Grid_Col_Offset_GridColColumnOption_07.top)
+      console.log('WXX:Grid_Col_Offset_GridColColumnOption_06.bottom:', Grid_Col_Offset_GridColColumnOption_06.bottom)
+      console.log('WXX:vp2px(10):', vp2px(10))
       console.info('[SUB_ACE_Grid_Col_Offset_GridColColumnOption_TEST_0500] END');
       done();
     });
