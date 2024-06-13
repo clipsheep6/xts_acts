@@ -31,7 +31,6 @@ export default function BackgroundTaskManagerTest() {
 
     let wantAgentInfo: wantAgent.WantAgentInfo;
 
-
     beforeAll(() => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'beforeAll called');
       wantAgentInfo = {
