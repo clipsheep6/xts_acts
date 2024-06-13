@@ -33,7 +33,6 @@ export default function VideoOperate9LongClick2() {
         if (!("VideoOperate9LongClick2" == pages.name)) {
           console.info("get video state success " + JSON.stringify(pages.name));
           let result = await router.push(options);
-          await Utils.sleep(Utils.WAIT_UI_READY_MS*2);
           console.info("push video page success " + JSON.stringify(result));
         }
       } catch (err) {
@@ -61,6 +60,7 @@ export default function VideoOperate9LongClick2() {
       await dr.delayMs(Utils.WAIT_UI_READY_MS);
       let video = await dr.findComponent(ON.id('VideoOperateVideo').longClickable(true));
       // 长按视频倍速播放
+      await video.longClick();
       await video.longClick();
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 5);
       // 检查播放速度是否大于1
