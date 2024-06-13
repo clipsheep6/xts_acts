@@ -61,7 +61,7 @@ export default function BackgroundTaskManagerTest() {
 
     /*
      * @tc.number:SUB_RESOURCESCHEDULE_BACKGROUND_TASK_MANAGER_NOP_XTS_001
-     * @tc.name: SUB_RESOURCESCHEDULE_BACKGROUND_TASK_MANAGER_NOP_XTS_001
+     * @tc.name:SUB_RESOURCESCHEDULE_BACKGROUND_TASK_MANAGER_NOP_XTS_001
      * @tc.desc:Test that the startBackgroundRunning function interface does not request ohos.permission.KEEP_BACKGROUND_RUNNING permission
      * @tc.level:Level 3
      * @tc.type:Function
@@ -98,7 +98,7 @@ export default function BackgroundTaskManagerTest() {
 
     /*
      * @tc.number:SUB_RESOURCESCHEDULE_BACKGROUND_TASK_MANAGER_NOP_XTS_002
-     * @tc.name: SUB_RESOURCESCHEDULE_BACKGROUND_TASK_MANAGER_NOP_XTS_002
+     * @tc.name:SUB_RESOURCESCHEDULE_BACKGROUND_TASK_MANAGER_NOP_XTS_002
      * @tc.desc:Test that the startBackgroundRunning function interface does not request ohos.permission.KEEP_BACKGROUND_RUNNING permission
      * @tc.level:Level 3
      * @tc.type:Function
