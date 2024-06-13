@@ -33,7 +33,6 @@ export default function VideoOperateTest16() {
         if (!("VideoOperate16" == pages.name)) {
           console.info("get video state success " + JSON.stringify(pages.name));
           let result = await router.push(options);
-          await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
           console.info("push video page success " + JSON.stringify(result));
         }
       } catch (err) {
