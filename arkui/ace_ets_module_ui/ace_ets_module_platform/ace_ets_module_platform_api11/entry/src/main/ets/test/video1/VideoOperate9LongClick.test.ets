@@ -33,7 +33,6 @@ export default function VideoOperate9LongClick() {
         if (!("VideoOperate9LongClick" == pages.name)) {
           console.info("get video state success " + JSON.stringify(pages.name));
           let result = await router.push(options);
-          await Utils.sleep(Utils.WAIT_UI_READY_MS*1);
           console.info("push video page success " + JSON.stringify(result));
         }
       } catch (err) {
@@ -57,17 +56,18 @@ export default function VideoOperate9LongClick() {
      */
     it('Video001_changeRate_by_longClick', 0, async (done: Function) => {
       console.info('[Video001_changeRate_by_longClick] START');
-      // 发送全屏请求
-      sendEventByKey('Button_fullScreen', 10, '');
       let dr = await Driver.create();
       await dr.delayMs(Utils.WAIT_UI_READY_MS);
+      // 发送全屏请求
+      let Button_fullScreen = await dr.findComponent(ON.id('Button_fullScreen'));
+      await Button_fullScreen.click();
       let video = await dr.findComponent(ON.id('VideoOperateVideo'));
       // 长按视频倍速播放
       await video.longClick();
       await video.longClick();
       // 发送退出全屏请求以便拿到Text组件
-      sendEventByKey('VideoOperateVideo', 10, '');
-      await Utils.sleep(Utils.WAIT_UI_READY_MS * 5);
+      await video.click();
+      await Utils.sleep(Utils.WAIT_UI_READY_MS * 4);
       let text  = await dr.findComponent(ON.id("Text_VideoOperateVideo_speedTime_1"));
       expect(await text.getText()).assertContain("isLessThanThreeTenths_true");
       console.info('[Video001_changeRate_by_longClick] END');

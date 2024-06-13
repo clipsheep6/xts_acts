@@ -59,20 +59,19 @@ export default function VideoOperateTest16() {
       console.info('[Video001_pause_start_test] START');
       let dr = await Driver.create();
       await dr.delayMs(Utils.WAIT_UI_READY_MS);
+      let startButton = await dr.findComponent(ON.id("Button_start"));
+      // 发出开始控制
+      await startButton.click();
       // 发出暂停控制
       let pauseButton = await dr.findComponent(ON.id("Button_pause"));
       await pauseButton.click();
       // 发出开始控制
-      let startButton = await dr.findComponent(ON.id("Button_start"));
       await startButton.click();
-      await Utils.sleep(Utils.WAIT_UI_READY_MS);
+      await Utils.sleep(Utils.WAIT_UI_READY_MS * 3);
       let textPause = await dr.findComponent(ON.id("Text_VideoOperateVideo_first"));
-      expect(dr).not().assertNull();
       expect(await textPause.getText()).assertContain("true");
       let textStart = await dr.findComponent(ON.id("Text_VideoOperateVideo_second"));
-      expect(dr).not().assertNull();
       expect(await textStart.getText()).assertContain("true");
-
       console.info('[Video001_pause_start_test] END');
       done();
     });

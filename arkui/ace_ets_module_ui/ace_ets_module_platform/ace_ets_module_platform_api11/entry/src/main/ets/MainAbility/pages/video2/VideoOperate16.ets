@@ -55,6 +55,7 @@ struct VideoOperate16 {
           .id('VideoOperateVideo')
           .objectFit(ImageFit.Contain)
           .autoPlay(true)
+          .loop(false)
           .onStart(() => {
             this.startTimes++;
             if (this.startTimes===2) {
