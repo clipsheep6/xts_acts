@@ -101,9 +101,9 @@ export default function FileIOFilerw_test() {
                 let averagerate = await IOfunc(file, 0x1400, 0xC800000, true, true, true);
                 console.log("RAND_READ Rate is" + averagerate + "M/s");
                 expect(averagerate > RAND_READ_BASELINE).assertTrue();
+                done();
                 fileIO.closeSync(file);
                 fileIO.unlinkSync(fpath);
-                done();
             } catch (e) {
                 console.log('fileIO_test_read_random_promise_000 has failed for ' + e.message + ', code: ' + e.code);
                 expect(false).assertTrue();
@@ -130,9 +130,9 @@ export default function FileIOFilerw_test() {
                 let averagerate = await IOfunc(file, 0x1400, 0xC800000, true, false, true);
                 console.log("RAND_WRITE Rate is" + averagerate + "M/s");
                 expect(averagerate > RAND_WRITE_BASELINE).assertTrue();
+                done();
                 fileIO.closeSync(file);
                 fileIO.unlinkSync(fpath);
-                done();
             } catch (e) {
                 console.log('fileIO_test_write_random_promise_000 has failed for ' + e.message + ', code: ' + e.code);
                 expect(false).assertTrue();
@@ -159,9 +159,9 @@ export default function FileIOFilerw_test() {
                 let averagerate = await IOfunc(file, 0x1400, 0xC800000, false, true, true);
                 console.log("SEQUENCE_READ Rate is" + averagerate + "M/s");
                 expect(averagerate > SEQUENCE_READ_BASELINE).assertTrue();
+                done();
                 fileIO.closeSync(file);
                 fileIO.unlinkSync(fpath);
-                done();
             } catch (e) {
                 console.log('fileIO_test_read_sequence_promise_000 has failed for ' + e.message + ', code: ' + e.code);
                 expect(false).assertTrue();
@@ -188,9 +188,9 @@ export default function FileIOFilerw_test() {
                 let averagerate = await IOfunc(file, 0x1400, 0xC800000, false, false, true);
                 console.log("SEQUENCE_WRITE Rate is" + averagerate + "M/s");
                 expect(averagerate > SEQUENCE_WRITE_BASELINE).assertTrue();
+                done();
                 fileIO.closeSync(file);
                 fileIO.unlinkSync(fpath);
-                done();
             } catch (e) {
                 console.log('fileIO_test_write_sequence_promise_000 has failed for ' + e.message + ', code: ' + e.code);
                 expect(false).assertTrue();
@@ -217,9 +217,9 @@ export default function FileIOFilerw_test() {
                 let averagerate = await IOfunc(file, 0x1400, 0xC800000, true, true, false);
                 console.log("RAND_READ Rate is" + averagerate + "M/s");
                 expect(averagerate > RAND_READ_BASELINE).assertTrue();
+                done();
                 fileIO.closeSync(file);
                 fileIO.unlinkSync(fpath);
-                done();
             } catch (e) {
                 console.log('fileIO_test_read_random_callback_000 has failed for ' + e.message + ', code: ' + e.code);
                 expect(false).assertTrue();
@@ -246,9 +246,9 @@ export default function FileIOFilerw_test() {
                 let averagerate = await IOfunc(file, 0x1400, 0xC800000, true, false, false);
                 console.log("RAND_WRITE Rate is" + averagerate + "M/s");
                 expect(averagerate > RAND_WRITE_BASELINE).assertTrue();
+                done();
                 fileIO.closeSync(file);
                 fileIO.unlinkSync(fpath);
-                done();
             } catch (e) {
                 console.log('fileIO_test_write_random_callback_000 has failed for ' + e.message + ', code: ' + e.code);
                 expect(false).assertTrue();
@@ -275,9 +275,9 @@ export default function FileIOFilerw_test() {
                 let averagerate = await IOfunc(file, 0x1400, 0xC800000, false, true, false);
                 console.log("SEQUENCE_READ Rate is" + averagerate + "M/s");
                 expect(averagerate > SEQUENCE_READ_BASELINE).assertTrue();
+                done();
                 fileIO.closeSync(file);
                 fileIO.unlinkSync(fpath);
-                done();
             } catch (e) {
                 console.log('fileIO_test_read_sequence_callback_000 has failed for ' + e.message + ', code: ' + e.code);
                 expect(false).assertTrue();
@@ -304,9 +304,9 @@ export default function FileIOFilerw_test() {
                 let averagerate = await IOfunc(file, 0x1400, 0xC800000, false, false, false);
                 console.log("SEQUENCE_WRITE Rate is" + averagerate + "M/s");
                 expect(averagerate > SEQUENCE_WRITE_BASELINE).assertTrue();
+                done();
                 fileIO.closeSync(file);
                 fileIO.unlinkSync(fpath);
-                done();
             } catch (e) {
                 console.log('fileIO_test_write_sequence_callback_000 has failed for ' + e.message + ', code: ' + e.code);
                 expect(false).assertTrue();
