@@ -23,12 +23,6 @@ class TextDecorationModifier  implements AttributeModifier<TextAttribute> {
     }
 }
 
-interface TextDecorationObj {
-  color: ResourceColor;
-  type: TextDecorationType;
-  Color: ResourceColor
-}
-
 @Entry
 @Component
 struct TextDecoration {   
@@ -43,14 +37,14 @@ struct TextDecoration {
       if (eventData.data!.textDecoration != null) {
         console.info("[TextDecoration page] TextDecoration type change data is " + eventData.data!.textDecoration);
 
-        let textDecoration: TextDecorationObj =  JSON.parse( eventData.data!.textDecoration )        
-        if (textDecoration.Color === 'app.color.color_D90013_red') {
-          textDecoration.Color = $r('app.color.color_D90013_red')
+        let textDecoration: string = eventData.data!.textDecoration
+        if (JSON.parse(textDecoration).Color === 'app.color.color_D90013_red') {
+          JSON.parse(textDecoration).Color = $r('app.color.color_D90013_red')
         }
-        this.textDecorationType = textDecoration.type;
-        this.textDecorationColor = textDecoration.color;        
-        this.textDecorationModifier.textDecorationType = textDecoration.type ;
-        this.textDecorationModifier.textDecorationColor = textDecoration.color; 
+        this.textDecorationType = JSON.parse(textDecoration).type;
+        this.textDecorationColor = JSON.parse(textDecoration).color;        
+        this.textDecorationModifier.textDecorationType = JSON.parse(textDecoration).type ;
+        this.textDecorationModifier.textDecorationColor = JSON.parse(textDecoration).color; 
       }
     }
   }  
