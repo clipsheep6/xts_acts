@@ -246,6 +246,7 @@
 #include "arkApi/arkUIAPi.cpp"
 #include "animation/animation.cpp"
 #include "waterFlower/waterFlower.cpp"
+#include "customcomponent/customcomponent_event_null_test.cpp"
 
 namespace ArkUICapiTest {
 EXTERN_C_START
@@ -2168,6 +2169,10 @@ static napi_value Init(napi_env env, napi_value exports)
         {"testWaterFlower_003", nullptr, testWaterFlower_003, nullptr , nullptr, nullptr, napi_default, nullptr},
         {"testWaterFlower_004", nullptr, testWaterFlower_004, nullptr , nullptr, nullptr, napi_default, nullptr},
         {"testWaterFlower_005", nullptr, testWaterFlower_004, nullptr , nullptr, nullptr, napi_default, nullptr},
+        {"customComponentEventNullTest001",
+            nullptr, CustomComponentEventNull001, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"customComponentEventNullTest002",
+            nullptr, CustomComponentEventNull002, nullptr, nullptr, nullptr, napi_default, nullptr},    
     };
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");

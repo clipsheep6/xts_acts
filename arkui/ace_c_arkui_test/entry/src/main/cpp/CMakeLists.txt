@@ -48,6 +48,8 @@ add_library(nativerender SHARED
     stack/stack_onareachange_test
     stack/stack_ontouch_test.cpp
     text/text_enabled_test.cpp
+    gesture/gesture_test.cpp
+    customcomponent/customcomponent_event_test.cpp
 )
 
 add_library(nativefunc SHARED
