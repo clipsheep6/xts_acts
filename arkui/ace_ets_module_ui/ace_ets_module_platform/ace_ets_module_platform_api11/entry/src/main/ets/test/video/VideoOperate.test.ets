@@ -52,8 +52,6 @@ export default function VideoOperateTest() {
      * @tc.name 不设置autoPlay属性
      * @tc.desc 测试autoPlay属性设置为false后，组件打开后视屏不自动播放功能
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
      */
     it('Video001_not_init_autoPlay', 0, async (done: Function) => {
       console.info('[Video001_not_init_autoPlay] START');
@@ -70,6 +68,12 @@ export default function VideoOperateTest() {
       done();
     });
 
+    /**
+     * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0610
+     * @tc.name 反复点击开关控制栏
+     * @tc.desc 每次正常响应，程序不崩溃
+     * @tc.level Level 2
+     */
     it('Video002_start_pause_100Times', 0, async (done: Function) => {
       console.info('[Video002_start_pause_100Times] START');
       await Utils.sleep(1000);
@@ -89,6 +93,12 @@ export default function VideoOperateTest() {
       done();
     });
 
+    /**
+     * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0870
+     * @tc.name 不设宽高时跟随父容器，固定一个值时，另一个值跟随父容器
+     * @tc.desc 3、不设宽高时跟随父容器，固定一个值时，另一个值跟随父容器
+     * @tc.level Level 2
+     */
     it('Video003_width_height_follow_parent', 0, async (done: Function) => {
       console.info('[Video003_width_height_follow_parent] START');
       await Utils.sleep(1000);
@@ -109,6 +119,12 @@ export default function VideoOperateTest() {
       done();
     });
 
+    /**
+     * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0580
+     * @tc.name 设置controls属性为true
+     * @tc.desc 显示视频播放控制栏
+     * @tc.level Level 2
+     */
     it('Video004_controls_test', 0, async (done: Function) => {
       console.info('[Video004_controls_test] START');
       await Utils.sleep(1000);

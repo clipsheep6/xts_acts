@@ -50,6 +50,7 @@ export default function VideoOperate31Modifier() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0330
      * @tc.name 设置同一个modifier给两个Video组件
+     * @tc.desc 设置同一个modifier给两个Video组件
      * @tc.level Level 2
      * @tc.type
      * @tc.size

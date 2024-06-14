@@ -50,6 +50,7 @@ export default function IA4imagesModifier() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0050
      * @tc.name 导入ImageAnimatorModifier，封装images属性
+     * @tc.desc 导入ImageAnimatorModifier，封装images属性正常显示
      * @tc.level Level 2
      * @tc.type
      * @tc.size

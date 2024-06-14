@@ -50,6 +50,7 @@ export default function IA8duration2DynamicSet() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_STYLE_0850
      * @tc.name ImageAnimator duration实时修改验证
+     * @tc.desc ImageAnimator duration实时修改验证
      * @tc.level Level 2
      * @tc.type
      * @tc.size

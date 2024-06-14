@@ -50,6 +50,7 @@ export default function IA8duration1ItemSet() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_STYLE_0840
      * @tc.name ImageAnimator duration任意帧图片设置属性验证
+     * @tc.desc ImageAnimator duration任意帧图片设置属性验证
      * @tc.level Level 2
      * @tc.type
      * @tc.size

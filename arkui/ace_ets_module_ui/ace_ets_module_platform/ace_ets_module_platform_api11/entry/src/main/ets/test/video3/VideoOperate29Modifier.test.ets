@@ -50,6 +50,7 @@ export default function VideoOperate29Modifier() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0260
      * @tc.name 导入VideoModifier，封装muted属性
+     * @tc.desc 导入VideoModifier，封装muted属性
      * @tc.level Level 2
      * @tc.type
      * @tc.size

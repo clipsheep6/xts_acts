@@ -50,6 +50,7 @@ export default function IA9iterations1P1() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_STYLE_0890
      * @tc.name ImageAnimator iterations设置10验证
+     * @tc.desc ImageAnimator iterations设置10验证
      * @tc.level Level 2
      * @tc.type
      * @tc.size

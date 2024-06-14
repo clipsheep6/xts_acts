@@ -50,6 +50,7 @@ export default function VideoOperate28Modifier() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0230
      * @tc.name 导入VideoModifier，封装autoPlay属性
+     * @tc.desc 导入VideoModifier，封装autoPlay属性
      * @tc.level Level 2
      * @tc.type
      * @tc.size

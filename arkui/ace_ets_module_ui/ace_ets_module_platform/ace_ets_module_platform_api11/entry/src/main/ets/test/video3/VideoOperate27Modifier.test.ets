@@ -50,6 +50,7 @@ export default function VideoOperate27Modifier() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0010
      * @tc.name modifier设置
+     * @tc.desc modifier设置
      * @tc.level Level 2
      * @tc.type
      * @tc.size

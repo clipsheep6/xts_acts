@@ -50,6 +50,7 @@ export default function IA2fillModeModifier() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0030
      * @tc.name 导入ImageAnimatorModifier，封装fillMode属性
+     * @tc.desc 导入ImageAnimatorModifier，封装fillMode属性
      * @tc.level Level 2
      * @tc.type
      * @tc.size

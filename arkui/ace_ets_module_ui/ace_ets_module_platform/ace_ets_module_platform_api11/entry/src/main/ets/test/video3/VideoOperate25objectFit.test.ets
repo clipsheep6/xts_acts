@@ -47,6 +47,12 @@ export default function VideoOperate25objectFit() {
       console.info("VideoOperate25objectFit after each called");
     });
 
+    /**
+     * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0670
+     * @tc.name 设置objectFit属性为Auto
+     * @tc.desc 设置objectFit属性为Auto 屏幕自适应显示
+     * @tc.level Level 2
+     */
     it('Video001_VideoOperate25objectFit_test', 0, async (done: Function) => {
       console.info('[Video001_VideoOperate25objectFit_test] START');
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 5);

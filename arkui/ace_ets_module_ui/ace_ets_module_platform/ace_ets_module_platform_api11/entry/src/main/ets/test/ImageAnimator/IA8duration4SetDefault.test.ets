@@ -50,6 +50,7 @@ export default function IA8duration4SetDefault() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_STYLE_0870
      * @tc.name ImageAnimator duration默认值验证
+     * @tc.desc ImageAnimator duration默认值验证
      * @tc.level Level 2
      * @tc.type
      * @tc.size

@@ -50,6 +50,7 @@ export default function IA3fixedSizeModifier() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0040
      * @tc.name 导入ImageAnimatorModifier，封装fixedSize属性
+     * @tc.desc 导入ImageAnimatorModifier，封装fixedSize属性
      * @tc.level Level 2
      * @tc.type
      * @tc.size

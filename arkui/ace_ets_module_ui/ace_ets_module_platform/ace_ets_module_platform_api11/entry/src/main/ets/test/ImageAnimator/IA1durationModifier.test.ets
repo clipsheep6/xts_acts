@@ -50,6 +50,7 @@ export default function IA1durationModifier() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0020
      * @tc.name 导入ImageAnimatorModifier，封装duration属性
+     * @tc.desc 导入ImageAnimatorModifier，封装duration属性
      * @tc.level Level 2
      * @tc.type
      * @tc.size

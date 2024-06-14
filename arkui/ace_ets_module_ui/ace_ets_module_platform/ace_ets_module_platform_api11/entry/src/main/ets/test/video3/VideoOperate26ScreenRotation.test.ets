@@ -50,6 +50,7 @@ export default function VideoOperate26ScreenRotation() {
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0810
      * @tc.name 频繁横竖屏切换查看体验
+     * @tc.desc 频繁横竖屏切换查看体验
      * @tc.level Level 2
      * @tc.type
      * @tc.size
