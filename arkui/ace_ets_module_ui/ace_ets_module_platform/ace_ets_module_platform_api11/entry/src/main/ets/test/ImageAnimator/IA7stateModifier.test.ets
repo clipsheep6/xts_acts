@@ -76,6 +76,7 @@ export default function IA7stateModifier() {
       console.info("[Video001_stateModifier_test] component strJsonImage:" + strJsonImage);
       const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
       expect(objJsonImage.$attrs.state).assertContain('Initial');
+      await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
       console.info('[Video001_stateModifier_test] END');
       done();
     });

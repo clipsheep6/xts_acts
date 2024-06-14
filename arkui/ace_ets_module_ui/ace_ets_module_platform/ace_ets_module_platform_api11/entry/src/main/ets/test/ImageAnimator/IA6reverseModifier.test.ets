@@ -71,6 +71,7 @@ export default function IA6reverseModifier() {
       console.info("[Video001_reverseModifier_test] component strJsonImage:" + strJsonImage);
       const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
       expect(objJsonImage.$attrs.reverse).assertContain('true');
+      await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
       console.info('[Video001_reverseModifier_test] END');
       done();
     });

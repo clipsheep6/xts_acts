@@ -70,6 +70,7 @@ export default function IA3fixedSizeModifier() {
       console.info("[Video001_fixedSizeModifier_test] component strJsonImage2:" + strJsonImage2);
       const objJsonImage2: Record<string, string> = JSON.parse(strJsonImage2);
       expect(objJsonImage2.$attrs.fixedSize).assertContain('false');
+      await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
       console.info('[Video001_fixedSizeModifier_test] END');
       done();
     });

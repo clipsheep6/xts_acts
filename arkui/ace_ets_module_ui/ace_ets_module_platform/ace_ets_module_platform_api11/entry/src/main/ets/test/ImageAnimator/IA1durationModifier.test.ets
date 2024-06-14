@@ -74,6 +74,7 @@ export default function IA1durationModifier() {
       console.info("[Video001_durationModifier_test] component strJsonImage:" + strJsonImage);
       const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
       expect(objJsonImage.$attrs.duration).assertContain('0');
+      await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
       console.info('[Video001_durationModifier_test] END');
       done();
     });

@@ -71,6 +71,7 @@ export default function IA2fillModeModifier() {
       console.info("[Video001_fillModeModifier_test] component strJsonImage:" + strJsonImage);
       const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
       expect(objJsonImage.$attrs.fillMode).assertContain('Forwards');
+      await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
       console.info('[Video001_fillModeModifier_test] END');
       done();
     });
