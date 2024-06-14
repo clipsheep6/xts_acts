@@ -76,7 +76,7 @@ struct IA1durationModifier {
       }
 
       Row() {
-        Button("改变duration")
+        Button('改变duration')
           .id('Button_durationChange')
           .onClick(() => {
             if (this.durationModifier.duration === 2000) {

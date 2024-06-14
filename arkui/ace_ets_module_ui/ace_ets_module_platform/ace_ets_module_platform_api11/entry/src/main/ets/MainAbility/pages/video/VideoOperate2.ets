@@ -32,13 +32,13 @@ struct VideoOperate2 {
   build() {
     Column({ space: 2 }) {
       Text('点击热区暂停测试')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(30)
         .width('70%')
         .textAlign(TextAlign.Center)
       Text(`左半区标识&暂停标识_${this.leftRegionFlag}_${this.pauseFlag}`)
-        .id("Text_VideoOperateVideo_first")
+        .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .fontSize(30)
         .width('70%')

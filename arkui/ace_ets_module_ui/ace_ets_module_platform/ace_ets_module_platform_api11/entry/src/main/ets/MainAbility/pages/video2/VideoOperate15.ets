@@ -31,12 +31,12 @@ struct VideoOperate15 {
   build() {
     Column({ space: 2 }) {
       Text('点击start按钮能够开始播放')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`开始播放标识_${this.statueFirst}_${this.statueFinish}`)
-        .id("Text_VideoOperateVideo_first")
+        .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -59,7 +59,7 @@ struct VideoOperate15 {
       .backgroundColor(Color.Pink)
 
       Row() {
-        Button("start")
+        Button('start')
           .id('Button_start')
           .onClick(() => {
             console.log('VideoOperate15 开始播放');

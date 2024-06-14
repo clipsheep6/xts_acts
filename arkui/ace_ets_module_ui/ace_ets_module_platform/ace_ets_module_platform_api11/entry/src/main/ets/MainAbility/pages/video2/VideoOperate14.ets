@@ -31,17 +31,17 @@ struct VideoOperate14 {
   build() {
     Column({ space: 2 }) {
       Text('不设置controls属性测试')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`不显示视频播放控制栏_${this.statueFirst}`)
-        .id("Text_VideoOperateVideo_first")
+        .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`暂停控制成功标识_${this.pauseStatus}`)
-        .id("Text_VideoOperateVideo_second")
+        .id('Text_VideoOperateVideo_second')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -67,7 +67,7 @@ struct VideoOperate14 {
       .backgroundColor(Color.Pink)
 
       Row() {
-        Button("pause")
+        Button('pause')
           .id('Button_pause')
           .onClick(() => {
             this.myVideoController.pause();

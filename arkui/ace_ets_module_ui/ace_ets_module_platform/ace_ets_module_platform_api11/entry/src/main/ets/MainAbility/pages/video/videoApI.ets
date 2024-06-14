@@ -45,7 +45,7 @@ struct VideoOnFullscreenChange {
         .width(600)
         .height(400)
         .autoPlay(this.autoPlays)
-        .key("onFullscreenChangeText")
+        .key('onFullscreenChangeText')
         .onStart(() => {
           console.error('onStart');
         })
@@ -57,17 +57,17 @@ struct VideoOnFullscreenChange {
           try {
             let backData: events_emitter.EventData = {
               data: {
-                "result": "success"
+                'result': 'success'
               }
             }
             let backEvent = {
               eventId: 60227,
               priority: events_emitter.EventPriority.LOW
             }
-            console.info("video_101 onClick start to emit action state")
+            console.info('video_101 onClick start to emit action state')
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("video_101 onClick emit action state err: " + JSON.stringify(err.message))
+            console.info('video_101 onClick emit action state err: ' + JSON.stringify(err.message))
           }
         })
         .onPause(() => {
@@ -92,33 +92,33 @@ struct VideoOnFullscreenChange {
           console.error('onUpdateis ' + e.time);
         })
       Row() {
-        Button("FullScreen")
-          .key("fullScreen")
+        Button('FullScreen')
+          .key('fullScreen')
           .onClick(() => {
             this.controller.requestFullscreen(true);
-            console.info("video_101 onClick start to fullScreen");
+            console.info('video_101 onClick start to fullScreen');
           });
 
-        Button("ExitFullScreen")
-          .key("exitFullScreen")
+        Button('ExitFullScreen')
+          .key('exitFullScreen')
           .onClick(() => {
             this.controller.exitFullscreen()
           });
       }
 
       Row() {
-        Button("start").onClick(() => {
+        Button('start').onClick(() => {
           this.controller.start();
         });
-        Button("pause").onClick(() => {
+        Button('pause').onClick(() => {
           this.controller.pause();
         });
-        Button("stop").onClick(() => {
+        Button('stop').onClick(() => {
           this.controller.stop();
         });
       }
 
-    }.width("100%").height("100%")
+    }.width('100%').height('100%')
   }
 }
 

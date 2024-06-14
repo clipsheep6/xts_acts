@@ -34,11 +34,11 @@ struct VideoOperate13 {
   build() {
     Column({ space: 2 }) {
       Text(`pauseFlag_${this.pauseFlag1}_${this.pauseFlag2}_${this.pauseFlag3}`)
-        .id("Text_VideoOperateVideo_first")
+        .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .width('100%')
       Text(`finishFlag_${this.finishFlag1}_${this.finishFlag2}_${this.finishFlag3}`)
-        .id("Text_VideoOperateVideo_second")
+        .id('Text_VideoOperateVideo_second')
         .backgroundColor(Color.Pink)
         .width('100%')
       Row({ space: 5 }) {
@@ -99,7 +99,7 @@ struct VideoOperate13 {
       .backgroundColor(Color.Pink)
 
       Row() {
-        Button("pause")
+        Button('pause')
           .id('Button_pause')
           .onClick(() => {
             this.myVideoController.pause();

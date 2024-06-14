@@ -72,7 +72,7 @@ struct VideoOperate17 {
       .height('80%')
       .backgroundColor(Color.Pink)
       Row() {
-        Button("muted")
+        Button('muted')
           .id('Button_muted')
           .onClick(() => {
             this.mutedStatue = !this.mutedStatue;

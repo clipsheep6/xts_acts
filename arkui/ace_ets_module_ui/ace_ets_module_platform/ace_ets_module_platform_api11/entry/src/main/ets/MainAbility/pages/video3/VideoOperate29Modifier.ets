@@ -30,17 +30,17 @@ struct VideoOperate29Modifier {
   build() {
     Column({ space: 2 }) {
       Text('用例29导入VideoModifier，封装muted属性')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`video_autoPlayFlag_startFlag_${this.modifier.muted}`)
-        .id("Text_VideoOperateVideo_statue")
+        .id('Text_VideoOperateVideo_statue')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`video_mutedFlag_${this.modifier.muted}`)
-        .id("Text_VideoOperateVideo_muted")
+        .id('Text_VideoOperateVideo_muted')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -60,7 +60,7 @@ struct VideoOperate29Modifier {
       .backgroundColor(Color.Pink)
 
       Row() {
-        Button("mutedSetButton")
+        Button('mutedSetButton')
           .id('Button_mutedSet')
           .onClick(() => {
             this.modifier.muted = !this.modifier.muted

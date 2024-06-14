@@ -32,22 +32,22 @@ struct VideoOperate20 {
   build() {
     Column({ space: 2 }) {
       Text('点击全屏按钮，点击其他区域可以将视频播放或者暂停')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`全屏标识_${this.fullScreenFlag}_${this.startPauseStatus}`)
-        .id("Text_VideoOperateVideo_fullScreen")
+        .id('Text_VideoOperateVideo_fullScreen')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`开始标识_${this.startStatus}`)
-        .id("Text_VideoOperateVideo_start")
+        .id('Text_VideoOperateVideo_start')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`暂停标识_${this.pauseStatus}`)
-        .id("Text_VideoOperateVideo_pause")
+        .id('Text_VideoOperateVideo_pause')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -81,7 +81,7 @@ struct VideoOperate20 {
       .height('80%')
       .backgroundColor(Color.Pink)
       Row() {
-        Button("fullScreen")
+        Button('fullScreen')
           .id('Button_fullScreen')
           .onClick(() => {
             this.myVideoController.requestFullscreen(true);

@@ -27,14 +27,14 @@ struct VideoOperate5 {
   build() {
     Column({ space: 2 }) {
       Text(`${this.eventTime}`)
-        .id("Text_VideoOperateVideo_first")
+        .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .fontSize(30)
         .width('70%')
         .textAlign(TextAlign.Center)
 
       Text(`${this.fullscreenFlag}`)
-        .id("Text_VideoOperateVideo_second")
+        .id('Text_VideoOperateVideo_second')
         .backgroundColor(Color.Pink)
         .fontSize(30)
         .width('70%')
@@ -53,7 +53,7 @@ struct VideoOperate5 {
             this.myVideoController.pause();
           })
           .onUpdate((event) => {
-            console.log("当前播放进度：", event.time + "s");
+            console.log('当前播放进度：', event.time + 's');
             this.eventTime = event.time;
           })
           .objectFit(ImageFit.Contain)
@@ -65,13 +65,13 @@ struct VideoOperate5 {
       .height(400)
 
       Row() {
-        Button("setCurrentTime")
-          .id("Button_setCurrentTime")
+        Button('setCurrentTime')
+          .id('Button_setCurrentTime')
           .onClick(() => {
             this.myVideoController.setCurrentTime(4);
           });
-        Button("fullscreen")
-          .id("Button_fullscreen")
+        Button('fullscreen')
+          .id('Button_fullscreen')
           .onClick(() => {
             this.myVideoController.requestFullscreen(true);
           });

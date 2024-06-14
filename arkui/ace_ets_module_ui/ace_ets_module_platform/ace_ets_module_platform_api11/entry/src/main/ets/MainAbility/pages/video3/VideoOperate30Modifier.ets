@@ -30,17 +30,17 @@ struct VideoOperate30Modifier {
   build() {
     Column({ space: 2 }) {
       Text('用例28导入VideoModifier，封装autoPlay属性')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`video_autoPlayFlag_startFlag_${this.modifier.autoPlayFlag}_${this.startFlag}`)
-        .id("Text_VideoOperateVideo_statue")
+        .id('Text_VideoOperateVideo_statue')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`video_muted_${this.modifier.muted}`)
-        .id("Text_VideoOperateVideo_muted")
+        .id('Text_VideoOperateVideo_muted')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -63,7 +63,7 @@ struct VideoOperate30Modifier {
       .backgroundColor(Color.Pink)
 
       Row() {
-        Button("静音")
+        Button('静音')
           .id('Button_mutedSet')
           .onClick(() => {
             this.modifier.muted = true;

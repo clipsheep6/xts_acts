@@ -29,12 +29,12 @@ struct VideoOperate27Modifier {
   build() {
     Column({ space: 2 }) {
       Text('用例27modifier设置测试')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`currentTime_${this.modifier.currentTimes}`)
-        .id("Text_VideoOperateVideo_statue")
+        .id('Text_VideoOperateVideo_statue')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -54,12 +54,12 @@ struct VideoOperate27Modifier {
       .backgroundColor(Color.Pink)
 
       Row() {
-        Button("FirstTime")
-          .id("Button_isFirstTime")
+        Button('FirstTime')
+          .id('Button_isFirstTime')
           .onClick(() => {
             this.modifier.currentTimes = 1;
           });
-        Button("SecondTime")
+        Button('SecondTime')
           .id('Button_isSecondTime')
           .onClick(() => {
             this.modifier.currentTimes = 2;

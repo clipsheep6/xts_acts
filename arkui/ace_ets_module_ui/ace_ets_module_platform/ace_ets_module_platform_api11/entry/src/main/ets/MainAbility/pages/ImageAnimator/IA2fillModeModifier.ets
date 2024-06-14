@@ -77,7 +77,7 @@ struct IA2fillModeModifier {
       }
 
       Row() {
-        Button("改变fillMode")
+        Button('改变fillMode')
           .id('Button_fillModeChange')
           .onClick(() => {
             this.durationModifier.fillMode = FillMode.Forwards

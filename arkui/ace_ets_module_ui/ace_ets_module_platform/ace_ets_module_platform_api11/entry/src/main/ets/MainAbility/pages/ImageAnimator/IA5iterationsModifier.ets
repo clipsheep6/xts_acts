@@ -27,12 +27,12 @@ struct IA5iterationsModifier {
   build() {
     Column({ space: 2 }) {
       Text('用例01：导入ImageAnimatorModifier，封装iterations属性')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`ImageAnimator_iterations_${this.durationModifier.iterations}`)
-        .id("ImageAnimator_iterations")
+        .id('ImageAnimator_iterations')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -61,7 +61,7 @@ struct IA5iterationsModifier {
 
       Row() {
         Button('start')
-          .id("Button_start")
+          .id('Button_start')
           .width(100)
           .padding(5)
           .onClick(() => {
@@ -77,7 +77,7 @@ struct IA5iterationsModifier {
       }
 
       Row() {
-        Button("改变iterations")
+        Button('改变iterations')
           .id('Button_iterationsChange')
           .onClick(() => {
             if (this.durationModifier.iterations === 3) {

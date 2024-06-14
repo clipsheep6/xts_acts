@@ -33,12 +33,12 @@ struct VideoOperate26ScreenRotation3 {
   build() {
     Column({ space: 2 }) {
       Text('用例21转动手机到横屏画面也会随着屏幕选转')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`${this.currentTime}`)
-        .id("Text_VideoOperateVideo_currentTime")
+        .id('Text_VideoOperateVideo_currentTime')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -64,12 +64,12 @@ struct VideoOperate26ScreenRotation3 {
       .height('80%')
       .backgroundColor(Color.Pink)
       Row() {
-        Button("横竖屏切换")
+        Button('横竖屏切换')
           .id('Button_horVerSwitch')
           .onClick(() => {
             this.horVerSwitch();
           })
-        Button("pause")
+        Button('pause')
           .id('Button_pause')
           .onClick(() => {
             this.myVideoController.pause();

@@ -107,12 +107,12 @@ struct VideoOperate24SliderAudio {
       .height('70%')
       .backgroundColor(Color.Pink)
       Row() {
-        Button("start")
+        Button('start')
           .id('Button_start')
           .onClick(() => {
             this.myVideoController.start();
           });
-        Button("pause")
+        Button('pause')
           .id('Button_pause')
           .onClick(() => {
             this.myVideoController.pause();

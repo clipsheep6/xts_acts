@@ -52,6 +52,8 @@ export default function VideoOperate25objectFit() {
      * @tc.name Set the objectFit property to Auto
      * @tc.desc Set the objectFit property to Auto
      * @tc.level Level 2
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_VideoOperate25objectFit_test', 0, async (done: Function) => {
       console.info('[Video001_VideoOperate25objectFit_test] START');
