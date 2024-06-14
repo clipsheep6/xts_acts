@@ -35,7 +35,7 @@ struct VideoOperate15 {
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
-      Text(`开始播放标识_${this.statueFirst}_${this.statueFinish}`)
+      Text(`startFlag_finishFlag_${this.statueFirst}_${this.statueFinish}`)
         .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .fontSize(18)

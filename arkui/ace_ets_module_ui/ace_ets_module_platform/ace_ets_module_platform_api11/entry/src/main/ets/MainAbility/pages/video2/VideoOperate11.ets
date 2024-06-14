@@ -40,7 +40,7 @@ struct VideoOperate11 {
           () => {
           }, () => {
           }, () => {
-          }, this.onUpdateCallback, '点击stop按钮能够停止播放', '视频是否停止标识', '暂未用到标识'),
+          }, this.onUpdateCallback, '点击stop按钮能够停止播放', 'stopFlag', 'noUse'),
         isOnFullscreenChange: true,
         statueFirst: this.statueFirst,
         statueSecond: this.statueSecond

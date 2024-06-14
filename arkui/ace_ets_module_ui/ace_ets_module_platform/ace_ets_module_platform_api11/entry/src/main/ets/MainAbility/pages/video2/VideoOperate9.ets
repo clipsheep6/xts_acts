@@ -36,7 +36,7 @@ struct VideoOperate9 {
         videoInitDataModel: new VideoInitDataModel(this.curRate, this.videoSrc, this.previewUri,
           this.onStartCallback, this.onFinishCallback, () => {
           }, () => {
-          }, '不设置loop属性', '播放结束标识', '暂未用到标识'),
+          }, '不设置loop属性', 'finishFlag', 'noUse'),
         isOnFullscreenChange: false,
         statueFirst: this.statueFirst,
         statueSecond: this.statueSecond

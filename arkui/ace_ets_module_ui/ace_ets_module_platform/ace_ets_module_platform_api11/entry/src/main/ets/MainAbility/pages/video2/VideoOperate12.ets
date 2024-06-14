@@ -38,7 +38,7 @@ struct VideoOperate12 {
         videoInitDataModel: new VideoInitDataModel(this.curRate, this.videoSrc, this.previewUri,
           this.onStartCallback, this.onFinishCallback, () => {
           }, () => {
-          }, '预览图路径错误/不设置测试', '播放开始标识', '播放结束标识'),
+          }, '预览图路径错误/不设置测试', 'startFlag', 'finishFlag'),
         isOnFullscreenChange: false,
         statueFirst: this.statueFirst,
         statueSecond: this.statueSecond

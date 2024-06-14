@@ -33,7 +33,7 @@ struct VideoOperate18 {
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
-      Text(`静音标识_${this.mutedStatue}`)
+      Text(`mutedStatue_${this.mutedStatue}`)
         .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .fontSize(18)

@@ -39,7 +39,7 @@ struct VideoOperate10 {
           () => {
           }, () => {
           }, this.onFullscreenChangeCallback, () => {
-          }, '全屏切换触发onFullscreenChange事件', '切换到全屏触发标识', '推出全屏触发标识'),
+          }, '全屏切换触发onFullscreenChange事件', 'fullScreen', 'existFullScreen'),
         isOnFullscreenChange: true,
         statueFirst: this.statueFirst,
         statueSecond: this.statueSecond
