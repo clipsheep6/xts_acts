@@ -277,6 +277,14 @@ import TestArkUIAddApi from './arkApi/arkApi.test'
 import testArkUI from './arkApi/arkUIApiTest.test'
 import testAnimationTest from './animation/animationTest.test'
 import testWaterFlower from './waterFlower/waterFlowerTest.test'
+import relativecontaineAlignmentRuleOptionTest from './relativecontaine/RelativeContaineAlignmentRuleOptionTest.test'
+import relativecontaineBarrierOptionTest from './relativecontaine/RelativeContaineBarrierOptionTest.test'
+import commonAttrsAnimateTest from './commonattrs/CommonAttrsAnimateTest.test'
+import drawableDescriptorCreateTest from './drawabledescriptor/DrawableDescriptorCreateTest.test'
+import nodeContentTest from './nodecontent/NodeContentTest.test'
+import nativeXComponentTest from './nativexcomponent/NativeXComponentTest.test'
+import mouseEventTest from './mouseevent/MouseEventTest.test'
+import pointerEventTest from './pointerevent/PointerEventTest.test'
 
 export default function testsuite() {
   commonAttrsAlignSelfTest()
