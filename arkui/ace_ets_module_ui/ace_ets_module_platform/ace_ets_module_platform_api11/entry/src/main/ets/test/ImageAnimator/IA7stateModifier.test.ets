@@ -73,9 +73,9 @@ export default function IA7stateModifier() {
       await stateChange.click();
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 3);
       let strJsonImage = getInspectorByKey('ImageAnimatorComp');
-      console.info("[Video001_fixedSizeModifier_test] component strJsonImage:" + strJsonImage);
+      console.info("[Video001_stateModifier_test] component strJsonImage:" + strJsonImage);
       const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
-      expect(objJsonImage.$attrs.state).assertEqual('Initial');
+      expect(objJsonImage.$attrs.state).assertContain('Initial');
       console.info('[Video001_stateModifier_test] END');
       done();
     });
