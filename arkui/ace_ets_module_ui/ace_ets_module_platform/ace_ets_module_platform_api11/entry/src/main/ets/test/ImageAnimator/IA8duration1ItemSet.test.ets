@@ -49,11 +49,11 @@ export default function IA8duration1ItemSet() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_STYLE_0840
-     * @tc.name ImageAnimator duration任意帧图片设置属性验证
-     * @tc.desc ImageAnimator duration任意帧图片设置属性验证
+     * @tc.name ImageAnimator duration: Set attribute validation for any frame image
+     * @tc.desc ImageAnimator duration: Set attribute validation for any frame image
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_duration_test', 0, async (done: Function) => {
       // 未点击前显示初始状态

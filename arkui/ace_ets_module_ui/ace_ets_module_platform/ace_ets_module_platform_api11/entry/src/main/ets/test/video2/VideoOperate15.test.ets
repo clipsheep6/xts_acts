@@ -49,11 +49,11 @@ export default function VideoOperateTest15() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0330
-     * @tc.name 点击start按钮能够开始播放
-     * @tc.desc 点击start按钮能够开始播放
+     * @tc.name Click the start button to start playing
+     * @tc.desc Click the start button to start playing
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_start_test', 0, async (done: Function) => {
       console.info('[Video001_start_test] START');

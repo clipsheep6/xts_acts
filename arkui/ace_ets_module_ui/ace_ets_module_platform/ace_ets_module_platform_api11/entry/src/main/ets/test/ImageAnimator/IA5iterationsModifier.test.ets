@@ -49,11 +49,11 @@ export default function IA5iterationsModifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0040
-     * @tc.name 导入ImageAnimatorModifier，封装iterations属性
-     * @tc.desc 导入ImageAnimatorModifier，封装iterations属性
+     * @tc.name Import ImageAnimatorModifier and encapsulate the iterations attribute
+     * @tc.desc Import ImageAnimatorModifier and encapsulate the iterations attribute
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_iterationsModifier_test', 0, async (done: Function) => {
       console.info('[Video001_iterationsModifier_test] START');

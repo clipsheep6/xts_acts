@@ -49,11 +49,11 @@ export default function IA7stateModifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0080
-     * @tc.name 导入ImageAnimatorModifier，封装state属性
-     * @tc.desc 导入ImageAnimatorModifier，封装state属性
+     * @tc.name Import ImageAnimatorModifier and encapsulate state properties
+     * @tc.desc Import ImageAnimatorModifier and encapsulate state properties
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_stateModifier_test', 0, async (done: Function) => {
       // 未点击前显示初始状态

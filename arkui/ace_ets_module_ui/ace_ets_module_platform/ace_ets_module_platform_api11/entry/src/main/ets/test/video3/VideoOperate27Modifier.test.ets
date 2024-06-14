@@ -49,11 +49,11 @@ export default function VideoOperate27Modifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0010
-     * @tc.name modifier设置
-     * @tc.desc modifier设置
+     * @tc.name Modifier settings,Both property settings take effect
+     * @tc.desc Modifier settings,Both property settings take effect
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_modifier_test', 0, async (done: Function) => {
       console.info('[Video001_modifier_test] START');

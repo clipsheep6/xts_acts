@@ -52,11 +52,11 @@ export default function VideoOperate23Slider() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0750
-     * @tc.name 操作进度条过程时上报时间信息
-     * @tc.desc 操作进度条过程时上报时间信息
+     * @tc.name After the operation progress bar is completed, report the playback time information
+     * @tc.desc After the operation progress bar is completed, report the playback time information
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_slider_seeking_test', 0, async (done: Function) => {
       console.info('[Video001_slider_seeking_test] START');
@@ -111,11 +111,11 @@ export default function VideoOperate23Slider() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0760
-     * @tc.name 操作进度条完成后，上报播放时间信息
-     * @tc.desc 操作进度条完成后，上报播放时间信息
+     * @tc.name After the operation progress bar is completed, report the playback time information
+     * @tc.desc After the operation progress bar is completed, report the playback time information
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_slider_seeked_test', 0, async (done: Function) => {
       console.info('[Video001_slider_seeked_test] START');
@@ -129,11 +129,11 @@ export default function VideoOperate23Slider() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0490
-     * @tc.name 多次拖动进度条至不同位置，视频可正常跳转、播放，事件正常上报
-     * @tc.desc 多次拖动进度条至不同位置，视频可正常跳转、播放，事件正常上报
+     * @tc.name Drag the progress bar multiple times to different positions
+     * @tc.desc Drag the progress bar multiple times to different positions
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video003_slider_all_test', 0, async (done: Function) => {
       console.info('[Video003_slider_all_test] START');

@@ -49,11 +49,11 @@ export default function VideoOperateTest17() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0380
-     * @tc.name 纯音频文件支持静音
-     * @tc.desc 纯音频文件支持静音
+     * @tc.name Pure audio files support mute
+     * @tc.desc Pure audio files support mute
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_audio_muted_test', 0, async (done: Function) => {
       console.info('[Video001_audio_muted_test] START');
@@ -72,11 +72,11 @@ export default function VideoOperateTest17() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0210
-     * @tc.name 加载音频文件，视频黑屏，但会播放声音
-     * @tc.desc 加载音频文件，视频黑屏，但会播放声音
+     * @tc.name Load audio file, video screen goes black, but sound will play
+     * @tc.desc Load audio file, video screen goes black, but sound will play
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video002_audio_play_test', 0, async (done: Function) => {
       console.info('[Video002_audio_play_test] START');

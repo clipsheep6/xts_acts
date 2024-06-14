@@ -49,11 +49,11 @@ export default function VideoOperate30Modifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0280
-     * @tc.name 设置modifier的autoPlay为true，下次设置muted为true
-     * @tc.desc 设置modifier的autoPlay为true，下次设置muted为true
+     * @tc.name Set the modifier's autoPlay to true, and next time set muted to true
+     * @tc.desc Set the modifier's autoPlay to true, and next time set muted to true
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_modifier_autoPlay_muted_test', 0, async (done: Function) => {
       console.info('[Video001_modifier_autoPlay_muted_test] START');

@@ -48,11 +48,11 @@ export default function VideoOperateTest13() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0480
-     * @tc.name 支持同时控制多个Video组件
-     * @tc.desc 支持同时控制多个Video组件
+     * @tc.name Supports simultaneous control of multiple Video components
+     * @tc.desc Supports simultaneous control of multiple Video components
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_control_three_videos', 0, async (done: Function) => {
       console.info('[Video001_control_three_videos] START');

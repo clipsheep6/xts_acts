@@ -49,11 +49,11 @@ export default function VideoOperateTest10() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0780
-     * @tc.name 在全屏播放与非全屏播放状态之间切换时触发onFullscreenChange事件
-     * @tc.desc 全屏和半屏切换正常
+     * @tc.name Trigger the onFullscreenChange event when switching between fullScreen and no fullScreen playback states
+     * @tc.desc Trigger the onFullscreenChange event when switching between fullScreen and no fullScreen playback states
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_onFullscreenChange', 0, async (done: Function) => {
       console.info('[Video001_onFullscreenChange] START');

@@ -49,11 +49,11 @@ export default function VideoOperate31Modifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0330
-     * @tc.name 设置同一个modifier给两个Video组件
-     * @tc.desc 设置同一个modifier给两个Video组件
+     * @tc.name Set the same modifier for two Video components
+     * @tc.desc Set the same modifier for two Video components
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_modifier_autoPlay_muted_test', 0, async (done: Function) => {
       console.info('[Video001_modifier_autoPlay_muted_test] START');

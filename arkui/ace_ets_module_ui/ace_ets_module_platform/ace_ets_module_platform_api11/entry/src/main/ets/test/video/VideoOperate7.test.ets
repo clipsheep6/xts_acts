@@ -50,11 +50,11 @@ export default function VideoOperateTest7() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0490
-     * @tc.name 多次拖动进度条至不同位置
-     * @tc.desc 视频可正常跳转、播放，事件正常上报
+     * @tc.name Drag the progress bar multiple times to different positions
+     * @tc.desc Drag the progress bar multiple times to different positions
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_slider_change', 0, async (done: Function) => {
       console.info('[Video001_slider_change] START');

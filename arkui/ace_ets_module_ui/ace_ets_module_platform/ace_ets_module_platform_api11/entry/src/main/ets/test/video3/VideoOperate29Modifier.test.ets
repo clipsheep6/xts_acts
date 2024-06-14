@@ -49,11 +49,11 @@ export default function VideoOperate29Modifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0260
-     * @tc.name 导入VideoModifier，封装muted属性
-     * @tc.desc 导入VideoModifier，封装muted属性
+     * @tc.name Import VideoModifier and encapsulate muted properties
+     * @tc.desc Import VideoModifier and encapsulate muted properties
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_modifier_autoPlay_true_test', 0, async (done: Function) => {
       console.info('[Video001_modifier_autoPlay_true_test] START');

@@ -49,11 +49,11 @@ export default function VideoOperateTest19() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0470
-     * @tc.name 设置muted为true，视屏静音
-     * @tc.desc 设置muted为true，视屏静音
+     * @tc.name Set muted to true
+     * @tc.desc Set muted to true
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_video_muted_true_test', 0, async (done: Function) => {
       console.info('[Video001_video_muted_true_test] START');

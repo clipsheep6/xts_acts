@@ -49,11 +49,11 @@ export default function VideoOperateTest2R() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0850
-     * @tc.name 点击右半边热区视屏不暂停
-     * @tc.desc 点击右半边热区视屏不暂停
+     * @tc.name Click on the right half of the hot area to not pause the video
+     * @tc.desc Click on the right half of the hot area to not pause the video
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_responseRegion_rightClick', 0, async (done: Function) => {
       console.info('[Video001_responseRegion_rightClick] START');

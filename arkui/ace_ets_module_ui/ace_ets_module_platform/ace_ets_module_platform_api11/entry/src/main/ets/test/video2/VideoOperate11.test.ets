@@ -49,11 +49,11 @@ export default function VideoOperateTest11() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0780
-     * @tc.name 点击stop按钮能够停止播放
-     * @tc.desc 停止播放，显示当前帧，再次播放时从头开始播放
+     * @tc.name Clicking the stop button can stop playback
+     * @tc.desc Clicking the stop button can stop playback
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_stop', 0, async (done: Function) => {
       console.info('[Video001_stop] START');

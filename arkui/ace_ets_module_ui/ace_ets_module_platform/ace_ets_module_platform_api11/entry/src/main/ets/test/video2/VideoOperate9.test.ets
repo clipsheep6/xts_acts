@@ -49,11 +49,11 @@ export default function VideoOperateTest9() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0640
-     * @tc.name 不设置loop属性，使用默认值验证
-     * @tc.desc 不循环播放，顺序播放
+     * @tc.name Do not set the loop property, use default values for validation
+     * @tc.desc Do not set the loop property, use default values for validation
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_NotSet_loop', 0, async (done: Function) => {
       console.info('[Video001_NotSet_loop] START');

@@ -49,11 +49,11 @@ export default function VideoOperateTest5() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0560
-     * @tc.name 设置setCurrentTime为4
-     * @tc.desc 测试autoPlay属性设置为false后，组件打开后视屏不自动播放功能
+     * @tc.name Set setCurrentTime to 4
+     * @tc.desc Set setCurrentTime to 4
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_setCurrentTime', 0, async (done: Function) => {
       console.info('[Video001_setCurrentTime] START');
@@ -72,11 +72,11 @@ export default function VideoOperateTest5() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0440
-     * @tc.name 点击requestFullscreen请求全屏播放
-     * @tc.desc 点击后全屏播放，翻转屏幕视屏能跟着旋转
+     * @tc.name Click requestFullscreen to request full screen playback
+     * @tc.desc Click requestFullscreen to request full screen playback
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video002_requestFullscreen', 0, async (done: Function) => {
       console.info('[Video002_requestFullscreen] START');

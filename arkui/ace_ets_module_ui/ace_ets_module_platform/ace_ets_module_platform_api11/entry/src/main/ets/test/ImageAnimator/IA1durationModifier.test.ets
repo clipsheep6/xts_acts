@@ -49,11 +49,11 @@ export default function IA1durationModifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0020
-     * @tc.name 导入ImageAnimatorModifier，封装duration属性
-     * @tc.desc 导入ImageAnimatorModifier，封装duration属性
+     * @tc.name Import ImageAnimatorModifier and encapsulate the duration attribute
+     * @tc.desc Import ImageAnimatorModifier and encapsulate the duration attribute
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.size   : MEDIUM
+     * @tc.type   : Function
      */
     it('Video001_durationModifier_test', 0, async (done: Function) => {
       console.info('[Video001_durationModifier_test] START');

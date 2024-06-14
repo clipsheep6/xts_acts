@@ -49,11 +49,11 @@ export default function VideoOperateTest2() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0840
-     * @tc.name responseRegion设置左半边热区
-     * @tc.desc 点击视屏左半部分会暂停视屏
+     * @tc.name ResponseRegion Set Left Half Hot Zone，video paused
+     * @tc.desc ResponseRegion Set Left Half Hot Zone，video paused
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_responseRegion', 0, async (done: Function) => {
       console.info('[Video001_responseRegion] START');

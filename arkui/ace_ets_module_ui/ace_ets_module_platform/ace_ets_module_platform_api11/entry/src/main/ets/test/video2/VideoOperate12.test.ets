@@ -49,11 +49,11 @@ export default function VideoOperateTest12() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0800
-     * @tc.name 预览图路径错误/不设置，不影响视频正常播放
-     * @tc.desc 3、仍保留之前的图源，Video播放前黑屏
+     * @tc.name Preview image path error/not set, does not affect normal video playback
+     * @tc.desc Preview image path error/not set, does not affect normal video playback
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_previewUri_error', 0, async (done: Function) => {
       console.info('[Video001_previewUri_error] START');

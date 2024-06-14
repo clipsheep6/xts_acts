@@ -49,11 +49,11 @@ export default function VideoOperateTest8NotSet() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0280
-     * @tc.name 不设置currenProgressRate属性
-     * @tc.desc 默认为1.0倍速播放视频
+     * @tc.name Do not set the currenProgressRate property
+     * @tc.desc Do not set the currenProgressRate property
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_currentProgressRate_NotSet', 0, async (done: Function) => {
       console.info('[Video001_currentProgressRate_NotSet] START');

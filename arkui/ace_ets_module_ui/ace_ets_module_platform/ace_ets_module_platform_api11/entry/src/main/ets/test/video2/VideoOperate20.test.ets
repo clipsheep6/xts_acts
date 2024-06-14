@@ -49,11 +49,11 @@ export default function VideoOperateTest20() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0830
-     * @tc.name 视频页，点击全屏按钮，点击其他区域可以将视频播放或者暂停
-     * @tc.desc 视频页，点击全屏按钮，点击其他区域可以将视频播放或者暂停
+     * @tc.name Video page, click the full screen button, click on other areas to play or pause the video
+     * @tc.desc Video page, click the full screen button, click on other areas to play or pause the video
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_fullScreen_start_pause_test', 0, async (done: Function) => {
       console.info('[Video001_fullScreen_start_pause_test] START');

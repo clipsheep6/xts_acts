@@ -49,11 +49,11 @@ export default function VideoOperateTest1() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0050
-     * @tc.name 设置src的值为Resource类型，将引用方式实时修改为$rawfile，视频仍可正常播放
-     * @tc.desc 设置src的值为Resource类型，将引用方式实时修改为$rawfile，视频仍可正常播放
+     * @tc.name Set the value of src to Resource type, modify the reference method in real time to $rawfile,
+     * @tc.desc and the video can still be played normally
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_resourType_rawfile', 0, async (done: Function) => {
       console.info('[Video001_resourType_rawfile] START');

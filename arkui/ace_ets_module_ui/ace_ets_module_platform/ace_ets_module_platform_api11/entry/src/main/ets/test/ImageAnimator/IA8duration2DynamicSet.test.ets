@@ -49,11 +49,11 @@ export default function IA8duration2DynamicSet() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_STYLE_0850
-     * @tc.name ImageAnimator duration实时修改验证
-     * @tc.desc ImageAnimator duration实时修改验证
+     * @tc.name ImageAnimator duration real-time modification verification
+     * @tc.desc ImageAnimator duration real-time modification verification
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_durationDynamicChange_test', 0, async (done: Function) => {
       console.info('[Video001_durationDynamicChange_test] START');

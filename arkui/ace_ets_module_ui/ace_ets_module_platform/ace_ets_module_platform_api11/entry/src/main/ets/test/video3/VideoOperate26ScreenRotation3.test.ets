@@ -49,11 +49,13 @@ export default function VideoOperate26ScreenRotation3() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0800
-     * @tc.name 旋转屏幕进度条焦点横竖屏切换后位置不变
-     * @tc.desc 旋转屏幕进度条焦点横竖屏切换后位置不变
+     * @tc.name The position of the progress bar's focus remains unchanged
+     * after switching between horizontal and vertical screens
+     * @tc.desc The position of the progress bar's focus remains unchanged
+     * after switching between horizontal and vertical screens
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_ScreenRotation3_test', 0, async (done: Function) => {
       console.info('[Video001_ScreenRotation3_test] START');

@@ -49,11 +49,11 @@ export default function VideoOperateTest8E2() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0490
-     * @tc.name 多次拖动进度条至不同位置
-     * @tc.desc 视频可正常跳转、播放，事件正常上报
+     * @tc.name Set the playback speed of the video to Speed-Forward_2_00_X
+     * @tc.desc Set the playback speed of the video to Speed-Forward_2_00_X
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_currentProgressRate_E2', 0, async (done: Function) => {
       console.info('[Video001_currentProgressRate_E2] START');

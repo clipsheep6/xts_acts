@@ -48,11 +48,11 @@ export default function VideoOperate9LongClick2() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0810
-     * @tc.name 播放视频，长按2倍速播放后松手，正常倍速播放
-     * @tc.desc 播放视频，长按2倍速播放后松手，正常倍速播放
+     * @tc.name Long press the video area to play at double speed on the screen
+     * @tc.desc Long press the video area to play at double speed on the screen
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_changeRate_by_longClick2', 0, async (done: Function) => {
       console.info('[Video001_changeRate_by_longClick2] START');

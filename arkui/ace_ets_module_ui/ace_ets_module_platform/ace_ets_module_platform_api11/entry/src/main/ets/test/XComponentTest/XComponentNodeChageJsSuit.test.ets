@@ -46,8 +46,8 @@ export default function XComponentNodeChageJsSuit() {
      * @tc.name : XComponentNodeChageJsSuit_0100
      * @tc.desc  : api
      * @tc.level : Level 2
-     * @tc.type :
-     * @tc.size :
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
 
     it('XComponentNodeChageJsSuit_0100', 0, async function (done) {

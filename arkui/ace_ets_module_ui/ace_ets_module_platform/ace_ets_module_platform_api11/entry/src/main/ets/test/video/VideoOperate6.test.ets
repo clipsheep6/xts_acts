@@ -50,11 +50,11 @@ export default function VideoOperateTest6() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0040
-     * @tc.name 设置src的值为Resource类型
-     * @tc.desc 设置src的值为Resource类型，通过$r方式引用一个本地视频文件,打开应用后视频可正常播放。
+     * @tc.name Set the value of src to Resource type and reference a local video file using the $r method
+     * @tc.desc Set the value of src to Resource type and reference a local video file using the $r method
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_resourceTypeDollarR', 0, async (done: Function) => {
       console.info('[Video001_resourceTypeDollarR] START');

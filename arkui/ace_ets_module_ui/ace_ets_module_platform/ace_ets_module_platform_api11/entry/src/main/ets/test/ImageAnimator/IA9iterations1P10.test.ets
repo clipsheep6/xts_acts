@@ -49,11 +49,11 @@ export default function IA9iterations1P10() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_STYLE_0900
-     * @tc.name ImageAnimator iterations默认值验证
-     * @tc.desc ImageAnimator iterations默认值验证
+     * @tc.name ImageAnimator validations settings 10 validation
+     * @tc.desc ImageAnimator validations settings 10 validation
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_iterationsP10_test', 0, async (done: Function) => {
       console.info('[Video001_iterationsP10_test] START');

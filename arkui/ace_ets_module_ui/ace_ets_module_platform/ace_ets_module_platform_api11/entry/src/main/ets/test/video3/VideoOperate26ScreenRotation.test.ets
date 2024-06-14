@@ -49,11 +49,11 @@ export default function VideoOperate26ScreenRotation() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0810
-     * @tc.name 频繁横竖屏切换查看体验
-     * @tc.desc 频繁横竖屏切换查看体验
+     * @tc.name Frequent horizontal and vertical screen switching viewing experience
+     * @tc.desc Frequent horizontal and vertical screen switching viewing experience
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_ScreenRotation_test', 0, async (done: Function) => {
       console.info('[Video001_ScreenRotation_test] START');

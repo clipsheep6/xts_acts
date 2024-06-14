@@ -49,11 +49,11 @@ export default function IA2fillModeModifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0030
-     * @tc.name 导入ImageAnimatorModifier，封装fillMode属性
-     * @tc.desc 导入ImageAnimatorModifier，封装fillMode属性
+     * @tc.name Import ImageAnimatorModifier and encapsulate the fillMode attribute
+     * @tc.desc Import ImageAnimatorModifier and encapsulate the fillMode attribute
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_fillModeModifier_test', 0, async (done: Function) => {
       console.info('[Video001_fillModeModifier_test] START');

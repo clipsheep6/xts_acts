@@ -49,11 +49,11 @@ export default function VideoOperateTest3() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0570
-     * @tc.name 在播放过程中把autoplay属性false修改成true
-     * @tc.desc 在播放过程中把autoplay属性false修改成true，视频开始播放
+     * @tc.name Change the autoplay attribute from false to true during playback
+     * @tc.desc Change the autoplay attribute from false to true during playback and video begin play
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_change_autoPlay', 0, async (done: Function) => {
       console.info('[Video001_change_autoPlay] START');

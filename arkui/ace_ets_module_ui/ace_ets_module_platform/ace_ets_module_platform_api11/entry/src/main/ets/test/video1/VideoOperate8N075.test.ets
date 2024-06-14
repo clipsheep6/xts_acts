@@ -49,11 +49,11 @@ export default function VideoOperateTest8N075() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0490
-     * @tc.name 多次拖动进度条至不同位置
-     * @tc.desc 视频可正常跳转、播放，事件正常上报
+     * @tc.name Set the video playback speed to 0.75
+     * @tc.desc Set the video playback speed to 0.75
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Text_VideoOperateVideo_speedTime_N075', 0, async (done: Function) => {
       console.info('[Text_VideoOperateVideo_speedTime_N075] START');

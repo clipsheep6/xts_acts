@@ -52,11 +52,11 @@ export default function VideoOperate24SliderAudio() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0070
-     * @tc.name 设置src的值为Resource类型，用$r方式加载一个非视频文件
-     * @tc.desc 设置src的值为Resource类型，用$r方式加载一个非视频文件
+     * @tc.name Set the value of src to Resource type and load a non video file using $r method
+     * @tc.desc Set the value of src to Resource type and load a non video file using $r method
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video003_slider_audio_test', 0, async (done: Function) => {
       console.info('[Video003_slider_audio_test] START');

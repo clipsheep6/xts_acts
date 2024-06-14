@@ -49,11 +49,11 @@ export default function IA8duration4SetDefault() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_STYLE_0870
-     * @tc.name ImageAnimator duration默认值验证
-     * @tc.desc ImageAnimator duration默认值验证
+     * @tc.name ImageAnimator duration default value validation
+     * @tc.desc ImageAnimator duration default value validation
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_durationSetDefault_test', 0, async (done: Function) => {
       console.info('[Video001_durationSetDefault_test] START');

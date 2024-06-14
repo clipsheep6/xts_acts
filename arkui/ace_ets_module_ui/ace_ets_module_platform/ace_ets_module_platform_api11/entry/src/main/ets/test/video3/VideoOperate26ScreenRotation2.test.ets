@@ -49,11 +49,11 @@ export default function VideoOperate26ScreenRotation2() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0790
-     * @tc.name 转动手机到横屏画面也会随着屏幕选转
-     * @tc.desc 转动手机到横屏画面也会随着屏幕选转
+     * @tc.name Rotate the phone to landscape mode, and the screen will also rotate accordingly
+     * @tc.desc Rotate the phone to landscape mode, and the screen will also rotate accordingly
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_ScreenRotation2_test', 0, async (done: Function) => {
       console.info('[Video001_ScreenRotation2_test] START');

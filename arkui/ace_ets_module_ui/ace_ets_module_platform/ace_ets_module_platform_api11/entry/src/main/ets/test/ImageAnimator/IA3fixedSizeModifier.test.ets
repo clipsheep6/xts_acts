@@ -49,11 +49,11 @@ export default function IA3fixedSizeModifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0040
-     * @tc.name 导入ImageAnimatorModifier，封装fixedSize属性
-     * @tc.desc 导入ImageAnimatorModifier，封装fixedSize属性
+     * @tc.name Import ImageAnimatorModifier and encapsulate the fixedSize attribute
+     * @tc.desc Import ImageAnimatorModifier and encapsulate the fixedSize attribute
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_fixedSizeModifier_test', 0, async (done: Function) => {
       console.info('[Video001_fixedSizeModifier_test] START');

@@ -49,11 +49,11 @@ export default function VideoOperateTest14() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0310
-     * @tc.name 点击pause按钮暂停播放，点击pause按钮后暂停播放
-     * @tc.desc 点击pause按钮暂停播放，点击pause按钮后暂停播放
+     * @tc.name Click the pause button to pause playback
+     * @tc.desc Click the pause button to pause playback
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_pause_test', 0, async (done: Function) => {
       console.info('[Video001_pause_test] START');
@@ -72,11 +72,11 @@ export default function VideoOperateTest14() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0160
-     * @tc.name 不设置controls属性，使用默认值；显示视频播放控制栏
-     * @tc.desc 不设置controls属性，使用默认值；显示视频播放控制栏
+     * @tc.name Do not set the controls property, use default values
+     * @tc.desc Do not set the controls property, use default values
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video002_not_set_controls_test', 0, async (done: Function) => {
       console.info('[Video002_not_set_controls_test] START');

@@ -48,11 +48,11 @@ export default function VideoOperateTest16() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0160
-     * @tc.name 点击暂停播放按钮触发暂停事件；视屏暂停，点击开始播放视屏又继续播放
-     * @tc.desc 点击暂停播放按钮触发暂停事件；视屏暂停，点击开始播放视屏又继续播放
+     * @tc.name Clicking the pause playback button triggers a pause event
+     * @tc.desc Clicking the pause playback button triggers a pause event
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_pause_start_test', 0, async (done: Function) => {
       console.info('[Video001_pause_start_test] START');

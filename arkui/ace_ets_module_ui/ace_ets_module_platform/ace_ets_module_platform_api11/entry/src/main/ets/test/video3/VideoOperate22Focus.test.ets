@@ -52,11 +52,11 @@ export default function VideoOperate22Focus() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0830
-     * @tc.name 接入键盘后tab走焦，video组件支持获焦；焦点传递给滑动条，鼠标可以自由滑动
-     * @tc.desc 接入键盘后tab走焦，video组件支持获焦；焦点传递给滑动条，鼠标可以自由滑动
+     * @tc.name After connecting to the keyboard, the tab zooms in, and the video component supports zooming in
+     * @tc.desc After connecting to the keyboard, the tab zooms in, and the video component supports zooming in
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_focus_test', 0, async (done: Function) => {
       console.info('[Video001_focus_test] START');

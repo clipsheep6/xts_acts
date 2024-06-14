@@ -48,11 +48,11 @@ export default function VideoOperateTest4Loop() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0630
-     * @tc.name 设置loop属性为false
-     * @tc.desc 组件打开后视屏不循环播放
+     * @tc.name Set the loop property to false
+     * @tc.desc Set the loop property to false
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_change_loop', 0, async (done: Function) => {
       await Utils.sleep(Utils.WAIT_UI_READY_MS*7);
@@ -68,11 +68,11 @@ export default function VideoOperateTest4Loop() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0620
-     * @tc.name 设置loop属性为true；
-     * @tc.desc 组件打开后单视频循环播放
+     * @tc.name Set the loop property to true；
+     * @tc.desc Set the loop property to true
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video002_change_loop', 0, async (done: Function) => {
       console.info('[Video002_change_loop] START');

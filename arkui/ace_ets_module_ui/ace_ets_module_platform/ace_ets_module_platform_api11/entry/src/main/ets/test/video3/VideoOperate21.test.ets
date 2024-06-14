@@ -49,11 +49,11 @@ export default function VideoOperateTest21() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_INTERFACE_0260
-     * @tc.name 播放进度变化时触发onUpdate事件
-     * @tc.desc 播放进度变化时触发onUpdate事件
+     * @tc.name Trigger onUpdate event when playback progress changes
+     * @tc.desc Trigger onUpdate event when playback progress changes
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_onUpdate_test', 0, async (done: Function) => {
       console.info('[Video001_onUpdate_test] START');

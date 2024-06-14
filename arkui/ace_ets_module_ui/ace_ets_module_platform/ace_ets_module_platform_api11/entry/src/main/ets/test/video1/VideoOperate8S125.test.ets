@@ -49,11 +49,11 @@ export default function VideoOperateTest8S125() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0490
-     * @tc.name 多次拖动进度条至不同位置
-     * @tc.desc 视频可正常跳转、播放，事件正常上报
+     * @tc.name Set the video playback speed to string type "1.25"
+     * @tc.desc Set the video playback speed to string type "1.25"
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Text_VideoOperateVideo_speedTime_S125', 0, async (done: Function) => {
       console.info('[Video001_currentProgressRate_S125] START');

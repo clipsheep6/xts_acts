@@ -49,11 +49,11 @@ export default function VideoOperate28Modifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0230
-     * @tc.name 导入VideoModifier，封装autoPlay属性
-     * @tc.desc 导入VideoModifier，封装autoPlay属性
+     * @tc.name Import VideoModifier and encapsulate autoPlay properties
+     * @tc.desc Import VideoModifier and encapsulate autoPlay properties
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_modifier_autoPlay_test', 0, async (done: Function) => {
       console.info('[Video001_modifier_autoPlay_test] START');

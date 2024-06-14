@@ -48,11 +48,11 @@ export default function VideoOperateTest4() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0550
-     * @tc.name 设置autoPlay为false
-     * @tc.desc 组件打开后视屏不自动播放
+     * @tc.name Set autoPlay to false
+     * @tc.desc Set autoPlay to false
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_change_autoPlay_loop', 0, async (done: Function) => {
       await Utils.sleep(Utils.WAIT_UI_READY_MS*7);
@@ -68,11 +68,11 @@ export default function VideoOperateTest4() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_VIDEO_FEATURE_0540
-     * @tc.name 设置autoPlay为true；
-     * @tc.desc 组件打开后视屏自动播放
+     * @tc.name Set autoPlay to true
+     * @tc.desc Set autoPlay to true
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video002_change_autoPlay_loop', 0, async (done: Function) => {
       console.info('[Video002_change_autoPlay_loop] START');

@@ -49,11 +49,11 @@ export default function IA6reverseModifier() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_MODIFIER_0070
-     * @tc.name 导入ImageAnimatorModifier，封装reverse属性
-     * @tc.desc 导入ImageAnimatorModifier，封装reverse属性
+     * @tc.name Import ImageAnimatorModifier and encapsulate the reverse attribute
+     * @tc.desc Import ImageAnimatorModifier and encapsulate the reverse attribute
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_reverseModifier_test', 0, async (done: Function) => {
       console.info('[Video001_reverseModifier_test] START');

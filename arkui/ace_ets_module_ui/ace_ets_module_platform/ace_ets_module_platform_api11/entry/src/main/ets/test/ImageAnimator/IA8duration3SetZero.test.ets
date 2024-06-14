@@ -49,11 +49,11 @@ export default function IA8duration3SetZero() {
 
     /**
      * @tc.number SUB_ACE_UI_COMPONENT_MEDIA_STYLE_0860
-     * @tc.name ImageAnimator duration设置0验证
-     * @tc.desc ImageAnimator duration设置0验证
+     * @tc.name ImageAnimator duration set to 0 validation
+     * @tc.desc ImageAnimator duration set to 0 validation
      * @tc.level Level 2
-     * @tc.type
-     * @tc.size
+     * @tc.type   : Function
+     * @tc.size   : MEDIUM
      */
     it('Video001_duration3SetZero_test', 0, async (done: Function) => {
       console.info('[Video001_duration3SetZero_test] START');
