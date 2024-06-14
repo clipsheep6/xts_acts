@@ -38,6 +38,11 @@ struct VideoOperate27Modifier {
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
+      Text(`mutedFlag_${this.modifier.mutedFlag}`)
+        .id('Text_VideoOperateVideo_mutedFlag')
+        .backgroundColor(Color.Pink)
+        .fontSize(18)
+        .textAlign(TextAlign.Center)
       Row() {
         Video({
           src: this.videoSrc,
@@ -57,11 +62,13 @@ struct VideoOperate27Modifier {
         Button('FirstTime')
           .id('Button_isFirstTime')
           .onClick(() => {
+            this.modifier.mutedFlag = true;
             this.modifier.currentTimes = 1;
           });
         Button('SecondTime')
           .id('Button_isSecondTime')
           .onClick(() => {
+            this.modifier.mutedFlag = false;
             this.modifier.currentTimes = 2;
           });
       }
@@ -76,13 +83,14 @@ struct VideoOperate27Modifier {
  */
 class VideoModifier implements AttributeModifier<VideoAttribute> {
   public currentTimes: number = 0;
+  public mutedFlag: boolean = false;
 
   applyNormalAttribute(instance: VideoAttribute): void {
     if (this.currentTimes == 1) {
-      instance.muted(true).autoPlay(false)
+      instance.muted(this.mutedFlag).autoPlay(false)
     }
     if (this.currentTimes == 2) {
-      instance.muted(false).controls(true)
+      instance.muted(this.mutedFlag).controls(true)
     }
   }
 }

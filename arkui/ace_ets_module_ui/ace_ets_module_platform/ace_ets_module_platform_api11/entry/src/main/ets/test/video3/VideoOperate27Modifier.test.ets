@@ -61,14 +61,15 @@ export default function VideoOperate27Modifier() {
       await dr.delayMs(Utils.WAIT_UI_READY_MS);
       let firstTimeButton = await dr.findComponent(ON.id("Button_isFirstTime"));
       // 第一次点击查看video显示效果
-      firstTimeButton.click();
+      await firstTimeButton.click();
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
       // 第二次点击查看video显示效果
       let secondTimeButton = await dr.findComponent(ON.id("Button_isSecondTime"));
-      secondTimeButton.click();
-      let VideoOperateVideo = await dr.findComponent(ON.id("VideoOperateVideo"));
+      await secondTimeButton.click();
+      await Utils.sleep(Utils.WAIT_UI_READY_MS);
+      let mutedFlagText = await dr.findComponent(ON.id("Text_VideoOperateVideo_mutedFlag"));
       // 待组件补充muted属性再来断言其值为false
-      expect(await VideoOperateVideo.getId()).assertEqual('VideoOperateVideo');
+      expect(await mutedFlagText.getText()).assertContain('false');
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 3);
       console.info('[Video001_modifier_test] END');
       done();
