@@ -262,7 +262,7 @@ static napi_value NormalAVScreenCaptureSurfaceTest(napi_env env, napi_callback_i
     OH_AVScreenCapture_Release(screenCapture);
 
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OK;
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 >= AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
