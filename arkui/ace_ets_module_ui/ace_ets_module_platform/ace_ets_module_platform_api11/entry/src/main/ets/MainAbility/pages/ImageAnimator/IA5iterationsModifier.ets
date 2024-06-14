@@ -84,9 +84,10 @@ struct IA5iterationsModifier {
               this.durationModifier.iterations = 0;
             } else {
               if (this.durationModifier.iterations === 1) {
-                this.durationModifier.iterations++;
+                this.durationModifier.iterations = this.durationModifier.iterations + 2;
+              }else{
+                this.durationModifier.iterations = this.durationModifier.iterations + 1;
               }
-              this.durationModifier.iterations++;
             }
           });
       }

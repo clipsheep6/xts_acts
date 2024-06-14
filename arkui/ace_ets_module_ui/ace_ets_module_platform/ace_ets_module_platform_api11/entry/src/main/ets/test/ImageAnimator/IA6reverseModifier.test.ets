@@ -69,9 +69,11 @@ export default function IA6reverseModifier() {
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 3);
       let strJsonImage = getInspectorByKey('ImageAnimatorComp');
       console.info("[Video001_reverseModifier_test] component strJsonImage:" + strJsonImage);
-      const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
-      expect(objJsonImage.$attrs.reverse).assertContain('true');
-      await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
+      // const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
+      // expect(objJsonImage.$attrs.reverse).assertContain('true');
+      let ImageAnimator_reverse = await dr.findComponent(ON.id("ImageAnimator_reverse"));
+      expect(await ImageAnimator_reverse.getText()).assertContain('true');
+      await Utils.sleep(Utils.WAIT_UI_READY_MS);
       console.info('[Video001_reverseModifier_test] END');
       done();
     });

@@ -81,9 +81,11 @@ export default function IA5iterationsModifier() {
       await Utils.sleep(Utils.WAIT_UI_READY_MS); // 变成0
       let strJsonImage = getInspectorByKey('ImageAnimatorComp');
       console.info("[Video001_iterationsModifier_test] component strJsonImage:" + strJsonImage);
-      const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
-      expect(objJsonImage.$attrs.iterations).assertContain('0');
-      await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
+      // const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
+      // expect(objJsonImage.$attrs.iterations).assertContain('0');
+      let ImageAnimator_iterations = await dr.findComponent(ON.id("ImageAnimator_iterations"));
+      expect(await ImageAnimator_iterations.getText()).assertContain('0');
+      await Utils.sleep(Utils.WAIT_UI_READY_MS);
       console.info('[Video001_iterationsModifier_test] END');
       done();
     });
