@@ -31,22 +31,22 @@ struct IA8duration2DynamicSet {
   build() {
     Column({ space: 2 }) {
       Text('用例01：ImageAnimator duration实时修改验证')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`ImageAnimator_state_${this.state}`)
-        .id("ImageAnimator_state")
+        .id('ImageAnimator_state')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`duration_${this.duration}`)
-        .id("ImageAnimator_duration")
+        .id('ImageAnimator_duration')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`repeatFlag_${this.repeatFlag}_${this.repeatTime}`)
-        .id("ImageAnimator_repeatFlag")
+        .id('ImageAnimator_repeatFlag')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -71,15 +71,15 @@ struct IA8duration2DynamicSet {
         })
       Row() {
         Button('start')
-          .id("Button_start")
+          .id('Button_start')
           .width(100)
           .padding(5)
           .onClick(() => {
             this.state = AnimationStatus.Running
           })
           .margin(5)
-        Button("改变duration")
-          .id("Button_durationChange")
+        Button('改变duration')
+          .id('Button_durationChange')
           .onClick(() => {
             this.duration = 100
           });

@@ -26,12 +26,12 @@ struct IA6reverseModifier {
   build() {
     Column({ space: 2 }) {
       Text('用例01：导入ImageAnimatorModifier，封装reverse属性')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`ImageAnimator_reverse_${this.durationModifier.reverse}`)
-        .id("ImageAnimator_reverse")
+        .id('ImageAnimator_reverse')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -60,7 +60,7 @@ struct IA6reverseModifier {
 
       Row() {
         Button('start')
-          .id("Button_start")
+          .id('Button_start')
           .width(100)
           .padding(5)
           .onClick(() => {
@@ -77,8 +77,8 @@ struct IA6reverseModifier {
       }
 
       Row() {
-        Button("改变reverse")
-          .id("Button_reverseChange")
+        Button('改变reverse')
+          .id('Button_reverseChange')
           .onClick(() => {
             this.durationModifier.reverse = !this.durationModifier.reverse
           });

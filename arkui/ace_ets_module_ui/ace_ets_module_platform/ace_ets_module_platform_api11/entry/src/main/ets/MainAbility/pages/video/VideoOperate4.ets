@@ -28,7 +28,7 @@ struct VideoOperate4 {
     Column({ space: 2 }) {
       //autoPlay___11_false___12_true
       Text(`autoPlay___11_${this.startFlag_VideoOperateVideo11}___12_${this.startFlag_VideoOperateVideo12}`)
-        .id("Text_startFlag")
+        .id('Text_startFlag')
         .backgroundColor(Color.Pink)
         .width('100%')
       Row({ space: 5 }) {

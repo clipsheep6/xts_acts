@@ -61,7 +61,7 @@ struct VideoOperate29Modifier {
 
       Row() {
         Button("mutedSetButton")
-          .id("Button_mutedSet")
+          .id('Button_mutedSet')
           .onClick(() => {
             this.modifier.muted = !this.modifier.muted
           });
@@ -74,14 +74,13 @@ struct VideoOperate29Modifier {
  * 导入VideoModifier，封装muted属性
  */
 export class VideoModifierMuted implements AttributeModifier<VideoAttribute> {
-  muted: boolean;
+  public muted: boolean;
 
   constructor(muted: boolean) {
     this.muted = muted;
   }
 
   applyNormalAttribute(instance: VideoAttribute): void {
-    console.log("applyNormalAttribute invoked,muted:", this.muted);
     instance.muted(this.muted)
   }
 }

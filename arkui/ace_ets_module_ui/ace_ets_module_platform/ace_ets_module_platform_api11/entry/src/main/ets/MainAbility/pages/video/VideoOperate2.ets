@@ -44,7 +44,7 @@ struct VideoOperate2 {
         .width('70%')
         .textAlign(TextAlign.Center)
       Text(`播放结束标识_${this.finishFlag}`)
-        .id("Text_VideoOperateVideo_second")
+        .id('Text_VideoOperateVideo_second')
         .backgroundColor(Color.Pink)
         .fontSize(30)
         .width('70%')

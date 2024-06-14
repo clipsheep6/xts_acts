@@ -31,22 +31,22 @@ struct VideoOperate17 {
   build() {
     Column({ space: 2 }) {
       Text('纯音频文件支持静音')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`静音标识_${this.mutedStatue}`)
-        .id("Text_VideoOperateVideo_first")
+        .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`启动标识_${this.startStatus}`)
-        .id("Text_VideoOperateVideo_start")
+        .id('Text_VideoOperateVideo_start')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`播放中标识_${this.currentTimeUpdateFlag}`)
-        .id("Text_VideoOperateVideo_currentTimeUpdateFlag")
+        .id('Text_VideoOperateVideo_currentTimeUpdateFlag')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -73,7 +73,7 @@ struct VideoOperate17 {
       .backgroundColor(Color.Pink)
       Row() {
         Button("muted")
-          .id("Button_muted")
+          .id('Button_muted')
           .onClick(() => {
             this.mutedStatue = !this.mutedStatue;
           });

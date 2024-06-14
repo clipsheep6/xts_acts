@@ -33,12 +33,12 @@ struct VideoOperate26ScreenRotation {
   build() {
     Column({ space: 2 }) {
       Text('用例26频繁横竖屏切换查看体验')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`视频播放完成标识_${this.finishFlag}`)
-        .id("Text_VideoOperateVideo_finishFlag")
+        .id('Text_VideoOperateVideo_finishFlag')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -58,8 +58,8 @@ struct VideoOperate26ScreenRotation {
       .height('80%')
       .backgroundColor(Color.Pink)
       Row() {
-        Button("横竖屏切换")
-          .id("Button_horVerSwitch")
+        Button('横竖屏切换')
+          .id('Button_horVerSwitch')
           .onClick(() => {
             this.horVerSwitch()
           })

@@ -50,10 +50,8 @@ struct VideoOperate9 {
 
   onStartCallback: () => void = () => {
     this.statueFirst = false;
-    console.log("----------------onStartCallback invoked ", this.statueFirst);
   }
   onFinishCallback: () => void = () => {
     this.statueFirst = true;
-    console.log("----------------onFinishCallback invoked ", this.statueFirst);
   }
 }

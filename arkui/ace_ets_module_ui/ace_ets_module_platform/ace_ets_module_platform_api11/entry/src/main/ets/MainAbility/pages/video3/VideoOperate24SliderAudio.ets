@@ -39,28 +39,28 @@ struct VideoOperate24SliderAudio {
   build() {
     Column({ space: 2 }) {
       Text('用例24设置src的值为Resource类型，用$r方式加载一个非视频文件')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`Video组件onFocus触发标识_${this.videoFocusFlag}`)
-        .id("Text_VideoOperateVideo_focusFlag")
+        .id('Text_VideoOperateVideo_focusFlag')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
 
       Text(`音频可正常跳转标识_${this.seekedTimeGtZero}_${this.currentTime}`)
-        .id("Text_VideoOperateVideo_seekedTimeGtZero")
+        .id('Text_VideoOperateVideo_seekedTimeGtZero')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`音频可暂停和正常播放标识_${this.pauseFlag}_${this.startFlag}`)
-        .id("Text_VideoOperateVideo_startFlag")
+        .id('Text_VideoOperateVideo_startFlag')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`音频可正常上报标识_${this.seekingFlag}_${this.seekedFlag}_${this.updateFlag}`)
-        .id("Text_VideoOperateVideo_threeEventFlag")
+        .id('Text_VideoOperateVideo_threeEventFlag')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -108,12 +108,12 @@ struct VideoOperate24SliderAudio {
       .backgroundColor(Color.Pink)
       Row() {
         Button("start")
-          .id("Button_start")
+          .id('Button_start')
           .onClick(() => {
             this.myVideoController.start();
           });
         Button("pause")
-          .id("Button_pause")
+          .id('Button_pause')
           .onClick(() => {
             this.myVideoController.pause();
           });

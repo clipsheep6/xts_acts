@@ -92,19 +92,16 @@ export default struct VideoCommonComponent {
         Button("Button_second")
           .id("Button_second")
           .onClick(() => {
-            console.log("----------------onFullscreenChangeCallback exitFullscreen ");
             this.myVideoController.exitFullscreen();
           });
         Button("Button_start")
           .id("Button_start")
           .onClick(() => {
-            console.log("----------------start ");
             this.myVideoController.start();
           });
         Button("Button_stop")
           .id("Button_stop")
           .onClick(() => {
-            console.log("----------------stop ");
             this.myVideoController.stop();
           });
       }

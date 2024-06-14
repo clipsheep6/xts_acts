@@ -28,7 +28,7 @@ struct VideoOperate {
     Column({ space: 2 }) {
       // 不设置autoPlay属性
       Text(`${this.startFlag}`)
-        .id("Text_VideoOperateVideo_startFlag")
+        .id('Text_VideoOperateVideo_startFlag')
         .backgroundColor(Color.Pink)
         .fontSize(30)
         .width('70%')
@@ -65,13 +65,13 @@ struct VideoOperate {
       .backgroundColor(Color.Pink)
 
       Row() {
-        Button("start")
-          .id("Button_start")
+        Button('start')
+          .id('Button_start')
           .onClick(() => {
             this.myVideoController.start();
           });
-        Button("pause")
-          .id("Button_pause")
+        Button('pause')
+          .id('Button_pause')
           .onClick(() => {
             this.myVideoController.pause();
           });

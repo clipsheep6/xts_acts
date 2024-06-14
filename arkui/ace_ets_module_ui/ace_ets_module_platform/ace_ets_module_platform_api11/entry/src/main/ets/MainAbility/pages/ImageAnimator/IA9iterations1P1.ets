@@ -28,17 +28,17 @@ struct IA9iterations1P1 {
   build() {
     Column({ space: 2 }) {
       Text('用例01：ImageAnimator iterations设置10验证')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`state_${this.state}`)
-        .id("ImageAnimator_state")
+        .id('ImageAnimator_state')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`repeatFlag_${this.repeatFlag}`)
-        .id("ImageAnimator_repeatFlag")
+        .id('ImageAnimator_repeatFlag')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -63,7 +63,7 @@ struct IA9iterations1P1 {
         })
       Row() {
         Button('start')
-          .id("Button_start")
+          .id('Button_start')
           .width(100)
           .padding(5)
           .onClick(() => {

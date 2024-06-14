@@ -81,11 +81,13 @@ export default struct VideoRateTestComponent3 {
               try {
                 let finishTime = await TimeUtils.getCurrentTime();
                 let currentProgressRateActualTemp =
-                  TimeUtils.curryCalculateSpeedAdjustedProgressRate(curRateNumberParam)(this.startTime, finishTime, this.duration * 1000);
+                  TimeUtils.curryCalculateSpeedAdjustedProgressRate(curRateNumberParam)
+                  (this.startTime, finishTime, this.duration * 1000);
                 this.currentProgressRateActual = currentProgressRateActualTemp;
                 // 针对长按加速情况进行单独判断处理
                 if (this.changeRateFlag) {
-                  console.log("VideoOperate9LongClick this.currentProgressRateActual:",this.currentProgressRateActual,(this.currentProgressRateActual>1));
+                  console.log('VideoOperate9LongClick this.currentProgressRateActual:',
+                    this.currentProgressRateActual,(this.currentProgressRateActual>1));
                   if (this.currentProgressRateActual > 0.9) {
                     this.isLessThanThreeTenths = true;
                   } else {
@@ -107,7 +109,7 @@ export default struct VideoRateTestComponent3 {
       Row() {
         // 针对长按加速情况进行单独判断处理
         Button("fullScreen")
-          .id("Button_fullScreen")
+          .id('Button_fullScreen')
           .onClick(async () => {
             this.myVideoController.requestFullscreen(true);
           });

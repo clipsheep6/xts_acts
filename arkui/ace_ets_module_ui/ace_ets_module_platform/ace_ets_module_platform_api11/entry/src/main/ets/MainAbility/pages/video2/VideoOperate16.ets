@@ -32,17 +32,17 @@ struct VideoOperate16 {
   build() {
     Column({ space: 2 }) {
       Text('视屏暂停，点击开始播放视屏又继续播放')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`暂停控制成功标识_${this.pauseStatus}`)
-        .id("Text_VideoOperateVideo_first")
+        .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`开始控制生效标识_${this.startStatue}`)
-        .id("Text_VideoOperateVideo_second")
+        .id('Text_VideoOperateVideo_second')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -70,13 +70,13 @@ struct VideoOperate16 {
       .backgroundColor(Color.Pink)
 
       Row() {
-        Button("pause")
-          .id("Button_pause")
+        Button('pause')
+          .id('Button_pause')
           .onClick(() => {
             this.myVideoController.pause();
           });
-        Button("start")
-          .id("Button_start")
+        Button('start')
+          .id('Button_start')
           .onClick(() => {
             this.myVideoController.start();
           });

@@ -82,7 +82,7 @@ struct VideoOperate6 {
             this.myVideoController.setCurrentTime(5);
           });
         Button("fullscreen")
-          .id("Button_fullscreen")
+          .id('Button_fullscreen')
           .onClick(() => {
             this.myVideoController.requestFullscreen(true);
           });

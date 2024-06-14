@@ -27,12 +27,12 @@ struct IA7stateModifier {
   build() {
     Column({ space: 2 }) {
       Text('用例01：导入ImageAnimatorModifier，封装state属性')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`ImageAnimator_state_${this.durationModifier.state}`)
-        .id("ImageAnimator_state")
+        .id('ImageAnimator_state')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -60,8 +60,8 @@ struct IA7stateModifier {
         })
 
       Row() {
-        Button("改变state")
-          .id("Button_stateChange")
+        Button('改变state')
+          .id('Button_stateChange')
           .onClick(() => {
             if (this.stateIndex == 3) {
               this.stateIndex = 0;

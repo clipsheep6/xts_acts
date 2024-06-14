@@ -29,13 +29,13 @@ struct VideoOperate1 {
   build() {
     Column({ space: 2 }) {
       Text(`${this.finishFlag}`)
-        .id("Text_VideoOperateVideo_finishFlag")
+        .id('Text_VideoOperateVideo_finishFlag')
         .backgroundColor(Color.Pink)
         .fontSize(30)
         .width('70%')
         .textAlign(TextAlign.Center)
       Text(`${this.responseRegionFlag}`)
-        .id("Text_VideoOperateVideo_first")
+        .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .fontSize(30)
         .width('70%')

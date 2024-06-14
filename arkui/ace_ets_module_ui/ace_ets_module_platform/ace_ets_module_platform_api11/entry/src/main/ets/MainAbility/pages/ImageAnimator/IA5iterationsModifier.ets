@@ -21,7 +21,8 @@ import { ImageAnimatorModifier } from './IA1durationModifier';
 @Entry
 @Component
 struct IA5iterationsModifier {
-  @State durationModifier: ImageAnimatorModifier = new ImageAnimatorModifier(undefined, FillMode.Forwards, true, undefined, undefined, undefined, undefined);
+  @State durationModifier: ImageAnimatorModifier =
+    new ImageAnimatorModifier(undefined, FillMode.Forwards, true, undefined, undefined, undefined, undefined);
 
   build() {
     Column({ space: 2 }) {
@@ -77,7 +78,7 @@ struct IA5iterationsModifier {
 
       Row() {
         Button("改变iterations")
-          .id("Button_iterationsChange")
+          .id('Button_iterationsChange')
           .onClick(() => {
             if (this.durationModifier.iterations === 3) {
               this.durationModifier.iterations = 0;

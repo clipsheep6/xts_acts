@@ -28,7 +28,7 @@ struct VideoOperate4Loop {
     Column({ space: 2 }) {
       //not_loop___21_true___22_false
       Text(`not_loop___21_${this.finishFlag_VideoOperateVideo21}___22_${this.finishFlag_VideoOperateVideo22}`)
-        .id("Text_finishFlag")
+        .id('Text_finishFlag')
         .backgroundColor(Color.Pink)
         .width('100%')
       Row({ space: 5 }) {

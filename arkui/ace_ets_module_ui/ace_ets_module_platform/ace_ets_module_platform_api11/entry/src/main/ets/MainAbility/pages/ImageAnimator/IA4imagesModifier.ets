@@ -21,17 +21,18 @@ import { ImageAnimatorModifier } from './IA1durationModifier';
 @Entry
 @Component
 struct IA4imagesModifier {
-  @State modifier: ImageAnimatorModifier = new ImageAnimatorModifier(undefined, FillMode.Forwards, undefined, 2, undefined, undefined, undefined);
+  @State modifier: ImageAnimatorModifier =
+    new ImageAnimatorModifier(undefined, FillMode.Forwards, undefined, 2, undefined, undefined, undefined);
 
   build() {
     Column({ space: 2 }) {
       Text('用例01：导入ImageAnimatorModifier，封装images属性')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`ImageAnimator_images_${this.modifier.images[0].src}`)
-        .id("ImageAnimator_images")
+        .id('ImageAnimator_images')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -60,7 +61,7 @@ struct IA4imagesModifier {
 
       Row() {
         Button('start')
-          .id("Button_start")
+          .id('Button_start')
           .width(100)
           .padding(5)
           .onClick(() => {

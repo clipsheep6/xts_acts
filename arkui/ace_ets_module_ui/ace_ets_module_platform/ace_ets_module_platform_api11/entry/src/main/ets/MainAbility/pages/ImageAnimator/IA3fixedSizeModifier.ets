@@ -21,7 +21,8 @@ import { ImageAnimatorModifier } from './IA1durationModifier';
 @Entry
 @Component
 struct IA3fixedSizeModifier {
-  @State durationModifier: ImageAnimatorModifier = new ImageAnimatorModifier(undefined, FillMode.None, true, undefined, undefined, undefined, [
+  @State durationModifier: ImageAnimatorModifier =
+    new ImageAnimatorModifier(undefined, FillMode.None, true, undefined, undefined, undefined, [
     {
       src: $r('app.media.cloud'),
       width: 380,
@@ -34,12 +35,12 @@ struct IA3fixedSizeModifier {
   build() {
     Column({ space: 2 }) {
       Text('用例01：导入ImageAnimatorModifier，封装fixedSize属性')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`ImageAnimator_fixedSize_${this.durationModifier.fixedSize}`)
-        .id("ImageAnimator_fixedSize")
+        .id('ImageAnimator_fixedSize')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -68,7 +69,7 @@ struct IA3fixedSizeModifier {
 
       Row() {
         Button('start')
-          .id("Button_start")
+          .id('Button_start')
           .width(100)
           .padding(5)
           .onClick(() => {
@@ -84,8 +85,8 @@ struct IA3fixedSizeModifier {
       }
 
       Row() {
-        Button("改变fixedSize")
-          .id("Button_fixedSizeChange")
+        Button('改变fixedSize')
+          .id('Button_fixedSizeChange')
           .onClick(() => {
             this.durationModifier.fixedSize = !this.durationModifier.fixedSize
           });

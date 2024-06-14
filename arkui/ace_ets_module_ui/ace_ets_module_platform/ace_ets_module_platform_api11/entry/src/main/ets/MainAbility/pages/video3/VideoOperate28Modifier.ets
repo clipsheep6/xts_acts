@@ -32,17 +32,17 @@ struct VideoOperate28Modifier {
   build() {
     Column({ space: 2 }) {
       Text('用例28导入VideoModifier，封装autoPlay属性')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`video1_autoPlayFlag_startFlag_${this.modifier.autoPlayFlag}_${this.startFlag}`)
-        .id("Text_VideoOperateVideo1_statue")
+        .id('Text_VideoOperateVideo1_statue')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`video2_autoPlayFlag_startFlag_${this.modifier2.autoPlayFlag}_${this.startFlag2}`)
-        .id("Text_VideoOperateVideo2_statue")
+        .id('Text_VideoOperateVideo2_statue')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -85,14 +85,13 @@ struct VideoOperate28Modifier {
  * 导入VideoModifier，封装autoPlay属性
  */
 export class VideoModifierAutoPlay implements AttributeModifier<VideoAttribute> {
-  autoPlayFlag: boolean;
+  public autoPlayFlag: boolean;
 
   constructor(autoPlayFlag: boolean) {
     this.autoPlayFlag = autoPlayFlag;
   }
 
   applyNormalAttribute(instance: VideoAttribute): void {
-    console.log("applyNormalAttribute invoked,autoPlayFlag:", this.autoPlayFlag);
     instance.autoPlay(this.autoPlayFlag)
   }
 }

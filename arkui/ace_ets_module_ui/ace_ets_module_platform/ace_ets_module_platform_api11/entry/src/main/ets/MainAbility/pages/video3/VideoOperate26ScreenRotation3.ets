@@ -65,12 +65,12 @@ struct VideoOperate26ScreenRotation3 {
       .backgroundColor(Color.Pink)
       Row() {
         Button("横竖屏切换")
-          .id("Button_horVerSwitch")
+          .id('Button_horVerSwitch')
           .onClick(() => {
             this.horVerSwitch();
           })
         Button("pause")
-          .id("Button_pause")
+          .id('Button_pause')
           .onClick(() => {
             this.myVideoController.pause();
           });

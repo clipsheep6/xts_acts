@@ -68,7 +68,7 @@ struct VideoOperate14 {
 
       Row() {
         Button("pause")
-          .id("Button_pause")
+          .id('Button_pause')
           .onClick(() => {
             this.myVideoController.pause();
           });

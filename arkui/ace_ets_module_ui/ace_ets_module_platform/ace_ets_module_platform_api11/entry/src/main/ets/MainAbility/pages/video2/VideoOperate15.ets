@@ -60,7 +60,7 @@ struct VideoOperate15 {
 
       Row() {
         Button("start")
-          .id("Button_start")
+          .id('Button_start')
           .onClick(() => {
             console.log('VideoOperate15 开始播放');
             this.myVideoController.start();

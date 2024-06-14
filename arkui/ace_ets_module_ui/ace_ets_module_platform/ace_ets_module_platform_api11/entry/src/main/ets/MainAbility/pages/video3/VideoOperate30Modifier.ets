@@ -64,7 +64,7 @@ struct VideoOperate30Modifier {
 
       Row() {
         Button("静音")
-          .id("Button_mutedSet")
+          .id('Button_mutedSet')
           .onClick(() => {
             this.modifier.muted = true;
           });
@@ -77,8 +77,8 @@ struct VideoOperate30Modifier {
  * 导入VideoModifier，封装autoPlay和muted属性
  */
 export class VideoModifier2 implements AttributeModifier<VideoAttribute> {
-  autoPlayFlag: boolean;
-  muted: boolean;
+  public autoPlayFlag: boolean;
+  public muted: boolean;
 
   constructor(autoPlayFlag: boolean, muted: boolean) {
     this.autoPlayFlag = autoPlayFlag;

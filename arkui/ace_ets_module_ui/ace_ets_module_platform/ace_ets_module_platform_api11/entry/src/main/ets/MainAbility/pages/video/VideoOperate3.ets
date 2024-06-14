@@ -28,13 +28,13 @@ struct VideoOperate3 {
   build() {
     Column({ space: 2 }) {
       Text(`播放结束标识：${this.finishFlag}`)
-        .id("Text_VideoOperateVideo_finishFlag")
+        .id('Text_VideoOperateVideo_finishFlag')
         .backgroundColor(Color.Pink)
         .fontSize(30)
         .width('70%')
         .textAlign(TextAlign.Center)
       Text(`${this.autoPlayStatus}`)
-        .id("Text_VideoOperateVideo_autoPlayStatus")
+        .id('Text_VideoOperateVideo_autoPlayStatus')
         .backgroundColor(Color.Pink)
         .fontSize(30)
         .width('70%')
@@ -64,13 +64,13 @@ struct VideoOperate3 {
       .backgroundColor(Color.Pink)
 
       Row() {
-        Button("start")
-          .id("Button_start")
+        Button('start')
+          .id('Button_start')
           .onClick(() => {
             this.myVideoController.start();
           });
-        Button("autoPlayTrue")
-          .id("Button_autoPlayTrue")
+        Button('autoPlayTrue')
+          .id('Button_autoPlayTrue')
           .onClick(() => {
             this.autoPlayStatus = true;
           });

@@ -55,7 +55,7 @@ struct VideoOperate26ScreenRotation2 {
       .backgroundColor(Color.Pink)
       Row() {
         Button("横竖屏切换")
-          .id("Button_horVerSwitch")
+          .id('Button_horVerSwitch')
           .onClick(() => {
             this.horVerSwitch()
           })

@@ -23,7 +23,7 @@ export default class TimeUtils {
     videoLength: number
   ): number {
     let speedTime = finishTime - startTime;
-    console.log("calcCurrentProgressRate,startTime,finishTime,videoLength,speedTime:",
+    console.log('calcCurrentProgressRate,startTime,finishTime,videoLength,speedTime:',
       startTime, finishTime, videoLength, speedTime);
     return parseFloat((videoLength / speedTime).toFixed(2));
   }

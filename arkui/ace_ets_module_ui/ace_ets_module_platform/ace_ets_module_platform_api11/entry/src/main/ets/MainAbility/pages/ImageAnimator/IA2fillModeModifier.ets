@@ -21,17 +21,18 @@ import { ImageAnimatorModifier } from './IA1durationModifier';
 @Entry
 @Component
 struct IA2fillModeModifier {
-  @State durationModifier: ImageAnimatorModifier = new ImageAnimatorModifier(undefined, FillMode.None, undefined, 1, undefined, undefined, undefined);
+  @State durationModifier: ImageAnimatorModifier =
+    new ImageAnimatorModifier(undefined, FillMode.None, undefined, 1, undefined, undefined, undefined);
 
   build() {
     Column({ space: 2 }) {
       Text('用例01：导入ImageAnimatorModifier，封装fillMode属性')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`ImageAnimator_fillMode_${this.durationModifier.fillMode}`)
-        .id("ImageAnimator_fillMode")
+        .id('ImageAnimator_fillMode')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -60,7 +61,7 @@ struct IA2fillModeModifier {
 
       Row() {
         Button('start')
-          .id("Button_start")
+          .id('Button_start')
           .width(100)
           .padding(5)
           .onClick(() => {
@@ -77,7 +78,7 @@ struct IA2fillModeModifier {
 
       Row() {
         Button("改变fillMode")
-          .id("Button_fillModeChange")
+          .id('Button_fillModeChange')
           .onClick(() => {
             this.durationModifier.fillMode = FillMode.Forwards
           });

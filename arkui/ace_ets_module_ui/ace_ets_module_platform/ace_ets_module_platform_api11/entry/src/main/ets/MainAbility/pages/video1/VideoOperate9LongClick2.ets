@@ -35,7 +35,7 @@ struct VideoOperate9LongClick2 {
         changeRateFlag: true
       })
       Text(`用例9LongClick2_播放速度${this.curRate}测试`)
-        .id("Text_VideoOperateVideo_curRate")
+        .id('Text_VideoOperateVideo_curRate')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)

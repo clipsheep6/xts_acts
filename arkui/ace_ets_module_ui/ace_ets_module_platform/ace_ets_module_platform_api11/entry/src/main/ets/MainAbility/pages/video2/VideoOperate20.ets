@@ -82,7 +82,7 @@ struct VideoOperate20 {
       .backgroundColor(Color.Pink)
       Row() {
         Button("fullScreen")
-          .id("Button_fullScreen")
+          .id('Button_fullScreen')
           .onClick(() => {
             this.myVideoController.requestFullscreen(true);
           });

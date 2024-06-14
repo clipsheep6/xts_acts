@@ -20,17 +20,18 @@
 @Entry
 @Component
 struct IA1durationModifier {
-  @State durationModifier: ImageAnimatorModifier = new ImageAnimatorModifier(0, undefined, undefined, undefined, undefined, undefined, undefined);
+  @State durationModifier: ImageAnimatorModifier =
+    new ImageAnimatorModifier(0, undefined, undefined, undefined, undefined, undefined, undefined);
 
   build() {
     Column({ space: 2 }) {
       Text('用例01：导入ImageAnimatorModifier，封装duration属性')
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`ImageAnimator_duration_${this.durationModifier.duration}`)
-        .id("ImageAnimator_duration")
+        .id('ImageAnimator_duration')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -59,7 +60,7 @@ struct IA1durationModifier {
 
       Row() {
         Button('start')
-          .id("Button_start")
+          .id('Button_start')
           .width(100)
           .padding(5)
           .onClick(() => {
@@ -76,7 +77,7 @@ struct IA1durationModifier {
 
       Row() {
         Button("改变duration")
-          .id("Button_durationChange")
+          .id('Button_durationChange')
           .onClick(() => {
             if (this.durationModifier.duration === 2000) {
               this.durationModifier.duration = 0;
@@ -101,13 +102,13 @@ struct IA1durationModifier {
  * 导入ImageAnimatorModifier，封装state属性
  */
 export class ImageAnimatorModifier implements AttributeModifier<ImageAnimatorAttribute> {
-  duration: number = 1000;
-  fillMode: FillMode = FillMode.Forwards;
-  fixedSize: boolean = true;
-  iterations: number = -1;
-  reverse: boolean = false;
-  state: AnimationStatus = AnimationStatus.Initial;
-  images: Array<ImageFrameInfo> = [
+  public duration: number = 1000;
+  public fillMode: FillMode = FillMode.Forwards;
+  public fixedSize: boolean = true;
+  public iterations: number = -1;
+  public reverse: boolean = false;
+  public state: AnimationStatus = AnimationStatus.Initial;
+  public images: Array<ImageFrameInfo> = [
     {
       src: $r('app.media.sky')
     },
@@ -119,13 +120,27 @@ export class ImageAnimatorModifier implements AttributeModifier<ImageAnimatorAtt
   constructor(duration?: number, fillMode?: number, fixedSize?: boolean, iterations?: number,
               reverse?: boolean, state?: AnimationStatus, images?: Array<ImageFrameInfo>) {
     // 只有当传入的参数不为undefined时，才进行赋值
-    if (duration !== undefined) this.duration = duration;
-    if (fillMode !== undefined) this.fillMode = fillMode;
-    if (fixedSize !== undefined) this.fixedSize = fixedSize;
-    if (iterations !== undefined) this.iterations = iterations;
-    if (reverse !== undefined) this.reverse = reverse;
-    if (state !== undefined) this.state = state;
-    if (images !== undefined) this.images = images;
+    if (duration !== undefined){
+      this.duration = duration;
+    }
+    if (fillMode !== undefined){
+      this.fillMode = fillMode;
+    }
+    if (fixedSize !== undefined){
+      this.fixedSize = fixedSize;
+    }
+    if (iterations !== undefined){
+      this.iterations = iterations;
+    }
+    if (reverse !== undefined){
+      this.reverse = reverse;
+    }
+    if (state !== undefined){
+      this.state = state;
+    }
+    if (images !== undefined){
+      this.images = images;
+    }
   }
 
   applyNormalAttribute(instance: ImageAnimatorAttribute): void {

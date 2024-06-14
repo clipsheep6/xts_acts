@@ -60,7 +60,7 @@ struct VideoOperate27Modifier {
             this.modifier.currentTimes = 1;
           });
         Button("SecondTime")
-          .id("Button_isSecondTime")
+          .id('Button_isSecondTime')
           .onClick(() => {
             this.modifier.currentTimes = 2;
           });
@@ -75,10 +75,9 @@ struct VideoOperate27Modifier {
  * 3、查看video显示效果  3、两次设置属性均生效，muted取false
  */
 class VideoModifier implements AttributeModifier<VideoAttribute> {
-  currentTimes: number = 0;
+  public currentTimes: number = 0;
 
   applyNormalAttribute(instance: VideoAttribute): void {
-    console.log("applyNormalAttribute invoked,currentTimes:", this.currentTimes);
     if (this.currentTimes == 1) {
       instance.muted(true).autoPlay(false)
     }

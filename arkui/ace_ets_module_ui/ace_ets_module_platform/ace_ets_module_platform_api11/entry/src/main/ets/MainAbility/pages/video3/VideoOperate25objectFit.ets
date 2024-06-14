@@ -69,11 +69,11 @@ struct VideoOperate25objectFit {
           })
             .onChange((value: number, mode: SliderChangeMode) => {
               this.controller.setCurrentTime(value);
-            }).width("90%")
+            }).width('90%')
           Text(JSON.stringify(this.durationTime) + 's')
         }
         .opacity(0.8)
-        .width("100%")
+        .width('100%')
       }
       .width('100%')
     }

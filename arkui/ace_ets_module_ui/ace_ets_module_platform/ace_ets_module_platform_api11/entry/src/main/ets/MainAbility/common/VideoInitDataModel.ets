@@ -14,16 +14,16 @@
  */
 export default class VideoInitDataModel {
   // 定义类的属性
-  currentProgressRate: number | string | PlaybackSpeed;
-  videoSrc: Resource | string;
-  previewUri: Resource | string;
-  onStartCallback: () => void;
-  onFinishCallback: () => void;
-  onFullscreenChangeCallback: (fullscreen: boolean, firstTime: boolean) => void;
-  onUpdateCallback: (time: number) => void
-  testCaseTitle: string;
-  statueFirstTitle: string;
-  statueSecondTitle: string;
+  public currentProgressRate: number | string | PlaybackSpeed;
+  public videoSrc: Resource | string;
+  public previewUri: Resource | string;
+  public onStartCallback: () => void;
+  public onFinishCallback: () => void;
+  public onFullscreenChangeCallback: (fullscreen: boolean, firstTime: boolean) => void;
+  public onUpdateCallback: (time: number) => void
+  public testCaseTitle: string;
+  public statueFirstTitle: string;
+  public statueSecondTitle: string;
 
   constructor(
     currentProgressRate: number | string | PlaybackSpeed,

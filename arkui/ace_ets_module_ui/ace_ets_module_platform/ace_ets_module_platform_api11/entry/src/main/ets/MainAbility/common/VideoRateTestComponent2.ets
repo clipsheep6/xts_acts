@@ -32,12 +32,12 @@ export default struct VideoRateTestComponent2 {
   build() {
     Column({ space: 2 }) {
       Text(`用例8_播放速度${this.curRateNumber}测试`)
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`实际执行速度${this.currentProgressRateActual}`)
-        .id("Text_VideoOperateVideo_currentProgressRateActual")
+        .id('Text_VideoOperateVideo_currentProgressRateActual')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -73,7 +73,8 @@ export default struct VideoRateTestComponent2 {
               try {
                 let finishTime = await TimeUtils.getCurrentTime();
                 let currentProgressRateActualTemp =
-                  TimeUtils.curryCalculateSpeedAdjustedProgressRate(curRateNumberParam)(this.startTime,finishTime,this.duration*1000);
+                  TimeUtils.curryCalculateSpeedAdjustedProgressRate(curRateNumberParam)
+                  (this.startTime,finishTime,this.duration*1000);
                 this.currentProgressRateActual = currentProgressRateActualTemp;
                 let difference = parseFloat((curRateNumberParam - currentProgressRateActualTemp).toFixed(2));
                 if (difference < errorValueParam) {
