@@ -68,6 +68,8 @@ export default function IA3fixedSizeModifier() {
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
       let strJsonImage2 = getInspectorByKey('ImageAnimatorComp');
       console.info("[Video001_fixedSizeModifier_test] component strJsonImage2:" + strJsonImage2);
+      const objJsonImage2: Record<string, string> = JSON.parse(strJsonImage2);
+      expect(objJsonImage2.$attrs.fixedSize).assertEqual('false');
       console.info('[Video001_fixedSizeModifier_test] END');
       done();
     });

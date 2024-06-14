@@ -67,6 +67,10 @@ export default function IA6reverseModifier() {
       await reverseChangeButton.click();
       await startButton.click();
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 3);
+      let strJsonImage = getInspectorByKey('ImageAnimatorComp');
+      console.info("[Video001_fixedSizeModifier_test] component strJsonImage:" + strJsonImage);
+      const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
+      expect(objJsonImage.$attrs.reverse).assertEqual('true');
       console.info('[Video001_reverseModifier_test] END');
       done();
     });

@@ -79,6 +79,10 @@ export default function IA5iterationsModifier() {
       await iterationsChangeButton.click();
       await startButton.click();
       await Utils.sleep(Utils.WAIT_UI_READY_MS); // 变成初始值-1，即无限循环
+      let strJsonImage = getInspectorByKey('ImageAnimatorComp');
+      console.info("[Video001_fixedSizeModifier_test] component strJsonImage:" + strJsonImage);
+      const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
+      expect(objJsonImage.$attrs.iterations).assertEqual('-1');
       console.info('[Video001_iterationsModifier_test] END');
       done();
     });

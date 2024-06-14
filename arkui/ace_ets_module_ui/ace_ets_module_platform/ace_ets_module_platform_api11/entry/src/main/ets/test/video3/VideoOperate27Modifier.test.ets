@@ -66,6 +66,9 @@ export default function VideoOperate27Modifier() {
       // 第二次点击查看video显示效果
       let secondTimeButton = await dr.findComponent(ON.id("Button_isSecondTime"));
       secondTimeButton.click();
+      let VideoOperateVideo = await dr.findComponent(ON.id("VideoOperateVideo"));
+      // 待组件补充muted属性再来断言其值为false
+      expect(await VideoOperateVideo.getId()).assertEqual('VideoOperateVideo');
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 3);
       console.info('[Video001_modifier_test] END');
       done();

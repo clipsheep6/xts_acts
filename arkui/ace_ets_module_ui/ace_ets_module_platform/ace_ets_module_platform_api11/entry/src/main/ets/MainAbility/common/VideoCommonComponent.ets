@@ -36,17 +36,17 @@ export default struct VideoCommonComponent {
   build() {
     Column({ space: 2 }) {
       Text(`${this.videoInitDataModel.testCaseTitle}`)
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`${this.videoInitDataModel.statueFirstTitle}_${this.statueFirst}`)
-        .id("Text_VideoOperateVideo_first")
+        .id('Text_VideoOperateVideo_first')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`${this.videoInitDataModel.statueSecondTitle}_${this.statueSecond}`)
-        .id("Text_VideoOperateVideo_second")
+        .id('Text_VideoOperateVideo_second')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -84,23 +84,23 @@ export default struct VideoCommonComponent {
       .backgroundColor(Color.Pink)
 
       Row() {
-        Button("Button_first")
-          .id("Button_first")
+        Button('Button_first')
+          .id('Button_first')
           .onClick(() => {
             this.myVideoController.requestFullscreen(true);
           });
-        Button("Button_second")
-          .id("Button_second")
+        Button('Button_second')
+          .id('Button_second')
           .onClick(() => {
             this.myVideoController.exitFullscreen();
           });
-        Button("Button_start")
-          .id("Button_start")
+        Button('Button_start')
+          .id('Button_start')
           .onClick(() => {
             this.myVideoController.start();
           });
-        Button("Button_stop")
-          .id("Button_stop")
+        Button('Button_stop')
+          .id('Button_stop')
           .onClick(() => {
             this.myVideoController.stop();
           });

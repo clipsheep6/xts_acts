@@ -70,6 +70,10 @@ export default function IA1durationModifier() {
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
       await durationChangeButton.click();
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
+      let strJsonImage = getInspectorByKey('ImageAnimatorComp');
+      console.info("[Video001_fixedSizeModifier_test] component strJsonImage:" + strJsonImage);
+      const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
+      expect(objJsonImage.$attrs.duration).assertEqual('0');
       console.info('[Video001_durationModifier_test] END');
       done();
     });

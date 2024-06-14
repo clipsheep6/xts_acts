@@ -32,12 +32,12 @@ export default struct VideoRateTestComponent3 {
   build() {
     Column({ space: 2 }) {
       Text(`用例8_播放速度${this.curRateNumber}测试`)
-        .id("Text_VideoOperateVideo_title")
+        .id('Text_VideoOperateVideo_title')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
       Text(`实际执行速度${this.currentProgressRateActual}`)
-        .id("Text_VideoOperateVideo_currentProgressRateActual")
+        .id('Text_VideoOperateVideo_currentProgressRateActual')
         .backgroundColor(Color.Pink)
         .fontSize(18)
         .textAlign(TextAlign.Center)
@@ -108,7 +108,7 @@ export default struct VideoRateTestComponent3 {
       .height(400)
       Row() {
         // 针对长按加速情况进行单独判断处理
-        Button("fullScreen")
+        Button('fullScreen')
           .id('Button_fullScreen')
           .onClick(async () => {
             this.myVideoController.requestFullscreen(true);
