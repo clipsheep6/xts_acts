@@ -63,14 +63,10 @@ export default function IA2fillModeModifier() {
       let startButton = await dr.findComponent(ON.id("Button_start"));
       await startButton.click();
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
-      let strJsonImage = getInspectorByKey('ImageAnimatorComp');
-      console.info("[Video001_fillModeModifier_test] component strJsonImage:" + strJsonImage);
       let durationChangeButton = await dr.findComponent(ON.id("Button_fillModeChange"));
       await durationChangeButton.click();
       await startButton.click();
       await Utils.sleep(Utils.WAIT_UI_READY_MS * 2);
-      let strJsonImage2 = getInspectorByKey('ImageAnimatorComp');
-      console.info("[Video001_fillModeModifier_test] component strJsonImage2:" + strJsonImage2);
       let strJsonImage = getInspectorByKey('ImageAnimatorComp');
       console.info("[Video001_fixedSizeModifier_test] component strJsonImage:" + strJsonImage);
       const objJsonImage: Record<string, string> = JSON.parse(strJsonImage);
