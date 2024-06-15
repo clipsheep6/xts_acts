@@ -1307,7 +1307,7 @@ describe("VibratorJsTest_misc_3", function () {
     /*
     * @tc.name:VibratorJsTest046
     * @tc.desc:Verification results of the incorrect parameters of the test interface.
-    * @tc.number:SUB_SensorSystem_Vibrator_JsTest_1210
+    * @tc.number:SUB_SensorSystem_Vibrator_JsTest_1220
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
