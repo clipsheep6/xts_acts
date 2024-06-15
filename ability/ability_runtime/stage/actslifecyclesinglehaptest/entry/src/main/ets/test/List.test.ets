@@ -17,7 +17,7 @@ import Test from './Test'
 import OnWindowStageWillDestoryTest from './OnWindowStageWillDestoryTest'
 
 export default function List() {
-  OnWindowStageWillDestoryTest();
+  // OnWindowStageWillDestoryTest();
   LifeCycleTest()
-  Test(globalThis.abilityContext)
+  // Test(globalThis.abilityContext)
 }

@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
 
 export default class MainAbility11 extends Ability {
     onCreate(want, launchParam) {
@@ -107,7 +108,12 @@ export default class MainAbility11 extends Ability {
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] MainAbility11 onForeground")
+        console.log("[Demo] MainAbility11 onForeground");
+        setTimeout(function () {
+          commonEvent.publish('MainAbility11_onForground', (err, data) => {
+            console.log('MainAbility11 onForeground publish succeed' + JSON.stringify(err) + JSON.stringify(data));
+          })
+        }, 500);
     }
 
     onBackground() {
