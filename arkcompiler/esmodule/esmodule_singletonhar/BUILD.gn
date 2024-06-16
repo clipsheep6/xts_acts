@@ -11,17 +11,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/ohos_var.gni")
+import("//test/xts/tools/build/suite.gni")
 
-group("esmodule") {
+ohos_js_app_suite("ActsEsmoduleSingletonHarTest") {
+  hap_name = "ActsEsmoduleSingletonHarTest"
   testonly = true
-  if (is_standard_system) {
-    deps = [
-      "esmodule_dynamicimport:ActsHspDemoTest",
-      "esmodule_entry:ActsEsmoduleEntryTest",
-      "esmodule_ohostest:ActsEsmoduleOhostestTest",
-      "esmodule_ohostestlib:ActsEsmoduleOhostestLib",
-      "esmodule_singletonhar:ActsEsmoduleSingletonHarTest",
-    ]
-  }
+  test_hap = true
+  part_name = "ets_frontend"
+  subsystem_name = "arkcompiler"
+  certificate_profile = "./signature/auto_ohos_default_esmodule_singletonhar_com.esmodule.acts.p7b"
 }

@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "singlehar",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ]
+  }
+}
