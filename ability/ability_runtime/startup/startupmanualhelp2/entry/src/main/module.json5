@@ -1,0 +1,344 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
+    "deviceTypes": [
+      "tablet",
+      "default"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "appStartup": "$profile:startup_config",
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntry": "./ets/MainAbility/MainAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "PageAbility2",
+        "srcEntry": "./ets/MainAbility/PageAbility2.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "PageAbility3",
+        "srcEntry": "./ets/MainAbility/PageAbility3.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "PageAbility4",
+        "srcEntry": "./ets/MainAbility/PageAbility4.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "PageAbility5",
+        "srcEntry": "./ets/MainAbility/PageAbility5.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "PageAbility6",
+        "srcEntry": "./ets/MainAbility/PageAbility6.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "PageAbility7",
+        "srcEntry": "./ets/MainAbility/PageAbility7.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "PageAbility8",
+        "srcEntry": "./ets/MainAbility/PageAbility8.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "PageAbility9",
+        "srcEntry": "./ets/MainAbility/PageAbility9.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "PageAbility10",
+        "srcEntry": "./ets/MainAbility/PageAbility10.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "PageAbility11",
+        "srcEntry": "./ets/MainAbility/PageAbility11.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "SingleStartAbility",
+        "srcEntry": "./ets/MainAbility/SingleStartAbility.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "SingleStartAbility2",
+        "srcEntry": "./ets/MainAbility/SingleStartAbility2.ets",
+        "description": "SingleStartAbility",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "StartupConfig",
+        "srcEntry": "./ets/startup/StartupConfig.ets",
+        "description": "StartupConfig",
+        "type": "embeddedUI",
+        "label": "$string:StartupConfig_label",
+        "exported": true
+      },
+      {
+        "name": "SendableStartupTaskA",
+        "srcEntry": "./ets/startup/SendableStartupTaskA.ets",
+        "description": "SendableStartupTaskA",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "SendableStartupTaskB",
+        "srcEntry": "./ets/startup/SendableStartupTaskB.ets",
+        "description": "SendableStartupTaskB",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "SendableStartupTaskC",
+        "srcEntry": "./ets/startup/SendableStartupTaskC.ets",
+        "description": "SendableStartupTaskC",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "SendableStartupTaskA3",
+        "srcEntry": "./ets/startup/SendableStartupTaskA3.ets",
+        "description": "SendableStartupTaskA3",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "SendableStartupTaskB3",
+        "srcEntry": "./ets/startup/SendableStartupTaskB3.ets",
+        "description": "SendableStartupTaskB3",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "SendableStartupTaskC3",
+        "srcEntry": "./ets/startup/SendableStartupTaskC3.ets",
+        "description": "SendableStartupTaskC3",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_001",
+        "srcEntry": "./ets/startup/Sample_001.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_002",
+        "srcEntry": "./ets/startup/Sample_002.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_003",
+        "srcEntry": "./ets/startup/Sample_003.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_004",
+        "srcEntry": "./ets/startup/Sample_004.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_005",
+        "srcEntry": "./ets/startup/Sample_005.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_006",
+        "srcEntry": "./ets/startup/Sample_006.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_007",
+        "srcEntry": "./ets/startup/Sample_007.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_008",
+        "srcEntry": "./ets/startup/Sample_008.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_009",
+        "srcEntry": "./ets/startup/Sample_009.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_010",
+        "srcEntry": "./ets/startup/Sample_010.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_011",
+        "srcEntry": "./ets/startup/Sample_011.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_012",
+        "srcEntry": "./ets/startup/Sample_012.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_013",
+        "srcEntry": "./ets/startup/Sample_013.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_014",
+        "srcEntry": "./ets/startup/Sample_014.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_015",
+        "srcEntry": "./ets/startup/Sample_015.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_016",
+        "srcEntry": "./ets/startup/Sample_016.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_017",
+        "srcEntry": "./ets/startup/Sample_017.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_018",
+        "srcEntry": "./ets/startup/Sample_018.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      },
+      {
+        "name": "Sample_019",
+        "srcEntry": "./ets/startup/Sample_019.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "exported": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "insightIntents": [
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleOne.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleTwo.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleThree.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleFour.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleFive.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleA.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleAa.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleAaa.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleB.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleBb.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleBbb.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupSampleCcc.ets"
+    },
+    {
+      "intentName": "PlayMusic",
+      "domain": "MusicDomain",
+      "intentVersion": "1.0.1",
+      "srcEntry": "./ets/startup/StartupConfig.ets"
+    }
+  ]
+}
