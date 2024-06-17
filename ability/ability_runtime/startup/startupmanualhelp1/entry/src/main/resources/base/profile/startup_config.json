@@ -3,6 +3,7 @@
     {
       "name": "Sample_001",
       "srcEntry": "./ets/startup/Sample_001.ets",
+      "runOnThread": "taskPool",
       "excludeFromAutoStart": true
     },
     {
