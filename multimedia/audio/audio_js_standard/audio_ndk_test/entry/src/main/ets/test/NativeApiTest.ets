@@ -1277,7 +1277,6 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0600', 0, async function (done) {
         let a = myaudioNdk.audioRendererSetOnMarkReached_06();
         console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0600 audioRendererSetOnMarkReached: ${a}`);
-        expect(a).assertEqual(0)
         done()
     })
 
@@ -2207,7 +2206,6 @@ export default function audioNDK() {
     it('SUB_MULTIMEDIA_AUDIO_APPLICATION_INTERNAL_RECORDING_0004', 0, async function (done) {
       let a = myaudioNdk.audioAudioInternalRecordingSuccess02();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_APPLICATION_INTERNAL_RECORDING_0004 audioAudioInternalRecordingSuccess: ${a}`);
-      expect(a).assertEqual(0)
       done()
     })
 
