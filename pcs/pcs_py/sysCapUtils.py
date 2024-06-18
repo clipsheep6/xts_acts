@@ -14,11 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json
+import time
 
 class sysCapUtils:
 
     def getAllSysCaps(sysCapsStr):
-        sysCapsJsonObject = json.loads(sysCapsStr)
-        sysCapsList = sysCapsJsonObject['syscap']['os']
+        time.sleep(1)
+        sysCapsList = []
+        for sysCapStr in sysCapsStr.splitlines():
+            if sysCapStr.startswith('const.SystemCapability.') and sysCapStr.endswith('=true'):
+                sysCapsList.append(sysCapStr[6 : len(sysCapStr)-5])
         return sysCapsList
