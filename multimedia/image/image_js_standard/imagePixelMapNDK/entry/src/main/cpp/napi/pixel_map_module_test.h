@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#ifndef IMAGE_SOURCE_MODULE_TEST_H
-#define IMAGE_SOURCE_MODULE_TEST_H
+#ifndef PIXEL_MAP_MODULE_TEST_H
+#define PIXEL_MAP_MODULE_TEST_H
 
 #include <memory>
 #include <string>
@@ -22,19 +22,18 @@
 #include "napi/native_api.h"
 #include "napi/native_node_api.h"
 #include "image/image_source_native.h"
+#include "image/pixelmap_native.h"
+#include "image/image_source_native.h"
 #include "image/image_common.h"
 
-class ImageSourceModuleTest {
+class ImagePixelMapNative {
 public:
-    ImageSourceModuleTest();
-    ~ImageSourceModuleTest();
+    ImagePixelMapNative();
+    ~ImagePixelMapNative();
 
-    Image_ErrorCode GetImageProperty(int32_t fd, std::string propertykey, std::string *value);
-    Image_ErrorCode ModifyImageProperty(int32_t fd, std::string propertyKey,
-                                        std::string propertyValue, std::string *value);
-    int32_t GetImageSource(int32_t fd, OH_ImageSourceNative **source);
-    int32_t GetImageSourceMimeType(OH_ImageSourceNative *source, Image_MimeType *mimetype);
+    int32_t GetPixelmap(int32_t fd, OH_PixelmapNative **pixelmap);
+    int32_t GetPixelMapMimeType(OH_PixelmapNative *pixelmap, Image_MimeType *mimetype);
 
 private:
 };
-#endif // IMAGE_SOURCE_MODULE_TEST_H
+#endif // PIXEL_MAP_MODULE_TEST_H

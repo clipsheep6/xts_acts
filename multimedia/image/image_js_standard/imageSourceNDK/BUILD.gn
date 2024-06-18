@@ -27,7 +27,7 @@ ohos_js_hap_suite("image_source_ndk_js_hap") {
   part_name = "image_framework"
   shared_libraries = [
     "./entry/src/main/cpp:ImageSourceNDKTest",
-    "./entry/src/main/cpp:ImageSourceTest",
+    "./entry/src/main/cpp:ImageSourceNativeTest",
   ]
 }
 

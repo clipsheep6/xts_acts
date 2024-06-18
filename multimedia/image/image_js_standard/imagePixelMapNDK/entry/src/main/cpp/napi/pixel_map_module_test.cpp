@@ -1,0 +1,111 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <hilog/log.h>
+#include "pixel_map_module_test.h"
+#include <securec.h>
+#ifndef _WIN32
+#include "securec.h"
+#else
+#include "memory.h"
+#endif
+
+#undef LOG_TAG
+#define LOG_TAG "ImagePixelMapNative"
+
+#define SHOW_LOG
+#ifdef SHOW_LOG
+constexpr OHOS::HiviewDFX::HiLogLabel LABEL = {LOG_CORE, 0xD002B05, "ImagePixelMapNative"};
+
+#define MY_HILOG(op, fmt, args...) \
+    do {                                  \
+        op(LABEL, "{%{public}s:%{public}d} " fmt, __FUNCTION__, __LINE__, ##args);  \
+    } while (0)
+#define DEBUG_LOG(fmt, ...) MY_HILOG(OHOS::HiviewDFX::HiLog::Info, fmt, ##__VA_ARGS__)
+
+#define IMG_TST_LOGF(fmt, ...) MY_HILOG(OHOS::HiviewDFX::HiLog::Fatal, fmt, ##__VA_ARGS__)
+#define IMG_TST_LOGE(fmt, ...) MY_HILOG(OHOS::HiviewDFX::HiLog::Error, fmt, ##__VA_ARGS__)
+#define IMG_TST_LOGW(fmt, ...) MY_HILOG(OHOS::HiviewDFX::HiLog::Warn, fmt, ##__VA_ARGS__)
+#define IMG_TST_LOGI(fmt, ...) MY_HILOG(OHOS::HiviewDFX::HiLog::Info, fmt, ##__VA_ARGS__)
+#define IMG_TST_LOGD(fmt, ...) MY_HILOG(OHOS::HiviewDFX::HiLog::Debug, fmt, ##__VA_ARGS__)
+#else
+#define IMG_TST_LOGF(...)
+#define IMG_TST_LOGE(...)
+#define IMG_TST_LOGW(...)
+#define IMG_TST_LOGI(...)
+#define IMG_TST_LOGD(...)
+#endif
+
+ImagePixelMapNative::ImagePixelMapNative()
+{
+}
+
+ImagePixelMapNative::~ImagePixelMapNative()
+{
+}
+
+int32_t ImagePixelMapNative::GetPixelmap(int32_t fd, OH_PixelmapNative **pixelmap)
+{
+    OH_ImageSourceNative* res = nullptr;
+    int32_t ret1 = OH_ImageSourceNative_CreateFromFd(fd, &res);
+    if (ret1 != IMAGE_SUCCESS) {
+        IMG_TST_LOGE("OH_ImageSourceNative_CreateFromFd failed: err = %{public}d.", ret1);
+        return ret1;
+    }
+    OH_DecodingOptions* options = nullptr;
+    int32_t ret2 = OH_DecodingOptions_Create(&options);
+    if (ret2 != IMAGE_SUCCESS) {
+        OH_ImageSourceNative_Release(res);
+        IMG_TST_LOGE("OH_DecodingOptions_Create failed: err = %{public}d.", ret2);
+        return ret2;
+    }
+    int32_t ret3 = OH_ImageSourceNative_CreatePixelmap(res, options, pixelmap);
+    if (ret3 != IMAGE_SUCCESS) {
+        OH_ImageSourceNative_Release(res);
+        OH_DecodingOptions_Release(options);
+        IMG_TST_LOGE("OH_ImageSourceNative_CreatePixelmap failed: err = %{public}d.", ret3);
+        return ret3;
+    }
+    OH_ImageSourceNative_Release(res);
+    OH_DecodingOptions_Release(options);
+    IMG_TST_LOGE("OH_ImageSourceNative_CreatePixelmap success!!!!!");
+    return ret3;
+}
+
+int32_t ImagePixelMapNative::GetPixelMapMimeType(OH_PixelmapNative *pixelmap, Image_MimeType *mimetype)
+{
+    OH_Pixelmap_ImageInfo *info = nullptr;
+    int32_t error = OH_PixelmapImageInfo_Create(&info);
+    if (error != 0) {
+        OH_PixelmapNative_Release(pixelmap);
+        return error;
+    }
+
+    error =  OH_PixelmapNative_GetImageInfo(pixelmap, info);
+    if (error != 0) {
+        OH_PixelmapImageInfo_Release(info);
+        OH_PixelmapNative_Release(pixelmap);
+        return error;
+    }
+    error = OH_PixelmapImageInfo_GetMimeType(info, mimetype);
+    {
+        OH_PixelmapImageInfo_Release(info);
+        OH_PixelmapNative_Release(pixelmap);
+        return error;
+    }
+    OH_PixelmapImageInfo_Release(info);
+    OH_PixelmapNative_Release(pixelmap);
+    return error;
+}

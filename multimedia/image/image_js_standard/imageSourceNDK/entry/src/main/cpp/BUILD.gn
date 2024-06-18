@@ -54,7 +54,7 @@ ohos_shared_library("ImageSourceNDKTest") {
   part_name = "image_framework"
 }
 
-ohos_shared_library("ImageSourceTest") {
+ohos_shared_library("ImageSourceNativeTest") {
   sources = [
     "./napi/image_source_module_test.cpp",
     "./napi/image_source_native_test.cpp",
@@ -66,7 +66,10 @@ ohos_shared_library("ImageSourceTest") {
   ]
   configs = [ ":config" ]
 
-  deps = [ "$image_subsystem/frameworks/kits/js/common/ndk:image_source" ]
+  deps = [
+    "$image_subsystem/frameworks/kits/js/common/ndk:image_source",
+    "$image_subsystem/frameworks/kits/js/common/pixelmap_ndk:pixelmap",
+  ]
 
   external_deps = [
     "c_utils:utils",

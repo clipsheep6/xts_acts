@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,9 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ImagePixelMapNDKTest from './ImagePixelMapNDKTest';
-import PixelMapNDKTest from './PixelMapNDKTest';
-export default function testsuite() {
-    ImagePixelMapNDKTest(),
-    PixelMapNDKTest()
-}
+
+#ifndef PIXEL_MAP_NATIVE_TEST_H
+#define PIXEL_MAP_NATIVE_TEST_H
+
+#include <memory>
+#include <string>
+#include "napi/native_api.h"
+#include "napi/native_node_api.h"
+#include "pixel_map_module_test.h"
+
+namespace OHOS {
+namespace Media {
+class ImagePixelMapNativeTest {
+public:
+    static napi_value JsPixelMapGetMimeType(napi_env env, napi_callback_info info);
+private:
+};
+} // namespace Media
+} // namespace OHOS
+#endif // PIXEL_MAP_NATIVE_TEST_H
