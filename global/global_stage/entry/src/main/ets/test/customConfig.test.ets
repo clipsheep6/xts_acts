@@ -15,7 +15,7 @@
 
 import Ability from '@ohos.app.ability.UIAbility'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { customConfig }from '@kit.BasicServicesKit';
+import { customConfig } from '@kit.BasicServicesKit';
 
 export default function customConfigTest() {
   describe("customConfigTest", () => {
