@@ -362,6 +362,7 @@ export default function AVPlayerLocalTest() {
                     setOnCallback(avPlayer, done)
                     setSource(avPlayer, src);
                     setSubtitle(avPlayer, subtitleSrc)
+                    done()
                 }
                 if (err != null) {
                     console.error(`case createAVPlayer error, errMessage is ${err.message}`);
