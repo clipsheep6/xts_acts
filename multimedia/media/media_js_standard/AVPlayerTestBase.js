@@ -54,7 +54,7 @@ export function setSubtitle(avPlayer, src) {
         console.error('case avPlayer is undefined');
         return;
     }
-    if (typeof(src) == 'string') {
+    if (typeof(src) === 'string') {
         console.info('case src test');
         avPlayer.addSubtitleFromUrl(src);
     } else {
