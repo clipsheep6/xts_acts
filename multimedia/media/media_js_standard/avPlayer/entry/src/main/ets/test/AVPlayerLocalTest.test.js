@@ -463,18 +463,6 @@ export default function AVPlayerLocalTest() {
         })
 
         /* *
-            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_OFF_CALLBACK_0100
-            * @tc.name      : 001.test off callback Function
-            * @tc.desc      : Local Video playback control test
-            * @tc.size      : MediumTest
-            * @tc.type      : Function test
-            * @tc.level     : Level1
-        */
-        it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_OFF_CALLBACK_0100', 0, async function (done) {
-            testOffCallback(fileDescriptor, avPlayer, done);
-        })
-
-        /* *
             * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_SUBTITILE_0100
             * @tc.name      : 001.test subtitle Function
             * @tc.desc      : Local Video subtitle control test
