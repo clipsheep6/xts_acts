@@ -62,9 +62,9 @@ export default function abilityTest() {
       await sleep(200);
       console.log("TestLog-step2: click Add Form to Desktop button");
       const labelButton =  await driver.findComponent(ON.text(await resourceManager.getStringValue($r('app.string.EntryAbility_label'))));
-      await sleep(200);
+      await sleep(500);
       await labelButton?.click();
-      await sleep(200);
+      await sleep(1000);
       console.log("TestLog-step3: use callback to inquiry the FormId");
       abilityDelegator.executeShellCommand("hilog -x | grep \'AddFormMenuItem success and formId =\'")
         .then((data) => {
