@@ -1469,7 +1469,7 @@ export default function UDMFApiDescriptorTest() {
       console.log("filenameExtensions:" + typeObj.filenameExtensions.toString());
       console.log("mimeTypes:" + typeObj.mimeTypes.toString());
       expect(typeObj.typeId).assertEqual("com.microsoft.windows-media-wm");
-      expect(typeObj.belongingToTypes.toString()).assertEqual("general.video,com.microsoft.advanced-systems-format");
+      expect(typeObj.belongingToTypes.toString()).assertEqual("general.media,com.microsoft.advanced-systems-format");
       expect(typeObj.description).assertEqual("Windows WM video.");
       expect(typeObj.referenceURL).assertEqual(REFERENCE_URL);
       expect(typeObj.iconFile).assertEqual("sys.media.ohos_ic_normal_white_grid_video");
@@ -6235,6 +6235,34 @@ export default function UDMFApiDescriptorTest() {
         expect(err.code).assertEqual("401");
       }
       console.log("SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1120 end");
+    });
+    /**
+     * @tc.name      : testSUBDistributedDataUDMFSDKUniformTypeDescriptorJsAPITest8300
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8300
+     * @tc.desc      : Verify the properties of the navigation data type
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8300', 0, () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8300 start');
+      expect(UTD.UniformDataType.NAVIGATION).assertEqual("general.navigation");
+      let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
+      console.log("typeId:" + typeObj.typeId);
+      console.log("belongingToTypes:" + typeObj.belongingToTypes);
+      console.log("description:" + typeObj.description);
+      console.log("referenceURL:" + typeObj.referenceURL);
+      console.log("iconFile:" + typeObj.iconFile);
+      console.log("filenameExtensions:" + typeObj.filenameExtensions.toString());
+      console.log("mimeTypes:" + typeObj.mimeTypes.toString());
+      expect(typeObj.typeId).assertEqual("general.navigation");
+      expect(typeObj.belongingToTypes[0]).assertEqual("general.object");
+      expect(typeObj.description).assertEqual("Base type for navigation.");
+      expect(typeObj.referenceURL).assertEqual(REFERENCE_URL);
+      expect(typeObj.iconFile).assertEqual("");
+      expect(typeObj.filenameExtensions.toString()).assertEqual("");
+      expect(typeObj.mimeTypes.toString()).assertEqual("");
+      console.log("SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8300 end");
     });
 
     /**
