@@ -77,14 +77,39 @@ export default function imagePackeExifTest() {
       return result
     }
 
+    const propertyCompFalse = async (tag:string, key:image.PropertyKey, newImageSource:image.ImageSource,
+                                 fileName:string) =>{
+      let result: boolean = true
+      await newImageSource.getImageProperty(key).then((data)=>{
+        hilog.info(0x0000, tag, `propertyCompFalse failed ${fileName} ${key} imagePropertyNew: ${data}`);
+        result = false
+      }).catch((error: BusinessError)=>{
+        if (error.code != 62980123) {
+          result = false
+          hilog.info(0x0000, tag, `propertyCompFalse failed ${fileName} ${key} errorCode: ${error.code} errorMessage: ${error.message}`);
+        }
+      })
+      return result
+    }
+
     const checkProperty = async(tag:string, newImageSource:image.ImageSource,
-                                oldImageSource:image.ImageSource,fileName:string) => {
+                                oldImageSource:image.ImageSource,fileName:string, needsPackProperties?:boolean | undefined) => {
       let checkResult: boolean = true
-      for(let i=0; i<PropertyKey.length; i++){
-        const key = PropertyKey[i]
-        checkResult = await propertyComp(tag, key, newImageSource, oldImageSource,fileName)
-        if(!checkResult){
-          return checkResult
+      if (needsPackProperties) {
+        for(let i=0; i<PropertyKey.length; i++){
+          const key = PropertyKey[i]
+          checkResult = await propertyComp(tag, key, newImageSource, oldImageSource,fileName)
+          if(!checkResult){
+            return checkResult
+          }
+        }
+      } else {
+        for(let i=0; i<PropertyKey.length; i++){
+          const key = PropertyKey[i]
+          checkResult = await propertyCompFalse(tag, key, newImageSource, fileName)
+          if(!checkResult){
+            return checkResult
+          }
         }
       }
       return checkResult
@@ -114,9 +139,16 @@ export default function imagePackeExifTest() {
     }
 
     const checkPackImageSourcePixelMapPromise = async (packOptsFormat:string, fileName:string, fileNameEnd:string, tag:string,
-                                                          caseType:string, packType:string) => {
+                                                       caseType:string, packType:string, needsPackProperties?:boolean | undefined) => {
       const imagePackerApi : image.ImagePacker = image.createImagePacker();
-      let packOpts : image.PackingOption = { format:packOptsFormat, quality:100 };
+      let packOpts: image.PackingOption;
+      if (needsPackProperties == true) {
+        packOpts = { format:packOptsFormat, quality:100, needsPackProperties:true };
+      } else if (needsPackProperties == false) {
+        packOpts = { format:packOptsFormat, quality:100, needsPackProperties:false };
+      } else {
+        packOpts = { format:packOptsFormat, quality:100 };
+      }
       let imageData:ArrayBuffer
       let oldImageSource: image.ImageSource
       let newImageSource: image.ImageSource
@@ -144,13 +176,13 @@ export default function imagePackeExifTest() {
           newImageSource = image.createImageSource(fdNum);
         }
       }
-      const result = await checkProperty(tag, newImageSource, oldImageSource, fileName)
+      const result = await checkProperty(tag, newImageSource, oldImageSource, fileName, needsPackProperties)
       return result
     }
 
 
     const checkPack = async (err:BusinessError, tag:string, imageData: ArrayBuffer, fileName:string,
-                                oldImageSource:image.ImageSource, fdNum:number, checkType:string) =>{
+                             oldImageSource:image.ImageSource, fdNum:number, checkType:string, needsPackProperties?:boolean | undefined) =>{
       let result = false
       if(!err){
         let newImageSource:image.ImageSource
@@ -160,7 +192,7 @@ export default function imagePackeExifTest() {
           newImageSource = image.createImageSource(fdNum);
         }
         try {
-          result  = await checkProperty(tag, newImageSource,oldImageSource,fileName)
+          result  = await checkProperty(tag, newImageSource, oldImageSource, fileName, needsPackProperties)
         } catch (error) {
           result  = false
         }
@@ -169,9 +201,16 @@ export default function imagePackeExifTest() {
     }
 
     const checkPackImageSourcePixelMapCallBack = async (packOptsFormat:string, fileName:string,fileNameEnd:string,
-                                                           tag:string, caseType:string, packType:string) => {
+                                                        tag:string, caseType:string, packType:string, needsPackProperties?:boolean | undefined) => {
       const imagePackerApi : image.ImagePacker = image.createImagePacker();
-      let packOpts : image.PackingOption = { format:packOptsFormat, quality:100 };
+      let packOpts : image.PackingOption;
+      if (needsPackProperties == true) {
+        packOpts = { format:packOptsFormat, quality:100, needsPackProperties:true };
+      } else if (needsPackProperties == false) {
+        packOpts = { format:packOptsFormat, quality:100, needsPackProperties:false };
+      } else {
+        packOpts = { format:packOptsFormat, quality:100 };
+      }
       let oldImageSource:image.ImageSource
       let cResult = false
       if(caseType === "pixelMap"){
@@ -180,12 +219,12 @@ export default function imagePackeExifTest() {
         oldImageSource = result.imageSource
         if(packType === "packing"){
           imagePackerApi.packing(pixelMap, packOpts, async (err: BusinessError, imageData: ArrayBuffer) => {
-            cResult = await checkPack(err,  tag, imageData, fileName, oldImageSource, 0, "data")
+            cResult = await checkPack(err,  tag, imageData, fileName, oldImageSource, 0, "data", needsPackProperties)
           })
         }else{
           const fdNum = await getFd(tag, fileNameEnd)
           imagePackerApi.packToFile(pixelMap, fdNum, packOpts, async (err: BusinessError) => {
-            cResult = await checkPack(err,  tag, new ArrayBuffer(0), fileName, oldImageSource, fdNum, "fd")
+            cResult = await checkPack(err,  tag, new ArrayBuffer(0), fileName, oldImageSource, fdNum, "fd", needsPackProperties)
           })
         }
       }else{
@@ -193,12 +232,12 @@ export default function imagePackeExifTest() {
         oldImageSource = imageSourceApi
         if(packType === "packing"){
           imagePackerApi.packing(imageSourceApi, packOpts,  async (err: BusinessError, imageData: ArrayBuffer) => {
-            cResult = await checkPack(err, tag, imageData, fileName, oldImageSource, 0, "data")
+            cResult = await checkPack(err, tag, imageData, fileName, oldImageSource, 0, "data", needsPackProperties)
           })
         }else{
           const fdNum = await getFd(tag, fileNameEnd)
           imagePackerApi.packToFile(imageSourceApi, fdNum, packOpts, async (err: BusinessError) => {
-            cResult = await checkPack(err, tag, new ArrayBuffer(0), fileName, oldImageSource, fdNum, "fd")
+            cResult = await checkPack(err, tag, new ArrayBuffer(0), fileName, oldImageSource, fdNum, "fd", needsPackProperties)
           })
         }
       }
@@ -218,6 +257,64 @@ export default function imagePackeExifTest() {
      */
     it('SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0100',0,  async (done:Function) => {
       const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0100"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapPromise(mimeType, name, fileSuffix, tag, "imageSource","packing", true)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      }catch(error){
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0200
+     * @tc.name      : packing -promise
+     * @tc.desc      : 1.modifyImageProperty
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0200',0,  async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0200"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapPromise(mimeType, name, fileSuffix, tag, "imageSource","packing", false)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      }catch(error){
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0300
+     * @tc.name      : packing -promise
+     * @tc.desc      : 1.modifyImageProperty
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0300',0,  async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0300"
       try {
         let compResult = true
         for(let i=0; i<picMimeType.length; i++){
@@ -253,6 +350,64 @@ export default function imagePackeExifTest() {
           const name:string = picMimeType[i].name
           const mimeType:string = picMimeType[i].mimeType
           const fileSuffix = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapPromise(mimeType, name,fileSuffix, tag, "pixelMap","packing", true)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      }catch(error){
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_PROMISE_0200
+     * @tc.name      : packing -promise
+     * @tc.desc      : 1.packing
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_PROMISE_0200',0,  async  (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_PROMISE_0200"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapPromise(mimeType, name,fileSuffix, tag, "pixelMap","packing", false)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      }catch(error){
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_PROMISE_0300
+     * @tc.name      : packing -promise
+     * @tc.desc      : 1.packing
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_PROMISE_0300',0,  async  (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_PROMISE_0300"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix = picMimeType[i].fileSuffix
           const result = await checkPackImageSourcePixelMapPromise(mimeType, name,fileSuffix, tag, "pixelMap","packing")
           compResult = compResult && result
         }
@@ -276,6 +431,64 @@ export default function imagePackeExifTest() {
      */
     it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0100',0, async (done:Function) => {
       const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0100"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result =  await checkPackImageSourcePixelMapPromise(mimeType, name, fileSuffix, tag,  "imageSource","packToFile", true)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      } catch (error) {
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0200
+     * @tc.name      : packToFile -promise
+     * @tc.desc      : 1.pacToFile
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0200',0, async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0200"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result =  await checkPackImageSourcePixelMapPromise(mimeType, name, fileSuffix, tag,  "imageSource","packToFile", false)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      } catch (error) {
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0300
+     * @tc.name      : packToFile -promise
+     * @tc.desc      : 1.pacToFile
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0300',0, async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0300"
       try {
         let compResult = true
         for(let i=0; i<picMimeType.length; i++){
@@ -311,6 +524,64 @@ export default function imagePackeExifTest() {
           const name:string = picMimeType[i].name
           const mimeType:string = picMimeType[i].mimeType
           const fileSuffix:string = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapPromise(mimeType, name, fileSuffix, tag, "pixelMap","packToFile", true)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      } catch (error) {
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_PROMISE_0200
+     * @tc.name      : packToFile -promise
+     * @tc.desc      : 1.pacToFile
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_PROMISE_0200',0, async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_PROMISE_0200"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapPromise(mimeType, name, fileSuffix, tag, "pixelMap","packToFile", false)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      } catch (error) {
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_PROMISE_0300
+     * @tc.name      : packToFile -promise
+     * @tc.desc      : 1.pacToFile
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_PROMISE_0300',0, async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_PROMISE_0300"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
           const result = await checkPackImageSourcePixelMapPromise(mimeType, name, fileSuffix, tag, "pixelMap","packToFile")
           compResult = compResult && result
         }
@@ -334,6 +605,66 @@ export default function imagePackeExifTest() {
      */
     it('SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0100',0,  async (done:Function) => {
       const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0100"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapCallBack(mimeType, name, fileSuffix, tag,
+            "pixelMap", "packing", true)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      }catch(error){
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0200
+     * @tc.name      : packing -callback
+     * @tc.desc      : 1.packing                                                                                                                                                                           sc      : 1.modifyImageProperty
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0200',0,  async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0200"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapCallBack(mimeType, name, fileSuffix, tag,
+            "pixelMap", "packing", false)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      }catch(error){
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0300
+     * @tc.name      : packing -callback
+     * @tc.desc      : 1.packing                                                                                                                                                                           sc      : 1.modifyImageProperty
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0300',0,  async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0300"
       try {
         let compResult = true
         for(let i=0; i<picMimeType.length; i++){
@@ -371,6 +702,66 @@ export default function imagePackeExifTest() {
           const mimeType:string = picMimeType[i].mimeType
           const fileSuffix:string = picMimeType[i].fileSuffix
           const result = await checkPackImageSourcePixelMapCallBack(mimeType, name, fileSuffix, tag,
+            "imageSource", "packing", true)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      }catch(error){
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_CALLBACK_0200
+     * @tc.name      : packing -callback
+     * @tc.desc      : 1.packing
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_CALLBACK_0200',0,  async  (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_CALLBACK_0200"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapCallBack(mimeType, name, fileSuffix, tag,
+            "imageSource", "packing", false)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      }catch(error){
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_CALLBACK_0300
+     * @tc.name      : packing -callback
+     * @tc.desc      : 1.packing
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_CALLBACK_0300',0,  async  (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_CALLBACK_0300"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapCallBack(mimeType, name, fileSuffix, tag,
             "imageSource", "packing")
           compResult = compResult && result
         }
@@ -401,6 +792,66 @@ export default function imagePackeExifTest() {
           const mimeType:string = picMimeType[i].mimeType
           const fileSuffix:string = picMimeType[i].fileSuffix
           const result = await checkPackImageSourcePixelMapCallBack(mimeType, name, fileSuffix, tag,
+            "pixelMap", "packToFile", true)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      } catch (error) {
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_CALLBACK_0200
+     * @tc.name      : packToFile -callback
+     * @tc.desc      : 1.pacToFile
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_CALLBACK_0200',0, async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_CALLBACK_0200"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapCallBack(mimeType, name, fileSuffix, tag,
+            "pixelMap", "packToFile", false)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      } catch (error) {
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_CALLBACK_0300
+     * @tc.name      : packToFile -callback
+     * @tc.desc      : 1.pacToFile
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_CALLBACK_0300',0, async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_CALLBACK_0300"
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapCallBack(mimeType, name, fileSuffix, tag,
             "pixelMap", "packToFile")
           compResult = compResult && result
         }
@@ -414,7 +865,7 @@ export default function imagePackeExifTest() {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACk_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACK_0100
      * @tc.name      : packToFile -callback
      * @tc.desc      : 1.pacToFile
      *                 2.getImageProperty
@@ -422,8 +873,68 @@ export default function imagePackeExifTest() {
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
-    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACk_0100',0, async (done:Function) => {
-      const tag:string = 'SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACk_0100'
+    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACK_0100',0, async (done:Function) => {
+      const tag:string = 'SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACK_0100'
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapCallBack(mimeType, name, fileSuffix, tag,
+            "imageSource", "packToFile", true)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      } catch (error) {
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACK_0200
+     * @tc.name      : packToFile -callback
+     * @tc.desc      : 1.pacToFile
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACK_0200',0, async (done:Function) => {
+      const tag:string = 'SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACK_0200'
+      try {
+        let compResult = true
+        for(let i=0; i<picMimeType.length; i++){
+          const name:string = picMimeType[i].name
+          const mimeType:string = picMimeType[i].mimeType
+          const fileSuffix:string = picMimeType[i].fileSuffix
+          const result = await checkPackImageSourcePixelMapCallBack(mimeType, name, fileSuffix, tag,
+            "imageSource", "packToFile", false)
+          compResult = compResult && result
+        }
+        expect(compResult).assertTrue()
+        done()
+      } catch (error) {
+        hilog.info(0x0000, tag, `failed ${JSON.stringify(error)}`);
+        expect().assertFail()
+        done()
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACK_0300
+     * @tc.name      : packToFile -callback
+     * @tc.desc      : 1.pacToFile
+     *                 2.getImageProperty
+     * @tc.size      : MediumTest
+     * @tc.type      : Functional
+     * @tc.level     : Level 3
+     */
+    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACk_0300',0, async (done:Function) => {
+      const tag:string = 'SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACK_0300'
       try {
         let compResult = true
         for(let i=0; i<picMimeType.length; i++){
