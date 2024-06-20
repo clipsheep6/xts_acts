@@ -356,7 +356,7 @@ export default function AVPlayerLocalTest() {
             console.info(`case media source: ${src}`)
             media.createAVPlayer((err, video) => {
                 console.info(`case media err: ${err}`)
-                if (typeof (video) != 'undefined') {
+                if (typeof (video) !== 'undefined') {
                     console.info('case createAVPlayer success');
                     avPlayer = video;
                     setOnCallback(avPlayer, done)
