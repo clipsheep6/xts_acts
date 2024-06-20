@@ -50,7 +50,7 @@ export function setSource(avPlayer, src) {
 }
 
 export function setSubtitle(avPlayer, src) {
-    if (typeof(avPlayer) == 'undefined') {
+    if (typeof(avPlayer) === 'undefined') {
         console.error('case avPlayer is undefined');
         return;
     }
