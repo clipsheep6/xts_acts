@@ -484,7 +484,8 @@ export default function AVPlayerLocalTest() {
             * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_VIDEO_SUBTITILE_0200', 0, async function (done) {
-            testSubtitle(fileDescriptor, 'https://xxx.srt', avPlayer, done);
+            testSubtitle(fileDescriptor,
+                `fd://${subtitleFdSrc.fd}?offset=${subtitleFdSrc.offset}&size=${subtitleFdSrc.length}`, avPlayer, done);
         })
     })
 }
