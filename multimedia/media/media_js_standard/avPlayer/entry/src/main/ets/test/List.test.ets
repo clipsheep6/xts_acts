@@ -23,7 +23,7 @@ import AVPlayerMultiTrackTest from './AVPlayerMultiTrackTest.test.js'
 import AVMetadata from './AVPlayerAVMetadata.test.ets'
 import AVPlayerAmr from './AVPlayerAmrTest.test.js'
 import AVPlayerMediaSource from './AVPlayerMediaSource.test.js'
-
+import AVPlayerAddSubtitleTest from './AVPlayerAddSubtitleTest.test.js'
 
 export default function testsuite() {
   // AVPlayerHlsFuncTest()
@@ -37,4 +37,5 @@ export default function testsuite() {
   AVMetadata();
   AVPlayerAmr();
   AVPlayerMediaSource();
+  AVPlayerAddSubtitleTest();
 }
