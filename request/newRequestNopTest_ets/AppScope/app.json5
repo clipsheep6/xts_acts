@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "ohos.acts.sensors.sensor.nop.function",
+    "bundleName": "ohos.acts.newRequest.nop.function",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",
