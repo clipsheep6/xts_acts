@@ -14,10 +14,9 @@
  */
 import { afterAll, beforeAll, beforeEach, describe, it } from '@ohos/hypium'
 import router from '@ohos.router'
-import { colorValues } from '../../pages/Index'
-import { SearchKeys, searchThemeProperty } from '../../pages/components/SearchPage'
-import { storage } from '../../entryability/EntryAbility'
-import { greenCustomTheme, redCustomTheme } from '../../themes/CustomTheme'
+import { colorValuesKey } from '../../MainAbility/pages/index/index';
+import { SearchKeys, searchThemeProperty } from '../../MainAbility/pages/components/SearchPage'
+import { greenCustomTheme, redCustomTheme } from '../../MainAbility/themes/CustomTheme';
 import { checkValue, frameTime, sleep } from '../Utils'
 import { Theme, CustomTheme } from '@ohos.arkui.theme'
 
@@ -36,10 +35,11 @@ export default function SearchThemeTest() {
         const pages: router.RouterState = router.getState()
         if (pages?.name !== `SearchPage`) {
           await router.pushUrl(options).then(() => {
-            localTheme = storage.get<Theme>(searchThemeProperty)
+            localTheme = AppStorage.get<Theme>(searchThemeProperty)
             console.info(`${SUITE} router.pushUrl success`)
           })
         }
+		colorValues = AppStorage.get(colorValuesKey);
       } catch (err) {
         console.error(`${SUITE} beforeAll error:` + JSON.stringify(err))
       }
@@ -47,13 +47,13 @@ export default function SearchThemeTest() {
 
     beforeEach(() => {
       if (!changeTheme) return
-      if ((storage.get(searchThemeProperty) as Theme)?.colors?.fontEmphasize
+      if ((AppStorage.get(searchThemeProperty) as Theme)?.colors?.fontEmphasize
         == redCustomTheme?.colors?.fontEmphasize) {
-        storage.setOrCreate(searchThemeProperty, greenCustomTheme)
+        AppStorage.setOrCreate(searchThemeProperty, greenCustomTheme)
       } else {
-        storage.setOrCreate(searchThemeProperty, redCustomTheme)
+        AppStorage.setOrCreate(searchThemeProperty, redCustomTheme)
       }
-      localTheme = storage.get<Theme>(searchThemeProperty)
+      localTheme = AppStorage.get<Theme>(searchThemeProperty)
       changeTheme = false
     })
 

@@ -14,10 +14,9 @@
  */
 import { afterAll, beforeAll, beforeEach, describe, it } from '@ohos/hypium'
 import router from '@ohos.router'
-import { colorValues } from '../../pages/Index'
-import { sliderThemeProperty } from '../../pages/components/SliderPage'
-import { storage } from '../../entryability/EntryAbility'
-import { greenCustomTheme, redCustomTheme } from '../../themes/CustomTheme'
+import { colorValuesKey } from '../../MainAbility/pages/index/index';
+import { sliderThemeProperty } from '../../MainAbility/pages/components/SliderPage'
+import { greenCustomTheme, redCustomTheme } from '../../MainAbility/themes/CustomTheme'
 import { checkValue, frameTime, sleep } from '../Utils'
 import { Theme, CustomTheme } from '@ohos.arkui.theme'
 
@@ -46,10 +45,11 @@ export default function sliderThemeTest() {
         const pages: router.RouterState = router.getState()
         if (pages?.name !== `SliderPage`) {
           await router.pushUrl(options).then(() => {
-            localTheme = storage.get<Theme>(sliderThemeProperty)
+            localTheme = AppStorage.get<Theme>(sliderThemeProperty)
             console.info(`${SUITE} router.pushUrl success`)
           })
         }
+		colorValues = AppStorage.get(colorValuesKey);
       } catch (err) {
         console.error(`${SUITE} beforeAll error:` + JSON.stringify(err))
       }
@@ -57,13 +57,13 @@ export default function sliderThemeTest() {
 
     beforeEach(() => {
       if (!changeTheme) return
-      if ((storage.get(sliderThemeProperty) as Theme)?.colors?.fontEmphasize
+      if ((AppStorage.get(sliderThemeProperty) as Theme)?.colors?.fontEmphasize
         == redCustomTheme?.colors?.fontEmphasize) {
-        storage.setOrCreate(sliderThemeProperty, greenCustomTheme)
+        AppStorage.setOrCreate(sliderThemeProperty, greenCustomTheme)
       } else {
-        storage.setOrCreate(sliderThemeProperty, redCustomTheme)
+        AppStorage.setOrCreate(sliderThemeProperty, redCustomTheme)
       }
-      localTheme = storage.get<Theme>(sliderThemeProperty)
+      localTheme = AppStorage.get<Theme>(sliderThemeProperty)
       changeTheme = false
     })
 
