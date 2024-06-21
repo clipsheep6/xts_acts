@@ -21,7 +21,7 @@ export class SearchKeys {
   public static readonly searchSystem = `Search_System`
   public static readonly searchWithTheme = `Search_WithTheme`
 }
-@Entry(storage)
+@Entry
 @Component
 struct SearchPage {
   @StorageLink(searchThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme

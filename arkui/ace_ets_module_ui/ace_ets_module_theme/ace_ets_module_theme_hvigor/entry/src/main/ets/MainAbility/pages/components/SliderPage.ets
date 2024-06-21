@@ -27,7 +27,7 @@ export class SliderKeys {
   public static readonly sliderOutSetStepsWithTheme = `Slider_Out_Set_Steps_WithTheme`
   public static readonly sliderInSetStepsWithTheme = `Slider_In_Set_Steps_WithTheme`
 }
-@Entry(storage)
+@Entry
 @Component
 struct SliderThemePage {
   @StorageLink(sliderThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme

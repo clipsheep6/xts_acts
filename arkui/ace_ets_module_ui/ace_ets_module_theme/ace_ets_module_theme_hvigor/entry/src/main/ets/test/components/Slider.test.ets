@@ -35,6 +35,7 @@ export default function sliderThemeTest() {
   ]
   let localTheme: CustomTheme | undefined
   let changeTheme: boolean = false
+  let colorValues: Map<string, string> | undefined = new Map<string, string>();
 
   describe(SUITE, () => {
     beforeAll(async () => {
