@@ -29,7 +29,7 @@ struct SearchPage {
 
   build() {
     Column() {
-      Search({ value: "", placeholder: 'Type to search...' })
+      Search({ value: '', placeholder: 'Type to search...' })
         .margin({
           left: '20vp',
           top: '100vp',
