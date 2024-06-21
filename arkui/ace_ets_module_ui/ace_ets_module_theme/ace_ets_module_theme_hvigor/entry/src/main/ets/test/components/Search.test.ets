@@ -66,7 +66,12 @@ export default function SearchThemeTest() {
       }
     })
     /**
-     * check system colors values of the Search
+     * @tc.number    : ActsSearchThemeColors_0100
+     * @tc.name      : ActsSearchThemeColors_0100
+     * @tc.desc      : Check Search system colors
+     * @tc.level     : Level 2
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
      */
     it(`ActsSearchThemeColors_0100`, 0, () => {
       const CASE: string = `ActsSearchThemeColors_0100`;
@@ -86,14 +91,19 @@ export default function SearchThemeTest() {
       const checkPlaceholderColor = colorValues?.get(`fontSecondary`);
       expect(placeholderColor).assertEqual(checkPlaceholderColor);
 
-      const iconOptionColor: string = (attrsSearch?.searchIcon as IconOptions)?.color.toString().toUpperCase();
+      const iconOptionColor: string = (attrsSearch?.searchIcon as IconOptions)?.color?.toString().toUpperCase() ?? emptyAttr;
       const checkIconOptionColor = colorValues?.get(`fontSecondary`);
       expect(iconOptionColor).assertEqual(checkIconOptionColor);
 
       console.info(`${SUITE} ${CASE} END`);
     })
     /**
-     * check custom colors values of the Search
+     * @tc.number    : ActsSearchThemeColors_0200
+     * @tc.name      : ActsSearchThemeColors_0200
+     * @tc.desc      : Check Search system colors
+     * @tc.level     : Level 2
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
      */
     it(`ActsSearchThemeColors_0200`, 0, () => {
       const CASE: string = `ActsSearchThemeColors_0200`;
@@ -114,7 +124,7 @@ export default function SearchThemeTest() {
       const checkPlaceholderColor = localTheme?.colors?.fontSecondary;
       expect(placeholderColor).assertEqual(checkPlaceholderColor);
 
-      const iconOptionColor: string = (attrsSearch?.searchIcon as IconOptions)?.color.toString().toUpperCase();
+      const iconOptionColor: string = (attrsSearch?.searchIcon as IconOptions)?.color?.toString().toUpperCase() ?? emptyAttr;
       const checkIconOptionColor = localTheme?.colors?.fontSecondary;
       expect(iconOptionColor).assertEqual(checkIconOptionColor);
       changeTheme = true;
@@ -122,8 +132,12 @@ export default function SearchThemeTest() {
       console.info(`${SUITE} ${CASE} END`);
     })
     /**
-     * check system colors values of the Search
-     * after change theme
+     * @tc.number    : ActsSearchThemeColors_0300
+     * @tc.name      : ActsSearchThemeColors_0300
+     * @tc.desc      : Check Search system colors
+     * @tc.level     : Level 2
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
      */
     it(`ActsSearchThemeColors_0300`, 0, async () => {
       const CASE: string = `ActsSearchThemeColors_0300`;
@@ -145,7 +159,7 @@ export default function SearchThemeTest() {
       const checkPlaceholderColor = localTheme?.colors?.fontSecondary;
       expect(placeholderColor).assertEqual(checkPlaceholderColor);
 
-      const iconOptionColor: string = (attrsSearch?.searchIcon as IconOptions)?.color.toString().toUpperCase();
+      const iconOptionColor: string = (attrsSearch?.searchIcon as IconOptions)?.color?.toString().toUpperCase() ?? emptyAttr;
       const checkIconOptionColor = localTheme?.colors?.fontSecondary;
       expect(iconOptionColor).assertEqual(checkIconOptionColor);
       changeTheme = true;

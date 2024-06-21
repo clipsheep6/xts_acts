@@ -76,7 +76,12 @@ export default function sliderThemeTest() {
       }
     })
     /**
-     * check system colors values of the Slider
+     * @tc.number    : ActsSliderThemeColors_0100
+     * @tc.name      : ActsSliderThemeColors_0100
+     * @tc.desc      : Check Slider system colors
+     * @tc.level     : Level 2
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
      */
     it(`ActsSliderThemeColors_0100`, 0, () => {
       const CASE: string = `ActsSliderThemeColors_0100`;
@@ -105,7 +110,12 @@ export default function sliderThemeTest() {
       console.info(`${SUITE} ${CASE} END`);
     })
     /**
-     * check custom colors values of the Slider
+     * @tc.number    : ActsSliderThemeColors_0200
+     * @tc.name      : ActsSliderThemeColors_0200
+     * @tc.desc      : Check Slider system colors
+     * @tc.level     : Level 2
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
      */
     it(`ActsSliderThemeColors_0200`, 0, () => {
       const CASE: string = `ActsSliderThemeColors_0200`;
@@ -135,8 +145,12 @@ export default function sliderThemeTest() {
       console.info(`${SUITE} ${CASE} END`);
     })
     /**
-     * check system colors values of the Slider
-     * after change theme
+     * @tc.number    : ActsSliderThemeColors_0300
+     * @tc.name      : ActsSliderThemeColors_0300
+     * @tc.desc      : Check Slider system colors
+     * @tc.level     : Level 2
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
      */
     it(`ActsSliderThemeColors_0300`, 0, async () => {
       const CASE: string = `ActsSliderThemeColors_0300`;
