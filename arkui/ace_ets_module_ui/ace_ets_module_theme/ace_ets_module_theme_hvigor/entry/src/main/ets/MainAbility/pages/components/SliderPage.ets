@@ -12,35 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { redCustomTheme } from '../../themes/CustomTheme'
-import { CustomTheme } from '@ohos.arkui.theme'
+import { redCustomTheme } from '../../themes/CustomTheme';
+import { CustomTheme } from '@ohos.arkui.theme';
 
-export const sliderThemeProperty: string = `SliderThemeProperty`
+export const sliderThemeProperty: string = `SliderThemeProperty`;
 
 export class SliderKeys {
-  public static readonly sliderOutSetSystem = `Slider_Out_Set_System`
-  public static readonly sliderInSetSystem = `Slider_In_Set_System`
-  public static readonly sliderOutSetStepsSystem = `Slider_Out_Set_Steps_System`
-  public static readonly sliderInSetStepsSystem = `Slider_In_Set_Steps_System`
-  public static readonly sliderOutSetWithTheme = `Slider_Out_Set_WithTheme`
-  public static readonly sliderInSetWithTheme = `Slider_In_Set_WithTheme`
-  public static readonly sliderOutSetStepsWithTheme = `Slider_Out_Set_Steps_WithTheme`
-  public static readonly sliderInSetStepsWithTheme = `Slider_In_Set_Steps_WithTheme`
+  public static readonly sliderOutSetSystem = `Slider_Out_Set_System`;
+  public static readonly sliderInSetSystem = `Slider_In_Set_System`;
+  public static readonly sliderOutSetStepsSystem = `Slider_Out_Set_Steps_System`;
+  public static readonly sliderInSetStepsSystem = `Slider_In_Set_Steps_System`;
+  public static readonly sliderOutSetWithTheme = `Slider_Out_Set_WithTheme`;
+  public static readonly sliderInSetWithTheme = `Slider_In_Set_WithTheme`;
+  public static readonly sliderOutSetStepsWithTheme = `Slider_Out_Set_Steps_WithTheme`;
+  public static readonly sliderInSetStepsWithTheme = `Slider_In_Set_Steps_WithTheme`;
 }
 @Entry
 @Component
 struct SliderThemePage {
-  @StorageLink(sliderThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme
-  count = 0
+  @StorageLink(sliderThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme;
+  count = 0;
 
-  @State val1: number = 50
-  @State val2: number = 50
-  @State val3: number = 50
-  @State val4: number = 50
-  @State val5: number = 50
-  @State val6: number = 50
-  @State val7: number = 50
-  @State val8: number = 50
+  @State val1: number = 50;
+  @State val2: number = 50;
+  @State val3: number = 50;
+  @State val4: number = 50;
+  @State val5: number = 50;
+  @State val6: number = 50;
+  @State val7: number = 50;
+  @State val8: number = 50;
 
   build() {
     Row() {

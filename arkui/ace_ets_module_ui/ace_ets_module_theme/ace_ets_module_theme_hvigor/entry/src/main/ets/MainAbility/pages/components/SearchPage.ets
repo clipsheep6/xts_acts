@@ -12,19 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { redCustomTheme } from '../../themes/CustomTheme'
-import { CustomTheme } from '@ohos.arkui.theme'
+import { redCustomTheme } from '../../themes/CustomTheme';
+import { CustomTheme } from '@ohos.arkui.theme';
 
-export const searchThemeProperty: string = `SearchThemeProperty`
+export const searchThemeProperty: string = `SearchThemeProperty`;
 
 export class SearchKeys {
-  public static readonly searchSystem = `Search_System`
-  public static readonly searchWithTheme = `Search_WithTheme`
+  public static readonly searchSystem = `Search_System`;
+  public static readonly searchWithTheme = `Search_WithTheme`;
 }
 @Entry
 @Component
 struct SearchPage {
-  @StorageLink(searchThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme
+  @StorageLink(searchThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme;
 
   build() {
     Column() {

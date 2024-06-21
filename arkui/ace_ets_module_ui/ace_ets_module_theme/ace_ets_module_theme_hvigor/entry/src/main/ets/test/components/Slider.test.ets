@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { afterAll, beforeAll, beforeEach, describe, it } from '@ohos/hypium'
-import router from '@ohos.router'
+import { afterAll, beforeAll, beforeEach, describe, it } from '@ohos/hypium';
+import router from '@ohos.router';
 import { colorValuesKey } from '../../MainAbility/pages/index/index';
-import { sliderThemeProperty } from '../../MainAbility/pages/components/SliderPage'
-import { greenCustomTheme, redCustomTheme } from '../../MainAbility/themes/CustomTheme'
-import { checkValue, frameTime, sleep } from '../Utils'
-import { Theme, CustomTheme } from '@ohos.arkui.theme'
+import { sliderThemeProperty } from '../../MainAbility/pages/components/SliderPage';
+import { greenCustomTheme, redCustomTheme } from '../../MainAbility/themes/CustomTheme';
+import { frameTime, sleep } from '../Utils';
+import { Theme, CustomTheme } from '@ohos.arkui.theme';
 
 export default function sliderThemeTest() {
-  const SUITE: string = `SliderThemeTest`
+  const SUITE: string = `SliderThemeTest`;
 
   const sliderKeys: string [] = [
     `Slider_Out_Set_System`,
@@ -32,9 +32,9 @@ export default function sliderThemeTest() {
     `Slider_In_Set_WithTheme`,
     `Slider_Out_Set_Steps_WithTheme`,
     `Slider_In_Set_Steps_WithTheme`
-  ]
-  let localTheme: CustomTheme | undefined
-  let changeTheme: boolean = false
+  ];
+  let localTheme: CustomTheme | undefined;
+  let changeTheme: boolean = false;
   let colorValues: Map<string, string> | undefined = new Map<string, string>();
 
   describe(SUITE, () => {
@@ -43,16 +43,16 @@ export default function sliderThemeTest() {
         const options: router.RouterOptions = {
           url: `pages/components/SliderPage`,
         }
-        const pages: router.RouterState = router.getState()
+        const pages: router.RouterState = router.getState();
         if (pages?.name !== `SliderPage`) {
           await router.pushUrl(options).then(() => {
-            localTheme = AppStorage.get<Theme>(sliderThemeProperty)
-            console.info(`${SUITE} router.pushUrl success`)
+            localTheme = AppStorage.get<Theme>(sliderThemeProperty);
+            console.info(`${SUITE} router.pushUrl success`);
           })
         }
 		colorValues = AppStorage.get(colorValuesKey);
       } catch (err) {
-        console.error(`${SUITE} beforeAll error:` + JSON.stringify(err))
+        console.error(`${SUITE} beforeAll error:` + JSON.stringify(err));
       }
     })
 
@@ -60,79 +60,111 @@ export default function sliderThemeTest() {
       if (!changeTheme) return
       if ((AppStorage.get(sliderThemeProperty) as Theme)?.colors?.fontEmphasize
         == redCustomTheme?.colors?.fontEmphasize) {
-        AppStorage.setOrCreate(sliderThemeProperty, greenCustomTheme)
+        AppStorage.setOrCreate(sliderThemeProperty, greenCustomTheme);
       } else {
-        AppStorage.setOrCreate(sliderThemeProperty, redCustomTheme)
+        AppStorage.setOrCreate(sliderThemeProperty, redCustomTheme);
       }
-      localTheme = AppStorage.get<Theme>(sliderThemeProperty)
-      changeTheme = false
+      localTheme = AppStorage.get<Theme>(sliderThemeProperty);
+      changeTheme = false;
     })
 
     afterAll(() => {
       try {
-        router.back()
+        router.back();
       } catch (err) {
-        console.error(`${SUITE} afterAll error:` + JSON.stringify(err))
+        console.error(`${SUITE} afterAll error:` + JSON.stringify(err));
       }
     })
     /**
      * check system colors values of the Slider
      */
     it(`ActsSliderThemeColors_0100`, 0, () => {
-      const CASE: string = `ActsSliderThemeColors_0100`
-      console.info(`${SUITE} ${CASE} START`)
+      const CASE: string = `ActsSliderThemeColors_0100`;
+      console.info(`${SUITE} ${CASE} START`);
       sliderKeys.forEach((key) => {
         if (key.search(`WithTheme`) > 0) return
-        const sliderJSON = getInspectorByKey(key)
-        const attrsSlider: SliderAttribute = JSON.parse(sliderJSON)?.$attrs
-        const trackColor: string = attrsSlider?.trackColor.toString()
-        checkValue(trackColor, colorValues?.get(`compBackgroundSecondary`))
-        const selectedColor: ResourceColor = attrsSlider?.selectedColor.toString()
-        checkValue(selectedColor, colorValues?.get(`backgroundEmphasize`))
-        const blockColor: string = attrsSlider?.blockColor.toString()
-        checkValue(blockColor, colorValues?.get(`compBackgroundPrimaryContrary`))
-        const stepColor: string = attrsSlider?.stepColor.toString()
-        checkValue(stepColor, colorValues?.get(`compBackgroundSecondary`))
+        const sliderJSON = getInspectorByKey(key);
+        const attrsSlider: SliderAttribute = JSON.parse(sliderJSON)?.$attrs;
+
+        const trackColor: string = attrsSlider?.trackColor.toString().toUpperCase();
+        const checkTrackColor = colorValues?.get(`compBackgroundSecondary`);
+        expect(trackColor).assertEqual(checkTrackColor);
+
+        const selectedColor: ResourceColor = attrsSlider?.selectedColor.toString();
+        const checkSelectedColor = colorValues?.get(`backgroundEmphasize`);
+        expect(selectedColor).assertEqual(checkSelectedColor);
+
+        const blockColor: string = attrsSlider?.blockColor.toString();
+        const checkBlockColor = colorValues?.get(`compBackgroundPrimaryContrary`);
+        expect(blockColor).assertEqual(checkBlockColor);
+
+        const stepColor: string = attrsSlider?.stepColor.toString();
+        const checkStepColor = colorValues?.get(`compBackgroundSecondary`);
+        expect(stepColor).assertEqual(checkStepColor);
       })
-      console.info(`${SUITE} ${CASE} END`)
+      console.info(`${SUITE} ${CASE} END`);
     })
     /**
      * check custom colors values of the Slider
      */
     it(`ActsSliderThemeColors_0200`, 0, () => {
-      const CASE: string = `ActsSliderThemeColors_0200`
-      console.info(`${SUITE} ${CASE} START`)
-      checkWithTheme(checkValue, localTheme, sliderKeys)
-      changeTheme = true
-      console.info(`${SUITE} ${CASE} END`)
+      const CASE: string = `ActsSliderThemeColors_0200`;
+      console.info(`${SUITE} ${CASE} START`);
+      sliderKeys.forEach((key) => {
+        if (key.search(`WithTheme`) > 0) return
+        const sliderJSON = getInspectorByKey(key);
+        const attrsSlider: SliderAttribute = JSON.parse(sliderJSON)?.$attrs;
+
+        const trackColor: string = attrsSlider?.trackColor.toString().toUpperCase();
+        const checkTrackColor = localTheme?.colors?.compBackgroundSecondary;
+        expect(trackColor).assertEqual(checkTrackColor);
+
+        const selectedColor: ResourceColor = attrsSlider?.selectedColor.toString();
+        const checkSelectedColor = localTheme?.colors?.backgroundEmphasize;
+        expect(selectedColor).assertEqual(checkSelectedColor);
+
+        const blockColor: string = attrsSlider?.blockColor.toString();
+        const checkBlockColor = localTheme?.colors?.compBackgroundPrimaryContrary;
+        expect(blockColor).assertEqual(checkBlockColor);
+
+        const stepColor: string = attrsSlider?.stepColor.toString();
+        const checkStepColor = localTheme?.colors?.compBackgroundSecondary;
+        expect(stepColor).assertEqual(checkStepColor);
+      })
+      changeTheme = true;
+      console.info(`${SUITE} ${CASE} END`);
     })
     /**
      * check system colors values of the Slider
      * after change theme
      */
     it(`ActsSliderThemeColors_0300`, 0, async () => {
-      const CASE: string = `ActsSliderThemeColors_0300`
-      console.info(`${SUITE} ${CASE} START`)
-      await sleep(frameTime)
-      checkWithTheme(checkValue, localTheme, sliderKeys)
-      changeTheme = true
-      console.info(`${SUITE} ${CASE} END`)
-    })
-  })
-}
+      const CASE: string = `ActsSliderThemeColors_0300`;
+      console.info(`${SUITE} ${CASE} START`);
+      await sleep(frameTime);
+      sliderKeys.forEach((key) => {
+        if (key.search(`WithTheme`) > 0) return
+        const sliderJSON = getInspectorByKey(key);
+        const attrsSlider: SliderAttribute = JSON.parse(sliderJSON)?.$attrs;
 
-function checkWithTheme(checkValue: Function, localTheme: CustomTheme | undefined, sliderKeys: string[]) {
-  sliderKeys.forEach((key) => {
-    if (key.search(`System`) > 0) return
-    const sliderJSON = getInspectorByKey(key)
-    const attrsSlider: SliderAttribute = JSON.parse(sliderJSON)?.$attrs
-    const trackColor: string = attrsSlider?.trackColor.toString()
-    checkValue(trackColor, localTheme?.colors?.compBackgroundSecondary)
-    const selectedColor: ResourceColor = attrsSlider?.selectedColor.toString()
-    checkValue(selectedColor, localTheme?.colors?.backgroundEmphasize)
-    const blockColor: string = attrsSlider?.blockColor.toString()
-    checkValue(blockColor, localTheme?.colors?.compBackgroundPrimaryContrary)
-    const stepColor: string = attrsSlider?.stepColor.toString()
-    checkValue(stepColor, localTheme?.colors?.compBackgroundSecondary)
+        const trackColor: string = attrsSlider?.trackColor.toString().toUpperCase();
+        const checkTrackColor = localTheme?.colors?.compBackgroundSecondary;
+        expect(trackColor).assertEqual(checkTrackColor);
+
+        const selectedColor: ResourceColor = attrsSlider?.selectedColor.toString();
+        const checkSelectedColor = localTheme?.colors?.backgroundEmphasize;
+        expect(selectedColor).assertEqual(checkSelectedColor);
+
+        const blockColor: string = attrsSlider?.blockColor.toString();
+        const checkBlockColor = localTheme?.colors?.compBackgroundPrimaryContrary;
+        expect(blockColor).assertEqual(checkBlockColor);
+
+        const stepColor: string = attrsSlider?.stepColor.toString();
+        const checkStepColor = localTheme?.colors?.compBackgroundSecondary;
+        expect(stepColor).assertEqual(checkStepColor);
+      })
+      changeTheme = true;
+      console.info(`${SUITE} ${CASE} END`);
+    })
   })
 }
