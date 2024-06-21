@@ -22,6 +22,7 @@ import { Theme, CustomTheme } from '@ohos.arkui.theme';
 
 export default function SearchThemeTest() {
   const SUITE: string = `SearchThemeTest`;
+  const emptyAttr = 'emptyAttr';
 
   let localTheme: CustomTheme | undefined;
   let changeTheme: boolean = false;
