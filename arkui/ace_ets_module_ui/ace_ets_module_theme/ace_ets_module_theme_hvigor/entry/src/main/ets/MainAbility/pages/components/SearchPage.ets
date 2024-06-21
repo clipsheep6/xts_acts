@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { storage } from '../../entryability/EntryAbility'
 import { redCustomTheme } from '../../themes/CustomTheme'
 import { CustomTheme } from '@ohos.arkui.theme'
 
@@ -25,7 +24,7 @@ export class SearchKeys {
 @Entry(storage)
 @Component
 struct SearchPage {
-  @LocalStorageLink(searchThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme
+  @StorageLink(searchThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme
 
   build() {
     Column() {

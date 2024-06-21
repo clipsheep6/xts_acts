@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { storage } from '../../entryability/EntryAbility'
 import { redCustomTheme } from '../../themes/CustomTheme'
 import { CustomTheme } from '@ohos.arkui.theme'
 
@@ -31,7 +30,7 @@ export class SliderKeys {
 @Entry(storage)
 @Component
 struct SliderThemePage {
-  @LocalStorageLink(sliderThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme
+  @StorageLink(sliderThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme
   count = 0
 
   @State val1: number = 50
