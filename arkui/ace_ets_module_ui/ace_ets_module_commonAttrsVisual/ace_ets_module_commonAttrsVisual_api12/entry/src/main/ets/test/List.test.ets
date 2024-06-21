@@ -16,11 +16,12 @@ import backgroundImageResizableTest from './backgroundImageTest/backgroundImageR
 import foregroundEffect from './foregroundEffect.test'
 import systemBarEffectTest from './ImageEffectTest/systemBarEffect1.test'
 import freezeTest from './ImageEffectTest/freeze.test'
-
+import fractionStops from './ImageEffectTest/fractionStops.test'
 
 export default function testsuite() {
   backgroundImageResizableTest();
   foregroundEffect();
   systemBarEffectTest();
   freezeTest();
+  fractionStops()
 }
