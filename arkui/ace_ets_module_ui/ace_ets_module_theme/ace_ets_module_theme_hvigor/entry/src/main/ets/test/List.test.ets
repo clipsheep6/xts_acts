@@ -25,6 +25,8 @@ import checkboxGroupThemeTest from './components/CheckboxGroup.test';
 import counterThemeTest from './components/Counter.test';
 import datePickerThemeTest from './components/DatePicker.test';
 import dividerThemeTest from './components/Divider.test';
+import SearchThemeTest from './components/Search.test';
+import sliderThemeTest from './components/Slider.test';
 
 export default function testsuite() {
   // global tests
@@ -40,4 +42,6 @@ export default function testsuite() {
   counterThemeTest();
   datePickerThemeTest();
   dividerThemeTest();
+  SearchThemeTest();
+  sliderThemeTest();
 }
