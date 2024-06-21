@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { afterAll, beforeAll, beforeEach, describe, it } from '@ohos/hypium';
+import { afterAll, beforeAll, beforeEach, describe, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import { colorValuesKey } from '../../MainAbility/pages/index/index';
 import { SearchKeys, searchThemeProperty } from '../../MainAbility/pages/components/SearchPage';
@@ -86,7 +86,7 @@ export default function SearchThemeTest() {
       const checkPlaceholderColor = colorValues?.get(`fontSecondary`);
       expect(placeholderColor).assertEqual(checkPlaceholderColor);
 
-      const iconOptionColor = (attrsSearch?.searchIcon as IconOptions)?.color.toString().toUpperCase();
+      const iconOptionColor = attrsSearch?.searchIcon?.color.toString().toUpperCase();
       const checkIconOptionColor = colorValues?.get(`fontSecondary`);
       expect(iconOptionColor).assertEqual(checkIconOptionColor);
 
@@ -114,7 +114,7 @@ export default function SearchThemeTest() {
       const checkPlaceholderColor = localTheme?.colors?.fontSecondary;
       expect(placeholderColor).assertEqual(checkPlaceholderColor);
 
-      const iconOptionColor = (attrsSearch?.searchIcon as IconOptions)?.color.toString().toUpperCase();
+      const iconOptionColor = attrsSearch?.searchIcon?.color.toString().toUpperCase();
       const checkIconOptionColor = localTheme?.colors?.fontSecondary;
       expect(iconOptionColor).assertEqual(checkIconOptionColor);
       changeTheme = true;
