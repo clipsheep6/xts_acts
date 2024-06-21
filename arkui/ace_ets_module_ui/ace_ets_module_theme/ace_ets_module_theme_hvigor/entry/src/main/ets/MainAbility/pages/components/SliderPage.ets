@@ -19,14 +19,14 @@ import { CustomTheme } from '@ohos.arkui.theme'
 export const sliderThemeProperty: string = `SliderThemeProperty`
 
 export class SliderKeys {
-  static readonly sliderOutSetSystem = `Slider_Out_Set_System`
-  static readonly sliderInSetSystem = `Slider_In_Set_System`
-  static readonly sliderOutSetStepsSystem = `Slider_Out_Set_Steps_System`
-  static readonly sliderInSetStepsSystem = `Slider_In_Set_Steps_System`
-  static readonly sliderOutSetWithTheme = `Slider_Out_Set_WithTheme`
-  static readonly sliderInSetWithTheme = `Slider_In_Set_WithTheme`
-  static readonly sliderOutSetStepsWithTheme = `Slider_Out_Set_Steps_WithTheme`
-  static readonly sliderInSetStepsWithTheme = `Slider_In_Set_Steps_WithTheme`
+  public static readonly sliderOutSetSystem = `Slider_Out_Set_System`
+  public static readonly sliderInSetSystem = `Slider_In_Set_System`
+  public static readonly sliderOutSetStepsSystem = `Slider_Out_Set_Steps_System`
+  public static readonly sliderInSetStepsSystem = `Slider_In_Set_Steps_System`
+  public static readonly sliderOutSetWithTheme = `Slider_Out_Set_WithTheme`
+  public static readonly sliderInSetWithTheme = `Slider_In_Set_WithTheme`
+  public static readonly sliderOutSetStepsWithTheme = `Slider_Out_Set_Steps_WithTheme`
+  public static readonly sliderInSetStepsWithTheme = `Slider_In_Set_Steps_WithTheme`
 }
 @Entry(storage)
 @Component
@@ -34,66 +34,66 @@ struct SliderThemePage {
   @LocalStorageLink(sliderThemeProperty) localTheme: CustomTheme | undefined = redCustomTheme
   count = 0
 
-  @State v1: number = 50
-  @State v2: number = 50
-  @State v3: number = 50
-  @State v4: number = 50
-  @State v5: number = 50
-  @State v6: number = 50
-  @State v7: number = 50
-  @State v8: number = 50
+  @State val1: number = 50
+  @State val2: number = 50
+  @State val3: number = 50
+  @State val4: number = 50
+  @State val5: number = 50
+  @State val6: number = 50
+  @State val7: number = 50
+  @State val8: number = 50
 
   build() {
     Row() {
       Scroll() {
         Column({ space: '8vp' }) {
           Text('Slider, OutSet, SystemTheme')
-          Slider({ value: this.v1 }).onChange((value) => {
-            this.v1 = value
+          Slider({ value: this.val1 }).onChange((value) => {
+            this.val1 = value
           })
             .key(SliderKeys.sliderOutSetSystem)
 
           Text('Slider, InSet, SystemTheme')
-          Slider({ value: this.v2, style: SliderStyle.InSet }).onChange((value) => {
-            this.v2 = value
+          Slider({ value: this.val2, style: SliderStyle.InSet }).onChange((value) => {
+            this.val2 = value
           })
             .key(SliderKeys.sliderInSetSystem)
 
           Text('Slider, OutSet, SystemTheme, Steps on')
-          Slider({ value: this.v3, step: 5 }).showSteps(true).onChange((value) => {
-            this.v3 = value
+          Slider({ value: this.val3, step: 5 }).showSteps(true).onChange((value) => {
+            this.val3 = value
           })
             .key(SliderKeys.sliderOutSetStepsSystem)
 
           Text('Slider, InSet, SystemTheme, Steps on')
-          Slider({ value: this.v4, step: 5, style: SliderStyle.InSet }).showSteps(true).onChange((value) => {
-            this.v4 = value
+          Slider({ value: this.val4, step: 5, style: SliderStyle.InSet }).showSteps(true).onChange((value) => {
+            this.val4 = value
           })
             .key(SliderKeys.sliderInSetStepsSystem)
 
           WithTheme({ theme: this.localTheme }) {
             Column({ space: '8vp' }) {
               Text('Slider, OutSet, CustomTheme')
-              Slider({ value: this.v5 }).onChange((value) => {
-                this.v5 = value
+              Slider({ value: this.val5 }).onChange((value) => {
+                this.val5 = value
               })
                 .key(SliderKeys.sliderOutSetWithTheme)
 
               Text('Slider, InSet, CustomTheme')
-              Slider({ value: this.v6, style: SliderStyle.InSet }).onChange((value) => {
-                this.v6 = value
+              Slider({ value: this.val6, style: SliderStyle.InSet }).onChange((value) => {
+                this.val6 = value
               })
                 .key(SliderKeys.sliderInSetWithTheme)
 
               Text('Slider, InSet, CustomTheme, Steps on')
-              Slider({ value: this.v7, step: 5 }).showSteps(true).onChange((value) => {
-                this.v7 = value
+              Slider({ value: this.val7, step: 5 }).showSteps(true).onChange((value) => {
+                this.val7 = value
               })
                 .key(SliderKeys.sliderOutSetStepsWithTheme)
 
               Text('Slider, InSet, CustomTheme, Steps on')
-              Slider({ value: this.v8, step: 5, style: SliderStyle.InSet }).showSteps(true).onChange((value) => {
-                this.v8 = value
+              Slider({ value: this.val8, step: 5, style: SliderStyle.InSet }).showSteps(true).onChange((value) => {
+                this.val8 = value
               })
                 .key(SliderKeys.sliderInSetStepsWithTheme)
             }

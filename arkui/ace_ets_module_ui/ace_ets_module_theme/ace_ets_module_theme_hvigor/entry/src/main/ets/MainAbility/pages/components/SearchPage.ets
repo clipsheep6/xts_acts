@@ -19,8 +19,8 @@ import { CustomTheme } from '@ohos.arkui.theme'
 export const searchThemeProperty: string = `SearchThemeProperty`
 
 export class SearchKeys {
-  static readonly searchSystem = `Search_System`
-  static readonly searchWithTheme = `Search_WithTheme`
+  public static readonly searchSystem = `Search_System`
+  public static readonly searchWithTheme = `Search_WithTheme`
 }
 @Entry(storage)
 @Component
@@ -38,7 +38,7 @@ struct SearchPage {
         .searchButton('Search')
         .key(SearchKeys.searchSystem)
       WithTheme({ theme: this.localTheme }) {
-        Search({ value: "", placeholder: 'Type to search...' })
+        Search({ value: '', placeholder: 'Type to search...' })
           .margin({
             left: '20vp',
             top: '100vp',
