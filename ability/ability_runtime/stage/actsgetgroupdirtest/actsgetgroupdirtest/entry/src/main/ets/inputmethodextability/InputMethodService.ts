@@ -23,25 +23,35 @@ export default class InputDemoService extends InputMethodExtensionAbility {
 
   onCreate(want: Want): void {
     console.info("ActsGetgroupdirTest InputDemoService onCreate");
+    let result = false;
+    let result1 = false;
     keyboardController.onCreate(this.context);
     this.context.getGroupDir("context_test1", (err, data) => {
       if (!err) {
-        let result = true;
         try {
           let file = fs.openSync(data + '/contextTest1.txt', fs.OpenMode.READ_WRITE);
-          fs.closeSync(file);
+          if (file.fd) {
+            result = true;
+            console.info("write context_test1 success:");
+            fs.closeSync(file);
+          }
+          console.info("write context_test1 failed, fd is invalid");
         } catch (error) {
-          result = false;
+          console.info("write context_test1 failed:" + JSON.stringify(error));
         }
 
         this.context.getGroupDir("context_hap2", (err, data) => {
           if (!err) {
-            let result1 = true;
             try {
               let file = fs.openSync(data + '/contextTest2.txt', fs.OpenMode.READ_WRITE);
-              fs.closeSync(file);
+              if (file.fd) {
+                result1 = true;
+                console.info("write context_hap2 success:");
+                fs.closeSync(file);
+              }
+              console.info("write context_test1 failed, fd is invalid");
             } catch (error) {
-              result1 = false;
+              console.info("write context_hap2 failed:" + JSON.stringify(error));
             }
             let commonEventData = {
               parameters:{
