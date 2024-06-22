@@ -41,7 +41,7 @@ export default function sliderThemeTest() {
     beforeAll(async () => {
       try {
         const options: router.RouterOptions = {
-          url: `pages/components/SliderPage`,
+          url: `MainAbility/pages/components/SliderPage`,
         }
         const pages: router.RouterState = router.getState();
         if (pages?.name !== `SliderPage`) {

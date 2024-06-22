@@ -24,6 +24,7 @@ export default function SearchThemeTest() {
   const SUITE: string = `SearchThemeTest`;
   const emptyAttr = 'emptyAttr';
 
+
   let localTheme: CustomTheme | undefined;
   let changeTheme: boolean = false;
   let colorValues: Map<string, string> | undefined = new Map<string, string>();
@@ -32,7 +33,7 @@ export default function SearchThemeTest() {
     beforeAll(async () => {
       try {
         const options: router.RouterOptions = {
-          url: `pages/components/SearchPage`,
+          url: `MainAbility/pages/components/SearchPage`,
         }
         const pages: router.RouterState = router.getState();
         if (pages?.name !== `SearchPage`) {
@@ -78,7 +79,7 @@ export default function SearchThemeTest() {
       const CASE: string = `ActsSearchThemeColors_0100`;
       console.info(`${SUITE} ${CASE} START`);
       const SearchJSON: string = getInspectorByKey(SearchKeys.searchSystem);
-      const attrsSearch: SearchAttribute = JSON.parse(SearchJSON)?.$attrs;
+      const attrsSearch: SearchAttribute = (JSON.parse(SearchJSON)?.$attrs as SearchAttribute);
 
       const backgroundColor: string = attrsSearch?.backgroundColor.toString().toUpperCase();
       const checkBackgroundColor = colorValues?.get(`compBackgroundTertiary`);
