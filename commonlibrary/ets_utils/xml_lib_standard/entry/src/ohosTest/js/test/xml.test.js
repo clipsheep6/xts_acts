@@ -2201,7 +2201,8 @@ describe('XmlSerializerXmlPullParserTest', function () {
             let that = new xml.XmlPullParser(uint8, 'UTF-8');
             expect().assertFail();
         } catch (e) {
-            expect(e.toString()).assertEqual("Error: The parameter type is incorrect, only support ArrayBuffer or DataView.");
+            expect(e.toString()).assertEqual("Error: Parameter error. The type of Parameter must be ArrayBuffer or " +
+                                             "DataView.");
         }
     })
 
@@ -2221,7 +2222,8 @@ describe('XmlSerializerXmlPullParserTest', function () {
             let thatSer = new xml.XmlSerializer(uint);
             expect().assertFail();
         } catch (e) {
-            expect(e.toString()).assertEqual("Error: The parameter type is incorrect, only support ArrayBuffer or DataView.");
+            expect(e.toString()).assertEqual("Error: Parameter error. The type of Parameter must be ArrayBuffer or " +
+                                             "DataView.");
         }
     })
 
@@ -2348,5 +2350,381 @@ describe('XmlSerializerXmlPullParserTest', function () {
             view = view + String.fromCodePoint(uint8[i]);
         }
         expect(view).assertEqual(result);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_09900
+     * @tc.name: testNodeName001
+     * @tc.desc: Writes a wrong node name.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testNodeName001', 0, function () {
+        try {
+            let strXml =
+              '<?xml version="1.0" encoding="UTF-8"?>' +
+              '<note importance="high" logged="true">' +
+              '<company>John &amp; Hans</company>' +
+              '<tod<xml version="1.0" encoding="UTF-8"?><note importance="high" logged="true"></note>' +
+              '</note>';
+            let textec = new util.TextEncoder()
+            let uint8 = textec.encodeInto(strXml);
+            let that = new xml.XmlPullParser(uint8.buffer, 'UTF-8');
+            let str = '';
+            function func(name, value) {
+              str += name + value;
+              return true;
+            }
+            let options = { supportDoctype: true, ignoreNameSpace: true, tagValueCallbackFunction: func }
+            that.parse(options);
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("Error: The node name contains invalid characters: <");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10000
+     * @tc.name: testNodeName002
+     * @tc.desc: Writes a wrong node name.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testNodeName002', 0, function () {
+        try {
+            let strXml =
+              '<?xml version="1.0" encoding="UTF-8"?>' +
+              '<note importance="high" logged="true">' +
+              '<company>John &amp; Hans</company>' +
+              '<2todo>work</2todo>' +
+              '</note>';
+            let textec = new util.TextEncoder()
+            let uint8 = textec.encodeInto(strXml);
+            let that = new xml.XmlPullParser(uint8.buffer, 'UTF-8');
+            let str = '';
+            function func(name, value) {
+              str += name + value;
+              return true;
+            }
+            let options = { supportDoctype: true, ignoreNameSpace: true, tagValueCallbackFunction: func }
+            that.parse(options);
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("Error: The node name contains invalid characters: 2");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10100
+     * @tc.name: testStartElement006
+     * @tc.desc: Writes a wrong node name.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testStartElement006', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.startElement("");
+            thatSer.endElement();
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error. Parameter cannot be empty");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10200
+     * @tc.name: testStartElement007
+     * @tc.desc: Writes a wrong node name.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testStartElement007', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.startElement(123);
+            thatSer.endElement();
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of 123 must be string");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10300
+     * @tc.name: testSetAttributes006
+     * @tc.desc: Writes a wrong attributes name.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetAttributes006', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.startElement("note");
+            thatSer.setAttributes("", "high1");
+            thatSer.endElement();
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error. Parameter cannot be empty");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10400
+     * @tc.name: testSetAttributes007
+     * @tc.desc: Writes a wrong attributes name.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetAttributes007', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.startElement("note");
+            thatSer.setAttributes(123, "high1");
+            thatSer.endElement();
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of 123 must be string");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10500
+     * @tc.name: testAddEmptyElement006
+     * @tc.desc: Writes a wrong element name.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testAddEmptyElement006', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.addEmptyElement("");
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error. Parameter cannot be empty");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10600
+     * @tc.name: testAddEmptyElement007
+     * @tc.desc: Writes a wrong element name.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testAddEmptyElement007', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.addEmptyElement(123);
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of 123 must be string");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10700
+     * @tc.name: testSetNamespace006
+     * @tc.desc: Writes a wrong namespace.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetNamespace006', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.setNamespace("", "http://www.w3.org/TR/html4/");
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error. Parameter cannot be empty");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10800
+     * @tc.name: testSetNamespace007
+     * @tc.desc: Writes a wrong namespace.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetNamespace007', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.setNamespace(123, "http://www.w3.org/TR/html4/");
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of 123 must be string");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10900
+     * @tc.name: testSetComment006
+     * @tc.desc: Writes a wrong comment.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetComment006', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.setComment("");
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error. Parameter cannot be empty");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_11000
+     * @tc.name: testSetComment007
+     * @tc.desc: Writes a wrong comment.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetComment007', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.setComment(123);
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of 123 must be string");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_11100
+     * @tc.name: testSetCDATA006
+     * @tc.desc: Writes a wrong CDATA.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetCDATA006', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.setCDATA("")
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error. Parameter cannot be empty");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_11200
+     * @tc.name: testSetCDATA007
+     * @tc.desc: Writes a wrong CDATA.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetCDATA007', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.setCDATA(123)
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of 123 must be string");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_11300
+     * @tc.name: testSetText006
+     * @tc.desc: Writes a wrong text.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetText006', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.startElement("note");
+            thatSer.setText("");
+            thatSer.endElement();
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error. Parameter cannot be empty");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_11400
+     * @tc.name: testSetText007
+     * @tc.desc: Writes a wrong text.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetText007', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.setText(123);
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of 123 must be string");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_11500
+     * @tc.name: testSetDocType006
+     * @tc.desc: Writes a wrong doctype.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetDocType006', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.setDocType("");
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error. Parameter cannot be empty");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_11600
+     * @tc.name: testSetDocType007
+     * @tc.desc: Writes a wrong doctype.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetDocType007', 0, function () {
+        try {
+            let arrayBuffer = new ArrayBuffer(2048);
+            let thatSer = new xml.XmlSerializer(arrayBuffer);
+            thatSer.setDocType(123);
+            expect().assertFail();
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of 123 must be string");
+        }
     })
 })}
