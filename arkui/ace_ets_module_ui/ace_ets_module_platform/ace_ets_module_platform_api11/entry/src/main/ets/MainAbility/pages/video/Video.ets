@@ -41,53 +41,53 @@ struct VideoCreateComponent {
         .objectFit(ImageFit.Cover)
         .key('video')
         .onStart(() => {
-          console.info("onStart");
+          console.info('onStart');
         })
         .onPause(() => {
-          console.info("onPause");
+          console.info('onPause');
         })
         .onFinish(() => {
-          console.info("onFinish");
+          console.info('onFinish');
         })
         .onPrepared(() => {
-          console.info("onPrepared");
+          console.info('onPrepared');
         })
         .onSeeking(() => {
-          console.info("onSeeking");
+          console.info('onSeeking');
         })
         .onSeeked(() => {
-          console.info("onSeeked");
+          console.info('onSeeked');
         })
         .onUpdate(() => {
-          console.info("onUpdate");
+          console.info('onUpdate');
         })
         .onError(() => {
-          console.info("onError");
+          console.info('onError');
         })
 
       Row() {
-        Button("start").onClick(() => {
+        Button('start').onClick(() => {
           this.myVideoController.start();
         });
-        Button("pause").onClick(() => {
+        Button('pause').onClick(() => {
           this.myVideoController.pause();
         });
       }
 
       Row() {
-        Button("setCurrentTime").onClick(() => {
+        Button('setCurrentTime').onClick(() => {
           this.myVideoController.setCurrentTime(9);
         });
-        Button("setCurrentTime").onClick(() => {
+        Button('setCurrentTime').onClick(() => {
           this.myVideoController.setCurrentTime(9, SeekMode.PreviousKeyframe);
         });
-        Button("setCurrentTime").onClick(() => {
+        Button('setCurrentTime').onClick(() => {
           this.myVideoController.setCurrentTime(9, SeekMode.NextKeyframe);
         });
-        Button("setCurrentTime").onClick(() => {
+        Button('setCurrentTime').onClick(() => {
           this.myVideoController.setCurrentTime(9, SeekMode.ClosestKeyframe);
         });
-        Button("setCurrentTime").onClick(() => {
+        Button('setCurrentTime').onClick(() => {
           this.myVideoController.setCurrentTime(9, SeekMode.Accurate);
         });
       }

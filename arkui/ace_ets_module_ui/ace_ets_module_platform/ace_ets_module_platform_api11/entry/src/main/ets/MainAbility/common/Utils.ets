@@ -15,6 +15,9 @@
 import RectValue from './Rect';
 
 export default class Utils {
+
+  static WAIT_UI_READY_MS: number = 1000;
+
   static rect_left: number;
   static rect_top: number;
   static rect_right: number;
@@ -23,8 +26,8 @@ export default class Utils {
 
   static getComponentRect(key: string) {
     let strJson: string = getInspectorByKey(key);
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(JSON.parse(strJson)));
-    console.info("[getInspectorByKey] rectInfo is: " + JSON.parse('[' + JSON.parse(strJson).$rect + ']'));
+    console.info('[getInspectorByKey] current component obj is: ' + JSON.stringify(JSON.parse(strJson)));
+    console.info('[getInspectorByKey] rectInfo is: ' + JSON.parse('[' + JSON.parse(strJson).$rect + ']'));
     Utils.rect_left = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[0]
     Utils.rect_top = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1]
     Utils.rect_right = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[0]
@@ -37,7 +40,7 @@ export default class Utils {
   static sleep(time: number) {
     return new Promise((resolve: (value: string) => void) => {
       setTimeout(() => {
-        resolve("ok")
+        resolve('ok')
       }, time)
     }).then(() => {
       console.info(`sleep ${time} over...`)
