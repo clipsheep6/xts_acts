@@ -354,35 +354,6 @@ export default function pasteBoardSystemPasteBoardTest() {
     })
 
     /**
-     * @tc.number SUB_Pasteboard_Local_SDK_SystemPasteboard_ClearOrHas_2600
-     * @tc.name setData
-     * @tc.desc Put pastedata to system pasteBoard success
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
-     */
-    it('SUB_PASTEBOARD_FUNCTION_ETS_SETDATA_CALLBACK_0100', 0, async (done: Function) => {
-      console.info("SUB_PASTEBOARD_FUNCTION_ETS_SETDATA_CALLBACK_0100 start")
-      let pasteData = pasteboard.createData('string', ARRAY_BUFFER);
-      let systemPasteBoard = pasteboard.getSystemPasteboard();
-      await systemPasteBoard.setData(pasteData, async (err, data) => {
-        if (err != null) {
-          console.info("System pasteBoard set pastedata error,error: " + err)
-          expect(false).assertTrue();
-        } else {
-          await systemPasteBoard.hasData().then((data) => {
-            expect(data).assertTrue();
-          }).catch((err: Error) => {
-            console.info("Judge whether there is data in the system pasteBoard error,error is: " + err)
-            expect(false).assertTrue();
-          })
-        }
-      })
-      console.info("SUB_PASTEBOARD_FUNCTION_ETS_SETDATA_CALLBACK_0100 end")
-      done();
-    })
-
-    /**
      * @tc.number SUB_Pasteboard_Local_SDK_SystemPasteboard_ClearOrHas_2800
      * @tc.name setData
      * @tc.desc Put pastedata to system pasteBoard fail,type of parameter "pasteData" is string
@@ -643,6 +614,35 @@ export default function pasteBoardSystemPasteBoardTest() {
         })
       })
       console.info(TAG + "SUB_PASTEBOARD_GETDATASOURCE_0100 end")
+    })
+
+/**
+     * @tc.number SUB_Pasteboard_Local_SDK_SystemPasteboard_ClearOrHas_2600
+     * @tc.name setData
+     * @tc.desc Put pastedata to system pasteBoard success
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_PASTEBOARD_FUNCTION_ETS_SETDATA_CALLBACK_0100', 0, async (done: Function) => {
+      console.info("SUB_PASTEBOARD_FUNCTION_ETS_SETDATA_CALLBACK_0100 start")
+      let pasteData = pasteboard.createData('string', ARRAY_BUFFER);
+      let systemPasteBoard = pasteboard.getSystemPasteboard();
+      await systemPasteBoard.setData(pasteData, async (err, data) => {
+        if (err != null) {
+          console.info("System pasteBoard set pastedata error,error: " + err)
+          expect(false).assertTrue();
+        } else {
+          await systemPasteBoard.hasData().then((data) => {
+            expect(data).assertTrue();
+          }).catch((err: Error) => {
+            console.info("Judge whether there is data in the system pasteBoard error,error is: " + err)
+            expect(false).assertTrue();
+          })
+        }
+      })
+      console.info("SUB_PASTEBOARD_FUNCTION_ETS_SETDATA_CALLBACK_0100 end")
+      done();
     })
 
   });
