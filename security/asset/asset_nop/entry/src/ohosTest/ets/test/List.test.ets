@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import asset_NopTest from './AssetNop';
+import asset_NopTest from './AssetNop.test';
 
 export default function testsuite() {
   asset_NopTest()
