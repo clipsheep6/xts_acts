@@ -52,6 +52,7 @@ struct scrollTo {
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(80)
+      .cachedCount(0)
 
       Button('scrollTo+90')
         .height('5%')
