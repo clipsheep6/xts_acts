@@ -17,8 +17,8 @@ import events_emitter from '@ohos.events.emitter';
 @Entry
 @Component
 struct VideoCreateComponent {
-  @State srcs: string = "/images/trailer.mp4";
-  @State previewUris: string = "/images/img.jpeg";
+  @State srcs: string = '/images/trailer.mp4';
+  @State previewUris: string = '/images/img.jpeg';
   @State currentProgressRates: number = 1;
   @State autoPlays: boolean = true;
   @State controlsss: boolean = true;
@@ -35,12 +35,12 @@ struct VideoCreateComponent {
   }
 
   private stateChangCallBack = (eventData: events_emitter.EventData) => {
-    console.info("[stateChangCallBack] video stateChangCallBack");
+    console.info('[stateChangCallBack] video stateChangCallBack');
     if (eventData != null) {
-      console.info("[stateChangCallBack] state change called:" + JSON.stringify(eventData));
+      console.info('[stateChangCallBack] state change called:' + JSON.stringify(eventData));
       if (eventData.data.progressRates != null) {
         this.currentProgressRates = eventData.data.progressRates;
-        console.info("currentProgressRates " + this.currentProgressRates)
+        console.info('currentProgressRates ' + this.currentProgressRates)
       }
       if (eventData.data.isStared != null) {
         this.myVideoController.start();
@@ -59,26 +59,26 @@ struct VideoCreateComponent {
         currentProgressRate: this.currentProgressRates,
         controller: this.myVideoController
       })
-        .key("video")
+        .key('video')
         .width(700)
         .height(500)
         .autoPlay(this.autoPlays)
         .controls(this.controlsss)
 
       Row() {
-        Button("start").onClick(() => {
+        Button('start').onClick(() => {
           this.myVideoController.start();
         });
-        Button("pause").onClick(() => {
+        Button('pause').onClick(() => {
           this.myVideoController.pause();
         });
-        Button("stop").onClick(() => {
+        Button('stop').onClick(() => {
           this.myVideoController.stop();
         });
       }
 
       Row() {
-        Button("setCurrentTime").onClick(() => {
+        Button('setCurrentTime').onClick(() => {
           this.myVideoController.setCurrentTime(9, SeekMode.Accurate);
         });
       }

@@ -23,7 +23,7 @@ import testsuite from '../../../test/List.test'
 struct Index {
 
   aboutToAppear(){
-    console.info("start run testcase!!!!")
+    console.info('start run testcase!!!!')
         var abilityDelegator: any
         abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
         var abilityDelegatorArguments: any

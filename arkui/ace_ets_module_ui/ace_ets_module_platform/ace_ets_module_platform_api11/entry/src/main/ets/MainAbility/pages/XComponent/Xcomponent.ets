@@ -33,7 +33,7 @@ struct XcomponentGetXComponentContext {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
 
-      Text("xcomponent-GetXComponentContext")
+      Text('xcomponent-GetXComponentContext')
         .width(100)
         .height(70)
         .fontSize(20)
@@ -45,28 +45,28 @@ struct XcomponentGetXComponentContext {
         .padding(10)
         .textAlign(TextAlign.Center)
         .textOverflow({ overflow: TextOverflow.None })
-        .key("getXComponentContextText")
+        .key('getXComponentContextText')
         .onClick(() => {
           try {
             Log.showInfo(TAG, 'xcomponentController.getXComponentContext' + JSON.stringify(this.xcomponentController.getXComponentContext()))
             let result = (this.xcomponentController.getXComponentContext() != null)
             let backData: events_emitter.EventData = {
               data: {
-                "STATUS": "callBackSuccess"
+                'STATUS': 'callBackSuccess'
               }
             }
             let backEvent: events_emitter.InnerEvent = {
               eventId: 60228,
               priority: events_emitter.EventPriority.LOW
             }
-            console.info("xcomponentController start to emit action state")
+            console.info('xcomponentController start to emit action state')
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("xcomponentController emit action state err: " + JSON.stringify((err as Error)?.message))
+            console.info('xcomponentController emit action state err: ' + JSON.stringify((err as Error)?.message))
           }
         })
 
-      Text("xcomponent-SetXComponentSurfaceSize")
+      Text('xcomponent-SetXComponentSurfaceSize')
         .width(100)
         .height(70)
         .fontSize(20)
@@ -78,7 +78,7 @@ struct XcomponentGetXComponentContext {
         .padding(10)
         .textAlign(TextAlign.Center)
         .textOverflow({ overflow: TextOverflow.None })
-        .key("setXComponentSurfaceSizeText")
+        .key('setXComponentSurfaceSizeText')
         .onClick(() => {
           this.xcomponentController.setXComponentSurfaceSize({
             surfaceWidth: 200,
@@ -86,6 +86,6 @@ struct XcomponentGetXComponentContext {
           })
         })
 
-    }.width("100%").height("100%")
+    }.width('100%').height('100%')
   }
 }
