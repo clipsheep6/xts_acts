@@ -512,7 +512,7 @@ static napi_value GetColorByName(napi_env env, napi_callback_info info){
     NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
     uint32_t result;
     const char *name="start_window_background_jjq";
-    ResourceManager_ErrorCode code=OH_ResourceManager_GetColorByName(mNativeResMgr,name,&result);
+    OH_ResourceManager_GetColorByName(mNativeResMgr,name,&result);
     
     napi_value jsValue = nullptr;
     napi_create_uint32(env, result, &jsValue);
@@ -527,7 +527,7 @@ static napi_value GetColor(napi_env env, napi_callback_info info){
     uint32_t result;
     uint32_t resId=0;
     napi_get_value_uint32(env, argv[1],&resId);
-    ResourceManager_ErrorCode code=OH_ResourceManager_GetColor(mNativeResMgr,resId,&result);
+    OH_ResourceManager_GetColor(mNativeResMgr,resId,&result);
     
     napi_value jsValue = nullptr;
     napi_create_uint32(env, result, &jsValue);
@@ -571,7 +571,7 @@ static napi_value GetFloatByName(napi_env env, napi_callback_info info){
     napi_get_cb_info(env,info,&argc,argv,nullptr,nullptr);
     NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
     float result;
-    char *name = "float_1";
+    const char *name = "float_1";
     ResourceManager_ErrorCode code=OH_ResourceManager_GetFloatByName(mNativeResMgr,name,&result);
     
     bool flag = (code == 0 && (fabs(result-30.6) >= 1e-9));
@@ -605,10 +605,10 @@ static napi_value GetLocales(napi_env env, napi_callback_info info){
     char **resultValue;
     uint32_t resultLen;
     bool includeSystem = false;
-    ResourceManager_ErrorCode code=OH_ResourceManager_GetLocales(mNativeResMgr,&resultValue,&resultLen,includeSystem);
+    OH_ResourceManager_GetLocales(mNativeResMgr,&resultValue,&resultLen,includeSystem);
     
     std::vector<std::string> tempArray;
-    for(int i = 0;i < resultLen; i++){
+    for(uint32_t i = 0;i < resultLen; i++){
         tempArray.push_back(resultValue[i]);
     }
     napi_value jsStringArray;
@@ -644,10 +644,10 @@ static napi_value GetStringArray(napi_env env, napi_callback_info info){
     uint32_t resultLen;
     uint32_t resId = 0;
     napi_get_value_uint32(env, argv[1],&resId);
-    ResourceManager_ErrorCode code=OH_ResourceManager_GetStringArray(mNativeResMgr,resId,&resultValue,&resultLen);
+    OH_ResourceManager_GetStringArray(mNativeResMgr,resId,&resultValue,&resultLen);
     
     std::vector<std::string> tempArray;
-    for(int i = 0;i < resultLen; i++){
+    for(uint32_t i = 0;i < resultLen; i++){
         tempArray.push_back(resultValue[i]);
     }
     napi_value jsStringArray;
@@ -667,11 +667,11 @@ static napi_value GetStringArrayByName(napi_env env, napi_callback_info info){
     NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
     char **resultValue;
     uint32_t resultLen;
-    char *name="size";
-    ResourceManager_ErrorCode code=OH_ResourceManager_GetStringArrayByName(mNativeResMgr,name,&resultValue,&resultLen);
+    const char *name="size";
+    OH_ResourceManager_GetStringArrayByName(mNativeResMgr,name,&resultValue,&resultLen);
     
     std::vector<std::string> tempArray;
-    for(int i = 0;i < resultLen; i++){
+    for(uint32_t i = 0;i < resultLen; i++){
         tempArray.push_back(resultValue[i]);
     }
     napi_value jsStringArray;
@@ -692,7 +692,7 @@ static napi_value ReleaseStringArray(napi_env env, napi_callback_info info){
     char **resultValue;
     char **resultValueTemp=nullptr;
     uint32_t resultLen;
-    char *name="size";
+    const char *name="size";
     ResourceManager_ErrorCode code;
     OH_ResourceManager_GetStringArrayByName(mNativeResMgr,name,&resultValue,&resultLen);
     resultValueTemp=resultValue;
@@ -756,9 +756,9 @@ static napi_value AddResource(napi_env env, napi_callback_info info){
     napi_value argv[2]={nullptr};
     napi_get_cb_info(env,info,&argc,argv,nullptr,nullptr);
     NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
-    char *path="/data/storage/el1/bundle/entry/resources/resfile/library-default-signed.hsp";
+    const char *path="/data/storage/el1/bundle/entry/resources/resfile/library-default-signed.hsp";
     int resultValue;
-    ResourceManager_ErrorCode code=OH_ResourceManager_AddResource(mNativeResMgr,path);
+    OH_ResourceManager_AddResource(mNativeResMgr,path);
     OH_ResourceManager_GetIntByName(mNativeResMgr,"integer_1",&resultValue);
     
     napi_value jsValue = nullptr;
@@ -771,7 +771,7 @@ static napi_value RemoveResource(napi_env env, napi_callback_info info){
     napi_value argv[2]={nullptr};
     napi_get_cb_info(env,info,&argc,argv,nullptr,nullptr);
     NativeResourceManager *mNativeResMgr = OH_ResourceManager_InitNativeResourceManager(env, argv[0]);
-    char *path="/data/storage/el1/bundle/entry/resources/resfile/library-default-signed.hsp";
+    const char *path="/data/storage/el1/bundle/entry/resources/resfile/library-default-signed.hsp";
     int resultValue;
     int resultValue2;
     OH_ResourceManager_AddResource(mNativeResMgr,path);
