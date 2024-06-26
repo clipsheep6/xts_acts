@@ -20,9 +20,9 @@ ohos_js_app_suite("audio_haptic_stage_hap") {
   hap_name = "ActsAudioHapticStageTest"
   part_name = "audio_framework"
   subsystem_name = "multimedia"
-  deps = [ ":audio_haptic_ets_resources" ]
+  deps = [ ":audio_haptic_stage_resources" ]
 }
 
-ohos_resources("audio_haptic_ets_resources") {
-  sources = [ ".entry/src/ohosTest/resources" ]
+ohos_resources("audio_haptic_stage_resources") {
+  sources = [ "./entry/src/ohosTest/resources" ]
 }
