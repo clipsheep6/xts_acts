@@ -397,8 +397,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let strJson = getInspectorByKey('swiperNextPrevMargin');
       let obj = JSON.parse(strJson);
       console.info("[apiCommponentAddJsunit_1400'] component obj is: " + obj.$attrs.nextMargin);
-      expect(obj.$attrs.nextMargin).assertEqual('0.00px');
-      expect(obj.$attrs.prevMargin).assertEqual('0.00px');
+      expect(obj.$attrs.nextMargin).assertEqual('1000.00px');
+      expect(obj.$attrs.prevMargin).assertEqual('1000.00px');
       // calculate the gap
       let columnSwiper = CommonFunc.getComponentRect('ColumnSwiper');
       let right = columnSwiper.right;

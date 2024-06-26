@@ -72,6 +72,7 @@ struct SwiperNextPrevMarginExample76 {
       .prevMargin(2)
       .loop(true)
       .duration(1000)
+      .curve(Curve.Linear)
       .itemSpace(0)
 
       .key("swiperNextPrevMargin76")

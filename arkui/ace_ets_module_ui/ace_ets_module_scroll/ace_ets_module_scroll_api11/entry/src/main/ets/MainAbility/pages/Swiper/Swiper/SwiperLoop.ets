@@ -72,6 +72,7 @@ struct SwiperLoopTest {
       .interval(1000)
       .loop(this.loop)
       .duration(200)
+      .curve(Curve.Linear)
       .itemSpace(0)
       .displayArrow(true, false)
       .onChange((index: number) => {

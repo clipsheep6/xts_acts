@@ -85,6 +85,7 @@ struct SwiperExample {
       .interval(this.interval)
       .indicator(this.indicator)
       .loop(this.loop)
+      .curve(Curve.Linear)
       .duration(this.duration)
       .vertical(this.vertical)
       .itemSpace(this.itemSpace)

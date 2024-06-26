@@ -142,6 +142,7 @@ struct SwiperExample3 {
         .cachedCount(1)
         .loop(false)
         .duration(1000)
+        .curve(Curve.Linear)
         .vertical(false)
         .onChange((index: number) => {
           console.info(index.toString())
@@ -166,6 +167,7 @@ struct SwiperExample3 {
         .cachedCount(1)
         .loop(false)
         .duration(1000)
+        .curve(Curve.Linear)
         .vertical(false)
         .onChange((index: number) => {
           console.info(index.toString())
@@ -191,6 +193,7 @@ struct SwiperExample3 {
         .cachedCount(1)
         .loop(false)
         .duration(1000)
+        .curve(Curve.Linear)
         .vertical(false)
         .onChange((index: number) => {
           console.info(index.toString())
@@ -216,6 +219,7 @@ struct SwiperExample3 {
         .cachedCount(1)
         .loop(false)
         .duration(1000)
+        .curve(Curve.Linear)
         .vertical(false)
         .onChange((index: number) => {
           console.info(index.toString())
@@ -243,6 +247,7 @@ struct SwiperExample3 {
         .cachedCount(1)
         .loop(false)
         .duration(1000)
+        .curve(Curve.Linear)
         .vertical(false)
         .onChange((index: number) => {
           console.info(index.toString())
@@ -268,6 +273,7 @@ struct SwiperExample3 {
         .cachedCount(1)
         .loop(false)
         .duration(1000)
+        .curve(Curve.Linear)
         .vertical(false)
         .onChange((index: number) => {
           console.info(index.toString())
@@ -292,6 +298,7 @@ struct SwiperExample3 {
         .cachedCount(1)
         .loop(false)
         .duration(1000)
+        .curve(Curve.Linear)
         .vertical(false)
         .onChange((index: number) => {
           console.info(index.toString())

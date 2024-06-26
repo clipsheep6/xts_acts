@@ -79,6 +79,7 @@ struct SwiperExampleT3 {
           .selectedItemHeight(15)
           .color(Color.Gray)
           .selectedColor(Color.Blue))
+      .curve(Curve.Linear)
       .duration(1000)
       .itemSpace(0)
       .displayMode(SwiperDisplayMode.STRETCH)
