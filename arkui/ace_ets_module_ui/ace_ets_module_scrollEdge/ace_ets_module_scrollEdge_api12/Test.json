@@ -1,5 +1,5 @@
 {
-    "description": "Configuration for hjunit ActsAceEtsComponentBasicScrollEdgeApi12Test Tests",
+    "description": "Configuration for hjunit ActsAceEtsModuleScrollEdgeApi12Test Tests",
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "180000",
@@ -10,7 +10,7 @@
     },
     "kits": [{
         "test-file-name": [
-            "ActsAceEtsComponentBasicScrollEdgeApi12Test.hap"
+            "ActsAceEtsModuleScrollEdgeApi12Test.hap"
         ],
         "type": "AppInstallKit",
         "cleanup-apps": true
