@@ -100,6 +100,7 @@ struct SwiperNextPrevMarginExampleString {
         .selectedDigitFont({ size: 20, weight: FontWeight.Normal }))
       .loop(true)
       .duration(1000)
+      .curve(Curve.Linear)
       .itemSpace(0)
       .displayArrow(true, false)
       .key("swiperNextPrevMarginString")

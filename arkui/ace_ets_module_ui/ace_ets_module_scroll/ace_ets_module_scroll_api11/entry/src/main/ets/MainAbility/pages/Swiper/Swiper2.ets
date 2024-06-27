@@ -71,6 +71,7 @@ struct SwiperExample2 {
       .indicator(true)
       .loop(false)
       .duration(1000)
+      .curve(Curve.Linear)
       .vertical(false)
       .disableSwipe(true)
       .itemSpace(0)

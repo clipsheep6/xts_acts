@@ -71,6 +71,7 @@ struct swiper1 {
       .vertical(true)
       .loop(true)
       .duration(1000)
+      .curve(Curve.Linear)
       .itemSpace(0)
       .indicator( // 设置圆点导航点样式
         new DotIndicator()

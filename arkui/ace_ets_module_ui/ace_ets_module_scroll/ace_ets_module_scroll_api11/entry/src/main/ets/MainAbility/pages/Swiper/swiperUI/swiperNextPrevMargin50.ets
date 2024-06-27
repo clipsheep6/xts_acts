@@ -116,6 +116,7 @@ struct SwiperNextPrevMarginExample50 {
       .displayMode(SwiperDisplayMode.STRETCH)
       .loop(this.loop)
       .duration(1000)
+      .curve(Curve.Linear)
       .key("swiperNextPrevMargin50")
 
       Row({ space: 12 }) {

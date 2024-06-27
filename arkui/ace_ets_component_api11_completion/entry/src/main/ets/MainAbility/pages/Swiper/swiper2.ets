@@ -71,6 +71,7 @@ struct swiper2 {
       .interval(1000)
       .loop(false)
       .effectMode(EdgeEffect.None)
+      .curve(Curve.Linear)
       .duration(1000)
       .itemSpace(0)
       .indicator( // 设置圆点导航点样式

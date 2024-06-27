@@ -70,6 +70,7 @@ struct swiper1 {
       .interval(1000)
       .vertical(true)
       .loop(true)
+      .curve(Curve.Linear)
       .duration(1000)
       .itemSpace(0)
       .indicator( // 设置圆点导航点样式

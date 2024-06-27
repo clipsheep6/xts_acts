@@ -87,6 +87,7 @@ struct SwiperVisibilityTest {
       .interval(1000)
       .loop(this.loop)
       .duration(100)
+      .curve(Curve.Linear)
       .itemSpace(0)
       .displayArrow(true, false)
       .onChange((index: number) => {
