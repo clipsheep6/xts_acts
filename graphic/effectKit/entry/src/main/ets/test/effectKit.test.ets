@@ -1259,5 +1259,381 @@ export default function effectKitTest(context, windowStage, abilityStorage) {
         done();
       }
     })
+
+    /**
+    * @tc.number EFFECT_KIT_INVERT_JSAPI_001
+    * @tc.name Test invert1
+    * @tc.desc A Invert effect is added to the image.
+    */
+    it('invert1', 0, (done: Function) => {
+      let caseName = 'invert1';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log("effectKitTest" + msgStr + 'begin');
+      let imageSource = image.createImageSource(testJpg.buffer);
+      imageSource.getImageInfo((err, value) => {
+        console.error(msgStr + "image size=" + value.size.width + " X " + value.size.height);
+      })
+      imageSource.createPixelMap().then(pixelMap => {
+        console.info(msgStr + "Napi create createEffect.start");
+        let headFilter = effectKit.createEffect(pixelMap);
+        if (headFilter == null) {
+          console.log("effectKitTest invert1 createEffect faild");
+          expect(true).assertFail();
+          done();
+        }
+        let invertFilter = headFilter.invert();
+        expect(invertFilter != null).assertTrue();
+        done();
+      }).catch((ex: BusinessError) => {
+        console.error(msgStr + "Napi pixelMap.error=" + ex.toString());
+        expect(true).assertFail();
+        done();
+      })
+      console.info(msgStr + "Napi create pixmap.end");
+      expect(true).assertTrue();
+      done();
+    })
+
+    /**
+    * @tc.number EFFECT_KIT_COLORMATRIX_JSAPI_001
+    * @tc.name Test colormatrix1
+    * @tc.desc A Colormatrix effect is added to the image.
+    */
+    it('colormatrix1', 0, (done: Function) => {
+      let caseName = 'colormatrix1';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log("effectKitTest" + msgStr + 'begin');
+      let imageSource = image.createImageSource(testJpg.buffer);
+      imageSource.getImageInfo((err, value) => {
+        console.error(msgStr + "image size=" + value.size.width + " X " + value.size.height);
+      })
+      imageSource.createPixelMap().then(pixelMap => {
+        console.info(msgStr + "Napi create createEffect.start");
+        let headFilter = effectKit.createEffect(pixelMap);
+        if (headFilter == null) {
+          console.log("effectKitTest colormatrix1 createEffect faild");
+          expect(true).assertFail();
+          done();
+        }
+        try{
+          let array:Array<number>;
+          let colormatrixFilter = headFilter.setColorMatrix(array);
+          expect(colormatrixFilter == null).assertTrue();
+          done();
+        }catch{
+          console.info("colormatrixFilter is null");
+          expect(true).assertTrue();
+          done();
+        }
+      }).catch((ex: BusinessError) => {
+        console.error(msgStr + "Napi pixelMap.error=" + ex.toString());
+        expect(true).assertFail();
+        done();
+      })
+      console.info(msgStr + "Napi create pixmap.end");
+      expect(true).assertTrue();
+      done();
+    })
+
+    /**
+    * @tc.number EFFECT_KIT_COLORMATRIX_JSAPI_002
+    * @tc.name Test colormatrix2
+    * @tc.desc A Colormatrix effect is added to the image.
+    */
+    it('colormatrix2', 0, (done: Function) => {
+      let caseName = 'colormatrix2';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log("effectKitTest" + msgStr + 'begin');
+      let imageSource = image.createImageSource(testJpg.buffer);
+      imageSource.getImageInfo((err, value) => {
+        console.error(msgStr + "image size=" + value.size.width + " X " + value.size.height);
+      })
+      imageSource.createPixelMap().then(pixelMap => {
+        console.info(msgStr + "Napi create createEffect.start");
+        let headFilter = effectKit.createEffect(pixelMap);
+        if (headFilter == null) {
+          console.log("effectKitTest colormatrix2 createEffect faild");
+          expect(true).assertFail();
+          done();
+        }
+        // grayscale matrix
+        // [0.2126, 0.7152, 0.0722, 0, 0,
+        // 0.2126, 0.7152, 0.0722, 0, 0,
+        // 0.2126, 0.7152, 0.0722, 0, 0,
+        // 0, 0, 0, 1, 0]
+        // for test
+        let array:Array<number> = [
+          0.2126, 0.7152, 0.0722, 0, 0,
+          0.2126, 0.7152, 0.0722, 0, 0,
+          0.2126, 0.7152, 0.0722, 0, 0,
+          0, 0, 0, 1, 0
+        ];
+        let colormatrixFilter = headFilter.setColorMatrix(array);
+        expect(colormatrixFilter != null).assertTrue();
+        done();
+      }).catch((ex: BusinessError) => {
+        console.error(msgStr + "Napi pixelMap.error=" + ex.toString());
+        expect(true).assertFail();
+        done();
+      })
+      console.info(msgStr + "Napi create pixmap.end");
+      expect(true).assertTrue();
+      done();
+    })
+
+    /**
+    * @tc.number EFFECT_KIT_COLORMATRIX_JSAPI_003
+    * @tc.name Test colormatrix3
+    * @tc.desc A Colormatrix effect is added to the image.
+    */
+    it('colormatrix3', 0, (done: Function) => {
+      let caseName = 'colormatrix3';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log("effectKitTest" + msgStr + 'begin');
+      let imageSource = image.createImageSource(testJpg.buffer);
+      imageSource.getImageInfo((err, value) => {
+        console.error(msgStr + "image size=" + value.size.width + " X " + value.size.height);
+      })
+      imageSource.createPixelMap().then(pixelMap => {
+        console.info(msgStr + "Napi create createEffect.start");
+        let headFilter = effectKit.createEffect(pixelMap);
+        if (headFilter == null) {
+          console.log("effectKitTest colormatrix3 createEffect faild");
+          expect(true).assertFail();
+          done();
+        }
+        let degree = 0.5;
+        // brightness matrix for test
+        let array:Array<number> = [
+            1, 0, 0, 0, degree,
+            0, 1, 0, 0, degree,
+            0, 0, 1, 0, degree,
+            0, 0, 0, 1, 0
+        ];
+        let colormatrixFilter = headFilter.setColorMatrix(array);
+        expect(colormatrixFilter != null).assertTrue();
+        done();
+      }).catch((ex: BusinessError) => {
+        console.error(msgStr + "Napi pixelMap.error=" + ex.toString());
+        expect(true).assertFail();
+        done();
+      })
+      console.info(msgStr + "Napi create pixmap.end");
+      expect(true).assertTrue();
+      done();
+    })
+
+    /**
+    * @tc.number EFFECT_KIT_COLORMATRIX_JSAPI_004
+    * @tc.name Test colormatrix4
+    * @tc.desc A Colormatrix effect is added to the image.
+    */
+    it('colormatrix4', 0, (done: Function) => {
+      let caseName = 'colormatrix4';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log("effectKitTest" + msgStr + 'begin');
+      let imageSource = image.createImageSource(testJpg.buffer);
+      imageSource.getImageInfo((err, value) => {
+        console.error(msgStr + "image size=" + value.size.width + " X " + value.size.height);
+      })
+      imageSource.createPixelMap().then(pixelMap => {
+        console.info(msgStr + "Napi create createEffect.start");
+        let headFilter = effectKit.createEffect(pixelMap);
+        if (headFilter == null) {
+          console.log("effectKitTest colormatrix4 createEffect faild");
+          expect(true).assertFail();
+          done();
+        }
+        let degree = -1.0;
+        // brightness matrix for test
+        let array:Array<number> = [
+            1, 0, 0, 0, degree,
+            0, 1, 0, 0, degree,
+            0, 0, 1, 0, degree,
+            0, 0, 0, 1, 0
+        ];
+        let colormatrixFilter = headFilter.setColorMatrix(array);
+        expect(colormatrixFilter != null).assertTrue();
+        done();
+      }).catch((ex: BusinessError) => {
+        console.error(msgStr + "Napi pixelMap.error=" + ex.toString());
+        expect(true).assertFail();
+        done();
+      })
+      console.info(msgStr + "Napi create pixmap.end");
+      expect(true).assertTrue();
+      done();
+    })
+
+    /**
+    * @tc.number EFFECT_KIT_COLORMATRIX_JSAPI_005
+    * @tc.name Test colormatrix5
+    * @tc.desc A Colormatrix effect is added to the image.
+    */
+    it('colormatrix5', 0, (done: Function) => {
+      let caseName = 'colormatrix5';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log("effectKitTest" + msgStr + 'begin');
+      let imageSource = image.createImageSource(testJpg.buffer);
+      imageSource.getImageInfo((err, value) => {
+        console.error(msgStr + "image size=" + value.size.width + " X " + value.size.height);
+      })
+      imageSource.createPixelMap().then(pixelMap => {
+        console.info(msgStr + "Napi create createEffect.start");
+        let headFilter = effectKit.createEffect(pixelMap);
+        if (headFilter == null) {
+          console.log("effectKitTest colormatrix5 createEffect faild");
+          expect(true).assertFail();
+          done();
+        }
+        let degree = 1.0;  
+        // brightness matrix for test
+        let array:Array<number> = [
+            1, 0, 0, 0, degree,
+            0, 1, 0, 0, degree,
+            0, 0, 1, 0, degree,
+            0, 0, 0, 1, 0
+        ];
+        let colormatrixFilter = headFilter.setColorMatrix(array);
+        expect(colormatrixFilter != null).assertTrue();
+        done();
+      }).catch((ex: BusinessError) => {
+        console.error(msgStr + "Napi pixelMap.error=" + ex.toString());
+        expect(true).assertFail();
+        done();
+      })
+      console.info(msgStr + "Napi create pixmap.end");
+      expect(true).assertTrue();
+      done();
+    })
+
+    /**
+    * @tc.number EFFECT_KIT_COLORMATRIX_JSAPI_006
+    * @tc.name Test colormatrix6
+    * @tc.desc A Colormatrix effect is added to the image.
+    */
+    it('colormatrix6', 0, (done: Function) => {
+      let caseName = 'colormatrix6';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log("effectKitTest" + msgStr + 'begin');
+      let imageSource = image.createImageSource(testJpg.buffer);
+      imageSource.getImageInfo((err, value) => {
+        console.error(msgStr + "image size=" + value.size.width + " X " + value.size.height);
+      })
+      imageSource.createPixelMap().then(pixelMap => {
+        console.info(msgStr + "Napi create createEffect.start");
+        let headFilter = effectKit.createEffect(pixelMap);
+        if (headFilter == null) {
+          console.log("effectKitTest colormatrix6 createEffect faild");
+          expect(true).assertFail();
+          done();
+        }
+        // invert matrix
+        // [-1.0, 0, 0, 0, 1, 0, -1.0, 0, 0, 1, 0, 0, -1.0, 0, 1, 0, 0, 0, 1, 0]
+        // for test
+        let array:Array<number> = [
+            -1.0, 0, 0, 0, 1,
+            0, -1.0, 0, 0, 1,
+            0, 0, -1.0, 0, 1,
+            0, 0, 0, 1, 0
+        ];
+        let colormatrixFilter = headFilter.setColorMatrix(array);
+        expect(colormatrixFilter != null).assertTrue();
+        done();
+      }).catch((ex: BusinessError) => {
+        console.error(msgStr + "Napi pixelMap.error=" + ex.toString());
+        expect(true).assertFail();
+        done();
+      })
+      console.info(msgStr + "Napi create pixmap.end");
+      expect(true).assertTrue();
+      done();
+    })
+
+    /**
+    * @tc.number EFFECT_KIT_COLORMATRIX_JSAPI_007
+    * @tc.name Test colormatrix7
+    * @tc.desc A Colormatrix effect is added to the image.
+    */
+    it('colormatrix7', 0, (done: Function) => {
+      let caseName = 'colormatrix7';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log("effectKitTest" + msgStr + 'begin');
+      let imageSource = image.createImageSource(testJpg.buffer);
+      imageSource.getImageInfo((err, value) => {
+        console.error(msgStr + "image size=" + value.size.width + " X " + value.size.height);
+      })
+      imageSource.createPixelMap().then(pixelMap => {
+        console.info(msgStr + "Napi create createEffect.start");
+        let headFilter = effectKit.createEffect(pixelMap);
+        if (headFilter == null) {
+          console.log("effectKitTest colormatrix7 createEffect faild");
+          expect(true).assertFail();
+          done();
+        }
+        // increase matrix
+        // [1.5, 0, 0, 0, -0.25, 0, 1.5, 0, 0, -0.25, 0, 0, 1.5, 0, -0.25, 0, 0, 0, 1, 0]
+        // for test
+        let array:Array<number> = [
+            1.5, 0, 0, 0, -0.25,
+            0, 1.5, 0, 0, -0.25,
+            0, 0, 1.5, 0, -0.25,
+            0, 0, 0, 1, 0
+        ];
+        let colormatrixFilter = headFilter.setColorMatrix(array);
+        expect(colormatrixFilter != null).assertTrue();
+        done();
+      }).catch((ex: BusinessError) => {
+        console.error(msgStr + "Napi pixelMap.error=" + ex.toString());
+        expect(true).assertFail();
+        done();
+      })
+      console.info(msgStr + "Napi create pixmap.end");
+      expect(true).assertTrue();
+      done();
+    })
+
+    /**
+    * @tc.number EFFECT_KIT_COLORMATRIX_JSAPI_008
+    * @tc.name Test colormatrix8
+    * @tc.desc A Colormatrix effect is added to the image.
+    */
+    it('colormatrix8', 0, (done: Function) => {
+      let caseName = 'colormatrix8';
+      let msgStr = 'jsunittest ' + caseName + ' ';
+      console.log("effectKitTest" + msgStr + 'begin');
+      let imageSource = image.createImageSource(testJpg.buffer);
+      imageSource.getImageInfo((err, value) => {
+        console.error(msgStr + "image size=" + value.size.width + " X " + value.size.height);
+      })
+      imageSource.createPixelMap().then(pixelMap => {
+        console.info(msgStr + "Napi create createEffect.start");
+        let headFilter = effectKit.createEffect(pixelMap);
+        if (headFilter == null) {
+          console.log("effectKitTest colormatrix8 createEffect faild");
+          expect(true).assertFail();
+          done();
+        }
+        // decrease matrix
+        // [0.6065, 0.3575, 0.036, 0, 0, 0.1065, 0.8575, 0.036, 0, 0, 0.1065, 0.3575, 0.536, 0, 0, 0, 0, 0, 1, 0]
+        // for test
+        let array:Array<number> = [
+            0.6065, 0.3575, 0.036, 0, 0,
+            0.1065, 0.8575, 0.036, 0, 0,
+            0.1065, 0.3575, 0.536, 0, 0,
+            0, 0, 0, 1, 0
+        ];
+        let colormatrixFilter = headFilter.setColorMatrix(array);
+        expect(colormatrixFilter != null).assertTrue();
+        done();
+      }).catch((ex: BusinessError) => {
+        console.error(msgStr + "Napi pixelMap.error=" + ex.toString());
+        expect(true).assertFail();
+        done();
+      })
+      console.info(msgStr + "Napi create pixmap.end");
+      expect(true).assertTrue();
+      done();
+    })
   })
 }
