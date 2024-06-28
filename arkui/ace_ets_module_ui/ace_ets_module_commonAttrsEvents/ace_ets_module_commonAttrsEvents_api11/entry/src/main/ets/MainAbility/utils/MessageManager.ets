@@ -12,41 +12,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-export type Callback = (message: ESObject) => void
+import { ESObject } from '../common/types';
+
+export type Callback = (message: ESObject) => void;
 
 export class MessageManager {
-  callback: Callback
-  callbacks: Map<string, Callback> = new Map()
+  callback: Callback;
+  callbacks: Map<string, Callback> = new Map();
 
   constructor() {
-
+    this.callback = null;
   }
 
-  registerCallback(callback: Callback, type?: string) {
-    if (type == undefined) {
-      console.error('registerCallback callback set')
-      this.callback = callback
-      return
+  registerCallback(callback: Callback, type?: string): void {
+    if (type === undefined) {
+      console.error('registerCallback callback set');
+      this.callback = callback;
+    } else {
+      this.callbacks.set(type, callback);
     }
-    this.callbacks.set(type, callback)
   }
 
-  notify(message: any, type?: string) {
-    if (type == undefined) {
-      this.callback(message)
-      return
+  notify(message: any, type?: string): void {
+    if (type === undefined) {
+      if (this.callback) {
+        this.callback(message);
+      } else {
+        console.error('No callback registered for default type.');
+      }
+    } else {
+      let tmpCallback: Callback | undefined = this.callbacks.get(type);
+      if (tmpCallback) {
+        tmpCallback(message);
+      } else {
+        console.error(`No callback registered for type '${type}'.`);
+      }
     }
-
-    let tmpCallback: Callback = this.callbacks.get(type)
-    if (tmpCallback === undefined) {
-      console.error('callbacks has no callback for type ' + type)
-      return
-    }
-    tmpCallback(message)
   }
 
-  clear() {
-    this.callbacks.clear()
-    this.callback = null
+  clear(): void {
+    this.callbacks.clear();
+    this.callback = null;
   }
 }

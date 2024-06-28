@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import { describe, beforeEach, it, expect } from "@ohos/hypium"
+import router from '@ohos.router';
+import {Driver, ON} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+
 export default function setCursorTest() {
-  describe('setCursorTest', function () {
-    beforeEach(async function (done) {
+  describe('setCursorTest',  ()=> {
+    beforeEach(async (done:Function) =>{
       console.info("setCursorTest beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/cursorControl/setCursor',
+      let options : router.RouterOptions = {
+        url: 'MainAbility/pages/cursorControl/setCursor',
       }
       try {
         router.clear();
@@ -30,7 +30,7 @@ export default function setCursorTest() {
         console.info("get setCursorTest state pages: " + JSON.stringify(pages));
         if (!("setCursor" == pages.name)) {
           console.info("get setCursorTest state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push setCursorTest success: " + JSON.stringify(result));
         }
@@ -48,7 +48,7 @@ export default function setCursorTest() {
      * @tc.type :
      * @tc.size :
      */
-    it('setCursorTest_0100', 0, async function (done) {
+    it('setCursorTest_0100', 0, async  (done:Function) =>{
       console.info('setCursorTest_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -59,11 +59,10 @@ export default function setCursorTest() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('setCursor_1');
-      let obj = JSON.parse(strJson);
-      console.info("[setCursorTest_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[setCursorTest_0100] component obj.$attrs is: " + JSON.stringify(obj.$attrs));
-      console.info("[setCursorTest_0100] text: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual('setCursor枚举值：3');
+      console.info("[setCursorTest_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[setCursorTest_0100] component JSON.parse(strJson).$attrs is: " + JSON.stringify(JSON.parse(strJson).$attrs));
+      console.info("[setCursorTest_0100] text: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('setCursor枚举值：3');
       console.info('[setCursorTest_0100] END');
       done();
     });
@@ -75,7 +74,7 @@ export default function setCursorTest() {
      * @tc.type :
      * @tc.size :
      */
-    it('setCursorTest_0200', 0, async function (done) {
+    it('setCursorTest_0200', 0, async (done:Function)=> {
       console.info('setCursorTest_0200 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -86,11 +85,10 @@ export default function setCursorTest() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('setCursor_1');
-      let obj = JSON.parse(strJson);
-      console.info("[setCursorTest_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[setCursorTest_0200] component obj.$attrs is: " + JSON.stringify(obj.$attrs));
-      console.info("[setCursorTest_0200] text: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual('setCursor枚举值：0');
+      console.info("[setCursorTest_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[setCursorTest_0200] component JSON.parse(strJson).$attrs is: " + JSON.stringify(JSON.parse(strJson).$attrs));
+      console.info("[setCursorTest_0200] text: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('setCursor枚举值：0');
       console.info('[setCursorTest_0100] END');
       done();
     });

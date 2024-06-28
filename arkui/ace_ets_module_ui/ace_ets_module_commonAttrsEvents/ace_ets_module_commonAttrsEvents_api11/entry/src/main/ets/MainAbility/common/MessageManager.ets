@@ -47,6 +47,6 @@ export class MessageManager {
 
   clear() {
     this.callbacks.clear()
-    this.callback = null
+    this.callback = null!
   }
 }
