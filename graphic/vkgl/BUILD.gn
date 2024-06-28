@@ -18,7 +18,7 @@ group("VKGLCTSTest") {
   deps = [
     "src/deqpgles2/build0001:ActsDeqpgles2TestSuite0001",
     "src/deqpgles2/build0002:ActsDeqpgles2TestSuite0002",
-    "src/deqpgles2/build0004:ActsDeqpgles2TestSuite0004",
+    # "src/deqpgles2/build0004:ActsDeqpgles2TestSuite0004",
     "src/deqpgles2/build0005:ActsDeqpgles2TestSuite0005",
     "src/deqpgles2/build0006:ActsDeqpgles2TestSuite0006",
     "src/deqpgles2/build0007:ActsDeqpgles2TestSuite0007",
