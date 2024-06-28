@@ -17,12 +17,12 @@
 @Entry
 @Component
 struct menuEnabledDemo {
-  @State mText: string  ='init'
+
   @Builder
   SubMenu() {
     Menu() {
-      MenuItem({ content: "text1" })
-      MenuItem({ content: "text2" })
+      MenuItem({ content: "二级菜单" })
+      MenuItem({ content: "二级菜单" })
     }.key("menuEnd")
   }
 
@@ -32,8 +32,9 @@ struct menuEnabledDemo {
       MenuItem({
         content: "一级菜单",
         builder: this.SubMenu.bind(this)
-      }).key('menuEnabled')
+      })
     }.enabled(false)
+    .key('menuEnabled')
   }
 
   build() {
@@ -60,10 +61,6 @@ struct menuEnabledDemo {
       }
       .bindMenu(this.MyMenu)
       .width('100%')
-      Text(this.mText).key('text')
-      Button('test').onClick((event: ClickEvent) => {
-        this.mText = 'enabled'
-      }).key('change')
     }
   }
 }

@@ -13,16 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+class RectValue {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+}
 
 export default class Utils {
-  static rect_left;
-  static rect_top;
-  static rect_right;
-  static rect_bottom;
-  static rect_value;
+  static rect_left: number;
+  static rect_top: number;
+  static rect_right: number;
+  static rect_bottom: number;
+  static rect_value: number;
 
-  static sleep(time) {
-    return new Promise((resolve, reject) => {
+  static sleep(time: number) {
+    return new Promise<void>((resolve, reject) => {
       setTimeout(() => {
         resolve()
       }, time)
@@ -31,36 +37,42 @@ export default class Utils {
     })
   }
 
-  static getComponentRect(key) {
-    let strJson = getInspectorByKey(key);
-    let obj = JSON.parse(strJson);
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
-    let rectInfo = JSON.parse('[' + obj.$rect + ']')
-    console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
-    this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
-    this.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
-    this.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
-    this.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
-    return this.rect_value = {
-      "left": this.rect_left, "top": this.rect_top, "right": this.rect_right, "bottom": this.rect_bottom
-    }
+  static getComponentRect(key: number): RectValue {
+    let strJson: string = getInspectorByKey(key);
+    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(JSON.parse(strJson)));
+    console.info("[getInspectorByKey] rectInfo is: " + JSON.parse('[' + JSON.parse(strJson).$rect + ']'));
+
+    Utils.rect_left = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[0];
+    Utils.rect_top = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1];
+    Utils.rect_right = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[0];
+    Utils.rect_bottom = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[1];
+
+    let rect_value: RectValue = {
+      left: Utils.rect_left,
+      top: Utils.rect_top,
+      right: Utils.rect_right,
+      bottom: Utils.rect_bottom
+    };
+
+    return rect_value
   }
 
-  static async swipe(downX, downY, upX, upY, steps) {
+
+  static async swipe(downX: number, downY: number, upX: number, upY: number, steps: number) {
     console.info('start to swipe')
-    this.drags(downX, downY, upX, upY, steps, false)
+    Utils.drags(downX, downY, upX, upY, steps, false)
   }
 
-  static async drag(downX, downY, upX, upY, steps) {
+  static async drag(downX: number, downY: number, upX: number, upY: number, steps: number) {
     console.info('start to drag')
-    this.drags(downX, downY, upX, upY, steps, true)
+    Utils.drags(downX, downY, upX, upY, steps, true)
   }
 
-  static async drags(downX, downY, upX, upY, steps, drag) {
-    var xStep;
-    var yStep;
-    var swipeSteps;
-    var ret;
+  static async drags(downX: number, downY: number, upX: number, upY: number, steps: number) {
+    let xStep: number;
+    let yStep: number;
+    let swipeSteps: number;
+    let ret: number;
     xStep = 0;
     yStep = 0;
     ret = false;
@@ -71,7 +83,7 @@ export default class Utils {
     xStep = (upX - downX) / swipeSteps;
     yStep = (upY - downY) / swipeSteps;
     console.info('move step is: ' + 'xStep: ' + xStep + '    yStep: ' + yStep)
-    var downPonit: TouchObject = {
+    let downPonit: TouchObject = {
       id: 1,
       x: downX,
       y: downY,
@@ -81,10 +93,10 @@ export default class Utils {
     sendTouchEvent(downPonit);
     console.info('start to move')
     if (drag) {
-      await this.sleep(500)
+      await Utils.sleep(500)
     }
-    for (var i = 1;i <= swipeSteps; i++) {
-      var movePoint: TouchObject = {
+    for (let i: number = 1; i <= swipeSteps; i++) {
+      let movePoint: TouchObject = {
         id: 1,
         x: downX + (xStep * i),
         y: downY + (yStep * i),
@@ -95,13 +107,13 @@ export default class Utils {
       if (ret == false) {
         break;
       }
-      await this.sleep(5)
+      await Utils.sleep(5)
     }
     console.info('start to up')
     if (drag) {
-      await this.sleep(100)
+      await Utils.sleep(100)
     }
-    var upPoint: TouchObject = {
+    let upPoint: TouchObject = {
       id: 1,
       x: upX,
       y: upY,
@@ -109,7 +121,7 @@ export default class Utils {
     }
     console.info('up touch started: ' + JSON.stringify(upPoint))
     sendTouchEvent(upPoint)
-    await this.sleep(500)
+    await Utils.sleep(500)
   }
 }
 
