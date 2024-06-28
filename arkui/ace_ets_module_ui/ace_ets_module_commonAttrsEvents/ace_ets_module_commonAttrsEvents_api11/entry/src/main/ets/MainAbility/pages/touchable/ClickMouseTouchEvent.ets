@@ -12,18 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class Rect_1 {
-  width: number = 0;
-  height: number = 0;
-  radios: number = 0;
+class RectVariable {
+  public width: number = 0;
+  public height: number = 0;
+  public radios: number = 0;
 }
 
 function Rect1(x: number, y: number, z: number) {
 
-  let Rect2: Rect_1 = {
+  let rect2: RectVariable = {
     width: x, height: y, radios: z
   }
-  return Rect2;
+  return rect2;
 }
 
 @Entry
