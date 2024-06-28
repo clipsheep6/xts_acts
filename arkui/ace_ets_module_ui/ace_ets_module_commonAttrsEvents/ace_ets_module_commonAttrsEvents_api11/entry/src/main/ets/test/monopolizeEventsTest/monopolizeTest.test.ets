@@ -12,23 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import { describe, it, expect, beforeEach } from "@ohos/hypium";
+import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { getInspectorByKey } from '../../MainAbility/utils/Inspector';
+import { Driver } from "@ohos.UiTest";
+
 export default function monopolizeTest() {
-  describe('monopolizeTest', function () {
-    beforeEach(async function (done) {
+  describe('monopolizeTest', () => {
+    beforeEach(async (done: () => void) => {
       console.info("monopolizeTest beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/monopolizeEvents/monopolize',
-      }
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/monopolizeEvents/monopolize',
+      };
       try {
         router.clear();
         let pages = router.getState();
         console.info("get monopolizeTest state pages: " + JSON.stringify(pages));
-        if (!("monopolize" == pages.name)) {
+        if (!("monopolize" === pages.name)) {
           console.info("get monopolizeTest state pages.name: " + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);
@@ -40,27 +41,26 @@ export default function monopolizeTest() {
       }
       done();
     });
+
     /**
      * @tc.number monopolize
      * @tc.name monopolizeTest_0100
      * @tc.desc api
-     * @tc.level: Level 2
-     * @tc.type :
-     * @tc.size :
+     * @tc.level Level 2
+     * @tc.type
+     * @tc.size
      */
-    it('monopolizeTest_0100', 0, async function (done) {
+    it('monopolizeTest_0100', async (done: () => void) => {
       console.info('monopolizeTest_0100 START');
-      let driver = await Driver.create()
+      let driver = await Driver.create();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('monopolize_column');
-      let obj = JSON.parse(strJson);
-      console.info("[monopolizeTest_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[monopolizeTest_0100] component obj.$attrs is: " + JSON.stringify(obj.$attrs));
-      console.info("[monopolizeTest_0100] text: " + JSON.stringify(obj.$attrs.monopolizeEvents));
-      expect(obj.$attrs.monopolizeEvents).assertEqual(false);
+      let strJson: string = getInspectorByKey('monopolize_column');
+      console.info("[monopolizeTest_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[monopolizeTest_0100] component obj.$attrs is: " + JSON.stringify(JSON.parse(strJson).$attrs));
+      console.info("[monopolizeTest_0100] text: " + JSON.stringify(JSON.parse(strJson).$attrs.monopolizeEvents));
+      expect(JSON.parse(strJson).$attrs.monopolizeEvents).assertEqual(false);
       console.info('[monopolizeTest_0100] END');
       done();
     });
-  })
-  }
-
+  });
+}
