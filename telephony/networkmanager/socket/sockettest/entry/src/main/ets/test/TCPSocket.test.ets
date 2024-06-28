@@ -7210,7 +7210,55 @@ export default function TCPSocketTest() {
      */
     it('testNetworkMgrSocketTCPSocketOnMessage0100', 0, async (done: Function) => {
       let caseName: string = 'testNetworkMgrSocketTCPSocketOnMessage0100';
-       try {
+      try {
+        console.info(`${caseName} test start`);
+        let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+        expect(tcp).assertInstanceOf('Object');
+        let bindAddress: socket.NetAddress = {
+          address: '127.0.0.1',
+          port: 4092
+        };
+        await tcp.bind(bindAddress);
+        let tcpConnectOptions: socket.TCPConnectOptions = {
+          address: bindAddress,
+        };
+        await tcp.connect(tcpConnectOptions);
+        let tcpSendOptions: socket.TCPSendOptions = {
+          data: 'Hello, client!',
+          encoding: 'UTF-8'
+        };
+        class SocketInfo {
+          message: ArrayBuffer = new ArrayBuffer(1);
+          remoteInfo: socket.SocketRemoteInfo = {} as socket.SocketRemoteInfo;
+        };
+        const callback: Callback<socket.SocketMessageInfo> = async (value: SocketInfo) => {
+          console.info(`${caseName} value:${ArrayBufferToString(value.message)}`);
+          expectTrue(ArrayBufferToString(value.message) === 'Hello, client!');
+          await tcp.close();
+          console.info(`${caseName} test end`);
+          done();
+        };
+        tcp.on('message', callback);
+        await tcp.send(tcpSendOptions);
+      } catch (err) {
+        console.info(`${caseName}_catch fail err:${JSON.stringify(err)}`);
+        expectFail();
+        console.info(`${caseName} test end`);
+        done();
+      }
+    });
+
+    /* *
+     * @tc.number: SUB_NetworkMgr_Socket_TCPSocket_OnMessage_0200
+     * @tc.name  : testNetworkMgrSocketTCPSocketOnMessage0200
+     * @tc.desc  : Subscription to receive message events for TCPSocket connections,after listen and connect
+     * @tc.size  : MediumTest
+     * @tc.type  : Function
+     * @tc.level : level 2
+     */
+    it('testNetworkMgrSocketTCPSocketOnMessage0200', 0, async (done: Function) => {
+      let caseName: string = 'testNetworkMgrSocketTCPSocketOnMessage0200';
+      try {
         console.info(`${caseName} test start`);
         let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
         expect(tcp).assertInstanceOf('Object');
@@ -7218,7 +7266,7 @@ export default function TCPSocketTest() {
         expect(tcpServer).assertInstanceOf('Object');
         let listenAddress: socket.NetAddress = {
           address: '127.0.0.1',
-          port: 4092
+          port: 4093
         };
         await tcpServer.listen(listenAddress);
         let tcpConnectOptions: socket.TCPConnectOptions = {
@@ -7252,7 +7300,7 @@ export default function TCPSocketTest() {
         done();
       }
     });
-    
+
     /* *
      * @tc.number: SUB_NetworkMgr_Socket_TCPSocket_OffMessage_0100
      * @tc.name  : testNetworkMgrSocketTCPSocketOffMessage0100
