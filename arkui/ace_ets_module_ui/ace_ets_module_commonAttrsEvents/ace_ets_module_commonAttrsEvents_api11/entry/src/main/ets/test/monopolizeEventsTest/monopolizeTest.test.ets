@@ -15,7 +15,6 @@
 import { describe, it, expect, beforeEach } from "@ohos/hypium";
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import { getInspectorByKey } from '../../MainAbility/utils/Inspector';
 import { Driver } from "@ohos.UiTest";
 
 export default function monopolizeTest() {
