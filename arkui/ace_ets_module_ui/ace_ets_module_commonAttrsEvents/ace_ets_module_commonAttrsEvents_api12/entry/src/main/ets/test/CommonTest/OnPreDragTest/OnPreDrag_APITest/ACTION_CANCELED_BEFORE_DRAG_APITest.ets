@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import { describe, beforeEach, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {Driver, Component, ON} from '@ohos.UiTest';
 import CommonFunc from '../../../../MainAbility/utils/Common';
 export default function ACTION_CANCELED_BEFORE_DRAG_APITest() {
   describe('ACTION_CANCELED_BEFORE_DRAG_APITest', () => {
