@@ -3665,6 +3665,716 @@ export default function StreamTest() {
       transform.write('你好123', 'gb2312');
       transform.end();
     });
+
+    // Check the Stream file writable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_17200
+     * @tc.name: testStreamFileWritable001
+     * @tc.desc: Test Stream file writable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileWritable001', 0, () => {
+      class TestWritable extends stream.Writable {
+        constructor() {
+          super();
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          expect(chunk).assertEqual('test');
+          callback();
+        }
+      }
+
+      let writableStream = new TestWritable();
+      writableStream.write('test', 'utf8');
+    });
+
+    // Check the Stream file writable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_17300
+     * @tc.name: testStreamFileWritable002
+     * @tc.desc: Test Stream file writable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileWritable002', 0, () => {
+      class TestWritable extends stream.Writable {
+        constructor() {
+          super();
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          expect(chunk).assertEqual('finish');
+          callback();
+        }
+      }
+
+      let writableStream = new TestWritable();
+      writableStream.end('finish', 'utf8', common.mustCall());
+    });
+
+    // Check the Stream file writable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_17400
+     * @tc.name: testStreamFileWritable003
+     * @tc.desc: Test Stream file writable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileWritable003', 0, () => {
+      class TestWritable extends stream.Writable {
+        constructor() {
+          super();
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          callback();
+        }
+      }
+
+      let writableStream = new TestWritable();
+      let result = writableStream.setDefaultEncoding('utf8');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the Stream file writable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_17500
+     * @tc.name: testStreamFileWritable004
+     * @tc.desc: Test Stream file writable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileWritable004', 0, () => {
+      class TestWritable extends stream.Writable {
+        constructor() {
+          super();
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          callback();
+        }
+      }
+
+      let writableStream = new TestWritable();
+      let result = writableStream.cork();
+      expect(result).assertEqual(true);
+    });
+
+    // Check the Stream file writable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_17600
+     * @tc.name: testStreamFileWritable005
+     * @tc.desc: Test Stream file writable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileWritable005', 0, () => {
+      class TestWritable extends stream.Writable {
+        constructor() {
+          super();
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          callback();
+        }
+      }
+
+      let writableStream = new TestWritable();
+      writableStream.cork();
+      writableStream.write('data1', 'utf8');
+      writableStream.write('data2', 'utf8');
+      let result = writableStream.uncork();
+      expect(result).assertEqual(true);
+      writableStream.end();
+      writableStream.on('finish', common.mustCall());
+    });
+
+    // Check the Stream file writable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_17700
+     * @tc.name: testStreamFileWritable006
+     * @tc.desc: Test Stream file writable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileWritable006', 0, () => {
+      class MyWritable extends stream.Writable {
+        doInitialize(callback: Function) {
+          super.doInitialize(callback);
+          doInitializeCalled = true;
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          super.doWrite(chunk, encoding, callback);
+        }
+      }
+
+      let doInitializeCalled = false;
+      new MyWritable();
+      expect(doInitializeCalled).assertEqual(true);
+    });
+
+    // Check the Stream file writable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_17800
+     * @tc.name: testStreamFileWritable007
+     * @tc.desc: Test Stream file writable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileWritable007', 0, () => {
+      class TestWritable extends stream.Writable {
+        constructor() {
+          super();
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          expect(chunk).assertEqual('data');
+          callback();
+        }
+      }
+
+      let writableStream = new TestWritable();
+      writableStream.write('data', 'utf8');
+    });
+
+    // Check the Stream file writable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_17900
+     * @tc.name: testStreamFileWritable008
+     * @tc.desc: Test Stream file writable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileWritable008', 0, () => {
+      class TestWritable extends stream.Writable {
+        constructor() {
+          super();
+        }
+
+        doWritev(chunks: string[] | Uint8Array[], callback: Function) {
+          count++;
+          callback();
+        }
+      }
+
+      let count = 0;
+      let writableStream = new TestWritable();
+      writableStream.write('data1', 'utf8');
+      writableStream.write('data2', 'utf8');
+      writableStream.uncork();
+      writableStream.end();
+      expect(count).assertEqual(2);
+    });
+
+    // Check the Stream file readable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_18000
+     * @tc.name: testStreamFileReadable001
+     * @tc.desc: Test Stream file readable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileReadable001', 0, () => {
+      class TestReadable extends stream.Readable {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+        }
+      }
+
+      let readableStream = new TestReadable();
+      let result = readableStream.setEncoding('utf8');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the Stream file readable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_18100
+     * @tc.name: testStreamFileReadable002
+     * @tc.desc: Test Stream file readable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileReadable002', 0, () => {
+      class TestReadable extends stream.Readable {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+        }
+      }
+
+      let readableStream = new TestReadable();
+      expect(readableStream.isPaused()).assertEqual(false);
+      readableStream.pause();
+      expect(readableStream.isPaused()).assertEqual(true);
+    });
+
+    // Check the Stream file readable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_18200
+     * @tc.name: testStreamFileReadable003
+     * @tc.desc: Test Stream file readable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileReadable003', 0, () => {
+      class TestReadable extends stream.Readable {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+          readable.push('test');
+          readable.push(null);
+        }
+      }
+
+      class TestWritable extends stream.Writable {
+        constructor() {
+          super();
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          expect(chunk).assertEqual('test');
+          callback();
+        }
+      }
+
+      let readable = new TestReadable();
+      let writable = new TestWritable();
+      readable.pipe(writable);
+    });
+
+    // Check the Stream file readable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_18300
+     * @tc.name: testStreamFileReadable004
+     * @tc.desc: Test Stream file readable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileReadable004', 0, () => {
+      class TestReadable extends stream.Readable {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+          readable.push('test');
+          readable.push(null);
+        }
+      }
+
+      class TestWritable extends stream.Writable {
+        constructor() {
+          super();
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          callback();
+        }
+      }
+
+      let readable = new TestReadable();
+      let writable = new TestWritable();
+      let result = readable.pipe(writable);
+      expect(result).not().assertUndefined()
+      readable.unpipe(writable);
+      readable.on('data', common.mustNotCall());
+    });
+
+    // Check the Stream file readable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_18400
+     * @tc.name: testStreamFileReadable005
+     * @tc.desc: Test Stream file readable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileReadable005', 0, () => {
+      class TestReadable extends stream.Readable {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+          throw new Error('Simulated error');
+        }
+      }
+
+      let readable = new TestReadable();
+      readable.push('test');
+      readable.on('error', common.mustCall((error: emitter.EventData) => {
+        expect(error.data.message).assertEqual('Simulated error');
+      }));
+    });
+
+    // Check the Stream file readable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_18500
+     * @tc.name: testStreamFileReadable006
+     * @tc.desc: Test Stream file readable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileReadable006', 0, () => {
+      class TestReadable extends stream.Readable {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+        }
+      }
+
+      let readable = new TestReadable();
+      let readCalled = false;
+
+      function read() {
+        readCalled = true;
+      }
+
+      readable.setEncoding('utf8');
+      readable.on('readable', read);
+      readable.off('readable');
+      readable.push('test');
+      expect(readCalled).assertEqual(false);
+    });
+
+    // Check the Stream file readable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_18600
+     * @tc.name: testStreamFileReadable007
+     * @tc.desc: Test Stream file readable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileReadable007', 0, () => {
+      class MyReadable extends stream.Readable {
+        doInitialize(callback: Function) {
+          super.doInitialize(callback);
+          doInitializeCalled = true;
+        }
+
+        doRead(size: number) {
+        }
+      }
+
+      let doInitializeCalled = false;
+      let myReadable = new MyReadable();
+      myReadable.on('data', () => {
+      });
+      expect(doInitializeCalled).assertEqual(true);
+    });
+
+    // Check the Stream file readable case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_18700
+     * @tc.name: testStreamFileReadable008
+     * @tc.desc: Test Stream file readable case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileReadable008', 0, async (done) => {
+      class TestReadable extends stream.Readable {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+          doReadCalled = true;
+        }
+      }
+
+      let doReadCalled = false;
+      let readable = new TestReadable();
+      readable.on('data', () => {
+      });
+      setTimeout(() => {
+        expect(doReadCalled).assertEqual(true);
+        done();
+      }, 0);
+    });
+
+    // Check the Stream file duplex case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_18800
+     * @tc.name: testStreamFileDuplex001
+     * @tc.desc: Test Stream file duplex case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileDuplex001', 0, () => {
+      class TestDuplex extends stream.Duplex {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          expect(chunk).assertEqual('test');
+          callback();
+        }
+      }
+
+      let duplexStream = new TestDuplex();
+      let result = duplexStream.write('test', 'utf8');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the Stream file duplex case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_18900
+     * @tc.name: testStreamFileDuplex002
+     * @tc.desc: Test Stream file duplex case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileDuplex002', 0, () => {
+      class TestDuplex extends stream.Duplex {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          expect(chunk).assertEqual('test');
+          callback();
+        }
+      }
+
+      let duplexStream = new TestDuplex();
+      duplexStream.end('test', 'utf8', (common.mustCall()));
+    });
+
+    // Check the Stream file duplex case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_19000
+     * @tc.name: testStreamFileDuplex003
+     * @tc.desc: Test Stream file duplex case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileDuplex003', 0, () => {
+      class TestDuplex extends stream.Duplex {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          callback();
+        }
+      }
+
+      let duplexStream = new TestDuplex();
+      let result = duplexStream.setDefaultEncoding('utf8');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the Stream file duplex case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_19100
+     * @tc.name: testStreamFileDuplex004
+     * @tc.desc: Test Stream file duplex case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileDuplex004', 0, () => {
+      let duplexStream = new stream.Duplex();
+      let result = duplexStream.cork();
+      expect(result).assertEqual(true);
+    });
+
+    // Check the Stream file duplex case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_19200
+     * @tc.name: testStreamFileDuplex005
+     * @tc.desc: Test Stream file duplex case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileDuplex005', 0, () => {
+      class TestDuplex extends stream.Duplex {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          dataWritten += chunk;
+          callback();
+        }
+      }
+
+      let dataWritten = '';
+      let duplexStream = new TestDuplex();
+      duplexStream.cork();
+      duplexStream.write('a');
+      duplexStream.write('b');
+      duplexStream.uncork();
+      expect(dataWritten).assertEqual('ab');
+    });
+
+    // Check the Stream file duplex case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_19300
+     * @tc.name: testStreamFileDuplex006
+     * @tc.desc: Test Stream file duplex case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileDuplex006', 0, () => {
+      class TestDuplex extends stream.Duplex {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          expect(chunk).assertEqual('data');
+          callback();
+        }
+      }
+
+      let duplexStream = new TestDuplex();
+      duplexStream.write('data', 'utf8');
+    });
+
+    // Check the Stream file duplex case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_19400
+     * @tc.name: testStreamFileDuplex007
+     * @tc.desc: Test Stream file duplex case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileDuplex007', 0, () => {
+      class TestDuplex extends stream.Duplex {
+        constructor() {
+          super();
+        }
+
+        doRead(size: number) {
+        }
+
+        doWrite(chunk: string | Uint8Array, encoding: string, callback: Function) {
+          callback();
+        }
+
+        doWritev(chunks: string[] | Uint8Array[], callback: Function) {
+          expect(chunks[0]).assertEqual('data1');
+
+          callback();
+        }
+      }
+
+      let duplexStream = new TestDuplex();
+      duplexStream.cork();
+      duplexStream.write('data1', 'utf8');
+      duplexStream.write('data2', 'utf8');
+      duplexStream.uncork();
+      duplexStream.end();
+    });
+
+    // Check the Stream file transform case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_19500
+     * @tc.name: testStreamFileTransform001
+     * @tc.desc: Test Stream file transform case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileTransform001', 0, () => {
+      class TestTransform extends stream.Transform {
+        constructor() {
+          super();
+        }
+
+        doTransform(chunk: string, encoding: string, callback: Function) {
+          let stringChunk = chunk.toString().toUpperCase();
+          expect(stringChunk).assertEqual('HELLO');
+
+          tr.push(stringChunk);
+          callback();
+        }
+      }
+
+      let tr = new TestTransform();
+      tr.write("hello");
+    });
+
+    // Check the Stream file transform case.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_19600
+     * @tc.name: testStreamFileTransform002
+     * @tc.desc: Test Stream file transform case.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamFileTransform002', 0, () => {
+      class TestTransform extends stream.Transform {
+        constructor() {
+          super();
+        }
+
+        doTransform(chunk: string, encoding: string, callback: Function) {
+          callback();
+        }
+
+        doFlush(callback: Function) {
+          callback(null, 'test');
+        }
+      }
+
+      let transform = new TestTransform();
+      transform.end('my test');
+      transform.on('data', (data) => {
+        expect(data.data).assertEqual('test');
+      });
+    });
   })
 }
 
