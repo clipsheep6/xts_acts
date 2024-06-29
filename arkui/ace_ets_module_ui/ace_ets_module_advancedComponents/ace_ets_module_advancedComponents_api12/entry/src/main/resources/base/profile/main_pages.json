@@ -5,7 +5,7 @@
     "MainAbility/pages/exceptionPrompt/exceptionPromptPage",
     "MainAbility/pages/filter/filterPage",
     "MainAbility/pages/gridObjectSortComponent/gridObjectSortComponentTest",
-    "MainAbility/pages/ProgressButton/progressButtonTest",
+    "MainAbility/pages/progressButton/progressButtonTest",
     "MainAbility/pages/selectTitleBar/selectTitleBarPage",
     "MainAbility/pages/swipeRefresher/swipeRefresherPageTest",
     "MainAbility/pages/tabTitleBar/tabTitleBarPageTest",

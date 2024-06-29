@@ -17,7 +17,7 @@ import composeListItemPageTest from './composeListItem/composeListItemPageTest.t
 import exceptionPromptTest from './exceptionPrompt/exceptionPromptTest.test.ets';
 import filterTest from './filter/filterTest.test.ets';
 import gridObjectSortComponentTest from './gridObjectSortComponent/gridObjectSortComponentTest.test.ets';
-import progressButtonTest from './ProgressButton/ProgressButtonTest.test.ets';
+import progressButtonTest from './progressButton/progressButtonTest.test';
 import selectTitleBarTest from './selectTitleBar/selectTitleBarTest.test.ets';
 import swipeRefresherPageTest from './swipeRefresher/swipeRefresherPageTest.test.ets';
 import tabTitleBarPageTest from './tabTitleBar/tabTitleBarPageTest.test.ets';
