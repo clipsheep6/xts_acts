@@ -13,34 +13,32 @@
  * limitations under the License.
  */
 import router from '@ohos.router';
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../../../test/List.test'
-
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../../../test/List.test';
 
 @Entry
 @Component
 struct Index {
-
-  aboutToAppear(){
-    console.info("start run testcase!!!!")
-        var abilityDelegator: any
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        var abilityDelegatorArguments: any
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        console.info('start run testcase!!!')
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+  aboutToAppear() {
+    console.info("start run testcase!!!!");
+    let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator;
+    abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments: abilityDelegatorRegistry.AbilityDelegatorArgs;
+    abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
+    console.info('start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
 
   build() {
-    Flex({ direction:FlexDirection.Column, alignItems:ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('Hello World')
         .fontSize(50)
-        .fontWeight(FontWeight.Bold)
+        .fontWeight(FontWeight.Bold);
       Button() {
         Text('next page')
           .fontSize(25)
-          .fontWeight(FontWeight.Bold)
+          .fontWeight(FontWeight.Bold);
       }.type(ButtonType.Capsule)
       .margin({
         top: 20
@@ -48,9 +46,9 @@ struct Index {
       .backgroundColor('#0D9FFB')
       .onClick(() => {
 
-      })
+      });
     }
     .width('100%')
-    .height('100%')
+    .height('100%');
   }
 }

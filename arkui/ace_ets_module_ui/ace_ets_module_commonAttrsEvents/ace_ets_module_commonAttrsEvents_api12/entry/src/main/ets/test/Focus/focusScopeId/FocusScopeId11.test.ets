@@ -48,12 +48,12 @@ export default function FocusScopeId11() {
     });
 
     /**
-     * @tc.number    FocusScopeId11_0100
-     * @tc.name      FocusScopeId11_0100
-     * @tc.desc      Support cross group and circular focusing with tab keys in focus groups
-     * @tc.level     Level 2
+     * @tc.number FocusScopeId11_0100
+     * @tc.name FocusScopeId11_0100
+     * @tc.desc Support cross group and circular focusing with tab keys in focus groups
+     * @tc.level Level 2
      */
-    it('FocusScopeId11_0100', 0, async function (done) {
+    it('FocusScopeId11_0100', 0, async (done: Function) => {
       console.info('[FocusScopeId11_0100] START');
       await CommonFunc.sleep(1000);
 
@@ -63,7 +63,7 @@ export default function FocusScopeId11() {
       await driver.triggerKey(2049);
       await CommonFunc.sleep(1000);
 
-      let btn1_2= await driver.findComponent(ON.id('FocusScopeId1_btn1_2'));
+      let btn1_2 = await driver.findComponent(ON.id('FocusScopeId1_btn1_2'));
       let btn1_2_isFocusedValue = await btn1_2.isFocused()
       expect(btn1_2_isFocusedValue).assertEqual(true);
       console.info('[FocusScopeId11_0100] btn1_2 isFocused');
@@ -71,7 +71,7 @@ export default function FocusScopeId11() {
       await driver.triggerKey(2049);
       await CommonFunc.sleep(1000);
 
-      let btn1_1= await driver.findComponent(ON.id('FocusScopeId1_btn1_1'));
+      let btn1_1 = await driver.findComponent(ON.id('FocusScopeId1_btn1_1'));
       let btn1_1_isFocusedValue = await btn1_1.isFocused()
       expect(btn1_1_isFocusedValue).assertEqual(true);
       console.info('[FocusScopeId11_0100] btn1_1 isFocused');
@@ -79,7 +79,7 @@ export default function FocusScopeId11() {
       await driver.triggerKey(2049);
       await CommonFunc.sleep(1000);
 
-      let btn1_3= await driver.findComponent(ON.id('FocusScopeId1_btn1_3'));
+      let btn1_3 = await driver.findComponent(ON.id('FocusScopeId1_btn1_3'));
       let btn1_3_isFocusedValue = await btn1_3.isFocused()
       expect(btn1_3_isFocusedValue).assertEqual(true);
       console.info('[FocusScopeId11_0100] btn1_3 isFocused');
@@ -91,7 +91,7 @@ export default function FocusScopeId11() {
       expect(btn1_2_isFocusedValue2).assertEqual(true);
       console.info('[FocusScopeId11_0100] btn1_2 isFocused 2');
 
-      let btn2_3= await driver.findComponent(ON.id('FocusScopeId1_btn2_3'));
+      let btn2_3 = await driver.findComponent(ON.id('FocusScopeId1_btn2_3'));
       await btn2_3.click()
       await CommonFunc.sleep(1000);
       console.info('[FocusScopeId11_0100] btn2_3 click');

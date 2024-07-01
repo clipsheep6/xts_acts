@@ -12,8 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-function Rect1(x, y, z){
-  return {width: x, height: y, radios: z}
+class RectVariable {
+  public width: number = 0;
+  public height: number = 0;
+  public radios: number = 0;
+}
+
+function Rect1(x: number, y: number, z: number) {
+
+  let rect2: RectVariable = {
+    width: x, height: y, radios: z
+  }
+  return rect2;
 }
 
 @Entry
@@ -36,7 +46,10 @@ struct ClickExample {
       Text(this.intentionCode).id("intentionCode")
 
       Row({ space: 20 }) {
-        Button('Click').width(100).height(40).id("Button_click")
+        Button('Click')
+          .width(100)
+          .height(40)
+          .id("Button_click")
           .onClick((event: ClickEvent) => {
             this.displayX = "onClick: " + event.displayX
             this.displayY = "onClick: " + event.displayY

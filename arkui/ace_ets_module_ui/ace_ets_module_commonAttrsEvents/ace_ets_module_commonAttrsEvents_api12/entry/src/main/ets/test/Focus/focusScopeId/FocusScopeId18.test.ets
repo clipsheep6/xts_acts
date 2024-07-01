@@ -48,12 +48,12 @@ export default function FocusScopeId18() {
     });
 
     /**
-     * @tc.number    FocusScopeId18_0100
-     * @tc.name      FocusScopeId18_0100
-     * @tc.desc      Test support for directional key focus group penetration ability
-     * @tc.level     Level 2
+     * @tc.number FocusScopeId18_0100
+     * @tc.name FocusScopeId18_0100
+     * @tc.desc Test support for directional key focus group penetration ability
+     * @tc.level Level 2
      */
-    it('FocusScopeId18_0100', 0, async function (done) {
+    it('FocusScopeId18_0100', 0, async (done: Function) => {
       console.info('[FocusScopeId18_0100] START');
       await CommonFunc.sleep(1000);
 
@@ -120,7 +120,8 @@ export default function FocusScopeId18() {
 
       let btn3_5_isFocusedValue2 = await btn3_5.isFocused()
       expect(btn3_5_isFocusedValue2).assertEqual(true)
-      console.info('[FocusScopeId18_0100] btn3_5 isFocused 2');;
+      console.info('[FocusScopeId18_0100] btn3_5 isFocused 2');
+      ;
 
       let clearFocus = await driver.findComponent(ON.id('FocusScopeId18_clearFocus'));
       await clearFocus.click()
