@@ -1,6 +1,14 @@
 {
   "src": [
     "MainAbility/pages/index/Index",
+    "MainAbility/pages/composeListItem/composeListItemIconType",
+    "MainAbility/pages/composeListItem/composeListItemOperateItemArrow",
+    "MainAbility/pages/composeListItem/composeListItemOperateItemButton",
+    "MainAbility/pages/composeListItem/composeListItemOperateItemCheckbox",
+    "MainAbility/pages/composeListItem/composeListItemOperateItemImage",
+    "MainAbility/pages/composeListItem/composeListItemOperateItemRadio",
+    "MainAbility/pages/composeListItem/composeListItemOperateItemSubIcon",
+    "MainAbility/pages/composeListItem/composeListItemOperateItemSwitch",
     "MainAbility/pages/composeListItem/composeListItemPageTest",
     "MainAbility/pages/exceptionPrompt/exceptionPromptPage",
     "MainAbility/pages/filter/filterPage",
@@ -9,6 +17,7 @@
     "MainAbility/pages/selectTitleBar/selectTitleBarPage",
     "MainAbility/pages/swipeRefresher/swipeRefresherPageTest",
     "MainAbility/pages/tabTitleBar/tabTitleBarPageTest",
+    "MainAbility/pages/toolBar/toolBarItemState",
     "MainAbility/pages/toolBar/toolBarPageTest",
     "MainAbility/pages/treeView/treeViewPageTest"
   ]

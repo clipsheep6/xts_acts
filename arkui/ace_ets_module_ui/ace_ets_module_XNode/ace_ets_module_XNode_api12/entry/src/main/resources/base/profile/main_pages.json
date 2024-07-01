@@ -1,6 +1,7 @@
 {
     "src": [
         "MainAbility/pages/index/index",
+        "MainAbility/pages/FrameNode/APIdisposeTree",
         "MainAbility/pages/renderNode/RenderNodeDemo/RenderNodeDemo01",
         "MainAbility/pages/renderNode/RenderNodeDemo/RenderNodeDemo02",
         "MainAbility/pages/renderNode/RenderNodeDemo/RenderNodeDemo03",
@@ -13,6 +14,7 @@
         "MainAbility/pages/FrameNode/ComponentContentAPIReuse",
         "MainAbility/pages/FrameNode/APImarkNodeGroup",
         "MainAbility/pages/FrameNode/APINodeContent",
+        "MainAbility/pages/FrameNode/APIPanGestureisisBegin",
         "MainAbility/pages/renderNode/RenderNodeAttribute",
         "MainAbility/pages/Graphics/borderRadiuses",
         "MainAbility/pages/Graphics/borderStyles",
