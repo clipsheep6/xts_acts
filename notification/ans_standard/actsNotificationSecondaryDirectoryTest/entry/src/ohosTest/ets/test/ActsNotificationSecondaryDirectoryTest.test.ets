@@ -20,12 +20,15 @@ import image from '@ohos.multimedia.image'
 import { Driver, ON } from '@ohos.UiTest';
 import { logGenerator, succeedGenerator, exitGenerator, sleep, exitSpecialGenerator } from '../common/utils';
 import common from '@ohos.app.ability.common';
+import wantagent from '@ohos.app.ability.wantAgent';
+import { BusinessError } from '@ohos.base'
+
 export default function ActsNotificationSecondaryDirectoryTest() {
-describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
+describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', () => {
     let TAG = 'SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST ===>'
     console.info(TAG + 'SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST START')
     let log = logGenerator(TAG);
-    afterEach(async function (done) {
+    afterEach(async (done: Function) => {
         console.info(`${TAG} afterEach START`)
         try{
             await notificationManager.cancelAll((err) => {
@@ -52,9 +55,9 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: NotificationRequest、NotificationContent、NotificationBasicContent
      * @tc.desc: use NotificationRequest type
      */
-    it('Sub_Notification_Ans_Publish_Publish_3850', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_3850', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_3850 START`);
-          let ctx: common.UIAbilityContext = AppStorage.get('ctx');
+          let ctx: common.UIAbilityContext | undefined = AppStorage.get('ctx');
           notificationManager.requestEnableNotification(ctx).then(() => {
          let basicContent: notificationManager.NotificationBasicContent = {
             title: "test_title",
@@ -112,7 +115,7 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: NotificationLongTextContent 
      * @tc.desc: use NotificationLongTextContent type
      */
-    it('Sub_Notification_Ans_Publish_Publish_3950', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_3950', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_3950 START`);
 
         let longContentText: notificationManager.NotificationLongTextContent = {
@@ -160,7 +163,7 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: NotificationBasicContent
      * @tc.desc: use NotificationBasicContent type
      */
-    it('Sub_Notification_Ans_Publish_Publish_4050', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_4050', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4050 START`);
 
         let basicContent: notificationManager.NotificationBasicContent = {
@@ -205,7 +208,7 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: NotificationMultiLineContent
      * @tc.desc: use NotificationMultiLineContent type
      */
-    it('Sub_Notification_Ans_Publish_Publish_4150', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_4150', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4150 START`);
 
         let multiLineContent: notificationManager.NotificationMultiLineContent = {
@@ -252,10 +255,10 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: NotificationActionButton、NotificationUserInput
      * @tc.desc: use NotificationActionButton type
      */
-    it('Sub_Notification_Ans_Publish_Publish_4250', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_4250', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4250 START`);
 
-        let agentInfo = {
+        let agentInfo: wantagent.WantAgentInfo = {
             wants: [
                 {
                     bundleName: 'com.example.secondaryDirectory',
@@ -324,7 +327,7 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: NotificationTemplate
      * @tc.desc: use NotificationTemplate type
      */
-    it('Sub_Notification_Ans_Publish_Publish_4350', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_4350', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4350 START`);
 
         let basicContent: notificationManager.NotificationBasicContent = {
@@ -378,7 +381,7 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: DistributedOptions
      * @tc.desc: use DistributedOptions type
      */
-    it('Sub_Notification_Ans_Publish_Publish_4450', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_4450', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4450 START`);
 
         let options: notificationManager.DistributedOptions = {
@@ -429,10 +432,10 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: NotificationBasicContent
      * @tc.desc: use NotificationBasicContent type
      */
-    it('Sub_Notification_Ans_Publish_Publish_4550', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_4550', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4550 START`);
 
-        let picture_opts = {
+        let picture_opts: image.InitializationOptions  = {
             size: {
             height: 25,
             width: 2,
@@ -442,7 +445,7 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
             pixelFormat: 4,
             editable: true
         }
-        let notification_picture: image.PixelMap = undefined
+        let notification_picture: image.PixelMap | undefined = undefined
         let picture_buffer = new ArrayBuffer(picture_opts.size.height * picture_opts.size.width * 4)
         await image.createPixelMap(picture_buffer, picture_opts, (err, pixelMap)=>{
             console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4550 pixelMap: ${pixelMap}`);
@@ -493,7 +496,7 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: NotificationMultiLineContent
      * @tc.desc: use NotificationMultiLineContent type
      */
-    it('Sub_Notification_Ans_Publish_Publish_4650', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_4650', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4650 START`);
         try{
             await notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, (err) => {
@@ -514,7 +517,7 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
                         }
                         expect(false).assertTrue()
                         done()
-                    }).catch((err) => {
+                    }).catch((err: BusinessError) => {
                         console.info(`${TAG} getSlots failed err: + ${err.code}`)
                         expect(false).assertTrue()
                         done()
@@ -534,7 +537,7 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: BundleOption
      * @tc.desc: use BundleOption type
      */
-    it('Sub_Notification_Ans_Publish_Publish_4750', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_4750', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4750 START`);
 
         let bundleOpt: notificationManager.BundleOption = {
@@ -555,7 +558,7 @@ describe('SUB_NOTIFICATION_ANS_SECONDARY_DIRECTORY_TEST', function () {
      * @tc.name: NotificationFlags
      * @tc.desc: use NotificationFlags type
      */
-    it('Sub_Notification_Ans_Publish_Publish_4850', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_4850', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4850 START`);
 
         let flags: notificationManager.NotificationFlags = {
