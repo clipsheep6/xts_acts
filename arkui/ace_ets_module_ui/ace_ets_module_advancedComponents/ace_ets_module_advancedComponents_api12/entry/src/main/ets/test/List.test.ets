@@ -17,11 +17,12 @@ import composeListItemPageTest from './composeListItem/composeListItemPageTest.t
 import exceptionPromptTest from './exceptionPrompt/exceptionPromptTest.test.ets';
 import filterTest from './filter/filterTest.test.ets';
 import gridObjectSortComponentTest from './gridObjectSortComponent/gridObjectSortComponentTest.test.ets';
-import progressButtonTest from './progressButton/progressButtonTest.test';
+import progressButtonTest from './progressButton/progressButtonTest.test.ets';
 import selectTitleBarTest from './selectTitleBar/selectTitleBarTest.test.ets';
 import swipeRefresherPageTest from './swipeRefresher/swipeRefresherPageTest.test.ets';
 import tabTitleBarPageTest from './tabTitleBar/tabTitleBarPageTest.test.ets';
 import toolBarPageTest from './toolBar/toolBarPageTest.test.ets';
+import treeViewPageTest from './treeView/treeViewPageTest.test.ets';
 
 export default function testsuite() {
   composeListItemPageTest();
@@ -33,4 +34,5 @@ export default function testsuite() {
   swipeRefresherPageTest();
   tabTitleBarPageTest();
   toolBarPageTest();
+  treeViewPageTest();
 }

@@ -25,7 +25,7 @@ struct progressButtonTest {
   @State isRunning1: boolean = false
   @State enableState1: boolean = true
   @State progressState: Visibility = Visibility.None
-  @State ButtonState: Visibility = Visibility.Visible
+  @State buttonState: Visibility = Visibility.Visible
   @State buttonText: string = '下载'
   @State buttonEnable: boolean = true
   @State isEnd: boolean = false
@@ -48,7 +48,7 @@ struct progressButtonTest {
             this.buttonText = '等待中'
             let timer1 = setInterval(() => {
               this.progressState = Visibility.Visible
-              this.ButtonState = Visibility.None
+              this.buttonState = Visibility.None
               clearInterval(timer1)
               this.isRunning1 = true
               let timer = setInterval(() => {
@@ -60,7 +60,7 @@ struct progressButtonTest {
                     if (this.halfProgress === 100) {
                       this.textState1 = '安装中'
                       this.enableState1 = false
-                      this.ButtonState = Visibility.Visible
+                      this.buttonState = Visibility.Visible
                       this.progressState = Visibility.None
                       this.buttonEnable = false
                       this.buttonText = '安装中'
@@ -80,10 +80,10 @@ struct progressButtonTest {
               }, 100)
             }, 2000)
           }
-        }).visibility(this.ButtonState)
+        }).visibility(this.buttonState)
       ProgressButton({
         progress: this.halfProgress,
-        progressButtonWidth: "60",
+        progressButtonWidth: '60',
         content: this.textState1,
         enable: this.enableState1,
 
@@ -101,7 +101,7 @@ struct progressButtonTest {
                 if (this.halfProgress === 100) {
                   this.textState1 = '安装中'
                   this.enableState1 = false
-                  this.ButtonState = Visibility.Visible
+                  this.buttonState = Visibility.Visible
                   this.progressState = Visibility.None
                   this.buttonEnable = false
                   this.buttonText = '安装中'

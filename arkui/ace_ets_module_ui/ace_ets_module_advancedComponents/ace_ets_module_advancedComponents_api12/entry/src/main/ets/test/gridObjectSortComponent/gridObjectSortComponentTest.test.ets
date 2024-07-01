@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import Utils from '../Utils';
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import { Driver, ON } from '@ohos.UiTest';
+import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import Utils from '../Utils';
 
 
 export default function gridObjectSortComponentTest() {
@@ -61,8 +61,8 @@ export default function gridObjectSortComponentTest() {
      * @tc.level  0
      */
 
-    it('gridObjectSortComponentTest_001', 0, async function (done) {
-      console.info('[gridObjectSortComponentTest_001] START');
+    it('gridObjectSortComponentTest_0100', 0, async function (done) {
+      console.info('[gridObjectSortComponentTest_0100] START');
       let driver = await Driver.create();
       await driver.delayMs(2000);
       // 查看gridObjectSortComponent是否存在以下 文本信息。
@@ -76,21 +76,21 @@ export default function gridObjectSortComponentTest() {
       expect(gridObjectSortComponentItem3 !== null).assertTrue();
       expect(gridObjectSortComponentItem4 !== null).assertTrue();
       expect(gridObjectSortComponentItem5 !== null).assertTrue();
-      console.info('[gridObjectSortComponentTest_001] END');
+      console.info('[gridObjectSortComponentTest_0100] END');
       done();
     });
 
     /**
      * @tc.number gridObjectSortComponentTest
-     * @tc.name   gridObjectSortComponentTest_002 item
+     * @tc.name   gridObjectSortComponentTest_0200 item
      * @tc.desc   Click gridObjectSortComponent
      * @tc.size   MediumTest
      * @tc.type   Function
      * @tc.level  0
      */
 
-    it('gridObjectSortComponentTest_002', 0, async function (done) {
-      console.info('[gridObjectSortComponentTest_002] START');
+    it('gridObjectSortComponentTest_0200', 0, async function (done) {
+      console.info('[gridObjectSortComponentTest_0200] START');
       let driver = await Driver.create();
       await Utils.sleep(2000);
 
@@ -101,8 +101,8 @@ export default function gridObjectSortComponentTest() {
       // 断言GridObjectSortComponentItem中存在‘截屏’。
       let textItem2 = await driver.findComponent(ON.text('截屏'));
       expect(textItem2 !== null).assertTrue();
-      console.info('[gridObjectSortComponentTest_002] END');
+      console.info('[gridObjectSortComponentTest_0200] END');
       done();
-    })
+    });
   })
 }
