@@ -455,6 +455,58 @@ export default function imageDecodeOptionsYuvTest() {
         done();
       }
     });
+    
+    /**
+     * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV311_CREATEPIXELMAP_PIXELFORMAT_0100
+     * @tc.name      : Test_createPixelMap_decodingOptions_pixelFormat_8_JPEG_311
+     * @tc.desc      : 1.create imageSource
+     *                 2.set index and DecodeOptions
+     *                 3.create PixelMap
+     *                 4.callback return undefined
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("SUB_DECODEOPTIONS_WITH_YUV311_CREATEPIXELMAP_PIXELFORMAT_0100", 0, async (done: Function) => {
+      await getFd("test-tree-311.jpg");
+      try {
+        await getResult('SUB_DECODEOPTIONS_WITH_YUV311_CREATEPIXELMAP_PIXELFORMAT_0100',
+          480, 360, 8, 'decodingOptions');
+        expect(result).assertTrue();
+        done();
+      } catch (e) {
+        hilog.info(0x0000, 'testTag', '%{public}s',
+          'SUB_DECODEOPTIONS_WITH_YUV311_CREATEPIXELMAP_PIXELFORMAT_0100 error:' + e);
+        expect().assertFail();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV311_CREATEPIXELMAP_PIXELFORMAT_0200
+     * @tc.name      : Test_createPixelMap_decodingOptions_pixelFormat_8_JPEG_311
+     * @tc.desc      : 1.create imageSource
+     *                 2.set index and DecodeOptions
+     *                 3.create PixelMap
+     *                 4.callback return undefined
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("SUB_DECODEOPTIONS_WITH_YUV311_CREATEPIXELMAP_PIXELFORMAT_0200", 0, async (done: Function) => {
+      await getFd("test-tree-311.jpg");
+      try {
+        await getResult('SUB_DECODEOPTIONS_WITH_YUV311_CREATEPIXELMAP_PIXELFORMAT_0200',
+          480, 360, 9, 'decodingOptions');
+        expect(result).assertTrue();
+        done();
+      } catch (e) {
+        hilog.info(0x0000, 'testTag', '%{public}s',
+          'SUB_DECODEOPTIONS_WITH_YUV311_CREATEPIXELMAP_PIXELFORMAT_0200 error:' + e);
+        expect().assertFail();
+        done();
+      }
+    });
 
   })
 }
