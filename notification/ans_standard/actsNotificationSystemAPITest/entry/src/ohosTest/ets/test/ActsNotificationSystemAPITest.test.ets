@@ -106,7 +106,7 @@ export default function ActsNotificationSystemAPITest() {
      * @tc.name: publishAsBundle
      * @tc.desc: test function publishAsBundle
      */
-    it('Sub_Notification_Ans_Publish_Publish_4300', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Publish_4300', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Publish_4300 START`);
 
         let bundleOpt : notificationManager.BundleOption = {
@@ -129,7 +129,7 @@ export default function ActsNotificationSystemAPITest() {
             console.info(`${TAG} publishAsBundle AsyncCallback success`)
             expect(false).assertTrue()
             done()
-        }).catch((err) =>{
+        }).catch((err: BusinessError) =>{
             console.info(`${TAG} publishAsBundle AsyncCallback errCode: ${err.code}, errMes: ${err.message}`)
             expect(err.code).assertEqual(202);
             done()  
@@ -166,7 +166,7 @@ export default function ActsNotificationSystemAPITest() {
      * @tc.name: cancelAsBundle
      * @tc.desc: test function cancelAsBundle
      */
-    it('Sub_Notification_Ans_Publish_Cancel_0160', 0, async function (done) {
+    it('Sub_Notification_Ans_Publish_Cancel_0160', 0, async (done: Function) => {
         console.info(`${TAG} Sub_Notification_Ans_Publish_Cancel_0160 START`);
 
         let bundleOpt : notificationManager.BundleOption = {
@@ -177,7 +177,7 @@ export default function ActsNotificationSystemAPITest() {
             console.info(`${TAG} cancelAsBundle AsyncCallback success`)
             expect(false).assertTrue()
             done()
-        }).catch((err) =>{
+        }).catch((err: BusinessError) =>{
             console.info(`${TAG} cancelAsBundle AsyncCallback errCode: ${err.code}, errMes: ${err.message}`)
             expect(err.code).assertEqual(202);
             done()  
