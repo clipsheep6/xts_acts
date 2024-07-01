@@ -28,6 +28,8 @@ class ImageSourceTest {
 public:
     static napi_value JsGetImageProperty(napi_env env, napi_callback_info info);
     static napi_value JsModifyImageProperty(napi_env env, napi_callback_info info);
+    static napi_value JsGetImagePropertyFromUri(napi_env env, napi_callback_info info);
+    static napi_value JsModifyImagePropertyByUri(napi_env env, napi_callback_info info);
     static std::string getStringFromArgs(napi_env env, napi_value arg);
 private:
 };

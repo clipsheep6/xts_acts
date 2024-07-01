@@ -86,6 +86,35 @@ Image_ErrorCode ImageSourceModuleTest::GetImageProperty(int32_t fd, std::string 
     return ret;
 }
 
+Image_ErrorCode ImageSourceModuleTest::GetImageProperty(std::string uri, std::string propertykey, std::string *val)
+{
+    OH_ImageSourceNative *source;
+    Image_ErrorCode ret = OH_ImageSourceNative_CreateFromUri(uri.c_str(), uri.length(), &source);
+    if (ret != IMAGE_SUCCESS) {
+        OH_ImageSourceNative_Release(source);
+        IMG_TST_LOGE("OH_ImageSourceNative_CreateFromUri failed: err = %{public}d.", ret);
+        return ret;
+    }
+
+    Image_String value;
+    Image_String key;
+    key.size = propertykey.size();
+    key.data = static_cast<char *>(malloc(key.size));
+    memcpy_s(key.data, key.size, propertykey.c_str(), propertykey.size());
+
+    ret = OH_ImageSourceNative_GetImageProperty(source, &key, &value);
+    if (ret != IMAGE_SUCCESS) {
+        OH_ImageSourceNative_Release(source);
+        IMG_TST_LOGE("OH_ImageSourceNative_GetImageProperty failed: err = %{public}d.", ret);
+        return ret;
+    }
+    *val = std::string(value.data, value.size);
+    free(value.data);
+    free(key.data);
+    OH_ImageSourceNative_Release(source);
+    return ret;
+}
+
 Image_ErrorCode ImageSourceModuleTest::ModifyImageProperty(int32_t fd, std::string propertyKey,
                                                            std::string propertyValue, std::string *val)
 {
@@ -94,6 +123,39 @@ Image_ErrorCode ImageSourceModuleTest::ModifyImageProperty(int32_t fd, std::stri
     if (ret != IMAGE_SUCCESS) {
         OH_ImageSourceNative_Release(source);
         IMG_TST_LOGE("OH_ImageSourceNative_CreateFromFd failed: err = %{public}d.", ret);
+        return ret;
+    }
+
+    Image_String value;
+    Image_String key;
+    key.size = propertyKey.size();
+    key.data = static_cast<char *>(malloc(key.size));
+    memcpy_s(key.data, key.size, propertyKey.c_str(), propertyKey.size());
+    value.size = propertyValue.size();
+    value.data = static_cast<char *>(malloc(value.size));
+    memcpy_s(value.data, value.size, propertyValue.c_str(), propertyValue.size());
+
+    ret = OH_ImageSourceNative_ModifyImageProperty(source, &key, &value);
+    if (ret != IMAGE_SUCCESS) {
+        OH_ImageSourceNative_Release(source);
+        IMG_TST_LOGE("OH_ImageSourceNative_ModifyImageProperty failed: err = %{public}d.", ret);
+        return ret;
+    }
+    *val = std::string(value.data, value.size);
+    free(value.data);
+    free(key.data);
+    OH_ImageSourceNative_Release(source);
+    return ret;
+}
+
+Image_ErrorCode ImageSourceModuleTest::ModifyImageProperty(std::string uri, std::string propertyKey,
+                                                           std::string propertyValue, std::string *val)
+{
+    OH_ImageSourceNative *source;
+    Image_ErrorCode ret = OH_ImageSourceNative_CreateFromUri(uri.c_str(), uri.length(), &source);
+    if (ret != IMAGE_SUCCESS) {
+        OH_ImageSourceNative_Release(source);
+        IMG_TST_LOGE("OH_ImageSourceNative_CreateFromUri failed: err = %{public}d.", ret);
         return ret;
     }
 
