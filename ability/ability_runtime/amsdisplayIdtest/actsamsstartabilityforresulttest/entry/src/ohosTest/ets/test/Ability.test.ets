@@ -15,22 +15,26 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import commonEvent from '@ohos.commonEvent';
 import display from '@ohos.display';
+import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
+import CommonEventManager from '@ohos.commonEventManager';
+import { BusinessError } from '@ohos.base';
+
+function sleep(time: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, time))
+}
 
 let displayClassId = display.getDefaultDisplaySync().id;
 
-var subscriberInfo_MainAbility = {
+let subscriberInfo_MainAbility:CommonEventManager.CommonEventSubscribeInfo = {
   events: ["ACTS_ConnectAbility_0100_CommonEvent", "ACTS_TerminateSelf_CommonEvent", "ACTS_TerminateSelf_CommonEvent9"]
 };
 const START_ABILITY_TIMEOUT = 5000;
 console.debug("====>in Ability.test====>");
 
 export default function abilityTest() {
-  describe('ActsGetDisplayIdStartAbilityForResultTest', function () {
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    afterEach(async (done) => {
+  describe('ActsGetDisplayIdStartAbilityForResultTest', () => {
+    afterEach(async (done:Function) => {
         console.debug('= ACTS_afterEach ====<begin');
         await sleep(2000);
         console.debug('= ACTS_afterEach ====<end');
@@ -44,32 +48,30 @@ export default function abilityTest() {
     * @tc.name: Get the specified displayId to start Ability
     * @tc.desc: Verify Get displayId to startAbilityForResult Ability
     */
-    it('ACTS_startAbilityForResult_0800', 0, async function (done) {
+    it('ACTS_startAbilityForResult_0800', 0, async (done:Function) => {
       console.log('ACTS_startAbilityForResult_0800====<begin');
-      var subscriber;
-      let id;
-
-      function subscribeCallBack(err, data) {
-        console.debug("====>ACTS_startAbilityForResult_0800 Subscribe CallBack data:====>" + JSON.stringify(data));
-
-        async function processInfoCheck(data) {
-          console.info('====> ACTS_startAbilityForResult_0800=====>');
-          expect(data.parameters['displayId']).assertEqual(displayClassId);
-          done();
-        }
-
-        if (data.event == "ACTS_TerminateSelf_CommonEvent") {
-          console.info('====> ACTS_startAbilityForResult_0800 start success=====>');
-          clearTimeout(id);
-          processInfoCheck(data);
-          commonEvent.unsubscribe(subscriber, unSubscribeCallback)
-        }
-      }
+      let subscriber:CommonEventManager.CommonEventSubscriber;
+      let id:number;
 
       commonEvent.createSubscriber(subscriberInfo_MainAbility).then(async (data) => {
         console.debug("====>ACTS_startAbilityForResult_0800 Create Subscriber====>");
         subscriber = data;
-        commonEvent.subscribe(subscriber, subscribeCallBack);
+        commonEvent.subscribe(subscriber, (err, data) => {
+          console.debug("====>ACTS_startAbilityForResult_0800 Subscribe CallBack data:====>" + JSON.stringify(data));
+
+           let processInfoCheck = async (data:CommonEventManager.CommonEventData):Promise<void> => {
+            console.info('====> ACTS_startAbilityForResult_0800=====>');
+            expect(data.parameters!['displayId']).assertEqual(displayClassId);
+            done();
+          }
+
+          if (data.event == "ACTS_TerminateSelf_CommonEvent") {
+            console.info('====> ACTS_startAbilityForResult_0800 start success=====>');
+            clearTimeout(id);
+            processInfoCheck(data);
+            commonEvent.unsubscribe(subscriber, unSubscribeCallback)
+          }
+        });
         await globalThis.abilityContext.startAbilityForResult(
           {
             bundleName: 'com.example.startabilityforresult',
@@ -81,11 +83,11 @@ export default function abilityTest() {
         })
       })
 
-      function unSubscribeCallback() {
+      let unSubscribeCallback = ():void => {
         console.debug("====>UnSubscribe0800 CallBack====>");
       }
 
-      function timeout() {
+      let timeout = ():void => {
         expect().assertFail();
         console.log('ACTS_startAbilityForResult_0800 timeout');
       }
@@ -100,32 +102,30 @@ export default function abilityTest() {
     * @tc.name: Get the specified displayId to start Ability
     * @tc.desc: Verify that the ability to startAbilityForResult when displayId is a string
     */
-    it('ACTS_startAbilityForResult_0900', 0, async function (done) {
+    it('ACTS_startAbilityForResult_0900', 0, async (done:Function) => {
       console.log('ACTS_startAbilityForResult_0900====<begin');
-      var subscriber;
-      let id;
-
-      function subscribeCallBack(err, data) {
-        console.debug("====>ACTS_startAbilityForResult_0900 Subscribe CallBack data:====>" + JSON.stringify(data));
-
-        async function processInfoCheck() {
-          console.info('====> ACTS_startAbilityForResult_0900=====>');
-          expect(data.parameters['displayId']).assertEqual(0);
-          commonEvent.unsubscribe(subscriber, unSubscribeCallback);
-          done();
-        }
-
-        if (data.event == "ACTS_TerminateSelf_CommonEvent") {
-          console.info('====> ACTS_startAbilityForResult_0900 start success=====>');
-          clearTimeout(id);
-          processInfoCheck();
-        }
-      }
+      let subscriber:CommonEventManager.CommonEventSubscriber;
+      let id:number;
 
       commonEvent.createSubscriber(subscriberInfo_MainAbility).then(async (data) => {
         console.debug("====>ACTS_startAbilityForResult_0900 Create Subscriber====>");
         subscriber = data;
-        commonEvent.subscribe(subscriber, subscribeCallBack);
+        commonEvent.subscribe(subscriber, (err, data) => {
+          console.debug("====>ACTS_startAbilityForResult_0900 Subscribe CallBack data:====>" + JSON.stringify(data));
+
+          let processInfoCheck = async ():Promise<void> => {
+            console.info('====> ACTS_startAbilityForResult_0900=====>');
+            expect(data.parameters!['displayId']).assertEqual(0);
+            commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+            done();
+          }
+
+          if (data.event == "ACTS_TerminateSelf_CommonEvent") {
+            console.info('====> ACTS_startAbilityForResult_0900 start success=====>');
+            clearTimeout(id);
+            processInfoCheck();
+          }
+        });
         await globalThis.abilityContext.startAbilityForResult(
           {
             bundleName: 'com.example.startabilityforresult',
@@ -134,17 +134,17 @@ export default function abilityTest() {
           displayId: undefined
         }).then(() => {
           console.debug("====>ACTS_startAbilityForResult_0900 end====>");
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           expect().assertFail();
           console.debug("====>ACTS_startAbilityForResult_0900 err====>" + err);
         })
       })
 
-      function unSubscribeCallback() {
+      let unSubscribeCallback = ():void => {
         console.debug("====>ACTS_startAbilityForResult_0900 UnSubscribe CallBack====>");
       }
 
-      function timeout() {
+      let timeout = ():void => {
         expect().assertFail();
         console.log('ACTS_startAbilityForResult_0900 timeout');
       }
@@ -159,32 +159,30 @@ export default function abilityTest() {
     * @tc.name: Get the specified displayId to start Ability
     * @tc.desc: Validation parameters want to filter the DISPLAY_ID of parameters
     */
-    it('ACTS_startAbilityForResult_1000', 0, async function (done) {
+    it('ACTS_startAbilityForResult_1000', 0, async (done:Function) => {
       console.log('ACTS_startAbilityForResult_1000====<begin');
-      var subscriber;
-      let id;
-
-      function subscribeCallBack(err, data) {
-        console.debug("====>ACTS_startAbilityForResult_1000 Subscribe CallBack data:====>" + JSON.stringify(data));
-
-        async function processInfoCheck(data) {
-          console.info('====> ACTS_startAbilityForResult_1000=====>');
-          expect(data.parameters['displayId']).assertEqual(0);
-          done();
-        }
-
-        if (data.event == "ACTS_TerminateSelf_CommonEvent") {
-          console.info('====> ACTS_startAbilityForResult_1000 start success=====>');
-          clearTimeout(id);
-          processInfoCheck(data);
-          commonEvent.unsubscribe(subscriber, unSubscribeCallback)
-        }
-      }
+      let subscriber:CommonEventManager.CommonEventSubscriber;
+      let id:number;
 
       commonEvent.createSubscriber(subscriberInfo_MainAbility).then(async (data) => {
         console.debug("====>ACTS_startAbilityForResult_1000 Create Subscriber====>");
         subscriber = data;
-        commonEvent.subscribe(subscriber, subscribeCallBack);
+        commonEvent.subscribe(subscriber, (err, data) => {
+          console.debug("====>ACTS_startAbilityForResult_1000 Subscribe CallBack data:====>" + JSON.stringify(data));
+
+          let processInfoCheck = async (data:CommonEventManager.CommonEventData):Promise<void> => {
+            console.info('====> ACTS_startAbilityForResult_1000=====>');
+            expect(data.parameters!['displayId']).assertEqual(0);
+            done();
+          }
+
+          if (data.event == "ACTS_TerminateSelf_CommonEvent") {
+            console.info('====> ACTS_startAbilityForResult_1000 start success=====>');
+            clearTimeout(id);
+            processInfoCheck(data);
+            commonEvent.unsubscribe(subscriber, unSubscribeCallback)
+          }
+        });
         await globalThis.abilityContext.startAbilityForResult(
           {
             bundleName: 'com.example.startabilityforresult',
@@ -196,18 +194,18 @@ export default function abilityTest() {
           }, {
         }).then(() => {
           console.debug("====>ACTS_startAbilityForResult_1000 end====>");
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           expect().assertFail();
           console.debug("====>ACTS_startAbilityForResult_1000 err====>" + err);
         })
       })
 
 
-      function unSubscribeCallback() {
+      let unSubscribeCallback = ():void => {
         console.debug("====>ACTS_startAbilityForResult_1000 UnSubscribe CallBack====>");
       }
 
-      function timeout() {
+      let timeout = ():void => {
         expect().assertFail();
         console.log('ACTS_startAbilityForResult_1000 timeout');
       }

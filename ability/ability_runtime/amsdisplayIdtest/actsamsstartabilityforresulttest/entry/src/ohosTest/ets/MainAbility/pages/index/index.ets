@@ -16,7 +16,7 @@ import router from '@ohos.router';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../../../test/List.test'
-var testTime = 0;
+let testTime = 0;
 
 @Entry
 @Component
@@ -25,10 +25,8 @@ struct Index {
   aboutToAppear(){
     console.info("start run testcase!!!!")
     if(testTime++==0){
-        var abilityDelegator: any
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        var abilityDelegatorArguments: any
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+        let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+        let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
         console.info('start run testcase!!!')
         Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
     }
