@@ -29,6 +29,10 @@ import ScrollSource from './ScrollTest/ScrollSource.test';
 import offsetRemain from './ScrollTest/offsetRemain.test';
 import TabsAp1 from './TabsTest/TabsAp1.test'
 import ScrollApi1 from './ScrollTest/ScrollApi1.test'
+import WaterFlowScrollEdgeCallbackJsunit from './ScrollEdge/WaterFlowScrollEdgeCallback.test'
+import GridScrollEdgeCallbackJsunit from './ScrollEdge/GridScrollEdgeCallback.test'
+import ScrollScrollEdgeCallbackJsunit from './ScrollEdge/ScrollScrollEdgeCallback.test'
+import ListScrollEdgeCallbackJsunit from './ScrollEdge/ListScrollEdgeCallback.test'
 export default function testsuite() {
   ListScrollTest1()
   PopupAlphaTest()
@@ -47,4 +51,8 @@ export default function testsuite() {
   offsetRemain()
   TabsAp1()
   ScrollApi1()
+  WaterFlowScrollEdgeCallbackJsunit()
+  ScrollScrollEdgeCallbackJsunit()
+  ListScrollEdgeCallbackJsunit()
+  GridScrollEdgeCallbackJsunit()
 }
