@@ -498,7 +498,7 @@ export default function preferencesPromiseTest(){
 		
 		
 		/**
-         * @tc.name put BigInt promise interface test
+         * @tc.name testPreferencesPutBigIntPromise0100
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiPromiseTest_2200
          * @tc.desc put Bigint negative test
          * * @tc.desc get string promise interface test
@@ -520,7 +520,7 @@ export default function preferencesPromiseTest(){
         })
 
         /**
-         * @tc.name put BigInt promise interface test
+         * @tc.name testPreferencesPutBigIntPromise0200
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiPromiseTest_2300
          * @tc.desc put Bigint positive test
          * @tc.desc get string promise interface test
@@ -542,7 +542,7 @@ export default function preferencesPromiseTest(){
         })
 
         /**
-         * @tc.name put BigInt promise interface test
+         * @tc.name testPreferencesPutBigIntPromise0300
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiPromiseTest_2400
          * @tc.desc put Bigint boundary value test
          * @tc.desc get string promise interface test
@@ -564,7 +564,7 @@ export default function preferencesPromiseTest(){
         })
 
         /**
-         * @tc.name put BigInt promise interface test
+         * @tc.name testPreferencesPutBigIntPromise0400
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiPromiseTest_2500
          * @tc.desc put Bigint boundary value test
          * @tc.desc get string promise interface test
