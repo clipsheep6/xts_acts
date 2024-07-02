@@ -486,7 +486,7 @@ export default function PreferencesSyncTest() {
 		
 		
 		/**
-         * @tc.name put BigInt sync interface test
+         * @tc.name testPreferencesPutBigIntSync0100
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_3100
          * @tc.desc put BigInt sync interface test
          * @tc.size MediumTest
