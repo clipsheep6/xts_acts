@@ -658,7 +658,7 @@ export default function preferencesCallBackTest(){
             mPreferences = await data_preferences.getPreferences(context, NAME);
             let pre2 = await mPreferences.get(KEY_TEST_BIGINT, BigInt(0));
             done();
-            xpect(bigint === pre2).assertTrue();
+            expect(bigint === pre2).assertTrue();
             });
             
 		})
