@@ -207,5 +207,86 @@ export default function ActsNotificationEmitterPublishTest() {
         done();
       }
     })
+
+     /*
+      * @tc.number : Sub_Notification_Emitter_Publish_Emit_0900
+      * @tc.name   : Sub_Notification_Emitter_Publish_Emit_0900
+      * @tc.desc   : emitter.once 1   emitter.off 1   emitter.emit 1
+      * @tc.size   : MediumTest
+      * @tc.type   : Function
+      * @tc.level  : Level 2
+      */
+    it('Sub_Notification_Emitter_Publish_Emit_0900', 2, (done: Function) => {
+      const TEST_CASE_NAME = 'Sub_Notification_Emitter_Publish_Emit_0900'
+      let eventId05: string = '5';
+      @Sendable
+      class Data {
+        callNumber: number;
+        constructor() {
+          this.callNumber = 100;
+        }
+      }
+
+      class SelfEventData implements emitter.EventData {
+        data: Data = new Data();
+      }
+
+      let callback05 = (eventData: emitter.GenericEventData<Data>): void => {
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + ' callback04 success');
+        expect(true).assertTrue();
+        let storage: Data = eventData.data!;
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} callback number ${storage.callNumber}`);
+        done();
+      }
+      try{
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + 'test case begin');
+        emitter.once(eventId05, callback05);
+      }catch(err){
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + ' once failed,data is: ', JSON.stringify(err));
+        expect(false).assertTrue();
+        done();
+      }
+      try{
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + 'off callback begin');
+        emitter.off(eventId05, callback05);
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + 'off callback success');
+      }catch(err){
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + ' off failed,data is: ', JSON.stringify(err));
+        expect(false).assertTrue();
+        done();
+      }
+
+      try{
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + 'on callback begin');
+        emitter.on(eventId05, callback05);
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + 'on callback success');
+      }catch(err){
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + ' on failed,data is: ', JSON.stringify(err));
+        expect(false).assertTrue();
+        done();
+      }
+      try{
+        let info = new SelfEventData()
+        emitter.emit(eventId05, info);
+        let option: emitter.Options = {
+          priority: emitter.EventPriority.HIGH
+        };
+        emitter.emit(eventId05, option, info);
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + ' emit event success');
+      }catch(err){
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + ' emit failed,data is: ', JSON.stringify(err));
+        expect(false).assertTrue();
+        done();
+      }
+      try{
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + 'off2 callback begin');
+        emitter.off(eventId05);
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + 'off2 callback success');
+      }catch(err){
+        hilog.info(0x001, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME}` + ' off2 failed,data is: ', JSON.stringify(err));
+        expect(false).assertTrue();
+        done();
+      }
+    })
   })
 }
