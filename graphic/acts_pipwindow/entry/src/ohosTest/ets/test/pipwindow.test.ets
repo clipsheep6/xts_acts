@@ -21,21 +21,21 @@ import { UiDriver, BY, ON, PointerMatrix } from '@ohos.UiTest'
 import pipWindow from '@ohos.PiPWindow';
 import bundleManager from '@ohos.bundle.bundleManager';
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
-export default function pipWindowTest(context1) {
-  describe('window_pipWindow_test', function () {
+export default function pipWindowTest(context1:common.BaseContext) {
+  describe('window_pipWindow_test', () => {
     console.log('describe window_api_test start!!!')
     const TRUE_FLAG = true;
     let tag = 'pipWindowTest'
 
-    async function sleep(time) {
-      let timeoutId = null;
-      let promise = new Promise(resolve => {
+    let sleep = async (time:number):Promise<void> => {
+      let timeoutId:number | null = null;
+      await new Promise((resolve: (value: string) => void) => {
         timeoutId = setTimeout(() => {
           resolve('sleep finished');
         }, time);
-      })
-      let result = await promise;
+      });
       clearTimeout(timeoutId)
     }
 
@@ -47,7 +47,7 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('isPiPEnabled_test', 0, async function (done) {
+    it('isPiPEnabled_test', 0, async (done:Function) => {
       console.log('www data isPiPEnabled_test begin')
       try {
         let enable = pipWindow.isPiPEnabled();
@@ -69,14 +69,14 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('create_Function_Promise', 0, async function (done) {
+    it('create_Function_Promise', 0, async (done:Function) => {
       console.log('www data create_Function_Promise begin')
-      let pipController = undefined;
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -91,7 +91,7 @@ export default function pipWindowTest(context1) {
           console.log(`www data Succeeded in creating pip controller. Data:${data}`)
           expect(data != null).assertTrue();
           done();
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           console.log('www data Failed1 to create pip controller. Cause' + JSON.stringify(err));
           if(err.code == 801){
             expect(true).assertTrue();
@@ -115,13 +115,13 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('startPiP_Function_Promise', 0, async function (done) {
-      let pipController = undefined;
+    it('startPiP_Function_Promise', 0, async (done:Function) => {
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -137,7 +137,7 @@ export default function pipWindowTest(context1) {
           console.log('www data Succeeded in starting pip')
           expect(true).assertTrue();
           done();
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           console.log('www data Failed1 to start pip. Cause:' +JSON.stringify(err));
           expect().assertFail();
           done();
@@ -162,13 +162,13 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('stopPiP_Function_Promise', 0, async function (done) {
-      let pipController = undefined;
+    it('stopPiP_Function_Promise', 0, async (done:Function) => {
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -185,7 +185,7 @@ export default function pipWindowTest(context1) {
           console.log('www data Succeeded in stopping pip')
           expect(true).assertTrue();
           done();
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           if (err.code == 1300015) {
             console.log('www data window is stopping:'+ JSON.stringify(err))
             expect(true).assertTrue()
@@ -215,13 +215,13 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('setAutoStartEnabled_test', 0, async function (done) {
-      let pipController = undefined;
+    it('setAutoStartEnabled_test', 0, async (done:Function) => {
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -256,13 +256,13 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('updateContentSize_test', 0, async function (done) {
-      let pipController = undefined;
+    it('updateContentSize_test', 0, async (done:Function) => {
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -298,13 +298,13 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('stateChange_Function_Callback', 0, async function (done) {
-      let pipController = undefined;
+    it('stateChange_Function_Callback', 0, async (done:Function) => {
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -364,13 +364,13 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('stateChange_test', 0, async function (done) {
-      let pipController = undefined;
+    it('stateChange_test', 0, async (done:Function) => {
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -437,13 +437,13 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('controlPanelActionEvent_Function_Callback', 0, async function (done) {
-      let pipController = undefined;
+    it('controlPanelActionEvent_Function_Callback', 0, async (done:Function) => {
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -489,13 +489,13 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('controlPanelActionEvent_test', 0, async function (done) {
-      let pipController = undefined;
+    it('controlPanelActionEvent_test', 0, async (done:Function) => {
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -548,7 +548,7 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('testPiPTemplateType', 0, async function (done) {
+    it('testPiPTemplateType', 0, async (done:Function) => {
       let msg = "testPiPTemplateType"
       try {
         expect(pipWindow.PiPTemplateType.VIDEO_PLAY).assertEqual(0);
@@ -569,7 +569,7 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('testPiPEvent', 0, async function (done) {
+    it('testPiPEvent', 0, async (done:Function) => {
       let msg = "testPiPEvent"
       try {
         let event: pipWindow.PiPActionEventType = "playbackStateChanged";
@@ -597,14 +597,14 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('create_Function_Promise_2', 0, async function (done) {
+    it('create_Function_Promise_2', 0, async (done:Function) => {
       console.log('www data create_Function_Promise begin')
-      let pipController = undefined;
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -619,7 +619,7 @@ export default function pipWindowTest(context1) {
           console.log(`www data Succeeded in creating pip controller. Data:${data}`)
           expect(data != null).assertTrue();
           done();
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           console.log('www data Failed1 to create pip controller. Cause' + JSON.stringify(err));
           if(err.code == 801){
             expect(true).assertTrue();
@@ -643,14 +643,14 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('create_Function_Promise_3', 0, async function (done) {
+    it('create_Function_Promise_3', 0, async (done:Function) => {
       console.log('www data create_Function_Promise begin')
-      let pipController = undefined;
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -665,7 +665,7 @@ export default function pipWindowTest(context1) {
           console.log(`www data Succeeded in creating pip controller. Data:${data}`)
           expect(data != null).assertTrue();
           done();
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           console.log('www data Failed1 to create pip controller. Cause' + JSON.stringify(err));
           if(err.code == 801){
             expect(true).assertTrue();
@@ -689,14 +689,14 @@ export default function pipWindowTest(context1) {
      * @tc.type       : Function
      * @tc.level      : Level3
      */
-    it('create_Function_Promise_4', 0, async function (done) {
+    it('create_Function_Promise_4', 0, async (done:Function) => {
       console.log('www data create_Function_Promise begin')
-      let pipController = undefined;
+      let pipController:pipWindow.PiPController | undefined = undefined;
       let mXComponentController = new XComponentController();
       let navId = "";
       let contentWidth = 400;
       let contentHeight = 600;
-      let config = {
+      let config:pipWindow.PiPConfiguration = {
         context: context1,
         componentController: mXComponentController,
         navigationId: navId,
@@ -711,7 +711,7 @@ export default function pipWindowTest(context1) {
           console.log(`www data Succeeded in creating pip controller. Data:${data}`)
           expect(data != null).assertTrue();
           done();
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           console.log('www data Failed1 to create pip controller. Cause' + JSON.stringify(err))
           if(err.code == 801){
             expect(true).assertTrue();
