@@ -591,7 +591,7 @@ export default function preferencesCallBackTest(){
 		
 		
 		/**
-         * @tc.name put BigInt callback interface test
+         * @tc.name testPreferencesPutBigIntCallback0100
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_3100
          * @tc.desc put Bigint negative test
 		 * @tc.size MediumTest
@@ -616,7 +616,7 @@ export default function preferencesCallBackTest(){
 			
 
         /**
-        * @tc.name put BigInt callback interface test
+        * @tc.name testPreferencesPutBigIntCallback0200
         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_3200
         * @tc.desc put Bigint positive test
 		* @tc.size MediumTest
@@ -640,7 +640,7 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name put BigInt callback interface test
+         * @tc.name testPreferencesPutBigIntCallback0300
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_3300
          * @tc.desc put Bigint boundary value test
 		 * @tc.size MediumTest
@@ -664,7 +664,7 @@ export default function preferencesCallBackTest(){
 		})
 
         /**
-         * @tc.name put BigInt callback interface test
+         * @tc.name testPreferencesPutBigIntCallback0400
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_3400
          * @tc.desc put Bigint boundary value test
 		 * @tc.size MediumTest
