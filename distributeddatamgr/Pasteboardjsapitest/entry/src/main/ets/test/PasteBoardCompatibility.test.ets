@@ -68,6 +68,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set plainTextData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set plainTextData fail:' + error.message);
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -108,7 +109,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set textData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set textData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -151,7 +152,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set hyperLinkData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set hyperLinkData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -194,7 +195,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set htmlData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set htmlData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -236,7 +237,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set fileData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set fileData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -278,7 +279,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set folderData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set folderData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -320,7 +321,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set imageData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set imageData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -362,7 +363,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set videoData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set videoData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -404,7 +405,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set audioData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set audioData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -451,7 +452,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set sysFormData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set sysFormData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -499,7 +500,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set sysAppItemData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set sysAppItemData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -539,7 +540,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set appRecordData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set appRecordData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -580,7 +581,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set wantData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set wantData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -627,7 +628,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Set pixelMapData Success');
       }).catch((error:BusinessError) => {
         console.info(TAG + 'Set pixelMapData Fail:' + error);
-        expect().assertFail()
+        expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
@@ -1098,7 +1099,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Succeed in setting PasteData')
       } catch (error) {
         console.info(TAG + 'Failed to set PasteData. Cause:' + error);
-        expect().assertFail()
+        expect().assertFail();
       }
 
       await systemPasteboard.getUnifiedData().then((data) => {
@@ -1129,7 +1130,7 @@ export default function PasteBoardCompatibilityTest() {
         console.info(TAG + 'Succeed in setting PasteData')
       } catch (error) {
         console.info(TAG + 'Failed to set PasteData. Cause:' + error);
-        expect().assertFail()
+        expect().assertFail();
       }
 
       try {
