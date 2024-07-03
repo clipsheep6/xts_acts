@@ -9,6 +9,7 @@
 	"MainAbility/pages/XComponent/setXComponentSurfaceRotation",
         "MainAbility/pages/InputMethodList/inputMethodListTest",
         "MainAbility/pages/EmbeddedComponent/extension",
+        "MainAbility/pages/MovingPhotoView/MovingPhotoView",
         "MainAbility/pages/EmbeddedComponent/onTerminated",
         "MainAbility/pages/Video/VideoReset/VideoReset1",
         "MainAbility/pages/Video/VideoReset/VideoReset2",
