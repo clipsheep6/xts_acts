@@ -21,7 +21,7 @@
     "deviceTypes": [
       "default",
       "tablet",
-      "phnoe",
+      "phone",
       "2in1"
     ],
     "deliveryWithInstall": true,
