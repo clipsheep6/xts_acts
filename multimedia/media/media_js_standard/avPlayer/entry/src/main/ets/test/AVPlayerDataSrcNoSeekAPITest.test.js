@@ -634,6 +634,13 @@ export default function AVPlayerDataSrcNoSeekAPITest() {
                         console.error('checkSpeedTime time is :' + (newTime - startTime));
                         expect(Math.abs(newTime - startTime - (2 * PLAY_TIME))).assertLess(DELTA_TIME * 2);
                         break;
+                    case media.PlaybackSpeed.SPEED_FORWARD_0_25_X:
+                        console.error('checkSpeedTime time is :' + (newTime - startTime));
+                        expect(Math.abs(newTime - startTime - (4 * PLAY_TIME))).assertLess(DELTA_TIME * 4);
+                    case media.PlaybackSpeed.SPEED_FORWARD_0_125_X:
+                        console.error('checkSpeedTime time is :' + (newTime - startTime));
+                        expect(Math.abs(newTime - startTime - (8 * PLAY_TIME))).assertLess(DELTA_TIME * 8);
+                        break;
                 }
             } else {
                 console.info('case speed not in play');
