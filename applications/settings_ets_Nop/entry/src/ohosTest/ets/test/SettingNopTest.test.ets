@@ -65,7 +65,6 @@ export default function SettingNopTest() {
       done();
     })
     it('SettingNopTest_0200', 0, async (done : Function) => {
-      console.log('bb111111')
       try {
         settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
           console.log('Callback return whether value is set.');
@@ -79,7 +78,6 @@ export default function SettingNopTest() {
       done();
     })
     it('SettingNopTest_0300', 0, async (done : Function) => {
-      console.log('cc111111')
       try {
         settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED).then((status) => {
           console.log(`callback:return whether value is set.`)
@@ -87,7 +85,6 @@ export default function SettingNopTest() {
         });
       } catch (e) {
         let error = e as BusinessError
-        console.log('cc111115')
         console.error('settings3 catch error: ' + JSON.stringify(error));
         console.log('settings3 catch error log: ' + error.code);
         expect(error.code == undefined).assertTrue()
