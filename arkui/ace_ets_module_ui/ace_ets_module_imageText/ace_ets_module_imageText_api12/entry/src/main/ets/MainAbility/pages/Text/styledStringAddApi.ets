@@ -30,7 +30,6 @@ struct Index {
   richEditorStyledString: MutableStyledString = new MutableStyledString('');
   textStyle: TextStyle = new TextStyle({
     fontWeight: FontWeight.Lighter,
-    fontFamily: 'HarmonyOS Sans',
     fontColor: Color.Green,
     fontSize: LengthMetrics.vp(30),
     fontStyle: FontStyle.Normal
@@ -38,7 +37,6 @@ struct Index {
   fontStyle1: TextStyle = new TextStyle({ fontColor: Color.Blue });
   fontStyle2: TextStyle = new TextStyle({
     fontWeight: FontWeight.Bolder,
-    fontFamily: 'Arial',
     fontColor: Color.Orange,
     fontSize: LengthMetrics.vp(30),
     fontStyle: FontStyle.Italic
