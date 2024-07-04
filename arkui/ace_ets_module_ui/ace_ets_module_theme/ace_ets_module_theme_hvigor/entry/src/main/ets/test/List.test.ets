@@ -37,9 +37,9 @@ import sliderThemeTest from './components/Slider.test';
 
 export default function testsuite() {
   // global tests
-  setDefaultThemeTest();
   systemThemeTest();
   withThemeTest();
+  setDefaultThemeTest();
   // components
   alphabetIndexerThemeTest();
   badgeThemeTest();
