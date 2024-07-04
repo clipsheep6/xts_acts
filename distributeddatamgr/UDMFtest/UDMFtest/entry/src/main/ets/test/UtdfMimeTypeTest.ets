@@ -2998,5 +2998,1392 @@ export default function UtdfMimeTypeTest() {
       console.log("typeId:" + result);
       expect(result).assertEqual("com.staroffice.impress");
     });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2240
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2240
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.stardivision.writer"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2240', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2240 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.stardivision.writer");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.staroffice.writer");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2250
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2250
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.stardivision.chart"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2250', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2250 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.stardivision.chart");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.staroffice.chart");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2260
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2260
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.stardivision.mail"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2260', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2260 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.stardivision.mail");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.staroffice.mail");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2270
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2270
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.stardivision.writer-global"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2270', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2270 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.stardivision.writer-global");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.staroffice.writer-global");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2280
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2280
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.stardivision.math"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2280', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2280 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.stardivision.math");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.staroffice.math");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2290
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2290
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.stardivision.template"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2290', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2290 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.stardivision.template");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.staroffice.template");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2300
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2300
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-bibtex"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2300', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2300 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-bibtex");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.tug.bib");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2310
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2310
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-tex"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2310', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2310 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-tex");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.tug.cls");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2320
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2320
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-coreldraw"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2320', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2310 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-coreldraw");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.coreldraw.cdr");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2340
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2340
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-latex"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2340', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2340 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-latex");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.latex-project.latex");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2350
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2350
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-ms-asf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2350', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2350 start');
+      let result = UTD.getUniformDataTypeByMIMEType("video/x-ms-asf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.advanced-systems-format");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2360
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2360
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-asf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2360', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2360 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-asf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.advanced-systems-format");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2380
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2380
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-matroska"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2380', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2380 start');
+      let result = UTD.getUniformDataTypeByMIMEType("video/x-matroska");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.matroska.mkv");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2400
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2400
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-sgi-movie"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2400', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2400 start');
+      let result = UTD.getUniformDataTypeByMIMEType("video/x-sgi-movie");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.sgi.movie");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2410
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2410
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/m4v"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2410', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2410 start');
+      let result = UTD.getUniformDataTypeByMIMEType("video/m4v");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.apple.m4v");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2420
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2420
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/webm"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2420', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2420 start');
+      let result = UTD.getUniformDataTypeByMIMEType("video/webm");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.webmproject.webm");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2430
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2430
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/quicktime"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2430', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2430 start');
+      let result = UTD.getUniformDataTypeByMIMEType("video/quicktime");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.apple.quicktime-movie");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2460
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2460
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-coreldrawtemplate"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2460', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2460 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-coreldrawtemplate");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.coreldraw.cdt");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2470
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2470
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-corelphotopaint"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2470', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2470 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-corelphotopaint");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.coreldraw.cpt");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2480
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2480
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-coreldrawpattern"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2480', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2480 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-coreldrawpattern");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.coreldraw.pat");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2490
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2490
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/ico"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2490', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2490 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/ico");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.ico");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2500
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2500
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-cmu-raster"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2500', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2500 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-cmu-raster");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.sun.raster");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2510
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2510
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/webp"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2510', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2510 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/webp");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.google.webp");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2520
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2520
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-koan"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2520', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2520 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-koan");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.sseyo.koan-audio");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2530
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2530
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-moc"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2530', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2530 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-moc");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("io.qt.moc");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2540
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2540
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-font"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2540', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2540 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-font");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.ghostscript.font");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2560
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2560
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-font-pcf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2560', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2560 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-font-pcf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.x.pcf-font");
+    });
+    /**
+     * @tc.name      : StestUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2570
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2570
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-ms-wmd"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2570', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2570 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-ms-wmd");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.windows-media-wmd");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2580
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2580
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-ms-wmz"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2580', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2580 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-ms-wmz");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.windows-media-wmz");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2590
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2590
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-msi"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2590', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2590 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-msi");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.windows-installer");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2600
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2600
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-mspublisher"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2600', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2600 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-mspublisher");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.publisher.pub");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2610
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2610
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-wpl"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2610', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2610 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-wpl");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.windows-media-playlist");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2620
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2620
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/msaccess"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2620', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2620 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/msaccess");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.access.mdb");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2630
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2630
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-pki.stl"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2630', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2630 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-pki.stl");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.3dsystems.stereolithography");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2640
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2640
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.apple.mpegurl"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2640', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2640 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.apple.mpegurl");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.apple.media.playlist");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2650
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2650
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-abiword"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2650', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2650 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-abiword");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.abisource.word");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2660
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2660
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-maker"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2660', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2660 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-maker");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.adobe.framemaker");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2670
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2670
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is application/x-cdf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2670', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2670 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-cdf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.wolfram.cdf");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2690
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2690
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-director"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2690', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2690 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-director");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.adobe.dcr");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2710
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2710
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-gnumeric"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2710', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2710 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-gnumeric");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.gnumeric.spreadsheet");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2720
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2720
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-hdf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2720', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2720 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-hdf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.hdfgroup.hdf");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2730
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2730
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/mac-binhex40"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2730', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2730 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/mac-binhex40");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.apple.binhex-archive");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2740
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2740
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/hta"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2740', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2740 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/hta");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.hta");
+    });
+    /**
+     * @tc.name      :test SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2750
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2750
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-internet-signup"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2750', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2750 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-internet-signup");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.internet.ins");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2770
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2770
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/troff"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2770', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2770 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/troff");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.troff");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2780
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2780
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.mif"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2780', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2780 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.mif");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.adobe.framemaker.mif");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2790
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2790
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-freemind"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2790', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2790 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-freemind");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("io.sourceforge.freemind");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2810
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2810
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.smaf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2810', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2810 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.smaf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.yamaha.smaf");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2820
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2820
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/mathematica"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2820', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2820 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/mathematica");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.wolfram.mathematica.notebook");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2830
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2830
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/ogg"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2830', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2830 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/ogg");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.xiph.ogg");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2840
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2840
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-ns-proxy-autoconfig"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2840', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2840 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-ns-proxy-autoconfig");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.netscape.proxy-autoconfig");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2850
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2850
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-pkcs12"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2850', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2850 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-pkcs12");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.rsa.pkcs-12");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2860
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2860
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/pgp-signature"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2860', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2860 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/pgp-signature");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.openpgp.signature");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2870
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2870
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-quicktimeplayer"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2870', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2870 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-quicktimeplayer");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.apple.quicktime-link");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2890
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2890
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.rar"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2890', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2890 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.rar");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.rarlab.rar-archive");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2900
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2900
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-7z-compressed"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2900', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2900 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-7z-compressed");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.7-zip.7-zip-archive");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2910
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2910
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-go-sgf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2910', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2910 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-go-sgf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.red-bean.sgf");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2920
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2920
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-stuffit"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2920', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2920 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-stuffit");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.allume.stuffit-archive");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2930
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2930
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/futuresplash"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2930', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2930 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/futuresplash");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.adobe.futuresplash");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2940
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2940
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-futuresplash"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2940', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2940 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-futuresplash");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.adobe.futuresplash");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2950
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2950
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-shockwave-flash"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2950', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2950 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-shockwave-flash");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.adobe.flash");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2960
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2960
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-texinfo"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2960', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2960 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-texinfo");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.gnu.texinfo");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2970
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2970
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-bittorrent"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2970', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2970 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-bittorrent");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.bittorrent.torrent");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2980
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2980
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is"application/x-doom"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2980', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2980 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-doom");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.idsoftware.doom");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2990
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2990
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-webarchive"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2990', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2990 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-webarchive");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.apple.webarchive");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3000
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3000
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-webarchive-xml"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3000', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3000 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-webarchive-xml");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.android.webarchive");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3010
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3010
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-xcf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3010', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3010 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-xcf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.gimp.xcf");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3020
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3020
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-xcf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3020', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3020 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-xcf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.gimp.xcf");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3030
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3030
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-eddx"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3030', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3030 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-eddx");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.edrawsoft.edrawmax");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3040
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3040
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-emmx"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3040', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3040 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-emmx");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.edrawsoft.edrawmind");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3050
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3050
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/caj"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3050', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3050 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/caj");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("net.cnki.caj");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3060
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3060
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/dbf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3060', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3060 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/dbf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.dbase.dbf");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3070
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3070
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/dbase"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3070', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3070 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/dbase");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.dbase.dbf");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3080
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3080
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/vnd.dwg"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3080', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3080 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/vnd.dwg");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.autodesk.dwg");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3090
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3090
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/vnd.dxf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3090', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3090 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/vnd.dxf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.autodesk.dxf");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3100
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3100
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "model/vnd.dwf"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3100', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3100 start');
+      let result = UTD.getUniformDataTypeByMIMEType("model/vnd.dwf");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.autodesk.dwf");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3110
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3110
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.hp-hpgl"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3110', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3110 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.hp-hpgl");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.hp.graphics-language");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3120
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3120
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/avif"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3120', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3120 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/avif");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.aomedia.avif-image");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3130
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3130
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/vnd-ms.dds"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3130', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3130 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/vnd-ms.dds");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.dds");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3140
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3140
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-ilbm"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3140', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3140 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-ilbm");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.ea.iff-ilbm");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3150
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3150
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-canon-cr2"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3150', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3150 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-canon-cr2");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.canon.cr2-raw-image");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3160
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3160
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-canon-cr3"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3160', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3160 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-canon-cr3");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.canon.cr3-raw-image");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3170
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3170
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-canon-crw"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3170', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3170 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-canon-crw");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.canon.crw-raw-image");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3180
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3180
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-nikon-nef"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3180', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3180 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-nikon-nef");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.nikon.nef-raw-image");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3190
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3190
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "message/rfc822"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3190', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3190 start');
+      let result = UTD.getUniformDataTypeByMIMEType("message/rfc822");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.email");
+    });
+
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3200
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3200
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-dvi"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3200', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3200 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/x-dvi");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.dvi");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3220
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3220
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-sony-arw"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3220', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3220 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-sony-arw");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.sony.arw-raw-image");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3240
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3240
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-word.document.macroEnabled.12"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3240', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3240 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-word.document.macroEnabled.12");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.openxmlformats.wordprocessingml.document.macroenabled");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3250
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3250
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-word.template.macroEnabled.12"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3250', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3240 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-word.template.macroEnabled.12");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.openxmlformats.wordprocessingml.template.macroenabled");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3270
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3270
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-excel.sheet.binary.macroEnabled.12"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3270', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3240 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-excel.sheet.binary.macroEnabled.12");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.openxmlformats.spreadsheetml.binary.macroenabled");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3280
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3280
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-excel.sheet.macroEnabled.12"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3280', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3280 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-excel.sheet.macroEnabled.12");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.openxmlformats.spreadsheetml.sheet.macroenabled");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3290
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3290
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-powerpoint.addin.macroEnabled.12"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3290', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3280 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-powerpoint.addin.macroEnabled.12");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.openxmlformats.presentationml.addin.macroenabled");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3300
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3300
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-powerpoint.presentation.macroEnabled.12"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3300', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3300 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-powerpoint.presentation.macroEnabled.12");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.openxmlformats.presentationml.presentation.macroenabled");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3310
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3310
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-powerpoint.slideshow.macroEnabled.12"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3310', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3310 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-powerpoint.slideshow.macroEnabled.12");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.openxmlformats.presentationml.slideshow.macroenabled");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3320
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3320
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-powerpoint.template.macroEnabled.12"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3320', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3300 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-powerpoint.template.macroEnabled.12");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("org.openxmlformats.presentationml.template.macroenabled");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3330
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3330
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-boo"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3330', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3300 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-boo");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.boo-source");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3340
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3340
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-dsrc"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3340', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3340 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-dsrc");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.d-source");
+    });
+    /**
+     * @tc.name      :test SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3350
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3350
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-component"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3350', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3350 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-component");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.html-component");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3360
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3360
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-pascal"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3360', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3360 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-pascal");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.pascal-source");
+    });
   });
 }
