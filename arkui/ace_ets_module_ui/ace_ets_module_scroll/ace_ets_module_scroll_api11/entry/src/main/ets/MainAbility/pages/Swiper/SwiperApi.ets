@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class MyDataSource implements IDataSource {
+class MyDataSource1 implements IDataSource {
   private list: number[] = []
 
   constructor(list: number[]) {
@@ -36,17 +36,17 @@ class MyDataSource implements IDataSource {
 
 @Entry
 @Component
-struct SwiperExample {
+struct SwiperApiTest {
   @State text: string = ''
   private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private data: MyDataSource1 = new MyDataSource1([])
 
   aboutToAppear(): void {
     let list: number[] = []
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource1(list)
   }
 
   build() {
