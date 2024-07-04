@@ -309,7 +309,7 @@ export default function stageAppContextTest(abilityContext:common.UIAbilityConte
                 events: ['clearUpApplicationDataEvent'],
             };
             let startAbility = async (notClear = false) => {
-                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await abilityDelegator.executeShellCommand('aa start -b com.example.stageappcontexttest -a MainAbility');
                 await sleep(3000);
                 await abilityContext.startAbility({
                     bundleName: 'com.example.clearUpApplicationDataHelp',
@@ -379,7 +379,7 @@ export default function stageAppContextTest(abilityContext:common.UIAbilityConte
                 events: ['clearUpApplicationDataEvent'],
             };
             let startAbility = async (notClear = false) => {
-                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await abilityDelegator.executeShellCommand('aa start -b com.example.stageappcontexttest -a MainAbility');
                 await sleep(3000);
                 await abilityContext.startAbility({
                     bundleName: 'com.example.clearUpApplicationDataHelp',
@@ -449,7 +449,7 @@ export default function stageAppContextTest(abilityContext:common.UIAbilityConte
                 events: ['clearUpApplicationDataEventFeature'],
             };
             let startAbility = async (notClear = false) => {
-                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await abilityDelegator.executeShellCommand('aa start -b com.example.stageappcontexttest -a MainAbility');
                 await sleep(3000);
                 await abilityContext.startAbility({
                     bundleName: 'com.example.clearUpApplicationDataHelp',
@@ -519,7 +519,7 @@ export default function stageAppContextTest(abilityContext:common.UIAbilityConte
                 events: ['clearUpApplicationDataEventFeature'],
             };
             let startAbility = async (notClear = false) => {
-                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await abilityDelegator.executeShellCommand('aa start -b com.example.stageappcontexttest -a MainAbility');
                 await sleep(3000);
                 await abilityContext.startAbility({
                     bundleName: 'com.example.clearUpApplicationDataHelp',
@@ -589,7 +589,7 @@ export default function stageAppContextTest(abilityContext:common.UIAbilityConte
                 events: ['clearUpApplicationDataEventSystem'],
             };
             let startAbility = async (notClear = false) => {
-                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await abilityDelegator.executeShellCommand('aa start -b com.example.stageappcontexttest -a MainAbility');
                 await sleep(3000);
                 await abilityContext.startAbility({
                     bundleName: 'com.example.clearUpApplicationDataHelpSystem',
@@ -659,7 +659,7 @@ export default function stageAppContextTest(abilityContext:common.UIAbilityConte
                 events: ['clearUpApplicationDataEventSystem'],
             };
             let startAbility = async (notClear = false) => {
-                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await abilityDelegator.executeShellCommand('aa start -b com.example.stageappcontexttest -a MainAbility');
                 await sleep(3000);
                 await abilityContext.startAbility({
                     bundleName: 'com.example.clearUpApplicationDataHelpSystem',
@@ -725,7 +725,7 @@ export default function stageAppContextTest(abilityContext:common.UIAbilityConte
             console.log(TAG + ' --- start');
             let createFile = true;
             let startEntery = async () => {
-                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await abilityDelegator.executeShellCommand('aa start -b com.example.stageappcontexttest -a MainAbility');
                 await sleep(3000);
                 await abilityContext.startAbility({
                     bundleName: 'com.example.clearUpApplicationDataHelp',
@@ -781,7 +781,7 @@ export default function stageAppContextTest(abilityContext:common.UIAbilityConte
             }
             let createFileSys = true;
             let startSystem = async (notClear = false) => {
-                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await abilityDelegator.executeShellCommand('aa start -b com.example.stageappcontexttest -a MainAbility');
                 await sleep(3000);
                 await abilityContext.startAbility({
                     bundleName: 'com.example.clearUpApplicationDataHelpSystem',
@@ -852,7 +852,7 @@ export default function stageAppContextTest(abilityContext:common.UIAbilityConte
             console.log(TAG + ' --- start');
             let createFile = true;
             let startEntery = async () => {
-                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await abilityDelegator.executeShellCommand('aa start -b com.example.stageappcontexttest -a MainAbility');
                 await sleep(3000);
                 await abilityContext.startAbility({
                     bundleName: 'com.example.clearUpApplicationDataHelp',
@@ -908,7 +908,7 @@ export default function stageAppContextTest(abilityContext:common.UIAbilityConte
             }
             let createFileSys = true;
             let startSystem = async (notClear = false) => {
-                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await abilityDelegator.executeShellCommand('aa start -b com.example.stageappcontexttest -a MainAbility');
                 await sleep(3000);
                 await abilityContext.startAbility({
                     bundleName: 'com.example.clearUpApplicationDataHelpSystem',
