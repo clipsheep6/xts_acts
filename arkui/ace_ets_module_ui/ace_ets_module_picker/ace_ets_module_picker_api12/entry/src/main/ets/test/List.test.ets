@@ -36,6 +36,7 @@ import triggerSelect from './select/triggerSelect.test'
 import slideRange from './SliderTest/slideRange.test'
 
 import SliderAttrs2 from './SliderTest/SliderAttrs2.test'
+import TimePickerAddApi from './TimePickerTest/TimePickerAddApi.test';
 export default function testsuite() {
     gradientHeight()
     dividerJsunit()
@@ -59,4 +60,5 @@ export default function testsuite() {
     triggerSelect()
     slideRange()
     SliderAttrs2();
+    TimePickerAddApi()
 }

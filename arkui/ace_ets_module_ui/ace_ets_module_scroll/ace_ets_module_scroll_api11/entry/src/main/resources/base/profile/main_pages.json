@@ -17,6 +17,7 @@
         "MainAbility/pages/Tabs/APITabsBarBackgroundBlurStyle",
         "MainAbility/pages/Scroll/APIScrollflingSpeedLimit",
         "MainAbility/pages/Scroll/Scroll",
+        "MainAbility/pages/Swiper/SwiperApi",
         "MainAbility/pages/Scroll/TouchTestStrategy",
         "MainAbility/pages/AlphabetIndexer/alphabet",
         "MainAbility/pages/grid/gridte",
