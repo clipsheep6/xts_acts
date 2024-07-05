@@ -18,6 +18,8 @@ import fileio from "@ohos.fileio";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import { getPropertyBuf } from "./getPropertyBuf";
 import featureAbility from "@ohos.ability.featureAbility";
+import * as imageJsTestBase from "../../../../../../ImageJsTestBase";
+
 export default function imageGetImageProperty() {
     describe("imageGetImageProperty", function () {
         const { ORIENTATION, IMAGE_LENGTH, IMAGE_WIDTH, DATE_TIME_ORIGINAL, EXPOSURE_TIME, SCENE_TYPE, ISO_SPEED_RATINGS,
@@ -88,12 +90,12 @@ export default function imageGetImageProperty() {
 
         async function testGetImageProperties(done, testNum, type, args) {
             let imageSourceApi;
-            if (type == "buf") {
-                const data = getPropertyBuf.buffer;
-                imageSourceApi = image.createImageSource(data);
-            } else {
-                await getFd(type);
-                imageSourceApi = image.createImageSource(filePath);
+            if (type.JPG != undefined) {
+                imageSourceApi = await imageJsTestBase.getImageSourceData(type.JPG, "test_exif.jpg");
+            } else if (type.PNG != undefined) {
+                imageSourceApi = await imageJsTestBase.getImageSourceData(type.PNG, "test_exif.png");
+            } else if (type.TIFF != undefined) {
+                imageSourceApi = await imageJsTestBase.getImageSourceData(type.TIFF, "test.tiff");
             }
 
             if (imageSourceApi == undefined) {
@@ -1148,7 +1150,7 @@ export default function imageGetImageProperty() {
                 IMAGE_LENGTH,
                 IMAGE_WIDTH
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0100", "test_exif.jpg", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0100", { JPG: "url" }, key);
         });
 
         /**
@@ -1165,7 +1167,7 @@ export default function imageGetImageProperty() {
                 ORIENTATION,
                 DATE_TIME
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0200", "test_exif.png", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0200", { PNG: "url" }, key);
         });
 
         /**
@@ -1181,7 +1183,7 @@ export default function imageGetImageProperty() {
             let key = [
                 IMAGE_WIDTH
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0300", "test_exif.jpg", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0300", { JPG: "fd" }, key);
         });
 
          /**
@@ -1197,7 +1199,7 @@ export default function imageGetImageProperty() {
             let key = [
                 ORIENTATION
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0400", "test_exif.png", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0400", { PNG: "fd" }, key);
         });
 
         /**
@@ -1214,7 +1216,7 @@ export default function imageGetImageProperty() {
                 "ErrorKey",
                 IMAGE_WIDTH
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0500", "test_exif.jpg", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0500", { JPG: "rawfile" }, key);
         });
 
         /**
@@ -1231,7 +1233,7 @@ export default function imageGetImageProperty() {
                 "ErrorKey",
                 ORIENTATION
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0600", "test_exif.png", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0600", { PNG: "rawfile" }, key);
         });
 
         /**
@@ -1249,7 +1251,7 @@ export default function imageGetImageProperty() {
                 IMAGE_DESCRIPTION,
                 SCENE_NIGHT_CONF
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0700", "test_exif.jpg", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0700", { JPG: "incremental" }, key);
         });
 
          /**
@@ -1267,7 +1269,7 @@ export default function imageGetImageProperty() {
                 IMAGE_DESCRIPTION,
                 SCENE_NIGHT_CONF
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0800", "test_exif.png", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0800", { PNG: "incremental" }, key);
         });
 
         /**
@@ -1284,7 +1286,7 @@ export default function imageGetImageProperty() {
                 SCENE_FLOWERS_CONF,
                 SCENE_NIGHT_CONF
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0900", "test_exif.jpg", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_0900", { JPG: "buffer" }, key);
         });
 
         /**
@@ -1301,7 +1303,7 @@ export default function imageGetImageProperty() {
                 SCENE_FLOWERS_CONF,
                 SCENE_NIGHT_CONF
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_1000", "test_exif.png", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_1000", { PNG: "buffer" }, key);
         });
 
         /**
@@ -1318,7 +1320,7 @@ export default function imageGetImageProperty() {
                 "ErrorKey1",
                 "ErrorKey2"
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_ERROR_0100", "test_exif.jpg", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_ERROR_0100", { JPG: "url" }, key);
         });
 
         /**
@@ -1335,7 +1337,7 @@ export default function imageGetImageProperty() {
                 "ErrorKey1",
                 "ErrorKey2"
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_ERROR_0200", "test_exif.png", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_ERROR_0200", { PNG: "url" }, key);
         });
 
         /**
@@ -1352,7 +1354,7 @@ export default function imageGetImageProperty() {
                 IMAGE_LENGTH,
                 IMAGE_WIDTH
             ];
-            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_ERROR_0300", "test.tiff", key);
+            testGetImageProperties(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTIES_PROMISE_ERROR_0300", { TIFF: "url" }, key);
         });
 
         /**

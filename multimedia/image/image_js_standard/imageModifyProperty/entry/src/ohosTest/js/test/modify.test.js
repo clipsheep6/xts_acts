@@ -18,6 +18,7 @@ import fileio from "@ohos.fileio";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import { modifyBuf } from "./modifyBuffer";
 import featureAbility from "@ohos.ability.featureAbility";
+import * as imageJsTestBase from "../../../../../../ImageJsTestBase";
 
 export default function imageModifyProperty() {
     describe("imageModifyProperty", function () {
@@ -76,12 +77,10 @@ export default function imageModifyProperty() {
 
         async function testModifyImageProperties(done, testNum, type, props, checkKey) {
             let imageSourceApi;
-            if (type == "buffer") {
-                const data = modifyBuf.buffer;
-                imageSourceApi = image.createImageSource(data);
-            } else {
-                await getFd(type);
-                imageSourceApi = image.createImageSource(filePath);
+            if (type.JPG != undefined) {
+                imageSourceApi = await imageJsTestBase.getImageSourceData(type.JPG, "test_exif.jpg");
+            } else if (type.TIFF != undefined) {
+                imageSourceApi = await imageJsTestBase.getImageSourceData(type.TIFF, "test.tiff");
             }
             if (imageSourceApi == undefined) {
                 console.info(`${testNum} create image source failed`);
@@ -3612,7 +3611,7 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_0100",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
                 checkKey
             );
@@ -3638,7 +3637,7 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_0200",
-                "test_exif.jpg",
+                { JPG: "rawfile" },
                 props,
                 checkKey
             );
@@ -3666,7 +3665,7 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_0300",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
                 checkKey
             );
@@ -3694,7 +3693,7 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_0400",
-                "test_exif.jpg",
+                { JPG: "fd" },
                 props,
                 checkKey
             );
@@ -3722,7 +3721,7 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_0500",
-                "test_exif.jpg",
+                { JPG: "incremental" },
                 props,
                 checkKey
             );
@@ -3750,10 +3749,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_0100",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
-                checkKey,
-                undefined
+                checkKey
             );
         });
 
@@ -3779,10 +3777,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_0200",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
-                checkKey,
-                undefined
+                checkKey
             );
         });
 
@@ -3808,10 +3805,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_0300",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
-                checkKey,
-                undefined
+                checkKey
             );
         });
 
@@ -3837,10 +3833,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_0400",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
-                checkKey,
-                undefined
+                checkKey
             );
         });
 
@@ -3868,10 +3863,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_0500",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
-                checkKeys,
-                undefined
+                checkKeys
             );
         });
 
@@ -3897,10 +3891,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_0600",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
-                checkKey,
-                undefined
+                checkKey
             );
         });
 
@@ -3926,10 +3919,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_0700",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
-                checkKey,
-                undefined
+                checkKey
             );
         });
 
@@ -3955,10 +3947,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_0800",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
-                checkKey,
-                undefined
+                checkKey
             );
         });
 
@@ -3988,10 +3979,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_0900",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
-                checkKey,
-                undefined
+                checkKey
             );
         });
 
@@ -4019,10 +4009,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_1000",
-                "test_exif.jpg",
+                { JPG: "url" },
                 props,
-                checkKey,
-                undefined
+                checkKey
             );
         });
 
@@ -4048,10 +4037,9 @@ export default function imageModifyProperty() {
             await testModifyImageProperties(
                 done,
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTIES_PROMISE_ERROR_1100",
-                "test.tiff",
+                { TIFF: "url" },
                 props,
-                checkKey,
-                undefined
+                checkKey
             );
         });
 
