@@ -17,6 +17,8 @@ import image from "@ohos.multimedia.image";
 import fileio from "@ohos.fileio";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import featureAbility from "@ohos.ability.featureAbility";
+import * as imageJsTestBase from '../../../../../../ImageJsTestBase';
+
 export default function imageGif() {
     describe("imageGif", function () {
         const RGBA_8888 = image.PixelMapFormat.RGBA_8888;
@@ -58,116 +60,12 @@ export default function imageGif() {
 
         afterEach(async function () {
             console.info("afterEach case");
+            await imageJsTestBase.releaseAll();
         });
 
         afterAll(async function () {
             console.info("afterAll case");
         });
-
-        async function packingPromise(done, testNum, pixelmap) {
-            const imagePackerApi = image.createImagePacker();
-            if (imagePackerApi == undefined) {
-                console.info(`${testNum} packingPromise create image packer failed`);
-                expect(false).assertTrue();
-                done();
-            } else {
-                let packOpts = { format: ["image/webp"], quality: 100 };
-                console.info(
-                    `${testNum} packingPromise packOpts={${JSON.stringify(packOpts)}}`
-                );
-                try {
-                    let data = await imagePackerApi.packing(pixelmap, packOpts);
-                    console.info(`${testNum} packing finished`);
-                    if (data == undefined) {
-                        console.info(`${testNum} packing failed`);
-                        expect(false).assertTrue();
-                        done();
-                        return;
-                    }
-                    console.info(`${testNum} packing success`);
-                    var dataArr = new Uint8Array(data);
-                    console.info(`${testNum} packing show begin length: ${dataArr.length} `);
-                    var line = 0;
-                    for (var i = 0; i < dataArr.length; i++) {
-                        var str = `dataArr[ ${i} ]=`;
-                        for (var j = 0; j < 20 && i < dataArr.length; j++, i++) {
-                            str = str + dataArr[i] + ",";
-                        }
-                        console.info(`${testNum} packing str: ${str}`);
-                        i--;
-                        line++;
-                    }
-                    console.info(`${testNum} packing show end line: ${line}`);
-                    expect(true).assertTrue();
-                    done();
-                } catch (error) {
-                    console.info(`${testNum} packingPromise error: ${error}`);
-                    expect(false).assertTrue();
-                    done();
-                }
-            }
-        }
-
-        async function getDelayTimePromise(done, testNum, picName) {
-            await getFd(picName);
-            let imageSourceApi = image.createImageSource(fdNumber);
-            if (imageSourceApi == undefined) {
-                console.info(`${testNum} getDelayTimePromise create imagesource failed`);
-                expect(false).assertTrue();
-                done();
-            } else {
-                try {
-                    console.info(`${testNum} getDelayTimePromise create imagesource success`);
-                    let delayTimes = await imageSourceApi.getDelayTimeList();
-                    if (delayTimes != undefined) {
-                        console.info(`${testNum} getDelayTimePromise getDelayTime success`);
-                        expect(true).assertTrue();
-                        console.info(`${testNum} delayTimes show begin length: ${delayTimes.length} `);
-                        for (var i = 0; i < delayTimes.length; i++) {
-                            console.info(`${testNum} delayTimes[ ${i} ]= ${delayTimes[i]}`);
-                        }
-                        console.info(`${testNum} delayTimes show end`);
-                    } else {
-                        console.info(`${testNum} getDelayTimePromise getDelayTime failed`);
-                        expect(false).assertTrue();
-                    }
-                    done();
-                } catch (error) {
-                    console.log(`${testNum} getDelayTimePromise err: ${error}`);
-                    expect(false).assertTrue();
-                    done();
-                };
-            }
-        }
-
-        async function getDelayTimeCallBack(done, testNum, picName) {
-            let imageSourceApi;
-            await getFd(picName);
-            imageSourceApi = image.createImageSource(fdNumber);
-            if (imageSourceApi == undefined) {
-                console.info(`${testNum} getDelayTimeCallBack create imagesource failed`);
-                expect(false).assertTrue();
-                done();
-            } else {
-                console.info(`${testNum} getDelayTimeCallBack create imagesource success`);
-                imageSourceApi.getDelayTimeList((err, delayTimes) => {
-                    if (err != undefined) {
-                        console.info(`${testNum} getDelayTimeCallBack getDelayTime failed err: ${err}`);
-                        expect(false).assertTrue();
-                        done();
-                        return;
-                    }
-                    expect(delayTimes != undefined).assertTrue();
-                    console.info(`${testNum} getDelayTimeCallBack getDelayTime success`);
-                    console.info(`${testNum} delayTimes show begin(length:` + delayTimes.length + `)`);
-                    for (var i = 0; i < delayTimes.length; i++) {
-                        console.info(`${testNum} delayTimes[` + i + `]=` + delayTimes[i]);
-                    }
-                    console.info(`${testNum} delayTimes show end`);
-                    done();
-                });
-            }
-        }
 
         async function getDisposalTypePromise(done, testNum, picName) {
             await getFd(picName);
@@ -265,7 +163,8 @@ export default function imageGif() {
                     let pixelMapList = await imageSourceApi.createPixelMapList(decodeOpts);
                     if (pixelMapList != undefined) {
                         console.info(`${testNum} pixelMapList show begin(length: ${pixelMapList.length})`);
-                        packingPromise(done, testNum, pixelMapList[0]);
+                        let packOpts = { format: ["image/webp"], quality: 100 };
+                        imageJsTestBase.packingPromise(done, testNum, pixelMapList[0], packOpts);
                     } else {
                         console.info(`${testNum} createPixelMapListPromise createPixelMapList failed`);
                         expect(false).assertTrue();
@@ -297,7 +196,8 @@ export default function imageGif() {
                     }
                     expect(pixelMapList != undefined).assertTrue();
                     console.info(`${testNum} pixelMapList show begin length: ${pixelMapList.length}`);
-                    packingPromise(done, testNum, pixelMapList[0]);
+                    let packOpts = { format: ["image/webp"], quality: 100 };
+                    imageJsTestBase.packingPromise(done, testNum, pixelMapList[0], packOpts);
                 });
             }
         }
@@ -355,7 +255,7 @@ export default function imageGif() {
          * @tc.level     : Level 0
          */
         it("SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_PROMISE_0100", 0, async function (done) {
-            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_PROMISE_0100", "test.gif");
+            imageJsTestBase.getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_PROMISE_0100", "test.gif");
         });
 
         /**
@@ -368,7 +268,7 @@ export default function imageGif() {
          * @tc.level     : Level 0
          */
         it("SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_PROMISE_0200", 0, async function (done) {
-            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_PROMISE_0200", "moving_test.gif");
+            imageJsTestBase.getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_PROMISE_0200", "moving_test.gif");
         });
 
         /**
@@ -381,7 +281,7 @@ export default function imageGif() {
          * @tc.level     : Level 0
          */
         it("SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_CALLBACK_0100", 0, async function (done) {
-            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_CALLBACK_0100", "test.gif");
+            imageJsTestBase.getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_CALLBACK_0100", "test.gif");
         });
 
         /**
@@ -394,7 +294,7 @@ export default function imageGif() {
          * @tc.level     : Level 0
          */
         it("SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_CALLBACK_0200", 0, async function (done) {
-            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_CALLBACK_0200", "moving_test.gif");
+            imageJsTestBase.getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_GIF_GETDELAYTIME_CALLBACK_0200", "moving_test.gif");
         });
 
         /**

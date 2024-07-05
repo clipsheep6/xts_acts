@@ -17,6 +17,8 @@ import image from "@ohos.multimedia.image";
 import fileio from "@ohos.fileio";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import featureAbility from "@ohos.ability.featureAbility";
+import * as imageJsTestBase from "../../../../../../ImageJsTestBase"
+
 export default function imageRaw() {
     describe("imageRaw", function () {
         let globalpixelmap;
@@ -86,62 +88,6 @@ export default function imageRaw() {
         afterAll(async function () {
             console.info("afterAll case");
         });
-
-        async function packingPromise(done, testNum, pixelmap, packOpts) {
-            console.info(`${testNum} packingPromise enter`);
-            try {
-                const imagePackerApi = image.createImagePacker();
-                if (imagePackerApi == undefined) {
-                    console.info(`${testNum} packingPromise create image packer failed`);
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalPacker = imagePackerApi;
-                    let packOptsFormat = `format:` + packOpts.format;
-                    let packOptsQuality = `quality:` + packOpts.quality;
-                    console.info(
-                        `${testNum} packingPromise packOpts={` + packOptsFormat + `, ` + packOptsQuality + `}`
-                    );
-                    imagePackerApi
-                        .packing(pixelmap, packOpts)
-                        .then((data) => {
-                            console.info(`${testNum} packing finished`);
-                            if (data != undefined) {
-                                console.info(`${testNum} packing success`);
-                                var dataArr = new Uint8Array(data);
-                                console.info(`${testNum} packing show begin(length:` + dataArr.length + `)`);
-                                var line = 0;
-                                for (var i = 0; i < dataArr.length; i++) {
-                                    var str = `dataArr[` + i + `]=`;
-                                    for (var j = 0; j < 20 && i < dataArr.length; j++, i++) {
-                                        str = str + "," + dataArr[i];
-                                    }
-                                    console.info(`${testNum} packing ` + str);
-                                    i--;
-                                    line++;
-                                }
-                                console.info(`${testNum} packing show end(line:` + line + `)`);
-                                expect(true).assertTrue();
-                                done();
-                            } else {
-                                console.info(`${testNum} packing failed`);
-                                expect(false).assertTrue();
-                                done();
-                            }
-                        })
-                        .catch((error) => {
-                            console.log(`${testNum} packing error: ` + error);
-                            expect(false).assertTrue();
-                            done();
-                        });
-                }
-            } catch (error) {
-                console.info(`${testNum} packingPromise error: ` + error);
-                expect(false).assertTrue();
-                done();
-            }
-            console.info(`${testNum} packingPromise leave`);
-        }
 
         async function createPixelMapPromise(done, testNum, picName, decodeOpts, packFunc, packOpts) {
             let imageSourceApi;
@@ -298,7 +244,14 @@ export default function imageRaw() {
                 index: 0,
             };
             let packOpts = { format: ["image/webp"], quality: 100 };
-            createPixelMapPromise(done, "SUB_MULTIMEDIA_IMAGE_RAW_0100", "test.arw", decodeOpts, packingPromise, packOpts);
+            createPixelMapPromise(
+                done, 
+                "SUB_MULTIMEDIA_IMAGE_RAW_0100", 
+                "test.arw", 
+                decodeOpts, 
+                imageJsTestBase.packingPromise, 
+                packOpts
+            );
         });
 
         /**
@@ -322,7 +275,12 @@ export default function imageRaw() {
                 index: 0,
             };
             let packOpts = { format: ["image/webp"], quality: 100 };
-            createPixelMapPromise(done, "SUB_MULTIMEDIA_IMAGE_RAW_0200", "test.cr2", decodeOpts, packingPromise, packOpts);
+            createPixelMapPromise(
+                done, 
+                "SUB_MULTIMEDIA_IMAGE_RAW_0200", "test.cr2", 
+                decodeOpts, imageJsTestBase.packingPromise, 
+                packOpts
+            );
         });
 
         /**
@@ -351,7 +309,7 @@ export default function imageRaw() {
                 "SUB_MULTIMEDIA_IMAGE_RAW_0300",
                 "test_dng.dng",
                 decodeOpts,
-                packingPromise,
+                imageJsTestBase.packingPromise,
                 packOpts
             );
         });
@@ -377,7 +335,14 @@ export default function imageRaw() {
                 index: 0,
             };
             let packOpts = { format: ["image/webp"], quality: 100 };
-            createPixelMapPromise(done, "SUB_MULTIMEDIA_IMAGE_RAW_0400", "test.nrw", decodeOpts, packingPromise, packOpts);
+            createPixelMapPromise(
+                done, 
+                "SUB_MULTIMEDIA_IMAGE_RAW_0400", 
+                "test.nrw", 
+                decodeOpts, 
+                imageJsTestBase.packingPromise, 
+                packOpts
+            );
         });
 
         /**
@@ -401,7 +366,14 @@ export default function imageRaw() {
                 index: 0,
             };
             let packOpts = { format: ["image/webp"], quality: 100 };
-            createPixelMapPromise(done, "SUB_MULTIMEDIA_IMAGE_RAW_0500", "test.pef", decodeOpts, packingPromise, packOpts);
+            createPixelMapPromise(
+                done, 
+                "SUB_MULTIMEDIA_IMAGE_RAW_0500",
+                "test.pef",
+                decodeOpts,
+                imageJsTestBase.packingPromise,
+                packOpts
+            );
         });
 
         /**
@@ -425,7 +397,14 @@ export default function imageRaw() {
                 index: 0,
             };
             let packOpts = { format: ["image/webp"], quality: 100 };
-            createPixelMapPromise(done, "SUB_MULTIMEDIA_IMAGE_RAW_0600", "test.raf", decodeOpts, packingPromise, packOpts);
+            createPixelMapPromise(
+                done,
+                "SUB_MULTIMEDIA_IMAGE_RAW_0600",
+                "test.raf",
+                decodeOpts,
+                imageJsTestBase.packingPromise,
+                packOpts
+            );
         });
 
         /**
@@ -449,7 +428,14 @@ export default function imageRaw() {
                 index: 0,
             };
             let packOpts = { format: ["image/webp"], quality: 100 };
-            createPixelMapPromise(done, "SUB_MULTIMEDIA_IMAGE_RAW_0700", "test.rw2", decodeOpts, packingPromise, packOpts);
+            createPixelMapPromise(
+                done,
+                "SUB_MULTIMEDIA_IMAGE_RAW_0700",
+                "test.rw2",
+                decodeOpts,
+                imageJsTestBase.packingPromise,
+                packOpts
+            );
         });
 
         /**
@@ -478,7 +464,7 @@ export default function imageRaw() {
                 "SUB_MULTIMEDIA_IMAGE_RAW_0800",
                 "test.arw",
                 decodeOpts,
-                packingPromise,
+                imageJsTestBase.packingPromise,
                 packOpts
             );
         });
@@ -509,7 +495,7 @@ export default function imageRaw() {
                 "SUB_MULTIMEDIA_IMAGE_RAW_0900",
                 "test.cr2",
                 decodeOpts,
-                packingPromise,
+                imageJsTestBase.packingPromise,
                 packOpts
             );
         });
@@ -540,7 +526,7 @@ export default function imageRaw() {
                 "SUB_MULTIMEDIA_IMAGE_RAW_1000",
                 "test_dng.dng",
                 decodeOpts,
-                packingPromise,
+                imageJsTestBase.packingPromise,
                 packOpts
             );
         });
@@ -571,7 +557,7 @@ export default function imageRaw() {
                 "SUB_MULTIMEDIA_IMAGE_RAW_1100",
                 "test.nrw",
                 decodeOpts,
-                packingPromise,
+                imageJsTestBase.packingPromise,
                 packOpts
             );
         });
@@ -602,7 +588,7 @@ export default function imageRaw() {
                 "SUB_MULTIMEDIA_IMAGE_RAW_1200",
                 "test.pef",
                 decodeOpts,
-                packingPromise,
+                imageJsTestBase.packingPromise,
                 packOpts
             );
         });
@@ -633,7 +619,7 @@ export default function imageRaw() {
                 "SUB_MULTIMEDIA_IMAGE_RAW_1300",
                 "test.raf",
                 decodeOpts,
-                packingPromise,
+                imageJsTestBase.packingPromise,
                 packOpts
             );
         });
@@ -664,7 +650,7 @@ export default function imageRaw() {
                 "SUB_MULTIMEDIA_IMAGE_RAW_1400",
                 "test.rw2",
                 decodeOpts,
-                packingPromise,
+                imageJsTestBase.packingPromise,
                 packOpts
             );
         });

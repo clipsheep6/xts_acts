@@ -17,6 +17,7 @@ import image from "@ohos.multimedia.image";
 import fileio from "@ohos.fileio";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import featureAbility from "@ohos.ability.featureAbility";
+import * as imageJsTestBase from "../../../../../../ImageJsTestBase"
 
 export default function imageSvg() {
     describe("imageSvg", function () {
@@ -60,51 +61,6 @@ export default function imageSvg() {
         afterAll(async function () {
             console.info("afterAll case");
         });
-
-        async function packingPromise(done, testNum, pixelmap, packOpts) {
-            try {
-                const imagePackerApi = image.createImagePacker();
-                if (imagePackerApi == undefined) {
-                    console.info(`${testNum} packingPromise create image packer failed`);
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    let packOptsFormat = `format:` + packOpts.format;
-                    let packOptsQuality = `quality:` + packOpts.quality;
-                    console.info(
-                        `${testNum} packingPromise packOpts={${packOptsFormat}, ${packOptsQuality} }`
-                    );
-                    let data = await imagePackerApi.packing(pixelmap, packOpts);
-                    console.info(`${testNum} packing finished`);
-                    if (data != undefined) {
-                        console.info(`${testNum} packing success`);
-                        var dataArr = new Uint8Array(data);
-                        console.info(`${testNum} packing show begin(length: ${dataArr.length})`);
-                        var line = 0;
-                        for (var i = 0; i < dataArr.length; i++) {
-                            var str = `dataArr[${i}]=`;
-                            for (var j = 0; j < 20 && i < dataArr.length; j++, i++) {
-                                str = str + "," + dataArr[i];
-                            }
-                            console.info(`${testNum} packing ` + str);
-                            i--;
-                            line++;
-                        }
-                        console.info(`${testNum} packing show end(line: ${line}  )`);
-                        expect(true).assertTrue();
-                        done();
-                    } else {
-                        console.info(`${testNum} packing failed`);
-                        expect(false).assertTrue();
-                        done();
-                    }
-                }
-            } catch (error) {
-                console.info(`${testNum} packingPromise error: ` + error);
-                expect(false).assertTrue();
-                done();
-            }
-        }
 
         async function createPixelMapPromise(done, testNum, picName, decodeOpts, packFunc, packOpts) {
             let imageSourceApi;
@@ -226,7 +182,7 @@ export default function imageSvg() {
             };
             let packOpts = { format: ["image/webp"], quality: 100 };
             createPixelMapPromise(done, "SUB_MULTIMEDIA_IMAGE_SVG_PROMISE_0100", "test_large.svg", decodeOpts,
-                packingPromise, packOpts);
+                imageJsTestBase.packingPromise, packOpts);
         });
 
         /**
@@ -251,7 +207,7 @@ export default function imageSvg() {
             };
             let packOpts = { format: ["image/webp"], quality: 100 };
             createPixelMapCallBack(done, "SUB_MULTIMEDIA_IMAGE_SVG_CALLBACK_0100", "test_large.svg", decodeOpts,
-                packingPromise, packOpts);
+                imageJsTestBase.packingPromise, packOpts);
         });
 
         /**

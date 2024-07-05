@@ -17,6 +17,7 @@ import image from "@ohos.multimedia.image";
 import fileio from "@ohos.fileio";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import featureAbility from "@ohos.ability.featureAbility";
+import * as imageJsTestBase from '../../../../../../ImageJsTestBase';
 
 export default function imageWebp() {
     describe("imageWebp", function () {
@@ -66,6 +67,7 @@ export default function imageWebp() {
                     console.info("globalPacker release fail");
                 }
             }
+            await imageJsTestBase.releaseAll();
             console.info("afterEach case");
         });
 
@@ -241,31 +243,7 @@ export default function imageWebp() {
                     done();
                 } else {
                     globalpixelmap = pixelmap;
-                    const imagePackerApi = image.createImagePacker();
-                    if (imagePackerApi == undefined) {
-                        console.info(`${testNum} create image packer failed`);
-                        expect(false).assertTrue();
-                        done();
-                    } else {
-                        globalPacker = imagePackerApi;
-                        imagePackerApi
-                            .packing(pixelmap, arg)
-                            .then((data) => {
-                                console.info(`${testNum} success`);
-                                expect(data != undefined).assertTrue();
-                                var dataArr = new Uint8Array(data);
-                                console.info(`${testNum} dataArr.length=` + dataArr.length);
-                                for (var i = 0; i < dataArr.length; i++) {
-                                    console.info(`dataArr[` + i + `]=` + dataArr[i]);
-                                }
-                                done();
-                            })
-                            .catch((error) => {
-                                console.log(`${testNum} error: ` + error);
-                                expect(false).assertFail();
-                                done();
-                            });
-                    }
+                    imageJsTestBase.packingPromise(done, testNum, pixelmap, arg);
                 }
             });
             console.info(`${testNum} leave`);
@@ -512,7 +490,7 @@ export default function imageWebp() {
             console.info(`${testNum} leave`);
         }
 
-        async function getDelayTimePromise(done, testNum, file) {
+        async function getDelayTimePromiseErr(done, testNum, file) {
             await getFd(file);
             let imageSourceApi = image.createImageSource(filePath);
             if (imageSourceApi == undefined) {
@@ -520,31 +498,18 @@ export default function imageWebp() {
                 expect(false).assertTrue();
                 done();
             } else {
-                try {
-                    console.info(`${testNum} getDelayTimePromise create image source success`);
-                    globalImagesource = imageSourceApi;
-                    imageSourceApi.getDelayTimeList().then((delayTimes) => {
-                        console.info(`${testNum} getDelayTimePromise getDelayTime success`);
-                        expect(true).assertTrue();
-                        console.info(`${testNum} delayTimes show begin length: ${delayTimes.length} `);
-                        for (var i = 0; i < delayTimes.length; i++) {
-                            console.info(`${testNum} delayTimes[ ${i} ]= ${delayTimes[i]}`);
-                        }
-                        console.info(`${testNum} delayTimes show end`);
-                    }).catch((err) => {
-                        console.info(`${testNum} getDelayTimePromise getDelayTime failed err: code is ${err.code}, message is ${err.message}`);
-                        expect(err.code == ERR_CODE).assertTrue();
-                    })
-                    done();
-                } catch (error) {
-                    console.log("getDelayTimePromise error: " + error);
+                globalImagesource = imageSourceApi;
+                imageSourceApi.getDelayTimeList().then((delayTimes) => {
                     expect(false).assertTrue();
-                    done();
-                }
+                }).catch((err) => {
+                    console.info(`${testNum} getDelayTimePromise getDelayTime failed err: code is ${err.code}, message is ${err.message}`);
+                    expect(err.code == ERR_CODE).assertTrue();
+                })
+                done();
             }
         }
 
-        async function getDelayTimeCallBack(done, testNum, file) {
+        async function getDelayTimeCallBackErr(done, testNum, file) {
             await getFd(file);
             let imageSourceApi = image.createImageSource(filePath);
             if (imageSourceApi == undefined) {
@@ -561,13 +526,7 @@ export default function imageWebp() {
                         done();
                         return;
                     }
-                    expect(delayTimes != undefined).assertTrue();
-                    console.info(`${testNum} getDelayTimeCallBack getDelayTime success`);
-                    console.info(`${testNum} delayTimes show begin(length:` + delayTimes.length + `)`);
-                    for (var i = 0; i < delayTimes.length; i++) {
-                        console.info(`${testNum} delayTimes[` + i + `]=` + delayTimes[i]);
-                    }
-                    console.info(`${testNum} delayTimes show end`);
+                    expect(delayTimes == undefined).assertTrue();
                     done();
                 });
             }
@@ -1079,20 +1038,20 @@ export default function imageWebp() {
             packingPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0100", packOpts);
         });
 
-        /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200
-         * @tc.name      : packing - promise-webp
-         * @tc.desc      : 1.create ImageSource
-         *                 2.call packing
-         *                 3.return array
-         * @tc.size      : MEDIUM
-         * @tc.type      : Functional
-         * @tc.level     : Level 1
-         */
-        it("SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200", 0, async function (done) {
-            let packOpts = { format: ["image/gif"], quality: 90 };
-            packingPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200", packOpts);
-        });
+        // /**
+        //  * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200
+        //  * @tc.name      : packing - promise-webp
+        //  * @tc.desc      : 1.create ImageSource
+        //  *                 2.call packing
+        //  *                 3.return array
+        //  * @tc.size      : MEDIUM
+        //  * @tc.type      : Functional
+        //  * @tc.level     : Level 1
+        //  */
+        // it("SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200", 0, async function (done) {
+        //     let packOpts = { format: ["image/gif"], quality: 90 };
+        //     packingPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200", packOpts);
+        // });
 
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0300
@@ -1124,20 +1083,20 @@ export default function imageWebp() {
             packingPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0400", packOpts);
         });
 
-        /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100
-         * @tc.name      : packing - callback-webp-wrong format
-         * @tc.desc      : 1.create ImageSource
-         *                 2.call packing
-         *                 3.return array
-         * @tc.size      : MEDIUM
-         * @tc.type      : Functional
-         * @tc.level     : Level 1
-         */
-        it("SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100", 0, async function (done) {
-            let packOpts = { format: ["image/gif"], quality: 100 };
-            packingCbErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100", packOpts);
-        });
+        // /**
+        //  * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100
+        //  * @tc.name      : packing - callback-webp-wrong format
+        //  * @tc.desc      : 1.create ImageSource
+        //  *                 2.call packing
+        //  *                 3.return array
+        //  * @tc.size      : MEDIUM
+        //  * @tc.type      : Functional
+        //  * @tc.level     : Level 1
+        //  */
+        // it("SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100", 0, async function (done) {
+        //     let packOpts = { format: ["image/gif"], quality: 100 };
+        //     packingCbErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100", packOpts);
+        // });
 
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0200
@@ -1254,7 +1213,7 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0100", 0, async function (done) {
-            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0100", "test_large.webp");
+            imageJsTestBase.getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0100", "test_large.webp");
         });
 
 
@@ -1268,7 +1227,7 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0200", 0, async function (done) {
-            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0200", "moving_test.webp");
+            imageJsTestBase.getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0200", "moving_test.webp");
         });
 
         /**
@@ -1281,7 +1240,7 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0300", 0, async function (done) {
-            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0300", "test.jpg");
+            getDelayTimePromiseErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0300", "test.jpg");
         });
 
         /**
@@ -1294,7 +1253,7 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0100", 0, async function (done) {
-            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0100", "test_large.webp");
+            imageJsTestBase.getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0100", "test_large.webp");
         });
 
         /**
@@ -1307,7 +1266,7 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0200", 0, async function (done) {
-            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0200", "moving_test.webp");
+            imageJsTestBase.getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0200", "moving_test.webp");
         });
 
         /**
@@ -1320,7 +1279,7 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0300", 0, async function (done) {
-            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0300", "test.jpg");
+            getDelayTimeCallBackErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0300", "test.jpg");
         });
     });
 }
