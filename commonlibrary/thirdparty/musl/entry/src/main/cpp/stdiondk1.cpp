@@ -159,7 +159,7 @@ static napi_value Sprintf_Chk_One(napi_env env, napi_callback_info info)
     char src[] = "hello";
     char dest[100] = {0};
     int ret = MPARAM_1;
-    ret = __sprintf_chk(dest, PARAM_0, sizeof(dest), format, args);
+    ret = __sprintf_chk(dest, PARAM_0, sizeof(dest), %s, src);
     if (ret == PARAM_5) {
         ret = PARAM_1;
     }
