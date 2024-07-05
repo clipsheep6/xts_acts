@@ -42,9 +42,14 @@ export default function StartAbilityTest() {
 
     afterAll(async (done: Function) => {
       let driver = Driver.create();
-      let componentCounter = await driver.findComponent(ON.text("知道了"));
-      if (componentCounter) {
-        componentCounter.click();
+      let componentCounter1 = await driver.findComponent(ON.text("知道了"));
+      if (componentCounter1) {
+        componentCounter1.click();
+      }
+      await sleep(500);
+      let componentCounter2 = await driver.findComponent(ON.text("取消"));
+      if (componentCounter2) {
+        componentCounter2.click();
       }
       await sleep(500);
       done();
