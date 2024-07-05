@@ -762,5 +762,171 @@ export default function graphicTextClass(context, windowStage, abilityStorage) {
         }
       }
     })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_028
+     * @tc.name      : testGetFontMetricsByTextStyle
+     * @tc.desc      : To test Paragraph getFontMetricsByTextStyle.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetFontMetricsByTextStyle', 28, async function () {
+      let msg = "testGetFontMetricsByTextStyle"
+      console.info(msg + 'begin');
+      let paragraph = buildParagraph();
+      let myTextStyle1: text.TextStyle = {};
+      let myTextStyle2: text.TextStyle = {
+        decoration: {textDecoration: text.TextDecorationType.NONE},
+        color: { alpha: 255, red: 0, green: 255, blue: 0 },
+        fontSize: 50,
+        fontWeight: text.FontWeight.W400,
+        baseline: text.TextBaseline.ALPHABETIC,
+        heightScale: 1,
+        heightOnly:true,
+        fontFamilies:["Roboto"],
+        fontStyle:text.FontStyle.NORMAL,
+        locale:"en",
+      };
+      try {
+        let fontMetrics1: drawing.FontMetrics = paragraph.getFontMetricsByTextStyle(myTextStyle1);
+        let fontMetrics2: drawing.FontMetrics = paragraph.getFontMetricsByTextStyle(myTextStyle2);
+      } catch (err) {
+        console.info(msg + 'test getFontMetricsByTextStyle error ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_029
+     * @tc.name      : testGetLineFontMetrics
+     * @tc.desc      : To test Paragraph getLineFontMetrics.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetLineFontMetrics', 29, async function () {
+      let msg = "testGetLineFontMetrics"
+      console.info(msg + 'begin');
+
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addText("123\nA\n    \nB");
+      let paragraph = ParagraphGraphBuilder.build();
+      paragraph.layoutSync(200);
+      try {
+        let fontMetricsList1: Array<drawing.FontMetrics> = paragraph.getLineFontMetrics(0);
+        expect(fontMetricsList1.length).assertEqual(0);
+        let fontMetricsList2: Array<drawing.FontMetrics> = paragraph.getLineFontMetrics(1);
+        expect(fontMetricsList2.length).assertEqual(3);
+        let fontMetricsList3: Array<drawing.FontMetrics> = paragraph.getLineFontMetrics(2);
+        expect(fontMetricsList3.length).assertEqual(1);
+        let fontMetricsList4: Array<drawing.FontMetrics> = paragraph.getLineFontMetrics(3);
+        expect(fontMetricsList4.length).assertEqual(0);
+        let fontMetricsList5: Array<drawing.FontMetrics> = paragraph.getLineFontMetrics(100);
+        expect(fontMetricsList5.length).assertEqual(0);
+      } catch (err) {
+        console.info(msg + 'test getLineFontMetrics error ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_030
+     * @tc.name      : testIsStrutStyleEqual
+     * @tc.desc      : To test isStrutStyleEqual.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testIsStrutStyleEqual', 30, async function () {
+      let msg = "testIsStrutStyleEqual"
+      console.info(msg + 'begin');
+      let fontFamilieArr: string = ["Roboto"];
+      let testStrutStyle1: text.StrutStyle = {}
+      let testStrutStyle2: text.StrutStyle = {}
+      let testStrutStyle3: text.StrutStyle = {
+        fontFamilies: fontFamilieArr,
+        fontStyle: text.FontStyle.ITALIC,
+        fontWidth: text.FontWidth.EXTRA_CONDENSED,
+        fontWeight: text.FontWeight.W200,
+        fontSize: 40,
+        height: 0,
+        leading: 0,
+        forceHeight: true,
+        enabled: true,
+        heightOverride: true,
+        halfLeading: true,
+      };
+      let testStrutStyle4: text.StrutStyle = {
+        fontFamilies: fontFamilieArr,
+        fontStyle: text.FontStyle.ITALIC,
+        fontWidth: text.FontWidth.EXTRA_CONDENSED,
+        fontWeight: text.FontWeight.W200,
+        fontSize: 40,
+        height: 0,
+        leading: 0,
+        forceHeight: true,
+        enabled: true,
+        heightOverride: true,
+        halfLeading: true,
+      };
+      let testStrutStyle5: text.StrutStyle = {
+        fontFamilies: fontFamilieArr,
+      };
+      let testStrutStyle6: text.StrutStyle = {
+        fontStyle: text.FontStyle.ITALIC,
+      };
+      let testStrutStyle7: text.StrutStyle = {
+        fontWidth: text.FontWidth.EXTRA_CONDENSED,
+      };
+      let testStrutStyle8: text.StrutStyle = {
+        fontWeight: text.FontWeight.W200,
+      };
+      let testStrutStyle9: text.StrutStyle = {
+        fontSize: 40,
+      };
+      let testStrutStyle10: text.StrutStyle = {
+        height: 0,
+      };
+      let testStrutStyle11: text.StrutStyle = {
+        leading: 0,
+      };
+      let testStrutStyle12: text.StrutStyle = {
+        forceHeight: true,
+      };
+      let testStrutStyle13: text.StrutStyle = {
+        enabled: true,
+      };
+      let testStrutStyle14: text.StrutStyle = {
+        heightOverride: true,
+      };
+      let testStrutStyle15: text.StrutStyle = {
+        halfLeading: true,
+      };
+      try {
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle2)).assertTrue();
+        expect(text.isStrutStyleEqual(testStrutStyle3, testStrutStyle4)).assertTrue();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle5)).assertFalse();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle6)).assertFalse();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle7)).assertFalse();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle8)).assertFalse();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle9)).assertFalse();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle10)).assertFalse();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle11)).assertFalse();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle12)).assertFalse();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle13)).assertFalse();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle14)).assertFalse();
+        expect(text.isStrutStyleEqual(testStrutStyle1, testStrutStyle15)).assertFalse();
+      } catch (err) {
+        console.info(msg + 'test IsStrutStyleEqual error ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+
   })
 }
