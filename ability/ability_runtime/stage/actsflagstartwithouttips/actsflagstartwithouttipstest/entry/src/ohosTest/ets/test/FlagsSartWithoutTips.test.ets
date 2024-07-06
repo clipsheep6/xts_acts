@@ -167,6 +167,9 @@ export default function flagstartwithouttipstest() {
       let getCloseBtn = false;
       try {
         await context.startAbility(wantInfo);
+        await sleep(2000);
+        let allowBtn = await driver.findComponent(ON.text('允许'));
+        await allowBtn?.click();
       } catch (error) {
         hilog.info(0x0000, TAG, '%{public}s startAbility error', JSON.stringify(error));
       }
@@ -225,6 +228,9 @@ export default function flagstartwithouttipstest() {
       let getCloseBtn = false;
       try {
         await context.startAbility(wantInfo);
+        await sleep(2000);
+        let allowBtn = await driver.findComponent(ON.text('允许'));
+        await allowBtn?.click();
       } catch (error) {
         hilog.info(0x0000, TAG, '%{public}s startAbility error', JSON.stringify(error));
       }
