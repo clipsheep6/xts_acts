@@ -39,7 +39,6 @@ export default function testsuite() {
   // global tests
   systemThemeTest();
   withThemeTest();
-  setDefaultThemeTest();
   // components
   alphabetIndexerThemeTest();
   badgeThemeTest();
@@ -58,4 +57,5 @@ export default function testsuite() {
   patternLockThemeTest();
   qrCodeThemeTest();
   sliderThemeTest();
+  setDefaultThemeTest();
 }
