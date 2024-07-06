@@ -64,7 +64,7 @@ export default function requestDownloadJSUnit() {
         let ifDelete = await task.delete();
         console.info('====>if task delete: ' + ifDelete);
         fileio.unlinkSync(path);
-        console.info('====>if uninstall file success' );
+        console.info('====>if uninstall file success');
       } catch (err) {
         console.info('====>task delete failed, possibly the task delete err: ' + JSON.stringify(err));
       }
