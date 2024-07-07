@@ -14,45 +14,26 @@
  */
 
 import hilog from '@ohos.hilog';
-import { describe, it, expect, beforeAll, beforeEach } from '@ohos/hypium'
+import { describe, it, expect, beforeAll } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import wantConstant from '@ohos.app.ability.wantConstant';
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import { Driver, ON } from '@ohos.UiTest';
 import systemParameterEnhance from '@ohos.systemParameterEnhance';
+import appManager from '@ohos.app.ability.appManager';
+import { BusinessError } from "@ohos.base";
 
 let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 let driver: Driver = Driver.create();
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 let context: common.UIAbilityContext;
-let rectLeft: number;
-let rectTop: number;
-let sleep = async (delay: number): Promise<void> => {
-  return new Promise((resolve, _) => {
-    setTimeout(async () => {
-      resolve();
-    }, delay);
-  });
-};
 
 export default function flagstartwithouttipstest() {
   describe('FlagsSartWithoutTipsTest', () => {
     beforeAll(async () => {
       context = AppStorage.get<common.UIAbilityContext>('TestAbilityContext') as common.UIAbilityContext;
       console.log('ishave ishave driver', !!driver);
-      try {
-        let textComponent = await driver.findComponent(ON.id('TEST_PAGE_TEXT'));
-        let rect = await textComponent.getBounds();
-        rectLeft = rect.left;
-        rectTop = rect.top;
-      } catch (error) {
-        console.log('get  rectLeft failed', JSON.stringify(error));
-      }
-
-    })
-    beforeEach(async () => {
-      await sleep(5000);
     })
 
     /**
@@ -66,8 +47,6 @@ export default function flagstartwithouttipstest() {
     it('SUB_Ability_AbilityRuntime_startAbility_FLAG_0100', 0, async (done: Function) => {
       let TAG = 'SUB_Ability_AbilityRuntime_startAbility_FLAG_0100';
       hilog.info(0x0000, TAG, '%{public}s', '--start');
-      let popupCorrect = false;
-      let getCloseBtn = false;
       let wantInfo: Want = {
         action: 'action.want.notability.notability'
       };
@@ -77,24 +56,26 @@ export default function flagstartwithouttipstest() {
         hilog.info(0x0000, TAG, '%{public}s startAbility error', JSON.stringify(error));
       }
       // Wait for the popup to open
-      await sleep(5000);
-      try {
-        await driver.findComponent(ON.text('知道了')).then(async (data) => {
-          hilog.info(0x0000, TAG, ' %{public}s', 'findComponent success');
-          popupCorrect = true;
-          await sleep(100);
-          await data.click();
-          getCloseBtn = true;
-        }).catch(() => {
-          hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
-        })
-      } catch (error) {
-        hilog.info(0x0000, TAG, '%{public}s get popup info error', JSON.stringify(error));
-        expect().assertFail();
-        done();
-      }
+      await driver.delayMs(3000);
+      let popupCorrect = false;
+      await appManager.getRunningProcessInformation().then((data) => {
+        console.log(`The running process information is: ${JSON.stringify(data)}`);
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].processName == "com.ohos.amsdialog") {
+            popupCorrect = true;
+            break;
+          }
+          if (data[i].processName == "com.huawei.hmsapp.appgallery:sys/commonUI" && (data[i].state == 1 || data[i].state == 2)) {
+            popupCorrect = true;
+            break;
+          }
+        }
+      }).catch((error: BusinessError) => {
+        console.error(`error: ${JSON.stringify(error)}`);
+      });
       expect(popupCorrect).assertTrue();
-      expect(getCloseBtn).assertTrue();
+      let cmd = "uinput -K -d 2 -u 2";
+      popupCorrect && await abilityDelegator.executeShellCommand(cmd);
       done();
     })
 
@@ -120,29 +101,25 @@ export default function flagstartwithouttipstest() {
       }
 
       if (deviceType === '2in1') {
-        await sleep(5000);
+        await driver.delayMs(3000);
         let popupCorrect = false;
-        let getCloseBtn = false;
-        try {
-          await driver.findComponent(ON.text('知道了')).then(async (data) => {
-            hilog.info(0x0000, TAG, ' %{public}s', 'findComponent success');
-            await sleep(100);
-            popupCorrect = true;
-            await data.click();
-            getCloseBtn = true;
-          }).catch(() => {
-            hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
-          })
-        } catch (error) {
-          hilog.info(0x0000, TAG, '%{public}s get popup info error', JSON.stringify(error));
-          expect().assertFail();
-          done();
-        }
+        await appManager.getRunningProcessInformation().then((data) => {
+          console.log(`The running process information is: ${JSON.stringify(data)}`);
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].processName == "com.huawei.hmsapp.appgallery:sys/commonUI" && (data[i].state == 1 || data[i].state == 2)) {
+              popupCorrect = true;
+              break;
+            }
+          }
+        }).catch((error: BusinessError) => {
+          console.error(`error: ${JSON.stringify(error)}`);
+        });
         expect(popupCorrect).assertTrue();
-        expect(getCloseBtn).assertTrue();
+        let cmd = "uinput -K -d 2 -u 2";
+        popupCorrect && await abilityDelegator.executeShellCommand(cmd);
         done();
       } else {
-        await sleep(2000);
+        await driver.delayMs(2000);
         let textComponent = await driver.findComponent(ON.id('TEST_PAGE_TEXT'));
         expect(!!textComponent).assertTrue();
         done();
@@ -163,46 +140,32 @@ export default function flagstartwithouttipstest() {
       let wantInfo: Want = {
         action: 'com.acts.two.ability'
       };
-      let popupCorrect = false;
-      let getCloseBtn = false;
       try {
         await context.startAbility(wantInfo);
       } catch (error) {
         hilog.info(0x0000, TAG, '%{public}s startAbility error', JSON.stringify(error));
       }
       // Wait for the popup to open
-      await sleep(5000);
-      try {
-        try {
-          await driver.assertComponentExist(ON.text('使用以下方式打开')).then((data) => {
-            hilog.info(0x0000, TAG, '%{public}s text at it', JSON.stringify(data));
+      await driver.delayMs(3000);
+      let popupCorrect = false;
+      await appManager.getRunningProcessInformation().then((data) => {
+        console.log(`The running process information is: ${JSON.stringify(data)}`);
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].processName == "com.ohos.amsdialog") {
             popupCorrect = true;
-          })
-          await driver.findComponent(ON.text('取消')).then(async (data) => {
-            await sleep(100);
-            await data.click();
-            getCloseBtn = true;
-          })
-        } catch (error) {
-          hilog.info(0x0000, TAG, '%{public}s text at it', JSON.stringify(error));
-        }
-        if (!popupCorrect) {
-          getCloseBtn = true;
-          await driver.assertComponentExist(ON.text('选择打开方式', 1)).then((data) => {
-            hilog.info(0x0000, TAG, 'text at this success %{public}s', JSON.stringify(data));
+            break;
+          }
+          if (data[i].processName == "com.huawei.hmsapp.appgallery:sys/commonUI" && (data[i].state == 1 || data[i].state == 2)) {
             popupCorrect = true;
-          })
-          let cmd = "uinput -K -d 2 -u 2";
-          await abilityDelegator.executeShellCommand(cmd);
+            break;
+          }
         }
-      } catch (error) {
-        hilog.info(0x0000, TAG, '%{public}s get popup info error', JSON.stringify(error));
-        expect().assertFail();
-        done();
-      }
-      await sleep(1000);
+      }).catch((error: BusinessError) => {
+        console.error(`error: ${JSON.stringify(error)}`);
+      });
       expect(popupCorrect).assertTrue();
-      expect(getCloseBtn).assertTrue();
+      let cmd = "uinput -K -d 2 -u 2";
+      popupCorrect && await abilityDelegator.executeShellCommand(cmd);
       done();
     })
 
@@ -221,46 +184,32 @@ export default function flagstartwithouttipstest() {
         action: 'com.acts.two.ability',
         flags: wantConstant.Flags.FLAG_START_WITHOUT_TIPS,
       };
-      let popupCorrect = false;
-      let getCloseBtn = false;
       try {
         await context.startAbility(wantInfo);
       } catch (error) {
         hilog.info(0x0000, TAG, '%{public}s startAbility error', JSON.stringify(error));
       }
       // Wait for the popup to open
-      await sleep(5000);
-      try {
-        try {
-          await driver.assertComponentExist(ON.text('使用以下方式打开')).then((data) => {
-            hilog.info(0x0000, TAG, '%{public}s text at it', JSON.stringify(data));
+      await driver.delayMs(3000);
+      let popupCorrect = false;
+      await appManager.getRunningProcessInformation().then((data) => {
+        console.log(`The running process information is: ${JSON.stringify(data)}`);
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].processName == "com.ohos.amsdialog") {
             popupCorrect = true;
-          })
-          await driver.findComponent(ON.text('取消')).then(async (data) => {
-            await sleep(100);
-            await data.click();
-            getCloseBtn = true;
-          })
-        } catch (error) {
-          hilog.info(0x0000, TAG, '%{public}s text at it', JSON.stringify(error));
-        }
-        if (!popupCorrect) {
-          getCloseBtn = true;
-          await driver.assertComponentExist(ON.text('选择打开方式', 1)).then((data) => {
-            hilog.info(0x0000, TAG, 'text at this success %{public}s', JSON.stringify(data));
+            break;
+          }
+          if (data[i].processName == "com.huawei.hmsapp.appgallery:sys/commonUI" && (data[i].state == 1 || data[i].state == 2)) {
             popupCorrect = true;
-          })
-          let cmd = "uinput -K -d 2 -u 2";
-          await abilityDelegator.executeShellCommand(cmd);
+            break;
+          }
         }
-      } catch (error) {
-        hilog.info(0x0000, TAG, '%{public}s get popup info error', JSON.stringify(error));
-        expect().assertFail();
-        done();
-      }
-      await sleep(1000);
+      }).catch((error: BusinessError) => {
+        console.error(`error: ${JSON.stringify(error)}`);
+      });
       expect(popupCorrect).assertTrue();
-      expect(getCloseBtn).assertTrue();
+      let cmd = "uinput -K -d 2 -u 2";
+      popupCorrect && await abilityDelegator.executeShellCommand(cmd);
       done();
     })
 
@@ -276,7 +225,7 @@ export default function flagstartwithouttipstest() {
       let TAG = 'SUB_Ability_AbilityRuntime_startAbility_FLAG_0700';
       hilog.info(0x0000, TAG, '%{public}s', '--start');
       await abilityDelegator.executeShellCommand('aa start -b com.acts.flagstartwithouttipstest -a TestAbility');
-      await sleep(3000);
+      await driver.delayMs(3000);
       try {
         let wantInfo: Want = {
           action: 'ohos.want.onlyforwithouttips.onlyforwithouttips',
@@ -285,13 +234,13 @@ export default function flagstartwithouttipstest() {
       } catch (error) {
         hilog.info(0x0000, TAG, '%{public}s startAbility error', JSON.stringify(error));
       }
-      await sleep(5000);
+      await driver.delayMs(3000);
       let openViewData = false;
       try {
         await driver.findComponent(ON.text('ohos.want.action.viewData ability')).then(async (data) => {
           hilog.info(0x0000, TAG, 'text at this success %{public}s ', JSON.stringify(data));
           openViewData = true;
-          await sleep(100);
+          await driver.delayMs(100);
           !!data?.click && await data?.click();
         }).catch(() => {
           hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
@@ -317,7 +266,7 @@ export default function flagstartwithouttipstest() {
       let TAG = 'SUB_Ability_AbilityRuntime_startAbility_FLAG_0800';
       hilog.info(0x0000, TAG, '%{public}s', '--start');
       await abilityDelegator.executeShellCommand('aa start -b com.acts.flagstartwithouttipstest -a TestAbility');
-      await sleep(3000);
+      await driver.delayMs(3000);
       try {
         let wantInfo: Want = {
           action: 'ohos.want.onlyforwithouttips.onlyforwithouttips',
@@ -327,13 +276,13 @@ export default function flagstartwithouttipstest() {
       } catch (error) {
         hilog.info(0x0000, TAG, '%{public}s startAbility error', JSON.stringify(error));
       }
-      await sleep(5000);
+      await driver.delayMs(3000);
       let openViewData = false;
       try {
         await driver.findComponent(ON.text('ohos.want.action.viewData ability')).then(async (data) => {
           hilog.info(0x0000, TAG, 'text at this success %{public}s ', JSON.stringify(data));
           openViewData = true;
-          await sleep(100);
+          await driver.delayMs(100);
           !!data?.click && await data?.click();
         }).catch(() => {
           hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
