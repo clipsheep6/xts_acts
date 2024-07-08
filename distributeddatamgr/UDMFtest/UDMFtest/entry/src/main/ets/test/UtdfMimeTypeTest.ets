@@ -26,7 +26,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/msword"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0010', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0010 start');
@@ -41,7 +41,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-execl"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0020', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0020 start');
@@ -56,7 +56,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-powerpoint"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0030', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0030 start');
@@ -70,7 +70,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/wav"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0040', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0040 start');
@@ -84,7 +84,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/wave"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0050', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0050 start');
@@ -98,7 +98,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-ms-wm"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0060', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0060 start');
@@ -113,7 +113,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-ms-wmv"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0070', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0070 start');
@@ -128,7 +128,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-ms-wmp"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0080', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0080 start');
@@ -143,7 +143,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/x-ms-wma"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0090', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0090 start');
@@ -158,7 +158,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-ms-wmx"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0100', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0100 start');
@@ -173,7 +173,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-ms-wvx"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0110', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0110 start');
@@ -188,7 +188,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/x-ms-wax"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0120', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0120 start');
@@ -203,7 +203,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/pdf"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0130', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0130 start');
@@ -218,7 +218,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/postscript"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0140', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0140 start');
@@ -232,7 +232,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-photoshop"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0150', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0150 start');
@@ -247,7 +247,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/photoshop"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0160', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0160 start');
@@ -262,7 +262,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/psd"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0170', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0170 start');
@@ -277,7 +277,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/photoshop"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0180', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0180 start');
@@ -292,7 +292,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.microsoft.portable-executable"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0190', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0190 start');
@@ -307,7 +307,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/java-archive"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0200', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0200 start');
@@ -322,7 +322,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-gtar"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0210', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0210 start');
@@ -337,7 +337,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-gzip"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0220', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0220 start');
@@ -351,7 +351,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/gzip"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0230', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0230 start');
@@ -366,7 +366,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-mobipocket-ebook"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0240', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0240 start');
@@ -380,7 +380,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.amazon.ebook"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0250', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0250 start');
@@ -394,7 +394,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.amazon.mobi8-ebook"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0260', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0260 start');
@@ -409,7 +409,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-mobi8-ebook"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0270', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0270 start');
@@ -423,7 +423,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/targa"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0280', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0280 start');
@@ -437,7 +437,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/tga"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0290', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0290 start');
@@ -451,7 +451,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/tga"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0300', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0300 start');
@@ -465,7 +465,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/sgi"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0310', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0310 start');
@@ -479,7 +479,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/fpx"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0320', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0320 start');
@@ -493,7 +493,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.fpx"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0330', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0330 start');
@@ -507,7 +507,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/efax"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0340', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0340 start');
@@ -521,7 +521,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/vnd.rn-realaudio"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0350', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0350 start');
@@ -535,7 +535,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/x-pn-realaudio"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0360', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0360 start');
@@ -549,7 +549,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/smil"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0370', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0370 start');
@@ -563,7 +563,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-stuffit"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0380', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0380 start');
@@ -577,7 +577,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-sit"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0390', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0390 start');
@@ -591,7 +591,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/stuffit"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0400', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0400 start');
@@ -605,7 +605,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0410', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0410 start');
@@ -620,7 +620,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0420', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0420 start');
@@ -633,7 +633,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.openxmlformats-officedocument.presentationmal.presentation"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0430', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0430 start');
@@ -646,7 +646,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.oasis.opendocument.text"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0440', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0440 start');
@@ -659,7 +659,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.oasis.opendocument.spreadsheet"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0450', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0450 start');
@@ -672,7 +672,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.oasis.opendocument.presentation"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0460', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0460 start');
@@ -686,7 +686,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.oasis.opendocument.graphics"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0470', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0470 start');
@@ -701,7 +701,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.oasis.opendocument.formula"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0480', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0480 start');
@@ -716,7 +716,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/png"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0490', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0490 start');
@@ -730,7 +730,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/jpeg"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0500', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0500 start');
@@ -744,7 +744,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/tiff"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0510', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0510 start');
@@ -759,7 +759,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-quicktime"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0960', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0960 start');
@@ -773,7 +773,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/avi"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0520', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0520 start');
@@ -787,7 +787,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/msvideo"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0530', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0530 start');
@@ -801,7 +801,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-msvideo"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0540', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0540 start');
@@ -815,7 +815,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/mpg"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0550', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0550 start');
@@ -829,7 +829,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/mpeg"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0560', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0560 start');
@@ -843,7 +843,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-mpeg"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0570', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0570 start');
@@ -857,7 +857,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/x-mpg"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0580', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0580 start');
@@ -871,7 +871,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/mp4"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0590', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0590 start');
@@ -885,7 +885,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/mp4v"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0600', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0600 start');
@@ -899,7 +899,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/3gpp"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0720', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0720 start');
@@ -913,7 +913,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/3gpp2"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0610', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0610 start');
@@ -927,7 +927,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/ogg"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0620', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0620 start');
@@ -941,7 +941,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/aiff"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0630', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0630 start');
@@ -955,7 +955,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/pcm"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0640', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0640 start');
@@ -969,7 +969,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/flac"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0650', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0650 start');
@@ -983,7 +983,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/alac"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0660', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0660 start');
@@ -997,7 +997,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/mp3"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0670', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0670 start');
@@ -1011,7 +1011,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/aac"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0680', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0680 start');
@@ -1025,7 +1025,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/basic"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0690', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0690 start');
@@ -1039,7 +1039,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/au"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0700', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0700 start');
@@ -1053,7 +1053,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/snd"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0710', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0710 start');
@@ -1067,7 +1067,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/x-aiff"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0730', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0730 start');
@@ -1081,7 +1081,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-tar"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0740', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0740 start');
@@ -1095,7 +1095,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/tar"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0750', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0750 start');
@@ -1109,7 +1109,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/zip"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0760', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0760 start');
@@ -1124,7 +1124,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-bzip2"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0770', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0770 start');
@@ -1138,7 +1138,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/plain"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0780', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0780 start');
@@ -1153,7 +1153,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/html"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0790', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0790 start');
@@ -1167,7 +1167,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/xml"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0800', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0800 start');
@@ -1181,7 +1181,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/markdown"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0950', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0950 start');
@@ -1195,7 +1195,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-perl-script"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0810', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0810 start');
@@ -1209,7 +1209,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-python-script"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0820', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0820 start');
@@ -1223,7 +1223,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/ruby-script"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0830', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0830 start');
@@ -1237,7 +1237,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-php-script"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0840', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0840 start');
@@ -1251,7 +1251,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/php"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0850', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0850 start');
@@ -1265,7 +1265,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is"application/php"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0860', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0860 start');
@@ -1279,7 +1279,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/javascript"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0870', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0870 start');
@@ -1293,7 +1293,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/calendar"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0880', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0880 start');
@@ -1307,7 +1307,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/calendar"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0890', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0890 start');
@@ -1322,7 +1322,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/epub+zip"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0900', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0900 start');
@@ -1336,7 +1336,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "font/ttf"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0910', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0910 start');
@@ -1350,7 +1350,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "font/collection"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0920', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0920 start');
@@ -1364,7 +1364,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "font/otf"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0930', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0930 start');
@@ -1378,7 +1378,7 @@ export default function UtdfMimeTypeTest() {
      * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/calendar"
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 1
+     * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0940', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_0940 start');
@@ -1445,16 +1445,16 @@ export default function UtdfMimeTypeTest() {
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1010
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1010
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "video/mpeg"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-ms-bmp"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1010', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1010 start');
-      let result = UTD.getUniformDataTypeByMIMEType("video/mpeg");
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-ms-bmp");
       console.log("typeId:" + result);
-      expect(result).assertEqual("general.mpeg");
+      expect(result).assertEqual("com.microsoft.bmp");
     });
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1020
@@ -1737,47 +1737,47 @@ export default function UtdfMimeTypeTest() {
       console.log("typeId:" + result);
       expect(result).assertEqual("general.psid");
     });
-    /**
-     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1280
+	/**
+	 * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1280
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1280
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/basic"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-icon"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1280', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1280 start');
-      let result = UTD.getUniformDataTypeByMIMEType("audio/basic");
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-icon");
       console.log("typeId:" + result);
-      expect(result).assertEqual("general.au-audio");
+      expect(result).assertEqual("com.microsoft.ico");
     });
-    /**
+    /**																			 
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1290
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1290
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/au"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-adobe-dng"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1290', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1290 start');
-      let result = UTD.getUniformDataTypeByMIMEType("audio/au");
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-adobe-dng");
       console.log("typeId:" + result);
-      expect(result).assertEqual("general.au-audio");
+      expect(result).assertEqual("com.adobe.dng-raw-image");
     });
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1300
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1300
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/snd"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-excel.template.macroEnabled.12"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1300', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1300 start');
-      let result = UTD.getUniformDataTypeByMIMEType("audio/snd");
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-excel.template.macroEnabled.12");
       console.log("typeId:" + result);
-      expect(result).assertEqual("general.au-audio");
+      expect(result).assertEqual("org.openxmlformats.spreadsheetml.template.macroenabled");
     });
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1320
@@ -1852,7 +1852,7 @@ export default function UtdfMimeTypeTest() {
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1370
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1370
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-portable-bitmap"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-portable-graymap"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
@@ -2048,16 +2048,16 @@ export default function UtdfMimeTypeTest() {
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1520
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1520
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/plain"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.rar"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1520', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1520 start');
-      let result = UTD.getUniformDataTypeByMIMEType("text/plain");
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.rar");
       console.log("typeId:" + result);
-      expect(result).assertEqual("general.plain-text");
+      expect(result).assertEqual("com.rarlab.rar-archive");
     });
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1540
@@ -2244,16 +2244,16 @@ export default function UtdfMimeTypeTest() {
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1690
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1690
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-gtar"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/rar"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1690', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1690 start');
-      let result = UTD.getUniformDataTypeByMIMEType("application/x-gtar");
+      let result = UTD.getUniformDataTypeByMIMEType("application/rar");
       console.log("typeId:" + result);
-      expect(result).assertEqual("org.gnu.gnu-tar-archive");
+      expect(result).assertEqual("com.rarlab.rar-archive");
     });
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_1700
@@ -2692,45 +2692,45 @@ export default function UtdfMimeTypeTest() {
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2010
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2010
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/msword"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/x-sd2"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2010', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2010 start');
-      let result = UTD.getUniformDataTypeByMIMEType("application/msword");
+      let result = UTD.getUniformDataTypeByMIMEType("audio/x-sd2");
       console.log("typeId:" + result);
-      expect(result).assertEqual("com.microsoft.word.doc");
+      expect(result).assertEqual("com.digidesign.sd2-audio");
     });
 
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2020
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2020
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-powerpoint"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is  "application/vnd.rn-realmedia"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2020', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2020 start');
-      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-powerpoint");
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.rn-realmedia");
       console.log("typeId:" + result);
-      expect(result).assertEqual("com.microsoft.powerpoint.ppt");
+      expect(result).assertEqual("com.real.realmedia");
     });
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2040
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2040
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-excel"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.cinderella"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2040', 0,  () => {
-      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2030 start');
-      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-excel");
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2040 start');
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.cinderella");
       console.log("typeId:" + result);
-      expect(result).assertEqual("com.microsoft.excel.xls");
+      expect(result).assertEqual("de.cinderella.cdy");
     });
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2050
@@ -2931,16 +2931,16 @@ export default function UtdfMimeTypeTest() {
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2190
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2190
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is application/vnd.sun.xml.impress.template"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/vnd.ms-excel.addin.macroEnabled.12"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2190', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2190 start');
-      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.sun.xml.impress.template");
+      let result = UTD.getUniformDataTypeByMIMEType("application/vnd.ms-excel.addin.macroEnabled.12");
       console.log("typeId:" + result);
-      expect(result).assertEqual("org.openoffice.impress.template");
+      expect(result).assertEqual("org.openxmlformats.spreadsheetml.addin.macroenabled");
     });
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2200
@@ -3519,7 +3519,7 @@ export default function UtdfMimeTypeTest() {
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2670
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2670
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is application/x-cdf"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-cdf"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
@@ -3799,16 +3799,16 @@ export default function UtdfMimeTypeTest() {
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2920
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2920
-     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "application/x-stuffit"
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "audio/x-wav"
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
     it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2920', 0,  () => {
       console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2920 start');
-      let result = UTD.getUniformDataTypeByMIMEType("application/x-stuffit");
+      let result = UTD.getUniformDataTypeByMIMEType("audio/x-wav");
       console.log("typeId:" + result);
-      expect(result).assertEqual("com.allume.stuffit-archive");
+      expect(result).assertEqual("com.microsoft.waveform-audio");
     });
     /**
      * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_2930
@@ -4385,5 +4385,131 @@ export default function UtdfMimeTypeTest() {
       console.log("typeId:" + result);
       expect(result).assertEqual("general.pascal-source");
     });
-  });
+	/**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3370
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3370
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/x-xbm"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3370', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3370 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/x-xbm");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.xbitmap-image");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3380
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3380
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-csh"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3380', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3380 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-csh");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.csh-script");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3390
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3390
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-csrc"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3390', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3390 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-csrc");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.c-source");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3400
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3400
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-shellscript"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3400', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3400 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-shellscript");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.shell-script");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3410
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3410
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-c++src"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3410', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3410 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-c++src");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.c-plus-plus-source");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3420
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3420
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-c++hdr"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3420', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3420 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-c++hdr");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.c-plus-plus-header");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3430
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3430
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/x-chdr"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3430', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3430 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/x-chdr");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.c-header");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3440
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3440
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "text/vcard"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3440', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3440 start');
+      let result = UTD.getUniformDataTypeByMIMEType("text/vcard");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("general.vcard");
+    });
+    /**
+     * @tc.name      : testSUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3450
+     * @tc.number    : SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3450
+     * @tc.desc      : getUniformDataTypeByMIMEType paramter is "image/bmp"
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3450', 0,  () => {
+      console.log('SUB_DistributedData_UDMF_SDK_UtdMimeTypeJsAPITest_3450 start');
+      let result = UTD.getUniformDataTypeByMIMEType("image/bmp");
+      console.log("typeId:" + result);
+      expect(result).assertEqual("com.microsoft.bmp");
+    });																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																			 
+  });																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														 
 }
