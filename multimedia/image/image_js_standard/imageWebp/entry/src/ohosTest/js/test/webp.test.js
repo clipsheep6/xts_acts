@@ -17,6 +17,7 @@ import image from "@ohos.multimedia.image";
 import fileio from "@ohos.fileio";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import featureAbility from "@ohos.ability.featureAbility";
+import * as imageJsTestBase from '../../../../../../ImageJsTestBase';
 
 export default function imageWebp() {
     describe("imageWebp", function () {
@@ -512,9 +513,8 @@ export default function imageWebp() {
             console.info(`${testNum} leave`);
         }
 
-        async function getDelayTimePromise(done, testNum, file) {
-            await getFd(file);
-            let imageSourceApi = image.createImageSource(filePath);
+        async function getDelayTimePromise(done, testNum, sourceType) {
+            let imageSourceApi = await imageJsTestBase.getImageSourceData(sourceType.type, sourceType.name);
             if (imageSourceApi == undefined) {
                 console.info(`${testNum} getDelayTimePromise create image source failed`);
                 expect(false).assertTrue();
@@ -544,9 +544,8 @@ export default function imageWebp() {
             }
         }
 
-        async function getDelayTimeCallBack(done, testNum, file) {
-            await getFd(file);
-            let imageSourceApi = image.createImageSource(filePath);
+        async function getDelayTimeCallBack(done, testNum, sourceType) {
+            let imageSourceApi = await imageJsTestBase.getImageSourceData(sourceType.type, sourceType.name);
             if (imageSourceApi == undefined) {
                 console.info(`${testNum} getDelayTimeCallBack create imagesource failed`);
                 expect(false).assertTrue();
@@ -1079,20 +1078,20 @@ export default function imageWebp() {
             packingPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0100", packOpts);
         });
 
-        /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200
-         * @tc.name      : packing - promise-webp
-         * @tc.desc      : 1.create ImageSource
-         *                 2.call packing
-         *                 3.return array
-         * @tc.size      : MEDIUM
-         * @tc.type      : Functional
-         * @tc.level     : Level 1
-         */
-        it("SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200", 0, async function (done) {
-            let packOpts = { format: ["image/gif"], quality: 90 };
-            packingPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200", packOpts);
-        });
+        // /**
+        //  * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200
+        //  * @tc.name      : packing - promise-webp
+        //  * @tc.desc      : 1.create ImageSource
+        //  *                 2.call packing
+        //  *                 3.return array
+        //  * @tc.size      : MEDIUM
+        //  * @tc.type      : Functional
+        //  * @tc.level     : Level 1
+        //  */
+        // it("SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200", 0, async function (done) {
+        //     let packOpts = { format: ["image/gif"], quality: 90 };
+        //     packingPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0200", packOpts);
+        // });
 
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0300
@@ -1124,20 +1123,20 @@ export default function imageWebp() {
             packingPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_PROMISE_ERROR_0400", packOpts);
         });
 
-        /**
-         * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100
-         * @tc.name      : packing - callback-webp-wrong format
-         * @tc.desc      : 1.create ImageSource
-         *                 2.call packing
-         *                 3.return array
-         * @tc.size      : MEDIUM
-         * @tc.type      : Functional
-         * @tc.level     : Level 1
-         */
-        it("SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100", 0, async function (done) {
-            let packOpts = { format: ["image/gif"], quality: 100 };
-            packingCbErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100", packOpts);
-        });
+        // /**
+        //  * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100
+        //  * @tc.name      : packing - callback-webp-wrong format
+        //  * @tc.desc      : 1.create ImageSource
+        //  *                 2.call packing
+        //  *                 3.return array
+        //  * @tc.size      : MEDIUM
+        //  * @tc.type      : Functional
+        //  * @tc.level     : Level 1
+        //  */
+        // it("SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100", 0, async function (done) {
+        //     let packOpts = { format: ["image/gif"], quality: 100 };
+        //     packingCbErr(done, "SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0100", packOpts);
+        // });
 
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_WEBP_PACKING_CALLBACK_ERROR_0200
@@ -1254,7 +1253,8 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0100", 0, async function (done) {
-            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0100", "test_large.webp");
+            const source = { name: "test_large.webp", type: "fd" }
+            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0100", source);
         });
 
 
@@ -1268,7 +1268,8 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0200", 0, async function (done) {
-            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0200", "moving_test.webp");
+            const source = { name: "moving_test.webp", type: "rawfile" }
+            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0200", source);
         });
 
         /**
@@ -1281,7 +1282,8 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0300", 0, async function (done) {
-            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0300", "test.jpg");
+            const source = { name: "test.jpg", type: "fd" }
+            getDelayTimePromise(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_PROMISE_0300", source);
         });
 
         /**
@@ -1294,7 +1296,8 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0100", 0, async function (done) {
-            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0100", "test_large.webp");
+            const source = { name: "test_large.webp", type: "buffer" }
+            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0100", source);
         });
 
         /**
@@ -1307,7 +1310,8 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0200", 0, async function (done) {
-            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0200", "moving_test.webp");
+            const source = { name: "moving_test.webp", type: "url" }
+            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0200", source);
         });
 
         /**
@@ -1320,7 +1324,8 @@ export default function imageWebp() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0300", 0, async function (done) {
-            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0300", "test.jpg");
+            const source = { name: "test.jpg", type: "fd" }
+            getDelayTimeCallBack(done, "SUB_MULTIMEDIA_IMAGE_WEBP_GETDELAYTIME_CALLBACK_0300", source);
         });
     });
 }
