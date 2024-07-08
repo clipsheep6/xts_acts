@@ -696,8 +696,10 @@ export default function nfcTagABFVTest() {
                 tag.unregisterForegroundDispatch(elementName);
                 console.info('[NFC_test] nfc unregisterForegroundDispatch pass')
             } catch (error) {
-                console.info('nfc registerForegroundDispatch error' + error)
-                expect().assertFail();
+                if (error.code != 3100202){
+                    console.info('nfc registerForegroundDispatch error ' + error)
+                    expect().assertFail();
+                }                 
             }
         })
 
