@@ -428,15 +428,22 @@ export default function abilityTest() {
           }
         });
         globalThis.abilitycontext.startAbility(
-          want, (err:BusinessError) => {
+          want, async (err:BusinessError) => {
           if (err.code) {
             console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
             return;
           }
           console.info('startAbility succeed');
+
+          await driver.delayMs(2000);
+          hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1000 findComponent begin');
+          let app4 = await driver.findComponent(ON.text("apptest4"));
+          if (app4) {
+            hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1000 apptest4 click');
+            await app4.click();
+          }
         }
         );
-
       });
 
       setTimeout(() => {
@@ -477,12 +484,19 @@ export default function abilityTest() {
           }
         });
         globalThis.abilitycontext.startAbility(
-          want, (err:BusinessError) => {
+          want, async (err:BusinessError) => {
           if (err.code) {
             console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
             return;
           }
           console.info('startAbility succeed');
+          await driver.delayMs(2000);
+          hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1100 findComponent begin');
+          let app4 = await driver.findComponent(ON.text("apptest4"));
+          if (app4) {
+            hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1100 apptest4 click');
+            await app4.click();
+          }
         }
         );
       })
