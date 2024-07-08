@@ -38,12 +38,12 @@
 #define MAX_BUFFER_SIZE 512
 const char* LOG_APP = "ImageNDK";
 
-static void OHLog (const char* module, const char* format, ...) {  
-    char buffer [MAX_BUFFER_SIZE];  
-    va_list args;  
-    va_start (args, format);  
-    va_end (args);  
-    printf ("[%s] %s\n", module, buffer);  
+static void OHLog (const char* module, const char* format, ...) {
+    char buffer [MAX_BUFFER_SIZE];
+    va_list args;
+    va_start (args, format);
+    va_end (args);
+    printf ("[%s] %s\n", module, buffer);
 }
 
 #define OH_LOG_ERROR(module, format, ...) \
@@ -64,7 +64,7 @@ static napi_value getJsResult(napi_env env, int result)
 }
 
 /**
-  * @param file descriptor 
+  * @param file descriptor
   * @param src pixel format
   * @param width
   * @param height
@@ -77,7 +77,7 @@ static napi_value convertpixelFormat(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argCount, argValue, nullptr, nullptr);
     if (argCount < NUM_5) {
         return getJsResult(env, IMAGE_BAD_PARAMETER);
-    }   
+    }
     int32_t fd;
     napi_get_value_int32(env, argValue[NUM_0], &fd);
     int32_t srcPixelFormat;
@@ -87,14 +87,14 @@ static napi_value convertpixelFormat(napi_env env, napi_callback_info info)
     napi_get_value_uint32(env, argValue[NUM_3], &imageSize.height);
     int32_t destPixelFormat;
     napi_get_value_int32(env, argValue[NUM_4], &destPixelFormat);
-    Image_ErrorCode errCode = IMAGE_SUCCESS;  
+    Image_ErrorCode errCode = IMAGE_SUCCESS;
     OH_ImageSourceNative *imageSource = nullptr;
     OH_DecodingOptions *decodeOpts = nullptr;
-    do {        
+    do {
         errCode = OH_ImageSourceNative_CreateFromFd(fd, &imageSource);
         if (IMAGE_SUCCESS != errCode) {
             break;
-        }       
+        }
         errCode = OH_DecodingOptions_Create(&decodeOpts);
         if (IMAGE_SUCCESS != errCode) {
             break;
@@ -127,15 +127,15 @@ static napi_value convertpixelFormat(napi_env env, napi_callback_info info)
         errCode = OH_PixelMapNative_ConvertPixelFormat(resPixMap, &destPixelMap, destPixelFormat);
         if (IMAGE_SUCCESS != errCode) {
             break;
-        }      
-    } while (false);  
-    if (imageSource) 
+        }
+    } while (false);
+    if (imageSource)
         OH_ImageSourceNative_Release(imageSource);
-    imageSource = nullptr;  
-    if (decodeOpts) 
+    imageSource = nullptr;
+    if (decodeOpts)
         OH_DecodingOptions_Release(decodeOpts);
     decodeOpts = nullptr;
-    return getJsResult (env,errCode);
+    return getJsResult(env, errCode);
 }
 
 /**
@@ -196,7 +196,7 @@ static napi_value convertpixelFormatRGB888(napi_env env, napi_callback_info info
         errCode = OH_ImageSourceNative_CreatePixelmap(imageSource, decodeOpts, &resPixMap);
         if (IMAGE_SUCCESS != errCode) {
             break;
-        }  
+        }
         OH_PixelmapNative *destPixelMap = nullptr;
         //目标RGB888
         errCode = OH_PixelMapNative_ConvertPixelFormat(resPixMap, &destPixelMap, srcPixelFormat);
@@ -223,11 +223,11 @@ static napi_value convertpixelFormatRGB888(napi_env env, napi_callback_info info
 
 
 EXTERN_C_START
-static napi_value Init (napi_env env, napi_value exports) 
+static napi_value Init (napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         {"convertPixelFormat", nullptr, convertpixelFormat, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"convertPixelFormatRGB888", nullptr, convertpixelFormatRGB888, nullptr, nullptr, nullptr, 
+        {"convertPixelFormatRGB888", nullptr, convertpixelFormatRGB888, nullptr, nullptr, nullptr,
         napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
