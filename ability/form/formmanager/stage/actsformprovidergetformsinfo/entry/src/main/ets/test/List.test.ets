@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 import getFormsInfoTest from './GetFormsInfoTest.test'
-import formApiCoverTest from './FormApiCoverTest.test';
+import formApiCoverTest from './FormApiCoverTest.test'
+import requestPublishFormTest from './RequestPublishFormTest.test';
+
 
 export default function testsuite() {
   getFormsInfoTest();
   formApiCoverTest();
+  requestPublishFormTest();
 }
