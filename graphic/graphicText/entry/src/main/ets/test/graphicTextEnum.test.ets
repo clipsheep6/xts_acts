@@ -206,6 +206,7 @@ export default function graphicTextEnum(context, windowStage, abilityStorage) {
         expect(1).assertEqual(text.TextDecorationType.UNDERLINE);
         expect(2).assertEqual(text.TextDecorationType.OVERLINE);
         expect(4).assertEqual(text.TextDecorationType.LINE_THROUGH);
+        expect(5).assertEqual(text.TextDecorationType.UNDERLINE | text.TextDecorationType.LINE_THROUGH);
       } catch (err) {
         console.info(msg + 'test enum value of TextDecorationType error ' + JSON.stringify(err));
         expect().assertFail();
