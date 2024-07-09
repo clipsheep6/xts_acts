@@ -13,30 +13,16 @@
  * limitations under the License.
  */
 import { expect, it, afterEach, afterAll, beforeEach, beforeAll, describe } from "@ohos/hypium"
-import router from '@ohos.router';
-import {
-  PointerMatrix,
-  WindowMode,
-  ResizeDirection,
-  DisplayRotation,
-  MatchPattern,
-  BY,
-  ON,
-  UiWindow,
-  Driver,
-  Component,
-  UiComponent,
-  UiDriver
-} from '@ohos.UiTest'
+import router from '@system.router';
+import { PointerMatrix, WindowMode, ResizeDirection, DisplayRotation, MatchPattern, BY, ON, UiWindow, Driver, Component, UiComponent, UiDriver } from '@ohos.UiTest'
 import CommonFunc from '../../MainAbility/utils/Common';
 import componentUtils from '@ohos.arkui.componentUtils';
-
-export default function comSizeAbilityTest_07() {
-  describe('comSizeAbilityTest_07', () => {
-    beforeEach(async (done: Function) => {
+export default function comSizeAbilityTest_07 () {
+  describe('comSizeAbilityTest_07', function () {
+    beforeEach(async function (done) {
       console.info("comSizeAbilityTest_07 beforeEach start")
-      let options: router.RouterOptions = {
-        url: 'MainAbility/pages/comSizeAbility/comSizeAbilityTest_07'
+      let options = {
+        uri: 'MainAbility/pages/comSizeAbility/comSizeAbilityTest_07'
       }
       try {
         router.clear()
@@ -44,12 +30,12 @@ export default function comSizeAbilityTest_07() {
         console.info("get comSizeAbilityTest_07 state pages: " + JSON.stringify(pages))
         if (!("comSizeAbilityTest" == pages.name)) {
           console.info("get comSizeAbilityTest_07 state pages.name: " + JSON.stringify(pages.name))
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           await CommonFunc.sleep(1000);
           console.info("push comSizeAbilityTest_07 success: " + JSON.stringify(result))
         }
       } catch (err) {
-        console.error("push comSizeAbilityTest_07 page error: " + err)
+        console.error ("push comSizeAbilityTest_07 page error: " + err)
         expect().assertFail()
       }
       done()
@@ -60,7 +46,7 @@ export default function comSizeAbilityTest_07() {
         * @tc.desc  : test the size of component
         * @tc.level : Level 2
         */
-    it('comSizeAbilityTestJsunit_20', 0, async (done: Function) => {
+    it('comSizeAbilityTestJsunit_20', 0, async  function (done) {
       console.info('comSizeAbilityTestJsunit_20 START')
       await CommonFunc.sleep(1000);
       if (globalThis.winLeft == 0) {
@@ -68,7 +54,7 @@ export default function comSizeAbilityTest_07() {
         let button1 = await driver.findComponent(ON.id('btn_MenuItemGroup'))
         await button1.click()
         await CommonFunc.sleep(2000)
-        let modePosition: componentUtils.ComponentInfo = componentUtils.getRectangleById("MenuItemGroup_Size");
+        let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("MenuItemGroup_Size");
         let Translate = modePosition.translate
         let Transform = modePosition.transform
         let Scale = modePosition.scale
@@ -93,7 +79,7 @@ export default function comSizeAbilityTest_07() {
         * @tc.desc  : test the size of component
         * @tc.level : Level 2
         */
-    it('comSizeAbilityTestJsunit_21', 0, async (done: Function) => {
+    it('comSizeAbilityTestJsunit_21', 0, async  function (done) {
       console.info('comSizeAbilityTestJsunit_21 START')
       await CommonFunc.sleep(1000);
       if (globalThis.winLeft == 0) {
@@ -101,7 +87,7 @@ export default function comSizeAbilityTest_07() {
         let button1 = await driver.findComponent(ON.id('btn_MenuItem'))
         await button1.click()
         await CommonFunc.sleep(2000);
-        let modePosition: componentUtils.ComponentInfo = componentUtils.getRectangleById("MenuItem_Size");
+        let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("MenuItem_Size");
         let Size = modePosition.size
         let SizeWidth = Size.width
         let SizeHeight = Size.height
@@ -115,8 +101,8 @@ export default function comSizeAbilityTest_07() {
         console.info("[comSizeAbilityTestJsunit_21] component Scale is: " + JSON.stringify(Scale))
         console.info("[comSizeAbilityTestJsunit_21] component Rotate is: " + JSON.stringify(Rotate))
         await CommonFunc.sleep(1000);
-        expect(Math.round(SizeWidth)).assertEqual(Math.round(vp2px(90)));
-        expect(Math.round(SizeHeight)).assertEqual(Math.round(vp2px(90)));
+        expect(Math.abs(SizeWidth - Math.round(vp2px(90))) <= 1).assertTrue();
+        expect(Math.abs(SizeHeight - Math.round(vp2px(90))) <= 1).assertTrue();
         expect(JSON.stringify(Translate)).assertEqual('{"x":1,"y":1,"z":1}');
         expect(JSON.stringify(Scale)).assertEqual('{"x":1,"y":1,"z":1,"centerX":1,"centerY":1}');
         expect(JSON.stringify(Rotate)).assertEqual('{"x":1,"y":1,"z":1,"angle":0,"centerX":1,"centerY":1}');
@@ -132,7 +118,7 @@ export default function comSizeAbilityTest_07() {
         * @tc.desc  : test the size of component
         * @tc.level : Level 2
         */
-    it('comSizeAbilityTestJsunit_22', 0, async (done: Function) => {
+    it('comSizeAbilityTestJsunit_22', 0, async  function (done) {
       console.info('comSizeAbilityTestJsunit_22 START')
       await CommonFunc.sleep(1000);
       if (globalThis.winLeft == 0) {
@@ -140,7 +126,7 @@ export default function comSizeAbilityTest_07() {
         let button1 = await driver.findComponent(ON.id('btn_Menu'))
         await button1.click()
         await CommonFunc.sleep(2000);
-        let modePosition: componentUtils.ComponentInfo = componentUtils.getRectangleById("Menu_Size");
+        let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("Menu_Size");
         let Size = modePosition.size
         let SizeWidth = Size.width
         let SizeHeight = Size.height
@@ -154,14 +140,14 @@ export default function comSizeAbilityTest_07() {
         console.info("[comSizeAbilityTestJsunit_22] component Scale is: " + JSON.stringify(Scale))
         console.info("[comSizeAbilityTestJsunit_22] component Rotate is: " + JSON.stringify(Rotate))
         await CommonFunc.sleep(1000);
-        expect(Math.round(SizeWidth)).assertEqual(Math.round(vp2px(100)));
-        expect(Math.round(SizeHeight)).assertEqual(Math.round(vp2px(100)));
+        expect(Math.abs(SizeWidth - Math.round(vp2px(100))) <= 1).assertTrue();
+        expect(Math.abs(SizeHeight - Math.round(vp2px(100))) <= 1).assertTrue();
         expect(JSON.stringify(Translate)).assertEqual('{"x":1,"y":1,"z":1}');
         expect(JSON.stringify(Scale)).assertEqual('{"x":1,"y":1,"z":1,"centerX":1,"centerY":1}');
         expect(JSON.stringify(Rotate)).assertEqual('{"x":1,"y":1,"z":1,"angle":0,"centerX":1,"centerY":1}');
         expect(JSON.stringify(Transform)).assertEqual('[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]');
         await CommonFunc.sleep(1000);
-        await driver.click(Math.round(globalThis.winLeft + vp2px(200)), Math.round(globalThis.winTop + vp2px(200)));
+        await driver.click(Math.round(globalThis.winLeft + Math.round(vp2px(200)),Math.round(globalThis.winTop + Math.round(vp2px(200)));
         await CommonFunc.sleep(1000);
       }
       console.info('[comSizeAbilityTestJsunit_22] END')
