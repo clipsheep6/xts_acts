@@ -253,8 +253,16 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge{
         console.log('[BrowserShell] ===gpz=== MediaPlayer.exitFullscreen');
         isExitFullScreen = true
     }
-}
+    resumePlayer() {
 
+    }
+    suspendPlayer(type: SuspendType) {
+
+    }
+}
+enum SuspendType {
+
+}
 class AVPlayerListenerImpl implements AVPlayerListener {
     handler: webview.NativeMediaPlayerHandler;
     component: MyComponent;
