@@ -1,0 +1,43 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1200000",
+        "bundle-name": "com.example.actsimagetest",
+        "module-name": "entry_test",
+        "shell-timeout": "1200000",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageFormatTranscodingNDKTest.hap",
+                "ActsImageFormatTranscodingNDKMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/com.example.actsimagetest/haps/entry_test/files/"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/JPG_800500.jpg ->/data/app/el2/100/base/com.example.actsimagetest/haps/entry_test/files",
+                "./resource/image/JPG_800501.jpg ->/data/app/el2/100/base/com.example.actsimagetest/haps/entry_test/files",
+                "./resource/image/JPG_801500.jpg ->/data/app/el2/100/base/com.example.actsimagetest/haps/entry_test/files",
+                "./resource/image/JPG_801501.jpg ->/data/app/el2/100/base/com.example.actsimagetest/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imageNdk/haps/entry_test/files/*"
+            ]
+        }
+    ]
+}
