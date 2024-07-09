@@ -165,7 +165,7 @@ export default function getListItemRect5() {
       let height = Number(obj4.$attrs.content)
       console.log('height' + height)
 
-      console.log('assert position')``
+      console.log('assert position')
       expect(Math.abs(Math.round(x) - Math.round(0)) <= 1).assertTrue();
 
       expect(Math.abs(Math.round(y) - Math.round(0)) <= 1).assertTrue();

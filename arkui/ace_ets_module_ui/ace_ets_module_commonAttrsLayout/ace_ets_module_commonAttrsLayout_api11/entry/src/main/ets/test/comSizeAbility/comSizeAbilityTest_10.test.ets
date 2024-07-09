@@ -162,7 +162,7 @@ export default function comSizeAbilityTest_10 () {
       console.info("[comSizeAbilityTestJsunit_28] component Scale is: " + JSON.stringify(Scale))
       console.info("[comSizeAbilityTestJsunit_28] component Rotate is: " + JSON.stringify(Rotate))
       await CommonFunc.sleep(1000);
-      xpect(Math.abs(SizeWidth - Math.round(vp2px(210))) <= 1).assertTrue();
+      expect(Math.abs(SizeWidth - Math.round(vp2px(210))) <= 1).assertTrue();
       expect(Math.abs(SizeHeight - Math.round(vp2px(125))) <= 1).assertTrue();
       expect(JSON.stringify(Translate)).assertEqual('{"x":1,"y":1,"z":1}');
       expect(JSON.stringify(Scale)).assertEqual('{"x":1,"y":1,"z":1,"centerX":1,"centerY":1}');

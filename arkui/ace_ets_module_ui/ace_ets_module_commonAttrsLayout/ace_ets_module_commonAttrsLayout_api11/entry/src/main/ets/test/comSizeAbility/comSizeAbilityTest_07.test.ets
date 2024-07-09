@@ -147,7 +147,7 @@ export default function comSizeAbilityTest_07 () {
         expect(JSON.stringify(Rotate)).assertEqual('{"x":1,"y":1,"z":1,"angle":0,"centerX":1,"centerY":1}');
         expect(JSON.stringify(Transform)).assertEqual('[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]');
         await CommonFunc.sleep(1000);
-        await driver.click(Math.round(globalThis.winLeft + Math.round(vp2px(200)),Math.round(globalThis.winTop + Math.round(vp2px(200)));
+        await driver.click(Math.round(globalThis.winLeft + vp2px(200)),Math.round(globalThis.winTop + vp2px(200)));
         await CommonFunc.sleep(1000);
       }
       console.info('[comSizeAbilityTestJsunit_22] END')
