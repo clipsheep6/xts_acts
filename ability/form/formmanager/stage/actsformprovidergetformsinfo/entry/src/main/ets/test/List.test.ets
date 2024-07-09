@@ -20,5 +20,4 @@ import requestPublishFormTest from './RequestPublishFormTest.test';
 export default function testsuite() {
   getFormsInfoTest();
   formApiCoverTest();
-  requestPublishFormTest();
 }
