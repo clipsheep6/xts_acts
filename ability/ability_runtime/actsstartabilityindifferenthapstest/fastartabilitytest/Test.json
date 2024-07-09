@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.ohos.fastartabilitytest",
+        "package-name": "com.ohos.fastartabilitytest_test",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "fastartabilitytest.hap",
+                "faehap.hap",
+                "fafhap.hap",
+                "stagebhap.hap",
+                "stagechap.hap",
+                "stagedhap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+       
+    ]
+}
