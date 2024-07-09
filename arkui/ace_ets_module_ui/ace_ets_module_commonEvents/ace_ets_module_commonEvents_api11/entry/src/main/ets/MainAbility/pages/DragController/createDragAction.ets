@@ -56,7 +56,7 @@ struct DragControllerPage {
             let text = new UDC.Text()
             let unifiedData = new UDC.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
-              pointerId: 0,
+              pointerId: 10000,
               data: unifiedData,
               extraParams: ''
             }
