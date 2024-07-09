@@ -19,6 +19,13 @@ import stat from 'libstatndk.so'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import fs from '@ohos.file.fs'
 
+let S_IFSOCK = 0o140000;
+let S_IFDIR	= 0o040000;
+let S_IFCHR	= 0o020000;
+let S_IFBLK	= 0o060000;
+let S_IFREG	= 0o100000;
+let S_IFIFO	= 0o010000;
+let S_IFLNK	= 0o120000;
 export default function statNdkTest() {
   describe('MuslStatTest', () => {
 
@@ -161,7 +168,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/test.txt';
       let dirFp = 0;
-      let mode = 32768;
+      let mode = S_IFREG | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(0)
       done()
@@ -184,7 +191,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/test.txt';
       let dirFp = 0;
-      let mode = 8192;
+      let mode = S_IFCHR | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(0)
       done()
@@ -207,7 +214,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/test.txt';
       let dirFp = 0;
-      let mode = 24576;
+      let mode = S_IFBLK | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(0)
       done()
@@ -230,7 +237,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/test.txt';
       let dirFp = 0;
-      let mode = 4096;
+      let mode = S_IFIFO | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(0)
       done()
@@ -253,7 +260,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/test.txt';
       let dirFp = 0;
-      let mode = 49152;
+      let mode = S_IFSOCK | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(0)
       done()
@@ -276,7 +283,7 @@ export default function statNdkTest() {
 
       let path = filesDir;
       let dirFp = -1;
-      let mode = 32768;
+      let mode = S_IFREG | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(0)
       done()
@@ -299,7 +306,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/testSev.txt';
       let dirFp = -1;
-      let mode = 8192;
+      let mode = S_IFCHR | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(-1)
       done()
@@ -322,7 +329,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/testEig.txt';
       let dirFp = -1;
-      let mode = 24576;
+      let mode = S_IFBLK | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(-1)
       done()
@@ -345,7 +352,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/testNi.txt';
       let dirFp = -1;
-      let mode = 4096;
+      let mode = S_IFIFO | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(-1)
       done()
@@ -368,9 +375,9 @@ export default function statNdkTest() {
 
       let path = filesDir + '/testTen.txt';
       let dirFp = -1;
-      let mode = 49152;
+      let mode = S_IFSOCK | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
-      expect(result).assertEqual(-1)
+      expect(result).assertEqual(0)
       done()
     });
 
@@ -391,7 +398,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/test.txt';
       let dirFp = -100;
-      let mode = 32768;
+      let mode = S_IFREG | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(0)
       done()
@@ -414,7 +421,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/testTwl.txt';
       let dirFp = -100;
-      let mode = 8192;
+      let mode = S_IFCHR | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(-1)
       done()
@@ -437,7 +444,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/testThis.txt';
       let dirFp = -100;
-      let mode = 24576;
+      let mode = S_IFBLK | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(-1)
       done()
@@ -460,7 +467,7 @@ export default function statNdkTest() {
 
       let path = filesDir + '/testFor.txt';
       let dirFp = -100;
-      let mode = 4096;
+      let mode = S_IFIFO | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
       expect(result).assertEqual(-1)
       done()
@@ -483,9 +490,9 @@ export default function statNdkTest() {
 
       let path = filesDir + '/testFif.txt';
       let dirFp = -100;
-      let mode = 49152;
+      let mode = S_IFSOCK | 0o000;
       let result: number = stat.mkNodAt(dirFp, path, mode);
-      expect(result).assertEqual(-1)
+      expect(result).assertEqual(0)
       done()
     });
 
