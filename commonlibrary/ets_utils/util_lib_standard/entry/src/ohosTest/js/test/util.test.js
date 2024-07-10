@@ -1223,10 +1223,8 @@ describe('TextEncoderTest', function () {
       arr[4] = 0x62;
       arr[5] = 0x63;
       let retStr = that.decode(arr, {stream:false})
-      let BOM = '\uFEFF'
       let rel = 'abc'
-      let re = BOM + rel
-      expect(retStr).assertEqual(re);
+      expect(retStr).assertEqual(rel);
     })
 
     /**
@@ -1345,10 +1343,8 @@ describe('TextEncoderTest', function () {
       arr[4] = 0x62;
       arr[5] = 0x63;
       let retStr = that.decode(arr, undefined)
-      let BOM = '\uFEFF'
       let rel = 'abc'
-      let res = BOM + rel
-      expect(retStr).assertEqual(res);
+      expect(retStr).assertEqual(rel);
     })
 
     /**
@@ -1369,10 +1365,8 @@ describe('TextEncoderTest', function () {
       arr[4] = 0x62;
       arr[5] = 0x63;
       let retStr = that.decode(arr, null);
-      let BOM = '\uFEFF'
       let rel = 'abc'
-      let res = BOM + rel
-      expect(retStr).assertEqual(res);
+      expect(retStr).assertEqual(rel);
     })
 
     /**
@@ -1419,10 +1413,8 @@ describe('TextEncoderTest', function () {
       arr[4] = 0x62;
       arr[5] = 0x63;
       let retStr = that.decodeWithStream(arr, {stream:true})
-      let BOM = '\uFEFF'
       let rel = 'abc'
-      let re = BOM + rel;
-      expect(retStr).assertEqual(re)
+      expect(retStr).assertEqual(rel)
     })
 
     /**
@@ -2181,10 +2173,8 @@ describe('TextEncoderTest', function () {
       arr[4] = 0x62;
       arr[5] = 0x63;
       let retStr = that.decodeWithStream(arr, decodeWithStreamOptions)
-      let BOM = '\uFEFF'
       let rel = 'abc'
-      let re = BOM + rel;
-      expect(retStr).assertEqual(re)
+      expect(retStr).assertEqual(rel)
     })
 
     /**
