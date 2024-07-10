@@ -1,4 +1,4 @@
-# Copyright (C) 2024 Huawei Device Co., Ltd.
+# Copyright (c) 2024 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -11,15 +11,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/ohos_var.gni")
 import("//test/xts/tools/build/suite.gni")
 
-group("os_temp") {
+ohos_js_app_suite("RequestPublishFormTest") {
+  test_hap = true
   testonly = true
-  if (is_standard_system) {
-    deps = [
-      "getformsinfotest:GetFormsInfoTest",
-      "requestpublishformtest:RequestPublishFormTest",
-    ]
-  }
+  certificate_profile = "./signature/openharmony_sx.p7b"
+  hap_name = "RequestPublishFormTest"
+
+  # 部件名称，真实数据，需要子系统对应
+  part_name = "form"
+
+  # 子系统名称，真实数据，需要部件对应
+  subsystem_name = "os_temp"
 }
