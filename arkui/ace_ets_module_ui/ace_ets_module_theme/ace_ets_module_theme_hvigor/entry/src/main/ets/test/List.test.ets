@@ -37,7 +37,6 @@ import sliderThemeTest from './components/Slider.test';
 
 export default function testsuite() {
   // global tests
-  setDefaultThemeTest();
   systemThemeTest();
   withThemeTest();
   // components
@@ -58,4 +57,5 @@ export default function testsuite() {
   patternLockThemeTest();
   qrCodeThemeTest();
   sliderThemeTest();
+  setDefaultThemeTest();
 }
