@@ -187,7 +187,7 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge{
         if (videoInfo.mediaSrcList) {
             this.mediaSource = videoInfo.mediaSrcList[0].source;
         } else {
-            this.mediaSource = ''
+            this.mediaSource = 'https://vipmp4i.vodfile.m1905.com/202405070914/627b48c5e195af1b40f99787e1d4c1c2/video/moss/2024/02/11/v202402112AE45OK0LEZJ9IOL/v202402112AE45OK0LEZJ9IOL.mp4';
         }
         
         this.web.node_controller = new MyNodeController(
@@ -247,16 +247,8 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge{
     exitFullscreen() {
         console.log('[BrowserShell] ===gpz=== MediaPlayer.exitFullscreen');
     }
-    resumePlayer() {
-
-    }
-    suspendPlayer(type: SuspendType) {
-
-    }
 }
-enum SuspendType {
 
-}
 class AVPlayerListenerImpl implements AVPlayerListener {
     handler: webview.NativeMediaPlayerHandler;
     component: MyComponent;
