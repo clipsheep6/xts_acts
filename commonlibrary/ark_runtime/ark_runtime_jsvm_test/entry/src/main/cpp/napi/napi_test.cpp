@@ -6752,6 +6752,34 @@ static JSVM_Value CreateFunctionFailed(JSVM_Env env, JSVM_CallbackInfo info)
     return returnValue;
 }
 
+static JSVM_Value CreateFunctionWithScript(JSVM_Env env, JSVM_CallbackInfo info)
+{ 
+    size_t argc = 3;
+    JSVM_Value argv[3] = { nullptr};
+    JSVM_Value thisArg = nullptr;
+    OH_JSVM_GetCbInfo(env, info, &argc, argv, &thisArg, nullptr);
+
+    uint32_t arrayLen = 0;
+    JSVM_CALL(env, OH_JSVM_GetArrayLength(env, argv[1], &arrayLen));
+    JSVM_Value *args = new JSVM_Value[arrayLen];
+    for (auto i = 0; i < arrayLen; i++) {
+      JSVM_CALL(env, OH_JSVM_GetElement(env, argv[1], i, &args[i]));
+    }
+
+    JSVM_Value js_string;
+    JSVM_CALL(env, OH_JSVM_CoerceToString(env, argv[0], &js_string));
+    size_t length = 0;
+    JSVM_CALL(env, OH_JSVM_GetValueStringUtf8(env, js_string, NULL, 0, &length));
+    size_t capacity = length + 1;
+    char *buffer = new char[capacity];
+    size_t copy_length = 0;
+    JSVM_CALL(env, OH_JSVM_GetValueStringUtf8(env, js_string, buffer, capacity, &copy_length));
+
+    JSVM_Value func = nullptr;
+    JSVM_CALL(env, OH_JSVM_CreateFunctionWithScript(env, buffer, JSVM_AUTO_LENGTH, arrayLen, args, argv[2], &func));
+    return func;
+}
+
 static JSVM_Value GetHeapStatistics(JSVM_Env env, JSVM_CallbackInfo info)
 {
     strcpy_s(g_dataType, sizeof(g_dataType), "int");
@@ -8122,6 +8150,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = WaitForDebuggerFailed},
     {.data = nullptr, .callback = SetInstanceData},
     {.data = nullptr, .callback = GetInstanceData},
+    {.data = nullptr, .callback = CreateFunctionWithScript},
 };
 static JSVM_PropertyDescriptor jsDescriptor[] = {
     {"createStringUtf8", nullptr, &param[0], nullptr, nullptr, nullptr, JSVM_DEFAULT},
@@ -8275,6 +8304,7 @@ static JSVM_PropertyDescriptor jsDescriptor[] = {
     {"waitForDebuggerFailed", nullptr, &param[148], nullptr, nullptr, nullptr, JSVM_DEFAULT},
     {"setInstanceData", nullptr, &param[149], nullptr, nullptr, nullptr, JSVM_DEFAULT},
     {"getInstanceData", nullptr, &param[150], nullptr, nullptr, nullptr, JSVM_DEFAULT},
+    {"createFunctionWithScript", nullptr, &param[151], nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 
 napi_typedarray_type GetArrayType(JSVM_TypedarrayType typeNum)
