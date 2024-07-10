@@ -54,15 +54,15 @@ export default function gridObjectSortComponentTest() {
 
     /**
      * @tc.number gridObjectSortComponentTest
-     * @tc.name   GridObjectSortComponentTest_0100
+     * @tc.name   testGridObjectSortComponent_0100
      * @tc.desc   Test gridObjectSortComponent
      * @tc.size   MediumTest
      * @tc.type   Function
      * @tc.level  0
      */
 
-    it('GridObjectSortComponentTest_0100', 0, async function (done) {
-      console.info('[GridObjectSortComponentTest_0100] START');
+    it('testGridObjectSortComponent_0100', 0, async function (done) {
+      console.info('[testGridObjectSortComponent_0100] START');
       let driver = await Driver.create();
       await driver.delayMs(2000);
       // 查看gridObjectSortComponent是否存在以下 文本信息。
@@ -76,21 +76,21 @@ export default function gridObjectSortComponentTest() {
       expect(gridObjectSortComponentItem3 !== null).assertTrue();
       expect(gridObjectSortComponentItem4 !== null).assertTrue();
       expect(gridObjectSortComponentItem5 !== null).assertTrue();
-      console.info('[GridObjectSortComponentTest_0100] END');
+      console.info('[testGridObjectSortComponent_0100] END');
       done();
     });
 
     /**
      * @tc.number gridObjectSortComponentTest
-     * @tc.name   GridObjectSortComponentTest_0200 item
+     * @tc.name   testGridObjectSortComponent_0200 item
      * @tc.desc   Click gridObjectSortComponent
      * @tc.size   MediumTest
      * @tc.type   Function
      * @tc.level  0
      */
 
-    it('GridObjectSortComponentTest_0200', 0, async function (done) {
-      console.info('[GridObjectSortComponentTest_0200] START');
+    it('testGridObjectSortComponent_0200', 0, async function (done) {
+      console.info('[testGridObjectSortComponent_0200] START');
       let driver = await Driver.create();
       await Utils.sleep(2000);
 
@@ -101,7 +101,7 @@ export default function gridObjectSortComponentTest() {
       // 断言GridObjectSortComponentItem中存在‘截屏’。
       let textItem2 = await driver.findComponent(ON.text('截屏'));
       expect(textItem2 !== null).assertTrue();
-      console.info('[GridObjectSortComponentTest_0200] END');
+      console.info('[testGridObjectSortComponent_0200] END');
       done();
     });
   })

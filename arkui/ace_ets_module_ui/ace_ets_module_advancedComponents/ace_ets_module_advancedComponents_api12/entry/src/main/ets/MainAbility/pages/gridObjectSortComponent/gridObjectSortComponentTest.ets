@@ -37,7 +37,7 @@ struct gridObjectSortComponentTest {
       id: 2,
       url: $r('app.media.ic_controlcenter_nfc_filled'),
       text: 'NFC',
-      selected: false,
+      selected: true,
       order: 1
     },
     {
@@ -51,7 +51,7 @@ struct gridObjectSortComponentTest {
       id: 4,
       url: $r('app.media.ic_controlcenter_ring_on_filled'),
       text: '响铃',
-      selected: false,
+      selected: true,
       order: 5
     },
     {
