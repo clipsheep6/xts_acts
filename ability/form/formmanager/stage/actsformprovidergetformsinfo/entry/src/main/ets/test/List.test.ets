@@ -14,7 +14,6 @@
  */
 import getFormsInfoTest from './GetFormsInfoTest.test'
 import formApiCoverTest from './FormApiCoverTest.test'
-import requestPublishFormTest from './RequestPublishFormTest.test';
 
 
 export default function testsuite() {

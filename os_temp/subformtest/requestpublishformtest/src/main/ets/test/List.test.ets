@@ -1,4 +1,4 @@
-import abilityTest from './RequestPublishFormTest.test'
+import requestPublishFormTest from './RequestPublishFormTest.test'
 
 export default function testsuite() {
   requestPublishFormTest()

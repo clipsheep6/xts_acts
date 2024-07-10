@@ -3,7 +3,7 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "360000",
-        "bundle-name": "com.example.requestpublishformtest",
+        "bundle-name": "com.example.RequestPublishFormTest",
         "module-name": "com.example.requestpublishformtest",
         "shell-timeout": "360000",
         "testcase-timeout": 70000
