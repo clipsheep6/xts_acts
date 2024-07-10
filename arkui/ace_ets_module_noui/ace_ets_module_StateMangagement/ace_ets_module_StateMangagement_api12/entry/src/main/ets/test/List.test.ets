@@ -45,6 +45,11 @@ import Monitor1Jsunit from './ComponentV2Test/Monitor1Jsunit.test';
 import Monitor2Jsunit from './ComponentV2Test/Monitor2Jsunit.test';
 import Monitor3Jsunit from './ComponentV2Test/Monitor3Jsunit.test';
 import Monitor4Jsunit from './ComponentV2Test/Monitor4Jsunit.test';
+import Provider1Test from './ProviderTest/Provider1.test';
+import Provider2Test from './ProviderTest/Provider2.test';
+import Provider3Test from './ProviderTest/Provider3.test';
+import Provider4Test from './ProviderTest/Provider4.test';
+import Provider5Test from './ProviderTest/Provider5.test';
 export default function testsuite() {
   ExtendTrackTest();
   NestTrackTest();
@@ -79,4 +84,9 @@ export default function testsuite() {
   Monitor2Jsunit();
   Monitor3Jsunit();
   Monitor4Jsunit();
+  Provider1Test();
+  Provider2Test();
+  Provider3Test();
+  Provider4Test();
+  Provider5Test();
 }
