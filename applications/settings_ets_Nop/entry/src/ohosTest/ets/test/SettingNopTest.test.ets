@@ -40,6 +40,14 @@ export default function SettingNopTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
+    /*
+     * @tc.number:SUB_SettingNopTest_0100
+     * @tc.name: SettingNopTest_0100
+     * @tc.desc:Using the on method without permission
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
+     */
     it('SettingNopTest_0100', 0, async (done : Function) => {
       try {
         let name = 'settings.screen.brightness10';
@@ -60,10 +68,18 @@ export default function SettingNopTest() {
         let error = e as BusinessError
         console.error('settings1 catch error: ' + JSON.stringify(error));
         console.log('settings1 catch error log: ' + error.code);
-        expect(error.code == undefined).assertTrue()
+        expect(error.code == 201).assertTrue()
       }
       done();
     })
+    /*
+     * @tc.number:SUB_SettingNopTest_0200
+     * @tc.name: SettingNopTest_0200
+     * @tc.desc:Using the on method without permission
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
+     */
     it('SettingNopTest_0200', 0, async (done : Function) => {
       try {
         settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', (status) => {
@@ -73,10 +89,18 @@ export default function SettingNopTest() {
         let error = e as BusinessError
         console.error('settings2 catch error: ' + JSON.stringify(error));
         console.log('settings2 catch error log: ' + error.code);
-        expect(error.code == undefined).assertTrue()
+        expect(error.code == 201).assertTrue()
       }
       done();
     })
+    /*
+     * @tc.number:SUB_SettingNopTest_0300
+     * @tc.name: SettingNopTest_0300
+     * @tc.desc:Using the on method without permission
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
+     */
     it('SettingNopTest_0300', 0, async (done : Function) => {
       try {
         settings.setValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, '100', settings.domainName.DEVICE_SHARED).then((status) => {
@@ -87,7 +111,7 @@ export default function SettingNopTest() {
         let error = e as BusinessError
         console.error('settings3 catch error: ' + JSON.stringify(error));
         console.log('settings3 catch error log: ' + error.code);
-        expect(error.code == undefined).assertTrue()
+        expect(error.code == 201).assertTrue()
       }
       done();
     })
