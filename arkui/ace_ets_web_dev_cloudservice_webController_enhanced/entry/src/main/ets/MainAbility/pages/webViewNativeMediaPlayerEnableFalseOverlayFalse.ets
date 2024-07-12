@@ -31,10 +31,6 @@ let isSourceTypeUrl: Boolean = false
 let isSourceTypeMse: Boolean = false
 let isPreloadMeta: Boolean = false
 let isPlaying: Boolean = false
-let isExitFullScreen: Boolean = false
-let isEnterFullScreen: Boolean = false
-let isError: Boolean = false
-let isRelease: Boolean = false
 interface AVPlayerListener {
     onPlaying() : void
     onPaused() : void
@@ -201,7 +197,7 @@ class AVPlayerDemo {
         this.avPlayer?.setSpeed(speed)
     }
 }
-class NativeMediaPlayerHandlerImpl implements webview.NativeMediaPlayerHandler {
+class NativeMediaPlayerHandlerImpl implements webview.NativeMediaPlayerHandler{
     
     private rawHandler: webview.NativeMediaPlayerHandler;
     constructor(handler: webview.NativeMediaPlayerHandler) {
@@ -219,11 +215,6 @@ class NativeMediaPlayerHandlerImpl implements webview.NativeMediaPlayerHandler {
     
     handleMutedChanged(muted: boolean): void {
         console.log('handle muted:' + muted)
-        if (muted) {
-            Utils.emitEvent(true, 1592)
-        } else {
-            Utils.emitEvent(true, 1594)
-        }
         this.rawHandler.handleMutedChanged(muted)
     }
     
@@ -254,9 +245,6 @@ class NativeMediaPlayerHandlerImpl implements webview.NativeMediaPlayerHandler {
     
     handleNetworkStateChanged(state: webview.NetworkState): void {
         console.log('handleNetworkStateChanged:' + state)
-        if (state === webview.NetworkState.IDLE) {
-            Utils.emitEvent(true, 1545)
-        }
         this.rawHandler.handleNetworkStateChanged(state)
     }
     
@@ -344,10 +332,8 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge{
         console.log('[BrowserShell] ===gpz=== MediaPlayer.setMuted(' + muted + ')');
         
         if(muted) {
-            Utils.emitEvent(true, 1591)
             this.nativePlayer?.setVolume(0)
         } else {
-            Utils.emitEvent(true, 1593)
             this.nativePlayer?.setVolume(100)
         }
     }
@@ -357,8 +343,6 @@ class NativeMediaPlayerImpl implements webview.NativeMediaPlayerBridge{
     }
     release() {
         console.log('[BrowserShell] ===gpz=== MediaPlayer.release');
-        isRelease = true
-        Utils.emitEvent(true, 1543)
         this.nativePlayer?.release();
         this.web.show_native_media_player = false;
     }
@@ -426,8 +410,6 @@ class AVPlayerListenerImpl implements AVPlayerListener {
     onError() {
         console.log('[BrowserShell] onError(), handler[' + this.handler + ']')
         console.log('MediaError' + webview.MediaError.NETWORK_ERROR.toString())
-        isError = true
-        Utils.emitEvent(true, 1543)
         this.handler.handleError(1, 'Oops!');
     }
     onVideoSizeChanged(width: number, height: number) {
@@ -648,16 +630,12 @@ struct WebComponent {
   nativePlayer? : webview.NativeMediaPlayerBridge
   page_url: Resource = $rawfile('nativeMediaPlayerHandler.html')
   node_controller?: MyNodeController
-  nativeMediaPlayerHandlerImpl?: NativeMediaPlayerHandlerImpl
-  mediaInfo?: webview.MediaInfo
   // 日志列表
   @State messageList: Array<string> =[]
   @State show_native_media_player: boolean = false;
   @State node_width : number = 300;
   @State node_height : number = 150;
-  @State isShouldOverlay : boolean = true;
-  @State isCallback : boolean = true;
-  //@State node_offset : Position = {x: 0, y: 0};
+  @State isNoCallback : boolean = true;
   
   area?: Area
   @State emitKey: string = '';
@@ -682,14 +660,12 @@ struct WebComponent {
   private retryPlayingGen = (emitKey: string) => {
       return async () => {
           let retryTime = 1
-          while(retryTime < 2) {
+          while(retryTime < 5) {
               retryTime += 1
               if (emitKey != this.emitKey) {
-                  console.log( 'not samekey:' + emitKey + 'new emitKey' + this.emitKey )
                   return
               }
               if(!isPlaying) {
-                  console.log('retry playing')
                   this.controller.refresh()
                   await Utils.sleep(3000)
                   this.controller.runJavaScript('buttonPlay()', (error, result) => {
@@ -704,388 +680,48 @@ struct WebComponent {
   build() {
       Column() {
           Row() {
-              Button('web click').key('webViewNativeMediaPlayerHandlerEnhanced').onClick(async () => {
+              Button('web click').key('webViewNativeMediaPlayerEnableFalseOverlayFalse').onClick(async () => {
+                await Utils.sleep(2000)
                 console.info('key==>' + this.emitKey)
                 isPlaying = false
-                this.isShouldOverlay = true
-                await Utils.sleep(2000)
+
                 switch (this.emitKey) {
-                    case 'emitWebViewNativeMediaPlayerShouldOverlayFalse': {
-                        this.isShouldOverlay = false
-                        this.controller.refresh()
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        if( this.isCallback ) {
-                            Utils.emitEvent(true, 1544)
-                        }
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerVideoMultiSource': {
-                        this.controller.loadUrl($rawfile('multi_source_video.html'))
-                        await Utils.sleep(1000)
-                        this.controller.refresh()
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        if( this.isCallback ) {
-                            Utils.emitEvent(true, 1540)
-                        }
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerEnterFullScreen': {
-                        this.controller.loadUrl($rawfile('fullScreenTest.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        if( this.nativeMediaPlayerHandlerImpl ) {
-                            if (this.nativeMediaPlayerHandlerImpl.handleFullscreenChanged) {
-                                this.nativeMediaPlayerHandlerImpl.handleFullscreenChanged(true);
-                            } else {
-                                this.nativeMediaPlayerHandlerImpl['handleFullScreenChanged'](true);
-                            }
-                        }
-                        await Utils.sleep(2000)
-                        try{
-                            this.controller.runJavaScript('checkIsFullScreen()', (error, result) => {
-                                Utils.emitEvent(true, 1541)
-                            })
-                        } catch (e) {
-                            Utils.emitEvent(true, 1541)
-                        }
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerExitFullScreen': {
-                        this.controller.loadUrl($rawfile('fullScreenTest.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        if( this.nativeMediaPlayerHandlerImpl ) {
-                            if (this.nativeMediaPlayerHandlerImpl.handleFullscreenChanged) {
-                                this.nativeMediaPlayerHandlerImpl.handleFullscreenChanged(true);
-                            } else {
-                                this.nativeMediaPlayerHandlerImpl['handleFullScreenChanged'](true);
-                            }
-                            await Utils.sleep(2000)
-                            if (this.nativeMediaPlayerHandlerImpl.handleFullscreenChanged) {
-                                this.nativeMediaPlayerHandlerImpl.handleFullscreenChanged(false);
-                            } else {
-                                this.nativeMediaPlayerHandlerImpl['handleFullScreenChanged'](false);
-                            }
-                        }
-                        await Utils.sleep(2000)
-                        try {
-                            this.controller.runJavaScript('checkIsFullScreen()', (error, result) => {
-                                Utils.emitEvent(true, 1542)
-                            })
-                        } catch (error) {
-                            Utils.emitEvent(true, 1542)
-                        }
-
-                        break;
-                    }
-
-                    case 'emitWebViewNativeMediaHandleErrorRelease': {
-                        this.controller.loadUrl($rawfile('nativeMediaError.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        if ( isError && isRelease ) {
-                            Utils.emitEvent(true, 1543)
-                        }
-                        break;
-                    }
-
-                    case 'emitWebViewNativeMediaHandleNetworkStateChangedIDLE': {
+                    case 'emitWebViewNativeMediaPlayerEnableFalseOverlayFalse': {
+                        this.isNoCallback = true
                         this.controller.loadUrl(this.page_url)
-                        await Utils.sleep(2000)
                         this.controller.runJavaScript('buttonPlay()', (error, result) => {
                             console.error('The play() return error is: ${error}');
                             console.log('The play() return value is: ${result}');
                         })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerEnableTrueShouldOverlayTrue': {
-                        this.controller.loadUrl($rawfile('multi_source_video.html'))
                         await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        if( this.isCallback ) {
-                            Utils.emitEvent(true, 1561)
+                        if( this.isNoCallback ) {
+                            Utils.emitEvent(true, 1560)
                         }
                         break;
                     }
-                    case 'emitWebViewNativeMediaPlayerAudio': {
-                        this.controller.loadUrl($rawfile('media_audio.html'))
-                        await Utils.sleep(2000)
-                        this.isCallback = false
-                        isPlaying = false
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        if( ! this.isCallback ) {
-                            Utils.emitEvent(true, 1562)
-                        }
-                        if( !isPlaying) {
-                            Utils.emitEvent(true, 1562)
-                        }
-                        break;
-                    }
-
-                    case 'emitWebViewNativeMediaPlayerMediaSrcUrl': {
-                        this.controller.loadUrl($rawfile('multi_source_video.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        if( this.isCallback ) {
-                            Utils.emitEvent(true, 1563)
-                        }
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerPostUrl':
-                    case 'emitWebViewNativeMediaPlayerMediaListSource':
-                    case 'emitWebViewNativeMediaPlayerControlShownTrue':
-                    case 'emitWebViewNativeMediaPlayerSurfaceInfoId':
-                    case 'emitWebViewNativeMediaPlayerSurfaceInfoRect':
-                    case 'emitWebViewNativeMediaPlayerMediaListFormat': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerPostUrl.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-
-                    case 'emitWebViewNativeMediaPlayerControlShownFalse': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerControlShownFalse.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerControlListNodownload': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerControlsNodownload.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerControlListNofullscreen': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerControlsNofullscreen.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerNoremoteplayback': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerControlsNoremoteplayback.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerNodownloadNoremoteplaybackNoremoteplayback': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerControlsAll.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerMutedTrue': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerMutedTrue.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerMutedFalse': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerMutedFalse.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerHeaders':
-                    case 'emitWebViewNativeMediaPlayerAttributes': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandler.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerPreloadNone': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerPreloadNone.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerPreloadMetadata': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerPreloadMetadata.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                    case 'emitWebViewNativeMediaPlayerPreloadAuto': {
-                        this.controller.loadUrl($rawfile('nativeMediaPlayerHandlerPreloadAuto.html'))
-                        await Utils.sleep(2000)
-                        this.controller.runJavaScript('buttonPlay()', (error, result) => {
-                            console.error('The play() return error is: ${error}');
-                            console.log('The play() return value is: ${result}');
-                        })
-                        break;
-                    }
-                 }
+                }
               })
           }
           Stack() {
-              Web({ src: this.page_url, controller: this.controller })
-                  .enableNativeMediaPlayer({ enable: true, shouldOverlay: this.isShouldOverlay })
-                  .onPageBegin((event: PageBeginParam) => {
-                      console.error('enter onPageBegin, url:' + event.url);
-                      console.error(' in onPageBegin, onCreateNativeMediaPlayer:' + this.controller.onCreateNativeMediaPlayer);
-                      if (this.controller.onCreateNativeMediaPlayer) {
-                          let callback: webview.CreateNativeMediaPlayerCallback =
-                                  (handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
-                                  this.nativeMediaPlayerHandlerImpl = new NativeMediaPlayerHandlerImpl(handler)
-                                  console.log("mediaInfo" + JSON.stringify(mediaInfo))
-                                  this.isCallback = true
-                                  Utils.emitEvent(true, 1539)
-                                  Utils.emitEvent(true, 1540)
-                                  if( mediaInfo ) {
-                                      let isControls = ( mediaInfo.controlsShown === false && mediaInfo.controlList.length === 0)
-                                      let isPreloadNone = ( mediaInfo.preload === webview.Preload.NONE )
-                                      let isMediaSrcType =  mediaInfo.mediaSrcList.length > 0 && mediaInfo.mediaSrcList[0].type === webview.SourceType.URL
-                                      let isSurface = !!mediaInfo.surfaceInfo && !!mediaInfo.surfaceInfo.id && !!mediaInfo.surfaceInfo.rect
-                                      let isPosterUrl = ( mediaInfo.posterUrl.length > 0 )
-                                      if(isMediaSrcType) {
-                                          Utils.emitEvent(true, 1563)
-                                      }
-                                      if (isControls && isPreloadNone && isMediaSrcType && isSurface && isPosterUrl ) {
-                                          Utils.emitEvent(true, 1540)
-                                      }
-                                      if(mediaInfo.posterUrl.length > 0 && mediaInfo.posterUrl.indexOf('runoob.com') > -1 ){
-                                          Utils.emitEvent(true, 1573)
-                                      }
-                                      if(mediaInfo.mediaSrcList[0].source.length > 0 && mediaInfo.mediaSrcList[0].source.indexOf('movie.mp4') > -1 ){
-                                          Utils.emitEvent(true, 1574)
-                                      }
-                                      if(mediaInfo.mediaSrcList[0].format.length > 0 && mediaInfo.mediaSrcList[0].format.indexOf('mp4') > -1 ){
-                                          Utils.emitEvent(true, 1575)
-                                      }
-                                      if(!! mediaInfo.surfaceInfo && mediaInfo.surfaceInfo.id.length >0 ) {
-                                          Utils.emitEvent(true, 1576)
-                                      }
-                                      if (!! mediaInfo.surfaceInfo && !! mediaInfo.surfaceInfo.rect ) {
-                                          Utils.emitEvent(true, 1577)
-                                      }
-                                      if ( mediaInfo.controlsShown.toString() == 'true') {
-                                          Utils.emitEvent(true, 1578)
-                                      }
-                                      if ( mediaInfo.controlsShown.toString() == 'false') {
-                                          Utils.emitEvent(true, 1579)
-                                      }
-                                      if ( mediaInfo.controlList.indexOf('nodownload') > -1) {
-                                          Utils.emitEvent(true, 1580)
-                                      }
-                                      if ( mediaInfo.controlList.indexOf('nofullscreen') > -1) {
-                                          Utils.emitEvent(true, 1581)
-                                      }
-                                      if ( mediaInfo.controlList.indexOf('noremoteplayback') > -1) {
-                                          Utils.emitEvent(true, 1582)
-                                      }
-                                      if ( mediaInfo.controlList.indexOf('nodownload') > -1 &&  mediaInfo.controlList.indexOf('nofullscreen') > -1 &&  mediaInfo.controlList.indexOf('noremoteplayback') > -1) {
-                                          Utils.emitEvent(true, 1583)
-                                      }
-                                      if ( mediaInfo.muted.toString() === 'true') {
-                                          Utils.emitEvent(true, 1584)
-                                      }
-                                      if ( mediaInfo.muted.toString() === 'false') {
-                                          Utils.emitEvent(true, 1585)
-                                      }
+              Web({ src: '', controller: this.controller })
+                .enableNativeMediaPlayer({ enable: false, shouldOverlay: false })
+                .onPageBegin((event: PageBeginParam) => {
+                    console.error('enter onPageBegin, url:' + event.url);
+                    console.error(' in onPageBegin, onCreateNativeMediaPlayer:' + this.controller.onCreateNativeMediaPlayer);
+                    let callback: webview.CreateNativeMediaPlayerCallback =
+                        (handler: webview.NativeMediaPlayerHandler, mediaInfo: webview.MediaInfo) => {
+                            this.isNoCallback = false
+                            console.log('mediaInfo' + JSON.stringify(mediaInfo))
+                            this.nativePlayer = new NativeMediaPlayerImpl(this, new NativeMediaPlayerHandlerImpl(handler), mediaInfo);
+                            return this.nativePlayer;
+                        }
+                    this.controller.onCreateNativeMediaPlayer(callback);
+                    this.controller.pauseAllMedia();
+                    console.error('exit onPageBegin');
+                })
+                .width('100%')
+                .height('100%')
 
-                                      if (!! mediaInfo.headers && Object.keys(mediaInfo.headers).length >= 0) {
-                                          Utils.emitEvent(true, 1586)
-                                      }
-
-                                      if (!! mediaInfo.attributes && Object.keys(mediaInfo.attributes).length >= 0) {
-                                          Utils.emitEvent(true, 1587)
-                                      }
-                                      if ( mediaInfo.preload.toString() === '0') {
-                                          Utils.emitEvent(true, 1588)
-                                      }
-                                      if ( mediaInfo.preload.toString() === '1') {
-                                          Utils.emitEvent(true, 1589)
-                                      }
-                                      if ( mediaInfo.preload.toString() === '2') {
-                                          Utils.emitEvent(true, 1590)
-                                      }
-                                  }
-                                  this.nativeMediaPlayerHandlerImpl = new NativeMediaPlayerHandlerImpl(handler)
-                                  this.nativeMediaPlayerHandlerImpl.handleNetworkStateChanged(webview.NetworkState.IDLE);
-                                  Utils.emitEvent(true, 1545)
-                                  this.nativePlayer = new NativeMediaPlayerImpl(this, this.nativeMediaPlayerHandlerImpl, mediaInfo);
-                                  return this.nativePlayer;
-                              }
-
-                          this.controller.onCreateNativeMediaPlayer(callback);
-                      }
-                      this.controller.pauseAllMedia();
-                      console.error('exit onPageBegin');
-                  })
-                  .onPageEnd(async () => {
-                  })
-                  .width('100%')
-                  .height('100%')
-                  .onAreaChange((oldValue: Area, newValue: Area) => {
-                      oldValue;
-                      this.area = newValue;
-                  })
-
-              if (this.show_native_media_player) {
-                  NodeContainer(this.node_controller)
-                      .width(this.node_width + 'px')
-                      .height(this.node_height + 'px')
-                      .backgroundColor(Color.Transparent)
-                      .border({ width: 2, color: Color.Orange })
-              }
           }
       }
   }
