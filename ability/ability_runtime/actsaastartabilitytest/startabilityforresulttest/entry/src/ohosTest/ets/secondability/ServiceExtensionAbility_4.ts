@@ -31,7 +31,7 @@ export default class MyServiceExtensionAbility_4 extends ServiceExtension {
     console.log("async success!!!");
     let context = AppStorage.get('context') as common.UIAbilityContext;
     let want1: Want = {
-      bundleName: 'com.example.myapplication',
+      bundleName: 'com.hits.startabilityforresulttest',
       abilityName: 'SecondAbility',
     };
     let options: StartOptions = {

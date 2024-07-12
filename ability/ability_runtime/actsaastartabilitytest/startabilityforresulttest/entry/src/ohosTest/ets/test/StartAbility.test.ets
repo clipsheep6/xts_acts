@@ -68,11 +68,11 @@ export default function startAbilityTest() {
        const TEST_SUITE_NAME: string = 'StartAbilityTest';
        const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0800';
        let want: Want = {
-         bundleName: 'com.example.myapplication',
+         bundleName: 'com.hits.startabilityforresulttest',
          abilityName: abilityName,
        }
        let options:StartOptions={
-         windowMode:"100"
+         windowMode: 1
        }
        try {
          await context.startAbility(want,options).then(async () => {
@@ -103,7 +103,7 @@ export default function startAbilityTest() {
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0900';
       let want: Want = {
-        bundleName: 'com.example.myapplication',
+        bundleName: 'com.hits.startabilityforresulttest',
         abilityName: abilityName,
       }
       let options:StartOptions={
@@ -136,7 +136,7 @@ export default function startAbilityTest() {
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1000';
       let want: Want = {
-        bundleName: 'com.example.myapplication',
+        bundleName: 'com.hits.startabilityforresulttest',
         abilityName: abilityName,
       }
       let options:StartOptions={
@@ -172,7 +172,7 @@ export default function startAbilityTest() {
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1100';
       let want: Want = {
-        bundleName: 'com.example.myapplication',
+        bundleName: 'com.hits.startabilityforresulttest',
         abilityName: abilityName,
       }
       let options:StartOptions={
@@ -208,7 +208,7 @@ export default function startAbilityTest() {
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1800';
       let want: Want = {
-        bundleName: 'com.example.myapplication',
+        bundleName: 'com.hits.startabilityforresulttest',
         abilityName: 'ServiceExtensionAbility',
       }
       try {
@@ -236,7 +236,7 @@ export default function startAbilityTest() {
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1900';
       let want: Want = {
-        bundleName: 'com.example.myapplication',
+        bundleName: 'com.hits.startabilityforresulttest',
         abilityName: 'ServiceExtensionAbility2',
       }
       try {
@@ -264,7 +264,7 @@ export default function startAbilityTest() {
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2000';
       let want: Want = {
-        bundleName: 'com.example.myapplication',
+        bundleName: 'com.hits.startabilityforresulttest',
         abilityName: 'ServiceExtensionAbility3',
       }
       try {
@@ -292,7 +292,7 @@ export default function startAbilityTest() {
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2100';
       let want: Want = {
-        bundleName: 'com.example.myapplication',
+        bundleName: 'com.hits.startabilityforresulttest',
         abilityName: 'ServiceExtensionAbility4',
       }
       try {
@@ -320,7 +320,7 @@ export default function startAbilityTest() {
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2200';
       let want: Want = {
-        bundleName: 'com.example.myapplication',
+        bundleName: 'com.hits.startabilityforresulttest',
         abilityName: 'ServiceExtensionAbility5',
       }
       try {

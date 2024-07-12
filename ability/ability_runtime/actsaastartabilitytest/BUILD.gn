@@ -20,7 +20,7 @@ group("actsaastartabilitytest") {
       "aastartabilitytest:AaStartAbilityTest",
       "abilityfeature:ActsAbilityFeature",
       "abilityhaps:ActsAbilityHaps",
-      "startabilityforresulttest:ActsContextStartAbilityForResultTest",
+      "startabilityforresulttest:hits_contextStartAbilityForResult_test",
     ]
   }
 }
