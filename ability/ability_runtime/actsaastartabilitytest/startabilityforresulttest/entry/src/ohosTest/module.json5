@@ -1,0 +1,102 @@
+{
+  "module": {
+    "name": "startAbility_test",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
+    "deviceTypes": [
+      "default",
+    ],
+    "requestPermissions":[
+      { "name" : "ohos.permission.INSTALL_BUNDLE" },
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:test_pages",
+
+    "extensionAbilities": [
+      {
+        "name": "ServiceExtensionAbility",
+        "srcEntry": "./ets/secondability/ServiceExtensionAbility.ts",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "exported": true
+      },
+      {
+        "name": "ServiceExtensionAbility2",
+        "srcEntry": "./ets/secondability/ServiceExtensionAbility_2.ts",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "exported": true
+      },
+      {
+        "name": "ServiceExtensionAbility3",
+        "srcEntry": "./ets/secondability/ServiceExtensionAbility_3.ts",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "exported": true
+      },
+      {
+        "name": "ServiceExtensionAbility4",
+        "srcEntry": "./ets/secondability/ServiceExtensionAbility_4.ts",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "exported": true
+      },
+      {
+        "name": "ServiceExtensionAbility5",
+        "srcEntry": "./ets/secondability/ServiceExtensionAbility_5.ts",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "exported": true
+      }
+
+
+    ],
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SecondAbility",
+        "srcEntry": "./ets/secondability/SecondAbility.ts",
+        "icon": "$media:icon",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

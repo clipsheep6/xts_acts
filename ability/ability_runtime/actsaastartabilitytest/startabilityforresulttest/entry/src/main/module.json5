@@ -1,0 +1,27 @@
+{
+  "module": {
+    "name": "startAbility",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "StartAbilityAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "StartAbilityAbility",
+        "srcEntry": "./ets/startabilityability/StartAbilityAbility.ets",
+        "description": "$string:StartAbilityAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:StartAbilityAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ]
+  }
+}
