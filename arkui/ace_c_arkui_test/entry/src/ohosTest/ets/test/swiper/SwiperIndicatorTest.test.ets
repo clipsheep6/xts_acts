@@ -55,10 +55,10 @@ export default function swiperIndicatorTest() {
     /*
      * @tc.number     : SUB_ARKUI_CAPI_SWIPER_INDICATOR_0300
      * @tc.name       : testSwiperIndicator003
-     * @tc.desc       : testing default values of indicator property of the swiper
+     * @tc.desc       : testing indicator for swiper with abnormal value
      * @tc.size       : MediumTest
      * @tc.type       : Function
-     * @tc.level      : Level 1
+     * @tc.level      : Level 2
      */
     it('testSwiperIndicator003', 0, async (done: Function) => {
       expect(nativeFunc.testSwiperIndicator003()).assertEqual(0)
@@ -75,6 +75,45 @@ export default function swiperIndicatorTest() {
      */
     it('testSwiperIndicator004', 0, async (done: Function) => {
       expect(nativeFunc.testSwiperIndicator004()).assertEqual(0)
+      done()
+    })
+
+    /*
+     * @tc.number     : SUB_ARKUI_CAPI_SWIPER_INDICATOR_0500
+     * @tc.name       : testSwiperIndicator005
+     * @tc.desc       : testing indicator for swiper with abnormal value
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testSwiperIndicator005', 0, async (done: Function) => {
+      expect(nativeFunc.testSwiperIndicator005()).assertEqual(0)
+      done()
+    })
+
+    /*
+     * @tc.number     : SUB_ARKUI_CAPI_SWIPER_INDICATOR_0600
+     * @tc.name       : testSwiperIndicator006
+     * @tc.desc       : testing indicator for swiper with abnormal value
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testSwiperIndicator006', 0, async (done: Function) => {
+      expect(nativeFunc.testSwiperIndicator006()).assertEqual(0)
+      done()
+    })
+
+    /*
+     * @tc.number     : SUB_ARKUI_CAPI_SWIPER_INDICATOR_0700
+     * @tc.name       : testSwiperIndicator007
+     * @tc.desc       : testing indicator for swiper with abnormal value
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testSwiperIndicator007', 0, async (done: Function) => {
+      expect(nativeFunc.testSwiperIndicator007()).assertEqual(0)
       done()
     })
 

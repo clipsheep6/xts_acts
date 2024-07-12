@@ -13,7 +13,35 @@
  * limitations under the License.
  */
 
-export function strCat(value1: string, value2: string): string {
+export function StrCat(value1: string, value2: string): string {
   "use concurrent"
   return value1 + value2;
+}
+
+export class A {
+  a: number;
+  b: number;
+  constructor() {
+    this.a = 1;
+    this.b = 2;
+  }
+}
+
+export class B {
+  a: number;
+  b: number;
+  constructor() {
+    this.a = 3;
+    this.b = 4;
+  }
+}
+
+export function printStrArgs(args: string): string {
+  "use concurrent"
+  return args;
+}
+
+export function printArgs(args: number): number {
+  "use concurrent"
+  return args;
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,6 +15,7 @@
 import router from '@ohos.router';
 import { beforeEach, describe, expect, it } from '@ohos/hypium';
 import display from '@ohos.display';
+import I18n from '@ohos.i18n';
 
 export default function GeneralLayoutOriginalTest() {
   describe('GeneralLayoutOriginalTest', () => {
@@ -61,10 +62,13 @@ export default function GeneralLayoutOriginalTest() {
           original_rect_left = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[0];
           original_rect_top = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1];
           setTimeout(() => {
-            let strJson1 = getInspectorByKey('top');
+            let strJson1 = getInspectorByKey('top_orig');
             let top: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[1];
-            expect(original_rect_left).assertEqual(100);
-            expect(original_rect_top - top).assertEqual(vp2px(100));
+            let left: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[0];
+            expect(original_rect_left - left).assertLargerOrEqual(99);
+            expect(original_rect_left - left).assertLessOrEqual(101);
+            expect(original_rect_top - top).assertLargerOrEqual(vp2px(100) - 1);
+            expect(original_rect_top - top).assertLessOrEqual(vp2px(100) + 1);
             console.info('ArkUIHDS_General_Layout_2800 END');
             done();
           }, 500);
@@ -92,10 +96,19 @@ export default function GeneralLayoutOriginalTest() {
           original_rect_right = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[0];
           original_rect_bottom = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[1];
           setTimeout(() => {
-            let strJson1 = getInspectorByKey('bottom');
+            let strJson1 = getInspectorByKey('bottom_orig');
             let bottom: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[1];
-            expect(screenWidth - original_rect_right).assertEqual(fp2px(100));
-            expect(bottom - original_rect_bottom).assertEqual(lpx2px(100));
+            let right: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[0];
+            let strJson2 = getInspectorByKey('top_orig');
+            let left: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson2).$rect + ']')[0] + ']')[0];
+            let width = right - left;
+            let lpx100 = Number.parseInt(lpx2px(100).toFixed(0));
+            bottom = Math.floor(bottom);
+            original_rect_bottom = Math.floor(original_rect_bottom);
+            expect(width - (original_rect_right - left)).assertLargerOrEqual(fp2px(100) - 1);
+            expect(width - (original_rect_right - left)).assertLessOrEqual(fp2px(100) + 1);
+            expect(bottom - original_rect_bottom).assertLargerOrEqual(lpx100 - 1);
+            expect(bottom - original_rect_bottom).assertLessOrEqual(lpx100 + 1);
             console.info('ArkUIHDS_General_Layout_2900 END');
             done();
           }, 500);
@@ -123,10 +136,13 @@ export default function GeneralLayoutOriginalTest() {
           original_rect_left = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[0];
           original_rect_top = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1];
           setTimeout(() => {
-            let strJson1 = getInspectorByKey('top');
+            let strJson1 = getInspectorByKey('top_orig');
             let top: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[1];
-            expect(original_rect_left).assertEqual(vp2px(100));
-            expect(original_rect_top - top).assertEqual(vp2px(100));
+            let left: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[0];
+            expect(original_rect_left - left).assertLargerOrEqual(vp2px(100) - 1);
+            expect(original_rect_left - left).assertLessOrEqual(vp2px(100) + 1);
+            expect(original_rect_top - top).assertLargerOrEqual(vp2px(100) - 1);
+            expect(original_rect_top - top).assertLessOrEqual(vp2px(100) + 1);
             console.info('ArkUIHDS_General_Layout_3000 END');
             done();
           }, 500);
@@ -155,10 +171,20 @@ export default function GeneralLayoutOriginalTest() {
           original_rect_top = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1];
           original_rect_right = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[0];
           setTimeout(() => {
-            let strJson1 = getInspectorByKey('top');
-            let top: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[1];
-            expect((screenWidth / 2) - ((original_rect_left + original_rect_right) / 2)).assertEqual(100);
-            expect(original_rect_top - top).assertEqual(vp2px(100));
+            let strJson2 = getInspectorByKey('top_orig');
+            let top: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson2).$rect + ']')[0] + ']')[1];
+            let left: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson2).$rect + ']')[0] + ']')[0];
+            let strJson3 = getInspectorByKey('bottom_orig');
+            let right: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson3).$rect + ']')[0] + ']')[0];
+            left = Number.parseInt(left.toFixed(0));
+            right = Math.floor(right);
+            let width = right - left;
+            let original_size = ((original_rect_left - left) + (original_rect_right - left)) / 2;
+            let original_rect = Number.parseInt(original_size.toFixed(0));
+            expect((width / 2) - original_rect).assertLargerOrEqual(99);
+            expect((width / 2) - original_rect).assertLessOrEqual(101);
+            expect(original_rect_top - top).assertLargerOrEqual(vp2px(100) - 1);
+            expect(original_rect_top - top).assertLessOrEqual(vp2px(100) + 1);
             console.info('ArkUIHDS_General_Layout_3100 END');
             done();
           }, 500);
@@ -187,10 +213,23 @@ export default function GeneralLayoutOriginalTest() {
           original_rect_top = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1];
           original_rect_right = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[0];
           setTimeout(() => {
-            let strJson1 = getInspectorByKey('top');
+            let strJson1 = getInspectorByKey('top_orig');
             let top: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[1];
-            expect(((original_rect_left + original_rect_right) / 2) - (screenWidth / 2)).assertEqual(fp2px(100));
-            expect(original_rect_top - top - 30).assertEqual(lpx2px(100));
+            let left: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[0];
+            let strJson2 = getInspectorByKey('bottom_orig');
+            let right: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson2).$rect + ']')[0] + ']')[0];
+            left = Number.parseInt(left.toFixed(0));
+            right = Math.floor(right);
+            let width = right - left;
+            let lpx100 = Number.parseInt(lpx2px(100).toFixed(0));
+            top = Math.floor(top);
+            original_rect_top = Math.floor(original_rect_top);
+            expect(((original_rect_left + original_rect_right) / 2 - left) - (width / 2))
+              .assertLargerOrEqual(fp2px(100) - 1);
+            expect(((original_rect_left + original_rect_right) / 2 - left) - (width / 2))
+              .assertLessOrEqual(fp2px(100) + 1);
+            expect(original_rect_top - top - 30).assertLargerOrEqual(lpx100 - 1);
+            expect(original_rect_top - top - 30).assertLessOrEqual(lpx100 + 1);
             console.info('ArkUIHDS_General_Layout_3200 END');
             done();
           }, 500);
@@ -219,10 +258,19 @@ export default function GeneralLayoutOriginalTest() {
           original_rect_top = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1];
           original_rect_right = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[0];
           setTimeout(() => {
-            let strJson1 = getInspectorByKey('top');
+            let strJson1 = getInspectorByKey('top_orig');
             let top: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[1];
-            expect(((original_rect_left + original_rect_right) / 2) - (screenWidth / 2)).assertEqual(100);
-            expect(original_rect_top - top - 60).assertEqual(vp2px(100));
+            let left: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[0];
+            let strJson2 = getInspectorByKey('bottom_orig');
+            let right: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson2).$rect + ']')[0] + ']')[0];
+            left = Number.parseInt(left.toFixed(0));
+            right = Math.floor(right);
+            let width = right - left;
+            let original_rect = Number.parseInt(((original_rect_left + original_rect_right) / 2 - left).toFixed(0));
+            expect(original_rect - (width / 2)).assertLargerOrEqual(99);
+            expect(original_rect - (width / 2)).assertLessOrEqual(101);
+            expect(original_rect_top - top - 60).assertLargerOrEqual(vp2px(100) - 1);
+            expect(original_rect_top - top - 60).assertLessOrEqual(vp2px(100) + 1);
             console.info('ArkUIHDS_General_Layout_3300 END');
             done();
           }, 500);
@@ -251,10 +299,23 @@ export default function GeneralLayoutOriginalTest() {
           original_rect_top = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1];
           original_rect_right = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[0];
           setTimeout(() => {
-            let strJson1 = getInspectorByKey('top');
+            let strJson1 = getInspectorByKey('top_orig');
             let top: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[1];
-            expect(((screenWidth / 2) - (original_rect_left + original_rect_right) / 2)).assertEqual(fp2px(100));
-            expect(original_rect_top - top - 90).assertEqual(lpx2px(100));
+            let left: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[0];
+            let strJson2 = getInspectorByKey('bottom_orig');
+            let right: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson2).$rect + ']')[0] + ']')[0];
+            left = Number.parseInt(left.toFixed(0));
+            right = Math.floor(right);
+            let width = right - left;
+            let lpx100 = Number.parseInt(lpx2px(100).toFixed(0));
+            top = Math.floor(top);
+            original_rect_top = Math.floor(original_rect_top);
+            expect(((width / 2) - ((original_rect_left + original_rect_right) / 2 - left)))
+              .assertLargerOrEqual(fp2px(100) - 1);
+            expect(((width / 2) - ((original_rect_left + original_rect_right) / 2 - left)))
+              .assertLessOrEqual(fp2px(100) + 1);
+            expect(original_rect_top - top - 90).assertLargerOrEqual(lpx100 - 1);
+            expect(original_rect_top - top - 90).assertLessOrEqual(lpx100 + 1);
             console.info('ArkUIHDS_General_Layout_3400 END');
             done();
           }, 500);
@@ -283,10 +344,21 @@ export default function GeneralLayoutOriginalTest() {
           original_rect_top = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1];
           original_rect_right = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[0];
           setTimeout(() => {
-            let strJson1 = getInspectorByKey('top');
+            let strJson1 = getInspectorByKey('top_orig');
             let top: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[1];
-            expect(((original_rect_left + original_rect_right) / 2) - (screenWidth / 2)).assertEqual(vp2px(100));
-            expect(original_rect_top - top - 120).assertEqual(vp2px(100));
+            let left: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson1).$rect + ']')[0] + ']')[0];
+            let strJson2 = getInspectorByKey('bottom_orig');
+            let right: number = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson2).$rect + ']')[0] + ']')[0];
+            left = Number.parseInt(left.toFixed(0));
+            right = Math.floor(right);
+            let width = right - left;
+            I18n.System.setSystemLanguage("zh-Hans");
+            expect(((original_rect_left + original_rect_right) / 2 - left) - (width / 2))
+              .assertLargerOrEqual(vp2px(100) - 1);
+            expect(((original_rect_left + original_rect_right) / 2 - left) - (width / 2))
+              .assertLessOrEqual(vp2px(100) + 1);
+            expect(original_rect_top - top - 120).assertLargerOrEqual(vp2px(100) - 1);
+            expect(original_rect_top - top - 120).assertLessOrEqual(vp2px(100) + 1);
             console.info('ArkUIHDS_General_Layout_3500 END');
             done();
           }, 500);

@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import gradientHeight from './TextPickerTest/gradientHeight.test';
+import dividerJsunit from './TextPickerTest/dividerJsunit.test';
 import contentModifier from './CheckboxTest/contentModifier.test';
 import triggerChange from './CheckboxTest/triggerChange.test';
 import CheckBoxShape from './CheckboxGroupTest/CheckBoxShape.test';
@@ -28,9 +29,16 @@ import SliderAttrs from './SliderTest/SliderAttrs.test'
 import SliderContentModifier from './SliderTest/SliderContentModifier.test'
 import ToggleContentModifier from './ToggleTest/ToggleContentModifier.test'
 import ToggleSwitchStyle from './ToggleTest/ToggleSwitchStyle.test'
+import ToggleContentIsOn from './ToggleTest/ToggleIsOn.test.ets';
+import ToggleContentEnabled from './ToggleTest/ToggleEnabled.test.ets';
+import selectApi1 from './select/selectApi1.test'
+import triggerSelect from './select/triggerSelect.test'
+import slideRange from './SliderTest/slideRange.test'
 
+import SliderAttrs2 from './SliderTest/SliderAttrs2.test'
 export default function testsuite() {
     gradientHeight()
+    dividerJsunit()
     contentModifier()
     triggerChange()
     CheckBoxShape()
@@ -45,5 +53,10 @@ export default function testsuite() {
     SliderContentModifier();
     ToggleContentModifier();
     ToggleSwitchStyle();
-
+    ToggleContentIsOn();
+    ToggleContentEnabled();
+    selectApi1();
+    triggerSelect()
+    slideRange()
+    SliderAttrs2();
 }

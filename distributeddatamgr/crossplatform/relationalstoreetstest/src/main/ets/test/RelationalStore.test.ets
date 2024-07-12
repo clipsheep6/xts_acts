@@ -16,12 +16,11 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import relationalStore from "@ohos.data.relationalStore";
 import curves from "@ohos.curves";
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { BusinessError } from '@ohos.base';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import common from "@ohos.app.ability.common";
 
-let context: Context;
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let context: common.UIAbilityContext;
 const TAG = "[RDB_JSKITS_TEST]";
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 const STORE_CONFIG: relationalStore.StoreConfig = {
@@ -39,8 +38,7 @@ export default function relationalStoreTest() {
   describe("relationalStoreTest", () => {
     beforeAll(async () => {
       console.info(TAG + "beforeAll");
-      let ability = await delegator.getCurrentTopAbility();
-      context = ability.context;
+      context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
       console.info(TAG + 'Get context successful. context=' + context);
     });
 
@@ -410,7 +408,7 @@ export default function relationalStoreTest() {
           deleteResult = true;
         }
         console.info(`Delete RdbStore successfully.`);
-        await sleep(1000);
+        await sleep(500);
         expect(deleteResult).assertTrue();
         done();
       });
@@ -439,7 +437,7 @@ export default function relationalStoreTest() {
         .then(async () => {
           console.info(`Delete RdbStore successfully.`);
           deleteResult = true;
-          await sleep(1000);
+          await sleep(500);
           expect(deleteResult).assertTrue();
           done();
         })
@@ -479,7 +477,7 @@ export default function relationalStoreTest() {
             deleteResult = true;
           }
           console.info(`Delete RdbStore successfully.`);
-          await sleep(1000);
+          await sleep(500);
           expect(deleteResult).assertTrue();
           done();
         });
@@ -513,7 +511,7 @@ export default function relationalStoreTest() {
           .then(async () => {
             console.info(`Delete RdbStore successfully.`);
             deleteResult = true;
-            await sleep(1000);
+            await sleep(500);
             expect(deleteResult).assertTrue();
             done();
           })
@@ -671,7 +669,7 @@ export default function relationalStoreTest() {
           deleteResult = true;
         }
         console.info(`testDeleteRdbStoreError005 Delete RdbStore successfully.`);
-        await sleep(1000);
+        await sleep(500);
         expect(deleteResult).assertTrue();
         done();
       });
@@ -700,7 +698,7 @@ export default function relationalStoreTest() {
         .then(async () => {
           console.info(`testDeleteRdbStoreError006 Delete RdbStore successfully.`);
           deleteResult = true;
-          await sleep(1000);
+          await sleep(500);
           expect(deleteResult).assertTrue();
           done();
         })

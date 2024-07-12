@@ -38,6 +38,8 @@ import removeStyles from './TextTest/removeStyles.test'
 import StyledStringTest from './TextTest/StyledStringTest.test'
 import clearStyles from './TextTest/clearStyles.test'
 import TextStyle from './TextTest/TextStyle.test';
+import TextStyleWavy from './TextTest/TextStyleWavy.test';
+
 import MarqueeApi from './Marquee/MarqueeApi.test';
 import APIContentTypeTest from './TextInput/APIContentTypeTest.test';
 import APIUnderlineColorTest from './TextInput/APIUnderlineColorTest.test';
@@ -49,7 +51,10 @@ import RichEditorApi1 from './RichEditor/RichEditorApi1.test'
 import RichEditorApi3 from './RichEditor/RichEditorApi3.test'
 import RichEditorApi5 from './RichEditor/RichEditorApi5.test'
 import RichEditorChangeCallback from './RichEditor/RichEditorChangeCallback.test'
-
+import RichEditorWordBreakJsunitTest from './RichEditorEnhance01/RichEditorWordBreakJsunitTest.test'
+import RichEditorMenuPolicyJsunit from './RichEditorEnhance01/RichEditorMenuPolicyJsunit.test'
+import RichEditorTextStyleJsunit from './RichEditorEnhance01/RichEditorTextStyleJsunit.test'
+import RichEditorFontFeatureJsunit from './RichEditorEnhance01/RichEditorFontFeatureJsunit.test'
 import RichEditor1 from './RichEditorEnhance/RichEditor1.test'
 import RichEditor2 from './RichEditorEnhance/RichEditor2.test'
 import RichEditor3 from './RichEditorEnhance/RichEditor3.test'
@@ -57,10 +62,83 @@ import RichEditor4 from './RichEditorEnhance/RichEditor4.test'
 import RichEditor5 from './RichEditorEnhance/RichEditor5.test'
 import RichEditor6 from './RichEditorEnhance/RichEditor6.test'
 import RichEditor7 from './RichEditorEnhance/RichEditor7.test'
+import RichEditor8 from './RichEditorEnhance/RichEditor8.test'
+import RichEditor9 from './RichEditorEnhance/RichEditor9.test'
+import RichEditor10 from './RichEditorEnhance/RichEditor10.test'
+import RichEditor11 from './RichEditorEnhance/RichEditor11.test'
 import TextInputTextAreaSearch from './RichEditorEnhance/TextInputTextAreaSearch.test'
+import TextAreaApi1 from './TextArea/TextAreaApi1.test'
+import TextAreaApi2 from './TextArea/TextAreaApi2.test'
+import TextAreaApi3 from './TextArea/TextAreaApi3.test'
+import textApi1 from './Text/TextApi1.test'
+
+import TextArea_lineBreakStrategyTest from './TextAreaTest/TextAreaAPITest/TextArea_lineBreakStrategyTest.test'
+import TextArea_lineSpacingTest from './TextAreaTest/TextAreaAPITest/TextArea_lineSpacingTest.test'
+import TextInput_lineBreakStrategyTest from './TextInput/TextInputAPITest/TextInput_lineBreakStrategyTest.test'
+import Text_lineBreakStrategyTest from './TextTest/TextAPITest/Text_lineBreakStrategyTest.test'
+import Text_lineSpacingTest from './TextTest/TextAPITest/Text_lineSpacingTest.test'
+import marqueeOptionsTest from './TextTest/TextAPITest/marqueeOptionsTest.test'
+import textStrategyJsunit from './TextTest/textStrategyJsunit.test';
+import Context from './TextTest/Context.test'
+import getLayout from './TextTest/getLayout.test'
+import imageAddApi from './ImageTest/imageAddApi.test'
+import SymbolGlyphApi from './SymbolGlyph/SymbolGlyphApi.test'
+import styledStringApi from './TextTest/styledStringApi.test'
+import SelectionMenuApi from './RichEditor/SelectionMenuApi.test'
+import StyledStringApi1 from './StyledString/StyledStringApi1.test'
+import TextInputApi1 from './TextInput/TextInputApi1.test'
+import TextClockApiTest from './TextColckTest/TextClockApiTest/TextClockApiTest.test'
+import TextTimerApiTest from './TextTimerTest/TextTimerApiTest/TextTimerApiTest.test'
+import AttributeUpdaterTest from './TextTest/TextAPITest/AttributeUpdaterTest.test'
+import UnitTest from './TextTest/TextAPITest/Unit.test'
+import APIClipMaskShape from './ImageTest/APIClipMaskShape.test'
+import TextInputAddApi from './TextInput/TextInputAddApi.test'
+import TextInputEvent from './TextInput/TextInputEvent.test'
+import TextInputEvent2 from './TextInput/TextInputEvent2.test'
+import SearchEvent from './Search/SearchEvent.test'
+import SearchEvent2 from './Search/SearchEvent2.test'
+
+import EffectFillStyle from './SymbolGlyphTest/EffectFillStyle.test'
+import EffectScope from './SymbolGlyphTest/EffectScope.test'
+import menuPolicyHIDE from './RichEditorTest/menuPolicyHIDE.test'
+import menuPolicySHOW from './RichEditorTest/menuPolicySHOW.test'
+
+import RichEditorChangeValueTest1 from './RichEditor/RichEditorChangeValueTest1.test'
+import RichEditorGetLayoutManagerTest1 from './RichEditor/RichEditorGetLayoutManagerTest1.test'
+import RichEditorStyledStringTest1 from './RichEditor/RichEditorStyledStringTest1.test'
+import RichEditorStyledStringTest2 from './RichEditor/RichEditorStyledStringTest2.test'
+import RichEditorApi2 from './RichEditor/RichEditorApi2.test'
+import RichEditorApi6 from './RichEditor/RichEditorApi6.test'
+import RichEditorApi7 from './RichEditor/RichEditorApi7.test'
+import TextAreaApi4 from './TextArea/TextAreaApi4.test'
+import TextAreaTest from './TextAreaTest/TextAreaAPITest/TextAreaTest.test'
+import MarqueeMirroringTest from './Marquee/MarqueeMirroring.test';
+import symbolEffect from './SymbolGlyphTest/symbolEffect.test'
+
+import RichEditorApi8 from './RichEditor/RichEditorApi8.test'
+import RichEditorApi9 from './RichEditor/RichEditorApi9.test'
+import RichEditorApi10 from './RichEditor/RichEditorApi10.test'
+import RichEditorApi11 from './RichEditor/RichEditorApi11.test'
+import RichEditorApi12 from './RichEditor/RichEditorApi12.test'
+import SearchApi1 from './Search/SearchApi1.test'
+import getLineMetrics from './TextTest/getLineMetrics.test'
+import textSelectableJsunit from './TextTest/textSelectableJsunit.test'
+import typeNodeTextDecorationStyleTest from './Text/TextDecorationStyle.test';
+import typeNodeTextSelectableMode1Test from './Text/TextSelectableMode1.test';
+import typeNodeTextSelectableMode2Test from './Text/TextSelectableMode2.test';
+import typeNodeTextSelectableMode3Test from './Text/TextSelectableMode3.test';
+import styledStringChange from './Text/styledStringChange.test'
+import textAreaPreview from './TextArea/textAreaPreview.test'
+import textInputPreview from './TextInput/textInputPreview.test'
+
 export default function testsuite() {
-APIContentTypeTest();
-APIUnderlineColorTest();
+  APIContentTypeTest();
+  APIUnderlineColorTest();
+  TextInputAddApi();
+  TextInputEvent()
+  TextInputEvent2()
+  SearchEvent()
+  SearchEvent2()
   onSelectionChange1();
   onSelectionChange2();
   onSelectionChange3();
@@ -95,7 +173,10 @@ APIUnderlineColorTest();
   RichEditorApi3();
   RichEditorApi5();
   RichEditorChangeCallback();
-
+  RichEditorWordBreakJsunitTest();
+  RichEditorMenuPolicyJsunit();
+  RichEditorTextStyleJsunit();
+  RichEditorFontFeatureJsunit();
   RichEditor1();
   RichEditor2();
   RichEditor3();
@@ -103,5 +184,68 @@ APIUnderlineColorTest();
   RichEditor5();
   RichEditor6();
   RichEditor7();
+  RichEditor8();
+  RichEditor9();
+  RichEditor10();
+  RichEditor11();
   TextInputTextAreaSearch();
+  TextAreaApi1();
+  TextAreaApi2();
+  TextAreaApi3();
+  styledStringChange();
+  textApi1();
+
+  TextArea_lineBreakStrategyTest();
+  TextArea_lineSpacingTest();
+  TextInput_lineBreakStrategyTest();
+  Text_lineBreakStrategyTest();
+  Text_lineSpacingTest();
+  marqueeOptionsTest();
+  textStrategyJsunit();
+
+  EffectFillStyle()
+  EffectScope()
+  menuPolicyHIDE()
+  menuPolicySHOW()
+  Context()
+  getLayout()
+  imageAddApi()
+  SymbolGlyphApi()
+  styledStringApi()
+  SelectionMenuApi()
+  StyledStringApi1();
+  TextInputApi1();
+  TextClockApiTest();
+  TextTimerApiTest();
+  AttributeUpdaterTest();
+  UnitTest();
+  APIClipMaskShape();
+
+  RichEditorChangeValueTest1();
+  RichEditorGetLayoutManagerTest1();
+  RichEditorStyledStringTest1();
+  RichEditorStyledStringTest2();
+  RichEditorApi2();
+  RichEditorApi6();
+  RichEditorApi7();
+  TextAreaApi4()
+  TextAreaTest()
+  MarqueeMirroringTest()
+  symbolEffect()
+
+  RichEditorApi8()
+  RichEditorApi9()
+  RichEditorApi10()
+  RichEditorApi11()
+  RichEditorApi12()
+  SearchApi1()
+  getLineMetrics();
+  textSelectableJsunit();
+  typeNodeTextDecorationStyleTest();
+  typeNodeTextSelectableMode1Test();
+  typeNodeTextSelectableMode2Test();
+  typeNodeTextSelectableMode3Test();
+
+  textAreaPreview();
+  textInputPreview();
 }

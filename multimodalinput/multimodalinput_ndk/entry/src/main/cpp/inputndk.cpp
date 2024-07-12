@@ -196,11 +196,11 @@ static napi_value DestroyKeyEvent(napi_env env, napi_callback_info info)
     OH_Input_SetKeyEventAction(keyEvent, KEY_ACTION_DOWN);
     OH_Input_SetKeyEventKeyCode(keyEvent, KEYCODE_UNKNOWN);
     OH_Input_SetKeyEventActionTime(keyEvent, -1);
-    int32_t retResult = OH_Input_InjectKeyEvent(keyEvent);
+    OH_Input_InjectKeyEvent(keyEvent);
     OH_Input_SetKeyEventAction(keyEvent, KEY_ACTION_UP);
     OH_Input_SetKeyEventKeyCode(keyEvent, KEYCODE_UNKNOWN);
     OH_Input_SetKeyEventActionTime(keyEvent, -1);
-    retResult = OH_Input_InjectKeyEvent(keyEvent);
+    OH_Input_InjectKeyEvent(keyEvent);
     OH_Input_CancelInjection();
     OH_Input_DestroyKeyEvent(&keyEvent);
     napi_create_int32(env, keyEvent == nullptr ? 1 : 0, &result);

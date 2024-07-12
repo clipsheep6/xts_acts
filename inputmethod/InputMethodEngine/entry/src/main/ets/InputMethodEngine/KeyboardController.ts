@@ -180,7 +180,7 @@ export class KeyboardController {
         }
 
         var commonEventSubscribeInfo = {
-            events: ["test1"]
+            events: ["inputMethodEngineTest"]
         };
 
         var subscriber;
@@ -217,7 +217,7 @@ export class KeyboardController {
 
             var config = {
                 name: this.windowName,
-                windowType: this.WINDOW_TYPE_INPUT_METHOD_FLOAT,
+                windowType: windowManager.WindowType.TYPE_INPUT_METHOD,
                 ctx: this.mContext
             };
             windowManager.createWindow(config).then((win) => {

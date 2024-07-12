@@ -64,11 +64,13 @@ namespace ArkUICapiTest {
 #define SIZE_30 30
 #define SIZE_40 40
 #define SIZE_50 50
+#define SIZE_56 56
 #define SIZE_60 60
 #define SIZE_80 80
 #define SIZE_90 90
 #define SIZE_100 100
 #define SIZE_180 180
+#define SIZE_150 150
 #define SIZE_200 200
 #define SIZE_250 250
 #define SIZE_300 300
@@ -97,6 +99,12 @@ namespace ArkUICapiTest {
 #define ON_APPEAR_EVENT_ID 6005
 #define ON_BLUR_EVENT_ID 6006
 #define ON_CHANGE_EVENT_ID 6007
+#define ON_SUBMIT_EVENT_ID 6008
+#define ON_CUT_EVENT_ID 6009
+#define ON_PASTE_EVENT_ID 6010
+#define ON_MEASURE_EVENT_ID 6011
+#define ON_LAYOUT_EVENT_ID 6012
+#define ON_DRAW_EVENT_ID 6013
 
 /**
  * Log print domain.
@@ -138,10 +146,8 @@ const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
         std::string str1 = res1;                                                                                       \
         std::string str2 = res2;                                                                                       \
         if (::strcmp(res1, res2) != 0) {                                                                               \
-            std::string assertStr = "assert equal failed, expect is " + str1 + " and result is " + str2;               \
-            char assertChars[assertStr.size() + PARAM_1];                                                              \
-            strcpy(assertChars, assertStr.c_str());                                                                    \
-            napi_throw_error((env), nullptr, assertChars);                                                             \
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ASSERT_STREQ",                                         \
+                         "assert equal failed, expect is %{public}s and result is %{public}s", res2, res1);            \
             napi_value errorResult = nullptr;                                                                          \
             napi_create_int32(env, PARAM_NEGATIVE_1, &errorResult);                                                    \
             return errorResult;                                                                                        \
@@ -155,12 +161,18 @@ const unsigned int LOG_PRINT_DOMAIN = 0xFF00;
         std::string str1 = res1;                                                                                       \
         std::string str2 = res2;                                                                                       \
         if (::strcmp(res1, res2) == 0) {                                                                               \
-            std::string assertStr = "assert not equal failed, expect is " + str1 + " and result is " + str2;           \
-            char assertChars[assertStr.size() + PARAM_1];                                                              \
-            strcpy(assertChars, assertStr.c_str());                                                                    \
-            napi_throw_error((env), nullptr, assertChars);                                                             \
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "ASSERT_STRNE",                                         \
+                         "assert not equal failed, expect is %{public}s and result is %{public}s", res2, res1);        \
             napi_value errorResult = nullptr;                                                                          \
             napi_create_int32(env, PARAM_NEGATIVE_1, &errorResult);                                                    \
+            return errorResult;                                                                                        \
+        }                                                                                                              \
+    } while (0)
+
+#define ASSERT_OBJ(result, expect)                                                                                     \
+    do {                                                                                                               \
+        if ((result) != (expect)) {                                                                                    \
+            napi_value errorResult = nullptr;                                                                          \
             return errorResult;                                                                                        \
         }                                                                                                              \
     } while (0)

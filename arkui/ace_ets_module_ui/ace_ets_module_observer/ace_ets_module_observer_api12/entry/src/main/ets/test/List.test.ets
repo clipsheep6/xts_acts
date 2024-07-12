@@ -13,7 +13,17 @@
  * limitations under the License.
  */
 import observerScrollTest from './observerTest/observerScroll.test';
+import ObserverNavDestinationState from './observerTest/ObserverNavDestinationState.test';
+import ObserverNavDestinationId from './observerTest/ObserverNavDestinationId.test';
+import ObserverPageId from './observerTest/ObserverPageId.test';
+import ObserverApi1 from './observerTest/ObserverApi1.test';
+import DensityInfoTest from './observerTest/DensityInfo.test';
 
 export default function testsuite() {
   observerScrollTest()
+  ObserverNavDestinationState();
+  ObserverNavDestinationId();
+  ObserverPageId();
+  ObserverApi1();
+  DensityInfoTest();
 }

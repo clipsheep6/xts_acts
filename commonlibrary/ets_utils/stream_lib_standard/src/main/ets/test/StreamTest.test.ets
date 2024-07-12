@@ -273,7 +273,7 @@ export default function StreamTest() {
       const test: Function = () => {
         writableStream.write(...[]);
       }
-      expect(test).assertThrowError('The "chunk" argument must be of type string or UintArray');
+      expect(test).assertThrowError("Parameter error. The type of undefined must be string or UintArray");
     });
 
     // Check the StreamWritableWriteError.
@@ -1190,9 +1190,9 @@ export default function StreamTest() {
      * @tc.level: Level 2
      */
     it('testStreamWritableInvalidChunk001', 0, () => {
-      testWriteType(true, 'The "chunk" argument must be of type string or UintArray');
-      testWriteType(undefined, 'The "chunk" argument must be of type string or UintArray');
-      testWriteType(null, 'The "chunk" argument must be of type string or UintArray');
+      testWriteType(true, 'Parameter error. The type of true must be string or UintArray');
+      testWriteType(undefined, 'Parameter error. The type of undefined must be string or UintArray');
+      testWriteType(null, "Parameter error. The type of null must be string or UintArray");
     });
 
     function testWriteType(val, code) {
@@ -1928,7 +1928,7 @@ export default function StreamTest() {
         let readableStream = new stream.Readable();
         readableStream.setEncoding('my invalid encoding')
       }
-      expect(test).assertThrowError('Unknown encoding: my invalid encoding');
+      expect(test).assertThrowError('Parameter error. The type of my invalid encoding must be string.');
     });
 
     // Check the StreamReadableEmitReadableShortStream.
@@ -2160,7 +2160,7 @@ export default function StreamTest() {
     it('testStreamReadableSetEncoding001', 0, () => {
       let readable = new stream.Readable();
       readable.setEncoding(null);
-      expect(readable.readableEncoding).assertEqual('utf8');
+      expect(readable.readableEncoding).assertEqual('utf-8');
     });
 
     // Check the StreamReadableWithUnimplementedDoRead.
@@ -2837,7 +2837,843 @@ export default function StreamTest() {
       let duplex = new stream.Duplex();
       expect(duplex.readableHighWatermark).assertEqual(16 * 1024);
     });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_13100
+     * @tc.name: testStreamReadableread001
+     * @tc.desc: Reads a buffer of a specified size from the buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamReadableread001', 0, () => {
+      const stringdecoder = new StringDecoderReadable();
+      let ss = stringdecoder.setEncoding("utf-8");
+      expect(ss).assertEqual(true);
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_13200
+     * @tc.name: testStreamReadableread002
+     * @tc.desc: Reads a buffer of a specified size from the buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamReadableread002', 0, () => {
+      const stringdecoder = new StringDecoderReadable();
+      let ss = stringdecoder.setEncoding("utf8");
+      expect(ss).assertEqual(true);
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_13300
+     * @tc.name: testStreamReadableread003
+     * @tc.desc: Reads a buffer of a specified size from the buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamReadableread003', 0, () => {
+      let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+      const stringdecoder = new StringDecoderReadable();
+      stringdecoder.push(input);
+      let res = stringdecoder.read(2);
+      let ss = stringdecoder.setEncoding("windows-1250")
+      res = stringdecoder.read(4);
+      expect(ss).assertEqual(false);
+      expect(res).assertEqual('你好');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_13400
+     * @tc.name: testStreamReadableread004
+     * @tc.desc: Reads a buffer of a specified size from the buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamReadableread004', 0, () => {
+      let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+      const stringdecoder = new StringDecoderReadable();
+      stringdecoder.push(input);
+      let res = stringdecoder.read(2);
+      res = stringdecoder.read(4);
+      expect(res).assertEqual('你好');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_13500
+     * @tc.name: testStreamReadableread005
+     * @tc.desc: Reads a buffer of a specified size from the buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamReadableread005', 0, () => {
+      let enc : stream.ReadableOptions = {
+        encoding : "utf-8"
+      };
+      let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+      const stringdecoder = new StringDecoderReadable(enc);
+      stringdecoder.push(input);
+      let res = stringdecoder.read(input.length);
+      expect(res).assertEqual('你好');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_13600
+     * @tc.name: testStreamReadableread006
+     * @tc.desc: Reads a buffer of a specified size from the buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamReadableread006', 0, () => {
+      let enc : stream.ReadableOptions = {
+        encoding : "windows-1250"
+      };
+      let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+      const stringdecoder = new StringDecoderReadable(enc);
+      let ss = stringdecoder.setEncoding();
+      stringdecoder.push(input);
+      let res = stringdecoder.read();
+      expect(res).assertEqual('你好');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_13700
+     * @tc.name: testStreamReadableread007
+     * @tc.desc: Reads a buffer of a specified size from the buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamReadableread007', 0, () => {
+      let enc : stream.ReadableOptions = {
+        encoding : "windows-1250"
+      };
+      const stringdecoder = new StringDecoderReadable(enc);
+      let res = stringdecoder.readableEncoding;
+      expect(res).assertEqual('windows-1250');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_13800
+     * @tc.name: testStreamReadableread008
+     * @tc.desc: Reads a buffer of a specified size from the buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamReadableread008', 0, () => {
+      const stringdecoder = new StringDecoderReadable();
+      let res = stringdecoder.readableEncoding;
+      expect(res).assertEqual('utf-8');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_13900
+     * @tc.name: testStreamReadableread009
+     * @tc.desc: Reads a buffer of a specified size from the buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamReadableread009', 0, () => {
+      let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+      const stringdecoder = new StringDecoderReadable();
+      stringdecoder.push(input);
+      let res = stringdecoder.read();
+      expect(res).assertEqual('你好');
+    });
+
+    // Check the StreamReadablePipe.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_14000
+     * @tc.name: testStreamPipe005
+     * @tc.desc: Readable pipe.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamPipe005', 0, (done) => {
+      let sumData = 0;
+      const readable = new stream.Readable();
+      readable.doRead = (size)=>{
+        const onceData = 8*1024;
+        if ((sumData + onceData) <41000) {
+            sumData += onceData;
+            readable.push('a'.repeat(onceData));
+        } else if (sumData === 41000) {
+            readable.push(null);
+        } else {
+           readable.push('a'.repeat(41000-sumData));
+           sumData += (41000-sumData);
+        }
+      };
+      const writable = new stream.Writable();
+      let sum = 0;
+      let callCount = 0;
+      writable.doWrite = common.mustCall((chunk, encoding, callback)=>{
+        sum += chunk.length;
+        callCount++;
+        if (callCount === 6) {
+            expect(sum).assertEqual(41000);
+            done();
+        }
+        setTimeout(()=>{
+          callback()
+        },100)
+      },6);
+      readable.pipe(writable);
+    });
+
+    // Check the StreamReadablePipe.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_14100
+     * @tc.name: testStreamPipe006
+     * @tc.desc: Readable pipe.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamPipe006', 0, async (done) => {
+      let a = 0;
+      const readable = new stream.Readable();
+      readable.doRead = async (size) => {
+        const s = 16 * 1024;
+        const totality = 400000;
+        if ((a + s) < totality) {
+          a += s;
+          readable.push('a'.repeat(s));
+        } else if (a === totality) {
+          readable.push(null);
+        } else {
+          readable.push('a'.repeat(totality - a));
+          a += (totality - a);
+        }
+      };
+
+      let sum = 0;
+
+      class TransformStream extends stream.Transform {
+        doWrite(chunk: any, encoding: any, callback: any) {
+          sum += chunk.length;
+          Promise.resolve().then((): void => {
+            callback();
+          });
+          callback();
+        }
+
+        doTransform(chunk: any, encoding: any, callback: any) {
+          expect(chunk.length).assertLarger(0);
+          callback();
+        }
+      }
+
+      const transformStream = new TransformStream();
+      readable.pipe(transformStream);
+      setTimeout(() => {
+        expect(sum).assertEqual(400000);
+        done();
+      }, 0)
+    });
+
+    // Check the StreamDuplexDoWritev.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_14200
+     * @tc.name: testStreamDuplexDoWritev001
+     * @tc.desc: Duplex method doWritev.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamDuplexDoWritev001', 0, () => {
+      class CustomDuplex extends stream.Duplex {
+        data: string;
+
+        constructor() {
+          super();
+          this.data = '';
+        }
+
+        doWritev(chunks: string[] | Uint8Array[], callback: Function) {
+          for (const chunk of chunks) {
+            this.data += chunk
+          }
+          callback();
+        }
+      }
+
+      let duplex = new CustomDuplex();
+      duplex.write('Hello ');
+      duplex.write('World', 'utf8', common.mustCall(() => {
+        expect(duplex.data).assertEqual('Hello World');
+      }));
+    });
+
+    // Check the StreamDuplexDoWritev.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_14300
+     * @tc.name: testStreamDuplexDoWritev002
+     * @tc.desc: Duplex method doWritev.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamDuplexDoWritev002', 0, () => {
+      class CustomDuplex extends stream.Duplex {
+        constructor() {
+          super();
+        }
+
+        doWritev(chunks: string[] | Uint8Array[], callback: Function) {
+          callback(new Error('dowritev error'));
+        }
+      }
+
+      let duplex = new CustomDuplex();
+      duplex.write('Hello ');
+      duplex.on('error', common.mustCall((err: emitter.EventData) => {
+        expect(err.data.message).assertEqual('dowritev error');
+      }));
+    });
+
+    // Check the StreamDuplexDoWritev.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_14400
+     * @tc.name: testStreamDuplexDoWritev003
+     * @tc.desc: Duplex method doWritev.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamDuplexDoWritev003', 0, () => {
+      let duplex = new stream.Duplex();
+      duplex.doWritev = common.mustCall(function (chunks: string[] | Uint8Array[], callback: Function) {
+        callback();
+        callback();
+      })
+      duplex.write('test', 'utf8', common.mustCall());
+      duplex.on('error', common.mustCall((error: emitter.EventData) => {
+        expect(error.data.name).assertEqual('BusinessError');
+        expect(error.data.message).assertEqual('Callback called multiple times');
+      }));
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_14500
+     * @tc.name: testStreamEncoding001
+     * @tc.desc: Write method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding001', 0, () => {
+      let writable = new stream.Writable();
+      writable.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('测试');
+        expect(encoding).assertEqual('gb18030');
+        callback();
+      });
+      let result = writable.write('测试', 'gb18030');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_14600
+     * @tc.name: testStreamEncoding002
+     * @tc.desc: Write method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding002', 0, () => {
+      let writable = new stream.Writable();
+      writable.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('你好');
+        expect(encoding).assertEqual('gbk');
+        callback();
+      });
+      let result = writable.write('你好', 'gbk');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_14700
+     * @tc.name: testStreamEncoding003
+     * @tc.desc: Write method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding003', 0, () => {
+      let writable = new stream.Writable();
+      writable.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('你好');
+        expect(encoding).assertEqual('gb2312');
+        callback();
+      });
+      let result = writable.write('你好', 'gb2312');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_14800
+     * @tc.name: testStreamEncoding004
+     * @tc.desc: End method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding004', 0, () => {
+      let writable = new stream.Writable();
+      writable.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('测试');
+        expect(encoding).assertEqual('gb18030');
+        callback();
+      });
+      writable.end('测试', 'gb18030', common.mustCall());
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_14900
+     * @tc.name: testStreamEncoding005
+     * @tc.desc: End method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding005', 0, () => {
+      let writable = new stream.Writable();
+      writable.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('你好');
+        expect(encoding).assertEqual('gbk');
+        callback();
+      });
+      writable.end('你好', 'gbk', common.mustCall());
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_15000
+     * @tc.name: testStreamEncoding006
+     * @tc.desc: End method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding006', 0, () => {
+      let writable = new stream.Writable();
+      writable.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('你好');
+        expect(encoding).assertEqual('gb2312');
+        callback();
+      });
+      writable.end('你好', 'gb2312', common.mustCall());
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_15100
+     * @tc.name: testStreamEncoding007
+     * @tc.desc: SetDefaultEncoding method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding007', 0, () => {
+      let writable = new stream.Writable();
+      writable.setDefaultEncoding('gb18030');
+      writable.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('你好');
+        expect(encoding).assertEqual('gb18030');
+        callback();
+      });
+      writable.write('你好');
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_15200
+     * @tc.name: testStreamEncoding008
+     * @tc.desc: SetDefaultEncoding method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding008', 0, () => {
+      let writable = new stream.Writable();
+      writable.setDefaultEncoding('gbk');
+      writable.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('你好');
+        expect(encoding).assertEqual('gbk');
+        callback();
+      });
+      writable.write('你好');
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_15300
+     * @tc.name: testStreamEncoding009
+     * @tc.desc: SetDefaultEncoding method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding009', 0, () => {
+      let writable = new stream.Writable();
+      writable.setDefaultEncoding('gb2312');
+      writable.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('你好');
+        expect(encoding).assertEqual('gb2312');
+        callback();
+      });
+      writable.write('你好');
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_15400
+     * @tc.name: testStreamEncoding010
+     * @tc.desc: SetEncoding method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding010', 0, () => {
+      let readable = new stream.Readable();
+      let result = readable.setEncoding('gb18030');
+      expect(readable.readableEncoding).assertEqual('gb18030');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_15500
+     * @tc.name: testStreamEncoding011
+     * @tc.desc: SetEncoding method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding011', 0, () => {
+      let readable = new stream.Readable();
+      let result = readable.setEncoding('gbk');
+      expect(readable.readableEncoding).assertEqual('gbk');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_15600
+     * @tc.name: testStreamEncoding012
+     * @tc.desc: SetEncoding method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding012', 0, () => {
+      let readable = new stream.Readable();
+      let result = readable.setEncoding('gb2312');
+      expect(readable.readableEncoding).assertEqual('gb2312');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_15700
+     * @tc.name: testStreamEncoding013
+     * @tc.desc: Push method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding013', 0, () => {
+      let readable = new stream.Readable();
+      readable.push('你好', 'gb18030');
+      expect(readable.readableEncoding).assertEqual('gb18030');
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_15800
+     * @tc.name: testStreamEncoding014
+     * @tc.desc: Push method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding014', 0, () => {
+      let readable = new stream.Readable();
+      readable.push('你好', 'gbk');
+      expect(readable.readableEncoding).assertEqual('gbk');
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_15900
+     * @tc.name: testStreamEncoding015
+     * @tc.desc: Push method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding015', 0, () => {
+      let readable = new stream.Readable();
+      readable.push('你好', 'gb2312');
+      expect(readable.readableEncoding).assertEqual('gb2312');
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_16000
+     * @tc.name: testStreamEncoding016
+     * @tc.desc: Write method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding016', 0, () => {
+      let duplex = new stream.Duplex();
+      duplex.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('你好');
+        expect(encoding).assertEqual('gb18030');
+        callback();
+      });
+      duplex.write('你好', 'gb18030');
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_16100
+     * @tc.name: testStreamEncoding017
+     * @tc.desc: Write method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding017', 0, () => {
+      let duplex = new stream.Duplex();
+      duplex.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('你好');
+        expect(encoding).assertEqual('gbk');
+        callback();
+      });
+      duplex.write('你好', 'gbk');
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_16200
+     * @tc.name: testStreamEncoding018
+     * @tc.desc: Write method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding018', 0, () => {
+      let duplex = new stream.Duplex();
+      duplex.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('你好');
+        expect(encoding).assertEqual('gb2312');
+        callback();
+      });
+      duplex.write('你好', 'gb2312');
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_16300
+     * @tc.name: testStreamEncoding019
+     * @tc.desc: End method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding019', 0, () => {
+      let duplex = new stream.Duplex();
+      duplex.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('测试');
+        expect(encoding).assertEqual('gb18030');
+        callback();
+      });
+      duplex.end('测试', 'gb18030', common.mustCall());
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_16400
+     * @tc.name: testStreamEncoding020
+     * @tc.desc: End method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding020', 0, () => {
+      let duplex = new stream.Duplex();
+      duplex.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('测试');
+        expect(encoding).assertEqual('gbk');
+        callback();
+      });
+      duplex.end('测试', 'gbk', common.mustCall());
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_16500
+     * @tc.name: testStreamEncoding021
+     * @tc.desc: End method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding021', 0, () => {
+      let duplex = new stream.Duplex();
+      duplex.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(chunk).assertEqual('测试');
+        expect(encoding).assertEqual('gb2312');
+        callback();
+      });
+      duplex.end('测试', 'gb2312', common.mustCall());
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_16600
+     * @tc.name: testStreamEncoding022
+     * @tc.desc: SetDefaultEncoding method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding022', 0, () => {
+      let duplex = new stream.Duplex();
+      let result = duplex.setDefaultEncoding('gb18030');
+      duplex.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(encoding).assertEqual('gb18030');
+        callback();
+      });
+      duplex.write('你好');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_16700
+     * @tc.name: testStreamEncoding023
+     * @tc.desc: SetDefaultEncoding method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding023', 0, () => {
+      let duplex = new stream.Duplex();
+      let result = duplex.setDefaultEncoding('gbk');
+      duplex.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(encoding).assertEqual('gbk');
+        callback();
+      });
+      duplex.write('你好');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_16800
+     * @tc.name: testStreamEncoding024
+     * @tc.desc: SetDefaultEncoding method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding024', 0, () => {
+      let duplex = new stream.Duplex();
+      let result = duplex.setDefaultEncoding('gb2312');
+      duplex.doWrite = common.mustCall((chunk: string | Uint8Array, encoding: string, callback: Function) => {
+        expect(encoding).assertEqual('gb2312');
+        callback();
+      });
+      duplex.write('你好');
+      expect(result).assertEqual(true);
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_16900
+     * @tc.name: testStreamEncoding025
+     * @tc.desc: DoTransform method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding025', 0, () => {
+      let transform = new stream.Transform();
+      transform.doTransform = common.mustCall((chunk: string, encoding: string, callback: Function) => {
+        expect(encoding).assertEqual('gb18030');
+        expect(chunk).assertEqual('你好123');
+        callback();
+      });
+      transform.write('你好123', 'gb18030');
+      transform.end();
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_17000
+     * @tc.name: testStreamEncoding026
+     * @tc.desc: DoTransform method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding026', 0, () => {
+      let transform = new stream.Transform();
+      transform.doTransform = common.mustCall((chunk: string, encoding: string, callback: Function) => {
+        expect(encoding).assertEqual('gbk');
+        expect(chunk).assertEqual('你好123');
+        callback();
+      });
+      transform.write('你好123', 'gbk');
+      transform.end();
+    });
+
+    // Check the StreamEncoding.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STREAM_17100
+     * @tc.name: testStreamEncoding027
+     * @tc.desc: DoTransform method encoding.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('testStreamEncoding027', 0, () => {
+      let transform = new stream.Transform();
+      transform.doTransform = common.mustCall((chunk: string, encoding: string, callback: Function) => {
+        expect(encoding).assertEqual('gb2312');
+        expect(chunk).assertEqual('你好123');
+        callback();
+      });
+      transform.write('你好123', 'gb2312');
+      transform.end();
+    });
   })
+}
+
+class StringDecoderReadable extends stream.Readable {
+  constructor(opt?: stream.ReadableOptions) {
+    super(opt);
+  }
+  doRead(size: number) {
+  }
 }
 
 class TestWritable extends stream.Writable {

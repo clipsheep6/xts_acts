@@ -97,6 +97,8 @@ export function photoFetchOption(testNum, key, value) : photoAccessHelper.FetchO
       photoKeys.HIDDEN,
       photoKeys.CAMERA_SHOT_KEY,
       photoKeys.USER_COMMENT,
+      photoKeys.DATE_ADDED_MS,
+      photoKeys.DATE_MODIFIED_MS,
       'all_exif',
     ],
     predicates: predicates
@@ -376,6 +378,13 @@ export async function pushCreateAssetSingle(names: Array<string>){
     console.error('Push_createAsset push resource failed: ' + err)
     return;
   }
+}
+
+export function createSandboxFileUri(extension) {
+  let pathDir = globalThis.abilityContext.filesDir;
+  let path = pathDir + '/test' + new Date().getTime() + '.' + extension;
+  fs.openSync(path, fs.OpenMode.CREATE)
+  return fileuri.getUriFromPath(path);
 }
 
 export {

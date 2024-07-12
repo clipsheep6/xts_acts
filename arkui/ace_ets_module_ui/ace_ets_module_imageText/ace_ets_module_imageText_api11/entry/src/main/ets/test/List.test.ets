@@ -219,8 +219,10 @@ import textObscuredTest from './textTest/textObscuredTest.test';
 import textSpanFontTest from './textTest/textSpanFont.test';
 
 export default function testsuite() {
+  ToggleJsunit();
   stageFontTest();
   stageMediaquery();
+  RichEditorApi222();
   TextStateJsunit();
   richEditorApi4();
   richEditorApi5();
@@ -245,7 +247,6 @@ export default function testsuite() {
   arkuiNodeRenderTest();
   Image_QRCode_Api();
   RichEditorApi();
-  RichEditorApi222();
   APIgetUIFontConfigJsunit();
   APITextBackgroundStyleJsunit();
   SXrenderingStrategyJsunit();
@@ -361,7 +362,6 @@ export default function testsuite() {
   textAreaUIJsunit();
   textArea_top();
   textArea_center();
-  textArea_bottom();
   textAreaBC1Jsunit();
   textAenEnabledJsunit();
   imageOneJsunit();
@@ -383,7 +383,6 @@ export default function testsuite() {
   loadingProgressJsunit();
   ProgressJsunit();
   TextTimerJsunit();
-  ToggleJsunit();
   marqueeUIJsunit();
   PatternLockJsunit();
   SelectJsunit();
@@ -424,4 +423,5 @@ export default function testsuite() {
   textInputJsunit3();
   textObscuredTest();
   textSpanFontTest();
+  textArea_bottom();
 }

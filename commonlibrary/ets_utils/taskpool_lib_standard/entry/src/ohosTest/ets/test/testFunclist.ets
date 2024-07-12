@@ -15,26 +15,9 @@
 
 import taskpool from '@ohos.taskpool';
 import { BusinessError } from '@ohos.base'
-import { strCat } from './exportFunclist'
+import { StrCat, A, B, printStrArgs, printArgs } from './exportFunclist'
 import HashMap from '@ohos.util.HashMap';
-
-export class A {
-  a: number;
-  b: number;
-  constructor() {
-    this.a = 1;
-    this.b = 2;
-  }
-}
-
-export class B {
-  a: number;
-  b: number;
-  constructor() {
-    this.a = 3;
-    this.b = 4;
-  }
-}
+import { errorManager } from '@kit.AbilityKit';
 
 export async function currentFun(): Promise<void> {
   "use concurrent"
@@ -134,11 +117,6 @@ export function promiseCase() {
   return p
 }
 
-export function printArgs(args: number): number {
-  "use concurrent"
-  return args;
-}
-
 export function printArgsFunc(Sum: Function, num1: number, num2: number): number {
   "use concurrent"
   let result: number = Sum(num1, num2)
@@ -172,14 +150,9 @@ export function Add(value1: boolean, value2: boolean): boolean {
     return false;
 }
 
-export function StrCat(value1: string, value2: string): string {
-  "use concurrent"
-  return value1 + value2;
-}
-
 export function funcStrCat(value1: string, value2: string, value3: string): string {
   "use concurrent"
-  return value1 + strCat(value2, value3);
+  return value1 + StrCat(value2, value3);
 }
 
 export function arraySum(arg1: Array<number>, arg2: Array<number>): Array<number> {
@@ -245,4 +218,135 @@ export function hashMapTest(args:number) {
   let hashMap1: HashMap<string, number> = new HashMap();
   hashMap1.set('a', 123);
   return hashMap1;
+}
+
+export function delay() {
+  "use concurrent"
+  let t = Date.now();
+  while ((Date.now() - t) < 1000) {
+    continue;
+  }
+}
+
+export async function randomTest(): Promise<void> {
+  "use concurrent"
+  let t = Date.now();
+  while ((Date.now() - t) < 1000) {
+    continue;
+  }
+  let p = await new Promise<void>((resolve: Function, reject: Function) => {
+    setTimeout(() => {
+      const randomNumber = Math.floor(Math.random() * 100);
+      resolve(randomNumber);
+    }, 200);
+  })
+  return p;
+}
+
+export async function outerTaskFunc(params:string) {
+  "use concurrent"
+  let t1 = Date.now();
+  while ((Date.now() - t1) < 100) {
+    continue
+  }
+  let val = "";
+  if (params == "001") {
+    let innerTask = new taskpool.Task(printStrArgs, params)
+    val += await taskpool.execute(innerTask)
+  } else if (params == "002") {
+    val += await taskpool.execute(printStrArgs, params);
+  }
+
+  let t2 = Date.now();
+  while ((Date.now() - t2) < 100) {
+    continue
+  }
+  return "outerTaskRes-" + val;
+}
+
+export function isConcurrentTest1() {
+    "use concurrent"
+}
+
+export function isConcurrentTest2() {}
+
+export async function sequenceRunnerTest(): Promise<string> {
+  "use concurrent"
+  let finalString = "";
+  let t: Array<taskpool.Task> = []
+  for (let i = 0; i < 100; i++) {
+    t[i] = new taskpool.Task(printArgs, i);
+  }
+
+  let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner16");
+  for (let i = 0; i < 20; i++) {
+    if (i % 2 == 1) {
+      finalString += await runner.execute(t[i]) + ',';
+    }
+  }
+  return finalString;
+}
+
+export async function sequenceRunnerPriorityTest(): Promise<string> {
+  "use concurrent"
+  let finalString = "";
+  let t: Array<taskpool.Task> = []
+  for (let i = 0; i < 100; i++) {
+    t[i] = new taskpool.Task(printArgs, i);
+  }
+
+  let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner17");
+  for (let i = 0; i < 20; i++) {
+    if (i % 2 == 1) {
+      finalString += await runner.execute(t[i]) + ',';
+    }
+  }
+  return finalString;
+}
+
+export class CancelAndExecuteDelayed{
+  private task: taskpool.Task;
+  public res:number = 0;
+  public i:number = 0;
+  public isTerminate:boolean = false;
+  constructor(num: number) {
+    this.task = new taskpool.Task(printArgs, num);
+  }
+
+  postRequest() {
+    try {
+      taskpool.cancel(this.task);
+    } catch (e) {
+    }
+
+    taskpool.executeDelayed(1000, this.task).then((value: Object) => {
+      this.i++;
+      this.res += value as number;
+      this.isTerminate = true;
+    }).catch((e: BusinessError) => {
+    })
+  }
+}
+
+export function errorManageTest() {
+  "use concurrent"
+  let oldObserver = (reason: Error, promise: Promise<string>) => {
+    console.log("This is oldObserver");
+  };
+  errorManager.on("unhandledRejection", oldObserver);
+  errorManager.off("unhandledRejection");
+  let t = Date.now();
+  while (Date.now() - t <= 1000){
+  }
+  new Promise<string>((res, rej) => {
+    rej("rejError")
+  }).then(() => {
+    throw new Error("resError");
+  }).catch(() => {
+    throw new Error("catchError");
+  });
+  let observer = (reason: Error, promise: Promise<string>) => {
+    console.log("This is observer, reject reason is ", reason);
+  };
+  errorManager.on("unhandledRejection", observer);
 }

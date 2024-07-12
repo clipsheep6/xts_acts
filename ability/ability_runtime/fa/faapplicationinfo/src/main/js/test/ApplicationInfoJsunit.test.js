@@ -42,7 +42,6 @@ describe('ApplicationInfoTest', function () {
     beforeEach(async () => {
         await sleep(1000);
     })
-
     /*
      * @tc.number  SUB_AA_OpenHarmony_FormBase_1000
      * @tc.name    Validate formbindingdata creation data

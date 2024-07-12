@@ -150,7 +150,7 @@ export default function schemaTest(){
      * @tc.name SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0100
      * @tc.desc  Test Js Api Schema.ToJsonString() testcase 001
      * @tc.type: FUNC
-     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaJsApiTest_0100
+     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaEtsApiTest_0100
      */
     it('SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0100', 0, async function(done) {
       try {
@@ -183,7 +183,7 @@ export default function schemaTest(){
      * @tc.name SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0200
      * @tc.desc  Test Js Api Schema.ToJsonString() testcase 002
      * @tc.type: FUNC
-     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaJsApiTest_0200
+     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaEtsApiTest_0200
      */
     it('SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0200', 0, async function(done) {
       try {
@@ -220,7 +220,7 @@ export default function schemaTest(){
      * @tc.name SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0300
      * @tc.desc  Test Js Api Schema.ToJsonString() testcase 003
      * @tc.type: FUNC
-     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaJsApiTest_0300
+     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaEtsApiTest_0300
      */
     it('SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0300', 0, async function(done) {
       try {
@@ -232,7 +232,7 @@ export default function schemaTest(){
         let schema = new ddm.Schema();
         schema.root.appendChild(name);
         schema.indexes = ['$.name'];
-        schema.mode = 1; // STRICT
+        schema.mode = 1;
         options.kvStoreType = ddm.KVStoreType.SINGLE_VERSION;
         options.schema = schema;
         await kvManager.getKVStore(TEST_STORE_ID, options).then(async (store) => {
@@ -263,10 +263,56 @@ export default function schemaTest(){
     })
 
     /**
+     * @tc.name SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0400
+     * @tc.desc  Test Js Api Schema.ToJsonString() testcase 004
+     * @tc.type: FUNC
+     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaEtsApiTest_0400
+     */
+
+    it('SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0400', 0, async function(done) {
+      try {
+        let name = new ddm.FieldNode('name');
+        name.type = ddm.ValueType.FLOAT;
+        name.nullable = true;
+        name.default = '3.14';
+
+        let schema = new ddm.Schema();
+        schema.root.appendChild(name);
+        schema.indexes = [];
+        schema.mode = 1;
+        options.kvStoreType = ddm.KVStoreType.SINGLE_VERSION;
+        options.schema = schema;
+        await kvManager.getKVStore(TEST_STORE_ID, options).then(async (store) => {
+          console.info('SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0400 getKVStore success' + JSON.stringify(options));
+          kvStore = store;
+          expect(store != null).assertTrue();
+          await kvStore.put("test_key_1", '{"name":1.5}');
+          await kvStore.put("test_key_2", '{"name":2.5}');
+          await kvStore.put("test_key_3", '{}');
+          console.info('SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0400 Put success');
+        });
+        console.info('SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0400 start Query ...');
+        await kvStore.getEntries('test_key_').then((entries) => {
+          console.info('SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0400 get success : ' + JSON.stringify(entries));
+          expect(entries.length == 3).assertTrue();
+        }).catch((err) => {
+          console.info('SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0400 get fail ' + err);
+          expect(null).assertFail();
+        });
+      } catch (e) {
+        console.info("SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0400 fail on exception: " + e);
+        expect(null).assertFail();
+      }
+      done();
+    })
+
+
+
+    /**
      * @tc.name SUB_DDM_DKV_SCHEMA_ROOT_0100
      * @tc.desc  Test Js Api Schema.root testcase 001
      * @tc.type: FUNC
-     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaJsApiTest_0500
+     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaEtsApiTest_0500
      */
     it('SUB_DDM_DKV_SCHEMA_ROOT_0100', 0, async function(done) {
       try {
@@ -286,7 +332,7 @@ export default function schemaTest(){
      * @tc.name SUB_DDM_DKV_SCHEMA_INDEXES_0100
      * @tc.desc  Test Js Api Schema.indexes testcase 001
      * @tc.type: FUNC
-     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaJsApiTest_0600
+     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaEtsApiTest_0600
      */
     it('SUB_DDM_DKV_SCHEMA_INDEXES_0100', 0, async function(done) {
       try {
@@ -305,7 +351,7 @@ export default function schemaTest(){
      * @tc.name SUB_DDM_DKV_SCHEMA_MODE_0100
      * @tc.desc  Test Js Api Schema.mode testcase 001
      * @tc.type: FUNC
-     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaJsApiTest_0700
+     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaEtsApiTest_0700
      */
     it('SUB_DDM_DKV_SCHEMA_MODE_0100', 0, async function(done) {
       try {
@@ -325,7 +371,7 @@ export default function schemaTest(){
      * @tc.name SUB_DDM_DKV_SCHEMA_MODE_0200
      * @tc.desc  Test Js Api Schema.mode testcase 002
      * @tc.type: FUNC
-     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaJsApiTest_0800
+     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaEtsApiTest_0800
      */
     it('SUB_DDM_DKV_SCHEMA_MODE_0200', 0, async function(done) {
       try {
@@ -345,7 +391,7 @@ export default function schemaTest(){
      * @tc.name SUB_DDM_DKV_SCHEMA_SKIP_0100
      * @tc.desc  Test Js Api Schema.skip testcase 001
      * @tc.type: FUNC
-     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaJsApiTest_0900
+     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaEtsApiTest_0900
      */
     it('SUB_DDM_DKV_SCHEMA_SKIP_0100', 0, async function(done) {
       try {

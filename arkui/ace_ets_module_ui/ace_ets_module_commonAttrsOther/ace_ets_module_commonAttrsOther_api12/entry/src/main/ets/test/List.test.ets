@@ -19,6 +19,19 @@ import OverlayManagerTest_004 from './UIContextTest/OverlayManagerTest_004.test'
 import OverlayManagerTest_005 from './UIContextTest/OverlayManagerTest_005.test'
 import OverlayManagerTest_006 from './UIContextTest/OverlayManagerTest_006.test'
 import getOverlayManager from './UIContextTest/getOverlayManager.test'
+import getContextMenuController from './UIContextTest/getContextMenuController.test'
+import customPropertyTest from './customPropertyTest/customProperty.test'
+import callbackTest from './callbackTest/callbackTest.test'
+import Role_APITest from './ButtonTest/Button_APITest/Role_APITest';
+import InactiveColor_APITest from './CommonTest/BackgroundBlurStyleTest/BackgroundBlurStyle_APITest/InactiveColor_APITest'
+import Policy_APITest from './CommonTest/BackgroundBlurStyleTest/BackgroundBlurStyle_APITest/Policy_APITest'
+import BlurStyleActivePolicy_ALWAYS_ACTIVE_APITest from './CommonTest/BackgroundEffectTest/BackgroundEffect_APITest/BlurStyleActivePolicy_ALWAYS_ACTIVE_APITest'
+import BlurStyleActivePolicy_ALWAYS_INACTIVE_APITest from './CommonTest/BackgroundEffectTest/BackgroundEffect_APITest/BlurStyleActivePolicy_ALWAYS_INACTIVE_APITest'
+import BlurStyleActivePolicy_FOLLOWS_WINDOW_ACTIVE_STATE_APITest from './CommonTest/BackgroundEffectTest/BackgroundEffect_APITest/BlurStyleActivePolicy_FOLLOWS_WINDOW_ACTIVE_STATE_APITest'
+import BlurType_BEHIND_WINDOW_APITest from './CommonTest/BackgroundEffectTest/BackgroundEffect_APITest/BlurType_BEHIND_WINDOW_APITest'
+import BlurType_WITHIN_WINDOW_APITest from './CommonTest/BackgroundEffectTest/BackgroundEffect_APITest/BlurType_WITHIN_WINDOW_APITest'
+import Bgde_Policy_APITest from './CommonTest/BackgroundEffectTest/BackgroundEffect_APITest/Policy_APITest'
+import Bgde_InactiveColor_APITest from './CommonTest/BackgroundEffectTest/BackgroundEffect_APITest/InactiveColor_APITest'
 export default function testsuite() {
   OverlayManagerTest_001()
   OverlayManagerTest_002()
@@ -27,4 +40,17 @@ export default function testsuite() {
   OverlayManagerTest_005()
   OverlayManagerTest_006()
   getOverlayManager()
+  getContextMenuController()
+  customPropertyTest()
+  callbackTest()
+  Role_APITest();
+  InactiveColor_APITest();
+  Policy_APITest();
+  BlurStyleActivePolicy_ALWAYS_ACTIVE_APITest();
+  BlurStyleActivePolicy_ALWAYS_INACTIVE_APITest();
+  BlurStyleActivePolicy_FOLLOWS_WINDOW_ACTIVE_STATE_APITest();
+  BlurType_BEHIND_WINDOW_APITest();
+  BlurType_WITHIN_WINDOW_APITest();
+  Bgde_Policy_APITest();
+  Bgde_InactiveColor_APITest();
 }

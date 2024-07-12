@@ -21,7 +21,13 @@ import CloseMask from './menuControlTest/bindContextMenuTest/CloseMask.test'
 import CloseMenu from './menuControlTest/bindContextMenuTest/CloseMenu.test'
 import IsShowFalse from './menuControlTest/bindContextMenuTest/IsShowFalse.test'
 import preview from './menuControlTest/bindContextMenuTest/preview.test'
-
+import SheetMode from './bindSheetTest/SheetMode.test'
+import springBack from './bindSheetTest/springBack.test'
+import DetentsChange from './bindSheetTest/DetentsChange.test'
+import SheetTransition from './bindSheetTest/SheetTransition.test'
+import symbolIcon from './menuControlTest/symbolIcon.test'
+import HoverScale_APITest from './CommonTest/MenuTest/Menu_APITest/HoverScale_APITest';
+import ScrollSizeMode_APITest from './CommonTest/BindSheetTest/BindSheet_APITest/ScrollSizeMode_APITest';
 export default function testsuite() {
   aboutToAppearFalse();
   aboutToDisappearFalse();
@@ -32,4 +38,11 @@ export default function testsuite() {
   CloseMenu();
   IsShowFalse();
   preview();
+  SheetMode()
+  springBack()
+  DetentsChange()
+  SheetTransition()
+  symbolIcon();
+  HoverScale_APITest();
+  ScrollSizeMode_APITest();
 }
