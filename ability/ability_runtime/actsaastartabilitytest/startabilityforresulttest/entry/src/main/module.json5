@@ -17,23 +17,24 @@
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
-    "mainElement": "StartAbilityAbility",
+    "mainElement": "EntryAbility",
     "deviceTypes": [
       "default",
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "StartAbilityAbility",
-        "srcEntry": "./ets/startabilityability/StartAbilityAbility.ets",
-        "description": "$string:StartAbilityAbility_desc",
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
-        "label": "$string:StartAbilityAbility_label",
-        "startWindowIcon": "$media:startIcon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-        "exported": true
+        "exported": true,
         "skills": [
           {
             "entities": [
