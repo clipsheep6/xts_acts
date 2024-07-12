@@ -4,7 +4,8 @@
         "MainAbility/pages/webViewSdkTestFrameUrl",
         "MainAbility/pages/webViewNativeMediaPlayerEnableFalse",
         "MainAbility/pages/webViewNativeMediaPlayerHandlerEnhanced",
-        "MainAbility/pages/webViewWebResourceTypeProps2"
+        "MainAbility/pages/webViewWebResourceTypeProps2",
+        "MainAbility/pages/webViewNativeMediaPlayerEnableFalseOverlayFalse"
     ]
 }
 
