@@ -10,7 +10,7 @@
     "kits": [
         {
             "test-file-name": [
-                "ActsStageDemoTest.hap"
+                "ActsContextStartAbilityForResultTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
