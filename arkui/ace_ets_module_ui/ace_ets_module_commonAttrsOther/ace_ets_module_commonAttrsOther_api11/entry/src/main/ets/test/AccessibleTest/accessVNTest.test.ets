@@ -13,16 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+
 export default function accessVnTest() {
-  describe('accessVnTest', function () {
-    beforeEach(async function (done) {
+  describe('accessVnTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("accessVnTest beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/Accessible/accessVN',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/Accessible/accessVN',
       }
       try {
         router.clear();
@@ -30,7 +44,7 @@ export default function accessVnTest() {
         console.info("get accessVnTest state pages: " + JSON.stringify(pages));
         if (!("accessVN" == pages.name)) {
           console.info("get accessVnTest state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push accessVnTest success: " + JSON.stringify(result));
         }
@@ -48,12 +62,11 @@ export default function accessVnTest() {
      * @tc.type :
      * @tc.size :
      */
-    it('accessVnTest_0100', 0, async function (done) {
+    it('accessVnTest_0100', 0, async (done: Function) => {
       console.info('accessVnTest_0100 START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('accessVn_1');
-      let obj = JSON.parse(strJson);
-      expect(obj.$type).assertEqual('Row');
+      expect(JSON.parse(strJson).$type).assertEqual('Row');
       console.info('[accessVnTest_0100] END');
       done();
     });

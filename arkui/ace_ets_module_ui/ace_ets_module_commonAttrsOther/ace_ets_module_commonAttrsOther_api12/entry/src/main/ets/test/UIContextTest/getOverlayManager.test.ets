@@ -15,13 +15,26 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/common/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function getOverlayManager() {
-  describe('getOverlayManager', function () {
-    beforeEach(async function (done) {
+  describe('getOverlayManager', () => {
+    beforeEach(async (done: Function) => {
       console.info("getOverlayManager beforeEach start");
-      let options = {
+      let options: router.RouterOptions = {
         url: "MainAbility/pages/UIContext/getOverlayManager",
       }
       try {
@@ -30,7 +43,7 @@ export default function getOverlayManager() {
         console.info("get getOverlayManager state pages:" + JSON.stringify(pages));
         if (!("getOverlayManager" == pages.name)) {
           console.info("get getOverlayManager pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push getOverlayManager page result:" + JSON.stringify(result));
         }
@@ -40,20 +53,20 @@ export default function getOverlayManager() {
       console.info("getOverlayManager beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("getOverlayManager after each called");
     });
 
     /**
-     * @tc.number    getOverlayManager_001
-     * @tc.name      testBack
-     * @tc.desc      Return specified page by index value
-     * @tc.level     Level 3
+     * @tc.number getOverlayManager_001
+     * @tc.name testBack
+     * @tc.desc Return specified page by index value
+     * @tc.level Level 3
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('getOverlayManager_001', 0, async function (done) {
+    it('getOverlayManager_001', 0, async (done: Function) => {
       console.info('[getOverlayManager_001] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();

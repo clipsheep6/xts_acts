@@ -18,11 +18,11 @@ import CommonFunc from '../../MainAbility/common/Common';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function OverlayManagerTest_005() {
-  describe('OverlayManagerTest_005', function () {
-    beforeEach(async function (done) {
+  describe('OverlayManagerTest_005',()=> {
+    beforeEach(async   (done:Function)=> {
       console.info("OverlayManagerTest_005 beforeEach start");
-      let options = {
-        url: "MainAbility/pages/UIContext/OverlayManager_005",
+      let options:router.RouterOptions = {
+        url:  "MainAbility/pages/UIContext/OverlayManager_005",
       }
       try {
         router.clear();
@@ -30,7 +30,7 @@ export default function OverlayManagerTest_005() {
         console.info("get OverlayManagerTest_005 state pages:" + JSON.stringify(pages));
         if (!("OverlayManager_005" == pages.name)) {
           console.info("get OverlayManagerTest_005 pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push OverlayManagerTest_005 page result:" + JSON.stringify(result));
         }
@@ -40,7 +40,7 @@ export default function OverlayManagerTest_005() {
       console.info("OverlayManagerTest_005 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async   () =>{
       await CommonFunc.sleep(1000);
       console.info("OverlayManagerTest_005 after each called");
     });
@@ -53,7 +53,7 @@ export default function OverlayManagerTest_005() {
      * @tc.type
     * @tc.size
      */
-    it('showAllComponentContents_005', 0, async function (done) {
+    it('showAllComponentContents_005', 0, async   (done:Function)=> {
       console.info('[showAllComponentContents_005] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();
