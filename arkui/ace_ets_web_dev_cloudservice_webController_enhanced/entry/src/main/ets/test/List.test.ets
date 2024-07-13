@@ -20,11 +20,11 @@ import webViewNativeMediaPlayerHandlerEnhancedHandleCallback from './webViewNati
 import webViewWebResourceTypeProps2 from './webViewWebResourceTypeProps2.test';
 import webViewNativeMediaPlayerEnableFalseOverlayFalse from './webViewNativeMediaPlayerEnableFalseOverlayFalse.test';
 export default function testsuite() {
+  webViewNativeMediaPlayerHandlerEnhancedHandleCallback()
   webViewSdkTestFrameUrl()
   webViewWebResourceTypeProps2()
   webViewNativeMediaPlayerEnableFalse()
   webViewNativeMediaPlayerHandlerEnhanced()
   webViewNativeMediaPlayerHandlerEnhanced2()
   webViewNativeMediaPlayerEnableFalseOverlayFalse()
-  webViewNativeMediaPlayerHandlerEnhancedHandleCallback()
 }
