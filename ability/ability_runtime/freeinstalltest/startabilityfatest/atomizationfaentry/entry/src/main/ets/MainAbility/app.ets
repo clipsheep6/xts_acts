@@ -13,38 +13,34 @@
  * limitations under the License.
  */
 import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
-
-class Test {
+export default {
   onCreate() {
     console.info('Application onCreate')
-    setTimeout(() => {
+    setTimeout(function () {
       featureAbility.terminateSelf()
         .then((data) => {
           console.info('entry terminateself succeeded: ' + data);
-        }).catch((error:BusinessError) => {
+        }).catch((error) => {
         console.error('entry terminateself failed. Cause: ' + error);
       })
     }, 1000);
-  }
+  },
   onDestroy() {
     console.info('Application onDestroy')
-  }
+  },
   onStartContinuation() {
     console.info('onStartContinuation');
     return true;
-  }
-  onRestoreData(data:string) {
+  },
+  onRestoreData(data) {
     console.info('onRestoreData' + data);
     return true;
-  }
-  onSaveData() {
+  },
+  onSaveData(data) {
     console.info('onSaveData');
     return true;
-  }
-  onCompleteContinuation(result:string) {
+  },
+  onCompleteContinuation(result) {
     console.info('onCompleteContinuation:' + result);
   }
 }
-
-export default new Test()

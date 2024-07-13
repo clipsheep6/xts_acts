@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import StartAbilityForResult from "./StartAbilityForResult.test";
 
-import startAbilityTest from './StartAbilityTest';
-import common from '@ohos.app.ability.common';
+export default function testsuite() {
+    StartAbilityForResult();
 
-export default function testsuite(context: common.UIAbilityContext) {
-  startAbilityTest(context);
+
 }

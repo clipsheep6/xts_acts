@@ -14,21 +14,21 @@
  */
 import featureAbility from '@ohos.ability.featureAbility';
 
-class Test {
+export default {
   onCreate() {
     console.info('Application onCreate')
-  }
+  },
   onDestroy() {
     console.info('Application onDestroy')
-  }
+  },
   onStartContinuation() {
     console.info('onStartContinuation');
     return true;
-  }
+  },
 
   onActive(){
     console.info('onActive');
-    setTimeout(() => {
+    setTimeout(function () {
       console.info('fAStartAbilityForResultPromise terminateSelfWithResult START');
       featureAbility.terminateSelfWithResult(
         {
@@ -42,19 +42,17 @@ class Test {
       );
       console.info('fAStartAbilityForResultPromise terminateSelfWithResult END');
     }, 1000);
-  }
+  },
 
-  onRestoreData(data:string) {
+  onRestoreData(data) {
     console.info('onRestoreData' + data);
     return true;
-  }
-  onSaveData(data:string) {
-    console.info('onSaveData' + data);
+  },
+  onSaveData(data) {
+    console.info('onSaveData');
     return true;
-  }
-  onCompleteContinuation(result:string) {
+  },
+  onCompleteContinuation(result) {
     console.info('onCompleteContinuation:' + result);
   }
 }
-
-export default new Test()

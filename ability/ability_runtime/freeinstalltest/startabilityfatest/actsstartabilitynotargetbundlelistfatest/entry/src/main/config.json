@@ -1,28 +1,25 @@
 {
   "app": {
-    "bundleName": "com.open.harmony.startAbility",
     "vendor": "example",
+    "bundleName": "com.open.harmony.startAbility",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
+    },
+	"apiVersion": {
+      "compatible": 8,
+      "releaseType": "Release",
+      "target": 8
     }
   },
   "deviceConfig": {},
   "module": {
-    "package": "com.open.harmony.startAbility",
-    "name": ".entry",
     "mainAbility": ".MainAbility",
     "deviceType": [
       "default",
       "tablet",
       "2in1"
     ],
-    "distro": {
-      "deliveryWithInstall": true,
-      "moduleName": "entry",
-      "moduleType": "entry",
-      "installationFree": false
-    },
     "abilities": [
       {
         "skills": [
@@ -36,18 +33,27 @@
           }
         ],
         "orientation": "unspecified",
-        "formsEnabled": false,
+        "visible": true,
+        "srcPath": "MainAbility",
         "name": ".MainAbility",
         "srcLanguage": "ets",
-        "srcPath": "MainAbility",
         "icon": "$media:icon",
         "description": "$string:MainAbility_desc",
+        "formsEnabled": false,
         "label": "$string:MainAbility_label",
         "type": "page",
-        "visible": true,
         "launchType": "standard"
       }
     ],
+    "distro": {
+      "moduleType": "entry",
+      "installationFree": false,
+      "deliveryWithInstall": true,
+      "moduleName": "entry"
+    },
+    "package": "com.open.harmony.startAbility",
+    "srcPath": "",
+    "name": ".entry",
     "js": [
       {
         "mode": {
@@ -58,6 +64,20 @@
           "pages/index"
         ],
         "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".PageAbility",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": false

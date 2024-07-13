@@ -1,18 +1,23 @@
 {
   "app": {
     "bundleName": "com.example.qianyiyingyong.hmservice",
-    "vendor": "example",
+    "vendor": "ohos",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
+    },
+	"apiVersion": {
+      "compatible": 8,
+      "releaseType": "Release",
+      "target": 8
     }
   },
   "deviceConfig": {},
   "module": {
     "package": "com.example.qianyiyingyong",
-    "name": ".entry",
+    "name": ".MyApplication",
     "mainAbility": ".MainAbility",
-     "deviceType": [
+    "deviceType": [
       "default",
       "tablet",
       "2in1"
@@ -21,7 +26,7 @@
       "deliveryWithInstall": true,
       "moduleName": "entry",
       "moduleType": "entry",
-      "installationFree": false
+      "installationFree": true
     },
     "abilities": [
       {
@@ -36,15 +41,15 @@
           }
         ],
         "orientation": "unspecified",
-        "formsEnabled": false,
+        "visible": true,
+        "srcPath": "MainAbility",
         "name": ".MainAbility",
         "srcLanguage": "ets",
-        "srcPath": "MainAbility",
         "icon": "$media:icon",
-        "description": "$string:MainAbility_desc",
-        "label": "$string:MainAbility_label",
+        "description": "$string:description_mainability",
+        "formsEnabled": false,
+        "label": "$string:entry_MainAbility",
         "type": "page",
-        "visible": true,
         "launchType": "standard"
       },
       {
