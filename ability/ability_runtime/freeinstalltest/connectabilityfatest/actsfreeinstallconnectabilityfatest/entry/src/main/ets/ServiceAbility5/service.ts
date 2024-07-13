@@ -17,75 +17,75 @@ import particleAbility from '@ohos.ability.particleAbility';
 import rpc from '@ohos.rpc';
 import commonEvent from '@ohos.commonEvent';
 
-var publishConnectOptions = {
-    parameters: {
-        "assertData": "onConnect"
-    }
+let publishConnectOptions = {
+  parameters: {
+    "assertData": "onConnect"
+  }
 };
-var publishDisconnectOptions = {
-    parameters: {
-        "assertData": "onDisconnect"
-    }
+let publishDisconnectOptions = {
+  parameters: {
+    "assertData": "onDisconnect"
+  }
 };
-var publishFailedOptions = {
-    parameters: {
-        "assertData": "onFailed"
-    }
+let publishFailedOptions = {
+  parameters: {
+    "assertData": "onFailed"
+  }
 };
 
 function PublishCallBack(err) {
-    if (err.code) {
-        console.error("FreeInstall_FA_ConnectAbility_PA service5 publish failed " + JSON.stringify(err));
-    } else {
-        console.info("FreeInstall_FA_ConnectAbility_PA service5 publish success!!!");
-    }
+  if (err.code) {
+    console.error("FreeInstall_FA_ConnectAbility_PA service5 publish failed " + JSON.stringify(err));
+  } else {
+    console.info("FreeInstall_FA_ConnectAbility_PA service5 publish success!!!");
+  }
 }
 
 export default {
-    onStart() {
-        console.info('FreeInstall_FA_ConnectAbility_PA service5 onStart');
-    },
-    onStop() {
-        console.info('FreeInstall_FA_ConnectAbility_PA service5 onStop');
-    },
-    onCommand(want, startId) {
-        console.info('FreeInstall_FA_ConnectAbility_PA service5 onCommand');
-        let request = {
-            'bundleName': 'com.example.different.hmservice',
-            'abilityName': 'com.example.different.ServiceAbility',
-            'moduleName': 'entry',
-        }
-        let options = {
-            onConnect: async function (element: any, proxy: any) {
-                console.info("FreeInstall_FA_ConnectAbility_PA service5 onConnect success!!!")
-                commonEvent.publish("service5_event", publishConnectOptions, PublishCallBack);
-                console.info('FreeInstall_FA_ConnectAbility_PA service5 onConnect element : ' + JSON.stringify(element));
-                console.info('FreeInstall_FA_ConnectAbility_PA service5 onConnect proxy : ' + JSON.stringify(proxy));
-                if (proxy == null) {
-                    console.error("freeInstall_featureAbility_connectAbility proxy null");
-                    return;
-                }
-                let option = new rpc.MessageOption();
-                let data = new rpc.MessageParcel();
-                let reply = new rpc.MessageParcel();
-                data.writeInterfaceToken("ohos.appexecfwk.IApplicationStateObserver");
-                proxy.sendRequest(0, data, reply, option);
-            },
-            onDisconnect: async function (element1: any) {
-                console.info("FreeInstall_FA_ConnectAbility_PA service5 onDisconnect success!!!")
-                commonEvent.publish("service5_event",publishDisconnectOptions,PublishCallBack);
-                console.info('FreeInstall_FA_ConnectAbility_PA service5 onDisconnect ele : ' + JSON.stringify(element1));
-            },
-            onFailed: async function (code: any) {
-                console.info("FreeInstall_FA_ConnectAbility_PA service5 onFailed!!!")
-                commonEvent.publish("service5_event",publishFailedOptions,PublishCallBack);
-                console.info('FreeInstall_FA_ConnectAbility_PA service5 onFailed errCode : ' + JSON.stringify(code));
-            },
-        }
-        console.info('FreeInstall_FA_ConnectAbility_PA service5 connect start ');
-        var connection = particleAbility.connectAbility(request, options);
-        console.info('FreeInstall_FA_ConnectAbility_PA service5  request is:' + JSON.stringify(request));
-        console.info('FreeInstall_FA_ConnectAbility_PA service5 options is:' + JSON.stringify(options));
-        console.info('FreeInstall_FA_ConnectAbility_PA service5 connection=: ' + connection);
+  onStart() {
+    console.info('FreeInstall_FA_ConnectAbility_PA service5 onStart');
+  },
+  onStop() {
+    console.info('FreeInstall_FA_ConnectAbility_PA service5 onStop');
+  },
+  onCommand(want, startId) {
+    console.info('FreeInstall_FA_ConnectAbility_PA service5 onCommand');
+    let request = {
+      'bundleName': 'com.example.different.hmservice',
+      'abilityName': 'com.example.different.ServiceAbility',
+      'moduleName': 'entry',
     }
-};
+    let options = {
+      onConnect: async (element: any, proxy: any) => {
+        console.info("FreeInstall_FA_ConnectAbility_PA service5 onConnect success!!!");
+        commonEvent.publish("service5_event", publishConnectOptions, PublishCallBack);
+        console.info('FreeInstall_FA_ConnectAbility_PA service5 onConnect element : ' + JSON.stringify(element));
+        console.info('FreeInstall_FA_ConnectAbility_PA service5 onConnect proxy : ' + JSON.stringify(proxy));
+        if (proxy == null) {
+          console.error("freeInstall_featureAbility_connectAbility proxy null");
+          return;
+        }
+        let option = new rpc.MessageOption();
+        let data = new rpc.MessageParcel();
+        let reply = new rpc.MessageParcel();
+        data.writeInterfaceToken("ohos.appexecfwk.IApplicationStateObserver");
+        proxy.sendRequest(0, data, reply, option);
+      },
+      onDisconnect: async (element1: any) => {
+        console.info("FreeInstall_FA_ConnectAbility_PA service5 onDisconnect success!!!");
+        commonEvent.publish("service5_event", publishDisconnectOptions, PublishCallBack);
+        console.info('FreeInstall_FA_ConnectAbility_PA service5 onDisconnect ele : ' + JSON.stringify(element1));
+      },
+      onFailed: async (code: any) => {
+        console.info("FreeInstall_FA_ConnectAbility_PA service5 onFailed!!!");
+        commonEvent.publish("service5_event", publishFailedOptions, PublishCallBack);
+        console.info('FreeInstall_FA_ConnectAbility_PA service5 onFailed errCode : ' + JSON.stringify(code));
+      },
+    }
+    console.info('FreeInstall_FA_ConnectAbility_PA service5 connect start ');
+    let connection = particleAbility.connectAbility(request, options);
+    console.info('FreeInstall_FA_ConnectAbility_PA service5  request is:' + JSON.stringify(request));
+    console.info('FreeInstall_FA_ConnectAbility_PA service5 options is:' + JSON.stringify(options));
+    console.info('FreeInstall_FA_ConnectAbility_PA service5 connection=: ' + connection);
+  }
+}
