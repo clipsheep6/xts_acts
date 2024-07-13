@@ -5,6 +5,11 @@
     "version": {
       "code": 1000000,
       "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 8,
+      "releaseType": "Release",
+      "target": 8
     }
   },
   "deviceConfig": {},
@@ -14,7 +19,8 @@
     "mainAbility": ".MainAbility",
     "deviceType": [
       "default",
-      "tablet"
+      "tablet",
+      "2in1"
     ],
     "distro": {
       "deliveryWithInstall": true,

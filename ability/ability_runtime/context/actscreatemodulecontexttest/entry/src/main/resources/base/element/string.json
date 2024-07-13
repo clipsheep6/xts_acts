@@ -1,16 +1,24 @@
 {
   "string": [
     {
-      "name": "module_desc",
-      "value": "module description"
-    },
-    {
-      "name": "EntryAbility_desc",
+      "name": "entry_test_desc",
       "value": "description"
     },
     {
-      "name": "EntryAbility_label",
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
       "value": "label"
-    }
+    },
+    {
+      "name": "app_name",
+      "value": "AACommandPrintSyncTest"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+   }
   ]
 }

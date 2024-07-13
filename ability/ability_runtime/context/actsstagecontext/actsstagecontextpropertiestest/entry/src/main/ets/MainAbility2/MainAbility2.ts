@@ -12,42 +12,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import window from '@ohos.window';
 
 export default class MainAbility2 extends Ability {
-    onCreate(want,launchParam){
-        // Ability is creating, initialize resources for this ability
-        console.log("ActsStageContextPropertiesTest  MainAbility2 onCreate")
-        globalThis.abilityWant = want;
-        globalThis.abilityContext2 = this.context
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    // Ability is creating, initialize resources for this ability
+    console.log("ActsStageContextPropertiesTest  MainAbility2 onCreate");
+    AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext2", this.context);
+  }
 
-    onDestroy() {
-        // Ability is destroying, release resources for this ability
-        console.log("ActsStageContextPropertiesTest  MainAbility2 onDestroy")
-    }
+  onDestroy() {
+    // Ability is destroying, release resources for this ability
+    console.log("ActsStageContextPropertiesTest  MainAbility2 onDestroy");
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("ActsStageContextPropertiesTest  MainAbility2 onWindowStageCreate")
-        
-        windowStage.setUIContent(this.context, "pages/secone/second ", null)
-        console.log("ActsStageContextPropertiesTest  MainAbility2 onWindowStageCreate finish")
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("ActsStageContextPropertiesTest  MainAbility2 onWindowStageCreate");
+    windowStage.loadContent("pages/second/second ", null);
+    console.log("ActsStageContextPropertiesTest  MainAbility2 onWindowStageCreate finish");
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("ActsStageContextPropertiesTest  MainAbility2 onWindowStageDestroy")
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("ActsStageContextPropertiesTest  MainAbility2 onWindowStageDestroy");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("ActsStageContextPropertiesTest  MainAbility2 onForeground")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("ActsStageContextPropertiesTest  MainAbility2 onForeground");
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("ActsStageContextPropertiesTest  MainAbility2 onBackground")
-    }
-};
+  onBackground() {
+    // Ability has back to background
+    console.log("ActsStageContextPropertiesTest  MainAbility2 onBackground");
+  }
+}
