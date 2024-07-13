@@ -18,7 +18,7 @@ import { describe, beforeAll, afterEach, it, expect } from "@ohos/hypium"
 import wantConstant from '@ohos.ability.wantConstant'
 
 export default function StartAbilityForResult(abilityContext) {
-  var TAG = "";
+  let TAG = "";
 
   function sleep(time) {
     return new Promise((resolve) => setTimeout(resolve, time))
@@ -27,24 +27,24 @@ export default function StartAbilityForResult(abilityContext) {
   describe('StartAbilityForResult', function () {
     beforeAll(async function (done) {
       console.info("StartAbilityForResult before all called");
-      var cmd = "bm install -p data/test/MockService.hap";
+      let cmd = "bm install -p data/test/MockService.hap";
       console.info("cmd : " + cmd)
-      globalThis.delegator.executeShellCommand(cmd, (err: any, d: any) => {
+      globalThis.delegator.executeShellCommand(cmd, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd1 = "mkdir /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry";
-      globalThis.delegator.executeShellCommand(cmd1, (err: any, d: any) => {
+      let cmd1 = "mkdir /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry";
+      globalThis.delegator.executeShellCommand(cmd1, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand1 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd2 = "mkdir /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
-      globalThis.delegator.executeShellCommand(cmd2, (err: any, d: any) => {
+      let cmd2 = "mkdir /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+      globalThis.delegator.executeShellCommand(cmd2, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand2 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd3 = "cp data/test/AtomizationResultStageEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
-      globalThis.delegator.executeShellCommand(cmd3, (err: any, d: any) => {
+      let cmd3 = "cp data/test/AtomizationResultStageEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+      globalThis.delegator.executeShellCommand(cmd3, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand3 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         done();
       })
@@ -55,28 +55,28 @@ export default function StartAbilityForResult(abilityContext) {
       if ("FreeInstall_Stage_StartAbilityForResult_0100" === TAG ||
         "FreeInstall_Stage_StartAbilityForResult_0500" === TAG ||
         "FreeInstall_Stage_StartAbilityForResult_2800" === TAG) {
-        var cmd4 = "bm uninstall -n com.example.qianyiyingyong.hmservice";
-        globalThis.delegator.executeShellCommand(cmd4, (err: any, d: any) => {
+        let cmd4 = "bm uninstall -n com.example.qianyiyingyong.hmservice";
+        globalThis.delegator.executeShellCommand(cmd4, (err: ESObject, d: ESObject) => {
           console.info("executeShellCommand4 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         })
         await sleep(500);
       }
       if ("FreeInstall_Stage_StartAbilityForResult_0700" === TAG) {
-        var cmd5 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultStageHm2.hap";
-        globalThis.delegator.executeShellCommand(cmd5, (err: any, d: any) => {
+        let cmd5 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultStageHm2.hap";
+        globalThis.delegator.executeShellCommand(cmd5, (err: ESObject, d: ESObject) => {
           console.info("executeShellCommand5 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         })
         await sleep(500);
-        var cmd6 = "cp data/test/AtomizationResultStageEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/" +
+        let cmd6 = "cp data/test/AtomizationResultStageEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/" +
           "entry/files";
-        globalThis.delegator.executeShellCommand(cmd6, (err: any, d: any) => {
+        globalThis.delegator.executeShellCommand(cmd6, (err: ESObject, d: ESObject) => {
           console.info("executeShellCommand6 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         })
         await sleep(500);
       }
       if ("FreeInstall_Stage_StartAbilityForResult_2600" === TAG) {
-        var cmd14 = "bm uninstall -n com.ohos.hag.famanager";
-        globalThis.delegator.executeShellCommand(cmd14, (err: any, d: any) => {
+        let cmd14 = "bm uninstall -n com.ohos.hag.famanager";
+        globalThis.delegator.executeShellCommand(cmd14, (err: ESObject, d: ESObject) => {
           console.info("executeShellCommand14 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
         })
       }
@@ -95,7 +95,7 @@ export default function StartAbilityForResult(abilityContext) {
       TAG = "FreeInstall_Stage_StartAbilityForResult_0100";
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "deviceId": "",
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.qianyiyingyong.MainAbility",
@@ -126,13 +126,13 @@ export default function StartAbilityForResult(abilityContext) {
       TAG = "FreeInstall_Stage_StartAbilityForResult_0400";
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.qianyiyingyong.MainAbility",
           "moduleName": "entry",
           "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
         }
-        var options = {
+        let options = {
           "windowMode": 0, "displayId": 2
         }
         await globalThis.abilityContext.startAbilityForResult(str, options)
@@ -159,7 +159,7 @@ export default function StartAbilityForResult(abilityContext) {
       TAG = "FreeInstall_Stage_StartAbilityForResult_0500";
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.qianyiyingyong.MainAbility",
           "moduleName": "entry",
@@ -187,18 +187,18 @@ export default function StartAbilityForResult(abilityContext) {
     it("FreeInstall_Stage_StartAbilityForResult_0700", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_StartAbilityForResult_0700-------------");
       TAG = "FreeInstall_Stage_StartAbilityForResult_0700";
-      var cmd7 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultStageEntry.hap";
-      globalThis.delegator.executeShellCommand(cmd7, (err: any, d: any) => {
+      let cmd7 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultStageEntry.hap";
+      globalThis.delegator.executeShellCommand(cmd7, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand7: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd8 = "cp data/test/AtomizationResultStageHm2.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
-      globalThis.delegator.executeShellCommand(cmd8, (err: any, d: any) => {
+      let cmd8 = "cp data/test/AtomizationResultStageHm2.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files";
+      globalThis.delegator.executeShellCommand(cmd8, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand8: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.hm2.MainAbility",
           "moduleName": "hnm2",
@@ -229,13 +229,13 @@ export default function StartAbilityForResult(abilityContext) {
       TAG = "FreeInstall_Stage_StartAbilityForResult_0800";
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.qianyiyingyong.MainAbility",
           "moduleName": "entry",
           "flags": wantConstant.Flags.FLAG_INSTALL_ON_DEMAND,
         }
-        var options = {
+        let options = {
           "windowMode": 0, "displayId": 2
         }
         await globalThis.abilityContext.startAbilityForResult(str, options, (err, data) => {
@@ -260,7 +260,7 @@ export default function StartAbilityForResult(abilityContext) {
       TAG = "FreeInstall_Stage_StartAbilityForResult_1200";
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.qianyiyingyong.MainAbility",
           "moduleName": "entry",
@@ -290,13 +290,13 @@ export default function StartAbilityForResult(abilityContext) {
       TAG = "FreeInstall_Stage_StartAbilityForResult_1400";
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.qianyiyingyong.MainAbility",
           "moduleName": "entry",
           'flags': '11'
         }
-        var options = {
+        let options = {
           "windowMode": 0, "displayId": 2
         }
         await globalThis.abilityContext.startAbilityForResult(str, options)
@@ -324,7 +324,7 @@ export default function StartAbilityForResult(abilityContext) {
       TAG = "FreeInstall_Stage_StartAbilityForResult_1600";
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.qianyiyingyong.MainAbility",
           "moduleName": "entry",
@@ -354,13 +354,13 @@ export default function StartAbilityForResult(abilityContext) {
       TAG = "FreeInstall_Stage_StartAbilityForResult_1800";
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.qianyiyingyong.MainAbility",
           "moduleName": "entry",
           'flags': ''
         }
-        var options = {
+        let options = {
           "windowMode": 0, "displayId": 2
         }
         await globalThis.abilityContext.startAbilityForResult(str, options)
@@ -385,13 +385,13 @@ export default function StartAbilityForResult(abilityContext) {
     it("FreeInstall_Stage_StartAbilityForResult_2700", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_StartAbilityForResult_2700-------------");
       TAG = "FreeInstall_Stage_StartAbilityForResult_2700";
-      var cmd9 = "bm install -p data/test/AtomizationResultStageHnm2.hap";
-      globalThis.delegator.executeShellCommand(cmd9, (err: any, d: any) => {
+      let cmd9 = "bm install -p data/test/AtomizationResultStageHnm2.hap";
+      globalThis.delegator.executeShellCommand(cmd9, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand9: err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.qianyiyingyong.MainAbility",
           "moduleName": "hnm2",
@@ -420,19 +420,19 @@ export default function StartAbilityForResult(abilityContext) {
     it("FreeInstall_Stage_StartAbilityForResult_2800", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_StartAbilityForResult_2800-------------");
       TAG = "FreeInstall_Stage_StartAbilityForResult_2800";
-      var cmd10 = "bm uninstall -n com.example.qianyiyingyong.hmservice";
-      globalThis.delegator.executeShellCommand(cmd10, (err: any, d: any) => {
+      let cmd10 = "bm uninstall -n com.example.qianyiyingyong.hmservice";
+      globalThis.delegator.executeShellCommand(cmd10, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand10 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd11 = "cp data/test/AtomizationResultStageEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
+      let cmd11 = "cp data/test/AtomizationResultStageEntry.hap /data/app/el2/100/base/com.ohos.hag.famanager/" +
         "haps/entry/files";
-      globalThis.delegator.executeShellCommand(cmd11, (err: any, d: any) => {
+      globalThis.delegator.executeShellCommand(cmd11, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand11 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           'deviceId': '',
           "bundleName": "com.example.qianyiyingyong.hmservice",
           "abilityName": "com.example.qianyiyingyong.MainAbility",
@@ -463,19 +463,19 @@ export default function StartAbilityForResult(abilityContext) {
     it("FreeInstall_Stage_StartAbilityForResult_2600", 0, async function (done) {
       console.log("------------start FreeInstall_Stage_StartAbilityForResult_2600-------------");
       TAG = "FreeInstall_Stage_StartAbilityForResult_2600";
-      var cmd12 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultStageEntry.hap";
-      globalThis.delegator.executeShellCommand(cmd12, (err: any, d: any) => {
+      let cmd12 = "rm /data/app/el2/100/base/com.ohos.hag.famanager/haps/entry/files/AtomizationResultStageEntry.hap";
+      globalThis.delegator.executeShellCommand(cmd12, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand12 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       await sleep(500);
-      var cmd13 = "cp data/test/StageResultMyApplication1.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/" +
+      let cmd13 = "cp data/test/StageResultMyApplication1.hap /data/app/el2/100/base/com.ohos.hag.famanager/haps/" +
         "entry/files";
-      globalThis.delegator.executeShellCommand(cmd13, (err: any, d: any) => {
+      globalThis.delegator.executeShellCommand(cmd13, (err: ESObject, d: ESObject) => {
         console.info("executeShellCommand13 : err : " + JSON.stringify(err), " data : " + JSON.stringify(d));
       })
       setTimeout(async () => {
         let details;
-        var str = {
+        let str = {
           "deviceId": "",
           "bundleName": "com.example.startAbilityForResult.hmservice",
           "abilityName": "MainAbility1",
