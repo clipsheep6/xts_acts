@@ -171,7 +171,8 @@ export default function imageEncodeYuvToJpeg() {
       logger.log(`origin pixelFormat: ${orgInfo.pixelFormat}, new pixelFormat: ${newInfo.pixelFormat}`);
       logger.log(`origin width: ${orgInfo.size.width}, new width: ${newInfo.size.width}`);
       logger.log(`origin height: ${orgInfo.size.height}, new height: ${newInfo.size.height}`);
-      result = orgInfo.pixelFormat == newInfo.pixelFormat && 
+      logger.log(`packing mimeType: ${newInfo.mimeType}`);
+      result = orgInfo.pixelFormat == newInfo.pixelFormat && newInfo.mimeType == packOpts.format &&
         orgInfo.size.width == newInfo.size.width &&
         orgInfo.size.height == newInfo.size.height;
       await newPixelMap.release();
@@ -424,7 +425,7 @@ export default function imageEncodeYuvToJpeg() {
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_YUV_SOURCE_PACKINGTODATA_FUNC_0400
-     * @tc.name      : test packing yuv ImageSource to jpeg promise -- create ImageSource by fd
+     * @tc.name      : test packing yuv ImageSource to jpeg promise -- create ImageSource by rawfile
      * @tc.desc      : 1.create ImageSource
      *                 2.create ImagePacker
      * @tc.size      : MEDIUM
@@ -513,7 +514,7 @@ export default function imageEncodeYuvToJpeg() {
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_YUV_SOURCE_PACKINGTODATA_FUNC_0800
-     * @tc.name      : test packing yuv pixelmap to jpeg promise -- create ImageSource by fd
+     * @tc.name      : test packing yuv pixelmap to jpeg promise -- create ImageSource by rawfile
      * @tc.desc      : 1.create ImageSource
      *                 2.create PixelMap
      *                 3.create ImagePacker
@@ -592,7 +593,7 @@ export default function imageEncodeYuvToJpeg() {
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_YUV_SOURCE_PACKINGTOFILE_FUNC_0400
-     * @tc.name      : test packing yuv ImageSource to jpeg file promise -- create ImageSource by fd
+     * @tc.name      : test packing yuv ImageSource to jpeg file promise -- create ImageSource by rawfile
      * @tc.desc      : 1.create ImageSource
      *                 2.create ImagePacker
      * @tc.size      : MEDIUM
@@ -681,7 +682,7 @@ export default function imageEncodeYuvToJpeg() {
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_YUV_SOURCE_PACKINGTOFILE_FUNC_0800
-     * @tc.name      : test packing yuv pixelmap to jpeg file promise -- create ImageSource by fd
+     * @tc.name      : test packing yuv pixelmap to jpeg file promise -- create ImageSource by rawfile
      * @tc.desc      : 1.create ImageSource
      *                 2.create PixelMap
      *                 3.create ImagePacker
