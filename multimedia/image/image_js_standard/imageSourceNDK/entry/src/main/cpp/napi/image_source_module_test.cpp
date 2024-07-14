@@ -16,6 +16,7 @@
 #include <hilog/log.h>
 #include "image_source_module_test.h"
 #include "cstring.h"
+#include <cstring>
 #include <securec.h>
 #ifndef _WIN32
 #include "securec.h"
@@ -115,6 +116,41 @@ Image_ErrorCode ImageSourceModuleTest::ModifyImageProperty(int32_t fd, std::stri
     *val = std::string(value.data, value.size);
     free(value.data);
     free(key.data);
+    OH_ImageSourceNative_Release(source);
+    return ret;
+}
+
+Image_ErrorCode ImageSourceModuleTest::GetDisposalTypeList(int32_t fd, std::vector<int32_t>* DptList)
+
+{
+    OH_ImageSourceNative *source;
+    Image_ErrorCode ret = OH_ImageSourceNative_CreateFromFd(fd, &source);
+    if (ret != IMAGE_SUCCESS) {
+        OH_ImageSourceNative_Release(source);
+        IMG_TST_LOGE("OH_ImageSourceNative_CreateFromFd failed: err = %{public}d.", ret);
+        return ret;
+    }
+
+    uint32_t frameCount = 0;
+    ret = OH_ImageSourceNative_GetFrameCount(source, &frameCount);
+    if (ret != IMAGE_SUCCESS) {
+        OH_ImageSourceNative_Release(source);
+        IMG_TST_LOGE("OH_ImageSourceNative_GetFrameCount failed: err = %{public}d.", ret);
+        return ret;
+    }
+
+    int32_t disposalTypeList[frameCount];
+    ret = OH_ImageSourceNative_GetDisposalTypeList(source, disposalTypeList, frameCount);
+    if (ret != IMAGE_SUCCESS) {
+        OH_ImageSourceNative_Release(source);
+        IMG_TST_LOGE("OH_ImageSourceNative_GetDisposalTypeList failed: err = %{public}d.", ret);
+        return ret;
+    }
+
+    for (int i = 0; i < static_cast<int>(frameCount); i++) {
+        DptList->push_back(disposalTypeList[i]);
+    }
+
     OH_ImageSourceNative_Release(source);
     return ret;
 }

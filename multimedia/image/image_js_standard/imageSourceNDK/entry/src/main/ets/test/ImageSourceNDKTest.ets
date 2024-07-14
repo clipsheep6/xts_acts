@@ -304,6 +304,70 @@ export default function ImageSourceNDKTest() {
         }
 
         /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_SOURCE_GETDISPOSALTYPELIST_0100
+         * @tc.name      : test JsGetDisposalTypeList for gif
+         * @tc.desc      : 1.getFd
+         *               : 2.JsGetDisposalTypeList
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_SOURCE_GETDISPOSALTYPELIST_0100', 0, async function (done) {
+                let mlg = logger("SUB_MULTIMEDIA_IMAGE_SOURCE_GETDISPOSALTYPELIST_0100");
+                mlg.log('start');
+                let path, fd;
+                [path, fd] = await getFd('test_disposal.gif');
+                mlg.log('fd = '+ fd);
+                let disposaltypelist = sourceTest.JsGetDisposalTypeList(fd);
+                mlg.log('disposaltypelist = '+ disposaltypelist);
+                let result = disposaltypelist[0] == 1 && disposaltypelist[1] == 2 && disposaltypelist[2] == 3;
+                expect(result).assertTrue();
+                done();
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_SOURCE_GETDISPOSALTYPELIST_0200
+         * @tc.name      : test JsGetDisposalTypeList for one frame gif
+         * @tc.desc      : 1.getFd
+         *               : 2.JsGetDisposalTypeList
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_SOURCE_GETDISPOSALTYPELIST_0200', 0, async function (done) {
+                let mlg = logger("SUB_MULTIMEDIA_IMAGE_SOURCE_GETDISPOSALTYPELIST_0200");
+                mlg.log('start');
+                let path, fd;
+                [path, fd] = await getFd('test.gif');
+                mlg.log('fd = '+ fd);
+                let disposaltypelist = sourceTest.JsGetDisposalTypeList(fd);
+                mlg.log("disposaltypelist = " + disposaltypelist)
+                expect(disposaltypelist[0] == 1).assertTrue();
+                done();
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_SOURCE_GETDISPOSALTYPELIST_0300
+         * @tc.name      : JsGetDisposalTypeList
+         * @tc.desc      : 1.getFd
+         *               : 2.JsGetDisposalTypeList
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_SOURCE_GETDISPOSALTYPELIST_0300', 0, async function (done) {
+                let mlg = logger("SUB_MULTIMEDIA_IMAGE_SOURCE_GETDISPOSALTYPELIST_0300");
+                mlg.log('start');
+                let path, fd;
+                [path, fd] = await getFd('test_large.webp');
+                mlg.log('fd = '+ fd);
+                let disposaltypelist = sourceTest.JsGetDisposalTypeList(fd);
+                mlg.log("disposaltypelist = " + disposaltypelist)
+                expect(disposaltypelist == undefined).assertTrue();
+                done();
+        })
+
+        /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_SOURCENDK_CREATE_BY_FD_0100
          * @tc.name      : createImageSource -gif
          * @tc.desc      : 1.get fd

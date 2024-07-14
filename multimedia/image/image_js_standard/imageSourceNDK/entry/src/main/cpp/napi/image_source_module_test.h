@@ -32,6 +32,7 @@ public:
     Image_ErrorCode GetImageProperty(int32_t fd, std::string propertykey, std::string *value);
     Image_ErrorCode ModifyImageProperty(int32_t fd, std::string propertyKey,
                                         std::string propertyValue, std::string *value);
+    Image_ErrorCode GetDisposalTypeList(int32_t fd, std::vector<int32_t> *DptList);
 
 private:
 };
