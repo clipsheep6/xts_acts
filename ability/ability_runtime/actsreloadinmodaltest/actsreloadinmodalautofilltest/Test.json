@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.ohos.autofillbox",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout":"20000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsReloadInModalAutoFillTest.hap",
+                "ActsReloadInModalAutoFillHap.hap"
+                
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+          "type": "ShellKit",
+          "run-command": [
+              "power-shell wakeup",
+              "rm -rf system/app/PasswordVault",
+              "rm -rf data/app/el1/bundle/public/com.huawei.hmos.passwordvault",
+              "param set persist.sys.abilityms.autofill.is_passwd_popup_window true",
+              "sync",
+              "power-shell setmode 602",
+              "hilog -Q pidoff",
+              "hilog -Q domainoff",
+              "hilog -b D",
+              "setenforce 0",
+              "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100"
+          ]
+      }
+    ]
+}
+
