@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, it, expect} from "@ohos/hypium"
-import {UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
+import { describe, beforeAll, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+import { UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function LongPressGestureHandlerTest() {
 
-  describe('LongPressGestureHandlerTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('LongPressGestureHandlerTest', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/GestureHandler/LongPressGestureHandler',
       }
       try {
@@ -31,7 +31,7 @@ export default function LongPressGestureHandlerTest() {
         console.info("get LongPressGestureHandler state pages: " + JSON.stringify(pages));
         if (!("LongPressGestureHandler" == pages.name)) {
           console.info("get LongPressGestureHandler state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push LongPressGestureHandler success: " + JSON.stringify(result));
         }
@@ -42,20 +42,20 @@ export default function LongPressGestureHandlerTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("LongPressGestureHandler after each called");
     });
 
     /**
-     * @tc.number    LongPressGestureHandler_0010
-     * @tc.name      LongPressGestureHandlerOptions
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number LongPressGestureHandler_0010
+     * @tc.name LongPressGestureHandlerOptions
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('LongPressGestureHandler_0010', 0, async function (done) {
+    it('LongPressGestureHandler_0010', 0, async (done: Function) => {
       console.info('LongPressGestureHandler_0010 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -63,8 +63,7 @@ export default function LongPressGestureHandlerTest() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('LongPressGestureHandler1');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('succ');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('succ');
       console.info('[LongPressGestureHandler_0010] END');
       done();
     });

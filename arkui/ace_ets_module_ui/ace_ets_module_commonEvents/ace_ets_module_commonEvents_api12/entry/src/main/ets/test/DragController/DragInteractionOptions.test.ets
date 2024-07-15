@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, it, expect} from "@ohos/hypium"
-import {UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
+import { describe, beforeAll, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+import { UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function DragInteractionOptionsTest() {
 
-  describe('DragInteractionOptionsTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('DragInteractionOptionsTest', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/DragController/DragInteractionOptions',
       }
       try {
@@ -31,7 +31,7 @@ export default function DragInteractionOptionsTest() {
         console.info("get DragInteractionOptions state pages: " + JSON.stringify(pages));
         if (!("DragInteractionOptions" == pages.name)) {
           console.info("get DragInteractionOptions state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push DragInteractionOptions success: " + JSON.stringify(result));
         }
@@ -42,20 +42,20 @@ export default function DragInteractionOptionsTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("DragInteractionOptions after each called");
     });
 
     /**
-     * @tc.number    DragInteractionOptions_0010
-     * @tc.name      DragInteractionOptions
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number DragInteractionOptions_0010
+     * @tc.name DragInteractionOptions
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('DragInteractionOptions_0010', 0, async function (done) {
+    it('DragInteractionOptions_0010', 0, async (done: Function) => {
       console.info('DragInteractionOptions_0010 START');
       let driver = await Driver.create()
       let grid = await driver.findComponent(ON.id('DragInteractionOptionsGridItem1'));
@@ -63,26 +63,26 @@ export default function DragInteractionOptionsTest() {
       await grid.dragTo(button);
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('dragPreviewOptions_button');
-      let obj = JSON.parse(strJson);
       let strJson1 = getInspectorByKey('DragInteractionOptionsGridItem1');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[DragInteractionOptions_0010] dragPreviewOptions: " + JSON.stringify(obj1));
-      console.info("[DragInteractionOptions_0010] dragPreviewOptions: " + JSON.stringify(obj1.$attrs));
-      console.info("[DragInteractionOptions_0010] dragPreviewOptions: " + JSON.stringify(obj1.$attrs.mode));
-      expect(obj.$attrs.label).assertEqual('drag succ');
+      console.info("[DragInteractionOptions_0010] dragPreviewOptions: " + JSON.stringify(JSON.parse(strJson1)));
+      console.info("[DragInteractionOptions_0010] dragPreviewOptions: " + JSON.stringify(JSON.parse(strJson1).$attrs));
+      console.info("[DragInteractionOptions_0010] dragPreviewOptions: " + JSON.stringify(JSON.parse(strJson1)
+        .$attrs
+        .mode));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('drag succ');
       console.info('[DragInteractionOptions_0010] END');
       done();
     });
 
     /**
-     * @tc.number    DragInteractionOptions_0020
-     * @tc.name      DragInteractionOptions
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number DragInteractionOptions_0020
+     * @tc.name DragInteractionOptions
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('DragInteractionOptions_0020', 0, async function (done) {
+    it('DragInteractionOptions_0020', 0, async (done: Function) => {
       console.info('DragInteractionOptions_0020 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -93,9 +93,8 @@ export default function DragInteractionOptionsTest() {
       await grid.dragTo(button1);
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('dragPreviewOptions_button');
-      let obj = JSON.parse(strJson);
-      console.info("[DragInteractionOptions_0020] dragPreviewOptions: " + JSON.stringify(obj.$attrs));
-      expect(obj.$attrs.label).assertEqual('drag succ');
+      console.info("[DragInteractionOptions_0020] dragPreviewOptions: " + JSON.stringify(JSON.parse(strJson).$attrs));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('drag succ');
       console.info('[DragInteractionOptions_0020] END');
       done();
     });

@@ -16,7 +16,17 @@
 import CommonFunc from '../../MainAbility/utils/Common';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function GestureRecognizerState() {
   describe('GestureRecognizerState', () => {
@@ -49,25 +59,23 @@ export default function GestureRecognizerState() {
 
 
     /**
-     * @tc.number    GestureRecognizerState_0100
-     * @tc.name      GestureRecognizerState_0100
-     * @tc.desc      Test GestureRecognizerState
-     * @tc.level     Level 2
+     * @tc.number GestureRecognizerState_0100
+     * @tc.name GestureRecognizerState_0100
+     * @tc.desc Test GestureRecognizerState
+     * @tc.level Level 2
      */
     it('GestureRecognizerState_0100', 0, async (done: Function) => {
       console.info('GestureRecognizerState_0100 START');
       await CommonFunc.sleep(2000);
 
       let strJson1 = getInspectorByKey('GestureRecognizerState_text');
-      let obj1 = JSON.parse(strJson1);
       await CommonFunc.sleep(1000);
-      console.info("[GestureRecognizerState_0100] obj1 is: " + JSON.stringify(obj1));
-      expect(obj1.$attrs.content).assertEqual('GestureRecognizerState');
+      console.info("[GestureRecognizerState_0100] obj1 is: " + JSON.stringify(JSON.parse(strJson1)));
+      expect(JSON.parse(strJson1).$attrs.content).assertEqual('GestureRecognizerState');
 
       console.info('GestureRecognizerState_0100 END');
       done();
     });
-
 
 
   })

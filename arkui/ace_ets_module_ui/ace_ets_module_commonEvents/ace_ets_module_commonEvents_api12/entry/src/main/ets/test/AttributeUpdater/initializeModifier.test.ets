@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, it, expect} from "@ohos/hypium"
-import {UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
+import { describe, beforeAll, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+import { UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function initializeModifierTest() {
 
-  describe('initializeModifierTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('initializeModifierTest', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/AttributeUpdater/initializeModifier',
       }
       try {
@@ -31,7 +31,7 @@ export default function initializeModifierTest() {
         console.info("get initializeModifier state pages: " + JSON.stringify(pages));
         if (!("initializeModifier" == pages.name)) {
           console.info("get initializeModifier state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push initializeModifier success: " + JSON.stringify(result));
         }
@@ -42,20 +42,20 @@ export default function initializeModifierTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("initializeModifier after each called");
     });
 
     /**
-     * @tc.number    initializeModifier_0010
-     * @tc.name      Test the api of initializeModifier
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number initializeModifier_0010
+     * @tc.name Test the api of initializeModifier
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('initializeModifier_0010', 0, async function (done) {
+    it('initializeModifier_0010', 0, async (done: Function) => {
       console.info('initializeModifier_0010 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -63,21 +63,20 @@ export default function initializeModifierTest() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('initializeModifier_id');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('initializeModifier succ');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('initializeModifier succ');
       console.info('[initializeModifier_0010] END');
       done();
     });
 
     /**
-     * @tc.number    attribute_0020
-     * @tc.name      Test the api of get attribute
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number attribute_0020
+     * @tc.name Test the api of get attribute
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('attribute_0020', 0, async function (done) {
+    it('attribute_0020', 0, async (done: Function) => {
       console.info('attribute_0020 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -85,8 +84,7 @@ export default function initializeModifierTest() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('initializeModifier_id');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.height).assertEqual("50.00vp");
+      expect(JSON.parse(strJson).$attrs.height).assertEqual("50.00vp");
       console.info('[attribute_0020] END');
       done();
     });

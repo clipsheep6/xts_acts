@@ -13,18 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function SwipeGesture3() {
-  describe('SwipeGesture3', function () {
-    beforeEach(async function (done) {
+  describe('SwipeGesture3', () => {
+    beforeEach(async (done: Function) => {
       console.info("SwipeGesture3 beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/SwipeGesture/SwipeGesture3',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/SwipeGesture/SwipeGesture3',
       }
       try {
         router.clear();
@@ -32,7 +44,7 @@ export default function SwipeGesture3() {
         console.info("get SwipeGesture3 state pages: " + JSON.stringify(pages));
         if (!("SwipeGesture3" == pages.name)) {
           console.info("get SwipeGesture3 state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push SwipeGesture3 success: " + JSON.stringify(result));
         }
@@ -48,16 +60,15 @@ export default function SwipeGesture3() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('SwipeGesture3_0100', 0, async function (done) {
+    it('SwipeGesture3_0100', 0, async (done: Function) => {
       await CommonFunc.sleep(1000);
       console.info('SwipeGesture3_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('Swipe5');
-      let obj = JSON.parse(strJson);
-      console.info("[SwipeGesture3_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[SwipeGesture3_0100] title: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual('PinchGesture center:(0.5,0.5)');
+      console.info("[SwipeGesture3_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[SwipeGesture3_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('PinchGesture center:(0.5,0.5)');
       console.info('[SwipeGesture3_0100] END');
       done();
     });
@@ -67,19 +78,19 @@ export default function SwipeGesture3() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('SwipeGesture3_0200', 0, async function (done) {
+    it('SwipeGesture3_0200', 0, async (done: Function) => {
       console.info('SwipeGesture3_0200 START');
       let driver = Driver.create();
       await CommonFunc.sleep(500);
       let colum = CommonFunc.getComponentRectOnScreen('SwipeGesture3');
       let top = colum.top
+      let left = colum.left
       await driver.swipe(Math.round(globalThis.winLeft + 100), Math.round(top + 50), Math.round(globalThis.winLeft + 500), Math.round(top + 450))
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('Swipe6');
-      let obj = JSON.parse(strJson);
-      console.info("[SwipeGesture3_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[SwipeGesture3_0200] title: " + JSON.stringify(obj.$attrs.content));
-      expect((Math.abs(Number(obj.$attrs.content)) - 93) < 10).assertEqual(true);
+      console.info("[SwipeGesture3_0200] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[SwipeGesture3_0200] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect((Math.abs(Number(JSON.parse(strJson).$attrs.content)) - 93) < 10).assertEqual(true);
       console.info('[SwipeGesture3_0200] END');
       done();
     });

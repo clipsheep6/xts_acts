@@ -22,7 +22,7 @@ class BasicDataSource implements IDataSource {
     return 0
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return undefined
   }
 
@@ -79,7 +79,7 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray.length
   }
 
-  public getData(index: number): any {
+  public getData(index: number): string {
     return this.dataArray[index]
   }
 

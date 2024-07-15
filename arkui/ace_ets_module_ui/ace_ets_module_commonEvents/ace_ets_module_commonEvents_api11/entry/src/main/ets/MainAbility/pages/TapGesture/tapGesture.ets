@@ -33,26 +33,26 @@ struct TapGestureExample {
     .border({ width: 1 })
     .margin(30)
     .gesture(
-    TapGesture({ count: 2 })
-      .onAction(() => {
-        this.value = 'TapGesture onAction'
-        this.onClickValue = true;
-        try {
-          var backData = {
-            data: {
-              "ACTION": this.onClickValue
+      TapGesture({ count: 2 })
+        .onAction(() => {
+          this.value = 'TapGesture onAction'
+          this.onClickValue = true;
+          try {
+            let backData: events_emitter.EventData = {
+              data: {
+                "ACTION": this.onClickValue
+              }
             }
+            let backEvent: events_emitter.InnerEvent = {
+              eventId: 214,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("click to emit action state")
+            events_emitter.emit(backEvent, backData)
+          } catch (err) {
+            console.info("click action state err: " + JSON.stringify(err.message))
           }
-          var backEvent = {
-            eventId: 214,
-            priority: events_emitter.EventPriority.LOW
-          }
-          console.info("click to emit action state")
-          events_emitter.emit(backEvent, backData)
-        } catch (err) {
-          console.info("click action state err: " + JSON.stringify(err.message))
-        }
-      })
+        })
     )
     .key('tapGesture')
   }

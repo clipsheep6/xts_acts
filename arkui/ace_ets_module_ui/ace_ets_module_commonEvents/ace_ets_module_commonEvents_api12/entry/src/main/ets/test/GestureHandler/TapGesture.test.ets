@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, it, expect} from "@ohos/hypium"
-import {UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
+import { describe, beforeAll, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+import { UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function TapGestureHandlerTest() {
 
-  describe('TapGestureHandlerTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('TapGestureHandlerTest', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/GestureHandler/TapGestureHandler',
       }
       try {
@@ -31,7 +31,7 @@ export default function TapGestureHandlerTest() {
         console.info("get TapGestureHandler state pages: " + JSON.stringify(pages));
         if (!("TapGestureHandler" == pages.name)) {
           console.info("get TapGestureHandler state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push TapGestureHandler success: " + JSON.stringify(result));
         }
@@ -42,20 +42,20 @@ export default function TapGestureHandlerTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("TapGestureHandler after each called");
     });
 
     /**
-     * @tc.number    TapGestureHandler_0010
-     * @tc.name      TapGestureHandlerOptions
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number TapGestureHandler_0010
+     * @tc.name TapGestureHandlerOptions
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('TapGestureHandler_0010', 0, async function (done) {
+    it('TapGestureHandler_0010', 0, async (done: Function) => {
       console.info('TapGestureHandler_0010 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -63,8 +63,7 @@ export default function TapGestureHandlerTest() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('TapGestureHandler1');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('tap succ');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('tap succ');
       console.info('[TapGestureHandler_0010] END');
       done();
     });

@@ -13,18 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function GestureReject() {
-  describe('GestureReject', function () {
-    beforeEach(async function (done) {
+  describe('GestureReject', () => {
+    beforeEach(async (done: Function) => {
       console.info("GestureReject beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/onGestureJudgeBegin/GestureReject',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/onGestureJudgeBegin/GestureReject',
       }
       try {
         router.clear();
@@ -32,7 +44,7 @@ export default function GestureReject() {
         console.info("get GestureReject state pages: " + JSON.stringify(pages));
         if (!("GestureReject" == pages.name)) {
           console.info("get GestureReject state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push GestureReject success: " + JSON.stringify(result));
         }
@@ -42,15 +54,15 @@ export default function GestureReject() {
       }
       done();
     });
-   /**
-     * @tc.number    GestureReject_0100
-     * @tc.name    GestureReject_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
-     * @tc.type : 
+    /**
+     * @tc.number GestureReject_0100
+     * @tc.name GestureReject_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
+     * @tc.type :
      * @tc.size :
      */
-    it('GestureReject_0100', 0, async function (done) {
+    it('GestureReject_0100', 0, async (done: Function) => {
       console.info('GestureReject_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -58,10 +70,9 @@ export default function GestureReject() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('GestureReject');
-      let obj = JSON.parse(strJson);
-      console.info("[GestureReject_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[GestureReject_0100] title: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual('Gesture is REJECT');
+      console.info("[GestureReject_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[GestureReject_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('Gesture is REJECT');
       console.info('[GestureReject_0100] END');
       done();
     });

@@ -26,12 +26,12 @@ struct GestureSettingsExample {
         .onAction(() => {
           this.value = 'gesture onAction'
           try {
-            var backData = {
+            let backData: events_emitter.EventData = {
               data: {
                 "value": this.value
               }
             }
-            var backEvent = {
+            let backEvent: events_emitter.InnerEvent = {
               eventId: 150,
               priority: events_emitter.EventPriority.LOW
             }
@@ -51,10 +51,10 @@ struct GestureSettingsExample {
     .border({ width: 1 })
     .margin(30)
     .priorityGesture(
-    TapGesture()
-      .onAction(() => {
-        this.value = 'parallelGesture onAction'
-      }), GestureMask.IgnoreInternal
+      TapGesture()
+        .onAction(() => {
+          this.value = 'parallelGesture onAction'
+        }), GestureMask.IgnoreInternal
     )
   }
 }

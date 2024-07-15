@@ -14,7 +14,7 @@
  */
 
 import events_emitter from '@ohos.events.emitter';
-import router from '@system.router';
+import router from '@ohos.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from '../../MainAbility/common/Utils'
 
@@ -22,8 +22,8 @@ export default function lazyForEachOnDataAddJsunit() {
   describe('lazyForEachOnDataAddTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/lazyForeach/lazyForEach2',
+      let options:router.RouterOptions = {
+        url: 'MainAbility/pages/lazyForeach/lazyForEach2',
       }
       try {
         router.clear();
@@ -31,7 +31,7 @@ export default function lazyForEachOnDataAddJsunit() {
         console.info("get lazyForEach state success " + JSON.stringify(pages));
         if (!("lazyForEach2" == pages.name)) {
           console.info("get lazyForEach state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push lazyForEach page success " + JSON.stringify(result));
         }
@@ -57,7 +57,7 @@ export default function lazyForEachOnDataAddJsunit() {
         eventId: 60212,
         priority: events_emitter.EventPriority.LOW
       }
-      let callback1 = (eventData) => {
+      let callback1 = (eventData:events_emitter.EventData) => {
         console.info("eventData.data.result1 result is: " + eventData.data.result1);
         try {
           console.info("callback1 success");
@@ -89,7 +89,7 @@ export default function lazyForEachOnDataAddJsunit() {
         eventId: 60213,
         priority: events_emitter.EventPriority.LOW
       }
-      let callback2 = (eventData) => {
+      let callback2 = (eventData:events_emitter.EventData) => {
         console.info("eventData.data.result2 result is: " + eventData.data.result2);
         try {
           console.info("callback2 success");
@@ -121,7 +121,7 @@ export default function lazyForEachOnDataAddJsunit() {
         eventId: 60214,
         priority: events_emitter.EventPriority.LOW
       }
-      let callback3 = (eventData) => {
+      let callback3 = (eventData:events_emitter.EventData) => {
         console.info("eventData.data.result3 result is: " + eventData.data.result3);
         try {
           console.info("callback3 success");
@@ -153,7 +153,7 @@ export default function lazyForEachOnDataAddJsunit() {
         eventId: 60215,
         priority: events_emitter.EventPriority.LOW
       }
-      let callback4 = (eventData) => {
+      let callback4 = (eventData:events_emitter.EventData) => {
         console.info("eventData.data.result4 result is: " + eventData.data.result4);
         try {
           console.info("callback4 success");

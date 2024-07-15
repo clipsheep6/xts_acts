@@ -13,18 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function GestureClick() {
-  describe('GestureClick', function () {
-    beforeEach(async function (done) {
+  describe('GestureClick', () => {
+    beforeEach(async (done: Function) => {
       console.info("GestureClick beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/onGestureJudgeBegin/GestureClick',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/onGestureJudgeBegin/GestureClick',
       }
       try {
         router.clear();
@@ -32,7 +44,7 @@ export default function GestureClick() {
         console.info("get GestureClick state pages: " + JSON.stringify(pages));
         if (!("GestureClick" == pages.name)) {
           console.info("get GestureClick state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push GestureClick success: " + JSON.stringify(result));
         }
@@ -42,16 +54,16 @@ export default function GestureClick() {
       }
       done();
     });
-    
-     /**
-     * @tc.number    SUB_ACE_GestureClick_0100
-     * @tc.name      GestureClick_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
-     * @tc.type : 
+
+    /**
+     * @tc.number SUB_ACE_GestureClick_0100
+     * @tc.name GestureClick_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
+     * @tc.type :
      * @tc.size :
      */
-    it('GestureClick_0100', 0, async function (done) {
+    it('GestureClick_0100', 0, async (done: Function) => {
       console.info('GestureClick_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -59,14 +71,13 @@ export default function GestureClick() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('GestureClick');
-      let obj = JSON.parse(strJson);
-      console.info("[GestureClick_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[GestureClick_0100] title: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual('Gesture is CLICK');
+      console.info("[GestureClick_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[GestureClick_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('Gesture is CLICK');
       console.info('[GestureClick_0100] END');
       done();
     });
-    
+
 
   })
 }

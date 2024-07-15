@@ -13,16 +13,29 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import router from '@system.router';
+import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function onAttachTest() {
-  describe('onAttachTest', function () {
-    beforeEach(async function (done) {
+  describe('onAttachTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("onAttachTest beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/onAttach/onAttach',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/onAttach/onAttach',
       }
       try {
         router.clear();
@@ -30,7 +43,7 @@ export default function onAttachTest() {
         console.info("get onAttachTest state pages:" + JSON.stringify(pages));
         if (!("onAttach" == pages.name)) {
           console.info("get onAttachTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push onAttachTest page result:" + JSON.stringify(result));
         }
@@ -41,20 +54,20 @@ export default function onAttachTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(2000);
       console.info("onAttachTest after each called");
     });
 
     /**
-     * @tc.number    onAttachTest_0010
-     * @tc.name      onAttachTest_0010
-     * @tc.desc      api: onAttach
-     * @tc.level:    Level 2
+     * @tc.number onAttachTest_0010
+     * @tc.name onAttachTest_0010
+     * @tc.desc api: onAttach
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('onAttachTest_0010', 0, async function (done) {
+    it('onAttachTest_0010', 0, async (done: Function) => {
       console.info('onAttachTest_0010 START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
@@ -62,21 +75,20 @@ export default function onAttachTest() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('OnAttach_text');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.content).assertEqual('onAttach succ');
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('onAttach succ');
       console.info('onAttachTest_0010 END');
       done();
     });
 
     /**
-     * @tc.number    onDetachTest_0020
-     * @tc.name      onDetachTest_0020
-     * @tc.desc      api: onDetach
-     * @tc.level:    Level 2
+     * @tc.number onDetachTest_0020
+     * @tc.name onDetachTest_0020
+     * @tc.desc api: onDetach
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('onDetachTest_0020', 0, async function (done) {
+    it('onDetachTest_0020', 0, async (done: Function) => {
       console.info('onDetachTest_0020 START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
@@ -84,8 +96,7 @@ export default function onAttachTest() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('OnAttach_text');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.content).assertEqual('onDetach succ');
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('onDetach succ');
       console.info('onDetachTest_0020 END');
       done();
     });
