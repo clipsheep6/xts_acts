@@ -19,8 +19,8 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from '../Utils';
 
 export default function datePickerJsunit() {
-  describe('datePickerJsunit', function () {
-    beforeEach(async function (done) {
+  describe('datePickerJsunit', () =>{
+    beforeEach(async  (done:Function) =>{
       let options = {
         uri: 'MainAbility/pages/DatePicker/datePickerneww',
       }
@@ -30,7 +30,7 @@ export default function datePickerJsunit() {
         console.info("get datePicker state success " + JSON.stringify(pages));
         if (!("datePickerneww" == pages.name)) {
           console.info("get datePicker state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(1000);
           console.info("push datePicker page success " + JSON.stringify(result));
         }
@@ -40,12 +40,12 @@ export default function datePickerJsunit() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () =>{
       await Utils.sleep(1000);
       console.info("datePicker after each called");
     });
 
-    it('datePickerTest_0100', 0, async function (done) {
+    it('datePickerTest_0100', 0, async  (done:Function) =>{
       console.info('datePickerText_0100 START');
       let strJson = getInspectorByKey('datePicker');
       console.info("datePickerText_0100 component strJson:" + strJson);
@@ -56,7 +56,7 @@ export default function datePickerJsunit() {
       done();
     });
 
-    it('datePickerTest_0300', 0, async function (done) {
+    it('datePickerTest_0300', 0, async  (done:Function) =>{
       console.info('datePickerTest_0300 START');
       try {
         let eventData = {

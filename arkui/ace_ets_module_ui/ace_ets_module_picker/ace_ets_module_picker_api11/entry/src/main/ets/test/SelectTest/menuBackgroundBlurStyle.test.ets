@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function menuBackgroundBlurStyle() {
-  describe('menuBackgroundBlurStyle', function () {
-    beforeEach(async function (done) {
+  describe('menuBackgroundBlurStyle', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("menuBackgroundBlurStyle beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Select/menuBackgroundBlurStyle',
@@ -32,7 +32,7 @@ export default function menuBackgroundBlurStyle() {
         console.info("get menuBackgroundBlurStyle state pages: " + JSON.stringify(pages));
         if (!("menuBackgroundBlurStyle" == pages.name)) {
           console.info("get menuBackgroundBlurStyle state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push menuBackgroundBlurStyle success: " + JSON.stringify(result));
         }
@@ -49,7 +49,7 @@ export default function menuBackgroundBlurStyle() {
      * @tc.desc      To test that the menuBackgroundBlurStyle decorator.
      * @tc.level     Level 2
      */
-    it('menuBackgroundBlurStyle_0100', 0, async function (done) {
+    it('menuBackgroundBlurStyle_0100', 0, async  (done:Function) =>{
       console.info('menuBackgroundBlurStyle_0100 START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);

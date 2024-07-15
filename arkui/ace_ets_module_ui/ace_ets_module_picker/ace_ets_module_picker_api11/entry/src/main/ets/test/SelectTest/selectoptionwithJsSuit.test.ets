@@ -19,8 +19,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import events_emitter from '@ohos.events.emitter'
 
 export default function selectoptionwithJsSuit() {
-  describe('selectoptionwithJsSuit', function () {
-    beforeEach(async function (done) {
+  describe('selectoptionwithJsSuit', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("selectoptionwithJsSuit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Select/selectoptionwith',
@@ -31,7 +31,7 @@ export default function selectoptionwithJsSuit() {
         console.info("get selectoptionwithJsSuit state pages: " + JSON.stringify(pages));
         if (!("selectoptionwith" == pages.name)) {
           console.info("get selectoptionwithJsSuit state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push selectoptionwithJsSuit page result:" + JSON.stringify(result));
         }
@@ -41,7 +41,7 @@ export default function selectoptionwithJsSuit() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () =>{
       await CommonFunc.sleep(1000);
       console.info("overlay after each called");
     });
@@ -55,7 +55,7 @@ export default function selectoptionwithJsSuit() {
      * @tc.size :
      */
 
-    it('selectoptionwithJsSuit_0100', 0, async function (done) {
+    it('selectoptionwithJsSuit_0100', 0, async  (done:Function) =>{
       console.info('[selectoptionwithJsSuit_0100] START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -80,7 +80,7 @@ export default function selectoptionwithJsSuit() {
      * @tc.size :
      */
 	 
-    it('selectoptionwithJsSuit_0200', 0, async function (done) {
+    it('selectoptionwithJsSuit_0200', 0, async  (done:Function) =>{
       console.info('[selectoptionwithJsSuit_0200] START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);

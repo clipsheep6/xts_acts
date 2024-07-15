@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/common/MessageManager';
 import window from '@ohos.window';
 
 export default function dateTimeOptions() {
-  describe('dateTimeOptions', function () {
-    beforeEach(async function (done) {
+  describe('dateTimeOptions', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("dateTimeOptions beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TimePicker/dateTimeOptions',
@@ -32,7 +32,7 @@ export default function dateTimeOptions() {
         console.info("get dateTimeOptions state pages: " + JSON.stringify(pages));
         if (!("dateTimeOptions" == pages.name)) {
           console.info("get dateTimeOptions state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push dateTimeOptions success: " + JSON.stringify(result));
         }
@@ -48,7 +48,7 @@ export default function dateTimeOptions() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('dateTimeOptions_0100', 0, async function (done) {
+    it('dateTimeOptions_0100', 0, async  (done:Function) =>{
       console.info('dateTimeOptions_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);

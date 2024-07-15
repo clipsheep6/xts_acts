@@ -41,7 +41,7 @@ export default function TimePicker1Test() {
         console.info("get TimePicker state pages: " + JSON.stringify(pages));
         if (!("TimePicker1" == pages.name)) {
           console.info("get TimePicker state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push TimePicker page result: " + JSON.stringify(result));
         }

@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/common/MessageManager';
 
 
 export default function triggerSelect() {
-  describe('triggerSelect', function () {
-    beforeEach(async function (done) {
+  describe('triggerSelect', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("triggerSelect beforeEach start");
       let options = {
         uri: 'MainAbility/pages/select/triggerSelect',
@@ -32,7 +32,7 @@ export default function triggerSelect() {
         console.info("get triggerSelect state pages: " + JSON.stringify(pages));
         if (!("triggerSelect" == pages.name)) {
           console.info("get triggerSelect state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push triggerSelect success: " + JSON.stringify(result));
         }
@@ -51,7 +51,7 @@ export default function triggerSelect() {
      * @tc.type : 
      * @tc.size :
      */
-    it('triggerSelect_0100', 0, async function (done) {
+    it('triggerSelect_0100', 0, async  (done:Function) =>{
       console.info('triggerSelect_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);

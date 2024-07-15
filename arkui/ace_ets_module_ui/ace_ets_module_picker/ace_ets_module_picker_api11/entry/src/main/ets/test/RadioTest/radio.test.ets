@@ -32,7 +32,7 @@ export default function radioTest() {
         console.info("get ActsRadioTest state success " + JSON.stringify(pages));
         if (!("Radio" == pages.name)) {
           console.info("get ActsRadioTest state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push ActsRadioTest page success " + JSON.stringify(result));
         }

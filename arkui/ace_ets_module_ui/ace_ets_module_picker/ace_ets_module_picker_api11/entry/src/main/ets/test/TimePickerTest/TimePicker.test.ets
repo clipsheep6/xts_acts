@@ -18,8 +18,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 import CommonFunc from "../../MainAbility/common/Common";
 
 export default function TimePickerTest() {
-  describe('TimePickerTest', function () {
-    beforeEach(async function (done) {
+  describe('TimePickerTest', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("TimePickerTest beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TimePicker/TimePicker',
@@ -30,7 +30,7 @@ export default function TimePickerTest() {
         console.info("get TimePicker state pages: " + JSON.stringify(pages));
         if (!("TimePicker" == pages.name)) {
           console.info("get TimePicker state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push TimePicker page result: " + JSON.stringify(result));
         }
@@ -47,7 +47,7 @@ export default function TimePickerTest() {
        * @tc.desc  : font fontDir test
        * @tc.level : Level 2
        */
-    it('TimePicker_001', 0, async function (done) {
+    it('TimePicker_001', 0, async  (done:Function) =>{
 
       console.info('[TimePicker_001] START');
       await CommonFunc.sleep(1000);

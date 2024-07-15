@@ -19,8 +19,8 @@ import router from '@system.router';
 import Utils from '../Utils';
 
 export default function radioJsunit2() {
-  describe('radioJsunit2', function () {
-    beforeEach(async function (done) {
+  describe('radioJsunit2', () =>{
+    beforeEach(async  (done:Function) =>{
       let options = {
         uri: 'MainAbility/pages/Radio/radio2',
       }
@@ -30,7 +30,7 @@ export default function radioJsunit2() {
         console.info("get radio state success " + JSON.stringify(pages));
         if (!("radio2" == pages.name)) {
           console.info("get radio state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(3000);
           console.info("push radio page success " + JSON.stringify(result));
         }
@@ -40,12 +40,12 @@ export default function radioJsunit2() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () =>{
       await Utils.sleep(1000);
       console.info("radio after each called");
     });
 
-    it('testRadio_100', 0, async function (done) {
+    it('testRadio_100', 0, async  (done:Function) =>{
       console.info('[testRadio_100] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('radio1');
@@ -58,7 +58,7 @@ export default function radioJsunit2() {
       done();
     });
 
-    it('testRadio_200', 0, async function (done) {
+    it('testRadio_200', 0, async  (done:Function) =>{
       console.info('[testRadio_200] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('radio2');
@@ -70,7 +70,7 @@ export default function radioJsunit2() {
       done();
     });
 
-    it('testRadio_300', 0, async function (done) {
+    it('testRadio_300', 0, async  (done:Function) =>{
       console.info('[testRadio_300] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('radio3');

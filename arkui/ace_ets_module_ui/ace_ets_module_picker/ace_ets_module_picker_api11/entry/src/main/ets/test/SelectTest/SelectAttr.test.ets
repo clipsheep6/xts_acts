@@ -19,8 +19,8 @@ import { Driver, ON ,MouseButton} from '@ohos.UiTest';
 
 
 export default function SelectAttr() {
-  describe('SelectAttr', function () {
-    beforeEach(async function (done) {
+  describe('SelectAttr', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("SelectAttr beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Select/SelectAttr',
@@ -31,7 +31,7 @@ export default function SelectAttr() {
         console.info("get SelectAttr state success " + JSON.stringify(pages));
         if (!("SelectAttr" == pages.name)) {
           console.info("get SelectAttr state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push SelectAttr page success " + JSON.stringify(result));
         }
@@ -41,7 +41,7 @@ export default function SelectAttr() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () =>{
       await Utils.sleep(1000);
       console.info("SelectAttr after each called");
     });
@@ -53,7 +53,7 @@ export default function SelectAttr() {
     * @tc.desc        SelectAttr OptionWidthMode.FIT_TRIGGER test
     * @tc.level       Level 2
     */
-    it('SelectAttr_001', 0, async function (done) {
+    it('SelectAttr_001', 0, async  (done:Function) =>{
       console.info('[SelectAttr_001] START');
       await Utils.sleep(1000);
 
