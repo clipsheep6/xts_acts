@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function TextPickerJsunit() {
-  describe('TextPickerJsunit', function () {
-    beforeEach(async function (done) {
+  describe('TextPickerJsunit', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("TextPicker beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TextPicker/TextPickerPage',
@@ -32,7 +32,7 @@ export default function TextPickerJsunit() {
         console.info("get TextPicker state pages: " + JSON.stringify(pages));
         if (!("TextPickerPage" == pages.name)) {
           console.info("get TextPicker state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push TextPicker page result: " + JSON.stringify(result));
           await CommonFunc.sleep(2000);
         }
@@ -43,7 +43,7 @@ export default function TextPickerJsunit() {
       done();
     });
 
-    it('TextPickerJsunit_0100', 0, async function (done) {
+    it('TextPickerJsunit_0100', 0, async  (done:Function) =>{
       // Get the information of TextPicker component
       console.info('[TextPickerJsunit_0100] START');
       let strJson = getInspectorByKey('textPicker');
@@ -69,7 +69,7 @@ export default function TextPickerJsunit() {
       done();
     });
 
-    it('TextPickerJsunit_0200', 0, async function (done) {
+    it('TextPickerJsunit_0200', 0, async  (done:Function) =>{
       // Modify the attribute of TextPicker component
       console.info('[TextPickerJsunit_0200] START');
       globalThis.value.message.notify({name:'fruits',value:['banana1', 'orange2', 'peach3', 'grape4']})
@@ -98,7 +98,7 @@ export default function TextPickerJsunit() {
       done();
     });
 
-    it('TextPickerJsunit_0300', 0, async function (done) {
+    it('TextPickerJsunit_0300', 0, async  (done:Function) =>{
       // Verify the functions of TextPicker component
       await CommonFunc.sleep(500);
       console.info('[TextPickerJsunit_0300] START');
@@ -120,7 +120,7 @@ export default function TextPickerJsunit() {
       done();
     });
 
-    it('TextPickerJsunit_0400', 0, async function (done) {
+    it('TextPickerJsunit_0400', 0, async  (done:Function) =>{
       // Illegal modification of properties of TextPicker component
       console.info('[TextPickerJsunit_0400] START');
       globalThis.value.message.notify({name:'fruits',value:'abc'})

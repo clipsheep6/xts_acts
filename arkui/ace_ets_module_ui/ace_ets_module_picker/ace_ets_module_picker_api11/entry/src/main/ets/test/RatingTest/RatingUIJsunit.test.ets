@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function RatingUIJsunit() {
-  describe('RatingUIJsunit', function () {
-    beforeEach(async function (done) {
+  describe('RatingUIJsunit', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("RatingUIJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Rating/RatingPage',
@@ -32,7 +32,7 @@ export default function RatingUIJsunit() {
         console.info("get RatingUIJsunit state pages: " + JSON.stringify(pages));
         if (!("RatingPage" == pages.name)) {
           console.info("get RatingUIJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push RatingUIJsunit success: " + JSON.stringify(result));
         }
@@ -43,7 +43,7 @@ export default function RatingUIJsunit() {
       done();
     });
 
-    it('RatingUIJsunit_0100', 0, async function (done) {
+    it('RatingUIJsunit_0100', 0, async  (done:Function) =>{
       // Get the information of the Rating component
       console.info('[RatingUIJsunit_0100] START');
       let strJson = getInspectorByKey('rating1');
@@ -59,7 +59,7 @@ export default function RatingUIJsunit() {
       done();
     });
 
-    it('RatingUIJsunit_0200', 0, async function (done) {
+    it('RatingUIJsunit_0200', 0, async  (done:Function) =>{
       // Modify the rating value of the Rating component
       console.info('[RatingUIJsunit_0200] START');
       globalThis.value.message.notify({name:'rating',value:1})
@@ -74,7 +74,7 @@ export default function RatingUIJsunit() {
       done();
     });
 
-    it('RatingUIJsunit_0300', 0, async function (done) {
+    it('RatingUIJsunit_0300', 0, async  (done:Function) =>{
       // Modify the indicator value of the Rating component
       console.info('[RatingUIJsunit_0300] START');
       globalThis.value.message.notify({name:'indicator',value:false})
@@ -100,7 +100,7 @@ export default function RatingUIJsunit() {
       done();
     });
 
-    it('RatingUIJsunit_0400', 0, async function (done) {
+    it('RatingUIJsunit_0400', 0, async  (done:Function) =>{
       // Modify the stars value of the Rating component
       console.info('[RatingUIJsunit_0400] START');
       await CommonFunc.sleep(1000);
@@ -115,7 +115,7 @@ export default function RatingUIJsunit() {
       done();
     });
 
-    it('RatingUIJsunit_0500', 0, async function (done) {
+    it('RatingUIJsunit_0500', 0, async  (done:Function) =>{
       // Modify the stepSize value of the Rating component
       console.info('[RatingUIJsunit_0500] START');
       globalThis.value.message.notify({name:'stepSize',value:1})
@@ -130,7 +130,7 @@ export default function RatingUIJsunit() {
       done();
     });
 
-    it('RatingUIJsunit_0600', 0, async function (done) {
+    it('RatingUIJsunit_0600', 0, async  (done:Function) =>{
       // Verify onChange event of the Rating component
       console.info('[RatingUIJsunit_0600] START');
       await CommonFunc.sleep(1000);
@@ -171,7 +171,7 @@ export default function RatingUIJsunit() {
       done();
     });
 
-    it('RatingUIJsunit_0700', 0, async function (done) {
+    it('RatingUIJsunit_0700', 0, async  (done:Function) =>{
       // Get the default value of the Rating component
       console.info('[RatingUIJsunit_0700] START');
       await CommonFunc.sleep(1000);

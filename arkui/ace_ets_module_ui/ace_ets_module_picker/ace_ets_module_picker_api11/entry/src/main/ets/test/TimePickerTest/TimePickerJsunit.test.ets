@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function TimePickerJsunit() {
-  describe('TimePickerJsunit', function () {
-    beforeEach(async function (done) {
+  describe('TimePickerJsunit', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("TimePicker beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TimePicker/TimePickerPage',
@@ -32,7 +32,7 @@ export default function TimePickerJsunit() {
         console.info("get TimePicker state pages: " + JSON.stringify(pages));
         if (!("TimePickerPage" == pages.name)) {
           console.info("get TimePicker state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push TimePicker page result: " + JSON.stringify(result));
           await CommonFunc.sleep(2000);
         }
@@ -43,7 +43,7 @@ export default function TimePickerJsunit() {
       done();
     });
 
-    it('TimePickerJsunit_0100', 0, async function (done) {
+    it('TimePickerJsunit_0100', 0, async  (done:Function) =>{
       // Verify 12-hour function of TimePicker component
       console.info('[TimePickerJsunit_0100] START');
 
@@ -93,7 +93,7 @@ export default function TimePickerJsunit() {
       done();
     });
 
-    it('TimePickerJsunit_0200', 0, async function (done) {
+    it('TimePickerJsunit_0200', 0, async  (done:Function) =>{
       // Verify switch 12-hour/24-hour system of TimePicker component
       console.info('[TimePickerJsunit_0200] START');
 
@@ -118,7 +118,7 @@ export default function TimePickerJsunit() {
       done();
     });
 
-    it('TimePickerJsunit_0300', 0, async function (done) {
+    it('TimePickerJsunit_0300', 0, async  (done:Function) =>{
       // Verify 24-hour function of TimePicker component
       console.info('[TimePickerJsunit_0300] START');
       let driver = await UiDriver.create()

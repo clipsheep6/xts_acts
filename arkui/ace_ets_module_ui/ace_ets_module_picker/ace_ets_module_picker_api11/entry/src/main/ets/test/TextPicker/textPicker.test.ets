@@ -30,7 +30,7 @@ export default function textPickerDefaultPickerItemHeightJsunit() {
         console.info("get textPicker state success " + JSON.stringify(pages));
         if (!("textPicker" == pages.name)) {
           console.info("get textPicker state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push textPicker page success " + JSON.stringify(result));
         }

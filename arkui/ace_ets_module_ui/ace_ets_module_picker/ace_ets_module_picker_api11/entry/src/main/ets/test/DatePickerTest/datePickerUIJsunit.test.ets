@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 const waitUiReadyMs = 1000;
 
 export default function  datePickerUIJsunit() {
-  describe('datePickerUIJsunit', function () {
-    beforeEach(async function (done) {
+  describe('datePickerUIJsunit', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("datePickerUIJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/DatePicker/datePickerUI',
@@ -32,7 +32,7 @@ export default function  datePickerUIJsunit() {
         console.info("get datePickerUIJsunit state pages:" + JSON.stringify(pages));
         if (!("datePickerUI" == pages.name)) {
           console.info("get datePickerUIJsunit state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push datePickerUIJsunit success " + JSON.stringify(result));
         }
       } catch (err) {
@@ -42,7 +42,7 @@ export default function  datePickerUIJsunit() {
       done();
     });
 
-    it('datePickerUIJsunit_0100', 0, async function (done) {
+    it('datePickerUIJsunit_0100', 0, async  (done:Function) =>{
        console.info('datePickerUIJsunit_0100 START');
        await CommonFunc.sleep(1000);
        // get the datePicker component and test attribute to confirm
@@ -55,7 +55,7 @@ export default function  datePickerUIJsunit() {
        done();
     });
 
-   it('datePickerUIJsunit_0200', 0, async function (done) {
+   it('datePickerUIJsunit_0200', 0, async  (done:Function) =>{
       console.info('datePickerUIJsunit_0200 START');
       // modify the type attribute normal value of datePicker dynamically
       globalThis.value.message.notify({name:'isLunar',value:true})

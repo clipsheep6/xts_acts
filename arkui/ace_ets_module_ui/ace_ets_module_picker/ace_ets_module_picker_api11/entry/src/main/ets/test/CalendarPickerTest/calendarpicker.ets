@@ -18,8 +18,8 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from "../../MainAbility/common/Common";
 import router from '@ohos.router';
 export default function calendarpicker() {
-  describe('ActsAceCalendarPickerTest', function () {
-    beforeEach(async function (done) {
+  describe('ActsAceCalendarPickerTest', () =>{
+    beforeEach(async  (done:Function) =>{
       let options: router.RouterOptions = {
         url: "MainAbility/pages/CalendarPicker/CalendarPickerIndex",
       }
@@ -45,7 +45,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the textStyle property of the CalendarCalendarPicker component
      * @tc.desc         get the default value
      */
-    it('ArkUI_Stage_CalendarPicker_textStyle_0100', 0, async function (done) {
+    it('ArkUI_Stage_CalendarPicker_textStyle_0100', 0, async  (done:Function) =>{
       let strJson = getInspectorByKey('CalendarPicker');
       let obj = JSON.parse(strJson);
       console.info("[ArkUI_Stage_CalendarPicker_textStyle_0100] Color:" + obj.$attrs.textStyle.color);
@@ -60,7 +60,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the textStyle property of the CalendarPicker component
      * @tc.desc         set textStyle then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_textStyle_0200', 0, async function (done) {  
+    it('ArkUI_Stage_CalendarPicker_textStyle_0200', 0, async  (done:Function) =>{
       let value = {color:'#ff0000',font:{size:'1px',weight:'700'}}    
       try {
         var eventData = {
@@ -92,7 +92,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the textStyle property of the CalendarPicker component
      * @tc.desc         set textStyle then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_textStyle_0300', 0, async function (done) { 
+    it('ArkUI_Stage_CalendarPicker_textStyle_0300', 0, async  (done:Function) =>{
       let value = {color:Color.Green,font:{size:30,weight:450}}         
       try {
         var eventData = {
@@ -124,7 +124,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the textStyle property of the CalendarPicker component
      * @tc.desc         set textStyle then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_textStyle_0400', 0, async function (done) {   
+    it('ArkUI_Stage_CalendarPicker_textStyle_0400', 0, async  (done:Function) =>{
       let value = {color:'#80808g',font:{size:-1,weight:1000}}      
       try {
         var eventData = {
@@ -160,7 +160,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the textStyle property of the CalendarPicker component
      * @tc.desc         set textStyle then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_textStyle_0500', 0, async function (done) {   
+    it('ArkUI_Stage_CalendarPicker_textStyle_0500', 0, async  (done:Function) =>{
       let value = {color:'xxx',font:{size:'xxx',weight:FontWeight.Bold}}       
       try {
         var eventData = {
@@ -196,7 +196,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the textStyle property of the CalendarPicker component
      * @tc.desc         set textStyle then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_textStyle_0600', 0, async function (done) { 
+    it('ArkUI_Stage_CalendarPicker_textStyle_0600', 0, async  (done:Function) =>{
       let value = {color:'rgb(138,43,226)',font:{size:'20vp',weight:900}} 
       try {
         var eventData = {
@@ -227,7 +227,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the textStyle property of the CalendarPicker component
      * @tc.desc         set textStyle then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_textStyle_0700', 0, async function (done) { 
+    it('ArkUI_Stage_CalendarPicker_textStyle_0700', 0, async  (done:Function) =>{
       let value = {color:'rgb(138,43,226)',font:{size:'15lpx',weight:90}} 
       try {
         var eventData = {
@@ -258,7 +258,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the EdgeAlign of the CalendarPicker component
      * @tc.desc         set EdgeAlign then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0100', 0, async function (done) { 
+    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0100', 0, async  (done:Function) =>{
       let strJson = getInspectorByKey('CalendarPicker');
       let obj = JSON.parse(strJson);
       console.info("[ArkUI_Stage_CalendarPicker_EdgeAlign_0100] edgeAlign:" + obj.$attrs.edgeAlign);
@@ -272,7 +272,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the EdgeAlign property of the CalendarPicker component
      * @tc.desc         set EdgeAlign then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0200', 0, async function (done) {    
+    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0200', 0, async  (done:Function) =>{
       try {
         var eventData = {
           data: {
@@ -303,7 +303,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the EdgeAlign property of the CalendarPicker component
      * @tc.desc         set EdgeAlign then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0300', 0, async function (done) { 
+    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0300', 0, async  (done:Function) =>{
       try {
         var eventData = {
           data: {
@@ -333,7 +333,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the EdgeAlign property of the CalendarPicker component
      * @tc.desc         set EdgeAlign then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0400', 0, async function (done) { 
+    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0400', 0, async  (done:Function) =>{
       try {
         var eventData = {
           data: {
@@ -363,7 +363,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the EdgeAlign property of the CalendarPicker component
      * @tc.desc         set EdgeAlign then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0500', 0, async function (done) { 
+    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0500', 0, async  (done:Function) =>{
       try {
         var eventData = {
           data: {
@@ -391,7 +391,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the EdgeAlign property of the CalendarPicker component
      * @tc.desc         set EdgeAlign then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0600', 0, async function (done) { 
+    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0600', 0, async  (done:Function) =>{
       let strJson = getInspectorByKey('CalendarPicker1');
       let obj = JSON.parse(strJson);
       console.info("[ArkUI_Stage_CalendarPicker_EdgeAlign_0600] edgeAlign.alignType:" + obj.$attrs.edgeAlign.alignType);
@@ -407,7 +407,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the EdgeAlign property of the CalendarPicker component
      * @tc.desc         set EdgeAlign then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0700', 0, async function (done) { 
+    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0700', 0, async  (done:Function) =>{
       let strJson = getInspectorByKey('CalendarPicker2');
       let obj = JSON.parse(strJson);
       console.info("[ArkUI_Stage_CalendarPicker_EdgeAlign_0700] edgeAlign.alignType:" + obj.$attrs.edgeAlign.alignType);
@@ -423,7 +423,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the EdgeAlign property of the CalendarPicker component
      * @tc.desc         set EdgeAlign then get the value
      */
-    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0800', 0, async function (done) { 
+    it('ArkUI_Stage_CalendarPicker_EdgeAlign_0800', 0, async  (done:Function) =>{
       let strJson = getInspectorByKey('CalendarPicker3');
       let obj = JSON.parse(strJson);
       console.info("[ArkUI_Stage_CalendarPicker_EdgeAlign_0800] edgeAlign.alignType:" + obj.$attrs.edgeAlign.alignType);
@@ -439,7 +439,7 @@ export default function calendarpicker() {
      * @tc.name         Tests the hintRadius property of the CalendarPicker component
      * @tc.desc         get the property of the hintRadius
      */
-	  it('ArkUI_Stage_CalendarPicker_hintRadius_0100', 0, async function (done) {
+	  it('ArkUI_Stage_CalendarPicker_hintRadius_0100', 0, async  (done:Function) =>{
       let strJson = getInspectorByKey('CalendarPicker');
       let obj = JSON.parse(strJson);
       console.info("[ArkUI_Stage_CalendarPicker_hintRadius_0100] hintRadius:" + obj.$attrs.hintRadius);

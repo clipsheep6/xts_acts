@@ -31,7 +31,7 @@ export default function selectOnSelectJsunit() {
         console.info("get select state success " + JSON.stringify(pages));
         if (!("select3" == pages.name)) {
           console.info("get select state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push select page success " + JSON.stringify(result));
         }

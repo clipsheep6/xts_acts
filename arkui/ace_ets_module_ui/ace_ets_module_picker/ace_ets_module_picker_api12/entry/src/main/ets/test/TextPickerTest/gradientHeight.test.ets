@@ -18,8 +18,8 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from '../../MainAbility/common/Utils';
 
 export default function gradientHeight() {
-  describe('gradientHeight', function () {
-    beforeEach(async function (done) {
+  describe('gradientHeight', () =>{
+    beforeEach(async  (done:Function) =>{
       let options = {
         uri: 'MainAbility/pages/TextPicker/gradientHeight',
       }
@@ -29,7 +29,7 @@ export default function gradientHeight() {
         console.info("get gradientHeight state success " + JSON.stringify(pages));
         if (!("gradientHeight" == pages.name)) {
           console.info("get gradientHeight state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(1000);
           console.info("push gradientHeight page success " + JSON.stringify(result));
         }
@@ -39,12 +39,12 @@ export default function gradientHeight() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () =>{
       await Utils.sleep(1000);
       console.info("gradientHeight after each called");
     });
 
-    it('gradientHeightTest_0100', 0, async function (done) {
+    it('gradientHeightTest_0100', 0, async  (done:Function) =>{
       console.info('gradientHeightText_0100 START');
       let strJson = getInspectorByKey('gradientHeightXTS');
       console.info("gradientHeightText_0100 component strJson:" + strJson);

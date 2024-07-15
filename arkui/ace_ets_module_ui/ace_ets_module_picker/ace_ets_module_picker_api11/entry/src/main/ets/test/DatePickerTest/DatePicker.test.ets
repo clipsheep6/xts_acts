@@ -18,8 +18,8 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import router from '@system.router';
 
 export default function ActsDatePickerTest() {
-  describe('ActsDatePickerTest', function () {
-    beforeEach(async function (done) {
+  describe('ActsDatePickerTest', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("flex beforeEach start");
       let options = {
         uri: 'MainAbility/pages/DatePicker/DatePicker',
@@ -30,7 +30,7 @@ export default function ActsDatePickerTest() {
         console.info("get DatePicker state success " + JSON.stringify(pages));
         if (!("DatePicker" == pages.name)) {
           console.info("get DatePicker state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push DatePicker page success " + JSON.stringify(result));
         }
       } catch (err) {
@@ -38,7 +38,7 @@ export default function ActsDatePickerTest() {
       }
       done()
     });
-    it('Stage_DatePicker_Test_0010', 0, async function (done) {
+    it('Stage_DatePicker_Test_0010', 0, async  (done:Function) =>{
       console.info('Stage_DatePicker_Test_0010 START');
       try{
         let strJson = getInspectorByKey('Stage_DatePicker_Test_0010');

@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function menuBackgroundColor() {
-  describe('menuBackgroundColor', function () {
-    beforeEach(async function (done) {
+  describe('menuBackgroundColor', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("menuBackgroundColor beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Select/menuBackgroundColor',
@@ -32,7 +32,7 @@ export default function menuBackgroundColor() {
         console.info("get menuBackgroundColor state pages: " + JSON.stringify(pages));
         if (!("menuBackgroundColor" == pages.name)) {
           console.info("get menuBackgroundColor state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push menuBackgroundColor success: " + JSON.stringify(result));
         }
@@ -49,7 +49,7 @@ export default function menuBackgroundColor() {
      * @tc.desc      To test that the menuBackgroundColor decorator.
      * @tc.level     Level 2
      */
-    it('menuBackgroundColor_0100', 0, async function (done) {
+    it('menuBackgroundColor_0100', 0, async  (done:Function) =>{
       console.info('menuBackgroundColor_0100 START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);

@@ -31,8 +31,8 @@ function sleep(time) {
 }
 
 export default function sliderTest() {
-  describe('ActsAbilityTest', function () {
-    beforeEach(async function (done) {
+  describe('ActsAbilityTest', () =>{
+    beforeEach(async  (done:Function) =>{
       console.info("TimePickerTest beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Slider/Index',
@@ -43,7 +43,7 @@ export default function sliderTest() {
         console.info("get sliderTest state pages: " + JSON.stringify(pages));
         if (!("Index" == pages.name)) {
           console.info("get sliderTest state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push sliderTest page result: " + JSON.stringify(result));
         }
@@ -59,7 +59,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to 0xffa500
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_0100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_0100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_0100] START');
       setTimeout(() => {
         try {
@@ -81,7 +81,7 @@ export default function sliderTest() {
      * @tc.name   Test the blockBorderColor property of the Slider component
      * @tc.desc   Set the blockBorderColor attribute to "ffc709e9"
      */
-    it('ArkUX_Stage_Slider_blockBorderColor_0200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_0200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_0200] START');
       setTimeout(() => {
         try {
@@ -103,7 +103,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to Color.Pink
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_0300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_0300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_0300] START');
       setTimeout(() => {
         try {
@@ -125,7 +125,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to $r("app.color.start_block_Border_Color")
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_0400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_0400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_0400] START');
       setTimeout(() => {
         try {
@@ -147,7 +147,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to null
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_0500', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_0500', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_0500] START');
       setTimeout(() => {
         try {
@@ -169,7 +169,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to "rgb(0,255,255)"
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_0600', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_0600', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_0600] START');
       setTimeout(() => {
         try {
@@ -191,7 +191,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to 0x00ff00 and set the backgroundColor attribute to Color.Pink
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_0700', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_0700', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_0700] START');
       setTimeout(() => {
         try {
@@ -213,7 +213,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to undefined
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_0800', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_0800', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_0800] START');
       setTimeout(() => {
         try {
@@ -235,7 +235,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to  "bgr(138,43,226)"
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_0900', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_0900', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_0900] START');
       setTimeout(() => {
         try {
@@ -257,7 +257,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to " "
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_1000', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_1000', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_1000] START');
       setTimeout(() => {
         try {
@@ -279,7 +279,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Do not set the blockBorderColor
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_1100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_1100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_1100] START');
       setTimeout(() => {
         try {
@@ -301,7 +301,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to 0xffa500a and then set the blockBorderColor attribute to "#ffc709e9"
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_1200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_1200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_1200] START');
       setTimeout(() => {
         try {
@@ -323,7 +323,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderColor property of the Slider component
       * @tc.desc   Set the blockBorderColor attribute to 0xffa500 and then set the blockBorderColor attribute  to "bgr(138,43,226)"
       */
-    it('ArkUX_Stage_Slider_blockBorderColor_1300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderColor_1300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderColor_1300] START');
       setTimeout(() => {
         try {
@@ -345,7 +345,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to 5
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_0100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_0100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_0100] START');
       setTimeout(() => {
         try {
@@ -367,7 +367,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to "5px"
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_0200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_0200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_0200] START');
       setTimeout(() => {
         try {
@@ -389,7 +389,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to $r("app.string.block_border_width_test")
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_0300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_0300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_0300] START');
       setTimeout(() => {
         try {
@@ -411,7 +411,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to ' '
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_0400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_0400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_0400] START');
       setTimeout(() => {
         try {
@@ -433,7 +433,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to null
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_0500', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_0500', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_0500] START');
       setTimeout(() => {
         try {
@@ -455,7 +455,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to undefined
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_0600', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_0600', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_0600] START');
       setTimeout(() => {
         try {
@@ -477,7 +477,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to 0
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_0700', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_0700', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_0700] START');
       setTimeout(() => {
         try {
@@ -499,7 +499,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to -1
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_0800', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_0800', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_0800] START');
       setTimeout(() => {
         try {
@@ -522,7 +522,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Do not set the blockBorderWidth
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_0900', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_0900', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_0900] START');
       setTimeout(() => {
         try {
@@ -544,7 +544,7 @@ export default function sliderTest() {
   * @tc.name   Test the blockBorderWidth property of the Slider component
   * @tc.desc   Set the blockBorderWidth attribute to 5 and then set the blockBorderWidth attribute to 7          
   */
-    it('ArkUX_Stage_Slider_blockBorderWidth_1000', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_1000', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_1000] START');
       setTimeout(() => {
         try {
@@ -566,7 +566,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to 5 and set the blockBorderWidth attribute to undefined          
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_1100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_1100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_1100] START');
       setTimeout(() => {
         try {
@@ -589,7 +589,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to "asdf%^7"
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_1200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_1200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_1200] START');
       setTimeout(() => {
         try {
@@ -611,7 +611,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockBorderWidth property of the Slider component
       * @tc.desc   Set the blockBorderWidth attribute to 5, and set the general property width parameter to 7
       */
-    it('ArkUX_Stage_Slider_blockBorderWidth_1300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockBorderWidth_1300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockBorderWidth_1300] START');
       setTimeout(() => {
         try {
@@ -633,7 +633,7 @@ export default function sliderTest() {
     * @tc.name   Test the stepColor property of the Slider component
     * @tc.desc   Set the stepColor attribute to  0xffa500
     */
-    it('ArkUX_Stage_Slider_stepColor_0100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_0100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_0100] START');
       setTimeout(() => {
         try {
@@ -655,7 +655,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Set the stepColor attribute to "#ffc709e9"
       */
-    it('ArkUX_Stage_Slider_stepColor_0200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_0200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_0200] START');
       setTimeout(() => {
         try {
@@ -677,7 +677,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Set the stepColor attribute to Color.Pink
       */
-    it('ArkUX_Stage_Slider_stepColor_0300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_0300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_0300] START');
       setTimeout(() => {
         try {
@@ -699,7 +699,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Set the stepColor attribute to $r("app.color.start_Step_Color")
       */
-    it('ArkUX_Stage_Slider_stepColor_0400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_0400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_0400] START');
       setTimeout(() => {
         try {
@@ -721,7 +721,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Set the stepColor attribute to null
       */
-    it('ArkUX_Stage_Slider_stepColor_0500', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_0500', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_0500] START');
       setTimeout(() => {
         try {
@@ -751,7 +751,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Set the stepColor attribute to "rgb(0,255,255)"
       */
-    it('ArkUX_Stage_Slider_stepColor_0600', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_0600', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_0600] START');
       setTimeout(() => {
         try {
@@ -773,7 +773,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Set the stepColor attribute to 0x00ff00, and set the general property backgroundColor parameter to Color.Pink
       */
-    it('ArkUX_Stage_Slider_stepColor_0700', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_0700', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_0700] START');
       setTimeout(() => {
         try {
@@ -795,7 +795,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Set the stepColor attribute to  undefined
       */
-    it('ArkUX_Stage_Slider_stepColor_0800', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_0800', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_0800] START');
       setTimeout(() => {
         try {
@@ -825,7 +825,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Set the stepColor attribute to "bgr(138,43,226)"
       */
-    it('ArkUX_Stage_Slider_stepColor_0900', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_0900', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_0900] START');
       setTimeout(() => {
         try {
@@ -855,7 +855,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Set the stepColor attribute to ""
       */
-    it('ArkUX_Stage_Slider_stepColor_1000', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_1000', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_1000] START');
       setTimeout(() => {
         try {
@@ -885,7 +885,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Do not set the stepColor
       */
-    it('ArkUX_Stage_Slider_stepColor_1100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_1100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_1100] START');
       setTimeout(() => {
         try {
@@ -916,7 +916,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepColor property of the Slider component
       * @tc.desc   Set the stepColor attribute to 0xffa500 and then set the stepColor attribute parameter again to "#ffc709e9"
       */
-    it('ArkUX_Stage_Slider_stepColor_1200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_1200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_1200] START');
       setTimeout(() => {
         try {
@@ -938,7 +938,7 @@ export default function sliderTest() {
       * @tc.name: Test the stepColor property of the Slider component
       * @tc.desc: Set the stepColor attribute to 0xffa500 and then set the stepColor attribute parameter again to "bgr(138,43,226)"
       */
-    it('ArkUX_Stage_Slider_stepColor_1300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepColor_1300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepColor_1300] START');
       setTimeout(() => {
         try {
@@ -968,7 +968,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to 0
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_0100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_0100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_0100] START');
       setTimeout(() => {
         try {
@@ -990,7 +990,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to 10
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_0200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_0200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_0200] START');
       setTimeout(() => {
         try {
@@ -1012,7 +1012,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to "60px"
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_0300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_0300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_0300] START');
       setTimeout(() => {
         try {
@@ -1034,7 +1034,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to "120%"
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_0400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_0400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_0400] START');
       setTimeout(() => {
         try {
@@ -1056,7 +1056,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to $r("app.string.trach_border_radius_test")
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_0500', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_0500', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_0500] START');
       setTimeout(() => {
         try {
@@ -1078,7 +1078,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to ""
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_0600', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_0600', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_0600] START');
       setTimeout(() => {
         try {
@@ -1100,7 +1100,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to null
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_0700', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_0700', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_0700] START');
       setTimeout(() => {
         try {
@@ -1122,7 +1122,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to undefined
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_0800', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_0800', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_0800] START');
       setTimeout(() => {
         try {
@@ -1144,7 +1144,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to -1
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_0900', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_0900', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_0900] START');
       setTimeout(() => {
         try {
@@ -1166,7 +1166,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Do not set the trackBorderRadius
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_1000', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_1000', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_1000] START');
       setTimeout(() => {
         try {
@@ -1188,7 +1188,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to 10 and then set the trackBorderRadius attribute parameter again to 40          
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_1100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_1100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_1100] START');
       setTimeout(() => {
         try {
@@ -1210,7 +1210,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to 10 and then set the trackBorderRadius attribute parameter again to undefined           
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_1200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_1200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_1200] START');
       setTimeout(() => {
         try {
@@ -1232,7 +1232,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to "asdf#$8"
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_1300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_1300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_1300] START');
       setTimeout(() => {
         try {
@@ -1254,7 +1254,7 @@ export default function sliderTest() {
       * @tc.name   Test the trackBorderRadius property of the Slider component
       * @tc.desc   Set the trackBorderRadius attribute to 0, and set the general property size parameter to null
       */
-    it('ArkUX_Stage_Slider_trackBorderRadius_1400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_trackBorderRadius_1400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_trackBorderRadius_1400] START');
       setTimeout(() => {
         try {
@@ -1276,7 +1276,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the blockSize attribute both to 0
       */
-    it('ArkUX_Stage_Slider_blockSize_0100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_0100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_0100] START');
       setTimeout(() => {
         try {
@@ -1303,7 +1303,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the blockSize attribute both to 5
       */
-    it('ArkUX_Stage_Slider_blockSize_0200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_0200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_0200] START');
       setTimeout(() => {
         try {
@@ -1330,7 +1330,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to 15 ,height attribute to 20 in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_0300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_0300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_0300] START');
       setTimeout(() => {
         try {
@@ -1357,7 +1357,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to 12 ,height attribute to 12 in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_0400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_0400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_0400] START');
       setTimeout(() => {
         try {
@@ -1384,7 +1384,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to "20px" ,height attribute to "20px" in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_0500', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_0500', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_0500] START');
       setTimeout(() => {
         try {
@@ -1411,7 +1411,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to "120%" ,height attribute to "120%" in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_0600', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_0600', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_0600] START');
       setTimeout(() => {
         try {
@@ -1439,7 +1439,7 @@ export default function sliderTest() {
       * @tc.desc   Set the width attribute to $r("app.string.block_size_width_test"),height attribute to 
       *            $r("app.string.block_size_width_test")in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_0700', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_0700', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_0700] START');
       setTimeout(() => {
         try {
@@ -1466,7 +1466,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to " ",height attribute to " " in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_0800', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_0800', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_0800] START');
       setTimeout(() => {
         try {
@@ -1493,7 +1493,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to null ,height attribute to null in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_0900', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_0900', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_0900] START');
       setTimeout(() => {
         try {
@@ -1520,7 +1520,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to undefined ,height attribute to undefined in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_1000', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_1000', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_1000] START');
       setTimeout(() => {
         try {
@@ -1547,7 +1547,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to -1 ,height attribute to -1 in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_1100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_1100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_1100] START');
       setTimeout(() => {
         try {
@@ -1574,7 +1574,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to -1 ,height attribute to 15 in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_1200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_1200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_1200] START');
       setTimeout(() => {
         try {
@@ -1601,7 +1601,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to "15" ,height attribute to "-1" in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_1300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_1300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_1300] START');
       setTimeout(() => {
         try {
@@ -1628,7 +1628,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Do not set the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_1400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_1400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_1400] START');
       setTimeout(() => {
         try {
@@ -1663,7 +1663,7 @@ export default function sliderTest() {
       * @tc.desc   Set the width attribute to 15 ,height attribute to 20 in the blockSize and then  set the width attribute to "20fp",
       *            height attribute to "25fp" in the blockSize           
       */
-    it('ArkUX_Stage_Slider_blockSize_1500', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_1500', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_1500] START');
       setTimeout(() => {
         try {
@@ -1691,7 +1691,7 @@ export default function sliderTest() {
       * @tc.desc   Set the width attribute to 15 ,height attribute to 20 in the blockSize and then set the width attribute to -1,
       *            height attribute to -1 in the blockSize 
       */
-    it('ArkUX_Stage_Slider_blockSize_1600', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_1600', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_1600] START');
       setTimeout(() => {
         try {
@@ -1718,7 +1718,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to "asdf#$8" ,height attribute to "asdf#$8" in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_1700', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_1700', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_1700] START');
       setTimeout(() => {
         try {
@@ -1745,7 +1745,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockSize property of the Slider component
       * @tc.desc   Set the width attribute to "20lpx" ,height attribute to "20lpx" in the blockSize
       */
-    it('ArkUX_Stage_Slider_blockSize_1800', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockSize_1800', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockSize_1800] START');
       setTimeout(() => {
         try {
@@ -1772,7 +1772,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to 0
       */
-    it('ArkUX_Stage_Slider_stepSize_0100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_0100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_0100] START');
       setTimeout(() => {
         try {
@@ -1794,7 +1794,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to 10
       */
-    it('ArkUX_Stage_Slider_stepSize_0200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_0200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_0200] START');
       setTimeout(() => {
         try {
@@ -1816,7 +1816,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to "60px"
       */
-    it('ArkUX_Stage_Slider_stepSize_0300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_0300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_0300] START');
       setTimeout(() => {
         try {
@@ -1838,7 +1838,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to "120%"
       */
-    it('ArkUX_Stage_Slider_stepSize_0400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_0400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_0400] START');
       setTimeout(() => {
         try {
@@ -1860,7 +1860,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to  $r("app.string.step_size_test")
       */
-    it('ArkUX_Stage_Slider_stepSize_0500', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_0500', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_0500] START');
       setTimeout(() => {
         try {
@@ -1882,7 +1882,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to " "
       */
-    it('ArkUX_Stage_Slider_stepSize_0600', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_0600', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_0600] START');
       setTimeout(() => {
         try {
@@ -1904,7 +1904,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to  null
       */
-    it('ArkUX_Stage_Slider_stepSize_0700', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_0700', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_0700] START');
       setTimeout(() => {
         try {
@@ -1926,7 +1926,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to undefined
       */
-    it('ArkUX_Stage_Slider_stepSize_0800', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_0800', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_0800] START');
       setTimeout(() => {
         try {
@@ -1948,7 +1948,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to -1
       */
-    it('ArkUX_Stage_Slider_stepSize_0900', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_0900', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_0900] START');
       setTimeout(() => {
         try {
@@ -1970,7 +1970,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Do not set the blockSize
       */
-    it('ArkUX_Stage_Slider_stepSize_1000', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_1000', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_1000] START');
       setTimeout(() => {
         try {
@@ -1992,7 +1992,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to 10 and then set the stepSize attribute  to 40
       */
-    it('ArkUX_Stage_Slider_stepSize_1100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_1100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_1100] START');
       setTimeout(() => {
         try {
@@ -2014,7 +2014,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to 10，set the stepSize attribute parameter again to undefined
       */
-    it('ArkUX_Stage_Slider_stepSize_1200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_1200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_1200] START');
       setTimeout(() => {
         try {
@@ -2037,7 +2037,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to "asdf#$8"
       */
-    it('ArkUX_Stage_Slider_stepSize_1300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_1300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_1300] START');
       setTimeout(() => {
         try {
@@ -2059,7 +2059,7 @@ export default function sliderTest() {
       * @tc.name   Test the stepSize property of the Slider component
       * @tc.desc   Set the stepSize attribute to 10, and set the general property  size parameter to null
       */
-    it('ArkUX_Stage_Slider_stepSize_1400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_stepSize_1400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_stepSize_1400] START');
       setTimeout(() => {
         try {
@@ -2081,7 +2081,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle attribute to sliderDefault
       */
-    it('ArkUX_Stage_Slider_blockStyle_0100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_0100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_0100] START');
       setTimeout(() => {
         try {
@@ -2103,7 +2103,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Do not set the blockStyle property parameter
       */
-    it('ArkUX_Stage_Slider_blockStyle_0200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_0200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_0200] START');
       setTimeout(() => {
         try {
@@ -2125,7 +2125,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute BlockStyleType.IMAGE
       */
-    it('ArkUX_Stage_Slider_blockStyle_0300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_0300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_0300] START');
       setTimeout(() => {
         try {
@@ -2147,7 +2147,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to  BlockStyleType.Shape
       */
-    it('ArkUX_Stage_Slider_blockStyle_0400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_0400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_0400] START');
       setTimeout(() => {
         try {
@@ -2169,7 +2169,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to BlockStyleType.Shape
       */
-    it('ArkUX_Stage_Slider_blockStyle_0500', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_0500', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_0500] START');
       setTimeout(() => {
         try {
@@ -2191,7 +2191,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to BlockStyleType.Shape
       */
-    it('ArkUX_Stage_Slider_blockStyle_0600', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_0600', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_0600] START');
       setTimeout(() => {
         try {
@@ -2213,7 +2213,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to BlockStyleType.Shape
       */
-    it('ArkUX_Stage_Slider_blockStyle_0700', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_0700', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_0700] START');
       setTimeout(() => {
         try {
@@ -2235,7 +2235,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to BlockStyleType.Shape
       */
-    it('ArkUX_Stage_Slider_blockStyle_0800', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_0800', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_0800] START');
       setTimeout(() => {
         try {
@@ -2257,7 +2257,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to BlockStyleType.IMAGE
       */
-    it('ArkUX_Stage_Slider_blockStyle_0900', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_0900', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_0900] START');
       setTimeout(() => {
         try {
@@ -2279,7 +2279,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to BlockStyleType.DEFAULT
       */
-    it('ArkUX_Stage_Slider_blockStyle_1000', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_1000', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_1000] START');
       setTimeout(() => {
         try {
@@ -2301,7 +2301,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to BlockStyleType.DEFAULT
       */
-    it('ArkUX_Stage_Slider_blockStyle_1100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_1100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_1100] START');
       setTimeout(() => {
         try {
@@ -2323,7 +2323,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to BlockStyleType.DEFAULT
       */
-    it('ArkUX_Stage_Slider_blockStyle_1200', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_1200', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_1200] START');
       setTimeout(() => {
         try {
@@ -2345,7 +2345,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to BlockStyleType.DEFAULT
       */
-    it('ArkUX_Stage_Slider_blockStyle_1300', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_1300', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_1300] START');
       setTimeout(() => {
         try {
@@ -2367,7 +2367,7 @@ export default function sliderTest() {
       * @tc.name   Test the blockStyle property of the Slider component
       * @tc.desc   Set the blockStyle property attribute to BlockStyleType.Shape
       */
-    it('ArkUX_Stage_Slider_blockStyle_1400', 0, async function (done) {
+    it('ArkUX_Stage_Slider_blockStyle_1400', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_blockStyle_1400] START');
       setTimeout(() => {
         try {
@@ -2395,7 +2395,7 @@ export default function sliderTest() {
       *           Set the trackBorderRadius attribute parameter again to 15
       *           Set the stepSize attribute parameter again to 10
       */
-    it('ArkUX_Stage_Slider_Test_0100', 0, async function (done) {
+    it('ArkUX_Stage_Slider_Test_0100', 0, async  (done:Function) =>{
       console.info('[ArkUX_Stage_Slider_Test_0100] START');
       setTimeout(() => {
         try {
