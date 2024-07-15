@@ -102,7 +102,7 @@ export default function UDMFApiDescriptorTest() {
       expect(typeObj.referenceURL).assertEqual(REFERENCE_URL);
       expect(typeObj.iconFile).assertEqual("");
       expect(typeObj.filenameExtensions.toString()).assertEqual("");
-      expect(typeObj.mimeTypes.toString()).assertEqual("*/*");
+      expect(typeObj.mimeTypes.toString()).assertEqual("*/*,application/*");
       console.log("SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0150 end");
     });
     /**
