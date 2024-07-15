@@ -4594,7 +4594,7 @@ export default function UDMFApiDescriptorTest() {
       console.log("filenameExtensions:" + typeObj.filenameExtensions.toString());
       console.log("mimeTypes:" + typeObj.mimeTypes.toString());
       expect(typeObj.typeId).assertEqual("org.openxmlformats.wordprocessingml.document");
-      expect(typeObj.belongingToTypes[0]).assertEqual("org.openxmlformats.openxml");
+      expect(typeObj.belongingToTypes[0]).assertEqual("general.composite-object");
       expect(typeObj.description).assertEqual("Office Open XML Document.");
       expect(typeObj.referenceURL).assertEqual(REFERENCE_URL);
       expect(typeObj.iconFile).assertEqual("");
@@ -4623,7 +4623,7 @@ export default function UDMFApiDescriptorTest() {
       console.log("filenameExtensions:" + typeObj.filenameExtensions.toString());
       console.log("mimeTypes:" + typeObj.mimeTypes.toString());
       expect(typeObj.typeId).assertEqual("org.openxmlformats.spreadsheetml.sheet");
-      expect(typeObj.belongingToTypes[0]).assertEqual("org.openxmlformats.openxml");
+      expect(typeObj.belongingToTypes[0]).assertEqual("general.composite-object");
       expect(typeObj.description).assertEqual("Office Open XML Workbook.");
       expect(typeObj.referenceURL).assertEqual(REFERENCE_URL);
       expect(typeObj.iconFile).assertEqual("");
@@ -4652,7 +4652,7 @@ export default function UDMFApiDescriptorTest() {
       console.log("filenameExtensions:" + typeObj.filenameExtensions.toString());
       console.log("mimeTypes:" + typeObj.mimeTypes.toString());
       expect(typeObj.typeId).assertEqual("org.openxmlformats.presentationml.presentation");
-      expect(typeObj.belongingToTypes[0]).assertEqual("org.openxmlformats.openxml");
+      expect(typeObj.belongingToTypes[0]).assertEqual("general.composite-object");
       expect(typeObj.description).assertEqual("Office Open XML Presentation.");
       expect(typeObj.referenceURL).assertEqual(REFERENCE_URL);
       expect(typeObj.iconFile).assertEqual("");
