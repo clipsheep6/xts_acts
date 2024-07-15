@@ -29,12 +29,14 @@ struct TreeViewDemo {
   private treeController: TreeController = new TreeController();
   private treeListener: TreeListener = TreeListenerManager.getInstance().getTreeListener();
   @State clickNodeId: number = 0;
+  @State clickNodeChildIndex: number | undefined = undefined;
 
   aboutToDisappear(): void {
     this.treeListener.off(TreeListenType.NODE_CLICK, undefined);
     this.treeListener.off(TreeListenType.NODE_ADD, undefined);
     this.treeListener.off(TreeListenType.NODE_DELETE, undefined);
     this.treeListener.off(TreeListenType.NODE_MOVE, undefined);
+    this.treeListener.off(TreeListenType.NODE_MODIFY, undefined);
   }
 
   @Builder
@@ -72,15 +74,23 @@ struct TreeViewDemo {
   aboutToAppear(): void {
     this.treeListener.on(TreeListenType.NODE_CLICK, (callbackParam: CallbackParam) => {
       this.clickNodeId = callbackParam.currentNodeId;
+      this.clickNodeChildIndex = callbackParam.childIndex;
     })
     this.treeListener.on(TreeListenType.NODE_ADD, (callbackParam: CallbackParam) => {
       this.clickNodeId = callbackParam.currentNodeId;
+      this.clickNodeChildIndex = callbackParam.childIndex;
     })
     this.treeListener.on(TreeListenType.NODE_DELETE, (callbackParam: CallbackParam) => {
       this.clickNodeId = callbackParam.currentNodeId;
+      this.clickNodeChildIndex = callbackParam.childIndex;
     })
     this.treeListener.once(TreeListenType.NODE_MOVE, (callbackParam: CallbackParam) => {
       this.clickNodeId = callbackParam.currentNodeId;
+      this.clickNodeChildIndex = callbackParam.childIndex;
+    })
+    this.treeListener.on(TreeListenType.NODE_MODIFY, (callbackParam: CallbackParam) => {
+      this.clickNodeId = callbackParam.currentNodeId;
+      this.clickNodeChildIndex = callbackParam.childIndex;
     })
 
     let normalResource: Resource = $r('app.media.app_icon');
