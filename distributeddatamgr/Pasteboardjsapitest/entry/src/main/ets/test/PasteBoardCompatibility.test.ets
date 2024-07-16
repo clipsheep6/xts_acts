@@ -72,11 +72,11 @@ export default function PasteBoardCompatibilityTest() {
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('text/plain');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('text/plain');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get plainTextData Fail:' + error);
+        console.info(TAG + 'Get plainTextData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -108,16 +108,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set textData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set textData Fail:' + error);
+        console.info(TAG + 'Set textData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('general.text');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('general.text');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get textData Fail:' + error);
+        console.info(TAG + 'Get textData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -156,11 +156,11 @@ export default function PasteBoardCompatibilityTest() {
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('text/plain');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('text/plain');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get hyperLinkData Fail:' + error);
+        console.info(TAG + 'Get hyperLinkData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -194,16 +194,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set htmlData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set htmlData Fail:' + error);
+        console.info(TAG + 'Set htmlData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('text/html');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('text/html');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get htmlData Fail:' + error);
+        console.info(TAG + 'Get htmlData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -236,16 +236,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set fileData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set fileData Fail:' + error);
+        console.info(TAG + 'Set fileData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('text/uri');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('text/uri');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get fileData Fail:' + error);
+        console.info(TAG + 'Get fileData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -278,16 +278,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set folderData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set folderData Fail:' + error);
+        console.info(TAG + 'Set folderData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryUri()).assertEqual('folderUri');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryUri()).assertEqual('folderUri');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get folderData Fail:' + error);
+        console.info(TAG + 'Get folderData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -320,16 +320,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set imageData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set imageData Fail:' + error);
+        console.info(TAG + 'Set imageData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryUri()).assertEqual('imageUri');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryUri()).assertEqual('imageUri');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get imageData Fail:' + error);
+        console.info(TAG + 'Get imageData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -362,16 +362,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set videoData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set videoData Fail:' + error);
+        console.info(TAG + 'Set videoData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryUri()).assertEqual('videoUri');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryUri()).assertEqual('videoUri');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get videoData Fail:' + error);
+        console.info(TAG + 'Get videoData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -404,16 +404,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set audioData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set audioData Fail:' + error);
+        console.info(TAG + 'Set audioData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryUri()).assertEqual('audioUri');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryUri()).assertEqual('audioUri');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get audioData Fail:' + error);
+        console.info(TAG + 'Get audioData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -451,16 +451,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set sysFormData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set sysFormData Fail:' + error);
+        console.info(TAG + 'Set sysFormData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('openharmony.form');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('openharmony.form');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get sysFormData Fail:' + error);
+        console.info(TAG + 'Get sysFormData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -499,16 +499,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set sysAppItemData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set sysAppItemData Fail:' + error);
+        console.info(TAG + 'Set sysAppItemData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('openharmony.app-item');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('openharmony.app-item');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get sysAppItemData Fail:' + error);
+        console.info(TAG + 'Get sysAppItemData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -539,16 +539,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set appRecordData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set appRecordData Fail:' + error);
+        console.info(TAG + 'Set appRecordData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('ApplicationDefinedType');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('ApplicationDefinedType');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get appRecordData Fail:' + error);
+        console.info(TAG + 'Get appRecordData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -580,16 +580,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set wantData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set wantData Fail:' + error);
+        console.info(TAG + 'Set wantData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('text/want');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('text/want');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get wantData Fail:' + error);
+        console.info(TAG + 'Get wantData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -627,16 +627,16 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set pixelMapData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set pixelMapData Fail:' + error);
+        console.info(TAG + 'Set pixelMapData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
       let result = systemPasteboard.getData();
       await result.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('pixelMap');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('pixelMap');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get pixelMapData Fail:' + error);
+        console.info(TAG + 'Get pixelMapData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -669,7 +669,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Succeed in setting unifiedData');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Failed to set unifiedData. Cause:' + error);
+        console.info(TAG + 'Failed to set unifiedData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       });
       try {
@@ -677,7 +677,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(result != undefined).assertTrue();
         console.info(TAG + 'Get Data Success');
       } catch (error) {
-        console.info(TAG + 'Get Data Fail:' + error);
+        console.info(TAG + 'Get Data Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       }
     })
@@ -704,17 +704,17 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Succeed in setting unifiedData');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Failed to set unifiedData. Cause:' + error);
+        console.info(TAG + 'Failed to set unifiedData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       });
 
       let getData = systemPasteboard.getData();
       await getData.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('general.text');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + '.html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('general.text');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get textData Fail:' + error);
+        console.info(TAG + 'Get textData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -743,17 +743,17 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Succeed in setting unifiedData');
       } catch (error) {
-        console.info(TAG + 'Failed to set unifiedData. Cause:' + error);
+        console.info(TAG + 'Failed to set unifiedData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       }
 
       let getData = systemPasteboard.getData();
       await getData.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('text/plain');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + '.html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('text/plain');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get textData Fail:' + error);
+        console.info(TAG + 'Get textData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -787,17 +787,17 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Succeed in setting unifiedData');
       } catch (error) {
-        console.info(TAG + 'Failed to set unifiedData. Cause:' + error);
+        console.info(TAG + 'Failed to set unifiedData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       }
 
       let getData = systemPasteboard.getData();
       await getData.then((data) => {
-        expect(data.getPrimaryMimeType()).assertEqual('text/plain');
         console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + '.html:' + data.getPrimaryHtml()
           + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('text/plain');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get textData Fail:' + error);
+        console.info(TAG + 'Get textData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -831,7 +831,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Succeed in setting unifiedData');
       } catch (error) {
-        console.info(TAG + 'Failed to set unifiedData. Cause:' + error);
+        console.info(TAG + 'Failed to set unifiedData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       }
 
@@ -840,7 +840,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(result != undefined).assertTrue();
         console.info(TAG + 'Get Data Success');
       } catch (error) {
-        console.info(TAG + 'Get Data Fail:' + error);
+        console.info(TAG + 'Get Data Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       }
     })
@@ -860,7 +860,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Succeed in setting PasteData');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Failed to set PasteData. Cause:' + error);
+        console.info(TAG + 'Failed to set PasteData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
 
@@ -870,7 +870,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(outputDataType).assertEqual('ApplicationDefinedType');
         console.info(TAG + 'Get String Data Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get Data Fail:' + error);
+        console.info(TAG + 'Get Data Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -900,7 +900,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Succeed in setting PasteData');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Failed to set PasteData.Cause:' + error);
+        console.info(TAG + 'Failed to set PasteData.Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
 
@@ -908,14 +908,14 @@ export default function PasteBoardCompatibilityTest() {
         let outputData = data;
         let records = outputData.getRecords();
         if (records[0].getType() == uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
-          expect(records[0].getType()).assertEqual('openharmony.pixel-map');
           console.info(TAG + 'Get PixelMap Data Success, type:' + records[0].getType() + ',object:' + JSON.stringify(records[0].getValue()));
+          expect(records[0].getType()).assertEqual('openharmony.pixel-map');
         } else {
           console.info(TAG + 'Get PixelMap Data No Success, type:' + records[0].getType());
           expect().assertFail();
         }
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get PixelMap Data Fail:' + error);
+        console.info(TAG + 'Get PixelMap Data Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -939,7 +939,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue()
         console.info(TAG + 'Succeed in setting PasteData');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Failed to set PasteData. Cause:' + error);
+        console.info(TAG + 'Failed to set PasteData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       });
 
@@ -947,14 +947,14 @@ export default function PasteBoardCompatibilityTest() {
         let outputData = data;
         let records = outputData.getRecords();
         if (records[0].getType() == uniformTypeDescriptor.UniformDataType.OPENHARMONY_WANT) {
-          expect(records[0].getType()).assertEqual('openharmony.want');
           console.info(TAG + 'Get Want Data Success, type:' + records[0].getType() + ',object:' + JSON.stringify(records[0].getValue()));
+          expect(records[0].getType()).assertEqual('openharmony.want');
         } else {
           console.info(TAG + 'Get Want Data No Success, type:' + records[0].getType());
           expect().assertFail();
         }
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get Want Data Fail:' + error);
+        console.info(TAG + 'Get Want Data Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -975,7 +975,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue()
         console.info(TAG + 'Succeed in setting PasteData');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Failed to set PasteData. Cause:' + error);
+        console.info(TAG + 'Failed to set PasteData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       });
 
@@ -985,7 +985,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(outputDataType).assertEqual('ApplicationDefinedType');
         console.info(TAG + 'Get Data Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get Data Fail:' + error);
+        console.info(TAG + 'Get Data Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -1005,7 +1005,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue()
         console.info(TAG + 'Succeed in setting PasteData');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Failed to set PasteData. Cause:' + error);
+        console.info(TAG + 'Failed to set PasteData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       });
 
@@ -1015,7 +1015,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(outputDataType).assertEqual('general.file');
         console.info(TAG + 'Get uriData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get uriData Fail:' + error);
+        console.info(TAG + 'Get uriData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -1036,7 +1036,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue()
         console.info(TAG + 'Succeed in setting PasteData');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Failed to set PasteData. Cause:' + error);
+        console.info(TAG + 'Failed to set PasteData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       });
 
@@ -1046,7 +1046,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(outputDataType).assertEqual('general.html');
         console.info(TAG + 'Get htmlData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get htmlData Fail:' + error);
+        console.info(TAG + 'Get htmlData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -1066,7 +1066,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Succeed in setting PasteData');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Failed to set PasteData. Cause:' + error);
+        console.info(TAG + 'Failed to set PasteData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
 
@@ -1077,7 +1077,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(outputDataType).assertEqual('ApplicationDefinedType');
         console.info(TAG + 'Succeed in getting UnifiedData');
       } catch (error) {
-        console.info(TAG + 'Failed to get UnifiedData. Cause:' + error);
+        console.info(TAG + 'Failed to get UnifiedData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       }
     })
@@ -1098,7 +1098,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Succeed in setting PasteData')
       } catch (error) {
-        console.info(TAG + 'Failed to set PasteData. Cause:' + error);
+        console.info(TAG + 'Failed to set PasteData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       }
 
@@ -1108,7 +1108,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(outputDataType).assertEqual('ApplicationDefinedType');
         console.info(TAG + 'Get htmlData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get htmlData Fail:' + error);
+        console.info(TAG + 'Get htmlData Fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
     })
@@ -1129,7 +1129,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Succeed in setting PasteData')
       } catch (error) {
-        console.info(TAG + 'Failed to set PasteData. Cause:' + error);
+        console.info(TAG + 'Failed to set PasteData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       }
 
@@ -1140,7 +1140,7 @@ export default function PasteBoardCompatibilityTest() {
         expect(outputDataType).assertEqual('ApplicationDefinedType');
         console.info(TAG + 'Succeed in getting UnifiedData');
       } catch (error) {
-        console.info(TAG + 'Failed to get UnifiedData. Cause:' + error);
+        console.info(TAG + 'Failed to get UnifiedData. Cause:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       }
     })
