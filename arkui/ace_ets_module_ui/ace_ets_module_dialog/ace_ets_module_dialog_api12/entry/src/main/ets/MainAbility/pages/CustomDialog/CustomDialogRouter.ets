@@ -15,7 +15,7 @@
 import router from '@ohos.router'
 
 @CustomDialog
-struct CustomDialogRouterExample{
+struct CustomDialogRouterExample {
   controller?: CustomDialogController
 
   build() {
@@ -24,7 +24,7 @@ struct CustomDialogRouterExample{
 
       Button('Go to new page').key('CustomDialogRouterButton')
         .onClick(() => {
-          router.pushUrl({url: 'MainAbility/pages/openCustomDialog/openCustomDialog1'})
+          router.pushUrl({ url: 'MainAbility/pages/openCustomDialog/openCustomDialog1' })
         })
 
       Button('Confirm').key('CustomDialogConfirm')

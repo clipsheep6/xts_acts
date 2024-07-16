@@ -15,13 +15,26 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function UpdateCustomDialogTest() {
-  describe('UpdateCustomDialogTest', function () {
-    beforeEach(async function (done) {
+  describe('UpdateCustomDialogTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("UpdateCustomDialogTest beforeEach start");
-      let options = {
+      let options: router.RouterOptions = {
         url: "MainAbility/pages/CustomDialog/UIContext/UpdateCustomDialog",
       }
       try {
@@ -30,7 +43,7 @@ export default function UpdateCustomDialogTest() {
         console.info("get UpdateCustomDialogTest state pages:" + JSON.stringify(pages));
         if (!("UpdateCustomDialog" == pages.name)) {
           console.info("get UpdateCustomDialogTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push UpdateCustomDialogTest page result:" + JSON.stringify(result));
         }
@@ -40,20 +53,20 @@ export default function UpdateCustomDialogTest() {
       console.info("UpdateCustomDialogTest beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("UpdateCustomDialogTest after each called");
     });
 
     /**
-     * @tc.number    UpdateCustomDialogTest
-     * @tc.name      testBack
-     * @tc.desc      Return specified page by index value
-     * @tc.level     Level 3
+     * @tc.number UpdateCustomDialogTest
+     * @tc.name testBack
+     * @tc.desc Return specified page by index value
+     * @tc.level Level 3
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('UpdateCustomDialogTest_001', 0, async function (done) {
+    it('UpdateCustomDialogTest_001', 0, async (done: Function) => {
       console.info('[UpdateCustomDialogTest_001] START');
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();

@@ -17,7 +17,7 @@
 struct TextPickerDialogExample {
   private select: number | number[] = 0
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
-  @State v:string = '';
+  @State v: string = '';
   @State AppearText: string = ''
 
   build() {
@@ -35,9 +35,9 @@ struct TextPickerDialogExample {
               alignment: DialogAlignment.Bottom,
               range: this.fruits,
               selected: this.select,
-              disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
-              textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
-              selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
+              disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
+              textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
+              selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
                 this.select = value.index

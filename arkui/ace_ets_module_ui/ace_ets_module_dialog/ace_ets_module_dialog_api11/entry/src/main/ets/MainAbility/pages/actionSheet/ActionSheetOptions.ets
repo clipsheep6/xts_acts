@@ -17,7 +17,6 @@
 @Entry
 @Component
 struct ActionSheetOptionsExample {
-
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Click to Show ActionSheet')
@@ -28,7 +27,7 @@ struct ActionSheetOptionsExample {
             message: 'message',
             alignment: DialogAlignment.TopStart,
             offset: { dx: 10, dy: 100 },
-            maskRect: { x: 0, y: 90, width: 1000, height: 250  },
+            maskRect: { x: 0, y: 90, width: 1000, height: 250 },
             confirm: {
               value: 'Confirm button',
               action: () => {
@@ -57,7 +56,7 @@ struct ActionSheetOptionsExample {
             ]
           })
         }).key('ActionSheet')
-		
+
     }.width('100%')
     .height('100%')
   }

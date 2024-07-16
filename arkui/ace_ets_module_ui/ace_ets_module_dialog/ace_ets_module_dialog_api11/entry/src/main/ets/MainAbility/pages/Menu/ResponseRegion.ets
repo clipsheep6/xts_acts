@@ -23,14 +23,14 @@ struct ResponseRegionExample {
   @State eventType: string = ''
 
   onPageShow() {
-    let ChangeEvent = {
+    let ChangeEvent: events_emitter.InnerEvent = {
       eventId: 30,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(ChangeEvent, this.ChangCallBack)
   }
 
-  private ChangCallBack = (eventData) => {
+  private ChangCallBack = (eventData: events_emitter.EventData) => {
     console.info("[ResponseRegion] ChangCallBack stateChangCallBack");
     if (eventData != null) {
       console.info("[ResponseRegion] ChangCallBack state change called:" + JSON.stringify(eventData));
@@ -68,13 +68,13 @@ struct ResponseRegionExample {
       }
       console.info('[ResponseRegion] TouchType:' + this.eventType)
       try {
-        var backData = {
+        let backData: events_emitter.EventData = {
           data: {
             "ACTION": this.isTouched,
             "EVENT_TYPE": this.eventType
           }
         }
-        var backEvent = {
+        let backEvent: events_emitter.InnerEvent = {
           eventId: 31,
           priority: events_emitter.EventPriority.LOW
         }

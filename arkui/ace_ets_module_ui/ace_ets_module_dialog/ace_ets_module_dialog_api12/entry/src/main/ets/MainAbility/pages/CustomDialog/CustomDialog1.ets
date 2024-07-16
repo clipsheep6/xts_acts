@@ -16,9 +16,7 @@
 struct CustomDialogExample1 {
   @Link textValue: string
   @Link inputValue: string
-
   controller?: CustomDialogController
-
   cancel: () => void = () => {
   }
   confirm: () => void = () => {
@@ -53,6 +51,7 @@ struct CustomDialogExample1 {
     }.borderRadius(10)
   }
 }
+
 @Entry
 @Component
 struct CustomDialogUser1 {
@@ -61,15 +60,19 @@ struct CustomDialogUser1 {
   @State text: string = 'CustomDialog1';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample1({
-      cancel: ()=> { this.onCancel() },
-      confirm: ()=> { this.onAccept() },
+      cancel: () => {
+        this.onCancel()
+      },
+      confirm: () => {
+        this.onAccept()
+      },
       textValue: $textValue,
       inputValue: $inputValue
     }),
     cancel: this.exitApp,
     showInSubWindow: true,
     autoCancel: true,
-    onWillDismiss:(dismissDialog: DismissDialogAction)=> {
+    onWillDismiss: (dismissDialog: DismissDialogAction) => {
       console.info("reason=" + JSON.stringify(dismissDialog.reason))
       this.text = "reason=" + JSON.stringify(dismissDialog.reason)
       console.log("dialog onWillDismiss")
@@ -87,7 +90,6 @@ struct CustomDialogUser1 {
     cornerRadius: 10,
   })
 
-
   aboutToDisappear() {
     this.dialogController = null
   }
@@ -103,6 +105,7 @@ struct CustomDialogUser1 {
   exitApp() {
     console.info('Click the callback in the blank area')
   }
+
   build() {
     Column() {
       Text(this.text).fontSize(30).margin(30).id("CustomDialog1Text")

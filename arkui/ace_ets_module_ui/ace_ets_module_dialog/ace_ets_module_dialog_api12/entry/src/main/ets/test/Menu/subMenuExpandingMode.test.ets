@@ -16,11 +16,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import CommonFunc from '../../MainAbility/utils/Common';
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  MouseButton,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function subMenuExpandingMode() {
-  describe('subMenuExpandingMode', function () {
-    beforeEach(async function (done) {
+  describe('subMenuExpandingMode', () => {
+    beforeEach(async (done: Function) => {
       console.log('subMenuExpandingMode beforeEach start');
       try {
         router.clear();
@@ -28,7 +42,9 @@ export default function subMenuExpandingMode() {
         console.info(`get subMenuExpandingMode state myPages:${JSON.stringify(myPages)}`);
         if ('subMenuExpandingMode' !== myPages.name) {
           console.info(`get subMenuExpandingMode state myPages:${JSON.stringify(myPages.name)}`);
-          let result = await router.pushUrl({url:'MainAbility/pages/Menu/subMenuExpandingMode'})
+          let result = await router.pushUrl({
+            url: 'MainAbility/pages/Menu/subMenuExpandingMode'
+          })
           await CommonFunc.sleep(2000);
           console.info(`push subMenuExpandingMode myPage result:${JSON.stringify(result)}`);
         }
@@ -38,30 +54,30 @@ export default function subMenuExpandingMode() {
       console.info('subMenuExpandingMode forEach end');
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info('subMenuExpandingMode after each called');
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_Common_subMenuExpandingMode_0100
-     * @tc.name      subMenuExpandingMode_0100
-     * @tc.desc      subMenuExpandingMode test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_Common_subMenuExpandingMode_0100
+     * @tc.name subMenuExpandingMode_0100
+     * @tc.desc subMenuExpandingMode test
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('subMenuExpandingMode_0100', 0, async function (done) {
+    it('subMenuExpandingMode_0100', 0, async (done: Function) => {
       console.info('[subMenuExpandingMode_0100] START');
 
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('menuItemDividerText');
       await CommonFunc.sleep(200);
-      let obj = JSON.parse(strJson);
-      console.info(`[subMenuExpandingMode_0100] component obj is:${JSON.stringify(obj)}`);
+
+      console.info(`[subMenuExpandingMode_0100] component obj is:${JSON.stringify(JSON.parse(strJson))}`);
       await CommonFunc.sleep(1000);
 
-      expect(obj.$attrs.subMenuExpandingMode).assertEqual('SubMenuExpandingMode.SIDE');
+      expect(JSON.parse(strJson).$attrs.subMenuExpandingMode).assertEqual('SubMenuExpandingMode.SIDE');
       console.info('[subMenuExpandingMode_0100] END');
       done();
     });

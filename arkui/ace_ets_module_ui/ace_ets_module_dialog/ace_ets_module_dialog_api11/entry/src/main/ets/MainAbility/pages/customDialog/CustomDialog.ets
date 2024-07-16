@@ -15,6 +15,7 @@
 @CustomDialog
 struct CustomDialogTwo {
   controllerTwo?: CustomDialogController
+
   build() {
     Column() {
       Text('我是第二个弹窗')
@@ -30,6 +31,7 @@ struct CustomDialogTwo {
     }
   }
 }
+
 @CustomDialog
 struct CustomDialogOne {
   @Link textValue: string
@@ -80,6 +82,7 @@ struct CustomDialogOne {
     }.borderRadius(10)
   }
 }
+
 @Entry
 @Component
 struct CustomDialogExample {
@@ -116,6 +119,7 @@ struct CustomDialogExample {
   exitApp() {
     console.info('Click the callback in the blank area')
   }
+
   build() {
     Column() {
       Button(this.inputValue)

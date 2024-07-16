@@ -18,7 +18,6 @@
 struct TimePickerDialogOptions111 {
   private selectTime: Date = new Date('2020-12-25T08:30:00')
 
-
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('TimePickerDialog')
@@ -28,15 +27,15 @@ struct TimePickerDialogOptions111 {
             selected: this.selectTime,
             alignment: DialogAlignment.TopStart,
             offset: { dx: 10, dy: 100 },
-            maskRect: { x: 0, y: 90, width: 1000, height: 250  },
-            onAccept: (value: TimePickerResult)=> {
+            maskRect: { x: 0, y: 90, width: 1000, height: 250 },
+            onAccept: (value: TimePickerResult) => {
               this.selectTime.setHours(value.hour, value.minute)
               console.info("TimePickerDialog: onAccept()" + JSON.stringify(value))
             },
-            onCancel:()=> {
+            onCancel: () => {
               console.info("TimePickerDialog: onCancel()")
             },
-            onChange: (value: TimePickerResult)=> {
+            onChange: (value: TimePickerResult) => {
               console.info("TimePickerDialog: onChange()" + JSON.stringify(value))
             }
           })

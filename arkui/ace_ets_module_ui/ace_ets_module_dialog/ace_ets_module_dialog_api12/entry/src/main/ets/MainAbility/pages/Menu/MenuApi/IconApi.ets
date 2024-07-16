@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { SymbolGlyphModifier } from "@ohos.arkui.modifier";
+
 @Entry
 @Component
 struct MenuExample_api {
@@ -20,9 +21,14 @@ struct MenuExample_api {
   @State endIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r("sys.symbol.ohos_trash")).fontSize("24vp");
   @State selectIconModifier: SymbolGlyphModifier = new SymbolGlyphModifier($r("sys.symbol.ohos_trash")).fontSize("24vp");
   @State select: boolean = true;
-  @State MenuItemOption: MenuItemOptions = { symbolStartIcon: this.startIconModifier, content: "菜单选项", symbolEndIcon: this.endIconModifier }
+  @State MenuItemOption: MenuItemOptions = {
+    symbolStartIcon: this.startIconModifier,
+    content: "菜单选项",
+    symbolEndIcon: this.endIconModifier
+  }
   @State startIconValue: string = ""
   @State endIconValue: string = ""
+
   build() {
     Column({ space: 12 }) {
       Text(this.startIconValue).id("symbolStartIcon")
@@ -42,11 +48,11 @@ struct MenuExample_api {
             this.endIconValue = "NULL"
           }
         })
-      Menu(){
+      Menu() {
         MenuItem(this.MenuItemOption)
-        MenuItem({content: "菜单选项" })
+        MenuItem({ content: "菜单选项" })
           .selected(this.select).selectIcon(this.selectIconModifier)
-        MenuItemGroup({header: "小标题" }){
+        MenuItemGroup({ header: "小标题" }) {
           MenuItem({
             symbolStartIcon: this.startIconModifier,
             content: "菜单选项",

@@ -14,7 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
+import router from '@ohos.router';
 
 function sleep(time: number) {
   return new Promise((resolve: (value: string) => void) => {
@@ -32,8 +32,8 @@ export default function panelJsunit() {
   describe('panelTest', () => {
 
     beforeEach(async () => {
-      let options = {
-        uri: 'MainAbility/pages/Panel/Panel',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/Panel/Panel',
       }
       try {
         router.clear();
@@ -64,7 +64,7 @@ export default function panelJsunit() {
       await sleep(1)
       let strJson = getInspectorByKey('panel');
       let obj: Record<string, Object> = JSON.parse(strJson);
-      console.info("get inspector value is: " + JSON.stringify(obj));
+      console.info("get inspector value is: " + JSON.stringify(JSON.parse(strJson)));
       console.log(JSON.stringify(obj.$type))
       expect(obj.$type).assertEqual('Panel')
       console.log('Panel‘s type is ' + JSON.stringify(JSON.parse(strJson).$attrs.type))
@@ -92,7 +92,7 @@ export default function panelJsunit() {
       await sleep(1)
       let strJson = getInspectorByKey('panel2');
       let obj: Record<string, Object> = JSON.parse(strJson);
-      console.info("get inspector value is: " + JSON.stringify(obj));
+      console.info("get inspector value is: " + JSON.stringify(JSON.parse(strJson)));
       console.log(JSON.stringify(obj.$type))
       expect(obj.$type).assertEqual('Panel')
       console.log('Panel‘s type is ' + JSON.stringify(JSON.parse(strJson).$attrs.type))
@@ -114,7 +114,7 @@ export default function panelJsunit() {
       await sleep(1)
       let strJson = getInspectorByKey('panel3');
       let obj: Record<string, Object> = JSON.parse(strJson);
-      console.info("get inspector value is: " + JSON.stringify(obj));
+      console.info("get inspector value is: " + JSON.stringify(JSON.parse(strJson)));
       console.log(JSON.stringify(obj.$type))
       expect(obj.$type).assertEqual('Panel')
       console.log('Panel‘s type is ' + JSON.stringify(JSON.parse(strJson).$attrs.type))

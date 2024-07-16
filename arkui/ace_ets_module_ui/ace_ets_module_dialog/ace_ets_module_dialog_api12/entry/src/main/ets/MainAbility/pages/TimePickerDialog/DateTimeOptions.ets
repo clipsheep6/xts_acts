@@ -41,8 +41,8 @@ struct TimerPickerDialogExample {
           .id("DateTimeOptions")
           .margin({ top: 15 })
           .onClick(() => {
-            this.indexNumber1 ++
-            if(this.indexNumber1 > this.opt.length -1) {
+            this.indexNumber1++
+            if (this.indexNumber1 > this.opt.length - 1) {
               this.indexNumber1 = 0
             }
             this.showdatepicker();
@@ -50,13 +50,14 @@ struct TimerPickerDialogExample {
         Button("Set TimeType --")
           .margin({ top: 15 })
           .onClick(() => {
-            this.indexNumber1 --
-            if(this.indexNumber1 < 0) {
+            this.indexNumber1--
+            if (this.indexNumber1 < 0) {
               this.indexNumber1 = this.opt.length - 1
             }
             this.showdatepicker();
           })
       }
+
       Text(`${this.indexNumber1 + 1} / ${this.opt.length}`)
       Text(`${JSON.stringify(this.opt[this.indexNumber1])} / ${this.isMilitaryTime}`)
         .id("DateTimeOptionsValue")

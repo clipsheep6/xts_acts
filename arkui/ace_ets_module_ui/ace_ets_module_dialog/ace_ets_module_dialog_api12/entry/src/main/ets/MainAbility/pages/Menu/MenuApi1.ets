@@ -16,10 +16,10 @@
 @Entry
 @Component
 struct MenuApi1 {
-  @State text:string = ''
+  @State text: string = ''
 
   @Builder
-  MyMenu(){
+  MyMenu() {
     Menu() {
       MenuItem({
         content: "菜单选项",
@@ -40,13 +40,13 @@ struct MenuApi1 {
     .id('Menu')
 
     Button('getInspectorByKey').onClick(() => {
-      this.text =  String(JSON.parse(getInspectorByKey('Menu')).$attrs.menuItemDivider)
+      this.text = String(JSON.parse(getInspectorByKey('Menu')).$attrs.menuItemDivider)
     }).id('MenuApi1_btn2')
     Text(this.text).id('MenuApi1_text1')
   }
 
   build() {
-    Column({space:20}) {
+    Column({ space: 20 }) {
       Button('bindMenu')
         .bindMenu(this.MyMenu)
         .width('100%')

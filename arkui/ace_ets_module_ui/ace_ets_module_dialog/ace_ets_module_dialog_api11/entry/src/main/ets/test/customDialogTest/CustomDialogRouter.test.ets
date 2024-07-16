@@ -13,16 +13,18 @@
  * limitations under the License.
  */
 import { describe, beforeEach, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {Driver, ON} from '@ohos.UiTest';
-import CommonFunc from '../../MainAbility/utils/Common';;
+import router from '@ohos.router';
+import { Driver, ON } from '@ohos.UiTest';
+import CommonFunc from '../../MainAbility/utils/Common';
+
+;
 
 export default function CustomDialogRouter() {
-  describe('CustomDialogRouter', function () {
-    beforeEach(async function (done) {
+  describe('CustomDialogRouter', () => {
+    beforeEach(async (done: Function) => {
       console.info("CustomDialogRouter beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/customDialog/CustomDialogRouter',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/customDialog/CustomDialogRouter',
       }
       try {
         router.clear();
@@ -30,7 +32,7 @@ export default function CustomDialogRouter() {
         console.info("get CustomDialogRouter state pages: " + JSON.stringify(pages));
         if (!("CustomDialog" == pages.name)) {
           console.info("get CustomDialogRouter state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push CustomDialogRouter success: " + JSON.stringify(result));
         }
@@ -42,14 +44,14 @@ export default function CustomDialogRouter() {
     });
 
     /**
-     * @tc.number    SUB_ACE_CustomDialogRouter_0100
-     * @tc.name      CustomDialogRouter_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_CustomDialogRouter_0100
+     * @tc.name CustomDialogRouter_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('CustomDialogRouter_0100', 0, async function (done) {
+    it('CustomDialogRouter_0100', 0, async (done: Function) => {
       console.info('CustomDialogRouter_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -65,9 +67,9 @@ export default function CustomDialogRouter() {
       // api 11, dialog is closed, confirmButton is not exist
       let confirmButton = await driver.findComponent(ON.id('CustomDialogConfirm'));
       expect(confirmButton).assertNull();
-      await driver.click(Math.round(globalThis.winLeft + vp2px(200)),Math.round(globalThis.winTop + vp2px(200)));
+      await driver.click(Math.round(globalThis.winLeft + vp2px(200)), Math.round(globalThis.winTop + vp2px(200)));
       await CommonFunc.sleep(1000);
-        console.info('CustomDialogRouter_0100 END');
+      console.info('CustomDialogRouter_0100 END');
       done();
     });
 

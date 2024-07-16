@@ -14,6 +14,7 @@
  */
 import { SymbolGlyphModifier } from '@ohos.arkui.modifier';
 import { LengthMetrics } from '@ohos.arkui.node'
+
 @Entry
 @Component
 struct menuItemGroupDividerTest {
@@ -25,8 +26,8 @@ struct menuItemGroupDividerTest {
 
   build() {
     Column() {
-      Menu(){
-        MenuItemGroup({header: '小标题' }){
+      Menu() {
+        MenuItemGroup({ header: '小标题' }) {
           MenuItem({
             symbolStartIcon: this.startIconModifier,
             content: "菜单选项",
@@ -43,7 +44,8 @@ struct menuItemGroupDividerTest {
             symbolEndIcon: this.endIconModifier
           })
         }
-        MenuItemGroup({header: '小标题' }){
+
+        MenuItemGroup({ header: '小标题' }) {
           MenuItem({
             symbolStartIcon: this.startIconModifier,
             content: "菜单选项",
@@ -60,7 +62,7 @@ struct menuItemGroupDividerTest {
             symbolEndIcon: this.endIconModifier
           })
         }
-      }.menuItemGroupDivider({strokeWidth: LengthMetrics.vp(50), color: Color.Blue}).key('menuItemGroupDividerText')
+      }.menuItemGroupDivider({ strokeWidth: LengthMetrics.vp(50), color: Color.Blue }).key('menuItemGroupDividerText')
       .subMenuExpandingMode(SubMenuExpandingMode.SIDE_EXPAND)
 
     }

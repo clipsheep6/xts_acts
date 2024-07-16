@@ -15,13 +15,26 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function CloseCustomDialogTest() {
-  describe('CloseCustomDialogTest', function () {
-    beforeEach(async function (done) {
+  describe('CloseCustomDialogTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("CloseCustomDialogTest beforeEach start");
-      let options = {
+      let options: router.RouterOptions = {
         url: "MainAbility/pages/CustomDialog/UIContext/CloseCustomDialog",
       }
       try {
@@ -30,7 +43,7 @@ export default function CloseCustomDialogTest() {
         console.info("get CloseCustomDialogTest state pages:" + JSON.stringify(pages));
         if (!("CloseCustomDialog" == pages.name)) {
           console.info("get CloseCustomDialogTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push CloseCustomDialogTest page result:" + JSON.stringify(result));
         }
@@ -40,20 +53,20 @@ export default function CloseCustomDialogTest() {
       console.info("CloseCustomDialogTest beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("CloseCustomDialogTest after each called");
     });
 
     /**
-     * @tc.number    CloseCustomDialogTest
-     * @tc.name      testBack
-     * @tc.desc      Return specified page by index value
-     * @tc.level     Level 3
+     * @tc.number CloseCustomDialogTest
+     * @tc.name testBack
+     * @tc.desc Return specified page by index value
+     * @tc.level Level 3
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('CloseCustomDialogTest_001', 0, async function (done) {
+    it('CloseCustomDialogTest_001', 0, async (done: Function) => {
       console.info('[CloseCustomDialogTest_001] START');
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();

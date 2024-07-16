@@ -15,22 +15,23 @@
 @Entry
 @Component
 struct SheetTransitionExample12 {
-  @State isShow:boolean = false
-  @State isShow2:boolean = false
-  @State sheetHeight:number = 300;
+  @State isShow: boolean = false
+  @State isShow2: boolean = false
+  @State sheetHeight: number = 300;
   @State Height1: string = "";
 
-  @Builder myBuilder() {
+  @Builder
+  myBuilder() {
     Column() {
       Button("change height")
         .id('ChangeHeight1')
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.sheetHeight = 500;
         })
 
-      Button(this.Height1 )
+      Button(this.Height1)
         .id('chaKan')
         .margin(10)
         .fontSize(20)
@@ -40,7 +41,7 @@ struct SheetTransitionExample12 {
         .id('closeModal1')
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow = false;
         })
     }
@@ -59,15 +60,23 @@ struct SheetTransitionExample12 {
         .margin(10)
         .bindSheet(this.isShow, this.myBuilder(), {
           height: this.sheetHeight,
-          onHeightDidChange:((value: number)=> {
-            console.log("bind sheet shouldDismiss"+ value)
+          onHeightDidChange: ((value: number) => {
+            console.log("bind sheet shouldDismiss" + value)
             this.Height1 = "onHeightDidChange success"
           }),
           backgroundColor: Color.Green,
-          onWillAppear: () => {console.log("BindSheet onWillAppear.")},
-          onAppear: () => {console.log("BindSheet onAppear.")},
-          onWillDisappear: () => {console.log("BindSheet onWillDisappear.")},
-          onDisappear: () => {console.log("BindSheet onDisappear.")}
+          onWillAppear: () => {
+            console.log("BindSheet onWillAppear.")
+          },
+          onAppear: () => {
+            console.log("BindSheet onAppear.")
+          },
+          onWillDisappear: () => {
+            console.log("BindSheet onWillDisappear.")
+          },
+          onDisappear: () => {
+            console.log("BindSheet onDisappear.")
+          }
         })
     }
     .justifyContent(FlexAlign.Center)

@@ -31,8 +31,8 @@ export default class Utils {
 
   static getComponentRect(key) {
     let strJson = getInspectorByKey(key);
-    let obj = JSON.parse(strJson);
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
+
+    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(JSON.parse(strJson)));
     let rectInfo = JSON.parse('[' + obj.$rect + ']')
     console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
     this.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
@@ -81,7 +81,7 @@ export default class Utils {
     if (drag) {
       await this.sleep(500)
     }
-    for (var i = 1;i <= swipeSteps; i++) {
+    for (var i = 1; i <= swipeSteps; i++) {
       var movePoint: TouchObject = {
         id: 1,
         x: downX + (xStep * i),

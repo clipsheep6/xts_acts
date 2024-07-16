@@ -14,7 +14,7 @@
  */
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import router from '@system.router';
+import router from '@ohos.router';
 
 function sleep(time) {
   return new Promise((resolve, reject) => {
@@ -25,11 +25,12 @@ function sleep(time) {
     console.info(`sleep ${time} over...`)
   })
 }
+
 export default function menuSecondTest() {
-  describe('ActsMenuSecondTest', function () {
-    beforeAll(async function (done) {
-      let options = {
-        uri: "MainAbility/pages/Menu/menusecond",
+  describe('ActsMenuSecondTest', () => {
+    beforeAll(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: "MainAbility/pages/Menu/menusecond",
       }
       try {
         router.clear();
@@ -47,14 +48,15 @@ export default function menuSecondTest() {
       done()
     });
 
-   /**
+    /**
      * @tc.number ArkUX_Stage_Menu_Enabled_0100
      * @tc.name Tests whether the menu enabled is displayed
      * @tc.desc Tests whether the menu enabled is displayed
      */
-    it('ArkUX_Stage_Menu_Enabled_0100', 0, async function () {
-      let obj = JSON.parse(getInspectorByKey("Menu"))
-      console.info('ArkUX_Stage_Menu_Enabled_0100 bindMenuEnabled :' + JSON.stringify(obj.$attrs.bindMenuEnabled));
+    it('ArkUX_Stage_Menu_Enabled_0100', 0, async () => {
+      console.info('ArkUX_Stage_Menu_Enabled_0100 bindMenuEnabled :' + JSON.stringify(JSON.parse(getInspectorByKey("Menu"))
+        .$attrs
+        .bindMenuEnabled));
     })
 
     /**
@@ -62,19 +64,21 @@ export default function menuSecondTest() {
      * @tc.name Test the hover menu preview display
      * @tc.desc Test the hover menu preview display
      */
-    it('ArkUX_Stage_Menu_Preview_0100', 0, async function () {
-      let obj = JSON.parse(getInspectorByKey("floatingMenuImage"))
-      console.info('ArkUX_Stage_Menu_Preview_0100 preview :' + JSON.stringify(obj.$attrs.preview));
+    it('ArkUX_Stage_Menu_Preview_0100', 0, async () => {
+      console.info('ArkUX_Stage_Menu_Preview_0100 preview :' + JSON.stringify(JSON.parse(getInspectorByKey("floatingMenuImage"))
+        .$attrs
+        .preview));
     })
 
-      /**
+    /**
      * @tc.number ArkUX_Stage_Menu_Preview_0200
      * @tc.name Test the hover menu preview display
      * @tc.desc Test the hover menu preview display
      */
-    it('ArkUX_Stage_Menu_Preview_0200', 0, async function () {
-      let obj = JSON.parse(getInspectorByKey("floatingMenuBuilder"))
-      console.info('ArkUX_Stage_Menu_Preview_0200 preview :' + JSON.stringify(obj.$attrs.preview));
+    it('ArkUX_Stage_Menu_Preview_0200', 0, async () => {
+      console.info('ArkUX_Stage_Menu_Preview_0200 preview :' + JSON.stringify(JSON.parse(getInspectorByKey("floatingMenuBuilder"))
+        .$attrs
+        .preview));
     })
   })
 }

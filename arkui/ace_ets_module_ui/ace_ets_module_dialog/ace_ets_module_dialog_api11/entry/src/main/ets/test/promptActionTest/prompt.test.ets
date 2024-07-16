@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import router from '@system.router';
+import router from '@ohos.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from '../../MainAbility/common/Utils'
 import events_emitter from '@ohos.events.emitter';
@@ -22,8 +22,8 @@ export default function promptShowDialogJsunit() {
   describe('promptShowDialogTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/promptAction/prompt1',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/promptAction/prompt1',
       }
       try {
         router.clear();
@@ -31,7 +31,7 @@ export default function promptShowDialogJsunit() {
         console.info("get prompt state success " + JSON.stringify(pages));
         if (!("prompt1" == pages.name)) {
           console.info("get prompt state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push prompt page success " + JSON.stringify(result));
         }
@@ -58,7 +58,7 @@ export default function promptShowDialogJsunit() {
           eventId: 60220,
           priority: events_emitter.EventPriority.LOW
         }
-        let callback1 = (eventData) => {
+        let callback1 = (eventData: events_emitter.EventData) => {
           console.info("testpromptShowDialog001 get event state result is: " + JSON.stringify(eventData));
           expect(eventData.data.STATUS).assertEqual(true);
 
@@ -84,7 +84,7 @@ export default function promptShowDialogJsunit() {
           eventId: 60221,
           priority: events_emitter.EventPriority.LOW
         }
-        let callback2 = (backData1) => {
+        let callback2 = (backData1: events_emitter.EventData) => {
           console.info("onRequestPopupData_0011 get event state result is: " + JSON.stringify(backData1));
           expect(backData1.data.STATUS).assertEqual(true);
 

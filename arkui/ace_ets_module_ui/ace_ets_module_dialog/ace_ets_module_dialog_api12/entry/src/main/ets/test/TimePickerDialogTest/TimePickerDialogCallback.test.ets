@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
+import router from '@ohos.router';
 import { Driver, ON } from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 import events_emitter from '@ohos.events.emitter';
 
 export default function TimePickerDialogCallback() {
-  describe('TimePickerDialogCallback', function () {
-    beforeEach(async function (done) {
+  describe('TimePickerDialogCallback', () => {
+    beforeEach(async (done: Function) => {
       console.info("TimePickerDialogAJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/TimePickerDialog/TimePickerDialogCallback',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/TimePickerDialog/TimePickerDialogCallback',
       }
       try {
         router.clear();
@@ -31,7 +31,7 @@ export default function TimePickerDialogCallback() {
         console.info("get TimePickerDialogAJsunit state pages: " + JSON.stringify(pages));
         if (!("TimePickerDialogCallback" == pages.name)) {
           console.info("get TimePickerDialogAJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push TimePickerDialogAJsunit page success " + JSON.stringify(result));
         }
@@ -50,14 +50,14 @@ export default function TimePickerDialogCallback() {
      * @tc.type      : Function
      * @tc.level     : level 0
      */
-    it('TimePickerDialogCallback_0100', 0, async (done) => {
+    it('TimePickerDialogCallback_0100', 0, async (done: Function) => {
       let driver1 = Driver.create();
 
-      let callback = (event) => {
+      let callback = (event: events_emitter.InnerEvent) => {
         expect(event.data.action).assertEqual('onWillAppear');
         console.info('TimePickerDialogCallback_0100 event01: ' + event.data.action);
       }
-      let event = {
+      let event: events_emitter.InnerEvent = {
         eventId: 50001,
         priority: events_emitter.EventPriority.LOW
       }

@@ -14,7 +14,7 @@ struct SubMenuExpandingMode_EMBEDDED_Index {
   }
 
   @Builder
-  MyMenu(){
+  MyMenu() {
     Menu() {
       MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
       MenuItem({ startIcon: $r("app.media.icon"), content: "菜单选项" })
