@@ -51,7 +51,7 @@ struct SheetTransitionExample12 {
 
   build() {
     Column() {
-      Button("transition modal 1")
+      Button('transition modal 1')
         .id('openModal1')
         .onClick(() => {
           this.isShow = true

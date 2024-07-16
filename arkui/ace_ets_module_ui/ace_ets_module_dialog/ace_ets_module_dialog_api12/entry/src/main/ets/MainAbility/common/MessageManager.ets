@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 export interface Callback {
-  (message: any): void
+  (message: ESObject): void
 }
 
 export class MessageManager {
@@ -33,7 +33,7 @@ export class MessageManager {
     this.callbacks.set(type, callback)
   }
 
-  notify(message: any, type?: string) {
+  notify(message: ESObject, type?: string) {
     if (type == undefined) {
       this.callback(message)
       return

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 //@ts-nocheck
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
 import hilog from '@ohos.hilog';
 
