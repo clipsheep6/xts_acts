@@ -30,7 +30,10 @@ public:
     ~ImageSourceModuleTest();
 
     Image_ErrorCode GetImageProperty(int32_t fd, std::string propertykey, std::string *value);
+    Image_ErrorCode GetImageProperty(std::string uri, std::string propertykey, std::string *value);
     Image_ErrorCode ModifyImageProperty(int32_t fd, std::string propertyKey,
+                                        std::string propertyValue, std::string *value);
+    Image_ErrorCode ModifyImageProperty(std::string uri, std::string propertyKey,
                                         std::string propertyValue, std::string *value);
 
 private:

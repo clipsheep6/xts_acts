@@ -46,6 +46,14 @@ static napi_value Init(napi_env env, napi_value exports)
             "JsModifyImageProperty", nullptr, ImageSourceTest::JsModifyImageProperty,
             nullptr, nullptr, nullptr, napi_static, nullptr
         },
+        {
+            "JsGetImagePropertyFromUri", nullptr, ImageSourceTest::JsGetImagePropertyFromUri,
+            nullptr, nullptr, nullptr, napi_static, nullptr
+        },
+        {
+            "JsModifyImagePropertyByUri", nullptr, ImageSourceTest::JsModifyImagePropertyByUri,
+            nullptr, nullptr, nullptr, napi_static, nullptr
+        },
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -118,6 +126,63 @@ napi_value ImageSourceTest::JsModifyImageProperty(napi_env env, napi_callback_in
     std::string value;
     ImageSourceModuleTest ismt;
     Image_ErrorCode ret = ismt.ModifyImageProperty(fd, propertyKey, propertyValue, &value);
+    if (ret != IMAGE_SUCCESS) {
+        HiviewDFX::HiLog::Error(LABEL, "JsModifyImageProperty failed");
+        return result;
+    }
+    HiviewDFX::HiLog::Error(LABEL, "value = %{public}s", value.c_str());
+    napi_create_string_utf8(env, value.c_str(), NAPI_AUTO_LENGTH, &result);
+    return result;
+}
+
+napi_value ImageSourceTest::JsGetImagePropertyFromUri(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    napi_value thisVar = nullptr;
+    napi_value argValue[NUM_2] = {0};
+    size_t argCount = NUM_2;
+
+    if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok) {
+        HiviewDFX::HiLog::Error(LABEL, "JsGetImagePropertyFromUri failed to parse params");
+        return result;
+    }
+
+    std::string uri = getStringFromArgs(env, argValue[NUM_0]);
+    std::string propertyKey = getStringFromArgs(env, argValue[NUM_1]);
+
+    std::string value;
+    ImageSourceModuleTest ismt;
+    Image_ErrorCode ret = ismt.GetImageProperty(uri, propertyKey, &value);
+    if (ret != IMAGE_SUCCESS) {
+        HiviewDFX::HiLog::Error(LABEL, "JsGetImagePropertyFromUri failed");
+        return result;
+    }
+    HiviewDFX::HiLog::Error(LABEL, "value = %{public}s", value.c_str());
+    napi_create_string_utf8(env, value.c_str(), NAPI_AUTO_LENGTH, &result);
+    return result;
+}
+
+napi_value ImageSourceTest::JsModifyImagePropertyByUri(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    napi_value thisVar = nullptr;
+    napi_value argValue[NUM_3] = {0};
+    size_t argCount = NUM_3;
+
+    if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok) {
+        HiviewDFX::HiLog::Error(LABEL, "JsModifyImagePropertyByUri failed to parse params");
+        return result;
+    }
+
+    std::string uri = getStringFromArgs(env, argValue[NUM_0]);
+    std::string propertyKey = getStringFromArgs(env, argValue[NUM_1]);
+    std::string propertyValue = getStringFromArgs(env, argValue[NUM_2]);
+
+    std::string value;
+    ImageSourceModuleTest ismt;
+    Image_ErrorCode ret = ismt.ModifyImageProperty(uri, propertyKey, propertyValue, &value);
     if (ret != IMAGE_SUCCESS) {
         HiviewDFX::HiLog::Error(LABEL, "JsModifyImageProperty failed");
         return result;
