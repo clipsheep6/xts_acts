@@ -65,8 +65,8 @@ export default function panelJsunit() {
       let strJson = getInspectorByKey('panel');
       let obj: Record<string, Object> = JSON.parse(strJson);
       console.info("get inspector value is: " + JSON.stringify(JSON.parse(strJson)));
-      console.log(JSON.stringify(obj.$type))
-      expect(obj.$type).assertEqual('Panel')
+      console.log(JSON.stringify(JSON.parse(strJson).$type))
+      expect(JSON.parse(strJson).$type).assertEqual('Panel')
       console.log('Panel‘s type is ' + JSON.stringify(JSON.parse(strJson).$attrs.type))
       console.log('Panel‘s mode is ' + JSON.stringify(JSON.parse(strJson).$attrs.mode))
       console.log('Panel‘s dragBar is ' + JSON.stringify(JSON.parse(strJson).$attrs.dragBar))
@@ -93,8 +93,8 @@ export default function panelJsunit() {
       let strJson = getInspectorByKey('panel2');
       let obj: Record<string, Object> = JSON.parse(strJson);
       console.info("get inspector value is: " + JSON.stringify(JSON.parse(strJson)));
-      console.log(JSON.stringify(obj.$type))
-      expect(obj.$type).assertEqual('Panel')
+      console.log(JSON.stringify(JSON.parse(strJson).$type))
+      expect(JSON.parse(strJson).$type).assertEqual('Panel')
       console.log('Panel‘s type is ' + JSON.stringify(JSON.parse(strJson).$attrs.type))
       console.log('Panel‘s mode is ' + JSON.stringify(JSON.parse(strJson).$attrs.mode))
       console.log('Panel‘s show is ' + JSON.stringify(JSON.parse(strJson).$attrs.show))
@@ -115,8 +115,8 @@ export default function panelJsunit() {
       let strJson = getInspectorByKey('panel3');
       let obj: Record<string, Object> = JSON.parse(strJson);
       console.info("get inspector value is: " + JSON.stringify(JSON.parse(strJson)));
-      console.log(JSON.stringify(obj.$type))
-      expect(obj.$type).assertEqual('Panel')
+      console.log(JSON.stringify(JSON.parse(strJson).$type))
+      expect(JSON.parse(strJson).$type).assertEqual('Panel')
       console.log('Panel‘s type is ' + JSON.stringify(JSON.parse(strJson).$attrs.type))
       console.log('Panel‘s mode is ' + JSON.stringify(JSON.parse(strJson).$attrs.mode))
       console.log('Panel‘s show is ' + JSON.stringify(JSON.parse(strJson).$attrs.show))

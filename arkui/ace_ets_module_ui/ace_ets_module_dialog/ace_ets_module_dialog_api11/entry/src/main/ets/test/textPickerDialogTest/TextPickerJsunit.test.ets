@@ -51,7 +51,7 @@ export default function textPickerJsunit() {
       await Utils.sleep(1000);
       let strJson: string = getInspectorByKey('textPickerDialog');
       console.info("[testTextPickerDialog0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[testTextPickerDialog0100] expect(obj.$type) is: " + (JSON.parse(strJson).$type));
+      console.info("[testTextPickerDialog0100] expect(JSON.parse(strJson).$type) is: " + (JSON.parse(strJson).$type));
       console.info("[testTextPickerDialog0100] obj.$attrs.type is: " + (JSON.parse(strJson).$attrs.type));
       done();
     });

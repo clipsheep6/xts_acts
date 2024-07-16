@@ -79,7 +79,7 @@ export default function promptTest() {
       let strJson = getInspectorByKey('prompt_3');
 
       console.info("[promptTest_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[promptTest_0100] component obj.$attrs is: " + JSON.stringify(obj.$attrs));
+      console.info("[promptTest_0100] component obj.$attrs is: " + JSON.stringify(JSON.parse(strJson).$attrs));
       console.info("[promptTest_0100] text: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
       expect(JSON.parse(strJson).$attrs.content).assertEqual('Hello World');
       console.info('[promptTest_0100] END');

@@ -37,7 +37,7 @@ struct SheetTransitionExample12 {
         .fontSize(20)
 
 
-      Button("close modal 1")
+      Button('close modal 1')
         .id('closeModal1')
         .margin(10)
         .fontSize(20)

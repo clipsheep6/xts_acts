@@ -62,8 +62,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_0100 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_0100 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("true");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("true");
         console.info('ArkUX_Stage_Panel_showCloseIcon_0100 END ');
       } catch (err) {
         expect().assertFail();
@@ -84,8 +84,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_0200 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_0200 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_0200 END ');
       } catch (err) {
         expect().assertFail();
@@ -106,8 +106,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_0300 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_0300 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_0300 END ');
       } catch (err) {
         expect().assertFail();
@@ -128,8 +128,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_0400 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_0400 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("true");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("true");
         console.info('ArkUX_Stage_Panel_showCloseIcon_0400 END ');
       } catch (err) {
         expect().assertFail();
@@ -150,8 +150,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_0500 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_0500 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_0500 END ');
       } catch (err) {
         expect().assertFail();
@@ -172,8 +172,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_0600 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_0600 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_0600 END ');
       } catch (err) {
         expect().assertFail();
@@ -194,8 +194,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_0700 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_0700 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_0700 END ');
       } catch (err) {
         expect().assertFail();
@@ -216,8 +216,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_0800 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_0800 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_0800 END ');
       } catch (err) {
         expect().assertFail();
@@ -238,8 +238,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_0900 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_0900 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_0900 END ');
       } catch (err) {
         expect().assertFail();
@@ -260,8 +260,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_1000 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_1000 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_1000 END ');
       } catch (err) {
         expect().assertFail();
@@ -282,8 +282,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_1100 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_1100 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_1100 END ');
       } catch (err) {
         expect().assertFail();
@@ -304,8 +304,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_1200 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_1200 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_1200 END ');
       } catch (err) {
         expect().assertFail();
@@ -326,8 +326,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_1300 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_1300 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_1300 END ');
       } catch (err) {
         expect().assertFail();
@@ -348,8 +348,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_1400 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_1400 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_1400 END ');
       } catch (err) {
         expect().assertFail();
@@ -370,8 +370,8 @@ export default function panelTest() {
         console.info('ArkUX_Stage_Panel_showCloseIcon_1500 START  :' + JSON.stringify(strJson));
 
         console.info("ArkUX_Stage_Panel_showCloseIcon_1500 component obj.$attrs.showCloseIcon is: " +
-        JSON.stringify(obj.$attrs.showCloseIcon));
-        expect(obj.$attrs.showCloseIcon).assertEqual("false");
+        JSON.stringify(JSON.parse(strJson).$attrs.showCloseIcon));
+        expect(JSON.parse(strJson).$attrs.showCloseIcon).assertEqual("false");
         console.info('ArkUX_Stage_Panel_showCloseIcon_1500 END ');
       } catch (err) {
         expect().assertFail();

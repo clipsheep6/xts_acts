@@ -52,7 +52,7 @@ struct MenuExample {
               eventId: 64,
               priority: events_emitter.EventPriority.LOW
             }
-            console.info("bindMenuTest_0100 start to emit action state")
+            console.info('bindMenuTest_0100 start to emit action state')
             events_emitter.emit(backEvent, backData)
           } catch (err) {
             console.info('bindMenuTest_0100 emit action state err: '  + JSON.stringify(err.message))
