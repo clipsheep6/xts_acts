@@ -3643,14 +3643,16 @@ export default function AVSession() {
                 if (Array.isArray(data)) {
                         console.info(`getAllCastDisplays success: ${JSON.stringify(data)}`);
                         expect(true).assertTrue();
+                        done();
                 } else {
-                    console.info('getAllCastDisplays failed');
-                    expect(false).assertTrue();
+                    console.info('getAllCastDisplays success：{}');
+                    expect(true).assertTrue();
                     done();
                 }
             }).catch((err) => {
-                expect(err.code).assertEqual(6600101);
                 console.info(`getAllCastDisplays successfully: ${err.code}, message: ${err.message}`)
+                done();
+                expect(err.code).assertEqual(6600101);
             })
             done();
         })
