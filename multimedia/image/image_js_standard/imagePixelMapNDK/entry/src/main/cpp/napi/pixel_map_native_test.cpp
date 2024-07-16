@@ -45,6 +45,14 @@ static napi_value Init(napi_env env, napi_value exports)
         {
             "JsConvertPixelmapFromNapi_Width", nullptr, ImagePixelMapNativeTest::JsConvertPixelmapFromNapi_Width,
             nullptr, nullptr, nullptr, napi_static, nullptr
+        },
+        {
+            "JsConvertPixelmapGetPixelFormat", nullptr, ImagePixelMapNativeTest::JsConvertPixelmapGetPixelFormat,
+            nullptr, nullptr, nullptr, napi_static, nullptr
+        },
+        {
+            "JsConvertPixelmapromNapi_PixelFormat", nullptr, ImagePixelMapNativeTest::JsConvertPixelmapromNapi_PixelFormat,
+            nullptr, nullptr, nullptr, napi_static, nullptr
         }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
@@ -166,6 +174,67 @@ napi_value ImagePixelMapNativeTest::JsConvertPixelmapFromNapi_Width(napi_env env
         return result;
     }
     return result;
+}
+
+napi_value ImagePixelMapNativeTest::JsConvertPixelmapGetPixelFormat(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    napi_value argValue[1] = {0};
+    size_t argCount = 1;
+    uint32_t num = getNativeImageSource(env, info, argValue, argCount);
+    if (num != 0) {
+        HiviewDFX::HiLog::Error(LABEL, "getNativeImageSource failed");
+        napi_create_int32(env, num, &result);
+        return result;
+    }
+    int32_t fd = 0;
+    napi_get_value_int32(env, argValue[NUM_0], &fd);
+    OH_PixelmapNative *pixelmap = nullptr;
+    ImagePixelMapNative ismt;
+    int32_t error = ismt.GetPixelmap(fd, &pixelmap);
+    if (error != IMAGE_SUCCESS) {
+        HiviewDFX::HiLog::Error(LABEL, "GetPixelmap failed");
+        napi_create_int32(env, error, &result);
+        return result;
+    }
+    error = ismt.GetPixelmapPixelFormat(env, pixelmap, &result);
+    if (error != IMAGE_SUCCESS) {
+        HiviewDFX::HiLog::Error(LABEL, "JsConvertPixelmapGetPixelFormat failed");
+        napi_create_int32(env, error, &result);
+        return result;
+    }
+    return result;
+}
+
+napi_value ImagePixelMapNativeTest::JsConvertPixelmapromNapi_PixelFormat(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    napi_value argValue[NUM_1] = {0};
+    size_t argCount = 1;
+    uint32_t num = getNativeImageSource(env, info, argValue, argCount);
+    if (num != 0) {
+        HiviewDFX::HiLog::Error(LABEL, "getNativeImageSource failed");
+        return result;
+    }
+
+    OH_PixelmapNative *pixelmap = nullptr;
+    ImagePixelMapNative ismt;
+    int32_t error = ismt.ConvertPixelmapFromNapi(env, argValue[0], &pixelmap);
+    if (error != 0) {
+        HiviewDFX::HiLog::Error(LABEL, "ConvertPixelmapFromNapi failed");
+        napi_create_int32(env, error, &result);
+        return result;
+    }
+    error = ismt.GetPixelmapPixelFormat(env, pixelmap, &result);
+    if (error != 0) {
+        HiviewDFX::HiLog::Error(LABEL, "GetPixelmapPixelFormat failed");
+        napi_create_int32(env, error, &result);
+        return result;
+    }
+    return result;
+}
+
 } // namespace Media
 } // namespace OHOS
-}

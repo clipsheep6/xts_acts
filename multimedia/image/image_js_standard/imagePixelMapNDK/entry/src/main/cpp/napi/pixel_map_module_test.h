@@ -35,6 +35,7 @@ public:
     int32_t ConvertPixelmapFromNapi(napi_env env, napi_value source, OH_PixelmapNative **pixelmap);
     int32_t GetPixelmapPixelWidth(napi_env env, OH_PixelmapNative *PixelWidth, napi_value *Width);
     int32_t GetPixelmapPixelHeight(napi_env env, OH_PixelmapNative *PixelHeight, napi_value *Height);
+    int32_t GetPixelmapPixelFormat(napi_env env, OH_PixelmapNative *PixelHeight, napi_value *pixelFormat);
 
 private:
 };

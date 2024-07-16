@@ -28,6 +28,8 @@ public:
     static napi_value JsConvertPixelmapToNapi(napi_env env, napi_callback_info info);
     static napi_value JsConvertPixelmapFromNapi(napi_env env, napi_callback_info info);
     static napi_value JsConvertPixelmapFromNapi_Width(napi_env env, napi_callback_info info);
+    static napi_value JsConvertPixelmapGetPixelFormat(napi_env env, napi_callback_info info);
+    static napi_value JsConvertPixelmapromNapi_PixelFormat(napi_env env, napi_callback_info info);
 private:
 };
 } // namespace Media

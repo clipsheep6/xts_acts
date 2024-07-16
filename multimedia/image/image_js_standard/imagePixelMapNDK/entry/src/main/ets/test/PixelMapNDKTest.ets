@@ -143,12 +143,83 @@ export default function PixelMapNDKTest() {
             }
         }
 
+        async function imageSourceCreateFromFdTestPixelFormat(done, testNum, picName) {
+            try {
+                console.info("testNum: " + testNum + " picName: " + picName);
+                await getFd(picName);
+                console.info("getFd result fdNumber: " + fdNumber);
+                let format = ndkTest.JsConvertPixelmapGetPixelFormat(fdNumber);
+                if (format == undefined) {
+                    console.info("imageSourceCreateFromFdTestPixelFormat undefined ");
+                    expect(format == undefined).assertFail();
+                    done();
+                    return;
+                } else {
+                    console.info("imageSourceCreateFromFdTestPixelFormat success  " + format);
+                    done();
+                    return;
+                }
+            } catch {
+                console.info("imageSourceCreateFromFdTestPixelFormat failed testNum: " + testNum + " picName: " + picName);
+                expect().assertFail();
+                done();
+            }
+        }
+
+        async function imageSourceCreateFromNapiTestPixelFormat(done, testNum, picName) {
+            try {
+                console.info("PixelMapCreateFromFdTest testNum  : " + testNum + " picName: " + picName);
+                await getFd(picName);
+                console.info("getFd result fdNumber: " + fdNumber);
+                const imageSourceApi = image.createImageSource(fdNumber);
+                if (imageSourceApi == undefined) {
+                    console.info("PixelMapCreateFromFdTest create image source failed");
+                    expect(false).assertTrue();
+                    done();
+                } else {
+                    globalImagesource = imageSourceApi;
+                    imageSourceApi.createPixelMap().then(pixelmap => {
+                        globalpixelmap = pixelmap;
+                        let res = ndkTest.JsConvertPixelmapFromNapi(pixelmap);
+                        let res_format=ndkTest.JsConvertPixelmapromNapi_PixelFormat(pixelmap);
+                        if (res == undefined && res_format == undefined) {
+                            console.info("PixelMapCreateFromFdTest undefined");
+                            expect(res == undefined ).assertFail();
+                            done();
+                            return;
+                        } else {
+                            console.info("PixelMapCreateFromFdTest  Height and format  " + res + ' ' + res_format);
+                            expect(res != undefined && res_format != undefined).assertTrue();
+                            done();
+                            return;
+                        }
+                    }).catch(error => {
+                        console.log('PixelMapCreateFromFdTest error: ' + error);
+                        expect().assertFail();
+                        done();
+                    })
+                }
+            } catch {
+                console.info("PixelMapCreateFromFdTest failed testNum: " + testNum + " picName: " + picName);
+                expect().assertFail();
+                done();
+            }
+        }
+
         it('SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapToNapi_0100', 0, async function (done) {
             await imageSourceCreateFromFdTest(done, "SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapToNapi_0100", "test.jpg");
         })
 
         it('SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapFromNapi_0200', 0, async function (done) {
             await PixelMapCreateFromFdTest(done, "SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapFromNapi_0200", "test.jpg");
+        })
+
+        it('SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapFromNapi_0300', 0, async function (done) {
+            await imageSourceCreateFromFdTestPixelFormat(done, "SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapFromNapi_0300", "test.jpg");
+        })
+
+        it('SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapFromNapi_0400', 0, async function (done) {
+            await imageSourceCreateFromNapiTestPixelFormat(done, "SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapFromNapi_0400", "test.jpg");
         })
     })
 }

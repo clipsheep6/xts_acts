@@ -158,3 +158,31 @@ int32_t ImagePixelMapNative::GetPixelmapPixelHeight(napi_env env, OH_PixelmapNat
     napi_create_uint32(env, PixelHeight, Height);
     return ret;
 }
+
+int32_t ImagePixelMapNative::GetPixelmapPixelFormat(napi_env env, OH_PixelmapNative *pixelmap, napi_value *pixelFormat)
+{
+    IMG_TST_LOGE("GetPixelmapPixelHeight here.");
+    OH_Pixelmap_ImageInfo* info = nullptr;
+    int32_t ret = OH_PixelmapImageInfo_Create(&info);
+    if (ret != 0) {
+        OH_PixelmapImageInfo_Release(info);
+        return ret;
+    }
+    ret = OH_PixelmapNative_GetImageInfo(pixelmap, info);
+    if (ret != 0 || info == nullptr) {
+        OH_PixelmapNative_Release(pixelmap);
+        OH_PixelmapImageInfo_Release(info);
+        return ret;
+    }
+    int32_t format = 0;
+    ret = OH_PixelmapImageInfo_GetPixelFormat(info, &format);
+    if (ret != IMAGE_SUCCESS) {
+        OH_PixelmapNative_Release(pixelmap);
+        OH_PixelmapImageInfo_Release(info);
+        return ret;
+    }
+    OH_PixelmapNative_Release(pixelmap);
+    OH_PixelmapImageInfo_Release(info);
+    napi_create_int32(env, format, pixelFormat);
+    return ret;
+}
