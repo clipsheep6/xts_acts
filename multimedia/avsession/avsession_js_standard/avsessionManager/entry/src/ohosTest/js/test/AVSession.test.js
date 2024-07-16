@@ -19,6 +19,7 @@ import image from '@ohos.multimedia.image';
 // import WantAgent from '@ohos.wantAgent';
 import WantAgent from '@ohos.app.ability.wantAgent';
 import featureAbility from '@ohos.ability.featureAbility';
+import { geoLocationManager } from '@kit.LocationKit'
 
 export default function AVSession() {
     describe('AVSession', function () {
@@ -3639,20 +3640,27 @@ export default function AVSession() {
          * @tc.level     : Level2
          */
         it('SUB_MULTIMEDIA_AVSESSION_GETALLCASTDISPLAYS_0100', 2, async function (done) {
-            session.getAllCastDisplays().then((data) => {
-                if (Array.isArray(data)) {
+            const isExtendedDisplayCast = canIUse('SystemCapability.Multimedia.AVSession.ExtendedDisplayCast');
+            if (isExtendedDisplayCast) {
+                session.getAllCastDisplays().then((data) => {
+                    if (Array.isArray(data)) {
                         console.info(`getAllCastDisplays success: ${JSON.stringify(data)}`);
                         expect(true).assertTrue();
-                } else {
-                    console.info('getAllCastDisplays failed');
-                    expect(false).assertTrue();
-                    done();
-                }
-            }).catch((err) => {
-                expect(err.code).assertEqual(6600101);
-                console.info(`getAllCastDisplays successfully: ${err.code}, message: ${err.message}`)
-            })
-            done();
+                    } else {
+                        console.info('getAllCastDisplays failed');
+                        expect(false).assertTrue();
+                        done();
+                    }
+                }).catch((err) => {
+                    expect(err.code).assertEqual(6600101);
+                    console.info(`getAllCastDisplays successfully: ${err.code}, message: ${err.message}`)
+                })
+                done();
+            } else {
+                console.log('ExtendedDisplayCast not by this device.')
+                done();
+            }
+
         })
 
     })
