@@ -20,12 +20,12 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import fs from '@ohos.file.fs'
 
 let S_IFSOCK = 0o140000;
-let S_IFDIR	= 0o040000;
-let S_IFCHR	= 0o020000;
-let S_IFBLK	= 0o060000;
-let S_IFREG	= 0o100000;
-let S_IFIFO	= 0o010000;
-let S_IFLNK	= 0o120000;
+let S_IFDIR  = 0o040000;
+let S_IFCHR  = 0o020000;
+let S_IFBLK  = 0o060000;
+let S_IFREG  = 0o100000;
+let S_IFIFO  = 0o010000;
+let S_IFLNK  = 0o120000;
 export default function statNdkTest() {
   describe('MuslStatTest', () => {
 
@@ -164,7 +164,7 @@ export default function statNdkTest() {
       let filesDir = context.filesDir;
       let file = fs.openSync(filesDir + '/test.txt', fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       fs.closeSync(file);
-
+      
       let path = filesDir + '/test.txt';
       let dirFp = 0;
       let mode = S_IFREG | 0o000;
