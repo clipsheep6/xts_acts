@@ -15,26 +15,13 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import router from "@ohos.router";
 import CommonFunc from "../../../MainAbility/utils/Common";
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from "@ohos.UiTest";
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from "@ohos.UiTest";
 
 export default function IconApiTest() {
-  describe("IconApiTest", () => {
-    beforeEach(async (done: Function) => {
+  describe("IconApiTest",   ()=> {
+    beforeEach(async   (done:Function)=> {
       console.info("IconApiTest beforeEach start");
-      let options: router.RouterOptions = {
+     let options:router.RouterOptions = {
         url: "MainAbility/pages/Menu/MenuApi/IconApi",
       }
       try {
@@ -53,20 +40,20 @@ export default function IconApiTest() {
       console.info("IconApiTest beforeEach end");
       done();
     });
-    afterEach(async () => {
+    afterEach(async   ()=> {
       await CommonFunc.sleep(1000);
       console.info("IconApiTest after each called");
     });
 
     /**
-     * @tc.number IconApiTest
-     * @tc.name testBack
-     * @tc.desc Return specified page by index value
-     * @tc.level Level 3
+     * @tc.number    IconApiTest
+     * @tc.name      testBack
+     * @tc.desc      Return specified page by index value
+     * @tc.level     Level 3
      * @tc.type
-     * @tc.size
+    * @tc.size
      */
-    it("IconApiTest_001", 0, async (done: Function) => {
+    it("IconApiTest_001", 0, async   (done:Function)=> {
       console.info("[IconApiTest_001] START");
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();
@@ -82,14 +69,14 @@ export default function IconApiTest() {
     });
 
     /**
-     * @tc.number IconApiTest
-     * @tc.name testBack
-     * @tc.desc Return specified page by index value
-     * @tc.level Level 3
+     * @tc.number    IconApiTest
+     * @tc.name      testBack
+     * @tc.desc      Return specified page by index value
+     * @tc.level     Level 3
      * @tc.type
-     * @tc.size
+    * @tc.size
      */
-    it("IconApiTest_002", 0, async (done: Function) => {
+    it("IconApiTest_002", 0, async   (done:Function)=> {
       console.info("[IconApiTest_002] START");
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();

@@ -14,29 +14,16 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function AlertDialogJsunit() {
-  describe('AlertDialogJsunit', () => {
-    beforeEach(async (done: Function) => {
+  describe('AlertDialogJsunit', ()=> {
+    beforeEach(async  (done:Function)=> {
       console.info("AlertDialogJsunit beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/AlertDialog/AlertDialogParam',
       }
       try {
@@ -57,25 +44,27 @@ export default function AlertDialogJsunit() {
     });
 
 
-    it('AlertDialogJsunit_0100', 0, async (done: Function) => {
+    it('AlertDialogJsunit_0100', 0, async   (done:Function)=> {
       console.info('AlertDialogJsunit_0100 START');
-      let driver = await Driver.create()
+	    let driver = await Driver.create()
       let button = await driver.findComponent(ON.id('AlertDialogJsunit_0100'));
       await button.click();
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('AlertDialogJsunit_0100');
-      console.info("[AlertDialogJsunit_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      expect(JSON.parse(strJson).$attrs.label).assertEqual("one button dialog");
-      await driver.pressBack();
-      await CommonFunc.sleep(500);
-
+      let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      console.info("[AlertDialogJsunit_0100] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.label).assertEqual("one button dialog");
+	    await driver.pressBack();
+	    await CommonFunc.sleep(500);
+	  
       let button2 = await driver.findComponent(ON.id('AlertDialog2'));
       await button2.click();
       await CommonFunc.sleep(1000);
-      let strJson2 = getInspectorByKey('AlertDialog2');
-      console.info("[AlertDialogJsunit_0100] component obj2 is: " + JSON.stringify(JSON.parse(strJson2)));
-      expect(JSON.parse(strJson2).$attrs.label).assertEqual("two button dialog");
+	    let strJson2 = getInspectorByKey('AlertDialog2');
+      let obj2:Record<string, ESObject> = JSON.parse(strJson2);
+      console.info("[AlertDialogJsunit_0100] component obj2 is: " + JSON.stringify(obj2));
+      expect(obj2.$attrs.label).assertEqual("two button dialog");
       console.info('[AlertDialogJsunit_0100] END');
       done();
     });

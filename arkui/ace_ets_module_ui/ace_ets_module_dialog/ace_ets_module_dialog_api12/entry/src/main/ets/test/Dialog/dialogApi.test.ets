@@ -15,25 +15,11 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  MouseButton,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function dialogApi() {
-  describe('dialogApi', () => {
-    beforeEach(async (done: Function) => {
+  describe('dialogApi',   ()=> {
+    beforeEach(async   (done:Function)=> {
       console.info("dialogApi beforeEach start");
       try {
         router.clear();
@@ -41,9 +27,7 @@ export default function dialogApi() {
         console.info("get dialogApi state pages:" + JSON.stringify(pages));
         if (!("dialogApi" == pages.name)) {
           console.info("get Context pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({
-            url: "MainAbility/pages/Dialog/dialogApi"
-          })
+          let result = await router.pushUrl({url:"MainAbility/pages/Dialog/dialogApi"})
           await CommonFunc.sleep(2000);
           console.info("push dialogApi page result:" + JSON.stringify(result));
         }
@@ -53,19 +37,19 @@ export default function dialogApi() {
       console.info("dialogApi foreEach end");
       done();
     });
-    afterEach(async () => {
+    afterEach(async   ()=> {
       await CommonFunc.sleep(1000);
       console.info("dialogApi after each called");
     });
 
     /**
-     * @tc.number SUB_ACE_UI_COMPONENT_Dialog_001
-     * @tc.desc background test of Dialog
-     * @tc.level Level 3
+     * @tc.number    SUB_ACE_UI_COMPONENT_Dialog_001
+     * @tc.desc      background test of Dialog
+     * @tc.level     Level 3
      * @tc.type
      */
 
-    it('dialogApi_0100', 0, async (done: Function) => {
+    it('dialogApi_0100', 0, async   (done:Function)=> {
 
       console.info('dialogApi_0100 START');
       let driver = await Driver.create();
@@ -73,15 +57,17 @@ export default function dialogApi() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('dialogApiBt');
-
-      console.info("[dialogApi_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      expect(JSON.parse(strJson).$attrs.label).assertEqual("dialogApi");
+       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      console.info("[dialogApi_0100] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.label).assertEqual("dialogApi");
       console.info('[dialogApi_0100] END');
       await CommonFunc.sleep(1000);
       await driver.triggerKey(2070)
       await CommonFunc.sleep(1000);
       done();
     });
+
+
 
 
   })

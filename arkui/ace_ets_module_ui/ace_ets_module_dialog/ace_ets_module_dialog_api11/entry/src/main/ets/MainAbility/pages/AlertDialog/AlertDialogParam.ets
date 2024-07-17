@@ -28,8 +28,8 @@ struct AlertDialogParam1 {
               message: 'text',
               alignment: DialogAlignment.TopStart,
               offset: { dx: 10, dy: 100 },
-              maskRect: { x: 0, y: 90, width: 1000, height: 250 },
-              buttonDirection: DialogButtonDirection.AUTO,
+              maskRect: { x: 0, y: 90, width: 1000, height: 250  },
+              buttonDirection:DialogButtonDirection.AUTO,
               confirm: {
                 value: 'button',
                 action: () => {
@@ -42,7 +42,7 @@ struct AlertDialogParam1 {
             }
           )
         }).id('AlertDialogJsunit_0100')
-
+	
         .backgroundColor(0x317aff)
       Button('two button dialog')
         .onClick(() => {
@@ -69,7 +69,7 @@ struct AlertDialogParam1 {
             }
           )
         }).key('AlertDialog2')
-        .backgroundColor(0x317aff)
+		.backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
   }
 }

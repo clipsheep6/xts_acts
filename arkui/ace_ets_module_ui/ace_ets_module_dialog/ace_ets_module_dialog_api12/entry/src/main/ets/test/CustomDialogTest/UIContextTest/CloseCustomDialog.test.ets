@@ -15,26 +15,13 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../../MainAbility/utils/Common';
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function CloseCustomDialogTest() {
-  describe('CloseCustomDialogTest', () => {
-    beforeEach(async (done: Function) => {
+  describe('CloseCustomDialogTest',   ()=> {
+    beforeEach(async   (done:Function)=> {
       console.info("CloseCustomDialogTest beforeEach start");
-      let options: router.RouterOptions = {
+     let options:router.RouterOptions = {
         url: "MainAbility/pages/CustomDialog/UIContext/CloseCustomDialog",
       }
       try {
@@ -53,20 +40,20 @@ export default function CloseCustomDialogTest() {
       console.info("CloseCustomDialogTest beforeEach end");
       done();
     });
-    afterEach(async () => {
+    afterEach(async   ()=> {
       await CommonFunc.sleep(1000);
       console.info("CloseCustomDialogTest after each called");
     });
 
     /**
-     * @tc.number CloseCustomDialogTest
-     * @tc.name testBack
-     * @tc.desc Return specified page by index value
-     * @tc.level Level 3
+     * @tc.number    CloseCustomDialogTest
+     * @tc.name      testBack
+     * @tc.desc      Return specified page by index value
+     * @tc.level     Level 3
      * @tc.type
-     * @tc.size
+    * @tc.size
      */
-    it('CloseCustomDialogTest_001', 0, async (done: Function) => {
+    it('CloseCustomDialogTest_001', 0, async   (done:Function)=> {
       console.info('[CloseCustomDialogTest_001] START');
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();

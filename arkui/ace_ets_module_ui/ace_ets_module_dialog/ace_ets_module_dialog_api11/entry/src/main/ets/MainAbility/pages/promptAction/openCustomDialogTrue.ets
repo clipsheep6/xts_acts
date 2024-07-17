@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 import promptAction from '@ohos.promptAction'
-
 let customDialogId: number = 0
-
 @Builder
 function customDialogBuilder() {
   Column() {

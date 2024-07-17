@@ -27,27 +27,27 @@ struct DatePickerDialogOptions0 {
           DatePickerDialog.show({
             alignment: DialogAlignment.TopStart,
             offset: { dx: 10, dy: 100 },
-            maskRect: { x: 0, y: 90, width: 1000, height: 250 },
+            maskRect: { x: 0, y: 90, width: 1000, height: 250  },
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
-            lunarSwitch: true,
+            lunarSwitch:true,
             lunar: this.isLunar,
-            showTime: true,
-            useMilitaryTime: false,
-            onDateAccept: (value: Date) => {
+            showTime:true,
+            useMilitaryTime:false,
+            onDateAccept: (value: Date)=> {
               this.selectedDate = value
               console.info("DatePickerDialog:onDateAccept()" + value.toString())
             },
-            onCancel: () => {
+            onCancel:()=> {
               console.info("DatePickerDialog: onCancel()")
             },
-            onDateChange: (value: Date) => {
+            onDateChange: (value: Date)=> {
               console.info("DatePickerDialog: onChange()" + value.toString())
             }
           })
         }).key('DatePickerDialog')
-
+		
     }.width('100%')
   }
 }

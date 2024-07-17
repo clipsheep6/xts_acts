@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import prompt from '@ohos.prompt'
-
 @Entry
 @Component
 struct PromptExampleA {

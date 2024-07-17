@@ -27,9 +27,9 @@ struct DatePickerDialogExampleA {
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
             lunar: true,
-            disappearTextStyle: { color: Color.Pink, font: { size: '22fp', weight: FontWeight.Bold } },
-            textStyle: { color: '#ff00ff00', font: { size: '18fp', weight: FontWeight.Normal } },
-            selectedTextStyle: { color: '#ff182431', font: { size: '14fp', weight: FontWeight.Regular } },
+            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
+            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
+            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
             onDateAccept: (value: Date) => {
               this.selectedDate = value
               console.info("DatePickerDialog:onDateAccept()" + value.toString())
@@ -45,9 +45,9 @@ struct DatePickerDialogExampleA {
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
             lunar: true,
-            disappearTextStyle: { color: Color.Pink, font: { size: '22fp', weight: FontWeight.Bold } },
-            textStyle: { color: '#ff00ff00', font: { size: '18fp', weight: FontWeight.Normal } },
-            selectedTextStyle: { color: '#ff182431', font: { size: '14fp', weight: FontWeight.Regular } },
+            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
+            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
+            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
             onDateAccept: (value: Date) => {
               this.selectedDate = value
               console.info("DatePickerDialog:onDateAccept()" + value.toString())
@@ -60,6 +60,6 @@ struct DatePickerDialogExampleA {
             }
           })
         })
-    }.width('100%').margin({ top: 200 })
+    }.width('100%').margin({top:200})
   }
 }

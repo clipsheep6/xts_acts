@@ -16,10 +16,8 @@
 struct CustomDialogExampleA {
   @Link inputValue: string
   controller?: CustomDialogController
-  cancel: () => void = () => {
-  }
-  confirm: () => void = () => {
-  }
+  cancel: () => void = () => {}
+  confirm: () => void = () => {}
 
   build() {
     Column() {
@@ -35,7 +33,7 @@ struct CustomDialogExampleA {
       }.margin({ bottom: 10 })
     }.borderRadius(10)
   }
-}
+  }
 
 
 @Entry
@@ -49,7 +47,6 @@ struct CustomDialogUserA {
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
   })
-
   build() {
     Column() {
       Button(this.inputValue).key('Custom_Dialog_B')

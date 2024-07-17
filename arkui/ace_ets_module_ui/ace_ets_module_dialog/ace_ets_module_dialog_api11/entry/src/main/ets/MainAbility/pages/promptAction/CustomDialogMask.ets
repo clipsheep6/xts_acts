@@ -45,7 +45,7 @@ struct CustomDialogMask {
     builder: UserDialog0100({ action: this.afterClose }),
     cancel: this.onCancel,
     maskColor: '#00ff0000'
-  });
+      });
   dialogController4: CustomDialogController = new CustomDialogController({
     builder: UserDialog0100({ action: this.afterClose }),
     cancel: this.onCancel,
@@ -57,11 +57,9 @@ struct CustomDialogMask {
     maskColor: 255
   });
 
-  afterClose() {
-  }
+  afterClose() {}
 
-  onCancel() {
-  }
+  onCancel() {}
 
   build() {
     Column() {

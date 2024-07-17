@@ -40,7 +40,7 @@ struct showActionMenuExample {
             .then(data => {
               console.info('showActionMenu success, click button: ' + data.index);
             })
-            .catch((err: Error) => {
+            .catch((err:Error) => {
               console.info('showActionMenu error: ' + err);
             })
         }).backgroundColor(0x317aff)

@@ -14,28 +14,15 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 
 export default function CustomDialogAJsunit() {
-  describe('CustomDialogAJsunit', () => {
-    beforeEach(async (done: Function) => {
+  describe('CustomDialogAJsunit', ()=> {
+    beforeEach(async  (done:Function)=> {
       console.info("CustomDialogAJsunit beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/customDialog/CustomDialogUI',
       }
       try {
@@ -56,7 +43,7 @@ export default function CustomDialogAJsunit() {
     });
 
 
-    // it('CustomDialogAJsunit_0100', 0, async (done:Function)=> {
+    // it('CustomDialogAJsunit_0100', 0, async   (done:Function)=> {
     //
     //   console.info('CustomDialogAJsunit_0100 START');
     //   let driver = await UiDriver.create()
@@ -64,14 +51,14 @@ export default function CustomDialogAJsunit() {
     //   await button.click();
     //   await CommonFunc.sleep(1000);
     //   let strJson = getInspectorByKey('Custom_Dialog_A');
-    //
-    //   console.info("[CustomDialogAJsunit_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-    //   expect(JSON.parse(strJson).$attrs.label).assertEqual("confirm");
+    //  let obj: Record<string, ESObject>  = JSON.parse(strJson);
+    //   console.info("[CustomDialogAJsunit_0100] component obj is: " + JSON.stringify(obj));
+    //   expect(obj.$attrs.label).assertEqual("confirm");
     //   console.info('[CustomDialogAJsunit_0100] END');
     //   await driver.pressBack();
     //   done();
     // });
-    it('CustomDialogAJsunit_0100', 0, async (done: Function) => {
+    it('CustomDialogAJsunit_0100', 0, async   (done:Function)=> {
 
       console.info('CustomDialogAJsunit_0200 START');
       let driver = await UiDriver.create()
@@ -79,9 +66,9 @@ export default function CustomDialogAJsunit() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('Custom_Dialog_B');
-
-      console.info("[CustomDialogAJsunit_0200] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      expect(JSON.parse(strJson).$attrs.label).assertEqual("CustomDialog按esc弹窗逐层退出");
+     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      console.info("[CustomDialogAJsunit_0200] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.label).assertEqual("CustomDialog按esc弹窗逐层退出");
       console.info('[CustomDialogAJsunit_0200] END');
       await driver.triggerKey(2070)
       await CommonFunc.sleep(1000);

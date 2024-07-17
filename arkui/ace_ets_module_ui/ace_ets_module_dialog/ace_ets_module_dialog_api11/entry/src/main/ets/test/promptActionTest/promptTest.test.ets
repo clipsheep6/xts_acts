@@ -14,28 +14,14 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
-
+import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 export default function promptTest() {
-  describe('promptTest', () => {
-    beforeEach(async (done: Function) => {
+  describe('promptTest', ()=> {
+    beforeEach(async  (done:Function)=> {
       console.info("promptTest beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/promptAction/prompt',
       }
       try {
@@ -55,14 +41,14 @@ export default function promptTest() {
       done();
     });
     /**
-     * @tc.number prompt
-     * @tc.name promptTest_0100
-     * @tc.desc api
-     * @tc.level: Level 2
+     * @tc.number    prompt
+     * @tc.name      promptTest_0100
+     * @tc.desc      api
+     * @tc.level:    Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('promptTest_0100', 0, async (done: Function) => {
+    it('promptTest_0100', 0, async   (done:Function)=> {
       console.info('promptTest_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -70,18 +56,18 @@ export default function promptTest() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson1 = getInspectorByKey('prompt_2');
-
+      let obj1:Record<string, ESObject> = JSON.parse(strJson1);
       expect(obj1.$attrs.label).assertEqual('确认');
       await CommonFunc.sleep(1000);
       let button1 = await driver.findComponent(ON.id('prompt_2'));
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('prompt_3');
-
-      console.info("[promptTest_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[promptTest_0100] component obj.$attrs is: " + JSON.stringify(JSON.parse(strJson).$attrs));
-      console.info("[promptTest_0100] text: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
-      expect(JSON.parse(strJson).$attrs.content).assertEqual('Hello World');
+     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      console.info("[promptTest_0100] component obj is: " + JSON.stringify(obj));
+      console.info("[promptTest_0100] component obj.$attrs is: " + JSON.stringify(obj.$attrs));
+      console.info("[promptTest_0100] text: " + JSON.stringify(obj.$attrs.label));
+      expect(obj.$attrs.content).assertEqual('Hello World');
       console.info('[promptTest_0100] END');
       done();
     });

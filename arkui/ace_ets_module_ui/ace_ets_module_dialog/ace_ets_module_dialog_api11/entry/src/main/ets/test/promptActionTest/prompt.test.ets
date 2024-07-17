@@ -22,7 +22,7 @@ export default function promptShowDialogJsunit() {
   describe('promptShowDialogTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/promptAction/prompt1',
       }
       try {
@@ -58,7 +58,7 @@ export default function promptShowDialogJsunit() {
           eventId: 60220,
           priority: events_emitter.EventPriority.LOW
         }
-        let callback1 = (eventData: events_emitter.EventData) => {
+        let callback1 = (eventData) => {
           console.info("testpromptShowDialog001 get event state result is: " + JSON.stringify(eventData));
           expect(eventData.data.STATUS).assertEqual(true);
 
@@ -84,7 +84,7 @@ export default function promptShowDialogJsunit() {
           eventId: 60221,
           priority: events_emitter.EventPriority.LOW
         }
-        let callback2 = (backData1: events_emitter.EventData) => {
+        let callback2 = (backData1) => {
           console.info("onRequestPopupData_0011 get event state result is: " + JSON.stringify(backData1));
           expect(backData1.data.STATUS).assertEqual(true);
 

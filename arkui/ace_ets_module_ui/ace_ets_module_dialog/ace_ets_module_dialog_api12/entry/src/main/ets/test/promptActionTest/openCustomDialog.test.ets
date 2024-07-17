@@ -14,28 +14,16 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  Driver,
-  Component,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 import window from '@ohos.window';
 
 export default function openCustomDialog() {
-  describe('openCustomDialog', () => {
-    beforeEach(async (done: Function) => {
+  describe('openCustomDialog',   ()=> {
+    beforeEach(async   (done:Function)=> {
       console.info("openCustomDialog beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/promptAction/openCustomDialog',
       }
       try {
@@ -60,7 +48,7 @@ export default function openCustomDialog() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('openCustomDialog_0100', 0, async (done: Function) => {
+    it('openCustomDialog_0100', 0, async   (done:Function)=> {
       console.info('openCustomDialog_0100 START');
       let driver = await Driver.create()
       let button = await driver.findComponent(ON.id('openCustomDialogXTS'));
@@ -69,10 +57,10 @@ export default function openCustomDialog() {
       await driver.triggerKey(2070);
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('openCustomDialogMessage');
-
-      console.info("[openCustomDialog_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[openCustomDialog_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
-      expect(JSON.parse(strJson).$attrs.content).assertEqual("openCustomDialog success");
+       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      console.info("[openCustomDialog_0100] component obj is: " + JSON.stringify(obj));
+      console.info("[openCustomDialog_0100] title: " + JSON.stringify(obj.$attrs.content));
+      expect(obj.$attrs.content).assertEqual("openCustomDialog success");
       console.info('[openCustomDialog_0100] END');
       done();
     });

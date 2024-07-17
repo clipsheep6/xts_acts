@@ -14,30 +14,18 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  Driver,
-  Component,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 import window from '@ohos.window';
-import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function CustomDialog2() {
-  describe('CustomDialog2', () => {
-    beforeEach(async (done: Function) => {
+  describe('CustomDialog2',   ()=> {
+    beforeEach(async   (done:Function)=> {
       console.info("CustomDialog2 beforeEach start");
-      let options: router.RouterOptions = {
-        url: 'MainAbility/pages/CustomDialog/CustomDialog2',
+      let options:r = {
+        uri: 'MainAbility/pages/CustomDialog/CustomDialog2',
       }
       try {
         router.clear();
@@ -61,7 +49,7 @@ export default function CustomDialog2() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('CustomDialog2_0100', 0, async (done: Function) => {
+    it('CustomDialog2_0100', 0, async   (done:Function)=> {
       console.info('CustomDialog2_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);

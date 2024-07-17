@@ -15,9 +15,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import Utils from '../../MainAbility/common/Utils';
-
-;
+import Utils from '../../MainAbility/common/Utils';;
 
 export default function textPickerJsunit() {
   describe('appInfoTest_four_13', () => {
@@ -51,7 +49,7 @@ export default function textPickerJsunit() {
       await Utils.sleep(1000);
       let strJson: string = getInspectorByKey('textPickerDialog');
       console.info("[testTextPickerDialog0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[testTextPickerDialog0100] expect(JSON.parse(strJson).$type) is: " + (JSON.parse(strJson).$type));
+      console.info("[testTextPickerDialog0100] expect(obj.$type) is: " + (JSON.parse(strJson).$type));
       console.info("[testTextPickerDialog0100] obj.$attrs.type is: " + (JSON.parse(strJson).$attrs.type));
       done();
     });
@@ -64,11 +62,11 @@ export default function textPickerJsunit() {
         done();
         return;
       }
-      const textPickerDialogOption = new textPickerDialogOption();
+      const textPickerDialogOption:ESObject = new textPickerDialogOption();
       textPickerDialogOption.defaultPickerItemHeight = 20;
       const textPickerAttribute = new TextPickerAttribute();
       textPickerAttribute.defaultPickerItemHeight = 20;
-      const textPickerOption = new TextPickerOption();
+      const textPickerOption:ESObject = new TextPickerOption();
       textPickerOption.value = "textPickerOptionTest";
       done();
     });

@@ -15,25 +15,11 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  MouseButton,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function menuItemGroupDivider() {
-  describe('menuItemGroupDivider', () => {
-    beforeEach(async (done: Function) => {
+  describe('menuItemGroupDivider',   ()=> {
+    beforeEach(async   (done:Function)=> {
       console.info("menuItemGroupDivider beforeEach start");
       try {
         router.clear();
@@ -41,9 +27,7 @@ export default function menuItemGroupDivider() {
         console.info("get menuItemGroupDivider state pages:" + JSON.stringify(pages));
         if (!("menuItemGroupDivider" == pages.name)) {
           console.info("get  menuItemGroupDivider pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({
-            url: "MainAbility/pages/Menu/menuItemGroupDivider"
-          })
+          let result = await router.pushUrl({url:"MainAbility/pages/Menu/menuItemGroupDivider"})
           await CommonFunc.sleep(2000);
           console.info("push menuItemGroupDivider page result:" + JSON.stringify(result));
         }
@@ -53,54 +37,56 @@ export default function menuItemGroupDivider() {
       console.info("menuItemGroupDivider foreEach end");
       done();
     });
-    afterEach(async () => {
+    afterEach(async   ()=> {
       await CommonFunc.sleep(1000);
       console.info("menuItemGroupDivider after each called");
     });
 
     /**
-     * @tc.number SUB_ACE_UI_COMPONENT_Common_menuItemGroupDivider_001
-     * @tc.desc menuItemGroupDivider test
-     * @tc.level Level 3
+     * @tc.number    SUB_ACE_UI_COMPONENT_Common_menuItemGroupDivider_001
+     * @tc.desc      menuItemGroupDivider test
+     * @tc.level     Level 3
      * @tc.type
      */
 
-    it('menuItemGroupDivider_001', 0, async (done: Function) => {
+    it('menuItemGroupDivider_001', 0, async   (done:Function)=> {
       console.info('[menuItemGroupDivider_001] START');
 
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('menuItemGroupDividerText');
       await CommonFunc.sleep(200);
-
-      console.info("[menuItemGroupDivider_001] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      console.info("[menuItemGroupDivider_001] component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
 
-      expect(JSON.parse(strJson).$attrs.itemGroupDivider.strokeWidth).assertEqual('50.00vp');
+      expect(obj.$attrs.itemGroupDivider.strokeWidth).assertEqual('50.00vp');
       console.info('[menuItemGroupDivider_001] END');
       done();
     });
 
     /**
-     * @tc.number SUB_ACE_UI_COMPONENT_Common_menuItemGroupDivider_002
-     * @tc.desc subMenuExpandingMode test
-     * @tc.level Level 3
+     * @tc.number    SUB_ACE_UI_COMPONENT_Common_menuItemGroupDivider_002
+     * @tc.desc      subMenuExpandingMode test
+     * @tc.level     Level 3
      * @tc.type
      */
 
-    it('menuItemGroupDivider_002', 0, async (done: Function) => {
+    it('menuItemGroupDivider_002', 0, async   (done:Function)=> {
       console.info('[menuItemGroupDivider_002] START');
 
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('menuItemGroupDividerText');
       await CommonFunc.sleep(200);
-
-      console.info("[menuItemGroupDivider_002] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      console.info("[menuItemGroupDivider_002] component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
 
-      expect(JSON.parse(strJson).$attrs.subMenuExpandingMode).assertEqual('SubMenuExpandingMode.SIDE');
+      expect(obj.$attrs.subMenuExpandingMode).assertEqual('SubMenuExpandingMode.SIDE');
       console.info('[menuItemGroupDivider_002] END');
       done();
     });
+
+
 
 
   })

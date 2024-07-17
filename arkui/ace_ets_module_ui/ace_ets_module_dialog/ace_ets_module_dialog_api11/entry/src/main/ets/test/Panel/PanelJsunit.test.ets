@@ -32,7 +32,7 @@ export default function panelJsunit() {
   describe('panelTest', () => {
 
     beforeEach(async () => {
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/Panel/Panel',
       }
       try {
@@ -41,7 +41,7 @@ export default function panelJsunit() {
         console.info("get Panel state success " + JSON.stringify(pages));
         if (!("Panel" == pages.name)) {
           console.info("get Panel state success " + JSON.stringify(pages.name));
-          let result = await router.push(options)
+          let result = await router.pushUrl(options)
           console.info("push Panel page success " + JSON.stringify(result));
         }
       } catch (err) {
@@ -63,10 +63,10 @@ export default function panelJsunit() {
       console.info('++++++++++++++++ Panel TestCase 1 START ++++++++++++++++');
       await sleep(1)
       let strJson = getInspectorByKey('panel');
-      let obj: Record<string, Object> = JSON.parse(strJson);
-      console.info("get inspector value is: " + JSON.stringify(JSON.parse(strJson)));
-      console.log(JSON.stringify(JSON.parse(strJson).$type))
-      expect(JSON.parse(strJson).$type).assertEqual('Panel')
+      let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      console.info("get inspector value is: " + JSON.stringify(obj));
+      console.log(JSON.stringify(obj.$type))
+      expect(obj.$type).assertEqual('Panel')
       console.log('Panel‘s type is ' + JSON.stringify(JSON.parse(strJson).$attrs.type))
       console.log('Panel‘s mode is ' + JSON.stringify(JSON.parse(strJson).$attrs.mode))
       console.log('Panel‘s dragBar is ' + JSON.stringify(JSON.parse(strJson).$attrs.dragBar))
@@ -91,10 +91,10 @@ export default function panelJsunit() {
       console.info('++++++++++++++++ Panel TestCase 2 START ++++++++++++++++');
       await sleep(1)
       let strJson = getInspectorByKey('panel2');
-      let obj: Record<string, Object> = JSON.parse(strJson);
-      console.info("get inspector value is: " + JSON.stringify(JSON.parse(strJson)));
-      console.log(JSON.stringify(JSON.parse(strJson).$type))
-      expect(JSON.parse(strJson).$type).assertEqual('Panel')
+      let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      console.info("get inspector value is: " + JSON.stringify(obj));
+      console.log(JSON.stringify(obj.$type))
+      expect(obj.$type).assertEqual('Panel')
       console.log('Panel‘s type is ' + JSON.stringify(JSON.parse(strJson).$attrs.type))
       console.log('Panel‘s mode is ' + JSON.stringify(JSON.parse(strJson).$attrs.mode))
       console.log('Panel‘s show is ' + JSON.stringify(JSON.parse(strJson).$attrs.show))
@@ -113,10 +113,10 @@ export default function panelJsunit() {
       console.info('++++++++++++++++ Panel TestCase 3 START ++++++++++++++++');
       await sleep(1)
       let strJson = getInspectorByKey('panel3');
-      let obj: Record<string, Object> = JSON.parse(strJson);
-      console.info("get inspector value is: " + JSON.stringify(JSON.parse(strJson)));
-      console.log(JSON.stringify(JSON.parse(strJson).$type))
-      expect(JSON.parse(strJson).$type).assertEqual('Panel')
+      let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      console.info("get inspector value is: " + JSON.stringify(obj));
+      console.log(JSON.stringify(obj.$type))
+      expect(obj.$type).assertEqual('Panel')
       console.log('Panel‘s type is ' + JSON.stringify(JSON.parse(strJson).$attrs.type))
       console.log('Panel‘s mode is ' + JSON.stringify(JSON.parse(strJson).$attrs.mode))
       console.log('Panel‘s show is ' + JSON.stringify(JSON.parse(strJson).$attrs.show))

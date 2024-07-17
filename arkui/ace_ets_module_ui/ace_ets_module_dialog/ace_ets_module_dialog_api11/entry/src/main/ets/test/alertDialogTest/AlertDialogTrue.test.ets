@@ -14,31 +14,20 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  Driver,
-  Component,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 
+
 export default function AlertDialogTrue() {
-  describe('AlertDialogTrue', () => {
-    beforeEach(async (done: Function) => {
+  describe('AlertDialogTrue', ()=> {
+    beforeEach(async  (done:Function)=> {
       console.info("AlertDialogTrue beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/AlertDialog/AlertDialogTrue',
       }
       try {
@@ -59,14 +48,14 @@ export default function AlertDialogTrue() {
     });
 
     /**
-     * @tc.number SUB_ACE_AlertDialogTrue_0100
-     * @tc.name AlertDialogTrue_0100
-     * @tc.desc set api
-     * @tc.level: Level 2
+     * @tc.number    SUB_ACE_AlertDialogTrue_0100
+     * @tc.name      AlertDialogTrue_0100
+     * @tc.desc      set api
+     * @tc.level:    Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('AlertDialogTrue_0100', 0, async (done: Function) => {
+    it('AlertDialogTrue_0100', 0, async   (done:Function)=> {
       console.info('AlertDialogTrue_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -78,10 +67,10 @@ export default function AlertDialogTrue() {
       windowClass = await window.getLastWindow(globalThis.abilityContext);
       let properties: window.WindowProperties = windowClass.getWindowProperties();
       console.info("[AlertDialogTrue_0100] title: " + JSON.stringify(properties.type));
-      expect(properties.type).assertEqual(0) //0表示应用子窗口TYPE_APP
+      expect(properties.type).assertEqual(0)//0表示应用子窗口TYPE_APP
 
       await CommonFunc.sleep(1000);
-      await driver.click(Math.round(globalThis.winLeft + vp2px(100)), Math.round(globalThis.winTop + vp2px(100)));
+      await driver.click(Math.round(globalThis.winLeft + vp2px(100)),Math.round(globalThis.winTop + vp2px(100)));
       await CommonFunc.sleep(1000);
       console.info('[AlertDialogTrue_0100] END');
       done();

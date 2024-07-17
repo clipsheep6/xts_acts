@@ -15,26 +15,13 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/common/Common';
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function ButtonStyle() {
-  describe('ButtonStyle', () => {
-    beforeEach(async (done: Function) => {
+  describe('ButtonStyle',   ()=> {
+    beforeEach(async   (done:Function)=> {
       console.info("ButtonStyle beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: "MainAbility/pages/CalendarPickerDialog/ButtonStyle",
       }
       try {
@@ -53,19 +40,19 @@ export default function ButtonStyle() {
       console.info("ButtonStyle beforeEach end");
       done();
     });
-    afterEach(async () => {
+    afterEach(async   ()=> {
       await CommonFunc.sleep(1000);
       console.info("ButtonStyle after each called");
     });
     /**
-     * @tc.number ButtonStyle_001
-     * @tc.name testBack
-     * @tc.desc Return specified page by index value
-     * @tc.level Level 3
+     * @tc.number    ButtonStyle_001
+     * @tc.name      testBack
+     * @tc.desc      Return specified page by index value
+     * @tc.level     Level 3
      * @tc.type
      * @tc.size
      */
-    it('ButtonStyle_001', 0, async (done: Function) => {
+    it('ButtonStyle_001', 0, async   (done:Function)=> {
       console.info('[ButtonStyle_001] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
@@ -73,23 +60,11 @@ export default function ButtonStyle() {
       await btn1.click();
       await CommonFunc.sleep(1000);
 
+      let obj2:Record<string, ESObject>= JSON.parse(JSON.stringify(getInspectorTree()));
       await CommonFunc.sleep(1000);
-      console.info("[ButtonStyle_001] obj2 is: " + JSON.stringify(JSON.parse(JSON.stringify(getInspectorTree()))));
-      console.info("[ButtonStyle_001] obj2.$children[1].$children[0].$children[0].$children[2].$children[0] is: " + JSON.stringify(JSON.parse(JSON.stringify(getInspectorTree()))
-        .$children[1]
-        .$children[0]
-        .$children[0]
-        .$children[2]
-        .$children[0]));
-      expect(JSON.parse(JSON.stringify(getInspectorTree()))
-        .$children[1]
-        .$children[0]
-        .$children[0]
-        .$children[2]
-        .$children[0]
-        .$attrs
-        .type)
-        .assertEqual("ButtonType.Normal");
+      console.info("[ButtonStyle_001] obj2 is: " + JSON.stringify(obj2));
+      console.info("[ButtonStyle_001] obj2.$children[1].$children[0].$children[0].$children[2].$children[0] is: " + JSON.stringify(obj2.$children[1].$children[0].$children[0].$children[2].$children[0]));
+      expect(obj2.$children[1].$children[0].$children[0].$children[2].$children[0].$attrs.type).assertEqual("ButtonType.Normal");
 
       await CommonFunc.sleep(1000);
       await driver.triggerKey(2070);

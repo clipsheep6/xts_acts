@@ -41,7 +41,7 @@ struct showDialogTrueExample {
             .then(data => {
               console.info('showDialog success, click button: ' + data.index);
             })
-            .catch((err: Error) => {
+            .catch((err:Error) => {
               console.info('showDialog error: ' + err);
             })
         }).backgroundColor(0x317aff)

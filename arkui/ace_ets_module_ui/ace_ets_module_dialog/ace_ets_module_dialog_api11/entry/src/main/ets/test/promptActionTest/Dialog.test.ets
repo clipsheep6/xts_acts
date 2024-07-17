@@ -50,7 +50,7 @@ export default function DialogTest() {
           let strJson = getInspectorByKey('ArkUX_Dialog_Visual_0060');
           console.info('ArkUX_Dialog_Visual_0060 START  :' + JSON.stringify(strJson));
           let obj: ESObject = JSON.parse(strJson);
-          console.info("ArkUX_Dialog_Visual_0060 obj is: " + JSON.stringify(JSON.parse(strJson)));
+          console.info("ArkUX_Dialog_Visual_0060 obj is: " + JSON.stringify(obj));
           let fontSize: ESObject = obj.$attrs.fontSize;
           expect(fontSize).assertEqual("20.00fp");
           console.info('ArkUX_Dialog_Visual_0060 END ');

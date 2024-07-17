@@ -19,7 +19,6 @@ struct CustomDialogTrue {
   }
   confirm: () => void = () => {
   }
-
   build() {
     Column() {
       Text('可展示在主窗口外的弹窗')
@@ -35,7 +34,6 @@ struct CustomDialogTrue {
     }
   }
 }
-
 @Entry
 @Component
 struct CustomDialogTrueExample {

@@ -14,28 +14,16 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  Driver,
-  Component,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 import window from '@ohos.window';
 
 export default function CustomDialog3() {
-  describe('CustomDialog3', () => {
-    beforeEach(async (done: Function) => {
+  describe('CustomDialog3',   ()=> {
+    beforeEach(async   (done:Function)=> {
       console.info("CustomDialog3 beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/CustomDialog/CustomDialog3',
       }
       try {
@@ -64,7 +52,7 @@ export default function CustomDialog3() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('CustomDialog3_0100', 0, async (done: Function) => {
+    it('CustomDialog3_0100', 0, async   (done:Function)=> {
       console.info('CustomDialog3_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -82,10 +70,10 @@ export default function CustomDialog3() {
       expect(properties.type).assertEqual(1)
 
       let strJson = getInspectorByKey('CustomDialog3Text');
-
-      console.info("[CustomDialog3_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[CustomDialog3_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
-      expect(JSON.parse(strJson).$attrs.content).assertEqual("reason=0");
+       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      console.info("[CustomDialog3_0100] component obj is: " + JSON.stringify(obj));
+      console.info("[CustomDialog3_0100] title: " + JSON.stringify(obj.$attrs.content));
+      expect(obj.$attrs.content).assertEqual("reason=0");
       console.info('[CustomDialog3_0100] END');
       done();
     });
@@ -95,7 +83,7 @@ export default function CustomDialog3() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('CustomDialog3_0200', 0, async (done: Function) => {
+    it('CustomDialog3_0200', 0, async   (done:Function)=> {
       console.info('CustomDialog3_0200 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -103,7 +91,7 @@ export default function CustomDialog3() {
       await button.click();
       await CommonFunc.sleep(1000);
 
-      await driver.click(Math.round(globalThis.winLeft + 200), Math.round(globalThis.winTop + 200));
+      await driver.click(Math.round(globalThis.winLeft+200), Math.round(globalThis.winTop+200));
       await CommonFunc.sleep(1000);
 
       let windowClass: window.Window | undefined = undefined;
@@ -117,10 +105,10 @@ export default function CustomDialog3() {
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('CustomDialog3Text');
-
-      console.info("[CustomDialog3_0200] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[CustomDialog3_0200] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
-      expect(JSON.parse(strJson).$attrs.content).assertEqual("CustomDialog3");
+       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      console.info("[CustomDialog3_0200] component obj is: " + JSON.stringify(obj));
+      console.info("[CustomDialog3_0200] title: " + JSON.stringify(obj.$attrs.content));
+      expect(obj.$attrs.content).assertEqual("CustomDialog3");
       console.info('[CustomDialog3_0200] END');
       done();
     });

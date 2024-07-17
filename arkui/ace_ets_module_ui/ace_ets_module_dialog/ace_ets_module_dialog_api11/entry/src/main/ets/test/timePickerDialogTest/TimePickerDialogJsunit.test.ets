@@ -14,29 +14,16 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function TimePickerDialogJsunit() {
-  describe('TimePickerDialogJsunit', () => {
-    beforeEach(async (done: Function) => {
+  describe('TimePickerDialogJsunit', ()=> {
+    beforeEach(async  (done:Function)=> {
       console.info("TimePickerDialogJsunit beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/timePickerDialog/TimePickerDialogOptions',
       }
       try {
@@ -57,17 +44,17 @@ export default function TimePickerDialogJsunit() {
     });
 
 
-    it('TimePickerDialogJsunit_0100', 0, async (done: Function) => {
+    it('TimePickerDialogJsunit_0100', 0, async   (done:Function)=> {
       console.info('TimePickerDialogJsunit_0100 START');
-      let driver = await UiDriver.create()
+	    let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('TimePickerDialog'));
       await button.click();
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('TimePickerDialog');
-
-      console.info("[TimePickerDialogJsunit_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      expect(JSON.parse(strJson).$attrs.label).assertEqual("TimePickerDialog");
+     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      console.info("[TimePickerDialogJsunit_0100] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.label).assertEqual("TimePickerDialog");
       console.info('[TimePickerDialogJsunit_0100] END');
       done();
     });

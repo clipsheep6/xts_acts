@@ -14,29 +14,16 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function TextPickerDialogJsunit() {
-  describe('TextPickerDialogJsunit', () => {
-    beforeEach(async (done: Function) => {
+  describe('TextPickerDialogJsunit', ()=> {
+    beforeEach(async  (done:Function)=> {
       console.info("TextPickerDialogJsunit beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/textPickerDialog/TextPickerDialogOptions',
       }
       try {
@@ -57,17 +44,17 @@ export default function TextPickerDialogJsunit() {
     });
 
 
-    it('TextPickerDialogJsunit_0100', 0, async (done: Function) => {
+    it('TextPickerDialogJsunit_0100', 0, async   (done:Function)=> {
       console.info('TextPickerDialogJsunit_0100 START');
-      let driver = await UiDriver.create()
+	    let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('TextPickerDialog'));
       await button.click();
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('TextPickerDialog');
-
-      console.info("[TextPickerDialogJsunit_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      expect(JSON.parse(strJson).$attrs.label).assertEqual("TextPickerDialog");
+     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      console.info("[TextPickerDialogJsunit_0100] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.label).assertEqual("TextPickerDialog");
       console.info('[TextPickerDialogJsunit_0100] END');
       done();
     });

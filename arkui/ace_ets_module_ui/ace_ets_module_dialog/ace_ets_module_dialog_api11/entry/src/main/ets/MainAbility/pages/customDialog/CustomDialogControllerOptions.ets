@@ -18,6 +18,7 @@
 struct CustomDialogExampleOptions {
   @Link textValue: string
   @Link inputValue: string
+  
   @State widthSize: number = 250
   @State heightSize: number = 100
   private flag: boolean = true
@@ -37,11 +38,11 @@ struct CustomDialogExampleOptions {
             this.widthSize = 150
             this.heightSize = 60
             this.flag = false
-          } else {
+            } else {
             this.widthSize = 250
             this.heightSize = 100
-          }
-        })
+            }
+          })
 
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
@@ -57,7 +58,6 @@ struct CustomDialogExampleOptions {
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }
-
     // dialog默认的borderRadius为24vp，如果需要使用border属性，请和borderRadius属性一起使用。
   }
 }
@@ -74,24 +74,24 @@ struct CustomDialogUser {
       textValue: $textValue,
       inputValue: $inputValue,
     }),
-    openAnimation: {
-      duration: 2000,
-      iterations: 3,
-      onFinish: () => {
-        console.info('openAnimation play end')
-      }
-    },
-    closeAnimation: {
-      duration: 2000,
-      iterations: 3,
-      onFinish: () => {
-        console.info('closeAnimation play end')
-      }
-    },
+	  openAnimation:{
+		duration: 2000,
+		iterations: 3,
+		onFinish: () => {
+		  console.info('openAnimation play end')
+		}
+	  },
+	  closeAnimation:{
+		duration: 2000,
+		iterations: 3,
+		onFinish: () => {
+		  console.info('closeAnimation play end')
+		}
+	  },
     cancel: this.existApp,
     alignment: DialogAlignment.Top,
     offset: { dx: 10, dy: 100 },
-    maskRect: { x: 0, y: 100, width: '100%', height: '80%' },
+    maskRect: { x: 0, y: 100, width: '100%', height: '80%'  },
     cornerRadius: "5vp",
     gridCount: 4,
     customStyle: false
@@ -123,7 +123,7 @@ struct CustomDialogUser {
             this.dialogController.open()
           }
         })
-        .backgroundColor(0x317aff)
+		.backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
   }
 }

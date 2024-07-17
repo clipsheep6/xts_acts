@@ -18,13 +18,11 @@ struct PopupExampleA {
   @State customPopup: boolean = false
 
   // popup构造器定义弹框内容
-  @Builder
-  popupBuilder() {
+  @Builder popupBuilder() {
     Row({ space: 2 }) {
       Text('Custom Popup').fontSize(10)
     }.width(100).height(50).padding(5)
   }
-
   build() {
     Flex({ direction: FlexDirection.Column }) {
       // CustomPopupOptions 类型设置弹框内容
@@ -37,6 +35,6 @@ struct PopupExampleA {
         popupColor: Color.Yellow,
         enableArrow: true,
       })
-    }.width('100%').padding({ top: 200 })
+    }.width('100%').padding({ top: 200})
   }
 }

@@ -14,28 +14,16 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  Driver,
-  Component,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 import window from '@ohos.window';
 
 export default function openCustomDialog1() {
-  describe('openCustomDialog1', () => {
-    beforeEach(async (done: Function) => {
+  describe('openCustomDialog1',   ()=> {
+    beforeEach(async   (done:Function)=> {
       console.info("openCustomDialog1 beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/openCustomDialog/openCustomDialog1',
       }
       try {
@@ -64,7 +52,7 @@ export default function openCustomDialog1() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('openCustomDialog1_0100', 0, async (done: Function) => {
+    it('openCustomDialog1_0100', 0, async   (done:Function)=> {
       console.info('openCustomDialog1_0100 START');
       let driver = await Driver.create()
       let button = await driver.findComponent(ON.id('openCustomDialog1'));
@@ -79,10 +67,10 @@ export default function openCustomDialog1() {
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('openCustomDialog1');
-
-      console.info("[openCustomDialog1_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[openCustomDialog1_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
-      expect(JSON.parse(strJson).$attrs.label).assertEqual("reason=0");
+       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      console.info("[openCustomDialog1_0100] component obj is: " + JSON.stringify(obj));
+      console.info("[openCustomDialog1_0100] title: " + JSON.stringify(obj.$attrs.label));
+      expect(obj.$attrs.label).assertEqual("reason=0");
       console.info('[openCustomDialog1_0100] END');
       done();
     });
@@ -92,14 +80,14 @@ export default function openCustomDialog1() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('openCustomDialog1_0200', 0, async (done: Function) => {
+    it('openCustomDialog1_0200', 0, async   (done:Function)=> {
       console.info('openCustomDialog1_0200 START');
       let driver = await Driver.create()
       let button = await driver.findComponent(ON.id('openCustomDialog1'));
       await button.click();
       await CommonFunc.sleep(1000);
 
-      await driver.click(Math.round(globalThis.winLeft + 200), Math.round(globalThis.winTop + 200));
+      await driver.click(Math.round(globalThis.winLeft+200), Math.round(globalThis.winTop+200));
       await CommonFunc.sleep(1000);
 
       let button1 = await driver.findComponent(ON.text('确认'));
@@ -107,10 +95,10 @@ export default function openCustomDialog1() {
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('openCustomDialog1');
-
-      console.info("[openCustomDialog1_0200] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[openCustomDialog1_0200] title: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
-      expect(JSON.parse(strJson).$attrs.label).assertEqual("reason=1");
+       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      console.info("[openCustomDialog1_0200] component obj is: " + JSON.stringify(obj));
+      console.info("[openCustomDialog1_0200] title: " + JSON.stringify(obj.$attrs.label));
+      expect(obj.$attrs.label).assertEqual("reason=1");
       console.info('[openCustomDialog1_0200] END');
       done();
     });

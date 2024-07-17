@@ -25,8 +25,7 @@ struct PopupExample {
   @State enableArrow: boolean = true
   @State placementOnTop: boolean = false
 
-  @Builder
-  popupBuilder() {
+  @Builder popupBuilder() {
     Row({ space: 2 }) {
       Image($rawfile('ic_health_heart.png')).width(24).height(24).margin({ left: -5 }).key('image')
       Text('Custom Popup').fontSize(12).key('text')
@@ -40,12 +39,12 @@ struct PopupExample {
         .onClick(() => {
           this.noHandlePopup = !this.noHandlePopup
           try {
-            let backData: events_emitter.EventData = {
+            var backData = {
               data: {
                 "placementOnTop": this.placementOnTop,
               }
             }
-            let backEvent: events_emitter.InnerEvent = {
+            var backEvent = {
               eventId: 65,
               priority: events_emitter.EventPriority.LOW
             }
@@ -71,13 +70,13 @@ struct PopupExample {
         .key('button1')
         .onClick(() => {
           try {
-            let backData: events_emitter.EventData = {
+            var backData = {
               data: {
                 "maskColor": this.maskColor,
                 "enableArrow": this.enableArrow
               }
             }
-            let backEvent: events_emitter.InnerEvent = {
+            var backEvent = {
               eventId: 66,
               priority: events_emitter.EventPriority.LOW
             }
@@ -94,13 +93,13 @@ struct PopupExample {
         .onClick(() => {
           this.customPopup = !this.customPopup
           try {
-            let backData: events_emitter.EventData = {
+            var backData = {
               data: {
                 "maskColor": this.maskColor,
                 "enableArrow": this.enableArrow
               }
             }
-            let backEvent: events_emitter.InnerEvent = {
+            var backEvent = {
               eventId: 67,
               priority: events_emitter.EventPriority.LOW
             }
@@ -128,14 +127,14 @@ struct PopupExample {
 
   onPageShow() {
     console.info('customPopupOption page show called');
-    let stateChangeEvent: events_emitter.InnerEvent = {
+    var stateChangeEvent = {
       eventId: 68,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack)
   }
 
-  private stateChangCallBack = (eventData: events_emitter.EventData) => {
+  private stateChangCallBack = (eventData) => {
     if (eventData != null) {
       console.info("customPopupOption page state change called:" + JSON.stringify(eventData));
       if (eventData.data.enableArrow != null) {

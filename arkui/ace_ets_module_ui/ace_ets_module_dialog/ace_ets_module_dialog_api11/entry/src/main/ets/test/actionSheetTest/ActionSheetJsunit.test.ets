@@ -14,29 +14,16 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {
-  UiComponent,
-  UiDriver,
-  Component,
-  Driver,
-  UiWindow,
-  ON,
-  BY,
-  MatchPattern,
-  DisplayRotation,
-  ResizeDirection,
-  WindowMode,
-  PointerMatrix
-} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function ActionSheetJsunit() {
-  describe('ActionSheetJsunit', () => {
-    beforeEach(async (don: Function) => {
+  describe('ActionSheetJsunit', ()=> {
+    beforeEach(async  (done:Function)=> {
       console.info("ActionSheetJsunit beforeEach start");
-      let options: router.RouterOptions = {
+      let options:router.RouterOptions = {
         url: 'MainAbility/pages/actionSheet/ActionSheetOptions',
       }
       try {
@@ -57,21 +44,21 @@ export default function ActionSheetJsunit() {
     });
 
 
-    it('ActionSheetJsunit_0100', 0, async (done: Function) => {
+    it('ActionSheetJsunit_0100', 0, async   (done:Function)=> {
 
-
+     
       console.info('ActionSheetJsunit_0100 START');
-      let driver = await UiDriver.create()
+	  let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('ActionSheet'));
       await button.click();
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('ActionSheet');
-
-      console.info("[ActionSheetJsunit_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
-      expect(JSON.parse(strJson).$attrs.label).assertEqual("Click to Show ActionSheet");
+      let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      console.info("[ActionSheetJsunit_0100] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.label).assertEqual("Click to Show ActionSheet");
       console.info('[ActionSheetJsunit_0100] END');
-      await driver.pressBack();
+	  await driver.pressBack();
       done();
     });
 
