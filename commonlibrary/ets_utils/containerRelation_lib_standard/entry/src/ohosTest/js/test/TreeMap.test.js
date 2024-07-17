@@ -77,14 +77,14 @@ describe("TreeMapTest", function () {
         this.name = name;
       }
     }
-    let treeMap = new TreeMap((a, b) => {return a > b});
+    let treeMap = new TreeMap((a, b) => {return a.id > b.id});
     let personone = new Person(1,'张三');
     let persontwo = new Person(3,'李四');
     let personsec = new Person(2,'王五');
-	commap.set(personone,"1")
-    commap.set(persontwo,"1")
-    commap.set(personsec,"1")
-    expect(commap.getFirstKey().id).assertEqual(3);
+	treeMap.set(personone,"1")
+    treeMap.set(persontwo,"1")
+    treeMap.set(personsec,"1")
+    expect(treeMap.getFirstKey().id).assertEqual(3);
   });
 
   /**

@@ -71,7 +71,7 @@ describe("TreeSetTest", function () {
    * @tc.level: Level 2
    */
   it("testConstructor003", 0, function () {
-    let treeSet = new TreeSet((a, b) => {return a > b});
+    let treeSet = new TreeSet((a, b) => {return a.id > b.id});
     class Person {
       id = 0;
       name = '';
@@ -86,7 +86,7 @@ describe("TreeSetTest", function () {
     treeSet.add(personone);
     treeSet.add(persontwo);
     treeSet.add(personsec);
-    expect(commap.getFirstValue().id).assertEqual(3);
+    expect(treeSet.getFirstValue().id).assertEqual(3);
   });
 
   /**
