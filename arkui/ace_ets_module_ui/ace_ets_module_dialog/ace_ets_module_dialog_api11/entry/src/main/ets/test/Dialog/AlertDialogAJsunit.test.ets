@@ -14,15 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 
 export default function AlertDialogAJsunit() {
-  describe('AlertDialogAJsunit', ()=> {
-    beforeEach(async  (done:Function)=> {
+  describe('AlertDialogAJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("AlertDialogAJsunit beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/AlertDialog/AlertDialogUI',
       }
       try {
@@ -43,7 +56,7 @@ export default function AlertDialogAJsunit() {
     });
 
 
-    it('AlertDialogAJsunit_0100', 0, async   (done:Function)=> {
+    it('AlertDialogAJsunit_0100', 0, async (done: Function) => {
 
       console.info('AlertDialogAJsunit_0100 START');
       let driver = await UiDriver.create()
@@ -51,7 +64,7 @@ export default function AlertDialogAJsunit() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('Alert_Dialog_A');
-     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[AlertDialogAJsunit_0100] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual("AlertDialog按esc弹窗逐层退出");
       console.info('[AlertDialogAJsunit_0100] END');

@@ -16,6 +16,7 @@
 @Component
 struct CalendarPickerDialogExample {
   private selectedDate: Date = new Date()
+
   build() {
     Column() {
       Button("Show CalendarPicker Dialog")

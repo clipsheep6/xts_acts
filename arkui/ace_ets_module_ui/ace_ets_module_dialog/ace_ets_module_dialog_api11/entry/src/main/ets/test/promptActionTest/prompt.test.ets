@@ -22,7 +22,7 @@ export default function promptShowDialogJsunit() {
   describe('promptShowDialogTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/promptAction/prompt1',
       }
       try {

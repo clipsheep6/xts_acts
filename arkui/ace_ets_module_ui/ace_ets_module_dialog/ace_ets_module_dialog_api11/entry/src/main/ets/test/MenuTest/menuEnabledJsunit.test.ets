@@ -14,16 +14,29 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function menuEnabledJsunit() {
-  describe('menuEnabledJsunit', ()=> {
-    beforeEach(async  (done:Function)=> {
+  describe('menuEnabledJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("menuEnabledJsunit beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/Menu/menuEnabled',
       }
       try {
@@ -43,13 +56,13 @@ export default function menuEnabledJsunit() {
       done();
     });
 
-    it('menuEnabledJsunit_0100', 0, async   (done:Function)=> {
+    it('menuEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('menuEnabledJsunit_0100 START');
       let driver = await UiDriver.create()
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('bindMenuEnd');
-     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[menuEnabledJsunit_0100] component obj is: " + JSON.stringify(obj));
       console.info("[menuEnabledJsunit_0100] enabled: " + JSON.stringify(obj.$attrs.enabled));
       expect(obj.$attrs.enabled).assertEqual(false);
@@ -57,7 +70,7 @@ export default function menuEnabledJsunit() {
       done();
     });
 
-    it('menuEnabledJsunit_0200', 0, async   (done:Function)=> {
+    it('menuEnabledJsunit_0200', 0, async (done: Function) => {
 
       console.info('menuEnabledJsunit_0200 START');
       let driver = await UiDriver.create()
@@ -67,13 +80,13 @@ export default function menuEnabledJsunit() {
       let menuEnabled = await driver.findComponent(BY.key('menuEnabled'));
       await menuEnabled.click();
       await CommonFunc.sleep(1000);
-      await driver.click(Math.round(globalThis.winLeft + vp2px(100)),Math.round(globalThis.winTop + vp2px(100)));
+      await driver.click(Math.round(globalThis.winLeft + vp2px(100)), Math.round(globalThis.winTop + vp2px(100)));
       await CommonFunc.sleep(1000);
       let change = await driver.findComponent(BY.key('change'));
       await change.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('text');
-     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[menuEnabledJsunit_0200] component obj is: " + JSON.stringify(obj));
       console.info("[menuEnabledJsunit_0200] enabled: " + JSON.stringify(obj.$attrs.enabled));
       expect(obj.$attrs.content).assertEqual('enabled');

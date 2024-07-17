@@ -14,16 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 import window from '@ohos.window';
 
 export default function AlertDialog3() {
-  describe('AlertDialog3',   ()=> {
-    beforeEach(async   (done:Function)=> {
+  describe('AlertDialog3', () => {
+    beforeEach(async (done: Function) => {
       console.info("AlertDialog3 beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/AlertDialog/AlertDialog3',
       }
       try {
@@ -52,7 +64,7 @@ export default function AlertDialog3() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('AlertDialog3_0100', 0, async   (done:Function)=> {
+    it('AlertDialog3_0100', 0, async (done: Function) => {
       console.info('AlertDialog3_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -70,7 +82,7 @@ export default function AlertDialog3() {
       expect(properties.type).assertEqual(1)
 
       let strJson = getInspectorByKey('AlertDialog3');
-       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[AlertDialog3_0100] component obj is: " + JSON.stringify(obj));
       console.info("[AlertDialog3_0100] title: " + JSON.stringify(obj.$attrs.label));
       expect(obj.$attrs.label).assertEqual("reason=0");
@@ -83,7 +95,7 @@ export default function AlertDialog3() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('AlertDialog3_0200', 0, async   (done:Function)=> {
+    it('AlertDialog3_0200', 0, async (done: Function) => {
       console.info('AlertDialog3_0200 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -91,7 +103,7 @@ export default function AlertDialog3() {
       await button.click();
       await CommonFunc.sleep(1000);
 
-      await driver.click(Math.round(globalThis.winLeft+200), Math.round(globalThis.winTop+200));
+      await driver.click(Math.round(globalThis.winLeft + 200), Math.round(globalThis.winTop + 200));
       await CommonFunc.sleep(1000);
 
       let windowClass: window.Window | undefined = undefined;
@@ -105,7 +117,7 @@ export default function AlertDialog3() {
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('AlertDialog3');
-       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[AlertDialog3_0200] component obj is: " + JSON.stringify(obj));
       console.info("[AlertDialog3_0200] title: " + JSON.stringify(obj.$attrs.label));
       expect(obj.$attrs.label).assertEqual("AlertDialog3");

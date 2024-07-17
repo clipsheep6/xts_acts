@@ -25,7 +25,8 @@ struct PopupExample {
   @State enableArrow: boolean = true
   @State placementOnTop: boolean = false
 
-  @Builder popupBuilder() {
+  @Builder
+  popupBuilder() {
     Row({ space: 2 }) {
       Image($rawfile('ic_health_heart.png')).width(24).height(24).margin({ left: -5 }).key('image')
       Text('Custom Popup').fontSize(12).key('text')

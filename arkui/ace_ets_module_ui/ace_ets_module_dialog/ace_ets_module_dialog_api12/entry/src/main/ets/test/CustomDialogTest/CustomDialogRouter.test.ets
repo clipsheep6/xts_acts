@@ -14,14 +14,16 @@
  */
 import { describe, beforeEach, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {Driver, ON} from '@ohos.UiTest';
-import CommonFunc from '../../MainAbility/utils/Common';;
+import { Driver, ON } from '@ohos.UiTest';
+import CommonFunc from '../../MainAbility/utils/Common';
+
+;
 
 export default function CustomDialogRouter() {
-  describe('CustomDialogRouter',   ()=> {
-    beforeEach(async   (done:Function)=> {
+  describe('CustomDialogRouter', () => {
+    beforeEach(async (done: Function) => {
       console.info("CustomDialogRouter beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/CustomDialog/CustomDialogRouter',
       }
       try {
@@ -42,14 +44,14 @@ export default function CustomDialogRouter() {
     });
 
     /**
-     * @tc.number    SUB_ACE_CustomDialogRouter_0100
-     * @tc.name      CustomDialogRouter_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_CustomDialogRouter_0100
+     * @tc.name CustomDialogRouter_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('CustomDialogRouter_0100', 0, async   (done:Function)=> {
+    it('CustomDialogRouter_0100', 0, async (done: Function) => {
       console.info('CustomDialogRouter_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -64,7 +66,7 @@ export default function CustomDialogRouter() {
 
       // api 12, dialog is not closed, confirmButton is exist
       let strJson = getInspectorByKey('CustomDialogConfirm');
-       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[CustomDialogRouter_0100] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual("Confirm");
       await CommonFunc.sleep(1000);

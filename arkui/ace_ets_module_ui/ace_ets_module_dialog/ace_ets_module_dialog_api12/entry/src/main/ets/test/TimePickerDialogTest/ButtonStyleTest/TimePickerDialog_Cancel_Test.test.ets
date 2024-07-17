@@ -15,13 +15,26 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../../MainAbility/common/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix } from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function TimePickerDialog_Cancel_Test() {
-  describe('TimePickerDialog_Cancel_Test',   ()=> {
-    beforeEach(async   (done:Function)=> {
+  describe('TimePickerDialog_Cancel_Test', () => {
+    beforeEach(async (done: Function) => {
       console.info("TimePickerDialog_Cancel_Test beforeEach start");
-     let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: "MainAbility/pages/TimePickerDialog/ButtonStyle/Time_cancel",
       }
       try {
@@ -40,20 +53,20 @@ export default function TimePickerDialog_Cancel_Test() {
       console.info("TimePickerDialog_Cancel_Test beforeEach end");
       done();
     });
-    afterEach(async   ()=> {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("TimePickerDialog_Cancel_Test after each called");
     });
 
     /**
-     * @tc.number    TimePickerDialog_Cancel_Test
-     * @tc.name      testBack
-     * @tc.desc      Return specified page by index value
-     * @tc.level     Level 3
+     * @tc.number TimePickerDialog_Cancel_Test
+     * @tc.name testBack
+     * @tc.desc Return specified page by index value
+     * @tc.level Level 3
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('TimePickerDialog_Cancel_Test_001', 0, async   (done:Function)=> {
+    it('TimePickerDialog_Cancel_Test_001', 0, async (done: Function) => {
       console.info('[TimePickerDialog_Cancel_Test_001] START');
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();

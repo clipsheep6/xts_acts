@@ -14,15 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 
 export default function ActionsheetDialogAJsunit() {
-  describe('ActionsheetDialogAJsunit', ()=> {
-    beforeEach(async  (done:Function)=> {
+  describe('ActionsheetDialogAJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("ActionsheetDialogAJsunit beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/actionSheet/ActionsheetDialog',
       }
       try {
@@ -43,7 +56,7 @@ export default function ActionsheetDialogAJsunit() {
     });
 
 
-    it('ActionsheetDialogAJsunit_0100', 0, async   (done:Function)=> {
+    it('ActionsheetDialogAJsunit_0100', 0, async (done: Function) => {
 
       console.info('ActionsheetDialogAJsunit_0100 START');
       let driver = await UiDriver.create()
@@ -51,7 +64,7 @@ export default function ActionsheetDialogAJsunit() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('Actionsheet_dialog_A');
-     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[ActionsheetDialogAJsunit_0100] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual("ActionSheet按esc弹窗逐层退出");
       console.info('[ActionsheetDialogAJsunit_0100] END');

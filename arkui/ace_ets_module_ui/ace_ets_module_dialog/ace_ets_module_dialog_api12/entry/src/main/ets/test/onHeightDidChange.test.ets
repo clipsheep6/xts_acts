@@ -13,16 +13,29 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import router from '@ohos.router';
 import CommonFunc from '../MainAbility/utils/Common';
 
 export default function onHeightDidChange() {
 
-  describe('onHeightDidChange',   ()=> {
-    beforeEach(async   (done:Function)=> {
-      let options:router.RouterOptions = {
+  describe('onHeightDidChange', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/onHeightDidChange',
       }
       try {
@@ -42,22 +55,22 @@ export default function onHeightDidChange() {
       done();
     });
 
-    afterEach(async   ()=> {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("onHeightDidChange after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_BASIC_ETS_API_0100
-     * @tc.name      testGetImageAttr010
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASIC_ETS_API_0100
+     * @tc.name testGetImageAttr010
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
 
 
-    it('onHeightDidChange_0100', 0, async   (done:Function)=> {
+    it('onHeightDidChange_0100', 0, async (done: Function) => {
       console.info('onHeightDidChange_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -70,7 +83,7 @@ export default function onHeightDidChange() {
       let button3 = await driver.findComponent(ON.id('chaKan'));
       await button3.click();
       let strJson = getInspectorByKey('chaKan');
-       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       expect(obj.$attrs.label).assertEqual('750');
       await CommonFunc.sleep(1000);
       let button4 = await driver.findComponent(ON.id('closeModal1'));
@@ -79,9 +92,6 @@ export default function onHeightDidChange() {
       console.info('[onHeightDidChange_0100] END');
       done();
     });
-
-
-
 
 
   })

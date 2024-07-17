@@ -14,15 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 export default function DialogJsunit() {
-  describe('DialogJsunit', ()=> {
-    beforeEach(async  (done:Function)=> {
+  describe('DialogJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("DialogJsunit beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/AlertDialog/DialogPage',
       }
       try {
@@ -41,7 +54,7 @@ export default function DialogJsunit() {
       }
       done();
     });
-    it('DialogJsunit_0100', 0, async   (done:Function)=> {
+    it('DialogJsunit_0100', 0, async (done: Function) => {
 
       console.info('[DialogJsunit_0100] START');
       await CommonFunc.sleep(1000);
@@ -51,7 +64,7 @@ export default function DialogJsunit() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('buttonDialogPage');
-     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info('[DialogJsunit_0100] button component obj is: ' + obj.$attrs.label);
       expect(obj.$attrs.label).assertEqual('threeButtonHor:succ');
       await driver.pressBack();
@@ -61,7 +74,7 @@ export default function DialogJsunit() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson1 = getInspectorByKey('button1');
-      let obj1:Record<string, ESObject> = JSON.parse(strJson1);
+      let obj1: Record<string, ESObject> = JSON.parse(strJson1);
       console.info('[DialogJsunit_0100] button1 component obj is: ' + obj1.$attrs.label);
       expect(obj1.$attrs.label).assertEqual('threeButtonVer:succ');
       await driver.pressBack();
@@ -71,7 +84,7 @@ export default function DialogJsunit() {
       await button2.click();
       await CommonFunc.sleep(1000);
       let strJson2 = getInspectorByKey('button2');
-      let obj2:Record<string, ESObject> = JSON.parse(strJson2);
+      let obj2: Record<string, ESObject> = JSON.parse(strJson2);
       console.info('[DialogJsunit_0100] button2 component obj is: ' + obj2.$attrs.label);
       expect(obj2.$attrs.label).assertEqual('threeButtonAuto:succ');
       console.info('[DialogJsunit_0100] END');

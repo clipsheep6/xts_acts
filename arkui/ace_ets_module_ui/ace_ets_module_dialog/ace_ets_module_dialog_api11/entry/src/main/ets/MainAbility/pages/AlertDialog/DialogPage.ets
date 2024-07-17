@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import {MessageManager,Callback} from '../../utils/MessageManager';
+import { MessageManager, Callback } from '../../utils/MessageManager';
+
 @Entry
 @Component
 struct DialogPage {
@@ -72,7 +73,7 @@ struct DialogPage {
         title: this.title,
         message: this.message,
         autoCancel: this.autoCancel,
-        buttonDirection:DialogButtonDirection.HORIZONTAL,
+        buttonDirection: DialogButtonDirection.HORIZONTAL,
 
         buttons: [
           {
@@ -109,13 +110,14 @@ struct DialogPage {
       }
     )
   }
+
   private showThreeButtonVERTICAL() {
     AlertDialog.show(
       {
         title: this.title,
         message: this.message,
         autoCancel: this.autoCancel,
-        buttonDirection:DialogButtonDirection.VERTICAL,
+        buttonDirection: DialogButtonDirection.VERTICAL,
 
         buttons: [
           {
@@ -160,7 +162,7 @@ struct DialogPage {
         title: this.title,
         message: this.message,
         autoCancel: this.autoCancel,
-        buttonDirection:DialogButtonDirection.AUTO,
+        buttonDirection: DialogButtonDirection.AUTO,
         buttons: [
           {
             value: this.buttonName,

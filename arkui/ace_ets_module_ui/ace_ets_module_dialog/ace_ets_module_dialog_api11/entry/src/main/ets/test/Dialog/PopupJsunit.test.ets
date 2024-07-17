@@ -14,15 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 
 export default function PopupAJsunit() {
-  describe('PopupAJsunit', ()=> {
-    beforeEach(async  (done:Function)=> {
+  describe('PopupAJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("PopupAJsunit beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/promptAction/Popup',
       }
       try {
@@ -43,7 +56,7 @@ export default function PopupAJsunit() {
     });
 
 
-    it('PopupAJsunit_0100', 0, async   (done:Function)=> {
+    it('PopupAJsunit_0100', 0, async (done: Function) => {
 
       console.info('PopupAJsunit_0100 START');
       let driver = await UiDriver.create()
@@ -51,7 +64,7 @@ export default function PopupAJsunit() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('Popup_dialog_A');
-     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[PopupAJsunit_0100] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual("Popup按esc逐层退出");
       console.info('[PopupAJsunit_0100] END');

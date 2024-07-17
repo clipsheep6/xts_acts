@@ -12,17 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import CommonFunc
-  from './Common';
+import CommonFunc from './Common';
 import RectValue from './Rect'
-export default class Utils {
-  static rect_left:number;
-  static rect_top:number;
-  static rect_right:number;
-  static rect_bottom:number;
-  static rect_value:number;
 
-  static sleep(time:number) {
+export default class Utils {
+  static rect_left: number;
+  static rect_top: number;
+  static rect_right: number;
+  static rect_bottom: number;
+  static rect_value: number;
+
+  static sleep(time: number) {
     return new Promise((resolve: (value: string) => void) => {
       setTimeout(() => {
         resolve("ok")
@@ -32,11 +32,11 @@ export default class Utils {
     })
   }
 
-  static getComponentRect(key:string) :RectValue{
+  static getComponentRect(key: string): RectValue {
     let strJson = getInspectorByKey(key);
-    let obj:Record<string, ESObject>=JSON.parse(strJson)
+    let obj: Record<string, ESObject> = JSON.parse(strJson)
     console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(JSON.parse(strJson)));
-    let rectInfo:Record<string, ESObject> = JSON.parse('[' + obj.$rect + ']')
+    let rectInfo: Record<string, ESObject> = JSON.parse('[' + obj.$rect + ']')
     console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
     CommonFunc.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
     CommonFunc.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
@@ -47,21 +47,21 @@ export default class Utils {
     }
   }
 
-  static async swipe(downX:number, downY:number, upX:number, upY:number, steps:number) {
+  static async swipe(downX: number, downY: number, upX: number, upY: number, steps: number) {
     console.info('start to swipe')
-    Utils.drags(downX , downY , upX , upY , steps , false)
+    Utils.drags(downX, downY, upX, upY, steps, false)
   }
 
-  static async drag(downX:number, downY:number, upX:number, upY:number, steps:number) {
+  static async drag(downX: number, downY: number, upX: number, upY: number, steps: number) {
     console.info('start to drag')
-    Utils.drags(downX , downY , upX , upY , steps , false)
+    Utils.drags(downX, downY, upX, upY, steps, false)
   }
 
-  static async drags(downX:number, downY:number, upX:number, upY:number, steps:number, drag:boolean) {
-    let xStep:number;
-    let yStep:number;
-    let swipeSteps:number;
-    let ret:boolean;
+  static async drags(downX: number, downY: number, upX: number, upY: number, steps: number, drag: boolean) {
+    let xStep: number;
+    let yStep: number;
+    let swipeSteps: number;
+    let ret: boolean;
     xStep = 0;
     yStep = 0;
     ret = false;
@@ -72,7 +72,7 @@ export default class Utils {
     xStep = (upX - downX) / swipeSteps;
     yStep = (upY - downY) / swipeSteps;
     console.info('move step is: ' + 'xStep: ' + xStep + '    yStep: ' + yStep)
-    let downPoint:  ESObject = {
+    let downPoint: TouchObject = {
       id: 1,
       x: downX,
       y: downY,
@@ -85,7 +85,7 @@ export default class Utils {
       await Utils.sleep(500)
     }
     for (let i = 1; i <= swipeSteps; i++) {
-      let movePoint:  ESObject = {
+      let movePoint: TouchObject = {
         id: 1,
         x: downX + (xStep * i),
         y: downY + (yStep * i),
@@ -102,7 +102,7 @@ export default class Utils {
     if (drag) {
       await Utils.sleep(100)
     }
-    let upPoint: ESObject = {
+    let upPoint: TouchObject = {
       id: 1,
       x: upX,
       y: upY,

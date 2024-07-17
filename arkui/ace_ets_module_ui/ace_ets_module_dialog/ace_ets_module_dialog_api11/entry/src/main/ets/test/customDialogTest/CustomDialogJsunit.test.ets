@@ -14,16 +14,29 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function CustomDialogJsunit() {
-  describe('CustomDialogJsunit', ()=> {
-    beforeEach(async  (done:Function)=> {
+  describe('CustomDialogJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("CustomDialogJsunit beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/customDialog/CustomDialogControllerOptions',
       }
       try {
@@ -44,19 +57,19 @@ export default function CustomDialogJsunit() {
     });
 
 
-    it('CustomDialogJsunit_0100', 0, async   (done:Function)=> {
+    it('CustomDialogJsunit_0100', 0, async (done: Function) => {
 
       console.info('CustomDialogJsunit_0100 START');
-	  let driver = await UiDriver.create()
+      let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('CustomDialog'));
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('CustomDialog');
-     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[CustomDialogJsunit_0100] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual("click me");
       console.info('[CustomDialogJsunit_0100] END');
-	    await driver.pressBack();
+      await driver.pressBack();
       await CommonFunc.sleep(3000);
       done();
     });

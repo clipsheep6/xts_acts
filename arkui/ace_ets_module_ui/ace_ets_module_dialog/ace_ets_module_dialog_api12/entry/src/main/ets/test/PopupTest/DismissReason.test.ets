@@ -14,15 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/common/Common';
 
 
 export default function DismissReasonTest() {
-  describe('DismissReasonTest',   ()=> {
-    beforeEach(async   (done:Function)=> {
+  describe('DismissReasonTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("DismissReasonTest beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: "MainAbility/pages/Popup/DismissReason",
       }
       try {
@@ -43,14 +56,14 @@ export default function DismissReasonTest() {
     });
 
     /**
-     * @tc.number    DismissReasonTest_0010
-     * @tc.name      DismissReasonTest_0010
-     * @tc.desc      popup: DismissReason: CLOSE_BUTTON
-     * @tc.level:    Level 2
+     * @tc.number DismissReasonTest_0010
+     * @tc.name DismissReasonTest_0010
+     * @tc.desc popup: DismissReason: CLOSE_BUTTON
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('DismissReasonTest_0010', 0, async   (done:Function)=> {
+    it('DismissReasonTest_0010', 0, async (done: Function) => {
       console.info('DismissReasonTest_0010 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -60,7 +73,7 @@ export default function DismissReasonTest() {
       await driver.pressBack()
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('DismissReason_Button');
-       let obj:Record<string, ESObject>= JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[DismissReasonTest_0010] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual('DismissReason succ');
       console.info('[DismissReasonTest_0010] END');

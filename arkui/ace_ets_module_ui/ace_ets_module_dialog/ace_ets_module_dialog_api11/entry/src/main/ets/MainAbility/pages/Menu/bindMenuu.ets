@@ -19,7 +19,9 @@ import events_emitter from '@ohos.events.emitter'
 @Component
 struct MenuExample {
   @State onActionCalled: boolean = true
-  @Builder MenuBuilder() {
+
+  @Builder
+  MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Text('text1')
         .fontSize(20)

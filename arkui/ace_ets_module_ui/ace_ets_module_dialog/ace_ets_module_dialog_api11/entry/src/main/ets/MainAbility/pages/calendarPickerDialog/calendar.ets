@@ -20,17 +20,17 @@ import events_emitter from '@ohos.events.emitter';
 struct CalendarComponentExample {
   calendarController: CalendarController = new CalendarController();
   @State CalendarDayArray: CalendarDay[] = [{
-                                              index: 1,
-                                              lunarMonth: "five",
-                                              lunarDay: "6",
-                                              dayMark: "六",
-                                              dayMarkValue: "儿童节",
-                                              year: 2020,
-                                              month: 11,
-                                              day: 10,
-                                              isFirstOfLunar: false,
-                                              markLunarDay: false
-                                            }];
+    index: 1,
+    lunarMonth: "five",
+    lunarDay: "6",
+    dayMark: "六",
+    dayMarkValue: "儿童节",
+    year: 2020,
+    month: 11,
+    day: 10,
+    isFirstOfLunar: false,
+    markLunarDay: false
+  }];
   @State currentMonthday: MonthData = {
     year: 2021,
     month: 3,
@@ -89,7 +89,6 @@ struct CalendarComponentExample {
   @State currentData_: MonthData = { year: 2022, month: 3, data: [this.calendarDay1] };
   @State preData_: MonthData = { year: 2022, month: 3, data: [this.calendarDay2] };
   @State nextData_: MonthData = { year: 2022, month: 3, data: [this.calendarDay3] };
-
   @State colSpace: number = 5;
   @State dailyFiveRowSpace: number = 4;
   @State dailySixRowSpace: number = 5;
@@ -103,13 +102,13 @@ struct CalendarComponentExample {
   @State weekStyle: WeekStyle = {
     weekColor: Color.Black,
     weekendDayColor: Color.Red,
-    weekendLunarColor:  Color.Green,
+    weekendLunarColor: Color.Green,
     weekFontSize: 1,
     weekHeight: 2,
     weekWidth: 3,
     weekAndDayRowSpace: this.weekAndDayRowSpace
   };
-  private stateChangCallBack = (eventData:events_emitter.EventData) => {
+  private stateChangCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.info("Calendar page state change called:" + JSON.stringify(eventData));
       if (eventData.data.colSpace != null) {
@@ -159,7 +158,7 @@ struct CalendarComponentExample {
 
   onPageShow() {
     console.info('Calendar page show called');
-    let stateChangeEvent:events_emitter.InnerEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 74,
       priority: events_emitter.EventPriority.LOW
     }

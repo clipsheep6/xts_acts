@@ -14,16 +14,29 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function ShowDialogJsunit() {
-  describe('ShowDialogJsunit', ()=> {
-    beforeEach(async  (done:Function)=> {
+  describe('ShowDialogJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("ShowDialogJsunit beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/promptAction/ShowDialogOptions',
       }
       try {
@@ -44,15 +57,15 @@ export default function ShowDialogJsunit() {
     });
 
 
-    it('ShowDialogJsunit_0100', 0, async   (done:Function)=> {
+    it('ShowDialogJsunit_0100', 0, async (done: Function) => {
       console.info('ShowDialogJsunit_0100 START');
-	    let driver = await Driver.create()
+      let driver = await Driver.create()
       let button = await driver.findComponent(ON.id('ShowDialog'));
       await button.click();
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('ShowDialog');
-     let obj: Record<string, ESObject>  = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[ShowDialogJsunit_0100] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual("PromptActionDialog");
       console.info('[ShowDialogJsunit_0100] END');

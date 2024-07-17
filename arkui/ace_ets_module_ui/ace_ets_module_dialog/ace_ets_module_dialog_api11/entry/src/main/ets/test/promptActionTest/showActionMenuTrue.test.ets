@@ -14,20 +14,31 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 
-
 export default function showActionMenuTrue() {
-  describe('showActionMenuTrue', ()=> {
-    beforeEach(async  (done:Function)=> {
+  describe('showActionMenuTrue', () => {
+    beforeEach(async (done: Function) => {
       console.info("showActionMenuTrue beforeEach start");
-      let options:router.RouterOptions = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/promptAction/showActionMenuTrue',
       }
       try {
@@ -48,14 +59,14 @@ export default function showActionMenuTrue() {
     });
 
     /**
-     * @tc.number    SUB_ACE_showActionMenuTrue_0100
-     * @tc.name      showActionMenuTrue_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_showActionMenuTrue_0100
+     * @tc.name showActionMenuTrue_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('showActionMenuTrue_0100', 0, async   (done:Function)=> {
+    it('showActionMenuTrue_0100', 0, async (done: Function) => {
       console.info('showActionMenuTrue_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -68,7 +79,7 @@ export default function showActionMenuTrue() {
       let properties: window.WindowProperties = windowClass.getWindowProperties();
       console.info("[showActionMenuTrue_0100] title: " + JSON.stringify(properties));
       console.info("[showActionMenuTrue_0100] title: " + JSON.stringify(properties.type));
-      expect(properties.type).assertEqual(0)//0表示应用子窗口TYPE_APP
+      expect(properties.type).assertEqual(0) //0表示应用子窗口TYPE_APP
 
       await CommonFunc.sleep(1000);
       await driver.triggerKey(2070);
