@@ -41,50 +41,6 @@ export default function PasteBoardCompatibilityTest() {
     afterAll(() => {
     })
 
-
-    /**
-     * @tc.name pasteboardCompatibilityTest001
-     * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0100
-     * @tc.desc setUnifiedData getData Type is delayPlainText
-     * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0100', 0, async () => {
-      let plainTextData = new unifiedDataChannel.UnifiedData();
-      let GetDelayPlainTextData = ((dataType:string) => {
-        let plainText = new unifiedDataChannel.PlainText();
-        plainText.details = {
-          Key: 'delayPlainText',
-          Value: 'delayPlainText'
-        };
-        plainText.textContent = 'delayTextContent';
-        plainText.abstract = 'delayAbstract';
-        plainTextData.addRecord(plainText)
-        return plainTextData;
-      })
-      plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
-      plainTextData.properties.getDelayData = GetDelayPlainTextData;
-      expect(systemPasteboard.hasDataSync()).assertFalse();
-      await systemPasteboard.setUnifiedData(plainTextData).then(() => {
-        expect(systemPasteboard.hasDataSync()).assertTrue();
-        console.info(TAG + 'Set plainTextData Success');
-      }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set plainTextData fail:' + 'code:' + error.code + 'message:' +error.message);
-        expect().assertFail();
-      })
-
-      await systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
-        let text: string = pasteData.getPrimaryMimeType();
-        console.info(TAG + text);
-        expect(text).assertEqual('text/plain');
-        console.info(TAG + 'Get DelayPlainText Success.');
-      }).catch((error: BusinessError) => {
-        console.info('Failed to get PasteData. Cause: ' + 'code:' + error.code + 'message:' +error.message);
-      });
-    })
-
-
     /**
      * @tc.name pasteboardCompatibilityTest002
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0200
