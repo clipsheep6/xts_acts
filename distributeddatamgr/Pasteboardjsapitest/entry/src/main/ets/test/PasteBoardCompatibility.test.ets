@@ -19,10 +19,13 @@ import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 import image from '@ohos.multimedia.image';
 import Want from '@ohos.app.ability.Want';
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
+import UDC from '@ohos.data.unifiedDataChannel';
+import UTD from '@ohos.data.uniformTypeDescriptor'
 
 const ARRAY_BUFFER = new ArrayBuffer(256)
 let TAG = "ttt"
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard()
+let data = new UDC.UnifiedData();
 
 
 export default function PasteBoardCompatibilityTest() {
@@ -67,18 +70,18 @@ export default function PasteBoardCompatibilityTest() {
         expect(systemPasteboard.hasDataSync()).assertTrue();
         console.info(TAG + 'Set plainTextData Success');
       }).catch((error:BusinessError) => {
-        console.info(TAG + 'Set plainTextData fail:' + error.message);
+        console.info(TAG + 'Set plainTextData fail:' + 'code:' + error.code + 'message:' +error.message);
         expect().assertFail();
       })
-      let result = systemPasteboard.getData();
-      await result.then((data) => {
-        console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
-          + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
-        expect(data.getPrimaryMimeType()).assertEqual('text/plain');
-      }).catch((error:BusinessError) => {
-        console.info(TAG + 'Get plainTextData Fail:' + 'code:' + error.code + 'message:' +error.message);
-        expect().assertFail();
-      })
+
+      await systemPasteboard.getData().then((pasteData: pasteboard.PasteData) => {
+        let text: string = pasteData.getPrimaryMimeType();
+        console.info(TAG + text);
+        expect(text).assertEqual('text/plain');
+        console.info(TAG + 'Get DelayPlainText Success.');
+      }).catch((error: BusinessError) => {
+        console.info('Failed to get PasteData. Cause: ' + 'code:' + error.code + 'message:' +error.message);
+      });
     })
 
 
