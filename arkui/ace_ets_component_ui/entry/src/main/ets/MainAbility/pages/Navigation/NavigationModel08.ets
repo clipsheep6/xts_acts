@@ -15,19 +15,20 @@
 @Entry
 @Component
 struct NavigationModel08 {
-  private arr: number[] = [1,2,3,4,5,6,7,8,9]
-  @State text: string = 'start'
-  @State minContentWidth:number = 200
-  @State currentIndex: number = 0
-  @State strText: string = 'doing'
+  private arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State text: string = 'start';
+  @State minContentWidth: number = 200;
+  @State currentIndex: number = 0;
+  @State strText: string = 'doing';
+
   build() {
-    Column(){
+    Column() {
       Navigation() {
         Column() {
-          List({space:12}){
-            ForEach(this.arr, (item:number) => {
+          List({ space: 12 }) {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
-                NavRouter(){
+                NavRouter() {
                   Text("NavRouter" + item)
                     .width('100%')
                     .height(60)
@@ -38,33 +39,38 @@ struct NavigationModel08 {
                     .textAlign(TextAlign.Center)
                   NavDestination()
                     .backgroundColor(Color.Orange)
-                    .title("NavDestinationTitle"+ item)
+                    .title("NavDestinationTitle" + item)
                 }
               }
-            },(item: number) => item.toString())
+            }, (item: number) => item.toString())
           }
           .width('80%')
-          .margin({top:12})
+          .margin({ top: 12 })
         }
       }
       .mode(NavigationMode.Auto)
-      .navBarWidthRange([100,300])
+      .navBarWidthRange([100, 300])
       .width(300)
       .height('60%')
       .minContentWidth(this.minContentWidth)
-      .border({width: 1})
+      .border({ width: 1 })
       .backgroundColor(Color.Pink)
       .onNavigationModeChange(() => {
-        this.currentIndex ++
-        this.strText =  'doing' + `${ this.currentIndex }`
+        this.currentIndex++;
+        this.strText = 'doing' + `${this.currentIndex}`;
       })
-      Text(this.strText).fontWeight(700).fontSize(22).key('NavigationModel08Txt')
-      Button('切换双栏').key('NavigationModel08But')
+
+      Text(this.strText)
+        .fontWeight(700)
+        .fontSize(22)
+        .key('NavigationModel08Txt')
+      Button('切换双栏')
+        .key('NavigationModel08But')
         .onClick(() => {
           this.minContentWidth = 100
         })
     }
-    .border({width:1})
+    .border({ width: 1 })
     .height('100%')
     .width('100%')
   }

@@ -81,8 +81,9 @@ struct Library_AA {
 
   build() {
     Column({ space: 20 }) {
-      Child_AA({color: this.color})
-
-    }.width('100%').margin({top:10})
+      Child_AA({ color: this.color })
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

@@ -15,7 +15,8 @@
 import Common from '../../utils/Common'
 
 class Num1 {
-  public pages:number;
+  public pages: number;
+
   constructor(pages: number) {
     this.pages = pages;
   }
@@ -24,7 +25,7 @@ class Num1 {
 @Entry
 @Component
 struct MyComponent_AL {
-  @State  count: number | Object | String | Date | Boolean = 0;
+  @State count: number | Object | String | Date | Boolean = 0;
 
   build() {
     Column({ space: 20 }) {
@@ -66,7 +67,8 @@ struct MyComponent_AL {
           this.count = true;
         })
         .key('state5')
-
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

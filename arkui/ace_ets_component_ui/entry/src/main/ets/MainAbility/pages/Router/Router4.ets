@@ -17,10 +17,10 @@ import router from '@ohos.router'
 
 
 class routerParams {
-  data1:string
-  data2:number[]
+  data1: string
+  data2: number[]
 
-  constructor(data1:string, data2:number[]) {
+  constructor(data1: string, data2: number[]) {
     this.data1 = data1
     this.data2 = data2
   }
@@ -39,7 +39,6 @@ struct Second4 {
       Text('' + this.data1).id('arrayData1')
       Text('' + this.data2[0]).id('arrayData2')
     }.width('100%')
-
 
   }
 }

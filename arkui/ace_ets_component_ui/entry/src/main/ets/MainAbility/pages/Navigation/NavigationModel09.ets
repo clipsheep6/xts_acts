@@ -15,11 +15,11 @@
 @Entry
 @Component
 struct NavigationModel09 {
-  private arr: number[] = [1,2,3,4,5,6,7,8,9]
-  @State text: string = 'start'
-  @State minContentWidth:number = 100
-  @State currentIndex: number = 0
-  @State strText: string = 'doing'
+  private arr: number[] = [1,2,3,4,5,6,7,8,9];
+  @State text: string = 'start';
+  @State minContentWidth:number = 100;
+  @State currentIndex: number = 0;
+  @State strText: string = 'doing';
   build() {
     Column(){
       Navigation() {
@@ -55,13 +55,17 @@ struct NavigationModel09 {
       .border({width: 1})
       .backgroundColor(Color.Pink)
       .onNavigationModeChange(() => {
-        this.currentIndex ++
-        this.strText =  'doing' + `${ this.currentIndex }`
+        this.currentIndex ++;
+        this.strText =  'doing' + `${ this.currentIndex }`;
       })
-      Text(this.strText).fontWeight(700).fontSize(22).key('NavigationModel09Txt')
-      Button('切换单栏').key('NavigationModel09But')
+      Text(this.strText)
+        .fontWeight(700)
+        .fontSize(22)
+        .key('NavigationModel09Txt')
+      Button('切换单栏')
+        .key('NavigationModel09But')
         .onClick(() => {
-          this.minContentWidth = 200
+          this.minContentWidth = 200;
         })
     }
     .border({width:1})

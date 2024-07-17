@@ -18,15 +18,30 @@ import Common from '../../utils/Common'
 struct Child_AD {
   @Prop Array: Array<Number> | Array<boolean> | Boolean | Array<Resource>
 
-
   build() {
     Column() {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array)) + " number is " + JSON.stringify(this.Array))
+        .fontSize(20)
+        .margin(30)
+        .key('PropArray')
+
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array)) + " number is " + getContext()
+        .resourceManager
+        .getStringSync($r('app.string.number').id))
+        .fontSize(20)
+        .margin(30)
+        .key('PropArrayNew')
+
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.Array)) + " number is " + JSON.stringify(this.Array))
         .fontSize(20).margin(30).key('PropArray')
 
       Text("count type of " + JSON.stringify(Common.getType(this.Array)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
         .fontSize(20).margin(30).key('PropArrayNew')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       Text("设置变量Array<Number>类型[1]-->[10]")
+
       Button('change')
         .onClick(() => {
           this.Array = [10];
@@ -63,12 +78,11 @@ struct Child_AD {
 struct Library_AD {
   @State Array: Array<Number> | Array<boolean> | Boolean | Array<Resource> = [1];
 
-
   build() {
     Column({ space: 20 }) {
-      Child_AD({Array: this.Array})
-
-
-    }.width('100%').margin({top:10})
+      Child_AD({ Array: this.Array })
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

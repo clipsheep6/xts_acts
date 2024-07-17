@@ -15,7 +15,8 @@
 import Common from '../../utils/Common'
 
 class Num2 {
-  public pages:number;
+  public pages: number;
+
   constructor(pages: number) {
     this.pages = pages;
   }
@@ -31,8 +32,6 @@ struct Child_AR {
 
   build() {
     Column({ space: 20 }) {
-
-
     }
   }
 }
@@ -46,8 +45,15 @@ struct Ancestors_AR {
 
   build() {
     Column() {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.count)) + " number is " + JSON.stringify(this.count))
+        .fontSize(20)
+        .margin(30)
+        .key('ProvideNumber')
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.count)) + " number is " + JSON.stringify(this.count))
         .fontSize(20).margin(30).key('ProvideNumber')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       Text("变量赋值number类型")
       Button('change')
         .onClick(() => {
@@ -84,6 +90,8 @@ struct Ancestors_AR {
         .key('state5')
 
       Child_AR()
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

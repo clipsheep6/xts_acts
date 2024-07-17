@@ -17,9 +17,7 @@ import Common from '../../utils/Common'
 @Entry
 @Component
 struct MyComponent_AX {
-  @State  color: undefined | null | ResourceColor = Color.Pink;
-
-
+  @State color: undefined | null | ResourceColor = Color.Pink;
 
   build() {
     Column({ space: 20 }) {
@@ -72,7 +70,8 @@ struct MyComponent_AX {
           this.color = $r('app.string.color')
         })
         .key('state6')
-
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

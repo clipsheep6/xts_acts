@@ -18,6 +18,7 @@ import Common from '../../utils/Common'
 struct Child_CA1 {
   // @Consume装饰的变量通过相同的属性名绑定其祖先组件Ancestors内的@Provide装饰的变量
   @Consume Array1: Date | Array<Length> | Array<Object>
+
   build() {
     Column() {
 
@@ -46,7 +47,7 @@ struct Child_CA1 {
       Text("切换变量Array<Object>类型[1]-->[{number: 30}]")
       Button('change')
         .onClick(() => {
-          this.Array1 = [{number: 30}];
+          this.Array1 = [{ number: 30 }];
         })
         .key('state8')
 
@@ -61,7 +62,6 @@ struct Child_CA1 {
 }
 
 
-
 @Entry
 @Component
 struct Ancestors_CA1 {
@@ -70,13 +70,29 @@ struct Ancestors_CA1 {
 
   build() {
     Column({ space: 20 }) {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + JSON.stringify(this.Array1))
+        .fontSize(20)
+        .margin(30)
+        .key('ConsumeArray1')
+
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + getContext()
+        .resourceManager
+        .getStringSync($r('app.string.number').id))
+        .fontSize(20)
+        .margin(30)
+        .key('ConsumeArray1New')
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.Array1)) + " number is " + JSON.stringify(this.Array1))
         .fontSize(20).margin(30).key('ConsumeArray1')
 
       Text("count type of " + JSON.stringify(Common.getType(this.Array1)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
         .fontSize(20).margin(30).key('ConsumeArray1New')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
 
       Child_CA1()
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

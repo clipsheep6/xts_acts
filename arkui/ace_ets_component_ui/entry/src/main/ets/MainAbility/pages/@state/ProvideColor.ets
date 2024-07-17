@@ -21,12 +21,9 @@ struct Child_AY {
 
   build() {
     Column({ space: 20 }) {
-
-
     }
   }
 }
-
 
 
 @Entry
@@ -88,6 +85,8 @@ struct Ancestors_AY {
         .key('state6')
 
       Child_AY()
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

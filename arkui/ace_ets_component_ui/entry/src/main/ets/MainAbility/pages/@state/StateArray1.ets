@@ -21,10 +21,21 @@ struct MyComponent_AW {
 
   build() {
     Column({ space: 20 }) {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + JSON.stringify(this.Array1))
+        .fontSize(20)
+        .margin(30)
+        .key('StateArray1')
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
+        .fontSize(20)
+        .margin(30)
+        .key('StateArray1New')
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.Array1)) + " number is " + JSON.stringify(this.Array1))
         .fontSize(20).margin(30).key('StateArray1')
       Text("count type of " + JSON.stringify(Common.getType(this.Array1)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
         .fontSize(20).margin(30).key('StateArray1New')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
 
       Text("设置变量Array<Number>类型[1]-->[10]")
       Button('change')
@@ -50,7 +61,7 @@ struct MyComponent_AW {
       Text("切换变量Array<Object>类型[1]-->[{number: 30}]")
       Button('change')
         .onClick(() => {
-          this.Array1 = [{number: 30}];
+          this.Array1 = [{ number: 30 }];
         })
         .key('state8')
 
@@ -61,6 +72,8 @@ struct MyComponent_AW {
         })
         .key('state9')
 
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

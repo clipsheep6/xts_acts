@@ -20,8 +20,6 @@ struct Child_CL {
 
   build() {
     Column({ space: 20 }) {
-
-
       Text("设置变量Array<Length>类型[1]-->[10]")
       Button('change')
         .onClick(() => {
@@ -46,7 +44,7 @@ struct Child_CL {
       Text("切换变量Array<Object>类型[1]-->[{number: 30}]")
       Button('change')
         .onClick(() => {
-          this.Array1 = [{number: 30}];
+          this.Array1 = [{ number: 30 }];
         })
         .key('state8')
 
@@ -57,24 +55,40 @@ struct Child_CL {
         })
         .key('state9')
 
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }
 
 @Entry
 @Component
 struct Index_CL {
-
   @State Array1: Date | Array<Length> | Array<Object> = [1];
+
   build() {
     Column() {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + JSON.stringify(this.Array1))
+        .fontSize(20)
+        .margin(30)
+        .key('LinkArray1')
+
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + getContext()
+        .resourceManager
+        .getStringSync($r('app.string.number').id))
+        .fontSize(20)
+        .margin(30)
+        .key('LinkArray1New')
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.Array1)) + " number is " + JSON.stringify(this.Array1))
         .fontSize(20).margin(30).key('LinkArray1')
 
       Text("count type of " + JSON.stringify(Common.getType(this.Array1)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
         .fontSize(20).margin(30).key('LinkArray1New')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
 
-      Child_CL({Array1: this.Array1})
+      Child_CL({ Array1: this.Array1 })
     }
   }
 }

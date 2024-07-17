@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../../../utils/MessageManager';
+import { Callback, MessageManager } from '../../../utils/MessageManager';
 
 type Message = number|Visibility
 
@@ -27,19 +27,32 @@ struct getListItemRect4 {
   @State y: number = 0
   @State width1: number = 0
   @State height1: number = 0
+  messageManager: MessageManager = new MessageManager()
 
+<<<<<<< HEAD
+=======
   messageManager = new MessageManager<Message>()
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   onPageShow() {
     console.info('getListItemRect4 onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
+<<<<<<< HEAD
+    let callback: Callback = (message: ESObject) => {
+      console.error('message = ' + message.name + "--" + message.value);
+      if (message.name == 'index') {
+        this.index = message.value;
+      } else if (message.name == 'visibility1') {
+        this.visibility1 = message.value;
+=======
     let callback: Callback<Message> = message => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
         this.index = message.value as number;
       }else if (message.name == 'visibility1') {
         this.visibility1 = message.value as Visibility;
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       }
     }
     this.messageManager.registerCallback(callback);
@@ -47,21 +60,29 @@ struct getListItemRect4 {
 
   build() {
     Column() {
-      List({ space: 20, initialIndex: 0 ,scroller:this.listScroller}) {
+      List({ space: 20, initialIndex: 0, scroller: this.listScroller }) {
 
         ListItem() {
-          Text('0' )
-            .width('100%').height('100%').fontSize(16)
-            .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          Text('0')
+            .width('100%')
+            .height('100%')
+            .fontSize(16)
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
             .key('getListItemRect4_listItem_0')
         }.width('100%').height(100).visibility(this.visibility1)
 
         ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height('100%').fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-              .key('getListItemRect4_listItem_' +  item)
+              .width('100%')
+              .height('100%')
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
+              .key('getListItemRect4_listItem_' + item)
           }.width('100%').height(100)
         }, (item: string) => item)
 

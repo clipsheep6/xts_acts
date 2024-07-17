@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../../../utils/MessageManager';
+import { MessageManager, Callback } from '../../../utils/MessageManager';
 
 type Message = number|GridDirection
 
@@ -20,29 +20,41 @@ type Message = number|GridDirection
 @Component
 struct getGridItemRect5 {
   scroller: Scroller = new Scroller()
-  @State arr: number[] = [0,1,2,3,4]
+  @State arr: number[] = [0, 1, 2, 3, 4]
   @State columnsGap1: number = 0
   @State rowsGap1: number = 0
   @State layoutDirection1: GridDirection = GridDirection.Row
-
   @State index: number = 0
   @State x: number = 0
   @State y: number = 0
   @State width1: number = 0
   @State height1: number = 0
+  messageManager: MessageManager = new MessageManager()
 
+<<<<<<< HEAD
+=======
   messageManager = new MessageManager<Message>()
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   onPageShow() {
     console.info('getGridItemRect5 onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
+<<<<<<< HEAD
+    let callback: Callback = (message: ESObject) => {
+      console.error('message = ' + message.name + "--" + message.value);
+      if (message.name == 'index') {
+        this.index = message.value;
+      } else if (message.name == 'layoutDirection1') {
+        this.layoutDirection1 = message.value;
+=======
     let callback: Callback<Message> = message => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
         this.index = message.value as number;
       }else  if (message.name == 'layoutDirection1') {
         this.layoutDirection1 = message.value as GridDirection;
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       }
     }
     this.messageManager.registerCallback(callback);
@@ -63,7 +75,7 @@ struct getGridItemRect5 {
             }
             .width(60)
             .height(100)
-            .border({width:1})
+            .border({ width: 1 })
 
           }, (item: string) => item)
         }, (item: string) => item)

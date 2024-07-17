@@ -12,20 +12,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../../../utils/MessageManager';
+import { MessageManager, Callback } from '../../../utils/MessageManager';
 
 type Message = number|Visibility
 
 @Entry
 @Component
 struct getGridItemRect1 {
-  scroller: Scroller = new Scroller()
-  @State columnsGap1: number = 0
-  @State rowsGap1: number = 0
-  @State padding1: number = 0
-  @State margin1: number = 0
-  @State visibility1: Visibility = Visibility.Visible
+  scroller: Scroller = new Scroller();
+  @State columnsGap1: number = 0;
+  @State rowsGap1: number = 0;
+  @State padding1: number = 0;
+  @State margin1: number = 0;
+  @State visibility1: Visibility = Visibility.Visible;
+  @State index: number = 0;
+  @State x: number = 0;
+  @State y: number = 0;
+  @State width1: number = 0;
+  @State height1: number = 0;
+  messageManager: MessageManager = new MessageManager()
 
+<<<<<<< HEAD
+=======
   @State index: number = 0
   @State x: number = 0
   @State y: number = 0
@@ -33,11 +41,24 @@ struct getGridItemRect1 {
   @State height1: number = 0
 
   messageManager = new MessageManager<Message>()
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   onPageShow() {
     console.info('getGridItemRect1 onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
+<<<<<<< HEAD
+    let callback: Callback = (message: ESObject) => {
+      console.error('message = ' + message.name + "--" + message.value);
+      if (message.name == 'index') {
+        this.index = message.value;
+      } else if (message.name == 'padding1') {
+        this.padding1 = message.value;
+      } else if (message.name == 'margin1') {
+        this.margin1 = message.value;
+      } else if (message.name == 'visibility1') {
+        this.visibility1 = message.value;
+=======
     let callback: Callback<Message> = message => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
@@ -48,6 +69,7 @@ struct getGridItemRect1 {
         this.margin1 = message.value as number;
       }else if(message.name == 'visibility1') {
         this.visibility1 = message.value as Visibility;
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       }
     }
     this.messageManager.registerCallback(callback);
@@ -66,7 +88,7 @@ struct getGridItemRect1 {
         }
         .rowStart(0)
         .rowEnd(1)
-        .border({width:1})
+        .border({ width: 1 })
         .margin(this.margin1)
         .visibility(this.visibility1)
         .key('getGridItemRect1_gridItem_0')
@@ -81,7 +103,7 @@ struct getGridItemRect1 {
         }
         .columnStart(0)
         .columnEnd(1)
-        .border({width:1})
+        .border({ width: 1 })
         .key('getGridItemRect1_gridItem_1')
 
 
@@ -93,7 +115,7 @@ struct getGridItemRect1 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
         .key('getGridItemRect1_gridItem_2')
 
         GridItem() {
@@ -104,7 +126,7 @@ struct getGridItemRect1 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
         .key('getGridItemRect1_gridItem_3')
 
         GridItem() {
@@ -115,7 +137,7 @@ struct getGridItemRect1 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
         GridItem() {
           Text('5')
@@ -125,7 +147,7 @@ struct getGridItemRect1 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
         GridItem() {
           Text('6')
@@ -135,7 +157,7 @@ struct getGridItemRect1 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
         GridItem() {
           Text('7')
@@ -145,7 +167,7 @@ struct getGridItemRect1 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
         GridItem() {
           Text('8')
@@ -155,7 +177,7 @@ struct getGridItemRect1 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
         GridItem() {
           Text('9')
@@ -165,7 +187,7 @@ struct getGridItemRect1 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')

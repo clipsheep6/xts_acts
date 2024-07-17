@@ -12,16 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../../../utils/MessageManager';
+import { MessageManager, Callback } from '../../../utils/MessageManager';
 
 @Entry
 @Component
 struct getScrollItemRect1 {
   scroller: Scroller = new Scroller()
-  @State arr: number[] = [0,1,2,3,4,5]
-  @State padding1: number = 0
-  @State margin1: number = 0
+  @State arr: number[] = [0, 1, 2, 3, 4, 5];
+  @State padding1: number = 0;
+  @State margin1: number = 0;
+  @State index: number = 0;
+  @State x: number = 0;
+  @State y: number = 0;
+  @State width1: number = 0;
+  @State height1: number = 0;
+  messageManager: MessageManager = new MessageManager();
 
+<<<<<<< HEAD
+=======
   @State index: number = 0
   @State x: number = 0
   @State y: number = 0
@@ -29,18 +37,23 @@ struct getScrollItemRect1 {
   @State height1: number = 0
 
   messageManager = new MessageManager<number>()
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   onPageShow() {
     console.info('getScrollItemRect1 onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
+<<<<<<< HEAD
+    let callback: Callback = (message: ESObject) => {
+=======
     let callback: Callback<number> = message => {
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       console.error('message = ' + message.name + "--" + message.value);
-      if(message.name == 'index') {
+      if (message.name == 'index') {
         this.index = message.value;
-      }else if (message.name == 'padding1') {
+      } else if (message.name == 'padding1') {
         this.padding1 = message.value;
-      }else if (message.name == 'margin1') {
+      } else if (message.name == 'margin1') {
         this.margin1 = message.value;
       }
     }
@@ -49,9 +62,9 @@ struct getScrollItemRect1 {
 
   build() {
     Column() {
-      Scroll(this.scroller){
-        Column(){
-          ForEach(this.arr,(item:number) => {
+      Scroll(this.scroller) {
+        Column() {
+          ForEach(this.arr, (item: number) => {
             Text(item.toString())
               .width('100%')
               .height(100)

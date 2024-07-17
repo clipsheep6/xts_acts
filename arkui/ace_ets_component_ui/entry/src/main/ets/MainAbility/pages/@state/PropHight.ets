@@ -20,8 +20,15 @@ struct Child_AP {
 
   build() {
     Column() {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.hight)) + " number is " + JSON.stringify(this.hight))
+        .fontSize(20)
+        .margin(30)
+        .key('PropHight')
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.hight)) + " number is " + JSON.stringify(this.hight))
         .fontSize(20).margin(30).key('PropHight')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       Text("设置变量number类型50-->100")
       Button('change')
         .height(this.hight)
@@ -57,8 +64,9 @@ struct Library_AP {
 
   build() {
     Column({ space: 20 }) {
-      Child_AP({hight: this.hight})
-
-    }.width('100%').margin({top:10})
+      Child_AP({ hight: this.hight })
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

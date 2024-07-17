@@ -12,17 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../../../utils/MessageManager';
+import { MessageManager, Callback } from '../../../utils/MessageManager';
 
 @Entry
 @Component
 struct getGridItemRect3 {
-  scroller: Scroller = new Scroller()
-  @State columnsGap1: number = 0
-  @State rowsGap1: number = 0
-  @State x1: number = 0
-  @State y1: number = 0
+  scroller: Scroller = new Scroller();
+  @State columnsGap1: number = 0;
+  @State rowsGap1: number = 0;
+  @State x1: number = 0;
+  @State y1: number = 0;
+  @State index: number = 0;
+  @State x: number = 0;
+  @State y: number = 0;
+  @State width1: number = 0;
+  @State height1: number = 0;
+  messageManager: MessageManager = new MessageManager();
 
+<<<<<<< HEAD
+=======
   @State index: number = 0
   @State x: number = 0
   @State y: number = 0
@@ -30,18 +38,23 @@ struct getGridItemRect3 {
   @State height1: number = 0
 
   messageManager = new MessageManager<number>()
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   onPageShow() {
     console.info('getGridItemRect3 onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
+<<<<<<< HEAD
+    let callback: Callback = (message: ESObject) => {
+=======
     let callback: Callback<number> = message => {
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
         this.index = message.value;
-      }else if(message.name == 'x1') {
+      } else if (message.name == 'x1') {
         this.x1 = message.value;
-      }else if(message.name == 'y1') {
+      } else if (message.name == 'y1') {
         this.y1 = message.value;
       }
     }
@@ -61,8 +74,8 @@ struct getGridItemRect3 {
         }
         .rowStart(0)
         .rowEnd(1)
-        .border({width:1})
-        .offset({x:this.x1,y:this.y1})
+        .border({ width: 1 })
+        .offset({ x: this.x1, y: this.y1 })
         .key('getGridItemRect3_gridItem_0')
 
         GridItem() {
@@ -75,7 +88,7 @@ struct getGridItemRect3 {
         }
         .columnStart(0)
         .columnEnd(1)
-        .border({width:1})
+        .border({ width: 1 })
         .key('getGridItemRect3_gridItem_1')
 
 
@@ -87,7 +100,7 @@ struct getGridItemRect3 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
         .key('getGridItemRect3_gridItem_2')
 
         GridItem() {
@@ -98,7 +111,7 @@ struct getGridItemRect3 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
         .key('getGridItemRect3_gridItem_3')
 
         GridItem() {
@@ -109,7 +122,7 @@ struct getGridItemRect3 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
         GridItem() {
           Text('5')
@@ -119,7 +132,7 @@ struct getGridItemRect3 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
         GridItem() {
           Text('6')
@@ -129,7 +142,7 @@ struct getGridItemRect3 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
         GridItem() {
           Text('7')
@@ -139,7 +152,7 @@ struct getGridItemRect3 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
         GridItem() {
           Text('8')
@@ -149,7 +162,7 @@ struct getGridItemRect3 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
         GridItem() {
           Text('9')
@@ -159,7 +172,7 @@ struct getGridItemRect3 {
             .height('100%')
             .textAlign(TextAlign.Center)
         }
-        .border({width:1})
+        .border({ width: 1 })
 
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')

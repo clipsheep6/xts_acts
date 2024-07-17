@@ -15,16 +15,13 @@
 import Common from '../../utils/Common'
 
 class Num5 {
-  public pages:number;
-  constructor(pages: number) {
-    this.pages = pages;
-  }
+  pages: number;
 }
 
 @Component
 struct Child_CN {
   // @Consume装饰的变量通过相同的属性名绑定其祖先组件Ancestors内的@Provide装饰的变量
-  @Consume count: number | Object | String | Date | Boolean;
+  @Consume count: number | Num5 | String | Date | Boolean;
 
   build() {
     Column() {
@@ -69,12 +66,11 @@ struct Child_CN {
 }
 
 
-
 @Entry
 @Component
 struct Ancestors_CN {
   // @Provide装饰的联合类型count由入口组件Ancestors提供其后代组件
-  @Provide count: number | Object | String | Date | Boolean = 0;
+  @Provide count: number | Num5 | String | Date | Boolean = 0;
 
   build() {
     Column({ space: 20 }) {
@@ -83,6 +79,6 @@ struct Ancestors_CN {
 
       Child_CN()
 
-    }.width('100%').margin({top:10})
+    }.width('100%').margin({ top: 10 })
   }
 }

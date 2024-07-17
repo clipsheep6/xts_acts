@@ -13,35 +13,37 @@
  * limitations under the License.
  */
 class T10 {
-  names: string = ""
-  values: NavPathStack | null = null
+  names: string = "";
+  values: NavPathStack | null = null;
 }
+
 @Entry
 @Component
 struct NavigationStack10 {
-  private arr: number[] = [1,2,3]
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
-  @State isShow:boolean = false
-  @State isShow2:boolean = false
-  @State bool: boolean = false
-  @State text: string = 'start'
-  @State flagBlur: string = 'BlurStart'
-  @State flagFocus: string = 'FocusStart'
-  @State getText: string = ''
+  private arr: number[] = [1, 2, 3];
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  @State isShow: boolean = false;
+  @State isShow2: boolean = false;
+  @State bool: boolean = false;
+  @State text: string = 'start';
+  @State flagBlur: string = 'BlurStart';
+  @State flagFocus: string = 'FocusStart';
+  @State getText: string = '';
+
   @Builder
   pageOneTmp(info: T10) {
     NavDestination() {
       Column() {
         Button('pageOneTmp', { stateEffect: true, type: ButtonType.Capsule }).id('NavigationStack10pageOneTmpbut')
           .width('80%')
-          .height(40)
-            // .margin(20)
+          .height(40)// .margin(20)
           .onClick(() => {
             (info.values as NavPathStack).pushPathByName('pageTwo', null)
           })
       }.width('100%').height('100%')
     }.title('pageOne')
   }
+
   @Builder
   pageTwoTmp(info: T10) {
     NavDestination() {
@@ -55,6 +57,7 @@ struct NavigationStack10 {
       }.width('100%').height('100%')
     }.title('pageTwo')
   }
+
   @Builder
   PageMap(name: string) {
     if (name === 'pageOne') {
@@ -63,28 +66,41 @@ struct NavigationStack10 {
       this.pageTwoTmp({ names: name, values: this.pageInfos })
     }
   }
-  @Builder myBuilder2() {
+
+  @Builder
+  myBuilder2() {
     Column() {
-      Button("close modal 2")
-        // .margin(10)
+      Button("close modal 2")// .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow2 = false;
         })
     }
     .width('100%')
     .height('100%')
   }
-  @Builder myBuilder() {
+
+  @Builder
+  myBuilder() {
     Column() {
       Button("transition modal 2")
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow2 = true;
-        }).bindContentCover(this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.DEFAULT, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        })
+        .bindContentCover(this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.DEFAULT,
+          backgroundColor: Color.Pink,
+          onAppear: () => {
+            console.log("BindContentCover onAppear.")
+          },
+          onDisappear: () => {
+            console.log("BindContentCover onDisappear.")
+          }
+        })
       Button("close modal 1")
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow = false;
         })
     }
@@ -92,8 +108,9 @@ struct NavigationStack10 {
     .height('100%')
     .justifyContent(FlexAlign.Center)
   }
+
   build() {
-    Column(){
+    Column() {
       Navigation(this.pageInfos) {
         Column() {
           Button('pushPath', { stateEffect: true, type: ButtonType.Capsule }).id('NavigationStack10pushPathbut')
@@ -112,12 +129,22 @@ struct NavigationStack10 {
       .hideNavBar(this.bool)
       .navBarWidth(260)
       .minContentWidth(300)
-      .navBarWidthRange([200,400])
-      .border({width: 1})
+      .navBarWidthRange([200, 400])
+      .border({ width: 1 })
       .height('70%')
       .width('100%')
       .backgroundColor(Color.Pink)
-      .bindContentCover(this.isShow, this.myBuilder(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+      .bindContentCover(this.isShow, this.myBuilder(), {
+        modalTransition: ModalTransition.NONE,
+        backgroundColor: Color.Pink,
+        onAppear: () => {
+          console.log("BindContentCover onAppear.")
+        },
+        onDisappear: () => {
+          console.log("BindContentCover onDisappear.")
+        }
+      })
+
       Text(this.getText).id('NavigationStack10getText').fontWeight(700)
       Text(this.flagBlur).id('NavigationStack10Blur').fontWeight(700)
       Text(this.flagFocus).id('NavigationStack10Focus').fontWeight(700)
@@ -142,7 +169,7 @@ struct NavigationStack10 {
           this.getText = JSON.stringify(this.pageInfos.getAllPathName()?.length)
         })
     }
-    .border({width:1})
+    .border({ width: 1 })
     .height('100%')
     .width('100%')
   }

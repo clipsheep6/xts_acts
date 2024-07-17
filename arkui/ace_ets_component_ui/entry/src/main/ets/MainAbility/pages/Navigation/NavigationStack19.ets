@@ -15,21 +15,23 @@
 @Entry
 @Component
 struct NavigationStack19 {
-  private arr: number[] = [1,2,3]
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
-  @State bool: boolean = false
-  @State text: string = 'start'
-  @State flagBlur: string = 'BlurStart'
-  @State flagFocus: string = 'FocusStart'
+  private arr: number[] = [1, 2, 3];
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  @State bool: boolean = false;
+  @State text: string = 'start';
+  @State flagBlur: string = 'BlurStart';
+  @State flagFocus: string = 'FocusStart';
+
   build() {
-    Column(){
+    Column() {
       Navigation(this.pageInfos) {
         Column() {
-          List({space:12}){
-            ForEach(this.arr, (item:number) => {
+          List({ space: 12 }) {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
-                NavRouter(){
-                  Text("NavRouter" + item).key(`NavigationStack19ListItemText${item}`)
+                NavRouter() {
+                  Text("NavRouter" + item)
+                    .key(`NavigationStack19ListItemText${item}`)
                     .width('100%')
                     .height(60)
                     .backgroundColor('#FFFFFF')
@@ -38,26 +40,27 @@ struct NavigationStack19 {
                     .fontWeight(1000)
                     .textAlign(TextAlign.Center)
                   NavDestination() {
-                    Text(`${this.text+item}`).key('NavigationStack19TextCont')
+                    Text(`${this.text + item}`).key('NavigationStack19TextCont')
                     Button('button').key('NavigationStack19ButtonContent')
                       .onClick(() => {
                         this.text = 'clicked'
                       })
-                  }.key('NavigationStack19NavDestination')
-                  .onBlur(()=>{
+                  }
+                  .key('NavigationStack19NavDestination')
+                  .onBlur(() => {
                     this.flagBlur = 'BlurDone'
                   })
-                  .onFocus(()=>{
+                  .onFocus(() => {
                     this.flagFocus = 'FocusDone'
                   })
                   .backgroundColor(Color.Orange)
-                  .title("NavDestinationTitle"+ item)
+                  .title("NavDestinationTitle" + item)
                 }
               }.key(`NavigationStack19ListItem${item}`)
-            },(item: number) => item.toString())
+            }, (item: number) => item.toString())
           }
           .width('100%')
-          .margin({top:12})
+          .margin({ top: 12 })
         }
       }
       .key('NavigationStack19Navigation')
@@ -68,11 +71,12 @@ struct NavigationStack19 {
       .hideNavBar(this.bool)
       .navBarWidth(260)
       .minContentWidth(300)
-      .navBarWidthRange([200,400])
-      .border({width: 1})
+      .navBarWidthRange([200, 400])
+      .border({ width: 1 })
       .height('70%')
       .width('100%')
       .backgroundColor(Color.Pink)
+
       Text(this.flagBlur).key('NavigationStack19Blur').fontWeight(700)
       Text(this.flagFocus).key('NavigationStack19Focus').fontWeight(700)
       Button('隐藏导航栏')
@@ -86,7 +90,7 @@ struct NavigationStack19 {
           this.bool = false
         })
     }
-    .border({width:1})
+    .border({ width: 1 })
     .height('100%')
     .width(300)
   }

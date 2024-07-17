@@ -15,11 +15,14 @@
 import windowAnimationManager from '@ohos.animation.windowAnimationManager';
 import WindowAnimationControllerImpl from './WindowAnimationControllerImpl';
 import matrix4 from '@ohos.matrix4'
-let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0])
+
+let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]);
+
 @Entry
 @Component
 export default struct comSizeAbilityTest_21 {
-  @State target:WindowAnimationTarget | undefined = undefined // 通过windowAnimationManager获取
+  @State target: WindowAnimationTarget | undefined = undefined // 通过windowAnimationManager获取
+
   aboutToAppear(): void {
     let controller: WindowAnimationControllerImpl = new WindowAnimationControllerImpl();
     windowAnimationManager.setController(controller);
@@ -60,19 +63,33 @@ export default struct comSizeAbilityTest_21 {
       finishedCallback.onAnimationFinish();
     }
   }
+
   build() {
     Column() {
-      if(this.target){
+      if (this.target) {
         RemoteWindow(this.target)
           .size({ width: 180, height: 130 })
-          .scale({ x: 0.5, y: 0.5 }) // 仅用于可见效果的演示目的，正常使用须 .scale({ x: 1, y: 1 })
+          .scale({ x: 0.5, y: 0.5 })// 仅用于可见效果的演示目的，正常使用须 .scale({ x: 1, y: 1 })
           .position({ x: px2vp(this.target?.windowBounds.left), y: px2vp(this.target?.windowBounds.top) })
           .width(px2vp(this.target?.windowBounds.width))
           .height(px2vp(this.target?.windowBounds.height))
           .key('RemoteWindow_Size')
           .translate({ x: 1, y: 1, z: 1 })
-          .scale({ x: 1, y: 1, z: 1, centerX: 1, centerY: 1 })
-          .rotate({ x: 1, y: 1, z: 1, angle: 0, centerX: 1, centerY: 1 })
+          .scale({
+            x: 1,
+            y: 1,
+            z: 1,
+            centerX: 1,
+            centerY: 1
+          })
+          .rotate({
+            x: 1,
+            y: 1,
+            z: 1,
+            angle: 0,
+            centerX: 1,
+            centerY: 1
+          })
           .transform(matrix)
       }
     }.key('RemoteWindow_Father')

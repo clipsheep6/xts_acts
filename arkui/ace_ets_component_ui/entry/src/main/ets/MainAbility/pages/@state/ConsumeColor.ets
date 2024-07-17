@@ -19,7 +19,6 @@ struct Child_CC {
   // @Consume装饰的变量通过相同的属性名绑定其祖先组件Ancestors内的@Provide装饰的变量
   @Consume color: undefined | null | ResourceColor;
 
-
   build() {
     Column() {
       Text("设置变量color类型pink-->Orange")
@@ -69,8 +68,6 @@ struct Child_CC {
           this.color = $r('app.string.color')
         })
         .key('state6')
-
-
     }
   }
 }
@@ -81,13 +78,23 @@ struct Child_CC {
 struct Ancestors_CC {
   // @Provide装饰的联合类型count由入口组件Ancestors提供其后代组件
   @Provide color: undefined | null | ResourceColor = Color.Pink;
+
   build() {
     Column({ space: 20 }) {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.color)) + " number is " + JSON.stringify(this.color))
+        .fontSize(20)
+        .margin(30)
+        .key('ConsumeColor')
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.color)) + " number is " + JSON.stringify(this.color))
         .fontSize(20).margin(30).key('ConsumeColor')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
 
       Child_CC()
 
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

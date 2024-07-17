@@ -69,21 +69,31 @@ struct Child_AAs {
         })
         .key('state6')
 
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }
 
 @Entry
 @Component
-struct Index_AAs{
-  @State color: undefined | null | ResourceColor= '008000';
+struct Index_AAs {
+  @State color: undefined | null | ResourceColor = '008000';
 
   build() {
     Column() {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.color)) + " number is " + JSON.stringify(this.color))
+        .fontSize(20)
+        .margin(30)
+        .key('LinkColor')
+      Child_AAs({ color: this.color })
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.color)) + " number is " + JSON.stringify(this.color))
         .fontSize(20).margin(30).key('LinkColor')
       Child_AAs({color: this.color})
 
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
     }
   }
 }

@@ -12,21 +12,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../../../utils/MessageManager';
+import { MessageManager, Callback } from '../../../utils/MessageManager';
 import { WaterFlowDataSource } from './WaterFlowDataSource'
 
 @Entry
 @Component
 struct getWaterFlowItemRect2 {
-  @State minSize: number = 80
-  @State maxSize: number = 180
-  @State fontSize: number = 24
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  scroller: Scroller = new Scroller()
-  datasource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State fontSize: number = 24;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  scroller: Scroller = new Scroller();
+  datasource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
+  @State x1: number = 0;
+  @State y1: number = 0;
+  @State index: number = 0;
+  @State x: number = 0;
+  @State y: number = 0;
+  @State width1: number = 0;
+  @State height1: number = 0;
+  messageManager: MessageManager = new MessageManager();
 
+<<<<<<< HEAD
+=======
   @State x1: number = 0
   @State y1: number = 0
 
@@ -37,18 +47,23 @@ struct getWaterFlowItemRect2 {
   @State height1: number = 0
 
   messageManager = new MessageManager<number>()
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   onPageShow() {
     console.info('getWaterFlowItemRect2 onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
+<<<<<<< HEAD
+    let callback: Callback = (message: ESObject) => {
+=======
     let callback: Callback<number> = message => {
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       console.error('message = ' + message.name + "--" + message.value);
-      if(message.name == 'index') {
+      if (message.name == 'index') {
         this.index = message.value;
-      }else if (message.name == 'x1') {
+      } else if (message.name == 'x1') {
         this.x1 = message.value;
-      }else if (message.name == 'y1') {
+      } else if (message.name == 'y1') {
         this.y1 = message.value;
       }
     }
@@ -88,20 +103,20 @@ struct getWaterFlowItemRect2 {
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow({ scroller:this.scroller }) {
+      WaterFlow({ scroller: this.scroller }) {
         FlowItem() {
           Column() {
-            Text("0" ).fontSize(12).height('16')
+            Text("0").fontSize(12).height('16')
           }
         }
         .width(170)
         .height(100)
-        .offset({x:this.x1,y:this.y1})
+        .offset({ x: this.x1, y: this.y1 })
         .backgroundColor(this.colors[0 % 5])
 
         FlowItem() {
           Column() {
-            Text("1" ).fontSize(12).height('16')
+            Text("1").fontSize(12).height('16')
           }
         }
         .width('100%')
@@ -111,7 +126,7 @@ struct getWaterFlowItemRect2 {
 
         FlowItem() {
           Column() {
-            Text("2" ).fontSize(12).height('16')
+            Text("2").fontSize(12).height('16')
           }
         }
         .width('100%')
@@ -121,7 +136,7 @@ struct getWaterFlowItemRect2 {
 
         FlowItem() {
           Column() {
-            Text("3" ).fontSize(12).height('16')
+            Text("3").fontSize(12).height('16')
           }
         }
         .width('100%')
@@ -131,7 +146,7 @@ struct getWaterFlowItemRect2 {
 
         FlowItem() {
           Column() {
-            Text("4" ).fontSize(12).height('16')
+            Text("4").fontSize(12).height('16')
           }
         }
         .width('100%')
@@ -141,7 +156,7 @@ struct getWaterFlowItemRect2 {
 
         FlowItem() {
           Column() {
-            Text("5" ).fontSize(12).height('16')
+            Text("5").fontSize(12).height('16')
           }
         }
         .width('100%')
@@ -151,7 +166,7 @@ struct getWaterFlowItemRect2 {
 
         FlowItem() {
           Column() {
-            Text("6" ).fontSize(12).height('16')
+            Text("6").fontSize(12).height('16')
           }
         }
         .width('100%')
@@ -161,7 +176,7 @@ struct getWaterFlowItemRect2 {
 
         FlowItem() {
           Column() {
-            Text("7" ).fontSize(12).height('16')
+            Text("7").fontSize(12).height('16')
           }
         }
         .width('100%')
@@ -171,7 +186,7 @@ struct getWaterFlowItemRect2 {
 
         FlowItem() {
           Column() {
-            Text("8" ).fontSize(12).height('16')
+            Text("8").fontSize(12).height('16')
           }
         }
         .width('100%')
@@ -181,7 +196,7 @@ struct getWaterFlowItemRect2 {
 
         FlowItem() {
           Column() {
-            Text("9" ).fontSize(12).height('16')
+            Text("9").fontSize(12).height('16')
           }
         }
         .width('100%')
@@ -191,7 +206,7 @@ struct getWaterFlowItemRect2 {
 
         FlowItem() {
           Column() {
-            Text("10" ).fontSize(12).height('16')
+            Text("10").fontSize(12).height('16')
           }
         }
         .width('100%')
@@ -201,13 +216,12 @@ struct getWaterFlowItemRect2 {
 
         FlowItem() {
           Column() {
-            Text("11" ).fontSize(12).height('16')
+            Text("11").fontSize(12).height('16')
           }
         }
         .width('100%')
         .height(this.itemHeightArray[11 % 100])
         .backgroundColor(this.colors[11 % 5])
-
 
       }
       .columnsTemplate("1fr 1fr")

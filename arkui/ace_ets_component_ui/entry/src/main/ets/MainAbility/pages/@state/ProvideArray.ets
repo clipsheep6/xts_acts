@@ -21,14 +21,9 @@ struct Child_AI {
 
   build() {
     Column({ space: 20 }) {
-
-
-
-
     }
   }
 }
-
 
 
 @Entry
@@ -37,13 +32,18 @@ struct Ancestors_AI {
   // @Provide装饰的联合类型count由入口组件Ancestors提供其后代组件
   @Provide Array: Array<Number> | Array<boolean> | Boolean | Array<Resource> = [1];
 
-
   build() {
     Column() {
       Text("count type of " + JSON.stringify(Common.getType(this.Array)) + " number is " + JSON.stringify(this.Array))
         .fontSize(20).margin(30).key('ProvideArray')
 
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array)) + " number is " + getContext()
+        .resourceManager
+        .getStringSync($r('app.string.number').id))
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.Array)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
         .fontSize(20).margin(30).key('ProvideArrayNew')
       Text("设置变量Array<Number>类型[1]-->[10]")
       Button('change')
@@ -74,6 +74,8 @@ struct Ancestors_AI {
         .key('state4')
 
       Child_AI()
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

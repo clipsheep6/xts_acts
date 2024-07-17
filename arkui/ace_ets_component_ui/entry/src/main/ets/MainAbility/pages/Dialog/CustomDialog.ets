@@ -14,39 +14,52 @@
  */
 @CustomDialog
 struct CustomDialogExampleA {
-  @Link inputValue: string
-  controller?: CustomDialogController
-  cancel: () => void = () => {}
-  confirm: () => void = () => {}
+  @Link inputValue: string;
+  controller?: CustomDialogController;
+  cancel: () => void = () => {
+  };
+  confirm: () => void = () => {
+  };
 
   build() {
     Column() {
-      Text('Change text').fontSize(20).margin({ top: 10, bottom: 10 })
+      Text('Change text')
+        .fontSize(20)
+        .margin({ top: 10, bottom: 10 })
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
-        Button('confirm').key('Custom_Dialog_A')
+        Button('confirm')
+          .key('Custom_Dialog_A')
           .onClick(() => {
             if (this.controller != undefined) {
               this.controller.close()
               this.confirm()
             }
-          }).backgroundColor(0xffffff).fontColor(Color.Red)
+          })
+          .backgroundColor(0xffffff)
+          .fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }.borderRadius(10)
   }
-  }
+}
 
 
 @Entry
 @Component
 struct CustomDialogUserA {
+<<<<<<< HEAD
+  @State inputValue: string = 'CustomDialog按esc弹窗逐层退出';
+  dialogController: CustomDialogController | null = new CustomDialogController({
+=======
   @State inputValue: string = 'CustomDialog按esc弹窗逐层退出'
   dialogController = new CustomDialogController({
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
     builder: CustomDialogExampleA({
       inputValue: $inputValue
     }),
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
   })
+
   build() {
     Column() {
       Button(this.inputValue).key('Custom_Dialog_B')

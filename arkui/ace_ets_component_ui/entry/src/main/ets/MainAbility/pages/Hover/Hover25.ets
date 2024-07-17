@@ -15,8 +15,8 @@
 @Entry
 @Component
 struct HoverExample25 {
-  @State isHoverVal25: string = 'unhover'
-  @State color: ResourceColor = Color.Blue
+  @State isHoverVal25: string = 'unhover';
+  @State color: ResourceColor = Color.Blue;
 
   build() {
     Column({ space: 5 }) {
@@ -28,15 +28,16 @@ struct HoverExample25 {
           .position({ x: 0, y: 0 })
           .hoverEffect(HoverEffect.Highlight)
           .onHover((isHover?: boolean) => {
-            if(isHover){
+            if (isHover) {
               this.isHoverVal25 = 'onhover'
               this.color = Color.Pink
             }
           })
       }
       .hoverEffect(HoverEffect.None)
-      .width('100%').height('100%').border({ width: 1 })
-
+      .width('100%')
+      .height('100%')
+      .border({ width: 1 })
     }
   }
 }

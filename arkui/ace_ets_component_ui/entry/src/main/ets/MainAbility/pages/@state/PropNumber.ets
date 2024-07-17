@@ -15,14 +15,18 @@
 import Common from '../../utils/Common'
 
 class Num3 {
-  public pages:number;
+  public pages: number;
+
   constructor(pages: number) {
     this.pages = pages;
   }
 }
+<<<<<<< HEAD
+=======
 interface PropNumberObject {
   number: string
 }
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
 
 @Component
 struct Child_AO {
@@ -80,9 +84,9 @@ struct Library_AO {
 
   build() {
     Column({ space: 20 }) {
-      Child_AO({count: this.count})
-
-
-    }.width('100%').margin({top:10})
+      Child_AO({ count: this.count })
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

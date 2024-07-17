@@ -15,10 +15,7 @@
 import Common from '../../utils/Common'
 
 class Num4 {
-  public pages:number;
-  constructor(pages: number) {
-    this.pages = pages;
-  }
+  pages: number;
 }
 
 @Component
@@ -64,7 +61,9 @@ struct Child_CP {
         })
         .key('state5')
 
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }
 
@@ -75,9 +74,17 @@ struct Index_CP {
 
   build() {
     Column() {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.count)) + " number is " + JSON.stringify(this.count))
+        .fontSize(20)
+        .margin(30)
+        .key('LinkNumber')
+      Child_CP({ count: this.count })
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.count)) + " number is " + JSON.stringify(this.count))
         .fontSize(20).margin(30).key('LinkNumber')
       Child_CP({count: this.count})
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
 
     }
   }

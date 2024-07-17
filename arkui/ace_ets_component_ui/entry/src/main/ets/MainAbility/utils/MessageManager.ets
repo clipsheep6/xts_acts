@@ -13,6 +13,28 @@
  * limitations under the License.
  */
 
+<<<<<<< HEAD
+export type Callback = (message: ESObject) => void
+
+export class MessageManager {
+  callback: Callback
+  callbacks: Map<string, Callback> = new Map()
+
+  constructor() {
+
+  }
+
+  registerCallback(callback: Callback, type?: string) {
+    if (type == undefined) {
+      console.error('registerCallback callback set')
+      this.callback = callback
+      return
+    }
+    this.callbacks.set(type, callback)
+  }
+
+  notify(message: ESObject, type?: string) {
+=======
 export interface Message<T> {
   name: string;
   value: T;
@@ -28,6 +50,7 @@ export class MessageManager<T> {
   }
 
   registerCallback(callback: Callback<T>, type?: string) {
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
     if (type == undefined) {
       console.error('registerCallback callback set');
       this.callback = callback;
@@ -42,7 +65,11 @@ export class MessageManager<T> {
       return;
     }
 
+<<<<<<< HEAD
+    let tmpCallback: Callback = this.callbacks.get(type)
+=======
     let tmpCallback: Callback<T> = this.callbacks.get(type)!;
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
     if (tmpCallback === undefined) {
       console.error('callbacks has no callback for type ' + type);
       return;
@@ -51,7 +78,12 @@ export class MessageManager<T> {
   }
 
   clear() {
+<<<<<<< HEAD
+    this.callbacks.clear()
+    this.callback = null
+=======
     this.callbacks.clear();
     this.callback = undefined;
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   }
 }

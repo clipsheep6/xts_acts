@@ -55,7 +55,6 @@ struct Child_CA {
 }
 
 
-
 @Entry
 @Component
 struct Ancestors_CA {
@@ -64,14 +63,27 @@ struct Ancestors_CA {
 
   build() {
     Column({ space: 20 }) {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array)) + " number is " + JSON.stringify(this.Array))
+        .fontSize(20)
+        .margin(30)
+        .key('ConsumeArray')
+
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array)) + " number is " + getContext()
+        .resourceManager
+        .getStringSync($r('app.string.number').id))
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.Array)) + " number is " + JSON.stringify(this.Array))
         .fontSize(20).margin(30).key('ConsumeArray')
 
       Text("count type of " + JSON.stringify(Common.getType(this.Array)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
         .fontSize(20).margin(30).key('ConsumeArrayNew')
 
       Child_CA()
 
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

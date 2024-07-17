@@ -59,12 +59,21 @@ struct Ancestors_CH {
 
   build() {
     Column({ space: 20 }) {
+<<<<<<< HEAD
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.hight)) + " number is " + JSON.stringify(this.hight))
+        .fontSize(20)
+        .margin(30)
+        .key('ConsumeHight')
+=======
       Text("count type of " + JSON.stringify(Common.getType(this.hight)) + " number is " + JSON.stringify(this.hight))
         .fontSize(20).margin(30).key('ConsumeHight')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
 
       Child_CH()
 
 
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

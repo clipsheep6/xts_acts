@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router'
+import router from '@ohos.router';
+
 @Entry
 @Component
 struct pageOne {
@@ -22,14 +23,17 @@ struct pageOne {
         Text('我是首页One22222222')
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
-        Button('跳转路由').onClick(() => {
-          router.pushUrl({
-            url: 'MainAbility/pages/Router/pageTwo',
-          });
-        }).id('page_Button')
+        Button('跳转路由')
+          .onClick(() => {
+            router.pushUrl({
+              url: 'MainAbility/pages/Router/pageTwo',
+            });
+          }).id('page_Button')
 
-        Text('' + router.getState()['name']).id('nameState')
-        Text('' + router.getLength()).id('getNum')
+        Text('' + router.getState()['name'])
+          .id('nameState')
+        Text('' + router.getLength())
+          .id('getNum')
       }
       .width('100%')
     }

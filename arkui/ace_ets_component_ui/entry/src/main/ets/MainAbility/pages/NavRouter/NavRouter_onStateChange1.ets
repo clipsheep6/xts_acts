@@ -15,7 +15,7 @@
 @Entry
 @Component
 struct NavRouter_onStateChange1 {
-  @State isActiveWLAN: boolean = false
+  @State isActiveWLAN: boolean = false;
 
   build() {
     Column(){
@@ -33,9 +33,12 @@ struct NavRouter_onStateChange1 {
 
           NavDestination() {
             Flex({ direction: FlexDirection.Row }) {
-              Text('NavDestination').fontSize(30).padding({ left: 15 })
+              Text('NavDestination')
+                .fontSize(30)
+                .padding({ left: 15 })
             }
-          }.title("NavDestination")
+          }
+          .title("NavDestination")
         }
         .margin({ top: 10, bottom: 10 })
         .borderRadius(20)

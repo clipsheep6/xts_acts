@@ -13,25 +13,22 @@
  * limitations under the License.
  */
 import router from '@ohos.router'
+
 @Entry
 @Component
 struct pageC {
-  // @State page:RouterState = {index:1}
-
-
   build() {
     Row() {
       Column() {
         Text('我是C')
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
-        Text('' + router.getState()['name']).id('name_C')
-        Text('' + router.getLength()).id('length_C')
-
+        Text('' + router.getState()['name'])
+          .id('name_C')
+        Text('' + router.getLength())
+          .id('length_C')
       }
       .width('100%')
-
-
     }
     .height('100%')
   }

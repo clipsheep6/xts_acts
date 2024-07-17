@@ -12,34 +12,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../../../utils/MessageManager';
+import { MessageManager, Callback } from '../../../utils/MessageManager';
 
 type Message = number|Visibility
 
 @Entry
 @Component
 struct getScrollItemRect4 {
-  scroller: Scroller = new Scroller()
-  @State arr: number[] = [0,1,2,3,4,5]
-  @State visibility1: Visibility = Visibility.Visible
-  @State index: number = 0
-  @State x: number = 0
-  @State y: number = 0
-  @State width1: number = 0
-  @State height1: number = 0
+  scroller: Scroller = new Scroller();
+  @State arr: number[] = [0, 1, 2, 3, 4, 5];
+  @State visibility1: Visibility = Visibility.Visible;
+  @State index: number = 0;
+  @State x: number = 0;
+  @State y: number = 0;
+  @State width1: number = 0;
+  @State height1: number = 0;
+  messageManager: MessageManager = new MessageManager();
 
+<<<<<<< HEAD
+=======
   messageManager = new MessageManager<Message>()
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   onPageShow() {
     console.info('getScrollItemRect4 onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
+<<<<<<< HEAD
+    let callback: Callback = (message: ESObject) => {
+      console.error('message = ' + message.name + "--" + message.value);
+      if (message.name == 'index') {
+        this.index = message.value;
+      } else if (message.name == 'visibility1') {
+        this.visibility1 = message.value;
+=======
     let callback: Callback<Message> = message => {
       console.error('message = ' + message.name + "--" + message.value);
       if(message.name == 'index') {
         this.index = message.value as number;
       }else if (message.name == 'visibility1') {
         this.visibility1 = message.value as Visibility;
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       }
     }
     this.messageManager.registerCallback(callback);
@@ -47,9 +60,9 @@ struct getScrollItemRect4 {
 
   build() {
     Column() {
-      Scroll(this.scroller){
-        Column(){
-          ForEach(this.arr,(item:number) => {
+      Scroll(this.scroller) {
+        Column() {
+          ForEach(this.arr, (item: number) => {
             Text(item.toString())
               .width('100%')
               .height(100)

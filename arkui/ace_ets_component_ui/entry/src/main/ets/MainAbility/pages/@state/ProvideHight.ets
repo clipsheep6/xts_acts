@@ -21,8 +21,6 @@ struct Child_AT {
 
   build() {
     Column({ space: 20 }) {
-
-
     }
   }
 }
@@ -63,6 +61,6 @@ struct Ancestors_AT {
         .key('ProvideHeight3')
 
       Child_AT()
-    }.width('100%').margin({top:10})
+    }.width('100%').margin({ top: 10 })
   }
 }
