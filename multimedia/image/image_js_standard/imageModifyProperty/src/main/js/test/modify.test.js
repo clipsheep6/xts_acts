@@ -23,6 +23,9 @@ export default function imageModifyProperty() {
     describe("imageModifyProperty", function () {
         let globalImagesource;
         let filePath;
+        let ERROR_CODE1 = "62980135";
+        let ERROR_CODE2 = "62980146";
+        let ERROR_CODE3 = "62980285";
         async function getFd(fileName) {
             let context = await featureAbility.getContext();
             await context.getFilesDir().then((data) => {
@@ -53,6 +56,53 @@ export default function imageModifyProperty() {
         afterAll(function () {
             console.info("afterAll case");
         });
+
+        async function testModifyImageProperties(done, testNum, type, props, checkKey) {
+            let imageSourceApi;
+            if (type == "buffer") {
+                const data = modifyBuf.buffer;
+                imageSourceApi = image.createImageSource(data);
+            } else {
+                await getFd(type);
+                imageSourceApi = image.createImageSource(filePath);
+            }
+            if (imageSourceApi == undefined) {
+                console.info(`${testNum} create image source failed`);
+                expect(false).assertTrue();
+                done();
+            } else {
+                globalImagesource = imageSourceApi;
+                imageSourceApi.modifyImageProperties(props)
+                    .then(() => {
+                        imageSourceApi
+                            .getImageProperties(checkKey)
+                            .then((data) => {
+                                console.info(`${testNum} newProps: ${JSON.stringify(props)} , data: ${JSON.stringify(data)}`);
+                                checkKey.forEach((item) => {
+                                    expect(data.item == props.item).assertTrue();
+                                })
+                                done();
+                            })
+                            .catch((err) => {
+                                const errorCode = JSON.stringify(err);
+                                console.log(`${testNum} get error: ` + err.toString());
+                                expect(errorCode.includes(ERROR_CODE3)).assertTrue();
+                                done();
+                            });
+                    })
+                    .catch((err) => {
+                        const errorCode = JSON.stringify(err);
+                        console.log(`${testNum} modify error: ` + err.toString());
+                        expect(errorCode.includes(ERROR_CODE1) || errorCode.includes(ERROR_CODE2) || errorCode.includes(ERROR_CODE3)).assertTrue();
+                        imageSourceApi
+                            .getImageProperties(checkKey)
+                            .then((data) => {
+                                console.info(`${testNum} props: ${JSON.stringify(props)} , data: ${JSON.stringify(data)}`);
+                            })
+                        done();
+                    });
+            }
+        }
 
         async function modifyPromise(done, testNum, type, key, value, checkProps) {
             let imageSourceApi;
@@ -168,7 +218,7 @@ export default function imageModifyProperty() {
             }
         }
 
-        async function modifyErrCb(done, testNum, type, key, value) {
+        async function modifyErrCb(done, testNum, type, key, value, flag) {
             let imageSourceApi;
             if (type == "buffer") {
                 const data = modifyBuf.buffer;
@@ -183,15 +233,28 @@ export default function imageModifyProperty() {
                 done();
             } else {
                 globalImagesource = imageSourceApi;
-                imageSourceApi.modifyImageProperty(key, value, (error) => {
-                    console.info(`${testNum} errormsg: ` + error);
-                    expect(error.code == 62980135).assertTrue();
-                    done();
-                });
+                if (flag) {
+                    imageSourceApi.modifyImageProperty(key, value, (error) => {
+                        console.info(`${testNum} errormsg: ` + error);
+                        expect(error.code == 62980135).assertTrue();
+                        done();
+                    });
+                } else {
+                    try {
+                        imageSourceApi.modifyImageProperty((error) => {
+                            expect(false).assertTrue();
+                            done();
+                        });
+                    } catch (error) {
+                        expect(error.code == 62980115).assertTrue();
+                        console.info(`${testNum} error.code: ` + error.code);
+                        done();
+                    };
+                }
             }
         }
 
-        async function modifyErrCb1(done, testNum, type, key, value) {
+        async function modifyErrCb1(done, testNum, type, key, value, flag) {
             let imageSourceApi;
             if (type == "buffer") {
                 const data = modifyBuf.buffer;
@@ -206,16 +269,29 @@ export default function imageModifyProperty() {
                 done();
             } else {
                 globalImagesource = imageSourceApi;
-                let property = { index: 0, defaultValue: "1" };
-                imageSourceApi.modifyImageProperty(key, value, property, (error) => {
-                    console.info(`${testNum} errormsg: ` + error);
-                    expect(error.code == 62980135).assertTrue();
-                    done();
-                });
+                if (flag) {
+                    let property = { index: 0, defaultValue: "1" };
+                    imageSourceApi.modifyImageProperty(key, value, property, (error) => {
+                        console.info(`${testNum} errormsg: ` + error);
+                        expect(error.code == 62980135).assertTrue();
+                        done();
+                    });
+                } else {
+                    try {
+                        imageSourceApi.modifyImageProperty((error) => {
+                            expect(false).assertTrue();
+                            done();
+                        });
+                    } catch (error) {
+                        expect(error.code == 62980115).assertTrue();
+                        console.info(`${testNum} error.code: ` + error.code);
+                        done();
+                    };
+                }
             }
         }
 
-        async function modifyImageErrPromise(done, testNum, type, key, value) {
+        async function modifyImageErrPromise(done, testNum, type, key, value, flag) {
             let imageSourceApi;
             try {
                 if (type == "buffer") {
@@ -236,17 +312,27 @@ export default function imageModifyProperty() {
                 done();
             } else {
                 globalImagesource = imageSourceApi;
-                imageSourceApi
-                    .modifyImageProperty(key, value)
-                    .then(() => {
+                if (flag) {
+                    imageSourceApi.modifyImageProperty(key, value).then(() => {
                         expect(false).assertTrue();
                         done();
-                    })
-                    .catch((error) => {
+                    }).catch((error) => {
                         expect(error.code != 0).assertTrue();
                         console.info(`${testNum} message: ` + error);
                         done();
                     });
+                } else {
+                    try {
+                        imageSourceApi.modifyImageProperty();
+                        expect(false).assertTrue();
+                        done();
+                    } catch (error) {
+                        expect(error.code == 62980115).assertTrue();
+                        console.info(`${testNum} message: ` + error);
+                        console.info(`${testNum} error.code: ` + error.code);
+                        done();
+                    };
+                }
             }
         }
 
@@ -2917,7 +3003,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0100",
                 "fd",
                 "Orientation",
-                "abcdef"
+                "abcdef",
+                true
             );
         });
 
@@ -2937,7 +3024,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0200",
                 "fd",
                 "GPSLatitude",
-                "abc,3"
+                "abc,3",
+                true
             );
         });
 
@@ -2957,7 +3045,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0200",
                 "fd",
                 "GPSLongitude",
-                "abc,2"
+                "abc,2",
+                true
             );
         });
 
@@ -2977,7 +3066,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0400",
                 "fd",
                 "GPSLatitudeRef",
-                "456"
+                "456",
+                true
             );
         });
 
@@ -2997,7 +3087,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0500",
                 "fd",
                 "GPSLongitudeRef",
-                "1234"
+                "1234",
+                true
             );
         });
 
@@ -3017,7 +3108,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0600",
                 "buffer",
                 "Orientation",
-                "abcdef"
+                "abcdef",
+                true
             );
         });
 
@@ -3037,7 +3129,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0700",
                 "buffer",
                 "GPSLatitude",
-                "abc,3"
+                "abc,3",
+                true
             );
         });
 
@@ -3057,7 +3150,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0800",
                 "buffer",
                 "GPSLongitude",
-                "abc,2"
+                "abc,2",
+                true
             );
         });
 
@@ -3077,7 +3171,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_0900",
                 "buffer",
                 "GPSLatitudeRef",
-                "456"
+                "456",
+                true
             );
         });
 
@@ -3097,8 +3192,37 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_1000",
                 "buffer",
                 "GPSLongitudeRef",
-                "1234"
+                "1234",
+                true
             );
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_1100
+         * @tc.name      : modifyImageProperty()-promise
+         * @tc.desc      : 1.create imagesource
+         *                 2.call modifyImageProperty()
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 1
+         */
+        it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_1100", 0, async function (done) {
+            modifyImageErrPromise(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_1100", "fd", "", "", false);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_1200
+         * @tc.name      : modifyImageProperty()-promise
+         * @tc.desc      : 1.create imagesource
+         *                 2.call modifyImageProperty()
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 1
+         */
+        it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_1200", 0, async function (done) {
+            modifyImageErrPromise(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROMISE_ERROR_1200", "buffer", "", "", false);
         });
 
         /**
@@ -3112,7 +3236,7 @@ export default function imageModifyProperty() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0100", 0, async function (done) {
-            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0100", "fd", "Orientation", "abcdef");
+            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0100", "fd", "Orientation", "abcdef", true);
         });
 
         /**
@@ -3126,7 +3250,7 @@ export default function imageModifyProperty() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0200", 0, async function (done) {
-            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0200", "fd", "GPSLatitude", "abc,3");
+            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0200", "fd", "GPSLatitude", "abc,3", true);
         });
 
         /**
@@ -3140,7 +3264,7 @@ export default function imageModifyProperty() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0300", 0, async function (done) {
-            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0300", "fd", "GPSLongitude", "abc,2");
+            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0300", "fd", "GPSLongitude", "abc,2", true);
         });
 
         /**
@@ -3154,7 +3278,7 @@ export default function imageModifyProperty() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0400", 0, async function (done) {
-            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0400", "fd", "GPSLongitudeRef", "1234");
+            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0400", "fd", "GPSLongitudeRef", "1234", true);
         });
 
         /**
@@ -3168,7 +3292,7 @@ export default function imageModifyProperty() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0500", 0, async function (done) {
-            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0500", "fd", "GPSLatitudeRef", "456");
+            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0500", "fd", "GPSLatitudeRef", "456", true);
         });
 
         /**
@@ -3187,7 +3311,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0600",
                 "buffer",
                 "Orientation",
-                "abcdef"
+                "abcdef",
+                true
             );
         });
 
@@ -3202,7 +3327,7 @@ export default function imageModifyProperty() {
          * @tc.level     : Level 1
          */
         it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0700", 0, async function (done) {
-            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0700", "buffer", "GPSLatitude", "abc,3");
+            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0700", "buffer", "GPSLatitude", "abc,3", true);
         });
 
         /**
@@ -3221,7 +3346,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0800",
                 "buffer",
                 "GPSLongitude",
-                "abc,2"
+                "abc,2",
+                true
             );
         });
 
@@ -3241,7 +3367,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_0900",
                 "buffer",
                 "GPSLongitudeRef",
-                "1234"
+                "1234",
+                true
             );
         });
 
@@ -3261,8 +3388,37 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_1000",
                 "buffer",
                 "GPSLatitudeRef",
-                "456"
+                "456",
+                true
             );
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_1100
+         * @tc.name      : modifyImageProperty()-callback
+         * @tc.desc      : 1.create imagesource
+         *                 2.call modifyImageProperty()
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 1
+         */
+         it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_1100", 0, async function (done) {
+            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_1100", "fd", "", "", false);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_1200
+         * @tc.name      : modifyImageProperty()-callback
+         * @tc.desc      : 1.create imagesource
+         *                 2.call modifyImageProperty()
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 1
+         */
+         it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_1200", 0, async function (done) {
+            modifyErrCb(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_CALLBACK_ERROR_1200", "buffer", "", "", false);
         });
 
         /**
@@ -3281,7 +3437,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_0100",
                 "fd",
                 "Orientation",
-                "abcdef"
+                "abcdef",
+                true
             );
         });
 
@@ -3301,7 +3458,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_0200",
                 "fd",
                 "GPSLatitude",
-                "abc,3"
+                "abc,3",
+                true
             );
         });
 
@@ -3321,7 +3479,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_0300",
                 "fd",
                 "GPSLongitude",
-                "abc,2"
+                "abc,2",
+                true
             );
         });
 
@@ -3341,7 +3500,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_0400",
                 "fd",
                 "GPSLatitudeRef",
-                "1234"
+                "1234",
+                true
             );
         });
 
@@ -3361,7 +3521,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_0500",
                 "fd",
                 "GPSLongitudeRef",
-                "567"
+                "567",
+                true
             );
         });
 
@@ -3381,7 +3542,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_0600",
                 "buffer",
                 "Orientation",
-                "abcef"
+                "abcef",
+                true
             );
         });
 
@@ -3401,7 +3563,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_0700",
                 "buffer",
                 "GPSLatitude",
-                "abc,3"
+                "abc,3",
+                true
             );
         });
 
@@ -3421,7 +3584,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_0800",
                 "buffer",
                 "GPSLongitude",
-                "abc,2"
+                "abc,2",
+                true
             );
         });
 
@@ -3441,7 +3605,8 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_0900",
                 "buffer",
                 "GPSLatitudeRef",
-                "456"
+                "456",
+                true
             );
         });
 
@@ -3461,8 +3626,37 @@ export default function imageModifyProperty() {
                 "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_1000",
                 "buffer",
                 "GPSLongitudeRef",
-                "1234"
+                "1234",
+                true
             );
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_1100
+         * @tc.name      : modifyImageProperty()-callback
+         * @tc.desc      : 1.create imagesource
+         *                 2.call modifyImageProperty()
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 1
+         */
+        it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_1100", 0, async function (done) {
+            modifyErrCb1(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_1100", "fd", "", "", false);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_1200
+         * @tc.name      : modifyImageProperty()-callback
+         * @tc.desc      : 1.create imagesource
+         *                 2.call modifyImageProperty()
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 1
+         */
+        it("SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_1200", 0, async function (done) {
+            modifyErrCb1(done, "SUB_MULTIMEDIA_IMAGE_MODIFYPROPERTY_PROPERTY_CALLBACK_ERROR_1200", "buffer", "", "", false);
         });
     });
 }

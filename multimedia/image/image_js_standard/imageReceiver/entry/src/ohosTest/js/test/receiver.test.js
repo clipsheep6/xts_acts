@@ -74,7 +74,7 @@ export default function ImageReceiver() {
                 done();
                 return;
             } catch (error) {
-                expect(error.code == 401).assertTrue();
+                expect(error.code == 62980115).assertTrue();
                 console.info(`${testNum} err message` + error);
                 done();
                 return;
@@ -121,7 +121,7 @@ export default function ImageReceiver() {
                                 done();
                                 return;
                             } catch (error) {
-                                expect(error.code == 1).assertTrue();
+                                expect(error.code == 62980115).assertTrue();
                                 console.log(`${testNum} error msg: ` + error);
                                 done();
                                 return;
@@ -175,7 +175,7 @@ export default function ImageReceiver() {
                                     return;
                                 });
                             } catch (error) {
-                                expect(error.code == 1).assertTrue();
+                                expect(error.code == 62980115).assertTrue();
                                 console.log(`${testNum} error msg: ` + error);
                                 done();
                                 return;
@@ -322,7 +322,7 @@ export default function ImageReceiver() {
                         expect(false).assertTrue();
                     });
                 } catch (error) {
-                    expect(error.code == 1).assertTrue();
+                    expect(error.code == 62980115).assertTrue();
                     console.log(`${testNum} error msg: ` + error);
                     done();
                     return;
@@ -571,6 +571,28 @@ export default function ImageReceiver() {
                 "form.",
                 CAPACITY
             );
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_ERROR_0800
+         * @tc.name      : createImageReceiver
+         * @tc.desc      : 1.create ImageReceiver()
+         *                 2.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_ERROR_0800", 0, async function (done) {
+            try {
+                image.createImageReceiver();
+                expect(false).assertTrue();
+                done();
+            } catch (error) {
+                expect(error.code == 62980115).assertTrue();
+                console.info("SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_ERROR_0800 error: " + error);
+                console.info("SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_ERROR_0800 error code " + JSON.stringify(error.code));
+                done();
+            }
         });
 
         /**

@@ -31,6 +31,7 @@ export default function imagePackToFile() {
             pixelHeight: 4
         }
         const ERROR_CODE = 62980115;
+        const ERROR_CODE1 = 62980279;
 
         beforeAll(async function () {
             console.info("beforeAll case");
@@ -203,7 +204,7 @@ export default function imagePackToFile() {
                     if (err != undefined) {
                         console.info(`${testNum} pack failerr: ${JSON.stringify(err)}`);
                         console.info(`${testNum} file size ${fileio.statSync(fPath).size}`);
-                        expect(err.code == ERROR_CODE).assertTrue();
+                        expect(err.code == ERROR_CODE || err.code == ERROR_CODE1).assertTrue();
                         done();
                     } else {
                         expect(false).assertTrue();
@@ -235,7 +236,7 @@ export default function imagePackToFile() {
                     fileio.closeSync(fd);
                     console.log(`${testNum} packToFile error: ` + JSON.stringify(error));
                     console.info(`${testNum} file size ${fileio.statSync(fPath).size}`);
-                    expect(error.code == ERROR_CODE).assertTrue();
+                    expect(error.code == ERROR_CODE || error.code == ERROR_CODE1).assertTrue();
                     done();
                 }
             } catch (error) {

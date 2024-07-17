@@ -64,7 +64,7 @@ export default function ImageCreator() {
                 expect(false).assertTrue();
                 done();
             } catch (error) {
-                expect(error.code == 401).assertTrue();
+                expect(error.code == 62980115).assertTrue();
                 console.info(`${testNum} err message` + error);
                 done();
             }
@@ -83,14 +83,14 @@ export default function ImageCreator() {
                         done();
                     });
                 } catch (error) {
-                    expect(error.code == 1).assertTrue();
+                    expect(error.code == 62980115).assertTrue();
                     console.log(`${testNum} error msg: ` + error);
                     done();
                 }
             }
         }
     
-        async function queueImageError(done, testNum, param) {
+        async function queueImageError(done, testNum, param, flag) {
             var creator = image.createImageCreator(WIDTH, HEIGHT, FORMAT, CAPACITY);
             if (creator != undefined) {
                 globalCreator = creator;
@@ -119,14 +119,26 @@ export default function ImageCreator() {
                             bufferArr[i + 3] = 255; //A
                         }
     
-                        try {
-                            await creator.queueImage(param);
-                            expect(false).assertTrue();
-                            done();
-                        } catch (error) {
-                            expect(error.code == 1).assertTrue();
-                            console.log(`${testNum} error msg: ` + error);
-                            done();
+                        if (flag) {
+                            try {
+                                await creator.queueImage(param);
+                                expect(false).assertTrue();
+                                done();
+                            } catch (error) {
+                                expect(error.code == 62980115).assertTrue();
+                                console.log(`${testNum} error msg: ` + error);
+                                done();
+                            }
+                        } else {
+                            try {
+                                await creator.queueImage();
+                                expect(false).assertTrue();
+                                done();
+                            } catch (error) {
+                                expect(error.code == 62980115).assertTrue();
+                                console.log(`${testNum} error msg: ` + error);
+                                done();
+                            }
                         }
                     })
                 }).catch(error => {
@@ -141,7 +153,7 @@ export default function ImageCreator() {
             }
         }
     
-        async function queueImageCbError(done, testNum, param) {
+        async function queueImageCbError(done, testNum, param, flag) {
             var creator = image.createImageCreator(WIDTH, HEIGHT, FORMAT, CAPACITY);
             if (creator != undefined) {
                 globalCreator = creator;
@@ -169,15 +181,28 @@ export default function ImageCreator() {
                                 bufferArr[i + 3] = 255; //A
                             }
     
-                            try {
-                                creator.queueImage(param, (err) => {
-                                    expect(false).assertTrue();
+                            if (flag) {
+                                try {
+                                    creator.queueImage(param, (err) => {
+                                        expect(false).assertTrue();
+                                        done();
+                                    })
+                                } catch (error) {
+                                    expect(error.code == 62980115).assertTrue();
+                                    console.log(`${testNum} error msg: ` + error);
                                     done();
-                                })
-                            } catch (error) {
-                                expect(error.code == 1).assertTrue();
-                                console.log(`${testNum} error msg: ` + error);
-                                done();
+                                }
+                            } else {
+                                try {
+                                    creator.queueImage(0, "", param, (err) => {
+                                        expect(false).assertTrue();
+                                        done();
+                                    })
+                                } catch (error) {
+                                    expect(error.code == 62980115).assertTrue();
+                                    console.log(`${testNum} error msg: ` + error);
+                                    done();
+                                }
                             }
                         })
                     }
@@ -344,8 +369,29 @@ export default function ImageCreator() {
         it('SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_1000', 0, async function (done) {
             createCreator(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_1000', WIDTH, HEIGHT, 'form.', CAPACITY);
         })
-    
-    
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_1100
+         * @tc.name      : createImageCreator
+         * @tc.desc      : 1.create ImageCreator()
+         *                 2.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+         it('SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_1100', 0, async function (done) {
+            try {
+                image.createImageCreator();
+                expect(false).assertTrue();
+                done();
+            } catch (error) {
+                expect(error.code == 62980115).assertTrue();
+                console.info("SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_1100 error: " + error);
+                console.info("SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_1100 error code " + JSON.stringify(error.code));
+                done();
+            }
+        })
+
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_RELEASE_PROMISE_0100
          * @tc.name      : release-promise
@@ -540,7 +586,7 @@ export default function ImageCreator() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0300', 0, async function (done) {
-            queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0300', 1);
+            queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0300', 1, true);
         })
     
         /**
@@ -553,7 +599,7 @@ export default function ImageCreator() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0400', 0, async function (done) {
-            queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0400', null);
+            queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0400', null, true);
         })
     
         /**
@@ -566,7 +612,7 @@ export default function ImageCreator() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0500', 0, async function (done) {
-            queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0500', 'a');
+            queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0500', 'a', true);
         })
     
         /**
@@ -579,7 +625,21 @@ export default function ImageCreator() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0600', 0, async function (done) {
-            queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0600', { a: 1 });
+            queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0600', { a: 1 }, true);
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0700
+         * @tc.name      : queueImage-promise
+         * @tc.desc      : 1.create ImageCreator
+         *                 2.call queueImage()
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0700', 0, async function (done) {
+            queueImageError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_PROMISE_0700', "", false);
         })
     
         /**
@@ -655,7 +715,7 @@ export default function ImageCreator() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0300', 0, async function (done) {
-            queueImageCbError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0300', 1);
+            queueImageCbError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0300', 1, true);
         })
     
         /**
@@ -670,7 +730,7 @@ export default function ImageCreator() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0400', 0, async function (done) {
-            queueImageCbError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0400', null);
+            queueImageCbError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0400', null, true);
         })
     
         /**
@@ -685,7 +745,7 @@ export default function ImageCreator() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0500', 0, async function (done) {
-            queueImageCbError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0500', 'a');
+            queueImageCbError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0500', 'a', true);
         })
     
         /**
@@ -700,7 +760,22 @@ export default function ImageCreator() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0600', 0, async function (done) {
-            queueImageCbError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0600', { a: 1 });
+            queueImageCbError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0600', { a: 1 }, true);
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0700
+         * @tc.name      : queueImage-callback
+         * @tc.desc      : 1.create ImageCreator
+         *                 2.call dequeueImage()
+         *                 3.call queueImage(0, "", param, callback)
+         *                 4.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0700', 0, async function (done) {
+            queueImageCbError(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_QUEUEIMAGE_CALLBACK_0700', "", false);
         })
     
         /**
