@@ -15,7 +15,6 @@
 import { MessageManager, Callback } from '../../../utils/MessageManager';
 import { WaterFlowDataSource } from './WaterFlowDataSource'
 
-
 @Entry
 @Component
 struct getWaterFlowItemRect3 {
@@ -36,12 +35,29 @@ struct getWaterFlowItemRect3 {
   @State height1: number = 0;
   messageManager: MessageManager = new MessageManager();
 
+<<<<<<< HEAD
+=======
+  @State x1: number = 0
+  @State y1: number = 0
+
+  @State index: number = 0
+  @State x: number = 0
+  @State y: number = 0
+  @State width1: number = 0
+  @State height1: number = 0
+
+  messageManager = new MessageManager<number>()
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   onPageShow() {
     console.info('getWaterFlowItemRect3 onPageShow');
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
+<<<<<<< HEAD
     let callback: Callback = (message: ESObject) => {
+=======
+    let callback: Callback<number> = message => {
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
         this.index = message.value;

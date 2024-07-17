@@ -12,12 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Common from '../../utils/Common'
+
 class Num2 {
   public pages: number;
 
   constructor(pages: number) {
     this.pages = pages;
   }
+}
+interface ProvideNumberObject {
+  number: string
 }
 
 @Component
@@ -40,10 +45,15 @@ struct Ancestors_AR {
 
   build() {
     Column() {
+<<<<<<< HEAD
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.count)) + " number is " + JSON.stringify(this.count))
         .fontSize(20)
         .margin(30)
         .key('ProvideNumber')
+=======
+      Text("count type of " + JSON.stringify(Common.getType(this.count)) + " number is " + JSON.stringify(this.count))
+        .fontSize(20).margin(30).key('ProvideNumber')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       Text("变量赋值number类型")
       Button('change')
         .onClick(() => {
@@ -54,14 +64,14 @@ struct Ancestors_AR {
       Text("切换变量赋值Object")
       Button('change')
         .onClick(() => {
-          this.count = { pages: 20 };
+          this.count = new Num2(20);
         })
         .key('state2')
 
       Text("切换变量赋值string")
       Button('change')
         .onClick(() => {
-          this.count = { number: '30' };
+          this.count = { number: '30' } as ProvideNumberObject;
         })
         .key('state3')
 

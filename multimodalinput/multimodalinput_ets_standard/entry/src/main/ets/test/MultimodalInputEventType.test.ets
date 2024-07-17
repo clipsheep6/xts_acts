@@ -23,7 +23,6 @@ import { AxisValue, MouseEvent } from '@ohos.multimodalInput.mouseEvent'
 import { Touch, TouchEvent } from '@ohos.multimodalInput.touchEvent'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
-
 export default function MultimodalInputEventTypeTest() {
   describe('MultimodalInputEventTypeTest', () => {
 
@@ -585,5 +584,6 @@ export default function MultimodalInputEventTypeTest() {
 
       console.info(`MultimodalInput_InputEventTypeTest_0010 exit`);
     })
+
   })
 }

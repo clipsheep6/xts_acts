@@ -13,7 +13,13 @@
  * limitations under the License.
  */
 import WebViewPrefetchResource from './WebViewPrefetchResource.test'
+import precompileJavaScript from './precompileJavaScript.test'
+import injectOfflineResources from './injectOfflineResources.test'
+import clearPrefetchedResource from './clearPrefetchedResource.test'
 
 export default function testsuite() {
   WebViewPrefetchResource()
+  precompileJavaScript()
+  injectOfflineResources()
+  clearPrefetchedResource()
 }

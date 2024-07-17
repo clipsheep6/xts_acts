@@ -13,14 +13,32 @@
  * limitations under the License.
  */
 import router from '@system.router';
+import { PatternOptions, InputMethodListDialog } from '@ohos.inputMethodList';
 
 @Entry
 @Component
 struct Second {
   private content: string = "Second Page"
+  @State defaultPattern: number = 1;
+  private oneHandAction: PatternOptions = {
+    defaultSelected: this.defaultPattern,
+    patterns:[{
+      icon: $r(`app.media.iocn`),
+      selectedIcon: $r(`app.media.iocn`)
+    }],
+    action: (index: number) => {
+      console.log(`patter is change, curenti is ${index}`)
+      this.defaultPattern = index;
+    }
+  };
+  private listController: CustomDialogController = new CustomDialogController({
+    builder: InputMethodListDialog({patternOptions: this.oneHandAction}),
+    customStyle: true,
+    maskColor: '#00000000'
+  })
 
   build() {
-    Flex({ direction: FlexDirection.Column,alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(`${this.content}`)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)

@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Common from '../../utils/Common'
+
 @Entry
 @Component
 struct MyComponent_AX {
@@ -19,11 +21,11 @@ struct MyComponent_AX {
 
   build() {
     Column({ space: 20 }) {
-      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.color)) + " number is " + JSON.stringify(this.color))
+      Text("count type of " + JSON.stringify(Common.getType(this.color)) + " number is " + JSON.stringify(this.color))
         .fontSize(20).margin(30).key('StateColor')
       Text("设置变量color类型pink-->Orange")
       Button('change')
-        .backgroundColor(this.color)
+        .backgroundColor(this.color!)
         .onClick(() => {
           this.color = Color.Orange;
         })
@@ -31,7 +33,7 @@ struct MyComponent_AX {
 
       Text("设置变量number类型Orange-->008000")
       Button('change')
-        .backgroundColor(this.color)
+        .backgroundColor(this.color!)
         .onClick(() => {
           this.color = 0x0000ff;
         })
@@ -39,7 +41,7 @@ struct MyComponent_AX {
 
       Text("设置变量undefined类型pink-->undefined")
       Button('change')
-        .backgroundColor(this.color)
+        .backgroundColor(this.color!)
         .onClick(() => {
           this.color = undefined
         })
@@ -47,7 +49,7 @@ struct MyComponent_AX {
 
       Text("设置变量string类型pink-->'008000'")
       Button('change')
-        .backgroundColor(this.color)
+        .backgroundColor(this.color!)
         .onClick(() => {
           this.color = '#FFA52A2A'
         })
@@ -55,7 +57,7 @@ struct MyComponent_AX {
 
       Text("设置变量string类型pink-->null")
       Button('change')
-        .backgroundColor(this.color)
+        .backgroundColor(this.color!)
         .onClick(() => {
           this.color = null
         })
@@ -63,7 +65,7 @@ struct MyComponent_AX {
 
       Text("设置变量Resource类型pink-->Resource")
       Button('change')
-        .backgroundColor(this.color)
+        .backgroundColor(this.color!)
         .onClick(() => {
           this.color = $r('app.string.color')
         })

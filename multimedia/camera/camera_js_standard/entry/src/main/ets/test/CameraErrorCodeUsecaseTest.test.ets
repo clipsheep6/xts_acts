@@ -16,7 +16,7 @@
 import cameraObj from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import fs from '@ohos.file.fs';
 import featureAbility from '@ohos.ability.featureAbility';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
@@ -199,34 +199,25 @@ export default function CameraErrorCodeUsecaseTest() {
     }
 
     async function getFd(pathName) {
-        let displayName = pathName;
-        const mediaTest = mediaLibrary.getMediaLibrary();
-        let fileKeyObj = mediaLibrary.FileKey;
-        let mediaType = mediaLibrary.MediaType.VIDEO;
-        let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
-        let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
-        if (dataUri != undefined) {
-            let args = dataUri.id.toString();
-            let fetchOp = {
-                selections: fileKeyObj.ID + "=?",
-                selectionArgs: [args],
-            }
-            let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
-            fileAsset = await fetchFileResult.getAllObject();
-            fdNumber = await fileAsset[0].open('Rw');
-            fdPath = "fd://" + fdNumber.toString();
-        }
+        await featureAbility.getContext().getFilesDir().then((fileDir) => {
+            console.info("case file dir is" + JSON.stringify(fileDir));
+            pathName = fileDir + '/' + pathName;
+            console.info("case pathName is" + pathName);
+        });
+        
+        let file = fs.openSync(pathName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+        fileAsset = file;
+        fdNumber = file.fd;
+        fdPath = "fd://" + fdNumber.toString();
+        console.info('case getFd number is: ' + fdObject.fdNumber);
     }
 
     async function closeFd() {
-        if (fileAsset != null) {
-            await fileAsset[0].close(fdNumber).then(() => {
-                console.info('[mediaLibrary] case close fd success');
-            }).catch((err) => {
-                console.info('[mediaLibrary] case close fd failed');
-            });
+        console.info('case come in closeFd')
+        if (fdNumber != null) {
+            fs.closeSync(fdNumber);
         } else {
-            console.info('[mediaLibrary] case fileAsset is null');
+            console.info('[fs.closeSync] case fdNumber is null');
         }
     }
 
@@ -342,8 +333,14 @@ export default function CameraErrorCodeUsecaseTest() {
 
         afterAll(async function () {
             await releaseVideoReceiveSurface();
-            sleep(1000);
             console.info('afterAll case');
+            if (!isEmpty(mCameraInput)) {
+                await releaseInput();
+            }
+            if (!isEmpty(mCameraSession)) {
+                await releaseCameraSessionInstance();
+            }
+            sleep(1000);
         })
 
         /**
@@ -2193,7 +2190,6 @@ export default function CameraErrorCodeUsecaseTest() {
             createOutput(0);
             mCameraSession.addOutput(mPreviewOutput);
             mCameraSession.addOutput(mPhotoOutput);
-            await commitCameraSessionConfig();
             try {
                 await mPhotoOutput.capture();
             } catch (err) {
@@ -2221,7 +2217,6 @@ export default function CameraErrorCodeUsecaseTest() {
             createOutput(0);
             mCameraSession.addOutput(mPreviewOutput);
             mCameraSession.addOutput(mPhotoOutput);
-            await commitCameraSessionConfig();
             mPhotoOutput.capture(async (err) => {
                 if (!err) {
                     expect(true).assertTrue();
@@ -2231,8 +2226,8 @@ export default function CameraErrorCodeUsecaseTest() {
                     console.info(TAG + "ERRORCODE: " + err.code);
                     expect(err.code == cameraObj.CameraErrorCode.SESSION_NOT_RUNNING).assertTrue();
                 }
+                done();
             })
-            done();
         })
 
         /**
@@ -2251,7 +2246,6 @@ export default function CameraErrorCodeUsecaseTest() {
             createOutput(0);
             mCameraSession.addOutput(mPreviewOutput);
             mCameraSession.addOutput(mPhotoOutput);
-            await commitCameraSessionConfig();
             mPhotoOutput.capture(captureSetting, async (err) => {
                 if (!err) {
                     expect(true).assertTrue();
@@ -2261,9 +2255,8 @@ export default function CameraErrorCodeUsecaseTest() {
                     console.info(TAG + "ERRORCODE: " + err.code);
                     expect(err.code == cameraObj.CameraErrorCode.SESSION_NOT_RUNNING).assertTrue();
                 }
+                done();
             })
-            sleep(1000);
-            done();
         })
 
         /**
@@ -2282,7 +2275,6 @@ export default function CameraErrorCodeUsecaseTest() {
             createOutput(0);
             mCameraSession.addOutput(mPreviewOutput);
             mCameraSession.addOutput(mPhotoOutput);
-            await commitCameraSessionConfig();
             try {
                 await mPhotoOutput.capture(captureSetting);
             } catch (err) {

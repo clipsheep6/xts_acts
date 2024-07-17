@@ -36,6 +36,14 @@ export default function getBundleInfoForSelf() {
           console.info("getBundleInfoForSelfApplicationPro : " + i + "  ==" + JSON.stringify(data.hapModulesInfo[i]));
         }
         expect(data.appInfo.bundleType).assertEqual(bundle.BundleType.ATOMIC_SERVICE);
+        expect(bundle.ExtensionAbilityType.INSIGHT_INTENT_UI).assertEqual(22);
+        expect(bundle.DisplayOrientation.AUTO_ROTATION_UNSPECIFIED).assertEqual(13);
+        expect(bundle.DisplayOrientation.FOLLOW_DESKTOP).assertEqual(14);
+        expect(data.appInfo.multiAppMode.multiAppModeType).assertEqual(bundle.MultiAppModeType.UNSPECIFIED);
+        expect(bundle.MultiAppModeType.UNSPECIFIED).assertEqual(0);
+        expect(bundle.MultiAppModeType.MULTI_INSTANCE).assertEqual(1);
+        expect(bundle.MultiAppModeType.APP_CLONE).assertEqual(2);
+        expect(data.appInfo.multiAppMode.maxCount).assertEqual(0);
         expect(data.hapModulesInfo[0].type).assertEqual(bundle.ModuleType.FEATURE);
         expect(data.hapModulesInfo[0].preloads.length).assertEqual(0);
         expect(data.hapModulesInfo[0].dependencies.length).assertEqual(0);

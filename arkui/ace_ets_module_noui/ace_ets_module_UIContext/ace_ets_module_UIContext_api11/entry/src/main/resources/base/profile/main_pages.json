@@ -1,8 +1,5 @@
 {
-    "src": [
-        "MainAbility/pages/index/index",
-        "MainAbility/pages/UIContext/getUIObserver",
-        "MainAbility/pages/UIContext/getDragController",
-        "MainAbility/pages/UIContext/arkuinode/arkui_node"
-    ]
+  "src": [
+    "pages/Index"
+  ]
 }

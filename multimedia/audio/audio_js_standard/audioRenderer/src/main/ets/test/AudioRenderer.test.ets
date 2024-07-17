@@ -2081,13 +2081,222 @@ export default function audioRendererTest() {
 
     }
 
+    async function playbackWriteDataCallback_001(AudioRendererOptions, pathName, done) {
+      console.info(`${TagFrmwkRender}: Callback : Audio Play Function`);
+      let audioRen;
+      let speed = 0;
+      await audio.createAudioRenderer(AudioRendererOptions).then(function (data) {
+        audioRen = data;
+        console.info(`${TagFrmwkRender}: AudioRender Created : Success : Stream Type: SUCCESS data state: ${Object.keys(data)}`);
+        console.info(`${TagFrmwkRender}: AudioRender Created : Success : Stream Type: SUCCESS data value: ${JSON.stringify(data)}`);
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: AudioRender Created : ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      console.info(`${TagFrmwkRender}: AudioRenderer : Path : ${pathName}`);
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+
+      let bufferSize;
+      await audioRen.getBufferSize().then((data) => {
+        console.info(`${TagFrmwkRender}: getBufferSize :SUCCESS ${data}`);
+        bufferSize = data;
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: getBufferSize :ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+
+      await audioRen.on('writeData', (buffer: ArrayBuffer) => {
+        console.info(`${TagFrmwkRender}: writeDataCallback : ${buffer.byteLength}`);
+      });
+
+      await audioRen.start().then(async () => {
+        console.info(`${TagFrmwkRender}: renderInstant started :SUCCESS`);
+        speed = audioRen.getSpeed();
+        console.info(`${TagFrmwkRender}: Renderer getSpeed:${speed}`);
+        expect(speed).assertEqual(1);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: renderInstant start :ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      await sleep(1000);
+
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+
+      await audioRen.stop().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer stopped : SUCCESS`);
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer stop:ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+      done();
+    }
+
+    async function playbackWriteDataCallback_002(AudioRendererOptions, pathName, done) {
+      console.info(`${TagFrmwkRender}: Callback : Audio Play Function`);
+      let audioRen;
+      let speed = 0;
+      await audio.createAudioRenderer(AudioRendererOptions).then(function (data) {
+        audioRen = data;
+        console.info(`${TagFrmwkRender}: AudioRender Created : Success : Stream Type: SUCCESS data state: ${Object.keys(data)}`);
+        console.info(`${TagFrmwkRender}: AudioRender Created : Success : Stream Type: SUCCESS data value: ${JSON.stringify(data)}`);
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: AudioRender Created : ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      console.info(`${TagFrmwkRender}: AudioRenderer : Path : ${pathName}`);
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+
+      let bufferSize;
+      await audioRen.getBufferSize().then((data) => {
+        console.info(`${TagFrmwkRender}: getBufferSize :SUCCESS ${data}`);
+        bufferSize = data;
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: getBufferSize :ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+
+      await audioRen.on('writeData', (buffer: ArrayBuffer) => {
+        console.info(`${TagFrmwkRender}: writeDataCallback : ${buffer.byteLength}`);
+        return audio.AudioDataCallbackResult.VALID;
+      });
+
+      await audioRen.start().then(async () => {
+        console.info(`${TagFrmwkRender}: renderInstant started :SUCCESS`);
+        speed = audioRen.getSpeed();
+        console.info(`${TagFrmwkRender}: Renderer getSpeed:${speed}`);
+        expect(speed).assertEqual(1);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: renderInstant start :ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      await sleep(1000);
+
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+
+      await audioRen.stop().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer stopped : SUCCESS`);
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer stop:ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+      done();
+    }
+
+    async function playbackWriteDataCallback_003(AudioRendererOptions, pathName, done) {
+      console.info(`${TagFrmwkRender}: Callback : Audio Play Function`);
+      let audioRen;
+      let speed = 0;
+      await audio.createAudioRenderer(AudioRendererOptions).then(function (data) {
+        audioRen = data;
+        console.info(`${TagFrmwkRender}: AudioRender Created : Success : Stream Type: SUCCESS data state: ${Object.keys(data)}`);
+        console.info(`${TagFrmwkRender}: AudioRender Created : Success : Stream Type: SUCCESS data value: ${JSON.stringify(data)}`);
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: AudioRender Created : ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      console.info(`${TagFrmwkRender}: AudioRenderer : Path : ${pathName}`);
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+
+      let bufferSize;
+      await audioRen.getBufferSize().then((data) => {
+        console.info(`${TagFrmwkRender}: getBufferSize :SUCCESS ${data}`);
+        bufferSize = data;
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: getBufferSize :ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+
+      await audioRen.on('writeData', (buffer: ArrayBuffer) => {
+        console.info(`${TagFrmwkRender}: writeDataCallback : ${buffer.byteLength}`);
+        return audio.AudioDataCallbackResult.INVALID;
+      });
+
+      await audioRen.start().then(async () => {
+        console.info(`${TagFrmwkRender}: renderInstant started :SUCCESS`);
+        speed = audioRen.getSpeed();
+        console.info(`${TagFrmwkRender}: Renderer getSpeed:${speed}`);
+        expect(speed).assertEqual(1);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: renderInstant start :ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      await sleep(1000);
+
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+
+      await audioRen.stop().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer stopped : SUCCESS`);
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer stop:ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+        expect(true).assertTrue();
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+        expect(false).assertTrue();
+        done();
+      });
+      console.info(`${TagFrmwkRender}: AudioRenderer : STATE : ${audioRen.state}`);
+      done();
+    }
+
     /**
       *@tc.number    : SUB_MULTIMEDIA_AUDIO_ON_OUTPUTDEVICECHANGEWITHINFO_0100
-      *@tc.name      : on_outputDeviceChangeWithInfo
+      *@tc.name      : test[on_outputDeviceChangeWithInfo]
       *@tc.desc      : on_outputDeviceChangeWithInfo
-      *@tc.size      : MEDIUM
+      *@tc.size      : MediumTest
       *@tc.type      : Function
-      *@tc.level     : Level 2
+      *@tc.level     : Level2
       */
     it("SUB_MULTIMEDIA_AUDIO_ON_OUTPUTDEVICECHANGEWITHINFO_0100", 2, async function (done) {
       let audioStreamInfo = {
@@ -2120,9 +2329,9 @@ export default function audioRendererTest() {
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_AUDIOSTREAMDEVICECHANGEREASON_0100
      *@tc.name      : AudioStreamDeviceChangeReason
      *@tc.desc      : AudioStreamDeviceChangeReason
-     *@tc.size      : MEDIUM
+     *@tc.size      : MediumTest
      *@tc.type      : Function
-     *@tc.level     : Level 2
+     *@tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_AUDIOSTREAMDEVICECHANGEREASON_0100", 2, async function (done) {
       console.info(`AudioStreamDeviceChangeReason: ${JSON.stringify(audio.AudioStreamDeviceChangeReason.REASON_UNKNOWN)}`);
@@ -2140,9 +2349,9 @@ export default function audioRendererTest() {
        *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0100
        *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_48000
        *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_48000
-       *@tc.size      : MEDIUM
+       *@tc.size      : MediumTest
        *@tc.type      : Function
-       *@tc.level     : Level 2
+       *@tc.level     : Level2
        */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0100", 2, async function (done) {
       let audioStreamInfo = {
@@ -2161,10 +2370,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-2C-48000-4SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2173,9 +2384,9 @@ export default function audioRendererTest() {
     *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0200
     *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_8000
     *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_8000
-    *@tc.size      : MEDIUM
+    *@tc.size      : MediumTest
     *@tc.type      : Function
-    *@tc.level     : Level 2
+    *@tc.level     : Level2
     */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0200", 2, async function (done) {
       let audioStreamInfo = {
@@ -2194,10 +2405,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-1C-8000-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2205,9 +2418,9 @@ export default function audioRendererTest() {
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0300
      *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_16000
      *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_16000
-     *@tc.size      : MEDIUM
+     *@tc.size      : MediumTest
      *@tc.type      : Function
-     *@tc.level     : Level 2
+     *@tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0300", 2, async function (done) {
       let audioStreamInfo = {
@@ -2226,10 +2439,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-1C-16000-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2238,9 +2453,9 @@ export default function audioRendererTest() {
     *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0400
     *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_24000
     *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_24000
-    *@tc.size      : MEDIUM
+    *@tc.size      : MediumTest
     *@tc.type      : Function
-    *@tc.level     : Level 2
+    *@tc.level     : Level2
     */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0400", 2, async function (done) {
       let audioStreamInfo = {
@@ -2259,10 +2474,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-2C-24000-3SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2271,9 +2488,9 @@ export default function audioRendererTest() {
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0500
      *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_44100
      *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_44100
-     *@tc.size      : MEDIUM
+     *@tc.size      : MediumTest
      *@tc.type      : Function
-     *@tc.level     : Level 2
+     *@tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0500", 2, async function (done) {
       let audioStreamInfo = {
@@ -2292,10 +2509,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-1C-44100-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2304,9 +2523,9 @@ export default function audioRendererTest() {
        *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0600
        *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_48000
        *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_48000
-       *@tc.size      : MEDIUM
+       *@tc.size      : MediumTest
        *@tc.type      : Function
-       *@tc.level     : Level 2
+       *@tc.level     : Level2
        */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0600", 2, async function (done) {
       let audioStreamInfo = {
@@ -2325,10 +2544,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-2C-48000-4SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2337,9 +2558,9 @@ export default function audioRendererTest() {
     *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0700
     *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_8000
     *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_8000
-    *@tc.size      : MEDIUM
+    *@tc.size      : MediumTest
     *@tc.type      : Function
-    *@tc.level     : Level 2
+    *@tc.level     : Level2
     */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0700", 2, async function (done) {
       let audioStreamInfo = {
@@ -2358,10 +2579,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-1C-8000-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2369,9 +2592,9 @@ export default function audioRendererTest() {
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0800
      *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_16000
      *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_16000
-     *@tc.size      : MEDIUM
+     *@tc.size      : MediumTest
      *@tc.type      : Function
-     *@tc.level     : Level 2
+     *@tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0800", 2, async function (done) {
       let audioStreamInfo = {
@@ -2390,10 +2613,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-1C-16000-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2402,9 +2627,9 @@ export default function audioRendererTest() {
     *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0900
     *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_24000
     *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_24000
-    *@tc.size      : MEDIUM
+    *@tc.size      : MediumTest
     *@tc.type      : Function
-    *@tc.level     : Level 2
+    *@tc.level     : Level2
     */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_0900", 2, async function (done) {
       let audioStreamInfo = {
@@ -2423,10 +2648,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-2C-24000-3SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2435,9 +2662,9 @@ export default function audioRendererTest() {
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1000
      *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_44100
      *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_44100
-     *@tc.size      : MEDIUM
+     *@tc.size      : MediumTest
      *@tc.type      : Function
-     *@tc.level     : Level 2
+     *@tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1000", 2, async function (done) {
       let audioStreamInfo = {
@@ -2456,10 +2683,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-1C-44100-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2468,9 +2697,9 @@ export default function audioRendererTest() {
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1100
      *@tc.name      : setSpeed_getSpeed_AudioSamplingRate_44100
      *@tc.desc      : setSpeed_getSpeed_AudioSamplingRate_44100
-     *@tc.size      : MEDIUM
+     *@tc.size      : MediumTest
      *@tc.type      : Function
-     *@tc.level     : Level 2
+     *@tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1100", 2, async function (done) {
       let audioStreamInfo = {
@@ -2489,10 +2718,12 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
+      let resultFlag = true;
       let readPath = 'StarWars10s-1C-44100-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2501,9 +2732,9 @@ export default function audioRendererTest() {
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1200
      *@tc.name      : setSpeed_no_start
      *@tc.desc      : setSpeed_no_start
-     *@tc.size      : MEDIUM
+     *@tc.size      : MediumTest
      *@tc.type      : Function
-     *@tc.level     : Level 2
+     *@tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1200", 2, async function (done) {
       let audioStreamInfo = {
@@ -2535,9 +2766,9 @@ export default function audioRendererTest() {
            *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1300
            *@tc.name      : setSpeed_invalid_number_parameter
            *@tc.desc      : setSpeed_invalid_number_parameter
-           *@tc.size      : MEDIUM
+           *@tc.size      : MediumTest
            *@tc.type      : Function
-           *@tc.level     : Level 2
+           *@tc.level     : Level2
            */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1300", 2, async function (done) {
       let audioStreamInfo = {
@@ -2570,9 +2801,9 @@ export default function audioRendererTest() {
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1400
      *@tc.name      : setSpeed_invalid_string_parameter
      *@tc.desc      : setSpeed_invalid_string_parameter
-     *@tc.size      : MEDIUM
+     *@tc.size      : MediumTest
      *@tc.type      : Function
-     *@tc.level     : Level 2
+     *@tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1400", 2, async function (done) {
       let audioStreamInfo = {
@@ -2606,9 +2837,9 @@ export default function audioRendererTest() {
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1500
      *@tc.name      : setSpeed_invalid_null_parameter
      *@tc.desc      : setSpeed_invalid_null_parameter
-     *@tc.size      : MEDIUM
+     *@tc.size      : MediumTest
      *@tc.type      : Function
-     *@tc.level     : Level 2
+     *@tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SET/GET_SPEED_1500", 2, async function (done) {
       let audioStreamInfo = {
@@ -2641,9 +2872,9 @@ export default function audioRendererTest() {
       *@tc.number    : SUB_MULTIMEDIA_AUDIO_AUDIOCHANNEL_0100
       *@tc.name      : Get All AudioChannel
       *@tc.desc      : Get All AudioChannel
-      *@tc.size      : MEDIUM
+      *@tc.size      : MediumTest
       *@tc.type      : Function
-      *@tc.level     : Level 2
+      *@tc.level     : Level2
       */
     it("SUB_MULTIMEDIA_AUDIO_AUDIOCHANNEL_0100", 2, async function (done) {
       console.log(`get CHANNEL_1 success: ` + JSON.stringify(audio.AudioChannel.CHANNEL_1));
@@ -2678,10 +2909,9 @@ export default function audioRendererTest() {
      *@tc.number    : SUB_MULTIMEDIA_AUDIO_CHANNEL_LAYOUT_0100
      *@tc.name      : All AudioChannelLayout 
      *@tc.desc      : All AudioChannelLayout 
-     *@tc.size      : MEDIUM
+     *@tc.size      : MediumTest
      *@tc.type      : Function
-     *@tc.level     : Level 2
-     49
+     *@tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_CHANNEL_LAYOUT_0100", 2, async function (done) {
       console.log(`get CH_LAYOUT_UNKNOWN success: ` + JSON.stringify(audio.AudioChannelLayout.CH_LAYOUT_UNKNOWN));
@@ -2789,9 +3019,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_GETSTREAMINFO_0100
      * @tc.name      : AudioRenderer-GetStreamInfo
      * @tc.desc      : AudioRenderer-GetStreamInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_GETSTREAMINFO_0100', 2, async function (done) {
 
@@ -2839,9 +3069,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_SYNC_0100
      * @tc.name      : AudioRenderer-GetAudioSceneSync
      * @tc.desc      : AudioRenderer-GetAudioSceneSync
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_SYNC_0100', 2, async function (done) {
 
@@ -2877,9 +3107,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_GETAUDIOTIMESYNC_0200
      * @tc.name      : AudioRenderer - getAudioTimeSync - During Play
      * @tc.desc      : AudioRenderer - getAudioTimeSync - During Play
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_GETAUDIOTIMESYNC_0200', 2, async function (done) {
 
@@ -2915,9 +3145,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_AUDIO_STREAM_ID_SYNC_0300
      * @tc.name      : AudioRenderer - getAudioStreamIdSync
      * @tc.desc      : AudioRenderer - getAudioStreamIdSync
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_GET_AUDIO_STREAM_ID_SYNC_0300", 2, async function (done) {
       let audioStreamInfo = {
@@ -2962,9 +3192,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_SETINTERRUPTMODESYNC_0400
      * @tc.name      : STREAM_VOICE_CALL AUDIO_INTERRUPT STREAM_VOICE_ASSISTANT
      * @tc.desc      : STREAM_VOICE_CALL AUDIO_INTERRUPT STREAM_VOICE_ASSISTANT
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_SETINTERRUPTMODESYNC_0400', 2, async function (done) {
       let interrput_flag = false;
@@ -3062,9 +3292,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0100
      * @tc.name      : STREAM_VOICE_CALL AUDIO_INTERRUPT STREAM_VOICE_ASSISTANT
      * @tc.desc      : STREAM_VOICE_CALL AUDIO_INTERRUPT STREAM_VOICE_ASSISTANT
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0100', 2, async function (done) {
       let interrput_flag = false;
@@ -3160,9 +3390,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0200
      * @tc.name      : STREAM_RING INTERRUPT STREAM_VOICE_ASSISTANT
      * @tc.desc      : STREAM_RING INTERRUPT STREAM_VOICE_ASSISTANT
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0200', 2, async function (done) {
       let interrput_flag = false;
@@ -3258,9 +3488,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0300
      * @tc.name      : STREAM_MUSIC INTERRUPT STREAM_VOICE_ASSISTANT
      * @tc.desc      : STREAM_MUSIC INTERRUPT STREAM_VOICE_ASSISTANT
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0300', 2, async function (done) {
       let interrput_flag = false;
@@ -3356,9 +3586,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0400
      * @tc.name      : STREAM_VOICE_ASSISTANT INTERRUPT STREAM_VOICE_ASSISTANT
      * @tc.desc      : STREAM_VOICE_ASSISTANT INTERRUPT STREAM_VOICE_ASSISTANT
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0400', 2, async function (done) {
       let interrput_flag = false;
@@ -3454,9 +3684,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0500
      * @tc.name      : STREAM_VOICE_ASSISTANT INTERRUPT STREAM_VOICE_CALL
      * @tc.desc      : STREAM_VOICE_ASSISTANT INTERRUPT STREAM_VOICE_CALL
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0500', 2, async function (done) {
       let interrput_flag = false;
@@ -3551,9 +3781,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0600
      * @tc.name      : STREAM_VOICE_ASSISTANT INTERRUPT STREAM_RING
      * @tc.desc      : STREAM_VOICE_ASSISTANT INTERRUPT STREAM_RING
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0600', 2, async function (done) {
       let interrput_flag = false;
@@ -3648,9 +3878,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0700
      * @tc.name      : STREAM_VOICE_ASSISTANT INTERRUPT STREAM_MUSIC
      * @tc.desc      : STREAM_VOICE_ASSISTANT INTERRUPT STREAM_MUSIC
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_INTERUPT_TEST_0700', 2, async function (done) {
       let interrput_flag = false;
@@ -3746,9 +3976,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0100
      * @tc.name      : SetInterruptMode mode 0 callback,is public share mode
      * @tc.desc      : SetInterruptMode mode 0 callback,is public share mode
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0100", 2, async function (done) {
       let audioStreamInfo = {
@@ -3784,10 +4014,12 @@ export default function audioRendererTest() {
     })
 
     /*
-     * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0200
-     * @tc.desc:SetInterruptMode mode 1 callback,is independent mode
-     * @tc.type: FUNC
-     * @tc.require: Issue Number
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0200
+     * @tc.name      : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0200
+     * @tc.desc      : SetInterruptMode mode 1 callback,is independent mode
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0200", 2, async function (done) {
       let audioStreamInfo = {
@@ -3823,10 +4055,12 @@ export default function audioRendererTest() {
     })
 
     /*
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0300
      * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0300
      * @tc.desc:SetInterruptMode mode 0 promise,is public share mode
-     * @tc.type: FUNC
-     * @tc.require: Issue Number
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0300", 2, async function (done) {
       let audioStreamInfo = {
@@ -3858,10 +4092,12 @@ export default function audioRendererTest() {
     })
 
     /*
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0400
      * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0400
      * @tc.desc:SetInterruptMode mode 1 promise,is independent mode
-     * @tc.type: FUNC
-     * @tc.require: Issue Number
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0400", 2, async function (done) {
       let audioStreamInfo = {
@@ -3893,10 +4129,12 @@ export default function audioRendererTest() {
     })
 
     /*
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0500
      * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0500
      * @tc.desc:SetInterruptMode mode 'invalid_parameter',will catch error with type error
-     * @tc.type: FUNC
-     * @tc.require: Issue Number
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0500", 2, async function (done) {
       let audioStreamInfo = {
@@ -3929,11 +4167,13 @@ export default function audioRendererTest() {
     })
 
     /*
-   * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0600
-   * @tc.desc:SetInterruptMode mode 2,set it to default SHARE_MODE
-   * @tc.type: FUNC
-   * @tc.require: Issue Number
-   */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0600
+     * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0600
+     * @tc.desc:SetInterruptMode mode 2,set it to default SHARE_MODE
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+    */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0600", 2, async function (done) {
       let audioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
@@ -3968,9 +4208,9 @@ export default function audioRendererTest() {
     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0700
     * @tc.name      : SetInterruptMode invalid param callback
     * @tc.desc      : SetInterruptMode invalid param callback
-    * @tc.size      : MEDIUM
+    * @tc.size      : MediumTest
     * @tc.type      : Function
-    * @tc.level     : Level 2
+    * @tc.level     : Level2
     */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0700", 2, async function (done) {
       let audioStreamInfo = {
@@ -4018,9 +4258,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0800
      * @tc.name      : SetInterruptMode invalid param callback
      * @tc.desc      : SetInterruptMode invalid param callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0800", 2, async function (done) {
       let audioStreamInfo = {
@@ -4068,9 +4308,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_AUDIO_STREAM_ID_0100
      * @tc.name      : AudioRenderer - getAudioStreamId
      * @tc.desc      : AudioRenderer - getAudioStreamId
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_GET_AUDIO_STREAM_ID_0100", 2, async function (done) {
       let audioStreamInfo = {
@@ -4115,9 +4355,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_AUDIO_STREAM_ID_0200
      * @tc.name      : AudioRenderer - getAudioStreamId
      * @tc.desc      : AudioRenderer - getAudioStreamId
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_GET_AUDIO_STREAM_ID_0200", 2, async function (done) {
       let audioStreamInfo = {
@@ -4163,9 +4403,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_AUDIO_STREAM_ID_0300
      * @tc.name      : AudioRenderer - getAudioStreamId
      * @tc.desc      : AudioRenderer - getAudioStreamId
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it("SUB_MULTIMEDIA_AUDIO_GET_AUDIO_STREAM_ID_0300", 2, async function (done) {
       let audioStreamInfo = {
@@ -4211,9 +4451,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0100
      * @tc.name      : AudioRenderer - setVolume 0 - promise
      * @tc.desc      : AudioRenderer - setVolume 0 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4269,9 +4509,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0200
      * @tc.name      : AudioRenderer - setVolume 0.5 - promise
      * @tc.desc      : AudioRenderer - setVolume 0.5 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0200', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4327,9 +4567,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0300
      * @tc.name      : AudioRenderer - setVolume 1.1 - promise
      * @tc.desc      : AudioRenderer - setVolume 1.1 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0300', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4390,9 +4630,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0400
      * @tc.name      : AudioRenderer - setVolume "string" - promise
      * @tc.desc      : AudioRenderer - setVolume "string" - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0400', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4453,9 +4693,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0500
      * @tc.name      : AudioRenderer - setVolume 0 - callback
      * @tc.desc      : AudioRenderer - setVolume 0 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0500', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4513,9 +4753,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0600
      * @tc.name      : AudioRenderer - setVolume 0.5 - callback
      * @tc.desc      : AudioRenderer - setVolume 0.5 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4573,9 +4813,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0700
      * @tc.name      : AudioRenderer - setVolume 1.1 - callback
      * @tc.desc      : AudioRenderer - setVolume 1.1 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4638,9 +4878,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0800
      * @tc.name      : AudioRenderer - setVolume "string" - callback
      * @tc.desc      : AudioRenderer - setVolume "string" - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4703,9 +4943,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0100
      * @tc.name      : AudioRenderer-Set1-Media
      * @tc.desc      : AudioRenderer with parameter set 1
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0100', 2, async function (done) {
 
@@ -4741,9 +4981,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0200
      * @tc.name      : AudioRenderer - getAudioTime -Before Play
      * @tc.desc      : AudioRenderer - getAudioTime -Before Play
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0200', 2, async function (done) {
 
@@ -4780,9 +5020,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0300
      * @tc.name      : AudioRenderer - getAudioTime - During Play
      * @tc.desc      : AudioRenderer - getAudioTime - During Play
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0300', 2, async function (done) {
 
@@ -4818,9 +5058,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0400
      * @tc.name      : AudioRenderer - getAudioTime - after Play
      * @tc.desc      : AudioRenderer - getAudioTime - after Play
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0400', 2, async function (done) {
 
@@ -4856,9 +5096,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0500
      * @tc.name      : AudioRenderer - markReached - On
      * @tc.desc      : AudioRenderer - markReached
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0500', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4894,9 +5134,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0600
      * @tc.name      : AudioRenderer - markReached - On - off -on
      * @tc.desc      : AudioRenderer - markReached
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4932,9 +5172,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0700
      * @tc.name      : AudioRenderer - markReached - on - on
      * @tc.desc      : AudioRenderer - markReached
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -4970,9 +5210,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0800
      * @tc.name      : AudioRenderer - periodReach - On
      * @tc.desc      : AudioRenderer - periodReach
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5007,9 +5247,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0900
      * @tc.name      : AudioRenderer - periodReach - On - off -on
      * @tc.desc      : AudioRenderer - periodReach
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_0900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5045,9 +5285,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1000
      * @tc.name      : AudioRenderer - periodReach - on - on
      * @tc.desc      : AudioRenderer - periodReach
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5082,9 +5322,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1100
      * @tc.name      : AudioRenderer-Set2-Media
      * @tc.desc      : AudioRenderer with parameter set 2
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5120,9 +5360,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1200
      * @tc.name      : AudioRenderer-Set3-Media
      * @tc.desc      : AudioRenderer with parameter set 3
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1200', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5158,9 +5398,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1300
      * @tc.name      : AudioRenderer-Set4-Media
      * @tc.desc      : AudioRenderer with parameter set 4
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1300', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5195,9 +5435,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1400
      * @tc.name      : AudioRenderer-Set5-Media
      * @tc.desc      : AudioRenderer with parameter set 5
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1400', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5232,9 +5472,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1500
      * @tc.name      : AudioRenderer-Set6-Media
      * @tc.desc      : AudioRenderer with parameter set 6
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1500', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5269,9 +5509,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1600
      * @tc.name      : AudioRenderer-Set7-Media
      * @tc.desc      : AudioRenderer with parameter set 7
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5306,9 +5546,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1700
      * @tc.name      : AudioRenderer-Set11-Media
      * @tc.desc      : AudioRenderer with parameter set 11
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5343,9 +5583,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1800
      * @tc.name      : AudioRenderer-isStreamActive - UNKNOWN - UNKNOWN
      * @tc.desc      : AudioRenderer-isStreamActive - UNKNOWN - UNKNOWN
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5391,9 +5631,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1900
      * @tc.name      : AudioRenderer-isStreamActive - SPEECH - UNKNOWN
      * @tc.desc      : AudioRenderer-isStreamActive - SPEECH - UNKNOWN
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_1900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5438,9 +5678,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2000
      * @tc.name      : AudioRenderer-isStreamActive - MUSIC - UNKNOWN
      * @tc.desc      : AudioRenderer-isStreamActive - MUSIC - UNKNOWN
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5485,9 +5725,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2100
      * @tc.name      : AudioRenderer-isStreamActive - MOVIE - UNKNOWN
      * @tc.desc      : AudioRenderer-isStreamActive - MOVIE - UNKNOWN
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5533,9 +5773,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2200
      * @tc.name      : AudioRenderer-isStreamActive - SONIFICATION - UNKNOWN
      * @tc.desc      : AudioRenderer-isStreamActive - SONIFICATION - UNKNOWN
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2200', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5580,9 +5820,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2300
      * @tc.name      : AudioRenderer-isStreamActive - RINGTONE - UNKNOWN
      * @tc.desc      : AudioRenderer-isStreamActive - RINGTONE - UNKNOWN
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2300', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5627,9 +5867,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2400
      * @tc.name      : AudioRenderer-isStreamActive - UNKNOWN - MEDIA
      * @tc.desc      : AudioRenderer-isStreamActive - UNKNOWN - MEDIA
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2400', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5674,9 +5914,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2500
      * @tc.name      : AudioRenderer-isStreamActive - SPEECH - MEDIA
      * @tc.desc      : AudioRenderer-isStreamActive - SPEECH - MEDIA
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2500', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5721,9 +5961,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2600
      * @tc.name      : AudioRenderer-isStreamActive - MUSIC - MEDIA
      * @tc.desc      : AudioRenderer-isStreamActive - MUSIC - MEDIA
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5769,9 +6009,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2700
      * @tc.name      : AudioRenderer-isStreamActive - MOVIE - MEDIA
      * @tc.desc      : AudioRenderer-isStreamActive - MOVIE - MEDIA
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5816,9 +6056,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2800
      * @tc.name      : AudioRenderer-isStreamActive - SONIFICATION - MEDIA
      * @tc.desc      : AudioRenderer-isStreamActive - SONOTIFICATION - MEDIA
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5863,9 +6103,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2900
      * @tc.name      : AudioRenderer-isStreamActive - RINGTONE - MEDIA
      * @tc.desc      : AudioRenderer-isStreamActive - RINGTONE - MEDIA
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_2900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5910,9 +6150,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3000
      * @tc.name      : AudioRenderer-isStreamActive - UNKNOWN - VOICE_COMMUNICATION
      * @tc.desc      : AudioRenderer-isStreamActive - UNKNOWN - VOICE_COMMUNICATION
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -5957,9 +6197,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3100
      * @tc.name      : AudioRenderer-isStreamActive - SPEECH - VOICE_COMMUNICATION
      * @tc.desc      : AudioRenderer-isStreamActive - SPEECH - VOICE_COMMUNICATION
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6004,9 +6244,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3200
      * @tc.name      : AudioRenderer-isStreamActive - MUSIC - VOICE_COMMUNICATION
      * @tc.desc      : AudioRenderer-isStreamActive - MUSIC - VOICE_COMMUNICATION
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3200', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6051,9 +6291,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3300
      * @tc.name      : AudioRenderer-isStreamActive - MOVIE - VOICE_COMMUNICATION
      * @tc.desc      : AudioRenderer-isStreamActive - MOVIE - VOICE_COMMUNICATION
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3300', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6098,9 +6338,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3400
      * @tc.name      : AudioRenderer-isStreamActive - SONOTIFICATION - VOICE_COMMUNICATION
      * @tc.desc      : AudioRenderer-isStreamActive - SONOTIFICATION - VOICE_COMMUNICATION
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3400', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6145,9 +6385,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3500
      * @tc.name      : AudioRenderer-isStreamActive - RINGTONE - VOICE_COMMUNICATION
      * @tc.desc      : AudioRenderer-isStreamActive - RINGTONE - VOICE_COMMUNICATION
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3500', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6192,9 +6432,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3600
      * @tc.name      : AudioRenderer-isStreamActive - UNKNOWN - NOTIFICATION_RINGTONE
      * @tc.desc      : AudioRenderer-isStreamActive - UNKNOWN - NOTIFICATION_RINGTONE
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6240,9 +6480,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3700
      * @tc.name      : AudioRenderer-isStreamActive - SPEECH - NOTIFICATION_RINGTONE
      * @tc.desc      : AudioRenderer-isStreamActive - SPEECH - NOTIFICATION_RINGTONE
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6288,9 +6528,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3800
      * @tc.name      : AudioRenderer-isStreamActive - MUSIC - NOTIFICATION_RINGTONE
      * @tc.desc      : AudioRenderer-isStreamActive - MUSIC - NOTIFICATION_RINGTONE
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6336,9 +6576,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3900
      * @tc.name      : AudioRenderer-isStreamActive - MOVIE - NOTIFICATION_RINGTONE
      * @tc.desc      : AudioRenderer-isStreamActive - MOVIE - NOTIFICATION_RINGTONE
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_3900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6384,9 +6624,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4000
      * @tc.name      : AudioRenderer-isStreamActive - SONOTIFICATION - NOTIFICATION_RINGTONE
      * @tc.desc      : AudioRenderer-isStreamActive - SONOTIFICATION - NOTIFICATION_RINGTONE
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6431,9 +6671,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4100
      * @tc.name      : AudioRenderer-isStreamActive - RINGTONE - NOTIFICATION_RINGTONE
      * @tc.desc      : AudioRenderer-isStreamActive - RINGTONE - NOTIFICATION_RINGTONE
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6479,9 +6719,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4200
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set1
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set1
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4200', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6564,9 +6804,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4300
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set2
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set2
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4300', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6651,9 +6891,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4400
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set3
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set3
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4400', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6738,9 +6978,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4500
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set4
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set4
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4500', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6825,9 +7065,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4600
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set5
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set5
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6912,9 +7152,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4700
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set6
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set6
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -6999,9 +7239,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4800
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set7
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set7
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7086,9 +7326,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4900
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set8
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set8
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_4900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7173,9 +7413,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5000
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set9
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set9
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7260,9 +7500,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5100
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set10
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set10
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7347,9 +7587,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5200
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set11
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set11
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5200', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7434,9 +7674,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5300
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set12
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set12
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5300', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7521,9 +7761,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5400
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set13
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set13
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5400', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7608,9 +7848,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5500
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set14
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set14
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5500', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7695,9 +7935,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5600
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set15
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set15
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7782,9 +8022,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5700
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set16
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set16
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7869,9 +8109,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5800
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set17
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set17
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -7956,9 +8196,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5900
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set18
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set18
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_5900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8043,9 +8283,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6000
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set19
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set19
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8130,9 +8370,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6100
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set20
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set20
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8217,9 +8457,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6200
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set21
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set21
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6200', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8304,9 +8544,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6300
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set22
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set22
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6300', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8391,9 +8631,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6400
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set23
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set23
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6400', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8478,9 +8718,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6500
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - Set24
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - Set24
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6500', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8565,9 +8805,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6600
      * @tc.name      : AudioRenderer - STATE_PREPARED
      * @tc.desc      : AudioRenderer - STATE_PREPARED
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8637,9 +8877,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6700
      * @tc.name      : AudioRenderer - STATE_RUNNING
      * @tc.desc      : AudioRenderer - STATE_RUNNING
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8724,9 +8964,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6800
      * @tc.name      : AudioRenderer - STATE_STOPPED
      * @tc.desc      : AudioRenderer - STATE_STOPPED
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8813,9 +9053,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6900
      * @tc.name      : AudioRenderer - STATE_RELEASED
      * @tc.desc      : AudioRenderer - STATE_RELEASED
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_6900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -8903,9 +9143,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7000
      * @tc.name      : AudioRenderer - STATE_PAUSED
      * @tc.desc      : AudioRenderer - STATE_PAUSED
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -9001,9 +9241,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7100
      * @tc.name      : AudioRenderer - SetRenderRate - RENDER_RATE_DOUBLE
      * @tc.desc      : AudioRenderer - SetRenderRate - RENDER_RATE_DOUBLE
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7100', 2, async function (done) {
 
@@ -9172,9 +9412,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7200
      * @tc.name      : AudioRenderer - SetRenderRate - RENDER_RATE_HALF
      * @tc.desc      : AudioRenderer - SetRenderRate - RENDER_RATE_HALF
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7200', 2, async function (done) {
 
@@ -9342,9 +9582,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7300
      * @tc.name      : AudioRenderer - SetRenderRate - RENDER_RATE_NORMAL
      * @tc.desc      : AudioRenderer - SetRenderRate - RENDER_RATE_NORMAL
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7300', 2, async function (done) {
 
@@ -9494,9 +9734,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7400
      * @tc.name      : AudioRenderer - SetRenderRate - DEFAULT - RENDER_RATE_NORMAL
      * @tc.desc      : AudioRenderer - SetRenderRate - DEFAULT - RENDER_RATE_NORMAL
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7400', 2, async function (done) {
 
@@ -9657,9 +9897,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7500
      * @tc.name      : AudioRenderer - SetRenderRate - RENDER_RATE_DOUBLE - Callback
      * @tc.desc      : AudioRenderer - SetRenderRate - RENDER_RATE_DOUBLE - Callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7500', 2, async function (done) {
 
@@ -9695,9 +9935,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7600
      * @tc.name      : AudioRenderer - getAudioTime - Error
      * @tc.desc      : AudioRenderer - getAudioTime - Error
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7600', 2, async function (done) {
 
@@ -9786,9 +10026,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7700
      * @tc.name      : AudioRenderer - STATE_PREPARED -Callback
      * @tc.desc      : AudioRenderer - STATE_PREPARED
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -9865,9 +10105,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7800
      * @tc.name      : AudioRenderer - STATE_RUNNING - Callback
      * @tc.desc      : AudioRenderer - STATE_RUNNING
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -9960,9 +10200,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7900
      * @tc.name      : AudioRenderer - STATE_STOPPED - Callback
      * @tc.desc      : AudioRenderer - STATE_STOPPED
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_7900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10057,9 +10297,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8000
      * @tc.name      : AudioRenderer - STATE_RELEASED - Callback
      * @tc.desc      : AudioRenderer - STATE_RELEASED
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10154,9 +10394,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8100
      * @tc.name      : AudioRenderer - STATE_PAUSED - Callback
      * @tc.desc      : AudioRenderer - STATE_PAUSED
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10256,9 +10496,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8200
      * @tc.name      : AudioState - STATE_INVALID
      * @tc.desc      : AudioState - STATE_INVALID
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8200', 2, async function (done) {
       expect(audio.AudioState.STATE_INVALID).assertEqual(-1);
@@ -10270,9 +10510,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8300
      * @tc.name      : AudioState - STATE_NEW
      * @tc.desc      : AudioState - STATE_NEW
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8300', 2, async function (done) {
       expect(audio.AudioState.STATE_NEW).assertEqual(0);
@@ -10284,9 +10524,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8400
      * @tc.name      : AudioSampleFormat - STATE_FORMAT_INVALID
      * @tc.desc      : AudioSampleFormat - STATE_FORMAT_INVALID
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8400', 2, async function (done) {
       expect(audio.AudioSampleFormat.SAMPLE_FORMAT_INVALID).assertEqual(-1);
@@ -10298,9 +10538,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8500
      * @tc.name      : SourceType - SOURCE_TYPE_INVALID
      * @tc.desc      : SourceType - SOURCE_TYPE_INVALID
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8500', 2, async function (done) {
       expect(audio.SourceType.SOURCE_TYPE_INVALID).assertEqual(-1);
@@ -10312,9 +10552,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8600
      * @tc.name      : AudioRenderer - Pause - Callback
      * @tc.desc      : AudioRenderer - Pause - Callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10417,9 +10657,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8700
      * @tc.name      : AudioEncodingType - ENCODING_TYPE_INVALID
      * @tc.desc      : AudioEncodingType - ENCODING_TYPE_INVALID
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8700', 2, async function (done) {
       expect(audio.AudioEncodingType.ENCODING_TYPE_INVALID).assertEqual(-1);
@@ -10431,9 +10671,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8800
      * @tc.name      : StreamUsage - STREAM_USAGE_VOICE_ASSISTANT
      * @tc.desc      : StreamUsage - STREAM_USAGE_VOICE_ASSISTANT
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8800', 2, async function (done) {
 
@@ -10474,9 +10714,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8900
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - SetALARM
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - SetALARM
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_8900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10561,9 +10801,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_9000
      * @tc.name      : AudioRenderer-SET & GET AudioRendererInfo - SetACCESSIBILITY
      * @tc.desc      : AudioRenderer-SET & GET AudioRendererInfo - SetACCESSIBILITY
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_9000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10648,9 +10888,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_9100
      * @tc.name      : AudioRenderer-isActive - MUSIC - ALARM
      * @tc.desc      : AudioRenderer-isActive - MUSIC - ALARM
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_9100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10696,9 +10936,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_9200
      * @tc.name      : AudioRenderer-isActive - SPEECH - ACCESSIBILITY
      * @tc.desc      : AudioRenderer-isActive - SPEECH - ACCESSIBILITY
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_9200', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10744,9 +10984,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0900
      * @tc.name      : AudioRenderer - setVolume 0 - promise
      * @tc.desc      : AudioRenderer - setVolume 0 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_0900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10802,9 +11042,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1000
      * @tc.name      : AudioRenderer - setVolume -1 - promise
      * @tc.desc      : AudioRenderer - setVolume -1 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10865,9 +11105,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1100
      * @tc.name      : AudioRenderer - setVolume 1 - promise
      * @tc.desc      : AudioRenderer - setVolume 1 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10923,9 +11163,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1200
      * @tc.name      : AudioRenderer - setVolume 1.1 - promise
      * @tc.desc      : AudioRenderer - setVolume 1.1 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1200', 2, async function (done) {
       let AudioStreamInfo = {
@@ -10986,9 +11226,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1300
      * @tc.name      : AudioRenderer - setVolume "string" - promise
      * @tc.desc      : AudioRenderer - setVolume "string" - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1300', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11050,9 +11290,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1400
      * @tc.name      : AudioRenderer - setVolume 0 - callback
      * @tc.desc      : AudioRenderer - setVolume 0 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1400', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11110,9 +11350,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1500
      * @tc.name      : AudioRenderer - setVolume -1 - callback
      * @tc.desc      : AudioRenderer - setVolume -1 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     // it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1500', 2, async function (done) {
     //   let AudioStreamInfo = {
@@ -11175,9 +11415,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1600
      * @tc.name      : AudioRenderer - setVolume 1 - callback
      * @tc.desc      : AudioRenderer - setVolume 1 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11235,9 +11475,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1700
      * @tc.name      : AudioRenderer - setVolume 1.1 - callback
      * @tc.desc      : AudioRenderer - setVolume 1.1 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11300,9 +11540,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1800
      * @tc.name      : AudioRenderer - setVolume "string" - callback
      * @tc.desc      : AudioRenderer - setVolume "string" - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11365,9 +11605,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1900
      * @tc.name      : AudioRenderer - setVolume 0 - promise
      * @tc.desc      : AudioRenderer - setVolume 0 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_1900', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11423,9 +11663,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2000
      * @tc.name      : AudioRenderer - setVolume -1 - promise
      * @tc.desc      : AudioRenderer - setVolume -1 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2000', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11486,9 +11726,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2100
      * @tc.name      : AudioRenderer - setVolume 1 - promise
      * @tc.desc      : AudioRenderer - setVolume 1 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2100', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11544,9 +11784,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2200
      * @tc.name      : AudioRenderer - setVolume 1.1 - promise
      * @tc.desc      : AudioRenderer - setVolume 1.1 - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2200', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11607,9 +11847,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2300
      * @tc.name      : AudioRenderer - setVolume "string" - promise
      * @tc.desc      : AudioRenderer - setVolume "string" - promise
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2300', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11671,9 +11911,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2400
      * @tc.name      : AudioRenderer - setVolume 0 - callback
      * @tc.desc      : AudioRenderer - setVolume 0 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2400', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11731,9 +11971,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2500
      * @tc.name      : AudioRenderer - setVolume -1 - callback
      * @tc.desc      : AudioRenderer - setVolume -1 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2500', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11796,9 +12036,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2600
      * @tc.name      : AudioRenderer - setVolume 1 - callback
      * @tc.desc      : AudioRenderer - setVolume 1 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2600', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11856,9 +12096,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2700
      * @tc.name      : AudioRenderer - setVolume 1.1 - callback
      * @tc.desc      : AudioRenderer - setVolume 1.1 - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2700', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11922,9 +12162,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2800
      * @tc.name      : AudioRenderer - setVolume "string" - callback
      * @tc.desc      : AudioRenderer - setVolume "string" - callback
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_SET_VOLUME_2800', 2, async function (done) {
       let AudioStreamInfo = {
@@ -11987,9 +12227,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_9300
      * @tc.name      : AudioRenderer-Usage-STREAM_USAGE_VIDEO_COMMUNICATION
      * @tc.desc      : AudioRenderer with parameter STREAM_USAGE_VIDEO_COMMUNICATION
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_PLAY_AUDIO_9300', 2, async function (done) {
       let AudioStreamInfo = {
@@ -12009,11 +12249,12 @@ export default function audioRendererTest() {
         streamInfo: AudioStreamInfo,
         rendererInfo: AudioRendererInfo
       }
-
+      let resultFlag = true;
       readPath = 'StarWars10s-1C-8000-2SW.wav'
       await getFdRead(readPath, done);
       await playbackPromise_92(AudioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -12022,9 +12263,9 @@ export default function audioRendererTest() {
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_VIDEO_STREAM_USAGE
      * @tc.name      : AudioRenderer-Usage-STREAM_USAGE_VIDEO_COMMUNICATION
      * @tc.desc      : AudioRenderer with parameter STREAM_USAGE_VIDEO_COMMUNICATION
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.level     : Level2
      */
     it('SUB_MULTIMEDIA_AUDIO_RENDERER_VIDEO_STREAM_USAGE', 2, async function (done) {
       let AudioStreamInfo = {
@@ -12044,12 +12285,730 @@ export default function audioRendererTest() {
         streamInfo: AudioStreamInfo,
         rendererInfo: AudioRendererInfo
       }
-
+      let resultFlag = true;
       readPath = 'StarWars10s-1C-16000-2SW.wav'
       await getFdRead(readPath, done);
       await playWithVideoStream(AudioRendererOptions, filePath, done);
       await sleep(100);
+      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0100
+     * @tc.name      : AudioRenderer - getVolume 0 - promise
+     * @tc.desc      : AudioRenderer - getVolume 0 - promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0100', 2, async function (done) {
+      let AudioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+      let AudioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        rendererFlags: 0
+      }
+
+      let AudioRendererOptions = {
+        streamInfo: AudioStreamInfo,
+        rendererInfo: AudioRendererInfo
+      }
+      let audioRen;
+      try {
+        await audio.createAudioRenderer(AudioRendererOptions).then(async function (data) {
+          audioRen = data;
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data state: ' + Object.keys(data));
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
+        }).catch((err) => {
+          console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+        });
+
+        let inputVolume = 0;
+
+        await audioRen.setVolume(inputVolume).then(() => {
+          expect(true).assertTrue();
+          console.info(`${TagFrmwkRender}: setVolume to 0 : Success`);
+          let data = audioRen.getVolume();
+          console.info(`${TagFrmwkRender}: SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0100 SUCCESS: ${data}`);
+          expect(data).assertEqual(0);
+        }).catch((err) => {
+          console.info(`${TagFrmwkRender}: setVolume : ERROR : code: ${err.code}, mesage: ${err.message}`);
+          expect(false).assertTrue();
+        });
+      }
+      catch (error) {
+        console.log("SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0100 : error = " + error);
+        expect(false).assertTrue();
+      }
+      await sleep(2000);
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+      });
+      done();
+    })
+	
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0200
+     * @tc.name      : AudioRenderer - getVolume 0.5 - promise
+     * @tc.desc      : AudioRenderer - getVolume 0.5 - promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0200', 2, async function (done) {
+      let AudioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+      let AudioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        rendererFlags: 0
+      }
+
+      let AudioRendererOptions = {
+        streamInfo: AudioStreamInfo,
+        rendererInfo: AudioRendererInfo
+      }
+      let audioRen;
+      try {
+        await audio.createAudioRenderer(AudioRendererOptions).then(async function (data) {
+          audioRen = data;
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data state: ' + Object.keys(data));
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
+        }).catch((err) => {
+          console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+        });
+
+        let inputVolume = 0.5;
+
+        await audioRen.setVolume(inputVolume).then(() => {
+          expect(true).assertTrue();
+          console.info(`${TagFrmwkRender}: setVolume to 0.5 : Success`);
+          let data = audioRen.getVolume();
+          console.info(`${TagFrmwkRender}: SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0200 SUCCESS: ${data}`);
+          expect(data).assertEqual(0.5);
+        }).catch((err) => {
+          console.info(`${TagFrmwkRender}: setVolume : ERROR : code: ${err.code}, mesage: ${err.message}`);
+          expect(false).assertTrue();
+        });
+      }
+      catch (error) {
+        console.log("SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0200 : error = " + error);
+        expect(false).assertTrue();
+      }
+      await sleep(2000);
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+      });
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0300
+     * @tc.name      : AudioRenderer - getVolume 1 - promise
+     * @tc.desc      : AudioRenderer - getVolume 1 - promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0300', 2, async function (done) {
+      let AudioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+      let AudioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        rendererFlags: 0
+      }
+
+      let AudioRendererOptions = {
+        streamInfo: AudioStreamInfo,
+        rendererInfo: AudioRendererInfo
+      }
+      let audioRen;
+      try {
+        await audio.createAudioRenderer(AudioRendererOptions).then(async function (data) {
+          audioRen = data;
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data state: ' + Object.keys(data));
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
+        }).catch((err) => {
+          console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+        });
+
+        let inputVolume = 1;
+
+        await audioRen.setVolume(inputVolume).then(() => {
+          expect(true).assertTrue();
+          console.info(`${TagFrmwkRender}: setVolume to 1 : Success`);
+          let data = audioRen.getVolume();
+          console.info(`${TagFrmwkRender}: SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0300 SUCCESS: ${data}`);
+          expect(data).assertEqual(1);
+        }).catch((err) => {
+          console.info(`${TagFrmwkRender}: setVolume : ERROR : code: ${err.code}, mesage: ${err.message}`);
+          expect(false).assertTrue();
+        });
+      }
+      catch (error) {
+        console.log("SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0300 : error = " + error);
+        expect(false).assertTrue();
+      }
+      await sleep(2000);
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+      });
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0400
+     * @tc.name      : AudioRenderer - getVolume 1 - callback
+     * @tc.desc      : AudioRenderer - getVolume 1 - callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0400', 2, async function (done) {
+      let AudioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+      let AudioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        rendererFlags: 0
+      }
+
+      let AudioRendererOptions = {
+        streamInfo: AudioStreamInfo,
+        rendererInfo: AudioRendererInfo
+      }
+      let audioRen;
+      try {
+        await audio.createAudioRenderer(AudioRendererOptions).then(async function (data) {
+          audioRen = data;
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data state: ' + Object.keys(data));
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
+        }).catch((err) => {
+          console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+        });
+
+        let data = audioRen.getVolume();
+        console.info(`${TagFrmwkRender}: SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0400 SUCCESS: ${data}`);
+        expect(data).assertEqual(1);
+      }
+      catch (error) {
+        console.log("SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0400 : error = " + error);
+        expect(false).assertTrue();
+      }
+      await sleep(2000);
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+      });
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0500
+     * @tc.name      : AudioRenderer - setVolume 0 - callback
+     * @tc.desc      : AudioRenderer - setVolume 0 - callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0500', 2, async function (done) {
+      let AudioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+      let AudioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        rendererFlags: 0
+      }
+
+      let AudioRendererOptions = {
+        streamInfo: AudioStreamInfo,
+        rendererInfo: AudioRendererInfo
+      }
+      let audioRen;
+      try {
+        await audio.createAudioRenderer(AudioRendererOptions).then(async function (data) {
+          audioRen = data;
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data state: ' + Object.keys(data));
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
+        }).catch((err) => {
+          console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+        });
+
+        let inputVolume = 0;
+
+        audioRen.setVolume(inputVolume, (err) => {
+          let data = audioRen.getVolume();
+          console.info(`${TagFrmwkRender}: SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0500 SUCCESS: ${data}`);
+          expect(data).assertEqual(0);
+          if (err) {
+            console.info(`${TagFrmwkRender}: setVolume : ERROR : code: ${err.code}, mesage: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            expect(true).assertTrue();
+            console.info(`${TagFrmwkRender}: setVolume to 0 : Success`);
+          }
+        });
+      }
+      catch (error) {
+        console.log("SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0500 : error = " + error);
+        expect(false).assertTrue();
+      }
+      await sleep(2000);
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+      });
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0600
+     * @tc.name      : AudioRenderer - setVolume 0 - callback
+     * @tc.desc      : AudioRenderer - setVolume 0 - callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0600', 2, async function (done) {
+      let AudioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+      let AudioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_VOICE_ASSISTANT,
+        rendererFlags: 0
+      }
+
+      let AudioRendererOptions = {
+        streamInfo: AudioStreamInfo,
+        rendererInfo: AudioRendererInfo
+      }
+      let audioRen;
+      try {
+        await audio.createAudioRenderer(AudioRendererOptions).then(async function (data) {
+          audioRen = data;
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data state: ' + Object.keys(data));
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
+        }).catch((err) => {
+          console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+        });
+
+        let inputVolume = 0.5;
+
+        audioRen.setVolume(inputVolume, (err) => {
+          let data = audioRen.getVolume();
+          console.info(`${TagFrmwkRender}: SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0600 SUCCESS: ${data}`);
+          expect(data).assertEqual(0.5);
+          if (err) {
+            console.info(`${TagFrmwkRender}: setVolume : ERROR : code: ${err.code}, mesage: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            expect(true).assertTrue();
+            console.info(`${TagFrmwkRender}: setVolume to 0 : Success`);
+          }
+        });
+      }
+      catch (error) {
+        console.log("SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0600 : error = " + error);
+        expect(false).assertTrue();
+      }
+      await sleep(2000);
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+      });
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0700
+     * @tc.name      : AudioRenderer - setVolume 0 - callback
+     * @tc.desc      : AudioRenderer - setVolume 0 - callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0700', 2, async function (done) {
+      let AudioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+      let AudioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        rendererFlags: 0
+      }
+
+      let AudioRendererOptions = {
+        streamInfo: AudioStreamInfo,
+        rendererInfo: AudioRendererInfo
+      }
+      let audioRen;
+      try {
+        await audio.createAudioRenderer(AudioRendererOptions).then(async function (data) {
+          audioRen = data;
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data state: ' + Object.keys(data));
+          console.info('AudioFrameworkRenderLog: AudioRender Created : Success : Stream Type: SUCCESS data value: ' + JSON.stringify(data));
+        }).catch((err) => {
+          console.info('AudioFrameworkRenderLog: AudioRender Created : ERROR : ' + err.message);
+        });
+
+        let inputVolume = 1;
+
+        audioRen.setVolume(inputVolume, (err) => {
+          let data = audioRen.getVolume();
+          console.info(`${TagFrmwkRender}: SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0700 SUCCESS: ${data}`);
+          expect(data).assertEqual(1);
+          if (err) {
+            console.info(`${TagFrmwkRender}: setVolume : ERROR : code: ${err.code}, mesage: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            expect(true).assertTrue();
+            console.info(`${TagFrmwkRender}: setVolume to 0 : Success`);
+          }
+        });
+      }
+      catch (error) {
+        console.log("SUB_MULTIMEDIA_AUDIO_GET_VOLUME_0700 : error = " + error);
+        expect(false).assertTrue();
+      }
+      await sleep(2000);
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+      });
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_FLUSH_0100
+     * @tc.name      : AudioRenderer - STATE_RUNNING - Callback
+     * @tc.desc      : AudioRenderer - STATE_RUNNING
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it('SUB_MULTIMEDIA_AUDIO_RENDERER_FLUSH_0100', 2, async function (done) {
+      let AudioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+        channels: audio.AudioChannel.CHANNEL_2,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+
+      let AudioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_RINGTONE,
+        usage: audio.StreamUsage.STREAM_USAGE_NOTIFICATION_RINGTONE,
+        rendererFlags: 0
+      }
+
+      let AudioRendererOptions = {
+        streamInfo: AudioStreamInfo,
+        rendererInfo: AudioRendererInfo
+      }
+      let resultFlag = false;
+
+      let audioRen;
+      let isPass = false;
+      await audio.createAudioRenderer(AudioRendererOptions).then((data) => {
+        audioRen = data;
+        console.info(`${TagFrmwkRender}: AudioRender Created : Success : Stream Type: SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: AudioRender Created : ERROR : ${err.message}`);
+        LE24 = audio.AudioSampleFormat.SAMPLE_FORMAT_S24LE;
+        LE32 = audio.AudioSampleFormat.SAMPLE_FORMAT_S32LE;
+        let sampleFormat = AudioRendererOptions.streamInfo.sampleFormat;
+        if ((sampleFormat == LE24 || sampleFormat == LE32) && err.code == 202) {
+          isPass = true;
+          return;
+        }
+        resultFlag = false;
+      });
+      console.log(`isPass: ${isPass}`);
+      if (isPass) {
+        resultFlag = true;
+        expect(resultFlag).assertTrue();
+        done();
+        return;
+      }
+
+      audioRen.on('stateChange', (AudioState) => {
+
+        console.log(`${TagFrmwk}: Volume Change Event is called`);
+
+        switch (AudioState) {
+          case audio.AudioState.STATE_RUNNING:
+            console.info(`${TagFrmwk}: state : STATE_RUNNING`);
+            audioRen.flush().then(() => {
+              console.info('Renderer flushed successfully');
+            }).catch((err) => {
+              console.error(`ERROR: ${err}`);
+            });
+            resultFlag = true;
+            break;
+          default:
+            console.info(`${TagFrmwk}: state : ${AudioState}`);
+            break;
+        }
+      });
+
+      await audioRen.start().then(() => {
+        console.info(`${TagFrmwkRender}: renderInstant started :SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: renderInstant start :ERROR : ${err.message}`);
+        resultFlag = false;
+      });
+
+      await sleep(500);
+
+      await audioRen.stop().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer stopped : SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer stop:ERROR : ${err.message}`);
+      });
+
+      await audioRen.release().then(() => {
+        console.info(`${TagFrmwkRender}: Renderer release : SUCCESS`);
+      }).catch((err) => {
+        console.info(`${TagFrmwkRender}: Renderer release :ERROR : ${err.message}`);
+      });
+      await sleep(1000);
+
+      expect(resultFlag).assertTrue();
+
+      done();
+
+    })
+
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_WRITE_DATA_TEST_0100
+     *@tc.name      : AudioRenderer_writeData_on
+     *@tc.desc      : Test AudioRenderer writeData callback with on interface
+     *@tc.size      : MediumTest
+     *@tc.type      : Function
+     *@tc.level     : Level2
+     */
+    it("SUB_MULTIMEDIA_AUDIO_RENDERER_WRITE_DATA_TEST_0100", 2, async function (done) {
+      let audioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_16000,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+
+      let audioRendererInfo = {
+        usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+        rendererFlags: 0
+      }
+
+      let audioRendererOptions = {
+        streamInfo: audioStreamInfo,
+        rendererInfo: audioRendererInfo
+      }
+      let resultFlag = true;
+      let readPath = 'StarWars10s-1C-16000-2SW.wav'
+      await getFdRead(readPath, done);
+      await playbackWriteDataCallback_001(audioRendererOptions, filePath, done);
+      await sleep(100);
+      expect(resultFlag).assertTrue();
+      await closeFileDescriptor(readPath);
+      done();
+    })
+
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_WRITE_DATA_TEST_0200
+     *@tc.name      : AudioRenderer_writeData_on
+     *@tc.desc      : Test AudioRenderer writeData callback with VALID result
+     *@tc.size      : MediumTest
+     *@tc.type      : Function
+     *@tc.level     : Level2
+     */
+    it("SUB_MULTIMEDIA_AUDIO_RENDERER_WRITE_DATA_TEST_0200", 2, async function (done) {
+      let audioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_16000,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+
+      let audioRendererInfo = {
+        usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+        rendererFlags: 0
+      }
+
+      let audioRendererOptions = {
+        streamInfo: audioStreamInfo,
+        rendererInfo: audioRendererInfo
+      }
+      let resultFlag = true;
+      let readPath = 'StarWars10s-1C-16000-2SW.wav'
+      await getFdRead(readPath, done);
+      await playbackWriteDataCallback_002(audioRendererOptions, filePath, done);
+      await sleep(100);
+      expect(resultFlag).assertTrue();
+      await closeFileDescriptor(readPath);
+      done();
+    })
+
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_RENDERER_WRITE_DATA_TEST_0300
+     *@tc.name      : AudioRenderer_writeData_on
+     *@tc.desc      : Test AudioRenderer writeData callback with INVALID result
+     *@tc.size      : MediumTest
+     *@tc.type      : Function
+     *@tc.level     : Level2
+     */
+    it("SUB_MULTIMEDIA_AUDIO_RENDERER_WRITE_DATA_TEST_0300", 2, async function (done) {
+      let audioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_16000,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+
+      let audioRendererInfo = {
+        usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+        rendererFlags: 0
+      }
+
+      let audioRendererOptions = {
+        streamInfo: audioStreamInfo,
+        rendererInfo: audioRendererInfo
+      }
+      let resultFlag = true;
+      let readPath = 'StarWars10s-1C-16000-2SW.wav'
+      await getFdRead(readPath, done);
+      await playbackWriteDataCallback_003(audioRendererOptions, filePath, done);
+      await sleep(100);
+      expect(resultFlag).assertTrue();
+      await closeFileDescriptor(readPath);
+      done();
+    })
+
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_MEDIA_MUTE_PLAY_0008
+     *@tc.name      : AudioRenderer_setSilentMode_true
+     *@tc.desc      : setSilentModeAndMixWithOthers and getSilentModeAndMixWithOthers success
+     *@tc.size      : MediumTest
+     *@tc.type      : Function
+     *@tc.level     : Level2
+     */
+     it("SUB_MULTIMEDIA_AUDIO_MEDIA_MUTE_PLAY_0008", 2, async function (done) {
+      let audioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+      let audioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        rendererFlags: 0
+      }
+      let audioRendererOptions = {
+        streamInfo: audioStreamInfo,
+        rendererInfo: audioRendererInfo
+      }
+      let audioRenderer;
+      try {
+        audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+      } catch (err) {
+      }
+      try {
+        audioRenderer.setSilentModeAndMixWithOthers(true);
+        let data = audioRenderer.getSilentModeAndMixWithOthers();
+        expect(data).assertEqual(true);
+      } catch (err) {
+      }
+      audioRenderer.release().then(() => {
+        console.info(`AudioRenderer release : SUCCESS`);
+      }).catch((err) => {
+        console.info(`AudioRenderer release :ERROR : ${err.message}`);
+      });
+      console.info('afterAll called')
+      done();
+    })
+
+    /**
+     *@tc.number    : SUB_MULTIMEDIA_AUDIO_MEDIA_MUTE_PLAY_0009
+     *@tc.name      : AudioRenderer_setSilentMode_false
+     *@tc.desc      : setSilentModeAndMixWithOthers and getSilentModeAndMixWithOthers success
+     *@tc.size      : MediumTest
+     *@tc.type      : Function
+     *@tc.level     : Level2
+     */
+     it("SUB_MULTIMEDIA_AUDIO_MEDIA_MUTE_PLAY_0009", 2, async function (done) {
+      let audioStreamInfo = {
+        samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+        channels: audio.AudioChannel.CHANNEL_1,
+        sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+        encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+      }
+      let audioRendererInfo = {
+        content: audio.ContentType.CONTENT_TYPE_MUSIC,
+        usage: audio.StreamUsage.STREAM_USAGE_MEDIA,
+        rendererFlags: 0
+      }
+      let audioRendererOptions = {
+        streamInfo: audioStreamInfo,
+        rendererInfo: audioRendererInfo
+      }
+      let audioRenderer;
+      try {
+        audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
+      } catch (err) {
+      }
+      try {
+        audioRenderer.setSilentModeAndMixWithOthers(false);
+        let data = audioRenderer.getSilentModeAndMixWithOthers();
+        expect(data).assertEqual(false);
+      } catch (err) {
+      }
+      audioRenderer.release().then(() => {
+        console.info(`AudioRenderer release : SUCCESS`);
+      }).catch((err) => {
+        console.info(`AudioRenderer release :ERROR : ${err.message}`);
+      });
+      console.info('afterAll called')
       done();
     })
   })

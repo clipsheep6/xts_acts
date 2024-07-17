@@ -3,9 +3,9 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "60000",
+        "shell-timeout": "60000",
         "bundle-name": "com.example.actssetchecksyncenable",
-        "package-name": "com.example.actssetchecksyncenable",
-        "shell-timeout": "60000"
+        "package-name": "com.example.actssetchecksyncenable"
     },
     "kits": [
         {
@@ -14,6 +14,12 @@
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
         }
     ]
 }

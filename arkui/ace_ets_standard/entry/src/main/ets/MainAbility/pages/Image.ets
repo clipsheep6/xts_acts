@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+interface ImageCompleteData {width: number, height: number}
+
 @Entry
 @Component
 struct image_textcase {
@@ -54,9 +56,9 @@ struct image_textcase {
           .key('image2')
           .height(180)
           .width(180)
-          .onComplete((msg) => {
-            this.myWidth = msg.width
-            this.myHeight = msg.height
+          .onComplete((msg?: ImageCompleteData) => {
+            this.myWidth = msg?.width ?? 0
+            this.myHeight = msg?.height ?? 0
             console.info('Width ----' + this.myWidth)
             console.info('height ----' + this.myHeight)
           })

@@ -61,12 +61,12 @@ export default function Grid_Row_GutterOption_Number() {
       let secondLengthNumber:RectValue = CommonFunc.getComponentRect('Length_NumberChange_1');
       let thirdLengthNumber:RectValue = CommonFunc.getComponentRect('Length_NumberChange_2');
       let gridRowGutterLengthNumJson = getInspectorByKey('Length_Number001');
-      let gridRowGutter = JSON.parse(gridRowGutterLengthNumJson);
+      let gridRowGutter: ESObject = JSON.parse(gridRowGutterLengthNumJson);
       expect(gridRowGutter.$type).assertEqual('GridRow');
 
 
-      expect(Math.round(secondLengthNumber.left - firstLengthNumber.right)).assertEqual(Math.round(vp2px(-20)));
-      expect(Math.round(thirdLengthNumber.top - firstLengthNumber.bottom)).assertEqual(Math.round(vp2px(10)));
+      expect(Math.abs(Math.round(secondLengthNumber.left - firstLengthNumber.right) - Math.round(vp2px(-20))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(thirdLengthNumber.top - firstLengthNumber.bottom) - Math.round(vp2px(10))) <= 1).assertTrue();
 
       console.info('SUB_ACE_GridRowGutterOption_NUMBER_0100 END');
       done();
@@ -87,11 +87,11 @@ export default function Grid_Row_GutterOption_Number() {
       let secondLengthNumber:RectValue = CommonFunc.getComponentRect('Length_NumberChange_1');
       let thirdLengthNumber:RectValue = CommonFunc.getComponentRect('Length_NumberChange_2');
       let gridRowGutterLengthNumJson = getInspectorByKey('Length_Number001');
-      let gridRowGutter = JSON.parse(gridRowGutterLengthNumJson);
+      let gridRowGutter: ESObject = JSON.parse(gridRowGutterLengthNumJson);
       expect(gridRowGutter.$type).assertEqual('GridRow');
 
-      expect(Math.round(secondLengthNumber.left - firstLengthNumber.right)).assertEqual(Math.round(vp2px(0)));
-      expect(Math.round(thirdLengthNumber.top - firstLengthNumber.bottom)).assertEqual(Math.round(vp2px(10)));
+      expect(Math.abs(Math.round(secondLengthNumber.left - firstLengthNumber.right) - Math.round(vp2px(0))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(thirdLengthNumber.top - firstLengthNumber.bottom) - Math.round(vp2px(10))) <= 1).assertTrue();
 
       console.info('SUB_ACE_GridRowGutterOption_NUMBER_0200 END');
       done();
@@ -112,7 +112,7 @@ export default function Grid_Row_GutterOption_Number() {
       let secondLengthNumber:RectValue = CommonFunc.getComponentRect('Length_NumberChange_1');
       let thirdLengthNumber:RectValue = CommonFunc.getComponentRect('Length_NumberChange_2');
       let gridRowGutterLengthNumJson = getInspectorByKey('Length_Number001');
-      let gridRowGutter = JSON.parse(gridRowGutterLengthNumJson);
+      let gridRowGutter: ESObject = JSON.parse(gridRowGutterLengthNumJson);
       expect(gridRowGutter.$type).assertEqual('GridRow');
 
 

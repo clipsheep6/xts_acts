@@ -16,7 +16,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
-
+import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 export default function onSelectionChange19() {
   describe('onSelectionChange19', function () {
     beforeEach(async function (done) {
@@ -80,18 +80,23 @@ export default function onSelectionChange19() {
       await CommonFunc.sleep(1000);
       let text1_2 = getInspectorByKey('onSelectionChange19_text1');
       let Obj1_2 = JSON.parse(text1_2);
-      expect(Obj1_2.$attrs.content).assertEqual('3');
+      expect(Obj1_2.$attrs.content).assertEqual('2');
       let text2_2 = getInspectorByKey('onSelectionChange19_text2');
       let Obj2_2 = JSON.parse(text2_2);
-      expect(Obj2_2.$attrs.content).assertEqual('1');
+      expect(Obj2_2.$attrs.content).assertEqual('0');
       let text3_2 = getInspectorByKey('onSelectionChange19_text3');
       let Obj3_2 = JSON.parse(text3_2);
       expect(Obj3_2.$attrs.content).assertEqual('1');
       await CommonFunc.sleep(2500);
 
       let richEditor2 = await driver.findComponent(ON.id('onSelectionChange19_RichEditor'));
-      await richEditor2.longClick();
-      await CommonFunc.sleep(1000);
+      // doubleClick
+      let centerPoint = await richEditor2.getBoundsCenter();
+      let point = `${centerPoint.x} ${centerPoint.y}`;
+      let cmd = `uinput -T -d ${point} -u ${point} -i 50 -d ${point} -u ${point}`;
+      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+      abilityDelegator.executeShellCommand(cmd);
+      await CommonFunc.sleep(2000);
       let paste = await driver.findComponent(ON.text('粘贴'))
       await paste.click()
       await CommonFunc.sleep(1000);

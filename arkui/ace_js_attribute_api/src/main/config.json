@@ -17,8 +17,8 @@
         "name": ".entry",
         "mainAbility": ".MainAbility",
         "deviceType": [
-      "tablet",
-      "default",
+            "tablet",
+            "default",
             "phone",
             "2in1"
         ],

@@ -13,21 +13,27 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, afterEach, beforeAll } from '@ohos/hypium'
+import { describe, it, expect, afterEach, beforeAll ,beforeEach} from '@ohos/hypium'
 import commonEvent from '@ohos.commonEvent'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import {Driver, ON} from '@ohos.UiTest';
+import fs from '@ohos.file.fs';
 
+let driver = Driver.create();
 let Subscriber;
 let TAG;
 
 let subscriberInfo_AbilityContext = {
     events: ["StartMainAbility3_CommonEvent_ContextOne", "StartMainAbility4_CommonEvent_ContextOne",
-        "AssistContextTwo_StageAbilityA_Start_CommonEvent"],
+        "AssistContextTwo_StageAbilityA_Start_CommonEvent", "ACTS_INPUTMETHOD_CONTEXT_EVENT"],
 };
 
 export default function stageContextPropertiesTest(abilityContext) {
     describe('ActsStageContextPropertiesTest', function () {
 
+      beforeEach(async (done) => {
+        setTimeout(() => { done(); }, 3000)
+      })
         beforeAll(async (done) => {
             console.log("ActsStageContextPropertiesTest afterAll called");
             await abilityContext.startAbility({
@@ -285,6 +291,16 @@ export default function stageContextPropertiesTest(abilityContext) {
                 expect.assertFail()
                 done()
             })
+
+             await driver.delayMs(2000);
+            let allowed = await driver.findComponent(ON.text(""));
+            if (allowed) {
+              console.log("find button");
+              let point = await allowed.getBoundsCenter();
+              console.log('point.x : ' + point.x +'point.y : '+ point.y);
+              await driver.click(point.x, point.y);
+            }
+            done()
         });
 
         /**
@@ -331,6 +347,16 @@ export default function stageContextPropertiesTest(abilityContext) {
                 expect.assertFail()
                 done()
             })
+
+             await driver.delayMs(2000);
+            let allowed = await driver.findComponent(ON.text(""));
+            if (allowed) {
+              console.log("find button");
+              let point = await allowed.getBoundsCenter();
+              console.log('point.x : ' + point.x +'point.y : '+ point.y);
+              await driver.click(point.x, point.y);
+            }
+            done()
         });
 
         /**
@@ -395,6 +421,16 @@ export default function stageContextPropertiesTest(abilityContext) {
                 expect.assertFail()
                 done()
             })
+
+             await driver.delayMs(2000);
+            let allowed = await driver.findComponent(ON.text(""));
+            if (allowed) {
+              console.log("find button");
+              let point = await allowed.getBoundsCenter();
+              console.log('point.x : ' + point.x +'point.y : '+ point.y);
+              await driver.click(point.x, point.y);
+            }
+            done()
         });
 
         /**
@@ -504,6 +540,97 @@ export default function stageContextPropertiesTest(abilityContext) {
                 console.log(TAG + " createBundleContext = " + JSON.stringify(error));
                 done()
             }
+        });
+
+        /**
+         * @tc.number: SUB_AA_OpenHarmony_Context_1400
+         * @tc.name: Check that context paths of UIAbility and Isolated AppExtension are the same.
+         * @tc.desc:  Function test
+         * @tc.level   3
+         */
+        it('SUB_AA_OpenHarmony_Context_1400', 0, async function (done) {
+            TAG = "SUB_AA_OpenHarmony_Context_1400";
+            console.log(TAG + "--- start");
+            checkAbilityContextDir();
+            let applicationContext = abilityContext.getApplicationContext();
+            checkApplicationContextDir(applicationContext);
+
+            commonEvent.createSubscriber(subscriberInfo_AbilityContext).then((data) => {
+                console.debug(TAG + " Create Subscribe");
+                Subscriber = data;
+                commonEvent.subscribe(Subscriber, subscribeCallBack);
+            })
+
+            function subscribeCallBack(err, data) {
+                console.debug(TAG + " subscribeCallBack data:" + JSON.stringify(data));
+                if (data.event === "ACTS_INPUTMETHOD_CONTEXT_EVENT") {
+                    checkContextDirEqualA(abilityContext.filesDir, data.parameters.filesDir);
+                    checkContextDirEqualA(applicationContext.filesDir, data.parameters.appfilesDir);
+                    commonEvent.unsubscribe(Subscriber, unSubscribeCallback);
+                }
+            }
+            function unSubscribeCallback() {
+                console.debug(TAG + " unSubscribeCallback");
+                done();
+            }
+            abilityDelegator.executeShellCommand('aa start -b com.example.stagecontextpropertiestest -a inputMethod').then(data => {
+            }).catch(err => {
+                console.error(TAG + " executeShellCommand ====> result err" + JSON.stringify(err));
+            })
+            console.log(TAG + "--- end");
+        });
+
+        /**
+         * @tc.number: SUB_AA_OpenHarmony_Context_1500
+         * @tc.name: Check that file created in the extensionContext of isolated AppExtension sandbox can not be opened in UIAbility sanbox.
+         * @tc.desc:  Function test
+         * @tc.level   3
+         */
+        it('SUB_AA_OpenHarmony_Context_1500', 0, async function (done) {
+            TAG = "SUB_AA_OpenHarmony_Context_1500"
+            console.log(TAG + "--- start");
+            checkAbilityContextDir();
+            await abilityDelegator.executeShellCommand('aa start -b com.example.stagecontextpropertiestest -a inputMethod').then(data => {
+            }).catch(err => {
+              console.error(TAG + " executeShellCommand ====> result err" + JSON.stringify(err));
+            })
+
+            try {
+                fs.openSync(abilityContext.filesDir + '/inputTest1.txt', fs.OpenMode.READ_WRITE);
+            } catch (error) {
+                console.error("openSync err:" + JSON.stringify(error));
+                expect(error.code).assertEqual(13900002);
+            }
+
+            done();
+            console.log(TAG + "--- end");
+        });
+
+        /**
+         * @tc.number: SUB_AA_OpenHarmony_Context_1600
+         * @tc.name: Check that file created in the extensionAppContext of isolated AppExtension sandbox can not be opened in UIAbility sanbox.
+         * @tc.desc:  Function test
+         * @tc.level   3
+         */
+        it('SUB_AA_OpenHarmony_Context_1600', 0, async function (done) {
+            TAG = "SUB_AA_OpenHarmony_Context_1600"
+            console.log(TAG + "--- start");
+            let applicationContext = abilityContext.getApplicationContext();
+            checkApplicationContextDir(applicationContext);
+            await abilityDelegator.executeShellCommand('aa start -b com.example.stagecontextpropertiestest -a inputMethod').then(data => {
+            }).catch(err => {
+                console.error(TAG + " executeShellCommand ====> result err" + JSON.stringify(err));
+            })
+
+            try {
+                fs.openSync(applicationContext.filesDir + '/inputTest2.txt', fs.OpenMode.READ_WRITE);
+            } catch (error) {
+                console.error("openSync err:" + JSON.stringify(error));
+                expect(error.code).assertEqual(13900002);
+            }
+
+            done();
+            console.log(TAG + "--- end");
         });
 
         function checkApplicationContextDir(applicationContext) {

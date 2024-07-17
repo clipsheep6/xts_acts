@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Common from '../../utils/Common'
+
 @Component
 struct Child_CH {
   // @Consume装饰的变量通过相同的属性名绑定其祖先组件Ancestors内的@Provide装饰的变量
@@ -57,10 +59,15 @@ struct Ancestors_CH {
 
   build() {
     Column({ space: 20 }) {
+<<<<<<< HEAD
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.hight)) + " number is " + JSON.stringify(this.hight))
         .fontSize(20)
         .margin(30)
         .key('ConsumeHight')
+=======
+      Text("count type of " + JSON.stringify(Common.getType(this.hight)) + " number is " + JSON.stringify(this.hight))
+        .fontSize(20).margin(30).key('ConsumeHight')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
 
       Child_CH()
 

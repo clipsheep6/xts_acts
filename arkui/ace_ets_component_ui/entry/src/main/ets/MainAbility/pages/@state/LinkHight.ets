@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Common from '../../utils/Common'
+
 @Component
 struct Child_CJ {
   @Link hight: ResourceStr | Length;
@@ -56,11 +58,18 @@ struct Index_CJ {
 
   build() {
     Column() {
+<<<<<<< HEAD
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.hight)) + " number is " + JSON.stringify(this.hight))
         .fontSize(20)
         .margin(30)
         .key('LinkHight')
       Child_CJ({ hight: this.hight })
+=======
+      Text("count type of " + JSON.stringify(Common.getType(this.hight)) + " number is " + JSON.stringify(this.hight))
+        .fontSize(20).margin(30).key('LinkHight')
+      Child_CJ({hight: this.hight})
+
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
     }
   }
 }

@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Common from '../../utils/Common'
+
 @Component
 struct Child_CL {
   @Link Array1: Date | Array<Length> | Array<Object>
@@ -66,6 +68,7 @@ struct Index_CL {
 
   build() {
     Column() {
+<<<<<<< HEAD
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + JSON.stringify(this.Array1))
         .fontSize(20)
         .margin(30)
@@ -77,6 +80,13 @@ struct Index_CL {
         .fontSize(20)
         .margin(30)
         .key('LinkArray1New')
+=======
+      Text("count type of " + JSON.stringify(Common.getType(this.Array1)) + " number is " + JSON.stringify(this.Array1))
+        .fontSize(20).margin(30).key('LinkArray1')
+
+      Text("count type of " + JSON.stringify(Common.getType(this.Array1)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
+        .fontSize(20).margin(30).key('LinkArray1New')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
 
       Child_CL({ Array1: this.Array1 })
     }

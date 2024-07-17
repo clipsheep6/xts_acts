@@ -20,6 +20,7 @@ import {
     sleep,
     getPermission,
     pushCreateAsset,
+    pushCreateAssetSingle,
 } from '../../../../../../common';
 
 export default function provisionResourcesTest() {
@@ -32,7 +33,8 @@ export default function provisionResourcesTest() {
             await getPermission();
             await sleep()
         });
-        beforeEach(function () {
+        beforeEach(async function () {
+            await sleep(300);
             console.info('beforeEach case');
         });
         afterEach(async function () {
@@ -43,8 +45,8 @@ export default function provisionResourcesTest() {
             console.info('afterAll case');
         });
 
-        const checkResourceAsset = async function (done, testNum, fileNames) {
-            
+        const getAssetsCount = async function (testNum): number {
+            let count = -1;
             try {
                 let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
                 let fetchOptions: photoAccessHelper.FetchOptions = {
@@ -52,11 +54,22 @@ export default function provisionResourcesTest() {
                     predicates: predicates
                 };
                 let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-                const count = fetchResult.getCount();
-                assetCount += fileNames.length;
-                expect(count).assertEqual(assetCount);
-                console.info(`${testNum} Get fetchResult successfully, count: ${count}`)
+                count = fetchResult.getCount();
                 fetchResult.close();
+                return count;
+            } catch(error) {
+                console.info(`${testNum} getAssets count failed, error: ${error}`)
+                return count;
+            } 
+        }
+
+        const checkResourceAsset = async function (done, testNum, fileNames) {
+            
+            try {
+                const count = await getAssetsCount(testNum);
+                assetCount += fileNames.length;
+                console.info(`${testNum} Get fetchResult successfully, count: ${count}`)
+                console.info(`${testNum} expect assetCount : ${assetCount}`)
                 done();
             } catch (error) {
                 console.info(`${testNum} checkResourceAsset failed, error: ${error}`)
@@ -77,7 +90,7 @@ export default function provisionResourcesTest() {
             const testNum = 'SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0100';
             const fileNames = [
                 "01.jpg", "addRemoveAssetsChangeReq01.jpg", "addRemoveAssetsChangeReq02.jpg", "request_image.jpg", 
-                "albumImageVideoCount01.jpg", "albumImageVideoCount02.jpg","PicturealbumGetAssetsCb01.jpg", "albumGetAssetsPro01.jpg"
+                "albumImageVideoCount01.jpg", "albumImageVideoCount02.jpg","PicturealbumGetAssetsCb01.jpg", "albumGetAssetsPro01.jpg", "request_image_native.jpg",
             ];
             await pushCreateAsset(fileNames);
             await checkResourceAsset(done, testNum, fileNames);
@@ -202,7 +215,8 @@ export default function provisionResourcesTest() {
         it('sub_media_photoAccess_provision_check_assets_008', 0, async function (done) {
             const testNum = 'SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0800';
             const fileNames = [
-                "01.mp4", "albumImageVideoCount01.mp4", "albumGetAssetsCb01.mp4", "albumGetAssetsPro01.mp4"
+                "01.mp4", "albumImageVideoCount01.mp4", "albumGetAssetsCb01.mp4", "albumGetAssetsPro01.mp4",
+                "request_video_native.mp4","request_video.mp4",
             ];
             await pushCreateAsset(fileNames);
             await checkResourceAsset(done, testNum, fileNames);
@@ -275,5 +289,46 @@ export default function provisionResourcesTest() {
             await pushCreateAsset(fileNames);
             await checkResourceAsset(done, testNum, fileNames);
         });
+
+        /**
+         * @tc.number    : SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_1300
+         * @tc.name      : sub_media_photoAccess_provision_check_assets_013
+         * @tc.desc      : Provision mediaAssets and check mediaAssets
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('sub_media_photoAccess_provision_check_assets_013', 0, async function (done) {
+            const testNum = 'sub_media_photoAccess_provision_check_assets_013';
+            const fileNames = [
+                "native_request_gif.gif", "native_request_png.png",  "native_request_mpeg.mpeg", "native_request_error_mp4.mp4", "native_request_error_jpg.jpg"
+            ];
+            await pushCreateAssetSingle(fileNames);
+            await checkResourceAsset(done, testNum, fileNames);
+        });
+
+        /**
+         * @tc.number    : SUB_MEDIA_PHOTOACCESS_CHECK_ASSETS_COUNT_001
+         * @tc.name      : check_provision_resource_count_001
+         * @tc.desc      : check provisionResources count
+         * @tc.size      : MEDIUM
+         * @tc.type      : Function
+         * @tc.level     : Level 0
+         */
+        it('check_provision_resource_count_001', 0, async function (done) {
+            const testNum = 'check_provision_resource_count_001';
+            try {
+                await sleep(3000);
+                const count = await getAssetsCount(testNum);
+                console.log(`${testNum} :: expect resource num is ${assetCount}, actual is ${count}`);
+                expect(count).assertEqual(assetCount);
+                done();
+            } catch (error) {
+                console.log(`${testNum} :: check provisionResources count error :: ${error} !`);
+                expect(false).assertTrue();
+                done();
+            }
+        });
+
     });
 }

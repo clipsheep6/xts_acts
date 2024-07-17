@@ -12,6 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Common from '../../utils/Common'
+
 @Entry
 @Component
 struct MyComponent_AZ {
@@ -19,10 +21,15 @@ struct MyComponent_AZ {
 
   build() {
     Column({ space: 20 }) {
+<<<<<<< HEAD
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.hight)) + " number is " + JSON.stringify(this.hight))
         .fontSize(20)
         .margin(30)
         .key('StateHight')
+=======
+      Text("count type of " + JSON.stringify(Common.getType(this.hight)) + " number is " + JSON.stringify(this.hight))
+        .fontSize(20).margin(30).key('StateHight')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       Text("设置变量number类型50-->100")
       Button('change')
         .height(this.hight)

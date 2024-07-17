@@ -4,7 +4,7 @@
     "type": "OHJSUnitTest",
     "test-timeout": "1800000",
     "shell-timeout": "900000",
-    "testcase-timeout": "600000",
+    "testcase-timeout": "60000",
     "bundle-name": "com.openharmony.asset_xts_js",
     "module-name": "entry_test"
   },
@@ -26,7 +26,7 @@
           "power-shell setmode 602"
       ],
       "teardown-command": [
-          "power-shell setmode 601"
+          "power-shell setmode 600"
       ]
   }
   ]

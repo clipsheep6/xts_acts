@@ -16,10 +16,21 @@
 import { describe, afterEach, it, expect } from "deccjsunit/index";
 import { sleep, startAbility, stopAbility } from "../../../../../../../common"
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
+import { CustomTheme, CustomColors } from '@ohos.arkui.theme';
+
+class RedColors implements CustomColors {
+  fontPrimary = '#fff32b3c';
+  fontEmphasize = '#FFD53032';
+  fontOnPrimary = '#FFFFFFFF';
+  compBackgroundTertiary = '#44FF2222';
+  backgroundEmphasize = '#FFD00000';
+  compEmphasizeSecondary = '#33FF1111';
+  compBackgroundEmphasize = '#FFD00000';
+}
 
 export default function photoPickerTest() {
   describe("photoPickerTest", function () {
-    afterEach(async function() {
+    afterEach(async function () {
       await sleep(500);
       await startAbility('ohos.acts.multimedia.photoaccess', 'com.example.myapplication.MainAbility');
       await sleep(500);
@@ -31,10 +42,11 @@ export default function photoPickerTest() {
     async function selectPromise(testNum, done, isSelectOriginal, expectSelectNum) {
       try {
         let photoPicker = new photoAccessHelper.PhotoViewPicker();
-        photoPicker.select().then((result) => {
+        photoPicker.select().then((result: photoAccessHelper.PhotoSelectResult) => {
           console.info(`${testNum}::select result: ${JSON.stringify(result)}`);
           console.info(`${testNum}::expectSelectNum: ${expectSelectNum}, actual: ${result.photoUris.length}`);
           console.info(`${testNum}::expectIsSelectOriginal: ${isSelectOriginal}, actual: ${result.isOriginalPhoto}`);
+          expect(isSelectOriginal).assertEqual(result.isOriginalPhoto)
           done();
         }).catch((err) => {
           console.info(`${testNum}::select err: ${JSON.stringify(err)}`);
@@ -122,7 +134,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_promise_000", 0, async function (done) {
       let testNum = "photopicker_select_promise_000";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -139,7 +151,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_promise_001", 0, async function (done) {
       let testNum = "photopicker_select_promise_001";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -156,7 +168,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_promise_002", 0, async function (done) {
       let testNum = "photopicker_select_promise_002";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -173,7 +185,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_promise_003", 0, async function (done) {
       let testNum = "photopicker_select_promise_003";
       let expectSelectNum = 1;
@@ -188,7 +200,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_promise_004", 0, async function (done) {
       let testNum = "photopicker_select_promise_004";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -206,7 +218,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_promise_005", 0, async function (done) {
       let testNum = "photopicker_select_promise_005";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -224,7 +236,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_promise_006", 0, async function (done) {
       let testNum = "photopicker_select_promise_006";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -242,15 +254,105 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_promise_007", 0, async function (done) {
-        let testNum = "photopicker_select_promise_007";
-        let option = new photoAccessHelper.PhotoSelectOptions();
-        option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
-        option.maxSelectNumber = 1;
-        option.preselectedUris = undefined;
-        let expectSelectNum = 1;
-        await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+      let testNum = "photopicker_select_promise_007";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+      option.maxSelectNumber = 1;
+      option.preselectedUris = undefined;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_PHOTOPICKER_SELECT_PROMISE_0800
+     * @tc.name      : photopicker_select_promise_008
+     * @tc.desc      : select with option themeColor
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it("photopicker_select_promise_008", 0, async function (done) {
+      let testNum = "photopicker_select_promise_008";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.themeColor = new RedColors();
+      option.maxSelectNumber = 1;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_PHOTOPICKER_SELECT_PROMISE_0900
+     * @tc.name      : photopicker_select_promise_009
+     * @tc.desc      : select with option MOVING_PHOTO_IMAGE_TYPE
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it("photopicker_select_promise_009", 0, async function (done) {
+      let testNum = "photopicker_select_promise_009";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.MOVING_PHOTO_IMAGE_TYPE;
+      option.maxSelectNumber = 1;
+      option.isPreviewForSingleSelectionSupported = true;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_PHOTOPICKER_SELECT_PROMISE_1000
+     * @tc.name      : photopicker_select_promise_010
+     * @tc.desc      : select with option isPreviewForSingleSelectionSupported
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it("photopicker_select_promise_010", 0, async function (done) {
+      let testNum = "photopicker_select_promise_010";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+      option.maxSelectNumber = 1;
+      option.isPreviewForSingleSelectionSupported = false;
+      option.isOriginalSupported = false;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_PHOTOPICKER_SELECT_PROMISE_1100
+     * @tc.name      : photopicker_select_promise_011
+     * @tc.desc      : select with option isOriginalSupported
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it("photopicker_select_promise_011", 0, async function (done) {
+      let testNum = "photopicker_select_promise_011";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+      option.maxSelectNumber = 1;
+      option.isOriginalSupported = true;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_PHOTOPICKER_SELECT_PROMISE_1200
+     * @tc.name      : photopicker_select_promise_012
+     * @tc.desc      : select with option subWindowName
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it("photopicker_select_promise_012", 0, async function (done) {
+      let testNum = "photopicker_select_promise_012";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+      option.maxSelectNumber = 1;
+      option.subWindowName = 'test';
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
     });
 
     //callback
@@ -261,7 +363,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_callback_000", 0, async function (done) {
       let testNum = "photopicker_select_callback_000";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -278,7 +380,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_callback_001", 0, async function (done) {
       let testNum = "photopicker_select_callback_001";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -295,7 +397,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_callback_002", 0, async function (done) {
       let testNum = "photopicker_select_callback_002";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -312,7 +414,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_callback_003", 0, async function (done) {
       let testNum = "photopicker_select_callback_003";
       let expectSelectNum = 1;
@@ -327,7 +429,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_callback_004", 0, async function (done) {
       let testNum = "photopicker_select_callback_004";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -345,7 +447,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_callback_005", 0, async function (done) {
       let testNum = "photopicker_select_callback_005";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -363,7 +465,7 @@ export default function photoPickerTest() {
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
-    */
+     */
     it("photopicker_select_callback_006", 0, async function (done) {
       let testNum = "photopicker_select_callback_006";
       let option = new photoAccessHelper.PhotoSelectOptions();
@@ -388,7 +490,8 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.QR_CODE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
@@ -408,7 +511,8 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.QR_CODE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
@@ -428,14 +532,15 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.QR_CODE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
       await selectWithOptionPromise(testNum, done, option, expectSelectNum);
     });
 
-   /**
+    /**
      * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_PROMISE_0300
      * @tc.name      : smart_photopicker_select_promise_003
      * @tc.desc      : select with recommendationType = QR_OR_BAR_CODE
@@ -448,7 +553,8 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.QR_OR_BAR_CODE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
@@ -468,13 +574,14 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.BAR_CODE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
       await selectWithOptionPromise(testNum, done, option, expectSelectNum);
     });
- 
+
     /**
      * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_PROMISE_0500
      * @tc.name      : smart_photopicker_select_promise_005
@@ -488,14 +595,15 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.ID_CARD;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
       await selectWithOptionPromise(testNum, done, option, expectSelectNum);
     });
- 
-     /**
+
+    /**
      * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_PROMISE_0600
      * @tc.name      : smart_photopicker_select_promise_006
      * @tc.desc      : select with recommendationType = PROFILE_PICTURE
@@ -508,13 +616,143 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.PROFILE_PICTURE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
       await selectWithOptionPromise(testNum, done, option, expectSelectNum);
     });
-    
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_PROMISE_0700
+     * @tc.name      : smart_photopicker_select_promise_007
+     * @tc.desc      : select with recommendationType = PASSPORT
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_promise_007", 1, async function (done) {
+      let testNum = "smart_photopicker_select_promise_007";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.PASSPORT;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_PROMISE_0800
+     * @tc.name      : smart_photopicker_select_promise_008
+     * @tc.desc      : select with recommendationType = BANK_CARD
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_promise_008", 1, async function (done) {
+      let testNum = "smart_photopicker_select_promise_008";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.BANK_CARD;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_PROMISE_0900
+     * @tc.name      : smart_photopicker_select_promise_009
+     * @tc.desc      : select with recommendationType = DRIVER_LICENSE
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_promise_009", 1, async function (done) {
+      let testNum = "smart_photopicker_select_promise_009";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.DRIVER_LICENSE;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_PROMISE_1000
+     * @tc.name      : smart_photopicker_select_promise_010
+     * @tc.desc      : select with recommendationType = DRIVING_LICENSE
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_promise_010", 1, async function (done) {
+      let testNum = "smart_photopicker_select_promise_010";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.DRIVING_LICENSE;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_PROMISE_1100
+     * @tc.name      : smart_photopicker_select_promise_011
+     * @tc.desc      : select with recommendationType = PROFILE_PICTURE
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_promise_011", 1, async function (done) {
+      let testNum = "smart_photopicker_select_promise_011";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      let textContextInfo: photoAccessHelper.TextContextInfo = {
+        text: '上海野生动物园的大熊猫'
+      }
+      recommendationOptions.textContextInfo = textContextInfo;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_PROMISE_1200
+     * @tc.name      : smart_photopicker_select_promise_012
+     * @tc.desc      : select with recommendationType = FEATURED_SINGLE_PORTRAIT
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_promise_012", 1, async function (done) {
+      let testNum = "smart_photopicker_select_promise_012";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.FEATURED_SINGLE_PORTRAIT;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
     //callback
     /**
      * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_CALLBACK_0000
@@ -529,7 +767,8 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.QR_CODE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
@@ -549,7 +788,8 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.QR_CODE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
@@ -569,7 +809,8 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.QR_CODE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
@@ -589,7 +830,8 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.QR_OR_BAR_CODE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
@@ -609,7 +851,8 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.BAR_CODE;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
@@ -629,7 +872,8 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.ID_CARD;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
@@ -649,8 +893,138 @@ export default function photoPickerTest() {
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
       option.maxSelectNumber = 1;
-      let recommendationOptions: photoAccessHelper.RecommendationOptions = new photoAccessHelper.RecommendationOptions();
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
       recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.PROFILE_PICTURE;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionCallback(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_CALLBACK_0700
+     * @tc.name      : smart_photopicker_select_callback_007
+     * @tc.desc      : select with recommendationType = PASSPORT
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_callback_007", 1, async function (done) {
+      let testNum = "smart_photopicker_select_callback_007";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.PASSPORT;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionCallback(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_CALLBACK_0800
+     * @tc.name      : smart_photopicker_select_callback_008
+     * @tc.desc      : select with recommendationType = BANK_CARD
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_callback_008", 1, async function (done) {
+      let testNum = "smart_photopicker_select_callback_008";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.BANK_CARD;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionCallback(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_CALLBACK_0900
+     * @tc.name      : smart_photopicker_select_callback_009
+     * @tc.desc      : select with recommendationType = DRIVER_LICENSE
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_callback_009", 1, async function (done) {
+      let testNum = "smart_photopicker_select_callback_009";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.DRIVER_LICENSE;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionCallback(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_CALLBACK_1000
+     * @tc.name      : smart_photopicker_select_callback_010
+     * @tc.desc      : select with recommendationType = DRIVING_LICENSE
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_callback_010", 1, async function (done) {
+      let testNum = "smart_photopicker_select_callback_010";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.DRIVING_LICENSE;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionCallback(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_CALLBACK_1100
+     * @tc.name      : smart_photopicker_select_callback_011
+     * @tc.desc      : select with textContextInfo
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_callback_011", 1, async function (done) {
+      let testNum = "smart_photopicker_select_callback_011";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      let textContextInfo: photoAccessHelper.TextContextInfo = {
+        text: '上海野生动物园的大熊猫'
+      }
+      recommendationOptions.textContextInfo = textContextInfo;
+      option.recommendationOptions = recommendationOptions;
+      let expectSelectNum = 1;
+      await selectWithOptionCallback(testNum, done, option, expectSelectNum);
+    });
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_SMART_PHOTOPICKER_SELECT_CALLBACK_1200
+     * @tc.name      : smart_photopicker_select_callback_012
+     * @tc.desc      : select with recommendationType = FEATURED_SINGLE_PORTRAIT
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("smart_photopicker_select_callback_012", 1, async function (done) {
+      let testNum = "smart_photopicker_select_callback_012";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      option.maxSelectNumber = 1;
+      let recommendationOptions: photoAccessHelper.RecommendationOptions =
+        new photoAccessHelper.RecommendationOptions();
+      recommendationOptions.recommendationType = photoAccessHelper.RecommendationType.FEATURED_SINGLE_PORTRAIT;
       option.recommendationOptions = recommendationOptions;
       let expectSelectNum = 1;
       await selectWithOptionCallback(testNum, done, option, expectSelectNum);

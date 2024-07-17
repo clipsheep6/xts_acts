@@ -12,12 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Common from '../../utils/Common'
+
 @Component
 struct Child_AD {
   @Prop Array: Array<Number> | Array<boolean> | Boolean | Array<Resource>
 
   build() {
     Column() {
+<<<<<<< HEAD
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array)) + " number is " + JSON.stringify(this.Array))
         .fontSize(20)
         .margin(30)
@@ -30,6 +33,13 @@ struct Child_AD {
         .margin(30)
         .key('PropArrayNew')
 
+=======
+      Text("count type of " + JSON.stringify(Common.getType(this.Array)) + " number is " + JSON.stringify(this.Array))
+        .fontSize(20).margin(30).key('PropArray')
+
+      Text("count type of " + JSON.stringify(Common.getType(this.Array)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
+        .fontSize(20).margin(30).key('PropArrayNew')
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       Text("设置变量Array<Number>类型[1]-->[10]")
 
       Button('change')

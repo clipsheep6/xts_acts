@@ -18,11 +18,20 @@ import UDMFApiPromise from './UDMFApiPromise.test'
 import UDMFApiTest from './UDMF.test'
 import UDMFApiDescriptorTest from './UDMFApiDescriptor.test'
 import UDMFDragBigDataJsApiTest from './UDMFDragBigDataJsApi.test'
+import UtdfMimeTypeTest from './UtdfMimeTypeTest'
+import UtdfileNameTest from './UtdfileNameExtentionsTest'
+import UDMFApiDataStructTest from './UDMFApiDataStruct.test'
+import UDMFSupportClipboardApiTest from './UDMFSupportClipboardApi.test'
 
 export default function testsuite() {
+  UDMFDragBigDataJsApiTest()
   UDMFApiCallback()
   UDMFApiDescriptorTest()
   UDMFApiPromise()
   UDMFApiTest()
-  UDMFDragBigDataJsApiTest()
+  UtdfMimeTypeTest()
+  UtdfileNameTest()
+  UDMFApiDataStructTest()
+  UDMFSupportClipboardApiTest()
+  
 }

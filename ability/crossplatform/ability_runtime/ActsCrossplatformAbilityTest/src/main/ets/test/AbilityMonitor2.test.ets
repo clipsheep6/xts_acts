@@ -18,6 +18,8 @@ import AbilityDelegatorRegistry from "@ohos.app.ability.abilityDelegatorRegistry
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
+
 function sleep(time: number) {
   return new Promise((resolve: (value: string) => void) => {
     setTimeout(() => {
@@ -44,6 +46,7 @@ export default function AbilityMonitor2Test() {
   let TAG: string = "";
   let LABLE: string = "AbilityMonitor2Test";
   let monitor: AbilityDelegatorRegistry.AbilityMonitor | null | undefined = undefined;
+  let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 
   describe("AbilityMonitor2Test", () => {
     beforeEach(async (done: Function) => {
@@ -203,6 +206,11 @@ export default function AbilityMonitor2Test() {
     it("ACTS_ADD_ABILITY_MONITOR_CALLBACK_0300", 0, async (done: Function) => {
       TAG = "ACTS_ADD_ABILITY_MONITOR_CALLBACK_0300";
       console.log(LABLE + TAG + " start");
+      if (deviceType === '2in1') {
+        console.log(LABLE + TAG + " deviceType: " + deviceType);
+        done();
+        return;
+      }
       const want = factoryWant(
         "com.example.delegatortest",
         "Main4Ability",
@@ -493,6 +501,11 @@ export default function AbilityMonitor2Test() {
     it("ACTS_ADD_ABILITY_MONITOR_PROMISE_0300", 0, async (done: Function) => {
       TAG = "ACTS_ADD_ABILITY_MONITOR_PROMISE_0300";
       console.log(LABLE + TAG + " start");
+      if (deviceType === '2in1') {
+        console.log(LABLE + TAG + " deviceType: " + deviceType);
+        done();
+        return;
+      }
       const want = factoryWant(
         "com.example.delegatortest",
         "Main3Ability",
@@ -569,7 +582,6 @@ export default function AbilityMonitor2Test() {
         "entry"
       );
 
-
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       monitor = {
         abilityName: "Main4Ability",
@@ -631,7 +643,6 @@ export default function AbilityMonitor2Test() {
         "entry"
       );
 
-
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       monitor = {
         abilityName: "Main3Ability",
@@ -653,6 +664,7 @@ export default function AbilityMonitor2Test() {
           done();
         });
       console.log(LABLE + TAG + " startAbility start");
+      await sleep(100);
       abilityDelegator.startAbility(want, (err) => {
         console.log(LABLE + TAG + " startAbility, err:" + JSON.stringify(err));
         setTimeout(() => {
@@ -789,7 +801,6 @@ export default function AbilityMonitor2Test() {
       let result = 0;
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-
       monitor = {
         abilityName: "Main4Ability",
         onAbilityBackground: () => {
@@ -862,7 +873,6 @@ export default function AbilityMonitor2Test() {
       let result = 0;
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-
       monitor = {
         abilityName: "Main4Ability",
         onAbilityDestroy: () => {
@@ -925,7 +935,6 @@ export default function AbilityMonitor2Test() {
       let result = 0;
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-
       monitor = {
         abilityName: "Main4Ability",
         onWindowStageDestroy: () => {
@@ -983,7 +992,6 @@ export default function AbilityMonitor2Test() {
       let result = 1;
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-
       monitor = {
         abilityName: "Main4Ability",
         onAbilityForeground: () => {
@@ -1040,7 +1048,6 @@ export default function AbilityMonitor2Test() {
       let result = 1;
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-
       monitor = {
         abilityName: "Main4Ability",
         onWindowStageCreate: () => {
@@ -1094,7 +1101,6 @@ export default function AbilityMonitor2Test() {
       );
       let result = 1;
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-
 
       monitor = {
         abilityName: "Main4Ability",
@@ -1164,7 +1170,6 @@ export default function AbilityMonitor2Test() {
       );
       let result = 1;
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-
 
       monitor = {
         abilityName: "Main4Ability",

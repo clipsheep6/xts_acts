@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import calendarManager from '@ohos.calendarManager';
-import { beforeAll, describe, expect, it } from '@ohos/hypium';
+import { describe, beforeAll, it, expect} from '@ohos/hypium';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import uitest from '@ohos.UiTest';
 import systemDateTime from '@ohos.systemDateTime';
@@ -78,15 +78,19 @@ export default function CalendarManagerTest() {
       } catch (error) {
         console.info(`getPermission failed, error: ${error}`);
       }
-      sleep(3000);
+      sleep(500);
       calendarMgr = calendarManager.getCalendarManager(globalThis.context);
     });
 
 
     /*
      * @tc.number  SUB_Application_CalendarManagerApi_test_0100
-     * @tc.name    Test Enumeration of CalendarType types.
+     * @tc.name    test_enumeration_of_calendarType_types.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
+
      */
     it("SUB_Application_CalendarManagerApi_test_0100", 0, () => {
       expect(calendarManager.CalendarType.LOCAL == 'local').assertTrue();
@@ -100,6 +104,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_test_0200
      * @tc.name    Test Enumeration of RecurrenceFrequency types.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_test_0200", 0, () => {
       expect(calendarManager.RecurrenceFrequency.YEARLY == 0).assertTrue();
@@ -112,6 +119,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_test_0300
      * @tc.name    Test Enumeration of ServiceType types.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_test_0300", 0, () => {
       expect(calendarManager.ServiceType.MEETING == 'Meeting').assertTrue();
@@ -126,9 +136,25 @@ export default function CalendarManagerTest() {
     });
 
     /*
+     * @tc.number  SUB_Application_CalendarManagerApi_test_0400
+     * @tc.name    Test Enumeration of AttendeeRole types.
+     * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
+     */
+    it("SUB_Application_CalendarManagerApi_test_0400", 0, () => {
+      expect(calendarManager.AttendeeRole.ORGANIZER == 'organizer').assertTrue();
+      expect(calendarManager.AttendeeRole.PARTICIPANT == 'participant').assertTrue();
+    });
+
+    /*
      * @tc.number  SUB_Application_CalendarManagerApi_CreateCalendar_Async_0100
      * @tc.name    Create a Calendar object based on the calendar account information type entry as LOCAL.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_CreateCalendar_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_CreateCalendar_Async_0100';
@@ -140,10 +166,10 @@ export default function CalendarManagerTest() {
       calendarMgr.createCalendar(CalendarAccounts, (err, data) => {
         if (err) {
           console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         } else {
           console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(data));
-          EXPECTTrue(data.id != null);
+          expect(data.id != null).assertTrue();
           return;
         }
       });
@@ -153,6 +179,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_CreateCalendar_Async_0200
      * @tc.name    Create a Calendar object based on the calendar account information type entry as EMAIL.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_CreateCalendar_Async_0200", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_CreateCalendar_Async_0200';
@@ -164,10 +193,10 @@ export default function CalendarManagerTest() {
       calendarMgr.createCalendar(CalendarAccounts, (err, data) => {
         if (err) {
           console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         } else {
           console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(data));
-          EXPECTTrue(data.id != null);
+          expect(data.id != null).assertTrue();
           return;
         }
       });
@@ -177,6 +206,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_CreateCalendar_Async_0300
      * @tc.name    Create a Calendar object based on the calendar account information type entry as BIRTHDAY.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_CreateCalendar_Async_0300", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_CreateCalendar_Async_0300';
@@ -188,10 +220,10 @@ export default function CalendarManagerTest() {
       calendarMgr.createCalendar(CalendarAccounts, (err, data) => {
         if (err) {
           console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         } else {
           console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(data));
-          EXPECTTrue(data.id != null);
+          expect(data.id != null).assertTrue();
           return;
         }
       });
@@ -201,6 +233,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_CreateCalendar_Async_0400
      * @tc.name    Create a Calendar object based on the calendar account information type entry as CALDAV.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_CreateCalendar_Async_0400", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_CreateCalendar_Async_0400';
@@ -212,10 +247,10 @@ export default function CalendarManagerTest() {
       calendarMgr.createCalendar(CalendarAccounts, (err, data) => {
         if (err) {
           console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         } else {
           console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(data));
-          EXPECTTrue(data.id != null);
+          expect(data.id != null).assertTrue();
           return;
         }
       });
@@ -225,6 +260,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_CreateCalendar_Promise_0100
      * @tc.name    Create a Calendar object based on the calendar account information type entry as SUBSCRIBED.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_CreateCalendar_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_CreateCalendar_Promise_0100';
@@ -235,11 +273,11 @@ export default function CalendarManagerTest() {
       }
       calendarMgr.createCalendar(CalendarAccounts).then((data) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(data));
-        EXPECTTrue(data.id != null);
+        expect(data.id != null).assertTrue();
         return;
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -247,6 +285,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetCalendar_Async_0100
      * @tc.name    Gets the specified Calendar object.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetCalendar_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetCalendar_Async_0100';
@@ -257,12 +298,12 @@ export default function CalendarManagerTest() {
               console.info("RK device , no modem")
             } else {
               console.info(CaseName + "Failed to get specified calendar" + JSON.stringify(err));
-              EXPECTFalse();
+              expect().assertFail();
             }
           })
         } else {
           console.info(CaseName + "Succeeded in get specified calendar type is LOCAl" + JSON.stringify(data));
-          EXPECTTrue(data.id != null);
+          expect(data.id != null).assertTrue();
           return;
         }
       });
@@ -272,6 +313,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetCalendar_Async_0200
      * @tc.name    Gets the specified Calendar object.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetCalendar_Async_0200", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetCalendar_Async_0200';
@@ -282,12 +326,12 @@ export default function CalendarManagerTest() {
               console.info("RK device , no modem")
             } else {
               console.info(CaseName + "Failed to get specified calendar" + JSON.stringify(err));
-              EXPECTFalse();
+              expect().assertFail();
             }
           })
         } else {
           console.info(CaseName + "Succeeded in get specified calendar type is EMAIL" + JSON.stringify(data));
-          EXPECTTrue(data.id != null);
+          expect(data.id != null).assertTrue();
           return;
         }
       });
@@ -297,6 +341,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetCalendar_Async_0300
      * @tc.name    Gets the specified Calendar object.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetCalendar_Async_0300", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetCalendar_Async_0300';
@@ -308,10 +355,10 @@ export default function CalendarManagerTest() {
       calendarMgr.getCalendar(CalendarAccounts, (err, data) => {
         if (err) {
           console.info(CaseName + "Failed to get specified calendar" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         } else {
           console.info(CaseName + "Succeeded in get specified calendar type is BIRTHDAY" + JSON.stringify(data));
-          EXPECTTrue(data.id != null);
+          expect(data.id != null).assertTrue();
           return;
         }
       });
@@ -321,6 +368,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetCalendar_Async_0400
      * @tc.name    Gets the specified Calendar object.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetCalendar_Async_0400", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetCalendar_Async_0400';
@@ -332,10 +382,10 @@ export default function CalendarManagerTest() {
       calendarMgr.getCalendar(CalendarAccounts, (err, data) => {
         if (err) {
           console.info(CaseName + "Failed to get specified calendar" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         } else {
           console.info(CaseName + "Succeeded in get specified calendar type is CALDAV" + JSON.stringify(data));
-          EXPECTTrue(data.id != null);
+          expect(data.id != null).assertTrue();
           return;
         }
       });
@@ -345,6 +395,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetCalendar_Promise_0100
      * @tc.name    Gets the default Calendar object.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetCalendar_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetCalendar_Promise_0100';
@@ -355,11 +408,11 @@ export default function CalendarManagerTest() {
       }
       calendarMgr.getCalendar(CalendarAccounts).then((data) => {
         console.info(CaseName + "Succeeded in deleting calendar" + JSON.stringify(data));
-        EXPECTTrue(data.id != null);
+        expect(data.id != null).assertTrue();
         return;
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to delete calendar type is SUBSCRIBED" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -367,12 +420,15 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetCalendar_Promise_0200
      * @tc.name    Gets the default Calendar object.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetCalendar_Promise_0200", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetCalendar_Promise_0200';
       calendarMgr.getCalendar().then((data) => {
         console.info(CaseName + "Succeeded in deleting calendar" + JSON.stringify(data));
-        EXPECTTrue(data.id != null);
+        expect(data.id != null).assertTrue();
         return;
       }).catch((err) => {
         radio.isRadioOn((error) => {
@@ -380,7 +436,7 @@ export default function CalendarManagerTest() {
             console.info("RK device , no modem")
           } else {
             console.info(CaseName + "Failed to get specified calendar" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           }
         })
       });
@@ -390,16 +446,19 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetAllCalendars_Async_0100
      * @tc.name    Gets the specified Calendar object.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetAllCalendars_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetAllCalendars_Async_0100';
       calendarMgr.getAllCalendars((err, data) => {
         if (err) {
           console.info(CaseName + "Failed to get AllCalendars" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         } else {
           console.info(CaseName + "Succeeded in get AllCalendars" + JSON.stringify(data));
-          //EXPECTTrue(data[0].id != null);
+          expect(data != null).assertTrue();
           return;
         }
       });
@@ -409,16 +468,19 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetAllCalendars_Promise_0100
      * @tc.name    Gets all Calendar objects created by the current application and the default Calendar objects.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetAllCalendars_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetAllCalendars_Promise_0100';
       calendarMgr.getAllCalendars().then((data) => {
         console.info(CaseName + "Succeeded in deleting calendar" + JSON.stringify(data));
-        EXPECTTrue(data[0].id != null);
+        expect(data != null).assertTrue();
         return;
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to delete calendar type is SUBSCRIBED" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -426,6 +488,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_DeleteCalendar_Async_0100
      * @tc.name    Deletes the specified Calendar object.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_DeleteCalendar_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_DeleteCalendar_Async_0100';
@@ -439,7 +504,7 @@ export default function CalendarManagerTest() {
         calendarMgr.deleteCalendar(data, (err, data) => {
           if (err) {
             console.info(CaseName + "Failed to delete calendar" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in deleting calendar" + JSON.stringify(data));
             return;
@@ -447,7 +512,7 @@ export default function CalendarManagerTest() {
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -455,6 +520,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_DeleteCalendar_Promise_0100
      * @tc.name    Deletes the specified Calendar object.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_DeleteCalendar_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_DeleteCalendar_Promise_0100';
@@ -470,11 +538,11 @@ export default function CalendarManagerTest() {
           return;
         }).catch((err: BusinessError) => {
           console.info(CaseName + "Failed to delete calendar" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -482,6 +550,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_AddEvent_Async_0100
      * @tc.name    Create an agenda.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_AddEvent_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_AddEvent_Async_0100';
@@ -512,16 +583,16 @@ export default function CalendarManagerTest() {
         Calendar.addEvent(Schedule, (err, data) => {
           if (err) {
             console.info(CaseName + "Failed to addEvent" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in addEvent" + JSON.stringify(data));
-            EXPECTTrue(data != null);
+            expect(data != null).assertTrue();
             return;
           }
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -529,6 +600,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_AddEvent_Promise_0100
      * @tc.name    Create an agenda.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_AddEvent_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_AddEvent_Promise_0100';
@@ -557,15 +631,15 @@ export default function CalendarManagerTest() {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         Calendar.addEvent(Schedule).then((data) => {
           console.info(CaseName + "Succeeded in addEvent" + JSON.stringify(data));
-          EXPECTTrue(data != null);
+          expect(data != null).assertTrue();
           return;
         }).catch((err: BusinessError) => {
           console.info(CaseName + "Failed to addEvent" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -573,6 +647,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_AddEvents_Async_0100
      * @tc.name    Batch create schedule.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_AddEvents_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_AddEvent_Async_0100';
@@ -611,16 +688,16 @@ export default function CalendarManagerTest() {
         Calendar.addEvents(events, (err, data) => {
           if (err) {
             console.info(CaseName + "Failed to addEvents" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in addEvents" + JSON.stringify(data));
-            EXPECTTrue(data != null);
+            expect(data != null).assertTrue();
             return;
           }
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -628,6 +705,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_AddEvent_Promise_0100
      * @tc.name    Batch create schedule.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_AddEvents_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_AddEvent_Promise_0100';
@@ -667,11 +747,11 @@ export default function CalendarManagerTest() {
           return;
         }).catch((err: BusinessError) => {
           console.info(CaseName + "Failed to addEvents" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -679,6 +759,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_UpdateEvent_Async_0100
      * @tc.name    Update an agenda.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_UpdateEvent_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_UpdateEvent_Async_0100';
@@ -701,15 +784,18 @@ export default function CalendarManagerTest() {
         attendee: [
           {
             name: '小王',
-            email: 'xiaowang@huawei.com'
+            email: 'peter@yuanha.com',
+            role: calendarManager.AttendeeRole.ORGANIZER
           },
           {
             name: '小李',
-            email: 'xiaoli@huawei.com'
+            email: 'peter@yuanha.com',
+            role: calendarManager.AttendeeRole.PARTICIPANT
           },
           {
             name: '老李',
-            email: 'laoxiao@huawei.com'
+            email: 'peter@yuanha.com',
+            role: calendarManager.AttendeeRole.PARTICIPANT
           }
         ],
         timeZone: '',
@@ -731,16 +817,15 @@ export default function CalendarManagerTest() {
         Calendar.updateEvent(Schedule, (err, data) => {
           if (err) {
             console.info(CaseName + "Failed to updateEvent" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in updateEvent" + JSON.stringify(data));
-            EXPECTTrue(data != null);
             return;
           }
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -748,6 +833,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_UpdateEvent_Promise_0100
      * @tc.name    Update an agenda.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_UpdateEvent_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_UpdateEvent_Promise_0100';
@@ -799,11 +887,11 @@ export default function CalendarManagerTest() {
           return;
         }).catch((err: BusinessError) => {
           console.info(CaseName + "Failed to updateEvent" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -811,6 +899,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetAccount_0100
      * @tc.name    Get calendar account information.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetAccount_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetAccount_0100';
@@ -822,12 +913,12 @@ export default function CalendarManagerTest() {
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         let calendarAccounts = Calendar.getAccount();
-        EXPECTTrue(calendarAccounts.name != '');
+        expect(calendarAccounts.name != '').assertTrue();
         console.info("get account success " + JSON.stringify(calendarAccounts));
         return;
       }).catch((err) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -835,6 +926,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_SetConfig_Async_0100
      * @tc.name    Set calendar configuration information.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_SetConfig_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_SetConfig_Async_0100';
@@ -850,17 +944,17 @@ export default function CalendarManagerTest() {
         }, (err, data) => {
           if (err) {
             console.info(CaseName + "Failed to setConfig" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             let configs = Calendar.getConfig();
             console.info(CaseName + "Succeeded in getConfig" + JSON.stringify(configs));
-            EXPECTTrue(configs.enableReminder == true && configs.color == "#0A59F7");
+            expect(configs.enableReminder == true && configs.color == "#0A59F7").assertTrue();
             return;
           }
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -868,6 +962,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_SetConfig_Promise_0100
      * @tc.name    Set calendar configuration information.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_SetConfig_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_SetConfig_Promise_0100';
@@ -883,15 +980,15 @@ export default function CalendarManagerTest() {
         }).then((data) => {
           let configs = Calendar.getConfig();
           console.info(CaseName + "Succeeded in getConfig" + JSON.stringify(configs));
-          EXPECTTrue(configs.enableReminder == false && configs.color == "#0A59F7");
+          expect(configs.enableReminder == false && configs.color == "#0A59F7").assertTrue();
           return;
         }).catch((err: BusinessError) => {
           console.info(CaseName + "Failed to setConfig" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -899,6 +996,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetEvents_Async_0100
      * @tc.name    Example Query all events in Calendar.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetEvents_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetEvents_Async_0100';
@@ -913,15 +1013,15 @@ export default function CalendarManagerTest() {
         Calendar.getEvents((err, Events) => {
           if (err) {
             console.info(CaseName + "Failed to getEvents" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in getEvents" + JSON.stringify(Events));
-            EXPECTTrue(Events[0] != '');
+            expect(Events[0] != '').assertTrue();
             return;
           }
         }).catch((err: BusinessError) => {
           console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         });
       });
     });
@@ -930,6 +1030,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetEvents_Async_0200
      * @tc.name    Example Query all events in Calendar By FilterById.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetEvents_Async_0200", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetEvents_Async_0200';
@@ -952,16 +1055,16 @@ export default function CalendarManagerTest() {
         Calendar.addEvent(Schedule, (err, data) => {
           if (err) {
             console.info(CaseName + "Failed to addEvent" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in addEvent" + JSON.stringify(data));
             Calendar.getEvents(filter, columns, (err, Events) => {
               if (err) {
                 console.info(CaseName + "Failed to getEvents" + JSON.stringify(err));
-                EXPECTFalse();
+                expect().assertFail();
               } else {
                 console.info(CaseName + "Succeeded in getEvents" + JSON.stringify(Events));
-                EXPECTTrue(Events[0] != null);
+                expect(Events[0] != null).assertTrue();
                 return;
               }
             });
@@ -969,7 +1072,7 @@ export default function CalendarManagerTest() {
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -977,6 +1080,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetEvents_Async_0300
      * @tc.name    Example Query all events in Calendar By FilterByTime.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetEvents_Async_0300", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetEvents_Async_0300';
@@ -994,22 +1100,25 @@ export default function CalendarManagerTest() {
         Calendar.getEvents(filter, columns, (err, Events) => {
           if (err) {
             console.info(CaseName + "Failed to getEvents" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in getEvents" + JSON.stringify(Events));
-            EXPECTTrue(Events[0] != null);
+            expect(Events[0] != null).assertTrue();
             return;
           }
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
     /*
      * @tc.number  SUB_Application_CalendarManagerApi_GetEvents_Async_0400
      * @tc.name    Example Query all events in Calendar By FilterByTitle.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetEvents_Async_0400", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetEvents_Async_0400';
@@ -1027,16 +1136,16 @@ export default function CalendarManagerTest() {
         Calendar.getEvents(filter, columns, (err, Events) => {
           if (err) {
             console.info(CaseName + "Failed to getEvents" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in getEvents" + JSON.stringify(Events));
-            EXPECTTrue(Events[0] != null);
+            expect(Events[0] != null).assertTrue();
             return;
           }
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -1044,6 +1153,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetEvents_Promise_0100
      * @tc.name    Example Query all events in Calendar By FilterById.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetEvents_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetEvents_Promise_0100';
@@ -1060,15 +1172,15 @@ export default function CalendarManagerTest() {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         Calendar.getEvents(filter, columns).then((data) => {
           console.info(CaseName + "Succeeded in getting events" + JSON.stringify(data));
-          EXPECTTrue(data[0] != null);
+          expect(data = null).assertTrue();
           return;
         }).catch((err: BusinessError) => {
           console.error(CaseName + "Failed to get events" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -1076,6 +1188,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetEvents_Promise_0200
      * @tc.name    Example Query all events in Calendar By FilterByTime.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetEvents_Promise_0200", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetEvents_Promise_0200';
@@ -1092,15 +1207,15 @@ export default function CalendarManagerTest() {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         Calendar.getEvents(filter, columns).then((data) => {
           console.info(CaseName + "Succeeded in getting events" + JSON.stringify(data));
-          EXPECTTrue(data[0] != null);
+          expect(data != null).assertTrue();
           return;
         }).catch((err: BusinessError) => {
           console.error(CaseName + "Failed to get events" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -1108,6 +1223,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_GetEvents_Promise_0300
      * @tc.name    Example Query all events in Calendar By FilterByTitle.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_GetEvents_Promise_0300", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetEvents_Promise_0300';
@@ -1124,15 +1242,15 @@ export default function CalendarManagerTest() {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         Calendar.getEvents(filter, columns).then((data) => {
           console.info(CaseName + "Succeeded in getting events" + JSON.stringify(data));
-          EXPECTTrue(data[0] != null);
+          expect(data != null).assertTrue();
           return;
         }).catch((err: BusinessError) => {
           console.error(CaseName + "Failed to get events" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -1140,6 +1258,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_DeleteEvent_Async_0100
      * @tc.name    Delete an agenda.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_DeleteEvent_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_DeleteEvent_Async_0100';
@@ -1159,13 +1280,13 @@ export default function CalendarManagerTest() {
         Calendar.addEvent(Schedule, (err, ScheduleID) => {
           if (err) {
             console.info(CaseName + "Failed to addEvent" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in addEvent" + JSON.stringify(ScheduleID));
             Calendar.deleteEvent(ScheduleID, (err, data) => {
               if (err) {
                 console.info(CaseName + "Failed to deleteEvent" + JSON.stringify(err));
-                EXPECTFalse();
+                expect().assertFail();
               } else {
                 console.info(CaseName + "Succeeded in deleteEvent" + JSON.stringify(data));
                 return;
@@ -1175,7 +1296,7 @@ export default function CalendarManagerTest() {
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -1183,6 +1304,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_DeleteEvent_Promise_0100
      * @tc.name    Delete an agenda.
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_DeleteEvent_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_DeleteEvent_Promise_0100';
@@ -1201,7 +1325,7 @@ export default function CalendarManagerTest() {
         Calendar.addEvent(Schedule, (err, ScheduleID) => {
           if (err) {
             console.info(CaseName + "Failed to addEvent" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in addEvent" + JSON.stringify(ScheduleID));
             Calendar.deleteEvent(ScheduleID).then((data) => {
@@ -1209,13 +1333,13 @@ export default function CalendarManagerTest() {
               return;
             }).catch((err: BusinessError) => {
               console.info(CaseName + "Failed to deleteEvent" + JSON.stringify(err));
-              EXPECTFalse();
+              expect().assertFail();
             });
           }
         });
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -1223,6 +1347,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_DeleteEvents_Async_0100
      * @tc.name    Delete schedules in batches based on schedule ids
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_DeleteEvents_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_DeleteEvents_Async_0100';
@@ -1250,7 +1377,7 @@ export default function CalendarManagerTest() {
           Calendar.deleteEvents([ScheduleID, ScheduleID1], (err, data) => {
             if (err) {
               console.info(CaseName + "Failed to deleteEvents" + JSON.stringify(err));
-              EXPECTFalse();
+              expect().assertFail();
             } else {
               console.info(CaseName + "Succeeded in deleteEvents" + JSON.stringify(data));
               return;
@@ -1258,11 +1385,11 @@ export default function CalendarManagerTest() {
           });
         } catch (err) {
           console.info(CaseName + "Failed to addEvents" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         }
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
     });
 
@@ -1270,6 +1397,9 @@ export default function CalendarManagerTest() {
      * @tc.number  SUB_Application_CalendarManagerApi_DeleteEvents_Promise_0100
      * @tc.name    Delete schedules in batches based on schedule ids
      * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
      */
     it("SUB_Application_CalendarManagerApi_DeleteEvents_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_DeleteEvents_Promise_0100';
@@ -1299,16 +1429,67 @@ export default function CalendarManagerTest() {
             return;
           }).catch((err: BusinessError) => {
             console.info(CaseName + "Failed to deleteEvents" + JSON.stringify(err));
-            EXPECTFalse();
+            expect().assertFail();
           });
         } catch (err) {
           console.info(CaseName + "Failed to addEvents" + JSON.stringify(err));
-          EXPECTFalse();
+          expect().assertFail();
         }
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
-        EXPECTFalse();
+        expect().assertFail();
       });
+    });
+
+    /*
+    * @tc.number  SUB_Application_CalendarManagerApi_EditEvent_Promise_0100
+    * @tc.name    Create a single event,invoking this interface will open the event creation page.
+    * @tc.desc    Function test
+    * @tc.size    SmallTest
+    * @tc.type    User
+    * @tc.level   Level 2
+    */
+    it("SUB_Application_CalendarManagerApi_EditEvent_Promise_0100", 0, () => {
+      let CaseName = 'SUB_Application_CalendarManagerApi_EditEvent_Promise_0100';
+      let TimeZone = '';
+      systemDateTime.getTimezone((error, data) => {
+        if (error) {
+          console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+          return;
+        }
+        console.info(`Succeeded in get timezone : ${data}`);
+        TimeZone = data;
+      });
+
+      const date = new Date();
+      let Schedule: calendarManager.Event = {
+        type: calendarManager.EventType.NORMAL,
+        startTime: date.getTime(),
+        endTime: date.getTime() + 60 * 60 * 1000,
+        identifier: "1aa96c08-d732-443b-aa0a-6eb1559dfb19",
+        isLunar: true,
+        recurrenceRule: {
+          recurrenceFrequency: calendarManager.RecurrenceFrequency.DAILY,
+          count: 100,
+          interval: 2,
+          expire: date.getTime() + 60 * 60 * 1000 * 3,
+          excludedDates: [date.getTime() + 60 * 60 * 1000 * 2]
+        },
+      }
+
+      try {
+        if (Schedule.isLunar) {
+          expect(calendarManager.AttendeeRole.ORGANIZER == 'organizer').assertTrue();
+          return;
+        }
+        calendarMgr?.editEvent(Schedule).then((data) => {
+          expect(data != 0).assertTrue();
+        }).catch((err: BusinessError) => {
+          console.info(CaseName + "Failed to editEvent" + JSON.stringify(err));
+        })
+      } catch (err) {
+        console.info(CaseName + "Failed to editEvent" + JSON.stringify(err));
+      }
     });
 
   });

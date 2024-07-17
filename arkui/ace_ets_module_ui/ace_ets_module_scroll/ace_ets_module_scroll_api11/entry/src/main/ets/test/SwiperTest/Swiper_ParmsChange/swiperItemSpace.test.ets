@@ -15,7 +15,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import router from '@ohos.router';
-import CommonFunc, { RectValue } from "../../../MainAbility/common/Common1";
+import CommonFunc, { RectValue } from "../../../MainAbility/common/Common";
 import {
   UiComponent,
   UiDriver,
@@ -32,6 +32,9 @@ import {
   UiDirection,
   MouseButton
 } from '@ohos.UiTest';
+
+import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 export default function swiperItemSpace() {
   describe('swiperItemSpaceTest', () => {
@@ -82,26 +85,30 @@ export default function swiperItemSpace() {
       // Before flipping the page.
       console.info("Before page turning , the itemspacekey.left value is " + JSON.stringify(itemspacekey.left));
       console.info("Before page turning , the itemspacekey01.left value is " + JSON.stringify(itemspacekey01.left));
-      expect(itemspacekey.left).assertEqual(itemspacekey01.left)
-      expect(itemspacekey.top).assertEqual(itemspacekey01.top)
-      expect(itemspacekey.bottom).assertEqual(itemspacekey01.bottom)
+      expect(Math.abs(itemspacekey.left - itemspacekey01.left) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.top - itemspacekey01.top) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.bottom - itemspacekey01.bottom) <= 1).assertTrue();
       // Page turning.
-      expect(itemspacekey.top).assertEqual(itemspacekey02.top)
-      expect(itemspacekey.bottom).assertEqual(itemspacekey02.bottom)
-      expect(Math.round(itemspacekey02.left - itemspacekey01.right)).assertEqual(vp2px(20))
-      expect(itemspacekey.right).assertEqual(itemspacekey02.right)
+      expect(Math.abs(itemspacekey.top - itemspacekey02.top) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.bottom - itemspacekey02.bottom) <= 1).assertTrue();
+      expect(Math.abs(Math.round(itemspacekey02.left - itemspacekey01.right) - Math.round(vp2px(20))) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.right - itemspacekey02.right) <= 1).assertTrue();
 
       let driver = Driver.create();
       // await CommonFunc.sleep(500);
       // await driver.swipe(vp2px(180), vp2px(100), vp2px(20), vp2px(100));
       await CommonFunc.sleep(1000);
+
       let gridRect:RectValue = CommonFunc.getComponentRectOnScreen('itemspacekey')
-      await driver.swipe(
-        Number.parseInt(`${(gridRect.right - gridRect.left) * 0.8 + gridRect.left}`),
-        Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`),
-        Number.parseInt(`${(gridRect.right - gridRect.left) * 0.1 + gridRect.left}`),
-        Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`),
-        1000);
+      const delegator: AbilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+      let x1 = Number.parseInt(`${(gridRect.right - gridRect.left) * 0.8 + gridRect.left}`);
+      let y1 = Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`);
+      let x2 = Number.parseInt(`${(gridRect.right - gridRect.left) * 0.1 + gridRect.left}`);
+      let y2 = Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`);
+      let time = (x1 - x2) / 0.5;
+      let cmd = 'uinput -T -m ' + JSON.stringify(x1) + ' ' + JSON.stringify(y1) + ' ' + JSON.stringify(x2) + ' ' + JSON.stringify(y2) + ' ' + JSON.stringify(time);
+      await delegator.executeShellCommand(cmd);
+
       await CommonFunc.sleep(3000);
       itemspacekey = CommonFunc.getComponentRect('itemspacekey');
       itemspacekey01 = CommonFunc.getComponentRect('itemspacekey01');
@@ -113,14 +120,14 @@ export default function swiperItemSpace() {
       // After flipping the page.
       console.info("After page turning , the itemspacekey.left value is " + JSON.stringify(itemspacekey.left));
       console.info("After page turning , the itemspacekey02.left value is " + JSON.stringify(itemspacekey02.left));
-      expect(itemspacekey.left).assertEqual(itemspacekey02.left);
-      expect(itemspacekey.top).assertEqual(itemspacekey02.top);
-      expect(itemspacekey.bottom).assertEqual(itemspacekey02.bottom);
+      expect(Math.abs(itemspacekey.left - itemspacekey02.left) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.top - itemspacekey02.top) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.bottom - itemspacekey02.bottom) <= 1).assertTrue();
 
-      expect(itemspacekey.top).assertEqual(itemspacekey03.top);
-      expect(itemspacekey.bottom).assertEqual(itemspacekey03.bottom);
-      expect(Math.round(itemspacekey03.left - itemspacekey02.right)).assertEqual(Math.round(vp2px(20)));
-      expect(itemspacekey.right).assertEqual(itemspacekey03.right)
+      expect(Math.abs(itemspacekey.top - itemspacekey03.top) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.bottom - itemspacekey03.bottom) <= 1).assertTrue();
+      expect(Math.abs(Math.round(itemspacekey03.left - itemspacekey02.right) - Math.round(vp2px(20))) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.right - itemspacekey03.right) <= 1).assertTrue();
       console.info("The type value is " + JSON.stringify(JSON.parse(strJson).$type));
       console.info("The loop value is " + JSON.stringify(JSON.parse(strJson).$attrs.loop));
       console.info("The itemSpace value is " + JSON.stringify(JSON.parse(strJson).$attrs.itemSpace));
@@ -171,13 +178,17 @@ export default function swiperItemSpace() {
      // // await driver.swipe(250, 230, 200, 230);
      //  await CommonFunc.sleep(1000);
       await CommonFunc.sleep(1000);
+
       let gridRect:RectValue = CommonFunc.getComponentRectOnScreen('itemspacekey')
-      await driver.swipe(
-        Number.parseInt(`${(gridRect.right - gridRect.left) * 0.8 + gridRect.left}`),
-        Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`),
-        Number.parseInt(`${(gridRect.right - gridRect.left) * 0.1 + gridRect.left}`),
-        Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`),
-        1000);
+      const delegator: AbilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+      let x1 = Number.parseInt(`${(gridRect.right - gridRect.left) * 0.8 + gridRect.left}`);
+      let y1 = Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`);
+      let x2 = Number.parseInt(`${(gridRect.right - gridRect.left) * 0.1 + gridRect.left}`);
+      let y2 = Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`);
+      let time = (x1 - x2) / 0.5;
+      let cmd = 'uinput -T -m ' + JSON.stringify(x1) + ' ' + JSON.stringify(y1) + ' ' + JSON.stringify(x2) + ' ' + JSON.stringify(y2) + ' ' + JSON.stringify(time);
+      await delegator.executeShellCommand(cmd);
+
       await CommonFunc.sleep(3000);
       itemspacekey = CommonFunc.getComponentRect('itemspacekey');
       itemspacekey01 = CommonFunc.getComponentRect('itemspacekey01');

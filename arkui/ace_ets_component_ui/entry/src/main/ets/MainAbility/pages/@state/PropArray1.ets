@@ -12,18 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Common from '../../utils/Common'
+
 @Component
 struct Child_AS {
   @Prop Array1: Date | Array<Length> | Array<Object>;
 
   build() {
     Column() {
-      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + JSON.stringify(this.Array1))
+      Text("count type of " + JSON.stringify(Common.getType(this.Array1)) + " number is " + JSON.stringify(this.Array1))
         .fontSize(20).margin(30).key('PropArray1')
 
+<<<<<<< HEAD
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + getContext()
         .resourceManager
         .getStringSync($r('app.string.number').id))
+=======
+      Text("count type of " + JSON.stringify(Common.getType(this.Array1)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
         .fontSize(20).margin(30).key('PropArray1New')
 
 

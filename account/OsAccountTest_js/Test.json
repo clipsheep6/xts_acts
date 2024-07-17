@@ -1,11 +1,11 @@
 {
-    "description": "Configuration for osaccount js api Tests",
+    "description": "Configuration for hjunit demo Tests",
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "60000",
+        "shell-timeout": "60000",
         "bundle-name": "ohos.acts.account.osaccount",
-        "package-name": "ohos.acts.account.osaccount",
-        "shell-timeout": "60000"
+        "package-name": "ohos.acts.account.osaccount"
     },
     "kits": [
         {
@@ -14,6 +14,12 @@
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
         }
     ]
 }

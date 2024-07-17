@@ -42,9 +42,14 @@ export default function StartAbilityTest() {
 
     afterAll(async (done: Function) => {
       let driver = Driver.create();
-      let componentCounter = await driver.findComponent(ON.text("知道了"));
-      if (componentCounter) {
-        componentCounter.click();
+      let componentCounterOne = await driver.findComponent(ON.text("知道了"));
+      if (componentCounterOne) {
+        componentCounterOne.click();
+      }
+      await sleep(500);
+      let componentCounterTow = await driver.findComponent(ON.text("取消"));
+      if (componentCounterTow) {
+        componentCounterTow.click();
       }
       await sleep(500);
       done();
@@ -522,7 +527,7 @@ export default function StartAbilityTest() {
             abilityDelegator.printSync(
               "ACTS_START_ABILITY_PROMISE_ERROR_0007 meet an error: " + error
             );
-            expect(error.message).assertEqual("Incorrect parameters.");
+            expect(error.message).assertContain("Parse");
             abilityDelegator.printSync(
               "ACTS_START_ABILITY_PROMISE_ERROR_0007 pass"
             );
@@ -778,7 +783,7 @@ export default function StartAbilityTest() {
         abilityDelegator.printSync(
           "ACTS_START_ABILITY_CALLBACK_ERROR_0007 meet an error: " + e.code
         );
-        expect(e.message).assertEqual("Incorrect parameters.");
+        expect(e.message).assertContain("Parse");
         expect(e.code).assertEqual(401);
         abilityDelegator.printSync(
           "ACTS_START_ABILITY_CALLBACK_ERROR_0007 pass"

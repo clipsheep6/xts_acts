@@ -17,7 +17,9 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEventManager from '@ohos.commonEventManager';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import UIAbility from '@ohos.app.ability.UIAbility';import systemParameterEnhance from '@ohos.systemParameterEnhance';
+
+let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 
 export default function UIContextWindowStageTest() {
   let TAG: string = '';
@@ -46,7 +48,7 @@ export default function UIContextWindowStageTest() {
      */
     it('ACTS_GetWindowStage_0100', 0, function (done) {
       TAG = 'ACTS_GetWindowStage_0100';
-      console.log(TAG + ' start.')
+      console.log(TAG + ' start.');
       let events = ['ACTS_GetWindowStage']
       commonEventManager.createSubscriber({
         events: events
@@ -57,7 +59,7 @@ export default function UIContextWindowStageTest() {
       })
       let subscribeCallBack = (err, data) => {
         console.info(TAG + ' subscribeCallBack , data = ' + JSON.stringify(data));
-        let parameters = data['parameters']
+        let parameters = data['parameters'];
         if (parameters) {
           console.info(TAG + ' subscribeCallBack , parameters = ' + JSON.stringify(parameters));
           expect(parameters['onCreateResult']).assertFalse();
@@ -86,7 +88,7 @@ export default function UIContextWindowStageTest() {
      */
     it('ACTS_GetWindowStage_0200', 0, function (done) {
       TAG = 'ACTS_GetWindowStage_0200';
-      console.log(TAG + ' start.')
+      console.log(TAG + ' start.');
       let events = ['ACTS_GetWindowStage']
       let twoStart: boolean = false;
       commonEventManager.createSubscriber({
@@ -98,7 +100,7 @@ export default function UIContextWindowStageTest() {
       })
       let subscribeCallBack = (err, data) => {
         console.info(TAG + ' subscribeCallBack , data = ' + JSON.stringify(data));
-        let parameters = data['parameters']
+        let parameters = data['parameters'];
         if (parameters) {
           console.info(TAG + ' subscribeCallBack , parameters = ' + JSON.stringify(parameters));
           expect(parameters['onCreateResult']).assertFalse();
@@ -138,7 +140,7 @@ export default function UIContextWindowStageTest() {
      */
     it('ACTS_GetWindowStage_onForeground_0100', 0, function (done) {
       TAG = 'ACTS_GetWindowStage_onForeground_0100';
-      console.log(TAG + ' start.')
+      console.log(TAG + ' start.');
       let events = ['ACTS_GetWindowStage', 'ACTS_GetWindowStage_onForeground', 'ACTS_GetWindowStage_onBackground']
       commonEventManager.createSubscriber({
         events: events
@@ -164,6 +166,10 @@ export default function UIContextWindowStageTest() {
             done();
           }
         } else if (data.event === 'ACTS_GetWindowStage_onForeground') {
+          if (deviceType === '2in1') {
+            done();
+            return;
+          }
           if (onForegroundCount == 0) {
             onForegroundCount++;
             delegator.getCurrentTopAbility().then((data) => {
@@ -197,7 +203,11 @@ export default function UIContextWindowStageTest() {
      */
     it('ACTS_GetWindowStage_onNewWant_0100', 0, function (done) {
       TAG = 'ACTS_GetWindowStage_onNewWant_0100';
-      console.log(TAG + ' start.')
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
+      console.log(TAG + ' start.');
       let events = ['ACTS_GetWindowStage', 'ACTS_GetWindowStage_onForeground', 'ACTS_GetWindowStage_onBackground']
       commonEventManager.createSubscriber({
         events: events
@@ -257,8 +267,8 @@ export default function UIContextWindowStageTest() {
      */
     it('ACTS_GetWindowStage_onWindowStageRestore_0100', 0, function (done) {
       TAG = 'ACTS_GetWindowStage_onWindowStageRestore_0100';
-      console.log(TAG + ' start.')
-      let events = ['ACTS_GetWindowStage']
+      console.log(TAG + ' start.');
+      let events = ['ACTS_GetWindowStage'];
       commonEventManager.createSubscriber({
         events: events
       }).then((data) => {

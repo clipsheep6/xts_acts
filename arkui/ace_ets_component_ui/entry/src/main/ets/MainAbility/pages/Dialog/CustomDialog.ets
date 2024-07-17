@@ -46,8 +46,13 @@ struct CustomDialogExampleA {
 @Entry
 @Component
 struct CustomDialogUserA {
+<<<<<<< HEAD
   @State inputValue: string = 'CustomDialog按esc弹窗逐层退出';
   dialogController: CustomDialogController | null = new CustomDialogController({
+=======
+  @State inputValue: string = 'CustomDialog按esc弹窗逐层退出'
+  dialogController = new CustomDialogController({
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
     builder: CustomDialogExampleA({
       inputValue: $inputValue
     }),

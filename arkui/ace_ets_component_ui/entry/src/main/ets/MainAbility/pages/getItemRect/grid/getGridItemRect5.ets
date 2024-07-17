@@ -14,6 +14,8 @@
  */
 import { MessageManager, Callback } from '../../../utils/MessageManager';
 
+type Message = number|GridDirection
+
 @Entry
 @Component
 struct getGridItemRect5 {
@@ -29,17 +31,30 @@ struct getGridItemRect5 {
   @State height1: number = 0
   messageManager: MessageManager = new MessageManager()
 
+<<<<<<< HEAD
+=======
+  messageManager = new MessageManager<Message>()
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   onPageShow() {
     console.info('getGridItemRect5 onPageShow');
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
+<<<<<<< HEAD
     let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
         this.index = message.value;
       } else if (message.name == 'layoutDirection1') {
         this.layoutDirection1 = message.value;
+=======
+    let callback: Callback<Message> = message => {
+      console.error('message = ' + message.name + "--" + message.value);
+      if (message.name == 'index') {
+        this.index = message.value as number;
+      }else  if (message.name == 'layoutDirection1') {
+        this.layoutDirection1 = message.value as GridDirection;
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       }
     }
     this.messageManager.registerCallback(callback);

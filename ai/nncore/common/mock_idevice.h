@@ -19,7 +19,7 @@
 #include <hdi_support.h>
 #include <string_ex.h>
 #include <hdf_base.h>
-#include <unordered_map>
+#include <unordered_set>
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
@@ -76,8 +76,6 @@ public:
     int32_t PrepareModelFromModelCache(const std::vector<SharedBuffer>& modelCache, const ModelConfig& config,
          sptr<IPreparedModel>& preparedModel) override;
 
-    int32_t MemoryCopy(float* data, uint32_t length);
-
     void SetFP16Supported(bool isSupported);
 
     void SetPerformanceSupported(bool isSupported);
@@ -96,7 +94,7 @@ public:
     virtual ~MockIDevice();
 
 private:
-    std::unordered_map<int, sptr<Ashmem>> m_ashmems;
+    std::unordered_set<int> m_fds;
     int m_bufferFd;
     bool m_fp16 = true;
     bool m_performance = true;
@@ -118,7 +116,7 @@ public:
     MockIPreparedModel() = default;
     virtual ~MockIPreparedModel();
 private:
-    std::unordered_map<int, sptr<Ashmem>> m_ashmems;
+    std::unordered_set<int> m_fds;
 };
 
 } // namespace V2_0

@@ -14,6 +14,8 @@
  */
 import { MessageManager, Callback } from '../../../utils/MessageManager';
 
+type Message = string|number|Axis
+
 @Entry
 @Component
 struct getListItemGroupRect5 {
@@ -49,13 +51,18 @@ struct getListItemGroupRect5 {
       .height(this.height2)
   }
 
+<<<<<<< HEAD
   messageManager: MessageManager = new MessageManager()
 
+=======
+  messageManager = new MessageManager<Message>()
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
   onPageShow() {
     console.info('getListItemGroupRect5 onPageShow');
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
+<<<<<<< HEAD
     let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
@@ -68,6 +75,20 @@ struct getListItemGroupRect5 {
         this.width2 = message.value;
       } else if (message.name == 'height2') {
         this.height2 = message.value;
+=======
+    let callback: Callback<Message> = message => {
+      console.error('message = ' + message.name + "--" + message.value);
+      if (message.name == 'index') {
+        this.index = message.value as number;
+      }else if (message.name == 'indexInGroup') {
+        this.indexInGroup = message.value as number;
+      }else if (message.name == 'listDirection1') {
+        this.listDirection1 = message.value as Axis;
+      }else if (message.name == 'width2') {
+        this.width2 = message.value as string;
+      }else if (message.name == 'height2') {
+        this.height2 = message.value as string;
+>>>>>>> fd5b1a82a23f4ca7f929fcd8878e639968329cda
       }
     }
     this.messageManager.registerCallback(callback);

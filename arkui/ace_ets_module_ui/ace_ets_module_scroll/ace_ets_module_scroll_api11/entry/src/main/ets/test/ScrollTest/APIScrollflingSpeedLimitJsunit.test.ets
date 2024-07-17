@@ -13,17 +13,17 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
+import router from '@ohos.router';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
-import CommonFunc from '../../MainAbility/utils/Common';
+import CommonFunc from '../../MainAbility/common/Common';
 import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 export default function APIScrollflingSpeedLimitJsunit() {
-  describe('APIScrollflingSpeedLimitJsunit', function () {
-    beforeEach(async function (done) {
+  describe('APIScrollflingSpeedLimitJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("APIScrollflingSpeedLimitJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/Scroll/APIScrollflingSpeedLimit',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/Scroll/APIScrollflingSpeedLimit',
       }
       try {
         router.clear();
@@ -40,15 +40,23 @@ export default function APIScrollflingSpeedLimitJsunit() {
       }
       done();
     });
-    it('APIScrollflingSpeedLimitJsunit_0100', 0, async function (done) {
+    /**
+     * @tc.number APIScrollflingSpeedLimitJsunit_0100
+     * @tc.name testScrollFlingSpeedLimit
+     * @tc.desc set flingSpeedLimit to 10
+     * @tc.level Level 2
+     * @tc.type Function
+     * @tc.size MediumTest
+     */
+    it('APIScrollflingSpeedLimitJsunit_0100', 0, async (done: Function) => {
       await CommonFunc.sleep(1000);
       console.info('APIScrollflingSpeedLimitJsunit_0100 START');
       let strcontent = getInspectorByKey('ScrollflingSpeedLimitKey');
-      let obj = JSON.parse(strcontent);
+      let obj: ESObject = JSON.parse(strcontent);
       await CommonFunc.sleep(1000);
       console.info('APIScrollflingSpeedLimitJsunit_0100 component obj is: ' + obj);
       console.info('APIScrollflingSpeedLimitJsunit_0100 component obj.$attrs.flingSpeedLimit is: ' + obj.$attrs.flingSpeedLimit);
-      expect(obj.$attrs.flingSpeedLimit).assertEqual(`${vp2px(10).toFixed(2)}px`);
+      expect(obj.$attrs.flingSpeedLimit).assertEqual(`10.00vp`);
       console.info('APIScrollflingSpeedLimitJsunit_0100 END')
       done();
     });

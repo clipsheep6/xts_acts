@@ -3,10 +3,10 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "300000",
-        "bundle-name": "com.amsst.actsabilitydelegatorcasetest",
-        "package-name": "com.amsst.actsabilitydelegatorcasetest",
         "shell-timeout": "300000",
-        "testcase-timeout":"30000"
+        "testcase-timeout":"30000",
+        "bundle-name": "com.amsst.actsabilitydelegatorcasetest",
+        "package-name": "com.amsst.actsabilitydelegatorcasetest"
     },
     "kits": [
         {
@@ -15,6 +15,12 @@
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
         }
     ]
 }

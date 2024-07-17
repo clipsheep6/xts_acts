@@ -17,7 +17,7 @@ import * as mediaTestBase from '../../../../../../MediaTestBase';
 import media from '@ohos.multimedia.media'
 import audio from '@ohos.multimedia.audio';
 import drm from '@ohos.multimedia.drm';
-import { testAVPlayerFun, AV_PLAYER_STATE, setSource } from '../../../../../../AVPlayerTestBase.js';
+import { testAVPlayerFun, AV_PLAYER_STATE, setSource, setSubtitle } from '../../../../../../AVPlayerTestBase.js';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 export default function AVPlayerLocalTest() {
@@ -25,6 +25,7 @@ export default function AVPlayerLocalTest() {
         const VIDEO_SOURCE = 'H264_AAC.mp4';
         const AUDIO_SOURCE = '01.mp3';
         const VIDEO_NOAUDIO = 'H264_NONE.mp4'
+        const SUBTITLE = 'srt_2800.srt'
         const PLAY_TIME = 3000;
         const TAG = 'AVPlayerLocalTest:';
         let fileDescriptor = null;
@@ -38,6 +39,7 @@ export default function AVPlayerLocalTest() {
         }
         let fdPath = '';
         let fdNumber = 0;
+        let subtitleFdSrc = null;
 
         beforeAll(async function () {
             console.info('beforeAll case');
@@ -49,6 +51,9 @@ export default function AVPlayerLocalTest() {
             });
             await mediaTestBase.getStageFileDescriptor(VIDEO_NOAUDIO).then((res) => {
                 fileDescriptor3 = res;
+            });
+            await mediaTestBase.getStageFileDescriptor(SUBTITLE).then((res) => {
+                subtitleFdSrc = res;
             });
         })
 
@@ -69,6 +74,7 @@ export default function AVPlayerLocalTest() {
             await mediaTestBase.closeFileDescriptor(VIDEO_SOURCE);
             await mediaTestBase.closeFileDescriptor(AUDIO_SOURCE);
             await mediaTestBase.closeFileDescriptor(VIDEO_NOAUDIO);
+            await mediaTestBase.closeFileDescriptor(SUBTITLE);
         })
 
         function setAVPlayerTrackCb(avPlayer, descriptionKey, descriptionValue, done) {
@@ -239,90 +245,6 @@ export default function AVPlayerLocalTest() {
             });
         }
 
-        async function testAudioInterruptMode(audioSource, videoSource, done) {
-            let testAVPlayer01 = await media.createAVPlayer();
-            let testAVPlayer02 = await media.createAVPlayer();
-            let surfaceID = globalThis.value;
-            testAVPlayer01.on('stateChange', async (state, reason) => {
-                switch (state) {
-                    case AV_PLAYER_STATE.INITIALIZED:
-                        console.info(`case AV_PLAYER_STATE.INITIALIZED`);
-                        expect(testAVPlayer01.state).assertEqual(AV_PLAYER_STATE.INITIALIZED);
-                        testAVPlayer01.prepare((err) => {
-                            console.info('case prepare called' + err);
-                            if (err != null) {
-                                console.error(`case prepare error, errMessage is ${err.message}`);
-                                expect().assertFail();
-                                done();
-                            } else {
-                                console.info('case avPlayer.duration: ' + testAVPlayer01.duration);
-                            }
-                        });
-                        break;
-                    case AV_PLAYER_STATE.PREPARED:
-                        testAVPlayer01.audioInterruptMode = audio.InterruptMode.INDEPENDENT_MODE;
-                        testAVPlayer01.play();
-                        break;
-                    case AV_PLAYER_STATE.PLAYING:
-                        testAVPlayer02.fdSrc = videoSource;
-                        break;
-                    case AV_PLAYER_STATE.RELEASED:
-                        break;
-                    case AV_PLAYER_STATE.ERROR:
-                        expect().assertFail();
-                        testAVPlayer01.release().then(() => {
-                        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-                        break;
-                    default:
-                        break;
-                }
-            })
-
-            testAVPlayer01.on('audioInterrupt', async (info) => {
-                console.info('case audioInterrupt1 is called, info is :' + JSON.stringify(info));
-                await testAVPlayer02.release();
-                await testAVPlayer01.release().then(() => {
-                    console.info('case release called!!');
-                    done();
-                }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-            });
-
-            testAVPlayer02.on('stateChange', async (state, reason) => {
-                switch (state) {
-                    case AV_PLAYER_STATE.INITIALIZED:
-                        console.info(`case AV_PLAYER_STATE.INITIALIZED`);
-                        expect(testAVPlayer02.state).assertEqual(AV_PLAYER_STATE.INITIALIZED);
-                        testAVPlayer02.surfaceId = surfaceID;
-                        testAVPlayer02.prepare((err) => {
-                            console.info('case prepare called' + err);
-                            if (err != null) {
-                                console.error(`case prepare error, errMessage is ${err.message}`);
-                                expect().assertFail();
-                                done();
-                            } else {
-                                console.info('case avPlayer.duration: ' + testAVPlayer02.duration);
-                            }
-                        });
-                        break;
-                    case AV_PLAYER_STATE.PREPARED:
-                        testAVPlayer02.play();
-                        break;
-                    case AV_PLAYER_STATE.PLAYING:
-                        break;
-                    case AV_PLAYER_STATE.RELEASED:
-                        break;
-                    case AV_PLAYER_STATE.ERROR:
-                        expect().assertFail();
-                        testAVPlayer02.release().then(() => {
-                        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-                        break;
-                    default:
-                        break;
-                }
-            })
-            testAVPlayer01.fdSrc = audioSource;
-        }
-
         async function setOnCallback(avPlayer, done) {
             let surfaceID = globalThis.value;
             let count = 0;
@@ -431,6 +353,25 @@ export default function AVPlayerLocalTest() {
             });
         }
 
+        async function testSubtitle(src, subtitleSrc, avPlayer, done) {
+            console.info(`case media source: ${src}`)
+            media.createAVPlayer((err, video) => {
+                console.info(`case media err: ${err}`)
+                if (typeof (video) !== 'undefined') {
+                    console.info('case createAVPlayer success');
+                    avPlayer = video;
+                    setOnCallback(avPlayer, done)
+                    setSource(avPlayer, src);
+                    setSubtitle(avPlayer, subtitleSrc)
+                }
+                if (err != null) {
+                    console.error(`case createAVPlayer error, errMessage is ${err.message}`);
+                    expect().assertFail();
+                    done();
+                }
+            });
+        }
+
         /* *
             * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_FDSRC_0100
             * @tc.name      : 001.test fdsrc
@@ -511,30 +452,6 @@ export default function AVPlayerLocalTest() {
         })
 
         /* *
-            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_AUDIOINTERRUPTMODE_0100
-            * @tc.name      : 001.test audioInterruptMode Function
-            * @tc.desc      : Local Video playback control test
-            * @tc.size      : MediumTest
-            * @tc.type      : Function test
-            * @tc.level     : Level1
-        */
-        it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_AUDIOINTERRUPTMODE_0100', 0, async function (done) {
-            testAudioInterruptMode(fileDescriptor2, fileDescriptor, done);
-        })
-
-        /* *
-            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_AUDIOINTERRUPTMODE_0200
-            * @tc.name      : 002.test audioInterruptMode Function
-            * @tc.desc      : Local Video playback control test
-            * @tc.size      : MediumTest
-            * @tc.type      : Function test
-            * @tc.level     : Level1
-        */
-        it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_AUDIOINTERRUPTMODE_0200', 0, async function (done) {
-            testAudioInterruptMode(fileDescriptor, fileDescriptor2, done);
-        })
-
-        /* *
             * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_OFF_CALLBACK_0100
             * @tc.name      : 001.test off callback Function
             * @tc.desc      : Local Video playback control test
@@ -544,6 +461,30 @@ export default function AVPlayerLocalTest() {
         */
         it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_OFF_CALLBACK_0100', 0, async function (done) {
             testOffCallback(fileDescriptor, avPlayer, done);
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_SUBTILE_0100
+            * @tc.name      : 001.test subtitle Function
+            * @tc.desc      : Local Video subtitle control test
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level1
+        */
+        it('SUB_MULTIMEDIA_MEDIA_VIDEO_SUBTILE_0100', 0, async function (done) {
+            testSubtitle(fileDescriptor, subtitleFdSrc, avPlayer, done);
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_SUBTILE_0200
+            * @tc.name      : 002.test subtitle Function
+            * @tc.desc      : Local Video subtitle control test
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level1
+        */
+        it('SUB_MULTIMEDIA_MEDIA_VIDEO_SUBTILE_0200', 0, async function (done) {
+            testSubtitle(fileDescriptor, `fd://${subtitleFdSrc.fd}`, avPlayer, done);
         })
     })
 }

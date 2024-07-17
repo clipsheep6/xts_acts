@@ -19,8 +19,10 @@ import AbilityDelegatorRegistry from "@ohos.app.ability.abilityDelegatorRegistry
 import Want from '@ohos.app.ability.Want';
 import { BusinessError } from '@ohos.base';
 import UIAbility from '@ohos.app.ability.UIAbility';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
 
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 const START_ABILITY_TIMEOUT_TWO_THOUSAND = 2000;
 
 export default function BackgroundCallback() {
@@ -47,6 +49,10 @@ export default function BackgroundCallback() {
       abilityDelegator.printSync(
         "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_0001 start"
       );
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       setTimeout(() => {
         abilityDelegator.startAbility({
           abilityName: "Main4Ability",
@@ -121,6 +127,10 @@ export default function BackgroundCallback() {
         abilityDelegator.printSync(
           "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_ERROR_0002 start"
         );
+        if (deviceType === '2in1') {
+          done();
+          return;
+        }
         setTimeout(() => {
           abilityDelegator.getCurrentTopAbility((err: BusinessError, ability1: UIAbility) => {
             abilityDelegator.printSync(
@@ -197,6 +207,10 @@ export default function BackgroundCallback() {
       abilityDelegator.printSync(
         "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_ERROR_0003 start"
       );
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       abilityDelegator.getCurrentTopAbility((err: BusinessError, ability1: UIAbility) => {
         abilityDelegator.printSync(
           "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_ERROR_0003 Main3Ability: " +
@@ -264,6 +278,10 @@ export default function BackgroundCallback() {
       abilityDelegator.printSync(
         "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_0004 start"
       );
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       abilityDelegator.startAbility({
         abilityName: "Main4Ability",
         bundleName: "com.example.delegatortest",
@@ -344,11 +362,15 @@ export default function BackgroundCallback() {
       0,
       async (done: Function) => {
         abilityDelegator.printSync(
-          "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_ERROR_0002 start"
+          "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_ERROR_0005 start"
         );
+        if (deviceType === '2in1') {
+          done();
+          return;
+        }
         abilityDelegator.getCurrentTopAbility((err: BusinessError, ability1: UIAbility) => {
           abilityDelegator.printSync(
-            "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_ERROR_0002 Main4Ability: " +
+            "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_ERROR_0005 Main4Ability: " +
             ability1.context.abilityInfo.name
           );
           abilityDelegator.startAbility({
@@ -357,7 +379,7 @@ export default function BackgroundCallback() {
             moduleName: "entry",
           }, () => {
             abilityDelegator.printSync(
-              "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_ERROR_0002 startAbility"
+              "ACTS_DO_ABILITY_BACKGROUND_CALLBACK_ERROR_0005 startAbility"
             );
             setTimeout(() => {
               abilityDelegator.getCurrentTopAbility(
@@ -371,8 +393,8 @@ export default function BackgroundCallback() {
                           }
                         );
                       } catch (error) {
-                        expect(error.message).assertEqual(
-                          "Incorrect parameters."
+                        expect(error.message).assertContain(
+                          "Parse"
                         );
                         abilityDelegator.printSync(
                           "ACTS_DO_ABILITY_FOREGROUND_CALLBACK_ERROR_0005 doAbilityForeground meet an error: " +

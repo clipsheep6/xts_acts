@@ -51,6 +51,25 @@ export default function avVideoRecorderTestOne() {
             videoFrameRate : 30 // 视频帧率
         }
 
+        let metaData = {
+            genre : "{marketing-name:\"HHH XXX\"}",
+            videoOrientation : "180",
+            location : { latitude : 35, longitude : 135 },
+            customInfo : {
+                "com.hh.version" : "5",
+            }
+        }
+
+        let avmetaConfig = {
+            audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+            videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
+            profile: avProfile,
+            url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件
+            rotation : 0, // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
+            location : { latitude : 30, longitude : 130 },
+            metadata : metaData,
+        }
+
         let avConfig = {
             audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
             videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
@@ -169,7 +188,8 @@ export default function avVideoRecorderTestOne() {
             videoFrameWidth: 640,
             videoFrameHeight: 480,
             videoFrameRate: 30,
-            isHdr: false
+            isHdr: false,
+            enableTemporalScale: false
         }
         let avConfigH265Aac = {
             audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
@@ -238,6 +258,7 @@ export default function avVideoRecorderTestOne() {
         let cameraOutputCap;
         let videoSurfaceId = null;
         let myProfile = null;
+        let isSupportCameraVideoProfiles = true;
 
         beforeAll(async function () {
             console.info('beforeAll in1');
@@ -263,45 +284,58 @@ export default function avVideoRecorderTestOne() {
             let cameraDevice = cameras[0];
             console.info('initCamera 006');
             let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
-            console.info('initCamera 007');
-            let defaultDisplay = null;
-            try {
-                defaultDisplay = display.getDefaultDisplaySync();
-            } catch (exception) {
-                console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+            if (cameraOutputCapability?.videoProfiles) {
+                console.info('initCamera 007');
+                let defaultDisplay = null;
+                try {
+                    defaultDisplay = display.getDefaultDisplaySync();
+                } catch (exception) {
+                    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+                }
+                let availableVideoProfileList = [];
+                getVideoProfile(cameraOutputCapability.videoProfiles, defaultDisplay.width, defaultDisplay.height, availableVideoProfileList, 0);
+                myProfile = availableVideoProfileList[0];
+                let configs = [avConfig, avConfigMpeg, avConfigMpegAac, avConfigH264, avConfigH264Aac, avConfigH265, avConfigH265Aac]
+                for (let i = 0; i < configs.length; i++) {
+                    checkDevice(configs[i])
+                }
+                avConfigH264.profile.videoBitrate = 280000;
+                avConfigH264Aac.profile.videoBitrate = 280000;
+    
+                console.info('beforeAll out');
+
+            } else {
+                isSupportCameraVideoProfiles = false;
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                console.info('beforeAll out');
             }
-            let availableVideoProfileList = [];
-            getVideoProfile(cameraOutputCapability.videoProfiles, defaultDisplay.width, defaultDisplay.height, availableVideoProfileList, 0);
-            myProfile = availableVideoProfileList[0];
-            let configs = [avConfig, avConfigMpeg, avConfigMpegAac, avConfigH264, avConfigH264Aac, avConfigH265, avConfigH265Aac]
-            for (let i = 0; i < configs.length; i++) {
-                checkDevice(configs[i])
-            }
-            avConfigH264.profile.videoBitrate = 280000;
-            avConfigH264Aac.profile.videoBitrate = 280000;
 
             console.info('beforeAll out');
         })
 
         beforeEach(async function () {
             console.info('beforeEach case');
-            await avRecorderTestBase.sleep(1000);
+            if (isSupportCameraVideoProfiles) {
+                await avRecorderTestBase.sleep(1000);
+                fdObject = null;
+            }
         })
 
         afterEach(async function () {
-            isInitCamera = false
             console.info('afterEach case');
-            if (avRecorder != null) {
-                avRecorder.release().then(() => {
-                    console.info(TAG + 'this testCase execution completed')
-                }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+            if (isSupportCameraVideoProfiles) {
+                isInitCamera = false
+                if (avRecorder != null) {
+                    avRecorder.release().then(() => {
+                        console.info(TAG + 'this testCase execution completed')
+                    }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                }
+                await mediaTestBase.closeFd(fdObject?.fdNumber);
+                await avRecorderTestBase.sleep(1000);
             }
-            await mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
-            await avRecorderTestBase.sleep(1000);
         })
 
         afterAll(function () {
-            // mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
             console.info('afterAll case');
         })
 
@@ -1168,9 +1202,14 @@ export default function avVideoRecorderTestOne() {
         }
 
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1204,9 +1243,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1240,9 +1284,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1276,9 +1325,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1312,9 +1366,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1352,9 +1411,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1388,9 +1452,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1424,9 +1493,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1460,9 +1534,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1500,9 +1579,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1536,9 +1620,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1572,9 +1661,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1608,9 +1702,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             console.info('avRecorderResumeCallBack1 test start');
@@ -1637,9 +1736,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1665,9 +1769,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1699,9 +1808,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_CALLBACK_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1731,9 +1845,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1765,9 +1884,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1799,9 +1923,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1833,9 +1962,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESUME_PROMISE_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1868,9 +2002,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1900,9 +2039,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1936,9 +2080,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -1970,9 +2119,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_CALLBACK_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2006,9 +2160,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2034,9 +2193,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2062,9 +2226,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2095,9 +2264,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2130,9 +2304,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2164,9 +2343,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2196,9 +2380,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_STOP_PROMISE_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2234,9 +2423,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             console.info('avRecorderResumeCallBack1 test start');
@@ -2263,9 +2457,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2291,9 +2490,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2325,9 +2529,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2359,9 +2568,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2393,9 +2607,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2427,9 +2646,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2457,9 +2681,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_CALLBACK_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2493,9 +2722,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2521,9 +2755,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2549,9 +2788,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2581,9 +2825,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2617,9 +2866,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2651,9 +2905,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2681,9 +2940,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_RESET_PROMISE_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2720,9 +2984,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2750,9 +3019,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2790,9 +3064,14 @@ export default function avVideoRecorderTestOne() {
            * @tc.level     : Level 2
        */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2831,9 +3110,14 @@ export default function avVideoRecorderTestOne() {
            * @tc.level     : Level 2
        */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2874,9 +3158,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2915,9 +3204,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2956,9 +3250,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -2992,9 +3291,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let loopTimes = 3;
@@ -3032,6 +3336,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0900', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_0900 start')
             let avNewProfile = {
                 audioBitrate : -1,
@@ -3054,7 +3363,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -3083,6 +3392,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_1000', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_1000 start')
             let avNewProfile = {
                 audioBitrate : 48000,
@@ -3105,7 +3419,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -3134,6 +3448,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_1100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_1100 start')
             let avNewProfile = {
                 audioBitrate : 48000,
@@ -3156,7 +3475,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -3185,6 +3504,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_1200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_PROMISE_1200 start')
             let avNewProfile = {
                 audioBitrate : 48000,
@@ -3207,7 +3531,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -3237,9 +3561,14 @@ export default function avVideoRecorderTestOne() {
              * @tc.level     : Level 2
          */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3267,9 +3596,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3301,9 +3635,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3339,9 +3678,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3381,9 +3725,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3425,9 +3774,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3467,9 +3821,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3509,9 +3868,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_PROMISE_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let loopTimes = 3;
@@ -3551,9 +3915,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3581,9 +3950,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3613,9 +3987,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3655,9 +4034,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3699,9 +4083,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3741,9 +4130,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3783,9 +4177,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3819,9 +4218,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_PROMISE_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let loopTimes = 3;
@@ -3866,9 +4270,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3896,9 +4305,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3928,9 +4342,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -3966,9 +4385,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4008,9 +4432,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4050,9 +4479,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4092,9 +4526,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4128,9 +4567,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_PROMISE_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let loopTimes = 3;
@@ -4176,9 +4620,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4212,9 +4661,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4250,9 +4704,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4292,9 +4751,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4330,9 +4794,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4368,9 +4837,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4408,9 +4882,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4448,9 +4927,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4490,9 +4974,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0900', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_0900 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4532,6 +5021,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_1000', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_1000 start')
             let avNewProfile = {
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
@@ -4549,7 +5043,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -4584,6 +5078,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_1100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_1100 start')
             let avNewProfile = {
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
@@ -4601,7 +5100,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -4638,6 +5137,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_1200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_1200 start')
             let avNewProfile = {
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
@@ -4655,7 +5159,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -4694,6 +5198,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_1300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_1300 start')
             let avNewProfile = {
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
@@ -4711,7 +5220,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -4748,6 +5257,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_1400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_1400 start')
             let avNewProfile = {
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
@@ -4765,7 +5279,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -4803,9 +5317,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4835,9 +5354,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4867,9 +5391,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4903,9 +5432,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4935,9 +5469,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -4967,9 +5506,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5001,9 +5545,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5035,9 +5584,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5071,9 +5625,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0900', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_0900 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5107,9 +5666,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_1000', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_1000 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5139,9 +5703,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_1100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_1100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5171,9 +5740,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_1200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_1200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5207,9 +5781,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_1300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_1300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5239,9 +5818,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_1400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_1400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5272,9 +5856,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5298,9 +5887,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5330,9 +5924,14 @@ export default function avVideoRecorderTestOne() {
            * @tc.level     : Level 2
        */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5364,9 +5963,14 @@ export default function avVideoRecorderTestOne() {
            * @tc.level     : Level 2
        */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5402,9 +6006,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5438,9 +6047,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5474,9 +6088,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5504,9 +6123,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5534,6 +6158,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0900', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_0900 start')
             let avNewProfile = {
                 audioBitrate : -1,
@@ -5556,7 +6185,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -5581,6 +6210,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_1000', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_1000 start')
             let avNewProfile = {
                 audioBitrate : 48000,
@@ -5603,7 +6237,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -5628,6 +6262,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_1100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_1100 start')
             let avNewProfile = {
                 audioBitrate : 48000,
@@ -5650,7 +6289,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -5675,6 +6314,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_1200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PREPARE_CALLBACK_1200 start')
             let avNewProfile = {
                 audioBitrate : 48000,
@@ -5697,7 +6341,7 @@ export default function avVideoRecorderTestOne() {
                 location : { latitude : 30, longitude : 130 }
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avNewConfig.url = fdPath;
             checkDevice(avNewConfig)
@@ -5723,9 +6367,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5751,9 +6400,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5779,9 +6433,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5811,9 +6470,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5847,9 +6511,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5885,9 +6554,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5921,9 +6595,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5957,9 +6636,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETSURFACE_CALLBACK_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -5990,9 +6674,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6018,9 +6707,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6046,9 +6740,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6082,9 +6781,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6120,9 +6824,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6156,9 +6865,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6192,9 +6906,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6222,9 +6941,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_START_CALLBACK_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6257,9 +6981,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6285,9 +7014,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0200 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6313,9 +7047,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0300 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6345,9 +7084,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0400 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6381,9 +7125,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0500 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6417,9 +7166,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0600 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6451,9 +7205,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0700 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6485,9 +7244,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_PAUSE_CALLBACK_0800 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfig.url = fdPath;
             let mySteps = new Array(
@@ -6523,6 +7287,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0200 start')
 
             avProfileMpegAac.audioBitrate = 8000
@@ -6530,7 +7299,7 @@ export default function avVideoRecorderTestOne() {
             avProfileMpegAac.videoBitrate = 280000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
             let mySteps = new Array(
@@ -6564,6 +7333,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0300 start')
 
             avProfileMpegAac.audioBitrate = 16000
@@ -6571,7 +7345,7 @@ export default function avVideoRecorderTestOne() {
             avProfileMpegAac.videoBitrate = 560000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
             let mySteps = new Array(
@@ -6605,6 +7379,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0400 start')
 
             avProfileMpegAac.audioBitrate = 32000
@@ -6612,7 +7391,7 @@ export default function avVideoRecorderTestOne() {
             avProfileMpegAac.videoBitrate = 1120000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
             let mySteps = new Array(
@@ -6646,6 +7425,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0500 start')
 
             avProfileMpegAac.audioBitrate = 112000
@@ -6653,7 +7437,7 @@ export default function avVideoRecorderTestOne() {
             avProfileMpegAac.videoBitrate = 2240000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
             let mySteps = new Array(
@@ -6687,12 +7471,17 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0600 start')
 
             avConfigMpegAac.orientationHint = 90
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
             let mySteps = new Array(
@@ -6726,12 +7515,17 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0700 start')
 
             avConfigMpegAac.orientationHint = 180
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
             let mySteps = new Array(
@@ -6765,12 +7559,17 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0800 start')
 
             avConfigMpegAac.orientationHint = 270
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
             let mySteps = new Array(
@@ -6804,12 +7603,17 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0900', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_0900 start')
 
             avProfileMpegAac.videoFrameRate = 5
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
             let mySteps = new Array(
@@ -6843,12 +7647,17 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_1000', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_1000 start')
 
             avProfileMpegAac.videoFrameRate = 30
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
             let mySteps = new Array(
@@ -6882,10 +7691,15 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_1200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_MPEG4_1200 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpeg.url = fdPath
             let mySteps = new Array(
@@ -6919,9 +7733,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
 
@@ -6957,6 +7776,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0200 start')
 
             avProfileMpegAac.audioBitrate = 8000
@@ -6964,7 +7788,7 @@ export default function avVideoRecorderTestOne() {
             avProfileMpegAac.videoBitrate = 280000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
 
@@ -7000,6 +7824,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0300 start')
 
             avProfileMpegAac.audioBitrate = 16000
@@ -7007,7 +7836,7 @@ export default function avVideoRecorderTestOne() {
             avProfileMpegAac.videoBitrate = 560000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
 
@@ -7043,6 +7872,11 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0400 start')
 
             avProfileMpegAac.audioBitrate = 32000
@@ -7050,7 +7884,7 @@ export default function avVideoRecorderTestOne() {
             avProfileMpegAac.videoBitrate = 1120000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
 
@@ -7086,6 +7920,11 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0500 start')
 
             avProfileMpegAac.audioBitrate = 112000
@@ -7093,7 +7932,7 @@ export default function avVideoRecorderTestOne() {
             avProfileMpegAac.videoBitrate = 2240000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
 
@@ -7129,12 +7968,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0600 start')
 
             avConfigMpegAac.orientationHint = 90
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
 
@@ -7170,12 +8014,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0700 start')
 
             avConfigMpegAac.orientationHint = 180
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
 
@@ -7211,12 +8060,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0800 start')
 
             avConfigMpegAac.orientationHint = 270
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
 
@@ -7252,12 +8106,17 @@ export default function avVideoRecorderTestOne() {
         //     * @tc.level     : Level2
         // */
         // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0900', 0, async function (done) {
+        //    if (!isSupportCameraVideoProfiles) {
+        //        console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+        //        expect(true).assertTrue();
+        //        done();
+        //   }
         //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0900 start')
         //
         //     avProfileMpegAac.videoFrameRate = 5
         //
         //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdObject = await mediaTestBase.getFd(fileName);
         //     fdPath = "fd://" + fdObject.fdNumber;
         //     avConfigMpegAac.url = fdPath;
         //
@@ -7293,12 +8152,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_1000', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_1000 start')
 
             avProfileMpegAac.videoFrameRate = 30
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpegAac.url = fdPath;
 
@@ -7334,10 +8198,15 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_1200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_1200 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigMpeg.url = fdPath
 
@@ -7373,9 +8242,14 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -7409,6 +8283,11 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0200 start')
 
             avProfileH264Aac.audioBitrate = 8000
@@ -7416,7 +8295,7 @@ export default function avVideoRecorderTestOne() {
             avProfileH264Aac.videoBitrate = 280000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -7450,6 +8329,11 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0300 start')
 
             avProfileH264Aac.audioBitrate = 16000
@@ -7457,7 +8341,7 @@ export default function avVideoRecorderTestOne() {
             avProfileH264Aac.videoBitrate = 560000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -7491,6 +8375,11 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0400 start')
 
             avProfileH264Aac.audioBitrate = 32000
@@ -7498,7 +8387,7 @@ export default function avVideoRecorderTestOne() {
             avProfileH264Aac.videoBitrate = 1120000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -7532,6 +8421,11 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0500 start')
 
             avProfileH264Aac.audioBitrate = 112000
@@ -7539,7 +8433,7 @@ export default function avVideoRecorderTestOne() {
             avProfileH264Aac.videoBitrate = 2240000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -7573,12 +8467,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0600 start')
 
             avConfigH264Aac.orientationHint = 90
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -7612,12 +8511,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0700 start')
 
             avConfigH264Aac.orientationHint = 180
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -7651,12 +8555,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0800 start')
 
             avConfigH264Aac.orientationHint = 270
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -7690,12 +8599,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0900', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_0900 start')
 
             avProfileH264Aac.videoFrameRate = 5
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -7729,12 +8643,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_1000', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_1000 start')
 
             avProfileH264Aac.videoFrameRate = 30
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -7768,10 +8687,15 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_1200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H264_1200 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264.url = fdPath
             let mySteps = new Array(
@@ -7805,9 +8729,14 @@ export default function avVideoRecorderTestOne() {
         //     * @tc.level     : Level2
         // */
         // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0100', 0, async function (done) {
+        //    if (!isSupportCameraVideoProfiles) {
+        //        console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+        //        expect(true).assertTrue();
+        //        done();
+        //   }
         //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0100 start')
         //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdObject = await mediaTestBase.getFd(fileName);
         //     fdPath = "fd://" + fdObject.fdNumber;
         //     avConfigH264Aac.url = fdPath;
         //
@@ -7843,6 +8772,11 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0200 start')
 
             avProfileH264Aac.audioBitrate = 8000
@@ -7850,7 +8784,7 @@ export default function avVideoRecorderTestOne() {
             avProfileH264Aac.videoBitrate = 280000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
 
@@ -7886,6 +8820,11 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0300', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0300 start')
 
             avProfileH264Aac.audioBitrate = 16000
@@ -7893,7 +8832,7 @@ export default function avVideoRecorderTestOne() {
             avProfileH264Aac.videoBitrate = 560000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
 
@@ -7929,6 +8868,11 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0400', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0400 start')
 
             avProfileH264Aac.audioBitrate = 32000
@@ -7936,7 +8880,7 @@ export default function avVideoRecorderTestOne() {
             avProfileH264Aac.videoBitrate = 1120000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
 
@@ -7972,6 +8916,11 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0500', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0500 start')
 
             avProfileH264Aac.audioBitrate = 112000
@@ -7979,7 +8928,7 @@ export default function avVideoRecorderTestOne() {
             avProfileH264Aac.videoBitrate = 2240000
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
 
@@ -8015,12 +8964,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0600', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0600 start')
 
             avConfigH264Aac.orientationHint = 90
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
 
@@ -8056,12 +9010,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0700', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0700 start')
 
             avConfigH264Aac.orientationHint = 180
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
 
@@ -8097,12 +9056,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0800', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0800 start')
 
             avConfigH264Aac.orientationHint = 270
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
 
@@ -8138,12 +9102,17 @@ export default function avVideoRecorderTestOne() {
         //     * @tc.level     : Level2
         // */
         // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0900', 0, async function (done) {
+        //    if (!isSupportCameraVideoProfiles) {
+        //        console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+        //        expect(true).assertTrue();
+        //        done();
+        //   }
         //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0900 start')
         //
         //     avProfileH264Aac.videoFrameRate = 5
         //
         //     let fileName = avVideoRecorderTestBase.resourceName()
-        //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+        //     fdObject = await mediaTestBase.getFd(fileName);
         //     fdPath = "fd://" + fdObject.fdNumber;
         //     avConfigH264Aac.url = fdPath;
         //
@@ -8179,12 +9148,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_1000', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_1000 start')
 
             avProfileH264Aac.videoFrameRate = 30
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
 
@@ -8220,10 +9194,15 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_1200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_1200 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264.url = fdPath
 
@@ -8259,9 +9238,14 @@ export default function avVideoRecorderTestOne() {
             * @tc.level     : Level 2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETAVRECORDERCONFIG_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETAVRECORDERCONFIG_PROMISE_0100 start')
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH264Aac.url = fdPath;
             let mySteps = new Array(
@@ -8290,12 +9274,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H265_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_PROMISE_H265_0100 start')
             if (deviceInfo.deviceInfo === 'default') {
                 avConfigH265Aac.videoCodec = media.CodecMimeType.VIDEO_AVC
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH265Aac.url = fdPath;
             let mySteps = new Array(
@@ -8329,12 +9318,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H265_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H265_0100 start')
             if (deviceInfo.deviceInfo === 'default') {
                 avConfigH265Aac.videoCodec = media.CodecMimeType.VIDEO_AVC
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH265Aac.url = fdPath;
 
@@ -8370,12 +9364,17 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
         */
         it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H265_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H265_0200 start')
             if (deviceInfo.deviceInfo === 'default') {
                 avConfigH265Aac.videoCodec = media.CodecMimeType.VIDEO_AVC
             }
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigH265Aac.url = fdPath
             avConfigH265Aac.isHdr = false
@@ -8412,10 +9411,15 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUM_MULTIMEDIA_AVRECORDER_GET_CURRENT_CAPTURER_INFO_CALLBACK_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_GET_CURRENT_CAPTURER_INFO_CALLBACK_0100 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigOnlyAac.url = fdPath
 
@@ -8451,10 +9455,15 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUM_MULTIMEDIA_AVRECORDER_GET_AVAILABLE_ENCODER_CALLBACK_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_GET_AVAILABLE_ENCODER_CALLBACK_0100 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigOnlyAac.url = fdPath
 
@@ -8490,10 +9499,15 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUM_MULTIMEDIA_AVRECORDER_GET_MAX_AMPLITUDE_CALLBACK_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_GET_MAX_AMPLITUDE_CALLBACK_0100 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigOnlyAac.url = fdPath
 
@@ -8529,10 +9543,15 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUM_MULTIMEDIA_AVRECORDER_GET_CURRENT_CAPTURER_INFO_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_GET_CURRENT_CAPTURER_INFO_PROMISE_0100 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigOnlyAac.url = fdPath
 
@@ -8568,10 +9587,15 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUM_MULTIMEDIA_AVRECORDER_GET_AVAILABLE_ENCODER_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_GET_AVAILABLE_ENCODER_PROMISE_0100 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigOnlyAac.url = fdPath
 
@@ -8607,10 +9631,15 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
     */
         it('SUM_MULTIMEDIA_AVRECORDER_GET_MAX_AMPLITUDE_PROMISE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_GET_MAX_AMPLITUDE_PROMISE_0100 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigOnlyAac.url = fdPath
 
@@ -8646,30 +9675,40 @@ export default function avVideoRecorderTestOne() {
         * @tc.level     : Level2
         */
        it('SUM_MULTIMEDIA_MEDIA_ERRORCODE_ENUM_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
         let newErrorCode = media.AVErrorCode.AVERR_AUDIO_INTERRUPTED;
         console.info('AVERR_AUDIO_INTERRUPTED:' + newErrorCode);
         done();
        })
 
          /* *
-            * @tc.number    : SUM_MULTIMEDIA_AVRECORDER_SET_UPDATE_ROTATION__0100
-            * @tc.name      : 13.AVRecorder updateRotation
+            * @tc.number    : SUM_MULTIMEDIA_AVRECORDER_SET_UPDATE_ROTATION_0100
+            * @tc.name      : AVRecorder updateRotation
             * @tc.desc      : Recorder video
             * @tc.size      : MediumTest
             * @tc.type      : Function test
             * @tc.level     : Level3
         */
-        it('SUM_MULTIMEDIA_AVRECORDER_UPDATE_ROTATION__0100', 0, async function (done) {
+        it('SUM_MULTIMEDIA_AVRECORDER_UPDATE_ROTATION_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
             console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_UPDATE_ROTATION__0100 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
-            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdObject = await mediaTestBase.getFd(fileName);
             fdPath = "fd://" + fdObject.fdNumber;
             avConfigOnlyAac.url = fdPath
 
             let mySteps = new Array(
                 // init avRecorder
-                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, 
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT,
                 //prepare avRecorder
                 PREPARE_CALLBACK_EVENT,
                 //update rotation
@@ -8682,6 +9721,169 @@ export default function avVideoRecorderTestOne() {
 
             eventEmitter.emit(mySteps[0], avRecorder, avConfigOnlyAac, recorderTime, mySteps, done);
             console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_UPDATE_ROTATION__0100 end')
+        })
+
+        /* *
+            * @tc.number    : SUM_MULTIMEDIA_AVRECORDER_CREATE_0100
+            * @tc.name      : AVVideoRecorder
+            * @tc.desc      : Recorder video
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level3
+        */
+        it('SUM_MULTIMEDIA_AVRECORDER_CREATE_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
+            console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_CREATE_0100 start')
+            media.createVideoRecorder((videoRecorder) => {
+
+            })
+            console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_CREATE_0100 end')
+            done();
+        })
+
+        /* *
+            * @tc.number    : SUM_MULTIMEDIA_AVRECORDER_CREATE_0200
+            * @tc.name      : AVVideoRecorder
+            * @tc.desc      : Recorder video
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level3
+        */
+        it('SUM_MULTIMEDIA_AVRECORDER_CREATE_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
+            console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_CREATE_0200 start')
+            try {
+                media.createVideoRecorder();
+            } catch(error) {
+
+            }
+
+            console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_CREATE_0200 end')
+            done();
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0100
+            * @tc.name      : 09.metadata
+            * @tc.desc      : recorder (metadata)
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level 2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0100', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0100 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getFd(fileName);
+            fdPath = "fd://" + fdObject.fdNumber;
+            avmetaConfig.url = fdPath;
+            checkDevice(avmetaConfig)
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // pause recorder
+                PAUSERECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // resume recorder
+                STARTCAMERA_EVENT, RESUMERECORDER_CALLBACK_EVENT,
+                // stop recorder
+                STOPRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avmetaConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_AVMETADATA_0100 end')
+        })
+
+        /* *
+        * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0200
+        * @tc.name      : 09.metadata customInfo(number)
+        * @tc.desc      : recorder (metadata)
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0200 start')
+            let customInfo = {
+                "test02": 1000,
+            }
+            avmetaConfig.metadata.customInfo = customInfo;
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getFd(fileName);
+            fdPath = "fd://" + fdObject.fdNumber;
+            avmetaConfig.url = fdPath;
+            checkDevice(avmetaConfig)
+            let mySteps = new Array(
+                // setAvRecorderCallback
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,
+                // prepareErrPromise
+                PREPARE_PROMISE_EVENT,
+                // AVRecorderTestBase.releasePromise
+                RELEASECORDER_PROMISE_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avmetaConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0200 end')
+        })
+
+        /* *
+        * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0200
+        * @tc.name      : 09.metadata videoOrientation(99)
+        * @tc.desc      : recorder (metadata)
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level 2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0200', 0, async function (done) {
+            if (!isSupportCameraVideoProfiles) {
+                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+                expect(true).assertTrue();
+                done();
+            }
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0200 start')
+
+            avmetaConfig.metadata.videoOrientation = "99";
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getFd(fileName);
+            fdPath = "fd://" + fdObject.fdNumber;
+            avmetaConfig.url = fdPath;
+            checkDevice(avmetaConfig)
+            let mySteps = new Array(
+                // setAvRecorderCallback
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT,
+                // prepareErrPromise
+                PREPARE_PROMISE_EVENT,
+                // AVRecorderTestBase.releasePromise
+                RELEASECORDER_PROMISE_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avmetaConfig, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_METADATA_0200 end')
         })
     })
 }

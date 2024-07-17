@@ -10,6 +10,13 @@
     },
     "kits": [
         {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.sys.suspend_manager_enabled false",
+                "reboot"
+            ]
+        },
+        {
             "test-file-name": [
                 "ActsFormStressTest.hap",
                 "FormSystemHostK.hap",
@@ -18,6 +25,16 @@
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "teardown-command": [
+                "param set persist.sys.suspend_manager_enabled true",
+                "reboot",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ]
         }
     ]
 }

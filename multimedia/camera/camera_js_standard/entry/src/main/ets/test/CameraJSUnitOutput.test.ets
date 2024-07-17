@@ -15,7 +15,7 @@
 import cameraObj from '@ohos.multimedia.camera';
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
-import mediaLibrary from '@ohos.multimedia.mediaLibrary';
+import fs from '@ohos.file.fs';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import featureAbility from '@ohos.ability.featureAbility';
 const TAG = "CameraUnitTest: ";
@@ -95,38 +95,26 @@ export default function cameraJSUnitOutput() {
   }
 
   async function getFd(pathName) {
-    let displayName = pathName;
-    const mediaTest = mediaLibrary.getMediaLibrary();
-    console.log(TAG + 'mediaTest: ' + JSON.stringify(mediaTest))
-    let fileKeyObj = mediaLibrary.FileKey;
-    let mediaType = mediaLibrary.MediaType.VIDEO;
-    let publicPath = await mediaTest.getPublicDirectory(mediaLibrary.DirectoryType.DIR_VIDEO);
-    let dataUri = await mediaTest.createAsset(mediaType, displayName, publicPath);
-    console.log(TAG + 'dataUri id: ' + JSON.stringify(dataUri))
-    if (dataUri != undefined) {
-      let args = dataUri.id.toString();
-      let fetchOp = {
-        selections: fileKeyObj.ID + "=?",
-        selectionArgs: [args],
-      }
-      let fetchFileResult = await mediaTest.getFileAssets(fetchOp);
-      fileAsset = await fetchFileResult.getAllObject();
-      fdNumber = await fileAsset[0].open('Rw');
-      console.log(TAG + 'fdNumber id: ' + JSON.stringify(fdNumber))
-      fdPath = "fd://" + fdNumber.toString();
-    }
+    await featureAbility.getContext().getFilesDir().then((fileDir) => {
+            console.info("case file dir is" + JSON.stringify(fileDir));
+            pathName = fileDir + '/' + pathName;
+            console.info("case pathName is" + pathName);
+        });
+        
+        let file = fs.openSync(pathName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+        fileAsset = file;
+        fdNumber = file.fd;
+        fdPath = "fd://" + fdNumber.toString();
+        console.info('case getFd number is: ' + fdObject.fdNumber);
   }
 
   async function closeFd() {
-    if (fileAsset != null) {
-      await fileAsset[0].close(fdNumber).then(() => {
-        console.info('[mediaLibrary] case close fd success');
-      }).catch((err) => {
-        console.info('[mediaLibrary] case close fd failed');
-      });
-    } else {
-      console.info('[mediaLibrary] case fileAsset is null');
-    }
+        console.info('case come in closeFd')
+        if (fdNumber != null) {
+            fs.closeSync(fdNumber);
+        } else {
+            console.info('[fs.closeSync] case fdNumber is null');
+        }
   }
 
   async function getvideosurface() {
@@ -1109,7 +1097,7 @@ export default function cameraJSUnitOutput() {
           expect().assertFail();
         });
       }
-      await sleep(1000);
+      await sleep(3000);
       done();
     })
 
@@ -1138,11 +1126,11 @@ export default function cameraJSUnitOutput() {
             expect().assertFail();
           }
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_DEFAULT_CALLBACK_0100 ends here");
-          await sleep(1000);
+          await sleep(3000);
           done();
         })
       }
-      await sleep(1000);
+      await sleep(3000);
       done();
     })
 
@@ -1175,7 +1163,7 @@ export default function cameraJSUnitOutput() {
         });
 
       }
-      await sleep(1000);
+      await sleep(3000);
       done();
     })
 
@@ -1204,11 +1192,11 @@ export default function cameraJSUnitOutput() {
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_SETTING_CALLBACK_0100 FAILED: " + err.message);
           }
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_SETTING_CALLBACK_0100 ends here");
-          await sleep(1000);
+          await sleep(3000);
           done();
         })
       }
-      await sleep(1000);
+      await sleep(3000);
       done();
     })
 

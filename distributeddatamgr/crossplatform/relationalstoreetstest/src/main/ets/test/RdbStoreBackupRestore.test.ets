@@ -15,12 +15,11 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import relationalStore from "@ohos.data.relationalStore";
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { ValuesBucket } from '@ohos.data.ValuesBucket';
 import { BusinessError } from '@ohos.base';
+import common from "@ohos.app.ability.common";
 
-let context: Context;
-const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+let context: common.UIAbilityContext;
 const TAG = "[RDB_JSKITS_TEST]";
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS backupTest (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
 let RdbStore = undefined;
@@ -68,8 +67,7 @@ export default function RdbStoreBackupRestoreCallbackTest() {
   describe("RdbStoreBackupRestoreCallbackTest", () => {
     beforeAll(async () => {
       console.info(TAG + "beforeAll");
-      let ability = await delegator.getCurrentTopAbility();
-      context = ability.context;
+      context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
       console.info(TAG + 'Get context successful. context=' + context);
     });
 
@@ -202,18 +200,14 @@ export default function RdbStoreBackupRestoreCallbackTest() {
      * @tc.type   : Function
      * @tc.level  : Level 2
      */
-    it("testRdbStoreBackup001", 0, async (done: Function) => {
+    it("testRdbStoreBackup001", 0, async () => {
       console.info(TAG + "************* testRdbStoreBackup001 start *************");
       try {
-        RdbStore.backup("", async (err) => {
-          console.info(`Backup success.`);
-          expect(!err).assertTrue();
-          done();
-        });
+        await RdbStore.backup("");
+        expect(true).asserFail();
       } catch (errInfo) {
         console.info(TAG + "testRdbStoreBackup001 error: " + errInfo);
-        expect(errInfo == "Error: Parameter error. The table must be not empty").assertTrue();
-        done();
+        expect('401').assertEqual(errInfo.code);
       }
       console.info(TAG + "************* testRdbStoreBackup001 end *************");
     });
@@ -231,7 +225,7 @@ export default function RdbStoreBackupRestoreCallbackTest() {
       try {
         RdbStore.backup(STORE_CONFIG.name, async (err) => {
           console.info(TAG + "backup err ttt:  " + err.message + "code:  " + err.code);
-		  done();
+          done();
           expect(err.code == 14800010).assertTrue();
         });
       } catch (errInfo) {
@@ -250,16 +244,14 @@ export default function RdbStoreBackupRestoreCallbackTest() {
      * @tc.type   : Function
      * @tc.level  : Level 2
      */
-    it("testRdbStoreBackup003", 0, async (done: Function) => {
+    it("testRdbStoreBackup003", 0, async () => {
       console.info(TAG + "************* testRdbStoreBackup003 start *************");
       try {
         await RdbStore.backup("");
-        done();
+        expect(true).asserFail();
       } catch (errInfo) {
         console.info(TAG + "testRdbStoreBackup003 error: " + errInfo);
-        console.info(`Backup err: file name empty.`);
-        expect(errInfo == "Error: Parameter error. The table must be not empty").assertTrue();
-        done();
+        expect('401').assertEqual(errInfo.code);
       }
       console.info(TAG + "************* testRdbStoreBackup003 end *************");
     });

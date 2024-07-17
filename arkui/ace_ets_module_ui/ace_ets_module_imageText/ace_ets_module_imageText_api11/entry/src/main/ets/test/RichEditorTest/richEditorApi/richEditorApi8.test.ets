@@ -71,12 +71,14 @@ export default function richEditorApi8() {
       await CommonFunc.sleep(2000);
 
       let driver = Driver.create();
-      await CommonFunc.sleep(300);
+      await CommonFunc.sleep(1000);
+      let richEditor = CommonFunc.getComponentRectOnScreen('RichEditor8');
 
       await driver.mouseClick({
-        x: 300, y: 300
+        x:Math.round(richEditor.left) + 300, y: Math.round(richEditor.top) + 300
       }, MouseButton.MOUSE_BUTTON_LEFT)
 
+      await CommonFunc.sleep(2000);
       let text1 = getInspectorByKey('richEditorApi8_text1');
       let Obj1: ESObject = JSON.parse(text1);
       expect(Obj1.$attrs.content).assertEqual('444');

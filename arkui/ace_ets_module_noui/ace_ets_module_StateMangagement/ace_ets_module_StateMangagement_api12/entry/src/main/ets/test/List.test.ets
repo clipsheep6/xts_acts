@@ -22,6 +22,29 @@ import TrackMapTest from './ObservedV2Test/TrackMapTest.test';
 import TrackSetTest from './ObservedV2Test/TrackSetTest.test';
 import TwoNestTrackTest from './ObservedV2Test/TwoNestTrackTest.test';
 import ArrayTrackTest from './ObservedV2Test/ArrayTrackTest.test';
+import getSharedLocalStorageTest from './GetSharedLocalTest/getSharedLocalStorage.test';
+import useSharedStorageTest from './GetSharedLocalTest/useSharedStorage.test';
+import Monitor1Test from './MonitorTest/Monitor1.test';
+import Monitor2Test from './MonitorTest/Monitor2.test';
+import Monitor3Test from './MonitorTest/Monitor3.test';
+import Monitor4Test from './MonitorTest/Monitor4.test';
+import Monitor5Test from './MonitorTest/Monitor5.test';
+import Monitor6Test from './MonitorTest/Monitor6.test';
+import RepeatEachJsunit from './RepeatTest/RepeatEachJsunit.test';
+import persistStorageATest from './GetSharedLocalTest/persistStorageA.test';
+import appStorageRefJsunit from './StorageTest/appStorageRefJsunit.test';
+import localStorageRefJsunit from './StorageTest/localStorageRefJsunit.test';
+import IMonitorTest from './MonitorTest/IMonitor.test';
+import Local1Jsunit from './ComponentV2Test/Local1Jsunit.test';
+import Local2Jsunit from './ComponentV2Test/Local2Jsunit.test';
+import Param1Jsunit from './ComponentV2Test/Param1Jsunit.test';
+import Param2Jsunit from './ComponentV2Test/Param2Jsunit.test';
+import Param3Jsunit from './ComponentV2Test/Param3Jsunit.test';
+import Param4Jsunit from './ComponentV2Test/Param4Jsunit.test';
+import Monitor1Jsunit from './ComponentV2Test/Monitor1Jsunit.test';
+import Monitor2Jsunit from './ComponentV2Test/Monitor2Jsunit.test';
+import Monitor3Jsunit from './ComponentV2Test/Monitor3Jsunit.test';
+import Monitor4Jsunit from './ComponentV2Test/Monitor4Jsunit.test';
 export default function testsuite() {
   ExtendTrackTest();
   NestTrackTest();
@@ -33,4 +56,27 @@ export default function testsuite() {
   TrackSetTest();
   TwoNestTrackTest();
   ArrayTrackTest();
+  getSharedLocalStorageTest()
+  useSharedStorageTest()
+  Monitor1Test()
+  Monitor2Test()
+  Monitor3Test()
+  Monitor4Test()
+  Monitor5Test()
+  Monitor6Test()
+  RepeatEachJsunit();
+  persistStorageATest();
+  appStorageRefJsunit();
+  localStorageRefJsunit();
+  IMonitorTest();
+  Local1Jsunit();
+  Local2Jsunit();
+  Param1Jsunit();
+  Param2Jsunit();
+  Param3Jsunit();
+  Param4Jsunit();
+  Monitor1Jsunit();
+  Monitor2Jsunit();
+  Monitor3Jsunit();
+  Monitor4Jsunit();
 }

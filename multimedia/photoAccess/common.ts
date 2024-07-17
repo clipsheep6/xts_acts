@@ -35,6 +35,9 @@ const pathDir = context.filesDir;
 
 let validImageExt = ['.jpg']
 let validVideoExt = ['.mp4']
+let validVideoMpegExt = ['.mpeg']
+let validImageGifExt = ['.gif']
+let validImagePngExt = ['.png']
 
 export async function sleep(times = DEFAULT_SLEEP_TIME) : Promise<void> {
   await new Promise(res => setTimeout(res, times));
@@ -94,6 +97,8 @@ export function photoFetchOption(testNum, key, value) : photoAccessHelper.FetchO
       photoKeys.HIDDEN,
       photoKeys.CAMERA_SHOT_KEY,
       photoKeys.USER_COMMENT,
+      photoKeys.DATE_ADDED_MS,
+      photoKeys.DATE_MODIFIED_MS,
       'all_exif',
     ],
     predicates: predicates
@@ -122,7 +127,7 @@ export async function getPermission(name = 'ohos.acts.multimedia.photoaccess') :
       try {
         await atManager.grantUserGrantedPermission(tokenID, permission, 1);
       } catch (error) {
-        console.info(`getPermission ${permission} failed`);
+        console.error(`getPermission ${permission} failed`);
       }
       permissionState.set(permission, await atManager.verifyAccessToken(tokenID, permission));
     }
@@ -133,7 +138,7 @@ export async function getPermission(name = 'ohos.acts.multimedia.photoaccess') :
     });
     console.info('getPermission end');
   } catch (error) {
-    console.info(`getPermission failed, error: ${error}`);
+    console.error(`getPermission failed, error: ${error}`);
   }
 };
 
@@ -173,7 +178,7 @@ export async function createUserAlbum(testNum, albumName) : Promise<photoAccessH
     album = await helper.createAlbum(albumName);
     console.info(`${testNum} createUserAlbum suc`);
   } catch (error) {
-    console.info(`Failed to createUserAlbum! error: ${error}`);
+    console.error(`Failed to createUserAlbum! error: ${error}`);
     throw error;
   }
 
@@ -192,7 +197,7 @@ export async function getFileAsset(testNum, fetchOps) : Promise<photoAccessHelpe
     asset = await fetchResult.getFirstObject();
     fetchResult.close();
   } catch (error) {
-    console.info(`${testNum} getFileAsset error: ${error}`);
+    console.error(`${testNum} getFileAsset error: ${error}`);
     throw error;
   }
 
@@ -233,7 +238,7 @@ export function checkSystemAlbum(expect, testNum, album, expectedSubType) : void
     expect(album.albumName).assertEqual('');
     expect(album.albumUri !== '').assertEqual(true);
   } catch (error) {
-    console.info(`Failed to delete all user albums! error: ${error}`);
+    console.error(`Failed to delete all user albums! error: ${error}`);
     throw error;
   }
 }
@@ -267,7 +272,24 @@ export async function getFileNameArray() {
     let nameArray = await fs.listFile(pathDir, listFileOption)
     return nameArray;
   } catch (err) {
-    console.info('getFileNameArray failed: ' + err);
+    console.error('getFileNameArray failed: ' + err);
+  }
+}
+
+export async function getAllFileNameArray() {
+  try{
+    let listFileOption: ListFileOptions = {
+      recursion: true,
+      listNum: 0,
+      filter: {
+        suffix: [],
+      }
+    }
+    listFileOption.filter.suffix = validImageExt.concat(validVideoExt).concat(validVideoMpegExt).concat(validImageGifExt).concat(validImagePngExt);
+    let nameArray = await fs.listFile(pathDir, listFileOption)
+    return nameArray;
+  } catch (err) {
+    console.error('getFileNameArray failed: ' + err);
   }
 }
 
@@ -287,6 +309,7 @@ export async function pushCreateAsset(names: Array<string>){
       let rawExtension: string = fileName.split('.')[1];
       for (let j = 0; j < names.length; j++) {
         let name = names[j];
+        if (fileName.includes('error')) continue
         let extension: string = name.split('.')[1];
         if (rawExtension === extension) {
           let options: photoAccessHelper.CreateOptions = {
@@ -302,15 +325,66 @@ export async function pushCreateAsset(names: Array<string>){
           let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(globalThis.abilityContext, photoType, extension, options);
           assetChangeRequest.addResource(resourceType, fileUri);
           await phAccessHelper.applyChanges(assetChangeRequest);
+          console.info(`pushCreateAsset ${name} create success`)
           successNum++;
         }
       }
     }
     console.info('Push_createAsset successfully fileNumber: ' + successNum);
   }catch(err){
-    console.info('Push_createAsset push resource failed: ' + err)
+    console.error('Push_createAsset push resource failed: ' + err)
     return;
   }
+}
+
+export async function pushCreateAssetSingle(names: Array<string>){
+  console.info('pushCreateAssetSingle start')
+  let successNum = 0;
+  try{
+    console.info('pushCreateAssetSingle name: ' + names)
+    let photoType: photoAccessHelper.PhotoType;
+    let resourceType: photoAccessHelper.ResourceType;
+    let fileNames: string[] = await getAllFileNameArray();
+    for (let i = 0; i < fileNames.length; i++) {
+      let fileName = fileNames[i];
+      let filePath = pathDir + '/' + fileName;
+      let fileUri = fileuri.getUriFromPath(filePath);
+      let rawExtension: string = fileName.split('.')[1];
+      for (let j = 0; j < names.length; j++) {
+        let name = names[j];
+        if(fileName == '/01.jpg' || fileName == '/01.mp4') continue
+        let extension: string = name.split('.')[1];
+        if (rawExtension === extension) {
+          let options: photoAccessHelper.CreateOptions = {
+            title: name.split('.')[0]
+          }
+          if (validImageExt.concat(validImageGifExt).concat(validImagePngExt).includes(('.' + extension))) {
+            photoType = photoAccessHelper.PhotoType.IMAGE;
+            resourceType = photoAccessHelper.ResourceType.IMAGE_RESOURCE;
+          } else {
+            photoType = photoAccessHelper.PhotoType.VIDEO;
+            resourceType = photoAccessHelper.ResourceType.VIDEO_RESOURCE;
+          }
+          let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(globalThis.abilityContext, photoType, extension, options);
+          assetChangeRequest.addResource(resourceType, fileUri);
+          await phAccessHelper.applyChanges(assetChangeRequest);
+          console.info(`pushCreateAssetSingle ${name} create success`)
+          successNum++;
+        }
+      }
+    }
+    console.info('Push_createAsset successfully fileNumber: ' + successNum);
+  }catch(err){
+    console.error('Push_createAsset push resource failed: ' + err)
+    return;
+  }
+}
+
+export function createSandboxFileUri(extension) {
+  let pathDir = globalThis.abilityContext.filesDir;
+  let path = pathDir + '/test' + new Date().getTime() + '.' + extension;
+  fs.openSync(path, fs.OpenMode.CREATE)
+  return fileuri.getUriFromPath(path);
 }
 
 export {
