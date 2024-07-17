@@ -23,7 +23,7 @@ struct SheetTransitionExample12 {
   @Builder
   myBuilder() {
     Column() {
-      Button("change height")
+      Button('change height')
         .id('ChangeHeight1')
         .margin(10)
         .fontSize(20)

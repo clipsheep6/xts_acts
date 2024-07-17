@@ -41,11 +41,11 @@ struct MenuExample {
         .width(100)
         .height(50)
         .onClick(() => {
-          console.info("bindMenu button START")
+          console.info('bindMenu button START')
           try {
             let backData: events_emitter.EventData = {
               data: {
-                "ACTION": this.onActionCalled,
+                'ACTION': this.onActionCalled,
               }
             }
             let backEvent: events_emitter.InnerEvent = {
