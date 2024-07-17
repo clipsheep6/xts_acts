@@ -19,7 +19,6 @@ import image from '@ohos.multimedia.image';
 // import WantAgent from '@ohos.wantAgent';
 import WantAgent from '@ohos.app.ability.wantAgent';
 import featureAbility from '@ohos.ability.featureAbility';
-import { geoLocationManager } from '@kit.LocationKit'
 
 export default function AVSession() {
     describe('AVSession', function () {
