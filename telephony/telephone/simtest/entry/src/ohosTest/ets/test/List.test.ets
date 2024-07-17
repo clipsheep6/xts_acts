@@ -15,8 +15,20 @@
 
 import Sim1Public from './Sim1Public.test';
 import Sim2Public from './Sim2Public.test';
+import Sim3Public from './Sim3Public.test';
+import EmptyTest from './Empty.test';
+import sim from '@ohos.telephony.sim';
 
 export default function testsuite() {
-  Sim1Public();
-  Sim2Public();
+  if (canIUse("SystemCapability.Telephony.CoreService")){
+    if(sim.hasSimCardSync(0)){
+      Sim1Public();
+      Sim2Public();
+      Sim3Public();
+    } else {
+      Sim3Public();
+    }
+  }else{
+    EmptyTest()
+  }
 }

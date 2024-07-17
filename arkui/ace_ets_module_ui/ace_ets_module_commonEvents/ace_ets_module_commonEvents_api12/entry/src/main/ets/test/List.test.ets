@@ -32,24 +32,41 @@ import addParallelGestureTest1 from './GestureHandler/addParallelGestureTest1.te
 import onKeyPreImeTest from './onKeyEventTest/onKeyPreIme.test';
 import getModifierKeyStateTest from './onKeyEventTest/getModifierKeyState.test';
 import clearGestureTest from './GestureHandler/clearGesture.test';
-
-// 手指操作：单击、双击、长按
 import TapGestureBasicClickTest from './TapGesture/TapGestureBasicClickTest.test';
 import TapGestureBasicDoubleClickTest from './TapGesture/TapGestureBasicDoubleClickTest.test';
 import LongPressGestureLongClickTest from './LongPressGesture/LongPressGestureLongClickTest.test';
-// 鼠标操作：单击、双击、长按
 import TapGestureBasicClickMouseTest from './TapGesture/TapGestureBasicClickMouseTest.test';
 import TapGestureBasicDoubleClickMouseTest from './TapGesture/TapGestureBasicDoubleClickMouseTest.test';
 import LongPressGestureLongClickMouseTest from './LongPressGesture/LongPressGestureLongClickMouseTest.test';
-// 单指不同方向滑动
 import PanGestureExample01Test from './PanGesture/PanGestureExample01Test.test';
 import PanGestureExample02Test from './PanGesture/PanGestureExample02Test.test';
 import SwipeGestureExample01Test from './SwipeGesture/SwipeGestureExample01Test.test';
-// 多指操作
+import SwipeGestureExample02Test from './SwipeGesture/SwipeGestureExample02Test.test';
 import PanGestureExample03Test from './PanGesture/PanGestureExample03Test.test';
 import SwipeGestureExample03Test from './SwipeGesture/SwipeGestureExample03Test.test';
+import RotationGestureBasic01Test from './RotationGesture/RotationGestureBasic01Test.test';
+import RotationGestureBasic02Test from './RotationGesture/RotationGestureBasic02Test.test';
+import PinchGestureBasic01Test from './PinchGesture/PinchGestureBasic01Test.test';
+import PinchGestureBasic02Test from './PinchGesture/PinchGestureBasic02Test.test';
+import PanGestureExampleTemplateTest from './PanGesture/PanGestureExampleTemplateTest.test';
+import PinchGestureTemplateTest from './PinchGesture/PinchGestureTemplateTest.test';
+import RotationGestureTemplateTest from './RotationGesture/RotationGestureTemplateTest.test';
+import TapGestureTemplateTest from './TapGesture/TapGestureTemplateTest.test';
+import LongPressGestureTemplateTest from './LongPressGesture/LongPressGestureTemplateTest.test';
+import SwipeGestureTemplateTest from './SwipeGesture/SwipeGestureTemplateTest.test';
+import PanGestureUpdateTest from './PanGesture/PanGestureUpdateTest.test';
+import PinchGestureUpdateTest from './PinchGesture/PinchGestureUpdateTest.test';
+import RotationGestureUpdateTest from './RotationGesture/RotationGestureUpdateTest.test';
+import onAttachTest from './onAttachTest/onAttach.test';
+import GestureRecognizerState from './GestureRecognizer/GestureRecognizerState.test';
+import APIshouldBuiltInRecognizerParallelWith from './APIshouldBuiltInRecognizerParallelWith.test';
+
+
+
+import typeNodeGestureTest from './PanGesture/Gesture.test';
 
 export default function testsuite() {
+  APIshouldBuiltInRecognizerParallelWith();
   APIPreDragStatusTest();
   addGestureApplyGesture();
   ShortcutKeyTABTest();
@@ -57,7 +74,6 @@ export default function testsuite() {
   ShortcutKeyDPADDOWNTest();
   ShortcutKeyDPADLEFTTest();
   ShortcutKeyDPADRIGHTTest();
-  addGestureApplyGesture();
   TapGestureHandlerTest();
   PanGestureHandlerTest();
   SwiperGestureHandlerTest();
@@ -82,4 +98,21 @@ export default function testsuite() {
   SwipeGestureExample01Test();
   PanGestureExample03Test();
   SwipeGestureExample03Test();
+  SwipeGestureExample02Test();
+  RotationGestureBasic01Test();
+  RotationGestureBasic02Test();
+  PinchGestureBasic01Test();
+  PinchGestureBasic02Test();
+  PanGestureExampleTemplateTest();
+  PinchGestureTemplateTest();
+  RotationGestureTemplateTest();
+  TapGestureTemplateTest();
+  LongPressGestureTemplateTest();
+  SwipeGestureTemplateTest();
+  PanGestureUpdateTest();
+  PinchGestureUpdateTest();
+  RotationGestureUpdateTest();
+  onAttachTest();
+  GestureRecognizerState();
+  typeNodeGestureTest();
 }

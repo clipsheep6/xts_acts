@@ -15,9 +15,47 @@
 // global
 import setDefaultThemeTest from './themeTokens/SetDefaultTheme.test';
 import systemThemeTest from './themeTokens/SystemTheme.test';
+import withThemeTest from './themeTokens/WithTheme.test';
+// components
+import alphabetIndexerThemeTest from './components/AlphabetIndexer.test';
+import badgeThemeTest from './components/Badge.test';
+import buttonThemeTest from './components/Button.test';
+import checkboxThemeTest from './components/Checkbox.test';
+import checkboxGroupThemeTest from './components/CheckboxGroup.test';
+import counterThemeTest from './components/Counter.test';
+import datePickerThemeTest from './components/DatePicker.test';
+import dividerThemeTest from './components/Divider.test';
+import forEachTest from './components/ForEach.test';
+import ifThemeTest from './components/If.test';
+import lazyForEachTest from './components/LazyForEach.test';
+import loadingProgressThemeTest from './components/LoadingProgress.test';
+import menuThemeTest from './components/Menu.test';
+import menuItemThemeTest from './components/MenuItem.test';
+import patternLockThemeTest from './components/PatternLock.test';
+import qrCodeThemeTest from './components/QRCode.test';
+import sliderThemeTest from './components/Slider.test';
 
 export default function testsuite() {
   // global tests
   setDefaultThemeTest();
   systemThemeTest();
+  withThemeTest();
+  // components
+  alphabetIndexerThemeTest();
+  badgeThemeTest();
+  buttonThemeTest();
+  checkboxThemeTest()
+  checkboxGroupThemeTest();
+  counterThemeTest();
+  datePickerThemeTest();
+  dividerThemeTest();
+  forEachTest();
+  ifThemeTest();
+  lazyForEachTest();
+  loadingProgressThemeTest();
+  menuThemeTest();
+  menuItemThemeTest();
+  patternLockThemeTest();
+  qrCodeThemeTest();
+  sliderThemeTest();
 }

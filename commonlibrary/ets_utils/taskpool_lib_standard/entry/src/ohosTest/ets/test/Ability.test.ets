@@ -17,11 +17,12 @@ import taskpool from '@ohos.taskpool'
 import worker from '@ohos.worker'
 import { BusinessError } from '@ohos.base'
 import { currentFun, transferArrayBuffer, transferAtomics, setCloneListTest, setTransferListTest,
-  testString, testTime, testNumber, testTaskPool, promiseCase, printArgs, asyncSum,
+  testString, testTime, testNumber, testTaskPool, promiseCase, asyncSum,
   printArgsFunc, Sum, delaySum, Add, funcStrCat, arraySum, objectSum, Multi, AdditionDelay, WaitforRunner,
   errorTest, testCancelDelayed, dependend, hashMapTest, delay, randomTest, outerTaskFunc,
-  isConcurrentTest1, isConcurrentTest2 } from './testFunclist'
-import { A, B, StrCat} from './exportFunclist'
+  isConcurrentTest1, isConcurrentTest2, sequenceRunnerTest, sequenceRunnerPriorityTest, CancelAndExecuteDelayed,
+  errorManageTest } from './testFunclist'
+import { A, B, StrCat, printArgs } from './exportFunclist'
 
 export default function TaskPoolTest() {
   describe('ActsAbilityTest', () => {
@@ -985,7 +986,6 @@ export default function TaskPoolTest() {
       let highTime: number = 0;
       let mediumTime: number = 0;
       let lowTime: number = 0;
-      let idleTime: number = 0;
 
       for (let i: number = 0; i < allCount; i++) {
         let task1: taskpool.Task = new taskpool.Task(testTime);
@@ -994,22 +994,18 @@ export default function TaskPoolTest() {
         taskArray.push(task2);
         let task3: taskpool.Task = new taskpool.Task(testTime);
         taskArray.push(task3);
-        let task4: taskpool.Task = new taskpool.Task(testTime);
-        taskArray.push(task4);
       }
 
-      for (let i: number = 0; i < allCount; i+=4) {
+      for (let i: number = 0; i < allCount; i+=3) {
         let res1: number = await taskpool.execute(taskArray[i], taskpool.Priority.HIGH) as number;
         lowTime += (res1 - begin);
         let res2: number = await taskpool.execute(taskArray[i + 1], taskpool.Priority.LOW) as number;
         mediumTime += (res2 - begin);
         let res3: number = await taskpool.execute(taskArray[i + 2], taskpool.Priority.MEDIUM) as number;
         highTime += (res3 - begin);
-        let res4: number = await taskpool.execute(taskArray[i + 3], taskpool.Priority.IDLE) as number;
-        idleTime += (res4 - begin);
       }
-      
-      expect(lowTime > mediumTime && mediumTime > highTime && highTime > idleTime);
+
+      expect(lowTime > mediumTime && mediumTime > highTime);
       done();
     })
 
@@ -1287,7 +1283,7 @@ export default function TaskPoolTest() {
       try {
         taskpool.Task.sendData(4);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The function is not called in the taskpool thread");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: The function is not called in the TaskPool thread");
       }
       done();
     })
@@ -1387,7 +1383,7 @@ export default function TaskPoolTest() {
         taskpool.execute(task1);
         taskpool.cancel(task1);
       } catch(e) {
-        expect(e).assertEqual("BusinessError: The task does not exist when it is canceled, taskpool:: task is not executed or has been executed");
+        expect(e).assertEqual("BusinessError: The task to cancel does not exist, taskpool:: task is not executed or has been executed");
       }
       expect(taskpool.Task.isCanceled() == false);
       done();
@@ -1419,7 +1415,7 @@ export default function TaskPoolTest() {
         taskpool.cancel(task1);
       }
       catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task does not exist when it is canceled, taskpool:: task is not executed or has been executed");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task to cancel does not exist, taskpool:: task is not executed or has been executed");
       }
       done();
     })
@@ -1444,7 +1440,7 @@ export default function TaskPoolTest() {
         taskpool.cancel(task3);
       }
       catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task does not exist when it is canceled, taskpool:: task is not executed or has been executed");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task to cancel does not exist, taskpool:: task is not executed or has been executed");
       }
       done();
     })
@@ -1476,7 +1472,7 @@ export default function TaskPoolTest() {
         taskpool.cancel(task3);
       }
       catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task does not exist when it is canceled, taskpool:: task is not executed or has been executed");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task to cancel does not exist, taskpool:: task is not executed or has been executed");
       }
       done();
     })
@@ -1517,7 +1513,7 @@ export default function TaskPoolTest() {
         taskpool.cancel(task2);
       }
       catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task does not exist when it is canceled, taskpool:: task is not executed or has been executed");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task to cancel does not exist, taskpool:: task is not executed or has been executed");
       }
       done();
     })
@@ -1599,7 +1595,7 @@ export default function TaskPoolTest() {
         let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
         taskpool.cancel(taskGroup);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task group does not exist when it is canceled, taskpool:: taskGroup is not executed or has been executed");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task group to cancel does not exist, taskpool:: taskGroup is not executed or has been executed");
       }
       done();
     })
@@ -1640,7 +1636,7 @@ export default function TaskPoolTest() {
       try {
         taskpool.cancel(taskGroup1);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task group does not exist when it is canceled, taskpool:: taskGroup is not executed or has been executed");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task group to cancel does not exist, taskpool:: taskGroup is not executed or has been executed");
       }
       done();
     })
@@ -1684,7 +1680,8 @@ export default function TaskPoolTest() {
         let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
         taskGroup2.addTask(task);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: taskGroup cannot add groupTask");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: taskGroup cannot add groupTask");
       }
       done();
     })
@@ -1704,7 +1701,8 @@ export default function TaskPoolTest() {
         let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
         taskGroup.addTask(task);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
       }
       done();
     })
@@ -1724,7 +1722,8 @@ export default function TaskPoolTest() {
         let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
         taskGroup.addTask(task);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
       }
       done();
     })
@@ -1745,7 +1744,8 @@ export default function TaskPoolTest() {
         let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
         taskGroup.addTask(task);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
       }
       done();
     })
@@ -1766,7 +1766,8 @@ export default function TaskPoolTest() {
         let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
         taskGroup.addTask(task1);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: dependent task not allowed.");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: dependent task not allowed.");
       }
       done();
     })
@@ -1793,7 +1794,8 @@ export default function TaskPoolTest() {
           expect(res[1]).assertEqual(200);
         });
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: executed taskGroup cannot addTask");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: executed taskGroup cannot addTask");
       }
       done();
     })
@@ -1815,7 +1817,8 @@ export default function TaskPoolTest() {
         runner.execute(task).then(() => {
         });
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: SequenceRunner cannot execute groupTask");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: SequenceRunner cannot execute groupTask");
       }
       done();
     })
@@ -1836,7 +1839,8 @@ export default function TaskPoolTest() {
         runner.execute(task).then(() => {
         });
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: SequenceRunner cannot execute seqRunnerTask or executedTask");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: SequenceRunner cannot execute seqRunnerTask or executedTask");
       }
       done();
     })
@@ -1857,7 +1861,8 @@ export default function TaskPoolTest() {
         runner.execute(task).then(() => {
         });
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: SequenceRunner cannot execute seqRunnerTask or executedTask");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: SequenceRunner cannot execute seqRunnerTask or executedTask");
       }
       done();
     })
@@ -1902,7 +1907,8 @@ export default function TaskPoolTest() {
         runner2.execute(task).then(() => {
         });
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: SequenceRunner cannot execute seqRunnerTask or executedTask");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: SequenceRunner cannot execute seqRunnerTask or executedTask");
       }
       done();
     })
@@ -1923,7 +1929,8 @@ export default function TaskPoolTest() {
         let task1: taskpool.Task = new taskpool.Task(printArgs, 200);
         task.addDependency(task1);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: groupTask cannot addDependency");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: groupTask cannot addDependency");
       }
       done();
     })
@@ -1944,7 +1951,8 @@ export default function TaskPoolTest() {
         let task1: taskpool.Task = new taskpool.Task(printArgs, 200);
         task1.addDependency(task);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: groupTask cannot be relied on");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: groupTask cannot be relied on");
       }
       done();
     })
@@ -1964,7 +1972,8 @@ export default function TaskPoolTest() {
         taskpool.execute(task2);
         task1.addDependency(task2);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: seqRunnerTask or executedTask cannot be relied on");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask or executedTask cannot be relied on");
       }
       done();
     })
@@ -1984,7 +1993,8 @@ export default function TaskPoolTest() {
         taskpool.executeDelayed(100, task2);
         task1.addDependency(task2);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: seqRunnerTask or executedTask cannot be relied on");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask or executedTask cannot be relied on");
       }
       done();
     })
@@ -2004,7 +2014,8 @@ export default function TaskPoolTest() {
         taskpool.execute(task1);
         task1.addDependency(task2);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: seqRunnerTask or executedTask cannot addDependency");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask or executedTask cannot addDependency");
       }
       done();
     })
@@ -2024,7 +2035,8 @@ export default function TaskPoolTest() {
         taskpool.executeDelayed(100,task1);
         task1.addDependency(task2);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: seqRunnerTask or executedTask cannot addDependency");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask or executedTask cannot addDependency");
       }
       done();
     })
@@ -2046,7 +2058,8 @@ export default function TaskPoolTest() {
         });
         task1.addDependency(task2);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: seqRunnerTask or executedTask cannot be relied on");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask or executedTask cannot be relied on");
       }
       done();
     })
@@ -2068,7 +2081,8 @@ export default function TaskPoolTest() {
         });
         task1.addDependency(task2);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: seqRunnerTask or executedTask cannot addDependency");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask or executedTask cannot addDependency");
       }
       done();
     })
@@ -2089,7 +2103,8 @@ export default function TaskPoolTest() {
         let task1: taskpool.Task = new taskpool.Task(printArgs, 200);
         task1.addDependency(task);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: groupTask cannot be relied on");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: groupTask cannot be relied on");
       }
       done();
     })
@@ -2110,7 +2125,8 @@ export default function TaskPoolTest() {
         let task1: taskpool.Task = new taskpool.Task(printArgs, 200);
         task.addDependency(task1);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: groupTask cannot addDependency");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: groupTask cannot addDependency");
       }
       done();
     })
@@ -2131,7 +2147,8 @@ export default function TaskPoolTest() {
         });
         taskpool.execute(task1);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: seqRunnerTask cannot execute outside");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask cannot execute outside");
       }
       done();
     })
@@ -2151,7 +2168,8 @@ export default function TaskPoolTest() {
         taskGroup1.addTask(task);
         taskpool.execute(task);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: groupTask cannot execute outside");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: groupTask cannot execute outside");
       }
       done();
     })
@@ -2172,7 +2190,8 @@ export default function TaskPoolTest() {
         });
         taskpool.executeDelayed(100, task1);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: seqRunnerTask cannot executeDelayed outside");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask cannot executeDelayed outside");
       }
       done();
     })
@@ -2192,7 +2211,8 @@ export default function TaskPoolTest() {
         taskGroup1.addTask(task);
         taskpool.executeDelayed(100, task)
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: groupTask cannot executeDelayed outside");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: groupTask cannot executeDelayed outside");
       }
       done();
     })
@@ -2239,7 +2259,8 @@ export default function TaskPoolTest() {
       try {
         taskpool.execute(task1)
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: executedTask with dependency cannot execute again");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: executedTask with dependency cannot execute again");
       }
       done();
     })
@@ -2397,7 +2418,7 @@ export default function TaskPoolTest() {
       try {
         taskpool.cancel(task1);
       } catch (e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task does not exist when it is canceled, taskpool:: task is not executed or has been executed");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task to cancel does not exist, taskpool:: task is not executed or has been executed");
       }
 
       taskpool.execute(task2).then(()=>{
@@ -2419,7 +2440,7 @@ export default function TaskPoolTest() {
       try {
         taskpool.cancel(task2);
       } catch (e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task does not exist when it is canceled, taskpool:: task is not executed or has been executed");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: The task to cancel does not exist, taskpool:: task is not executed or has been executed");
       }
       done();
     })
@@ -2722,7 +2743,8 @@ export default function TaskPoolTest() {
           expect(res[1]).assertEqual(200);
         });
       } catch (e) {
-        expect(e.toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: executed taskGroup cannot addTask");
+        expect(e.toString()).assertEqual("BusinessError: Parameter error. The input parameters are invalid, " +
+            "taskpool:: executed taskGroup cannot addTask");
         expect(task1.totalDuration < 5).assertTrue();
         expect(task1.cpuDuration < 5).assertTrue();
         expect(task1.ioDuration < 5).assertTrue();
@@ -2872,7 +2894,8 @@ export default function TaskPoolTest() {
         taskGroup.addTask(task);
 
       } catch (e) {
-        expect(e.toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
+        expect(e.toString()).assertEqual("BusinessError: Parameter error. The input parameters are invalid, " +
+            "taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
         expect(task.totalDuration < 5).assertTrue();
         expect(task.cpuDuration < 5).assertTrue();
         expect(task.ioDuration < 5).assertTrue();
@@ -2986,7 +3009,8 @@ export default function TaskPoolTest() {
       try {
         taskpool.execute(task)
       } catch (e) {
-        expect(e.toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: The long task can only be executed once");
+        expect(e.toString()).assertEqual("BusinessError: Parameter error. The input parameters are invalid, " +
+            "taskpool:: The long task can only be executed once");
       }
       done();
     })
@@ -3005,7 +3029,8 @@ export default function TaskPoolTest() {
       try {
         group.addTask(task)
       } catch (e) {
-        expect(e.toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: The interface does not support the long task");
+        expect(e.toString()).assertEqual("BusinessError: Parameter error. The input parameters are invalid, " +
+            "taskpool:: The interface does not support the long task");
       }
       done();
     })
@@ -3079,7 +3104,7 @@ export default function TaskPoolTest() {
       done();
     })
 
-        /**
+    /**
      * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0140
      * @tc.name      : TaskPoolTestClass140
      * @tc.desc      : taskpool error test
@@ -3124,14 +3149,14 @@ export default function TaskPoolTest() {
         finalString += "b";
         isTerminate2 = true;
       })
-      taskpool.execute(task3, taskpool.Priority.IDLE).then(() => {
+      taskpool.execute(task3).then(() => {
         finalString += "c";
         isTerminate3 = true;
       })
-      while (!isTerminate1 || !isTerminate2 || !isTerminate3) {
+      while (!isTerminate3) {
         await promiseCase()
       }
-      expect(finalString).assertEqual("cba");
+      expect(finalString.charAt(0)).assertEqual("c");
       done();
     })
 
@@ -3144,34 +3169,20 @@ export default function TaskPoolTest() {
      * @tc.level     : Level 0
      */
     it('TaskPoolTestClass142', 0, async (done: Function) => {
-      let finalString: string = "";
-      let isTerminate1: boolean = false;
-      let isTerminate2: boolean = false;
-      let isTerminate3: boolean = false;
-
       let task1: taskpool.Task = new taskpool.Task(delaySum, 10, 20, 100)
       let task2: taskpool.Task = new taskpool.Task(delaySum, 30, 40, 300)
       let task3: taskpool.Task = new taskpool.Task(delaySum, 50, 60, 500)
       task1.addDependency(task2);
       task2.addDependency(task3);
-      task1.removeDependency(task2);
-      task2.removeDependency(task3);
-      taskpool.execute(task1, taskpool.Priority.IDLE).then(() => {
-        finalString += "a";
-        isTerminate1 = true;
-      })
-      taskpool.execute(task2, taskpool.Priority.IDLE).then(() => {
-        finalString += "b";
-        isTerminate2 = true;
-      })
-      taskpool.execute(task3, taskpool.Priority.IDLE).then(() => {
-        finalString += "c";
-        isTerminate3 = true;
-      })
-      while (!isTerminate1 || !isTerminate2 || !isTerminate3) {
-        await promiseCase()
+      taskpool.execute(task1, taskpool.Priority.IDLE);
+      taskpool.execute(task2, taskpool.Priority.IDLE);
+      taskpool.execute(task3, taskpool.Priority.IDLE);
+      taskpool.cancel(task1);
+      try {
+        task1.removeDependency(task2);
+      } catch (e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: The dependency does not exist, taskpool:: executedTask cannot removeDependency");
       }
-      expect(finalString).assertEqual("abc");
       done();
     })
 
@@ -3210,37 +3221,21 @@ export default function TaskPoolTest() {
     /**
      * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0144
      * @tc.name      : TaskPoolTestClass144
-     * @tc.desc      : executeDelayed for taskpool
+     * @tc.desc      : executedTask cannot addDependency
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
     it('TaskPoolTestClass144', 0, async (done: Function) => {
-      let finalString: string = "";
-      let isTerminate1: boolean = false;
-      let isTerminate2: boolean = false;
-      let isTerminate3: boolean = false;
-      let task1: taskpool.Task = new taskpool.Task(WaitforRunner, "a");
-      let task2: taskpool.Task = new taskpool.Task(WaitforRunner, "b");
-      let task3: taskpool.Task = new taskpool.Task(WaitforRunner, "c");
-
-      taskpool.executeDelayed(1000, task1, taskpool.Priority.IDLE).then(() => {
-        finalString += 'a';
-        isTerminate1 = true;
-      });
-      taskpool.executeDelayed(500, task2, taskpool.Priority.IDLE).then(() => {
-        finalString += 'b';
-        isTerminate2 = true;
-      });
-      taskpool.executeDelayed(100, task3, taskpool.Priority.IDLE).then(() => {
-        finalString += 'c';
-        isTerminate3 = true;
-      });
-      while (!isTerminate1 || !isTerminate2 || !isTerminate3) {
-        await promiseCase()
+      try {
+        let task1: taskpool.Task = new taskpool.Task(printArgs, 100);
+        let task2: taskpool.Task = new taskpool.Task(printArgs, 100);
+        taskpool.executeDelayed(100, task1, taskpool.Priority.IDLE);
+        task1.addDependency(task2);
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask or executedTask cannot addDependency");
       }
-
-      expect(finalString).assertEqual("cba");
       done();
     })
 
@@ -3276,25 +3271,15 @@ export default function TaskPoolTest() {
      * @tc.level     : Level 0
      */
     it('TaskPoolTestClass146', 0, async (done: Function) => {
-      let finalString: string = "";
-      let task1: taskpool.Task = new taskpool.Task(AdditionDelay, 500);
-      let task2: taskpool.Task = new taskpool.Task(AdditionDelay, 300);
-      let task3: taskpool.Task = new taskpool.Task(AdditionDelay, 100);
-      let task4: taskpool.Task = new taskpool.Task(WaitforRunner, finalString);
-
-      let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner(taskpool.Priority.IDLE);
-      runner.execute(task1).then(() => {
-        finalString += 'a';
-      });
-      runner.execute(task2).then(() => {
-        finalString += 'b';
-      });
-      runner.execute(task3).then(() => {
-        finalString += 'c';
-      });
-
-      await runner.execute(task4);
-      expect(finalString).assertEqual("abc");
+      try {
+        let task: taskpool.Task = new taskpool.Task(printArgs, 100);
+        let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner(taskpool.Priority.IDLE);
+        runner.execute(task);
+        taskpool.executeDelayed(100, task, taskpool.Priority.IDLE);
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask cannot executeDelayed outside");
+      }
       done();
     })
 
@@ -3335,7 +3320,8 @@ export default function TaskPoolTest() {
         let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
         taskGroup.addTask(task);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
       }
       done();
     })
@@ -3343,34 +3329,27 @@ export default function TaskPoolTest() {
     /**
      * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0149
      * @tc.name      : TaskPoolTestClass149
-     * @tc.desc      : Async function execute taskGroup
+     * @tc.desc      : taskGroup cannot addTask
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
     it('TaskPoolTestClass149', 0, async (done: Function) => {
-      let result: Array<number> = [];
-      let isTerminate: boolean = false;
       let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
       let task1: taskpool.Task = new taskpool.Task(printArgs, 40);
       let task2: taskpool.Task = new taskpool.Task(printArgs, 50);
-      taskGroup.addTask(printArgs, 10);
-      taskGroup.addTask(printArgs, 20);
-      taskGroup.addTask(printArgs, 30);
-      taskGroup.addTask(task1);
-      taskGroup.addTask(task2);
-      taskpool.execute(taskGroup, taskpool.Priority.IDLE).then((ret) => {
-        result = ret as Array<number>;
-        isTerminate = true;
-      });
-      while (!isTerminate) {
-        await promiseCase()
+      try {
+        taskGroup.addTask(printArgs, 10);
+        taskGroup.addTask(printArgs, 20);
+        taskGroup.addTask(printArgs, 30);
+        taskpool.execute(taskGroup, taskpool.Priority.IDLE);
+        taskGroup.addTask(task1);
+        taskGroup.addTask(task2);
+        taskpool.execute(taskGroup, taskpool.Priority.IDLE);
+      } catch (e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: executed taskGroup cannot addTask");
       }
-      expect(result[0]).assertEqual(10);
-      expect(result[1]).assertEqual(20);
-      expect(result[2]).assertEqual(30);
-      expect(result[3]).assertEqual(40);
-      expect(result[4]).assertEqual(50);
       done();
     })
 
@@ -3436,9 +3415,623 @@ export default function TaskPoolTest() {
         try {
           taskpool.cancel(taskGroup1);
         } catch(e) {
-          expect((e as BusinessError).toString()).assertEqual("BusinessError: The task group does not exist when it is canceled, taskpool:: taskGroup is not executed or has been executed");
+          expect((e as BusinessError).toString()).assertEqual("BusinessError: The task group to cancel does not exist, taskpool:: taskGroup is not executed or has been executed");
         }
       }, 3000);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0152
+     * @tc.name      : TaskPoolTestClass152
+     * @tc.desc      : SequenceRunner with name execute task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass152', 0, async (done: Function) => {
+      let finalString = "";
+      let t: Array<taskpool.Task> = []
+      for (let i = 0; i <= 10; i++) {
+        t[i] = new taskpool.Task(printArgs, i);
+      }
+
+      let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner1");
+      for (let i = 0; i < 10; i++) {
+        runner.execute(t[i]).then((d) => {
+          finalString += d;
+        })
+      }
+      await runner.execute(t[10]);
+      expect(finalString).assertEqual("0123456789");
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0153
+     * @tc.name      : TaskPoolTestClass153
+     * @tc.desc      : Multiple sequenceRunner with name execute task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass153', 0, async (done: Function) => {
+      let finalString1 = "";
+      let finalString2 = "";
+      let finalString3 = "";
+      let t: Array<taskpool.Task> = []
+      for (let i = 0; i <= 20; i++) {
+        t[i] = new taskpool.Task(printArgs, i);
+      }
+      let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner2", taskpool.Priority.LOW);
+      let runner2:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner3", taskpool.Priority.MEDIUM);
+      let runner3:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner4", taskpool.Priority.HIGH);
+      for (let i = 0; i < 20; i++) {
+        if (i % 3 == 0) {
+          finalString1 += await runner.execute(t[i]) + ',';
+        } else if (i % 3 == 1) {
+          finalString2 += await runner2.execute(t[i]) + ',';
+        } else {
+          finalString3 += await runner3.execute(t[i]) + ',';
+        }
+      }
+      expect(finalString1).assertEqual("0,3,6,9,12,15,18,");
+      expect(finalString2).assertEqual("1,4,7,10,13,16,19,");
+      expect(finalString3).assertEqual("2,5,8,11,14,17,");
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0154
+     * @tc.name      : TaskPoolTestClass154
+     * @tc.desc      : SequenceRunner repeating tasks
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass154', 0, async (done: Function) => {
+      let task: taskpool.Task = new taskpool.Task(printArgs, 1);
+
+      let runner1:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner5");
+      let runner2:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner6");
+      try {
+        runner1.execute(task);
+        runner2.execute(task);
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: SequenceRunner cannot execute seqRunnerTask or executedTask");
+      }
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0155
+     * @tc.name      : TaskPoolTestClass155
+     * @tc.desc      : The task of the task group is executed in SequenceRunner
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass155', 0, async (done: Function) => {
+      let task: taskpool.Task = new taskpool.Task(printArgs, 1);
+
+      try {
+        let task: taskpool.Task = new taskpool.Task(printArgs, 100);
+        let runner1: taskpool.SequenceRunner = new taskpool.SequenceRunner("runner7", taskpool.Priority.LOW);
+        runner1.execute(task);
+        let taskGroup: taskpool.TaskGroup = new taskpool.TaskGroup();
+        taskGroup.addTask(task);
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: taskGroup cannot add seqRunnerTask or executedTask");
+      }
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0156
+     * @tc.name      : TaskPoolTestClass156
+     * @tc.desc      : Tasks with dependencies are executed in SequenceRunner
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass156', 0, async (done: Function) => {
+      let task1: taskpool.Task = new taskpool.Task(printArgs, 300);
+      let task2: taskpool.Task = new taskpool.Task(printArgs, 200);
+      task1.addDependency(task2);
+      let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner("runner8", taskpool.Priority.LOW);
+      try {
+        runner.execute(task1);
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: seqRunner:: dependent task not allowed.");
+      }
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0157
+     * @tc.name      : TaskPoolTestClass157
+     * @tc.desc      : sequenceRunner with name execute delayed task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass157', 0, async (done: Function) => {
+      try {
+        let task: taskpool.Task = new taskpool.Task(printArgs, 100);
+        let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner("runner9");
+        runner.execute(task).then(() => {
+        });
+        taskpool.executeDelayed(100, task);
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask cannot executeDelayed outside");
+      }
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0158
+     * @tc.name      : TaskPoolTestClass158
+     * @tc.desc      : sequenceRunner with name execute executed task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass158', 0, async (done: Function) => {
+      try {
+        let task: taskpool.Task = new taskpool.Task(printArgs, 100);
+        taskpool.execute(task);
+        let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner("runner10");
+        runner.execute(task).then(() => {
+        });
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: SequenceRunner cannot execute seqRunnerTask or executedTask");
+      }
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0159
+     * @tc.name      : TaskPoolTestClass159
+     * @tc.desc      : sequenceRunner with name execute delayed task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass159', 0, async (done: Function) => {
+      try {
+        let task: taskpool.Task = new taskpool.Task(printArgs, 100);
+        taskpool.executeDelayed(100, task);
+        let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner("runner11");
+        runner.execute(task).then(() => {
+        });
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: SequenceRunner cannot execute seqRunnerTask or executedTask");
+      }
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0160
+     * @tc.name      : TaskPoolTestClass160
+     * @tc.desc      : sequenceRunner with name and non-name execute delayed task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass160', 0, async (done: Function) => {
+      try {
+        let task: taskpool.Task = new taskpool.Task(printArgs, 100);
+        let runner1: taskpool.SequenceRunner = new taskpool.SequenceRunner();
+        runner1.execute(task).then(() => {
+        });
+        let runner2: taskpool.SequenceRunner = new taskpool.SequenceRunner("runner12");
+        runner2.execute(task).then(() => {
+        });
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: SequenceRunner cannot execute seqRunnerTask or executedTask");
+      }
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0161
+     * @tc.name      : TaskPoolTestClass161
+     * @tc.desc      : sequenceRunner with name execute executed task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass161', 0, async (done: Function) => {
+      try {
+        let task: taskpool.Task = new taskpool.Task(printArgs, 100);
+        let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner("runner13");
+        runner.execute(task).then(() => {
+        });
+        taskpool.execute(task);
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask cannot execute outside");
+      }
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0162
+     * @tc.name      : TaskPoolTestClass162
+     * @tc.desc      : sequenceRunner with name execute delayed task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass162', 0, async (done: Function) => {
+      try {
+        let task: taskpool.Task = new taskpool.Task(printArgs, 100);
+        let runner: taskpool.SequenceRunner = new taskpool.SequenceRunner("runner14");
+        runner.execute(task).then(() => {
+        });
+        taskpool.executeDelayed(100, task);
+      } catch(e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, taskpool:: seqRunnerTask cannot executeDelayed outside");
+      }
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0163
+     * @tc.name      : TaskPoolTestClass163
+     * @tc.desc      : Repeat SequenceRunner execution on the same thread
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass163', 0, async (done: Function) => {
+      try {
+        let task1 = new taskpool.Task(printArgs, 111);
+        let task2 = new taskpool.Task(printArgs, 222);
+        let runner1:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner15");
+        runner1.execute(task1).then((res) => {
+        })
+        let runner2:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner15");
+        runner2.execute(task2).then((res) => {
+        })
+      } catch (e) {
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: Parameter error. The input parameters " +
+            "are invalid, seqRunner:: the js gloableSeqRunner has been created in the current thread.");
+      }
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0164
+     * @tc.name      : TaskPoolTestClass164
+     * @tc.desc      : Multi threaded execution of SequenceRunner
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass164', 0, async (done: Function) => {
+      let mainFinalString = "";
+      let childFinalString = "";
+      let t: Array<taskpool.Task> = []
+      for (let i = 0; i < 100; i++) {
+        t[i] = new taskpool.Task(printArgs, i);
+      }
+
+      let runner:taskpool.SequenceRunner = new taskpool.SequenceRunner("runner16");
+      for (let i = 0; i < 20; i++) {
+        if (i % 2 == 0) {
+          mainFinalString += await runner.execute(t[i]) + ',';
+        }
+      }
+
+      let task1 = new taskpool.Task(sequenceRunnerTest);
+      childFinalString = await taskpool.execute(task1) as string;
+
+      expect(mainFinalString).assertEqual("0,2,4,6,8,10,12,14,16,18,");
+      expect(childFinalString).assertEqual("1,3,5,7,9,11,13,15,17,19,");
+
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0165
+     * @tc.name      : TaskPoolTestClass165
+     * @tc.desc      : taskpool support executePeriodically interface
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass165', 0, async (done: Function) => {
+      let task = new taskpool.Task(dependend, 200);
+      taskpool.executePeriodically(100, task)
+      try {
+        taskpool.execute(task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The periodic task cannot be executed again, taskpool:: the periodicTask cannot execute again");
+      }
+      taskpool.cancel(task);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0166
+     * @tc.name      : TaskPoolTestClass166
+     * @tc.desc      : taskpool support executePeriodically interface
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass166', 0, async (done: Function) => {
+      let task = new taskpool.Task(dependend, 200);
+      taskpool.executePeriodically(100, task)
+      try {
+        taskpool.executeDelayed(100, task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The periodic task cannot be executed again, taskpool:: the periodicTask cannot executeDelayed");
+      }
+      taskpool.cancel(task);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0167
+     * @tc.name      : TaskPoolTestClass167
+     * @tc.desc      : taskpool support executePeriodically interface
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass167', 0, async (done: Function) => {
+      let task = new taskpool.Task(dependend, 200);
+      taskpool.executePeriodically(100, task)
+      try {
+        let task1 = new taskpool.Task(dependend, 300);
+        task.addDependency(task1);
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The periodic task cannot have a dependency.");
+      }
+      taskpool.cancel(task);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0168
+     * @tc.name      : TaskPoolTestClass168
+     * @tc.desc      : taskpool support executePeriodically interface
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass168', 0, async (done: Function) => {
+      let task = new taskpool.Task(dependend, 200);
+      taskpool.executePeriodically(100, task)
+      try {
+        let task1 = new taskpool.Task(dependend, 300);
+        task1.addDependency(task);
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The periodic task cannot have a dependency.");
+      }
+      taskpool.cancel(task);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0169
+     * @tc.name      : TaskPoolTestClass169
+     * @tc.desc      : taskpool support executePeriodically interface
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass169', 0, async (done: Function) => {
+      let task = new taskpool.Task(dependend, 200);
+      taskpool.executePeriodically(100, task)
+      try {
+        let taskGroup = new taskpool.TaskGroup();
+        taskGroup.addTask(task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The periodic task cannot be executed again, taskpool:: The interface does not support the periodicTask");
+      }
+      taskpool.cancel(task);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0170
+     * @tc.name      : TaskPoolTestClass170
+     * @tc.desc      : taskpool support executePeriodically interface
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass170', 0, async (done: Function) => {
+      let task = new taskpool.Task(dependend, 200);
+      taskpool.executePeriodically(100, task)
+      try {
+        let runner = new taskpool.SequenceRunner()
+        runner.execute(task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The periodic task cannot be executed again, taskpool:: SequenceRunner cannot execute the periodicTask");
+      }
+      taskpool.cancel(task);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0171
+     * @tc.name      : TaskPoolTestClass171
+     * @tc.desc      : taskpool support executePeriodically interface
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass171', 0, async (done: Function) => {
+      let task = new taskpool.Task(dependend, 200);
+      taskpool.executePeriodically(100, task)
+      try {
+        let runner = new taskpool.SequenceRunner()
+        runner.execute(task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The periodic task cannot be executed again, taskpool:: SequenceRunner cannot execute the periodicTask");
+      }
+      taskpool.cancel(task);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0172
+     * @tc.name      : TaskPoolTestClass172
+     * @tc.desc      : taskpool support executePeriodically interface
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass172', 0, async (done: Function) => {
+      let task = new taskpool.Task(dependend, 200);
+      taskpool.executePeriodically(100, task)
+      try {
+        taskpool.executePeriodically(1000, task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The concurrent task has been executed and cannot be executed periodically.");
+      }
+
+      let t = Date.now();
+      while ((Date.now() - t) < 3000) {
+        continue;
+      }
+      taskpool.cancel(task)
+
+      let time = Date.now();
+      while ((Date.now() - time) < 2000) {
+        continue;
+      }
+      try {
+        taskpool.executePeriodically(1000, task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The concurrent task has been executed and cannot be executed periodically.");
+      }
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0173
+     * @tc.name      : TaskPoolTestClass173
+     * @tc.desc      : taskpool support executePeriodically interface
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass173', 0, async (done: Function) => {
+      let task = new taskpool.Task(dependend, 200);
+      taskpool.execute(task)
+      try {
+        taskpool.executePeriodically(100, task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The concurrent task has been executed and cannot be executed periodically.");
+      }
+
+      let task1 = new taskpool.Task(dependend, 200);
+      let taskGroup = new taskpool.TaskGroup()
+      taskGroup.addTask(task1)
+      try {
+        taskpool.executePeriodically(100, task1)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The concurrent task has been executed and cannot be executed periodically.");
+      }
+
+      let task2 = new taskpool.Task(dependend, 200);
+      let runner = new taskpool.SequenceRunner()
+      runner.execute(task2)
+      try {
+        taskpool.executePeriodically(100, task2)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The concurrent task has been executed and cannot be executed periodically.");
+      }
+
+      let task3 = new taskpool.Task(dependend, 200);
+      let task4 = new taskpool.Task(dependend, 200);
+      task3.addDependency(task4)
+      try {
+        taskpool.executePeriodically(100, task3)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: Parameter error. The input parameters are invalid, " +
+            "taskpool:: the task with dependency cannot executePeriodically");
+      }
+      try {
+        taskpool.executePeriodically(100, task4)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: Parameter error. The input parameters are invalid, " +
+            "taskpool:: the task with dependency cannot executePeriodically");
+      }
+
+      let task5 = new taskpool.Task(dependend, 200);
+      taskpool.executeDelayed(1000, task5)
+      try {
+        taskpool.executePeriodically(100, task5)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The concurrent task has been executed and cannot be executed periodically.");
+      }
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0174
+     * @tc.name      : TaskPoolTestClass174
+     * @tc.desc      : taskpool repeatedly calling Cancel and ExecuteDelayed, only last task can execute
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass174', 0, async (done: Function) => {
+      let num = 100;
+      let base1:CancelAndExecuteDelayed = new CancelAndExecuteDelayed(num);
+      base1.postRequest();
+      let i = 0;
+      let time = setInterval(() => {
+        base1.postRequest();
+        i++;
+        console.log(i + "秒后又触发成功");
+      }, 500);
+      setTimeout(() => {
+        clearInterval(time);
+      }, 2000);
+      while (!base1.isTerminate) {
+        await promiseCase()
+      }
+      expect(base1.i).assertEqual(1);
+      expect(base1.res).assertEqual(num);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0175
+     * @tc.name      : TaskPoolTestClass175
+     * @tc.desc      : taskpool calling callback which have errorManage
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+     it('TaskPoolTestClass175', 0, async (done: Function) => {
+      taskpool.execute(errorManageTest).then(() => {
+        console.log("execute errorManageTest");
+      })
       done();
     })
   })

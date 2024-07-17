@@ -14,7 +14,18 @@
  */
 
 import telephonyRadioNoPermissionPublicTest from './TelephonyRadioNoPermissionPublic.test';
+import telephonyRadioNoPermissionEmptyTest from './TelephonyRadioNoPermissionPublic1.test';
+import sim from '@ohos.telephony.sim';
+import EmptyTest from './Empty.test';
 
 export default function testsuite() {
-  telephonyRadioNoPermissionPublicTest();
+  if (canIUse("SystemCapability.Telephony.CoreService")){
+    if(sim.hasSimCardSync(0)){
+      telephonyRadioNoPermissionPublicTest();
+    }else{
+      telephonyRadioNoPermissionEmptyTest();
+    }
+  }else{
+    EmptyTest()
+  }
 }
