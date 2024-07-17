@@ -22,13 +22,12 @@ function timeout() {
       bundleName: 'com.example.uiextensiontest',
       abilityName: 'TestAbility'
     }
-  ).then(()=>{
+  ).then(() => {
     console.log('====>start com.example.uiextensiontest.TestAbility finish====>');
   });
 }
 
 export default class MainAbility3 extends Ability {
-
   onCreate(want, launchParam) {
     console.log('MainAbility3 onCreate');
   }
@@ -61,12 +60,12 @@ export default class MainAbility3 extends Ability {
     console.log('MainAbility3 onBackground');
     globalThis.ability3Context.terminateSelfWithResult(
       {
-        resultCode:1,
-        want:{
-          action:'ACTION'
+        resultCode: 1,
+        want: {
+          action: 'ACTION'
         }
-      }, ()=>{
-        console.debug('====>terminateSelfWithResult success====>');
-      });
+      }, () => {
+      console.debug('====>terminateSelfWithResult success====>');
+    });
   }
 };

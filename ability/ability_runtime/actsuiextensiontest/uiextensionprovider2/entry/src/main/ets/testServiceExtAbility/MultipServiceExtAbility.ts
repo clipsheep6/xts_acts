@@ -18,12 +18,11 @@ import MultipServiceExtStub from '../IdlServiceExt/MultipService/multip_service_
 import { multipCallback } from '../IdlServiceExt/MultipService/multip_service_ext';
 import Logger from '../util/Logger';
 
-class ServiceExtStub extends MultipServiceExtStub{
-
-  multip(num1: number, num2: number, callback: multipCallback): void{
-      let res = num1 * num2
-      callback(0,res)
-      Logger.info(`add result: ${res}`)
+class ServiceExtStub extends MultipServiceExtStub {
+  multip(num1: number, num2: number, callback: multipCallback): void {
+    let res = num1 * num2
+    callback(0, res)
+    Logger.info(`add result: ${res}`)
   }
 }
 

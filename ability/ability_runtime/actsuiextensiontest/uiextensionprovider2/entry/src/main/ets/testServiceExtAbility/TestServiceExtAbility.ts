@@ -18,12 +18,11 @@ import IdlServiceExtStub from '../IdlServiceExt/idl_service_ext_stub';
 import { addCallback } from '../IdlServiceExt/i_idl_service_ext';
 import Logger from '../util/Logger';
 
-class ServiceExtStub extends IdlServiceExtStub{
-
-  add(num1: number, num2: number, callback: addCallback): void{
-      let res = num1 + num2
-      callback(0,res)
-      Logger.info(`add result: ${res}`)
+class ServiceExtStub extends IdlServiceExtStub {
+  add(num1: number, num2: number, callback: addCallback): void {
+    let res = num1 + num2
+    callback(0, res)
+    Logger.info(`add result: ${res}`)
   }
 }
 
