@@ -60,6 +60,33 @@ describe("TreeMapTest", function () {
     }
   });
 
+/**
+   * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_TREEMAP_02000
+   * @tc.name: testConstructor003
+   * @tc.desc: Create an TreeMap instance and use Compare. For example: TreeMap((a, b) => {return a > b}).
+   * @tc.size: MediumTest
+   * @tc.type: Function
+   * @tc.level: Level 2
+   */
+  it("testConstructor003", 0, function () {
+    class Person {
+      id = 0;
+      name = '';
+      constructor(id, name) {
+        this.id = id;
+        this.name = name;
+      }
+    }
+    let treeMap = new TreeMap((a, b) => {return a > b});
+    let personone = new Person(1,'张三');
+    let persontwo = new Person(3,'李四');
+    let personsec = new Person(2,'王五');
+	commap.set(personone,"1")
+    commap.set(persontwo,"1")
+    commap.set(personsec,"1")
+    expect(commap.getFirstKey().id).assertEqual(3);
+  });
+
   /**
    * @tc.name: testSet002
    * @tc.desc: Add a pair of key value pairs to the TreeMap. For example: treeMap.set(0, "四").

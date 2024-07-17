@@ -61,6 +61,34 @@ describe("TreeSetTest", function () {
     }
   });
 
+
+  /**
+   * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_TREESET_02000
+   * @tc.name: testConstructor003
+   * @tc.desc: Create an TreeSet instance and use Compare. For example: TreeSet((a, b) => {return a > b}).
+   * @tc.size: MediumTest
+   * @tc.type: Function
+   * @tc.level: Level 2
+   */
+  it("testConstructor003", 0, function () {
+    let treeSet = new TreeSet((a, b) => {return a > b});
+    class Person {
+      id = 0;
+      name = '';
+      constructor(id, name) {
+        this.id = id;
+        this.name = name;
+      }
+    }
+    let personone = new Person(1,'张三');
+    let persontwo = new Person(3,'李四');
+    let personsec = new Person(2,'王五');
+    treeSet.add(personone);
+    treeSet.add(persontwo);
+    treeSet.add(personsec);
+    expect(commap.getFirstValue().id).assertEqual(3);
+  });
+
   /**
    * @tc.name: testAdd002
    * @tc.desc: Add element to TreeSet instance. For example: treeSet.add("四").
