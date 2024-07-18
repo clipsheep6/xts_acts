@@ -25,8 +25,6 @@ import UTD from '@ohos.data.uniformTypeDescriptor'
 const ARRAY_BUFFER = new ArrayBuffer(256)
 let TAG = "ttt"
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard()
-let data = new UDC.UnifiedData();
-
 
 export default function PasteBoardCompatibilityTest() {
   describe('PasteBoardCompatibilityTest', () => {
@@ -39,6 +37,50 @@ export default function PasteBoardCompatibilityTest() {
       systemPasteboard.clearDataSync();
     })
     afterAll(() => {
+    })
+    //
+
+    /**
+     * @tc.name pasteboardCompatibilityTest001
+     * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0100
+     * @tc.desc setUnifiedData getData Type is delayPlainText
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0100', 0, async () => {
+      let plainTextData = new unifiedDataChannel.UnifiedData();
+      let GetDelayPlainTextData = ((dataType:string) => {
+        let plainText = new unifiedDataChannel.PlainText();
+        plainText.details = {
+          Key: 'delayPlainText',
+          Value: 'delayPlainText'
+        };
+        plainText.textContent = 'delayTextContent';
+        plainText.abstract = 'delayAbstract';
+        plainTextData.addRecord(plainText)
+        return plainTextData;
+      })
+      plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
+      plainTextData.properties.getDelayData = GetDelayPlainTextData;
+      expect(systemPasteboard.hasDataSync()).assertFalse();
+      await systemPasteboard.setUnifiedData(plainTextData).then(() => {
+        expect(systemPasteboard.hasDataSync()).assertTrue();
+        console.info(TAG + 'Set plainTextData Success');
+      }).catch((error:BusinessError) => {
+        console.info(TAG + 'Set plainTextData fail:' + 'code:' + error.code + 'message:' +error.message);
+        expect().assertFail();
+      })
+
+      let result = systemPasteboard.getData();
+      await result.then((data) => {
+        console.info(TAG + 'Get Paste Data Success,mimeType:' + data.getPrimaryMimeType() + ',html:' + data.getPrimaryHtml()
+          + ',text:' + data.getPrimaryText() + ',uri:' + data.getPrimaryUri());
+        expect(data.getPrimaryMimeType()).assertEqual('text/plain');
+      }).catch((error:BusinessError) => {
+        console.info(TAG + 'Get textData Fail:' + 'code:' + error.code + 'message:' +error.message);
+        expect().assertFail();
+      })
     })
 
     /**
