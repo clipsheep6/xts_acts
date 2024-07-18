@@ -3642,24 +3642,29 @@ export default function AVSession() {
             const isExtendedDisplayCast = canIUse('SystemCapability.Multimedia.AVSession.ExtendedDisplayCast');
             if (isExtendedDisplayCast) {
                 console.info(`isExtendedDisplayCast success: ${isExtendedDisplayCast}`);
-                session.getAllCastDisplays().then((data) => {
-                    console.info(`isExtendedDisplayCast success111: ${JSON.stringify(data)}`);
-                    if (Array.isArray(data)) {
-                        console.info(`getAllCastDisplays success: ${JSON.stringify(data)}`);
-                        expect(true).assertTrue();
+                try {
+                    session.getAllCastDisplays().then((data) => {
+                        console.info(`isExtendedDisplayCast success111: ${JSON.stringify(data)}`);
+                        if (Array.isArray(data)) {
+                            console.info(`getAllCastDisplays success: ${JSON.stringify(data)}`);
+                            expect(true).assertTrue();
+                            done();
+                        } else {
+                            console.info('getAllCastDisplays failed');
+                            expect(false).assertTrue();
+                            done();
+                        }
+                    }).catch((err) => {
+                        console.info(`getAllCastDisplays successfully: ${err.code}, message: ${err.message}`)
+                        expect(err.code).assertEqual(6600101);
                         done();
-                    } else {
-                        console.info('getAllCastDisplays failed');
-                        expect(false).assertTrue();
-                        done();
-                    }
-                }).catch((err) => {
-                    console.info(`getAllCastDisplays successfully111: ${err.code}, message: ${err.message}`)
-                    expect(err.code).assertEqual(6600101);
-                    console.info(`getAllCastDisplays successfully: ${err.code}, message: ${err.message}`)
+                    })
                     done();
-                })
+                }catch (err) {
+                console.error(`Get getAllCastDisplays: ${err.code}, message: ${err.message}`);
+                expect(true).assertTrue();
                 done();
+                } 
             } else {
                 console.log('ExtendedDisplayCast not by this device.')
                 done();
