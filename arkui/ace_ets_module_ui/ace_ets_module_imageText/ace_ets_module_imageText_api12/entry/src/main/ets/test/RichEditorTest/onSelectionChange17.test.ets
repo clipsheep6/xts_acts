@@ -18,8 +18,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function onSelectionChange17() {
-  describe('onSelectionChange17', function () {
-    beforeEach(async function (done) {
+  describe('onSelectionChange17', () => {
+    beforeEach(async (done: Function) => {
       console.info("onSelectionChange17 beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditor/onSelectionChange17',
@@ -40,7 +40,7 @@ export default function onSelectionChange17() {
       console.info("onSelectionChange17 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("onSelectionChange17 after each called");
     });
@@ -52,7 +52,7 @@ export default function onSelectionChange17() {
      * @tc.type
     * @tc.size
      */
-    it('onSelectionChange17_0100', 0, async function (done) {
+    it('onSelectionChange17_0100', 0, async (done: Function) => {
       console.info('[onSelectionChange17_0100] START');
       await CommonFunc.sleep(1000);
 

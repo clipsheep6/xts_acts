@@ -14,13 +14,13 @@
  */
 
 import router from '@ohos.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from '../Utils'
 import { Driver, ON } from '@ohos.UiTest';
 
 export default function TextStyle() {
-  describe('TextStyle', function () {
-    beforeEach(async function (done) {
+  describe('TextStyle', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextStyle beforeEach start");
       let options = {
         url: 'MainAbility/pages/text/TextApi/TextStyle',
@@ -41,22 +41,21 @@ export default function TextStyle() {
       console.info("TextStyle beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("TextStyle after each called");
     });
 
 
-
     /**
-     * @tc.number    TextStyle_0001
-     * @tc.name      TextStyle_0001
-     * @tc.desc      set api
-     * @tc.level       Level 1
+     * @tc.number TextStyle_0001
+     * @tc.name TextStyle_0001
+     * @tc.desc set api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('TextStyle_0001', 0, async function (done) {
+    it('TextStyle_0001', 0, async (done: Function) => {
 
       console.info('[TextStyle_0001] START');
       await Utils.sleep(2000);
@@ -69,14 +68,14 @@ export default function TextStyle() {
     });
 
     /**
-     * @tc.number    TextStyle_0002
-     * @tc.name      TextStyle_0002
-     * @tc.desc      set api
-     * @tc.level       Level 1
+     * @tc.number TextStyle_0002
+     * @tc.name TextStyle_0002
+     * @tc.desc set api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('TextStyle_0002', 0, async function (done) {
+    it('TextStyle_0002', 0, async (done: Function) => {
 
       console.info('[TextStyle_0002] START');
       await Utils.sleep(2000);
@@ -89,14 +88,14 @@ export default function TextStyle() {
     });
 
     /**
-     * @tc.number    TextStyle_0003
-     * @tc.name      TextStyle_0003
-     * @tc.desc      set api
-     * @tc.level       Level 1
+     * @tc.number TextStyle_0003
+     * @tc.name TextStyle_0003
+     * @tc.desc set api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('TextStyle_0003', 0, async function (done) {
+    it('TextStyle_0003', 0, async (done: Function) => {
 
       console.info('[TextStyle_0003] START');
       await Utils.sleep(2000);
@@ -110,14 +109,14 @@ export default function TextStyle() {
 
 
     /**
-     * @tc.number    TextStyle_0004
-     * @tc.name      TextStyle_0004
-     * @tc.desc      set api
-     * @tc.level       Level 1
+     * @tc.number TextStyle_0004
+     * @tc.name TextStyle_0004
+     * @tc.desc set api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('TextStyle_0004', 0, async function (done) {
+    it('TextStyle_0004', 0, async (done: Function) => {
 
       console.info('[TextStyle_0004] START');
       await Utils.sleep(2000);
@@ -131,14 +130,14 @@ export default function TextStyle() {
 
 
     /**
-     * @tc.number    TextStyle_0005
-     * @tc.name      TextStyle_0005
-     * @tc.desc      set api
-     * @tc.level       Level 1
+     * @tc.number TextStyle_0005
+     * @tc.name TextStyle_0005
+     * @tc.desc set api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('TextStyle_0005', 0, async function (done) {
+    it('TextStyle_0005', 0, async (done: Function) => {
 
       console.info('[TextStyle_0005] START');
       await Utils.sleep(2000);
@@ -152,14 +151,14 @@ export default function TextStyle() {
 
 
     /**
-     * @tc.number    TextStyle_0006
-     * @tc.name      TextStyle_0006
-     * @tc.desc      set api
-     * @tc.level       Level 1
+     * @tc.number TextStyle_0006
+     * @tc.name TextStyle_0006
+     * @tc.desc set api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('TextStyle_0006', 0, async function (done) {
+    it('TextStyle_0006', 0, async (done: Function) => {
 
       console.info('[TextStyle_0006] START');
       await Utils.sleep(2000);
@@ -173,14 +172,14 @@ export default function TextStyle() {
 
 
     /**
-     * @tc.number    TextStyle_0007
-     * @tc.name      TextStyle_0007
-     * @tc.desc      set api
-     * @tc.level       Level 1
+     * @tc.number TextStyle_0007
+     * @tc.name TextStyle_0007
+     * @tc.desc set api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('TextStyle_0007', 0, async function (done) {
+    it('TextStyle_0007', 0, async (done: Function) => {
 
       console.info('[TextStyle_0007] START');
       await Utils.sleep(2000);
@@ -194,16 +193,16 @@ export default function TextStyle() {
 
 
     /**
-     * @tc.number    TextStyle_0008
-     * @tc.name      TextStyle_0008
-     * @tc.desc      set api
-     * @tc.level       Level 1
+     * @tc.number TextStyle_0008
+     * @tc.name TextStyle_0008
+     * @tc.desc set api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('TextStyle_0008', 0, async function (done) {
+    it('TextStyle_0008', 0, async (done: Function) => {
       console.info('[TextStyle_0008] START');
-      let driver= Driver.create();
+      let driver = Driver.create();
       await Utils.sleep(1000);
       let btn = await driver.findComponent(ON.id('buttonSelect'));
       await btn.click()

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +17,8 @@ import router from '@system.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function loadingProgressJsunit2() {
-  describe('loadingProgressTest2', function () {
-    beforeEach(async function (done) {
+  describe('loadingProgressTest2', () => {
+    beforeEach(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/Progress/loadingProgress2',
       }
@@ -39,12 +38,12 @@ export default function loadingProgressJsunit2() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("loadingProgress after each called");
     });
 
-    it('testLoadingProgress_100', 0, async function (done) {
+    it('testLoadingProgress_100', 0, async (done: Function) => {
       console.info('[testLoadingProgress_100] START');
       await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('LP');
@@ -55,7 +54,7 @@ export default function loadingProgressJsunit2() {
       done();
     });
 
-    it('testLoadingProgress_200', 0, async function (done) {
+    it('testLoadingProgress_200', 0, async (done: Function) => {
       console.info('[testLoadingProgress_200] START');
       await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('LP');
@@ -67,7 +66,7 @@ export default function loadingProgressJsunit2() {
       done();
     });
 
-    it('testLoadingProgress_300', 0, async function (done) {
+    it('testLoadingProgress_300', 0, async (done: Function) => {
       console.info('[testLoadingProgress_300] START');
       await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('LP');
@@ -78,7 +77,7 @@ export default function loadingProgressJsunit2() {
       done();
     });
 
-    it('testLoadingProgress_400', 0, async function (done) {
+    it('testLoadingProgress_400', 0, async (done: Function) => {
       console.info('[testLoadingProgress_400] START');
       await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('LP');
@@ -89,7 +88,7 @@ export default function loadingProgressJsunit2() {
       done();
     });
 
-    it('testLoadingProgress_500', 0, async function (done) {
+    it('testLoadingProgress_500', 0, async (done: Function) => {
       console.info('[testLoadingProgress_500] START');
       await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('LP');
@@ -100,7 +99,7 @@ export default function loadingProgressJsunit2() {
       done();
     });
 
-    it('testLoadingProgress_600', 0, async function (done) {
+    it('testLoadingProgress_600', 0, async (done: Function) => {
       console.info('[testLoadingProgress_600] START');
       await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('LP');

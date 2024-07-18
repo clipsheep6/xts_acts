@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function search_center() {
-  describe('search_center', function () {
-    beforeEach(async function (done) {
+  describe('search_center', () => {
+    beforeEach(async (done: Function) => {
       console.info("search_center beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Search/search_center',
@@ -48,7 +61,7 @@ export default function search_center() {
     * @tc.desc  : Click to trigger the keyboard when search is in the middle
     * @tc.level : Level 2
     */
-    it('search_center_001', 0, async function (done) {
+    it('search_center_001', 0, async (done: Function) => {
 
       console.info('[search_center_001] START');
       await CommonFunc.sleep(1000);
@@ -61,7 +74,7 @@ export default function search_center() {
         let driver = await Driver.create();
         await CommonFunc.sleep(500);
         await driver.click(
-          (Math.round(search_01.left + (search_01.right - search_01.left) /2)),(Math.round(search_01.top + (search_01.bottom - search_01.top) /2))
+          (Math.round(search_01.left + (search_01.right - search_01.left) / 2)), (Math.round(search_01.top + (search_01.bottom - search_01.top) / 2))
         );
         await CommonFunc.sleep(1000);
 

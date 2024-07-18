@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 import router from '@ohos.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 // import Utils from '../Utils'
 import CommonFunc from "../../MainAbility/common/Common";
 import { Driver, ON } from '@ohos.UiTest';
 
 export default function textDataDataDetectorConfig() {
-  describe('textDataDataDetectorConfig', function () {
-    beforeEach(async function (done) {
+  describe('textDataDataDetectorConfig', () => {
+    beforeEach(async (done: Function) => {
       console.info("textDataDataDetectorConfig beforeEach start");
       let options = {
         url: 'MainAbility/pages/text/textDataDataDetectorConfig',
@@ -42,22 +42,21 @@ export default function textDataDataDetectorConfig() {
       console.info("textDataDataDetectorConfig beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("textDataDataDetectorConfig after each called");
     });
 
 
-
     /**
-     * @tc.number    textDataDataDetectorConfig_0001
-     * @tc.name      textDataDataDetectorConfig_0001
-     * @tc.desc      text api
-     * @tc.level       Level 1
+     * @tc.number textDataDataDetectorConfig_0001
+     * @tc.name textDataDataDetectorConfig_0001
+     * @tc.desc text api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('textDataDataDetectorConfig_0001', 0, async function (done) {
+    it('textDataDataDetectorConfig_0001', 0, async (done: Function) => {
 
       console.info('[textDataDataDetectorConfig_0001] START');
       let driver = await Driver.create()
@@ -65,7 +64,6 @@ export default function textDataDataDetectorConfig() {
       let btn = await driver.findComponent(ON.id('button.PHONE_NUMBER'));
       await btn.click()
       await CommonFunc.sleep(4000);
-
 
 
       let text1 = getInspectorByKey('dataDetectorConfigText');
@@ -77,16 +75,15 @@ export default function textDataDataDetectorConfig() {
     });
 
 
-
     /**
-     * @tc.number    textDataDataDetectorConfig_0002
-     * @tc.name      textDataDataDetectorConfig_0002
-     * @tc.desc      text api
-     * @tc.level       Level 1
+     * @tc.number textDataDataDetectorConfig_0002
+     * @tc.name textDataDataDetectorConfig_0002
+     * @tc.desc text api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('textDataDataDetectorConfig_0002', 0, async function (done) {
+    it('textDataDataDetectorConfig_0002', 0, async (done: Function) => {
 
       console.info('[textDataDataDetectorConfig_0002] START');
       let driver = await Driver.create()
@@ -94,7 +91,6 @@ export default function textDataDataDetectorConfig() {
       let btn = await driver.findComponent(ON.id('button.URL'));
       await btn.click()
       await CommonFunc.sleep(4000);
-
 
 
       let text1 = getInspectorByKey('dataDetectorConfigText');
@@ -108,14 +104,14 @@ export default function textDataDataDetectorConfig() {
 
 
     /**
-     * @tc.number    textDataDataDetectorConfig_0003
-     * @tc.name      textDataDataDetectorConfig_0003
-     * @tc.desc      text api
-     * @tc.level       Level 1
+     * @tc.number textDataDataDetectorConfig_0003
+     * @tc.name textDataDataDetectorConfig_0003
+     * @tc.desc text api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('textDataDataDetectorConfig_0003', 0, async function (done) {
+    it('textDataDataDetectorConfig_0003', 0, async (done: Function) => {
 
       console.info('[textDataDataDetectorConfig_0003] START');
       let driver = await Driver.create()
@@ -123,7 +119,6 @@ export default function textDataDataDetectorConfig() {
       let btn = await driver.findComponent(ON.id('button.EMAIL'));
       await btn.click()
       await CommonFunc.sleep(4000);
-
 
 
       let text1 = getInspectorByKey('dataDetectorConfigText');
@@ -136,14 +131,14 @@ export default function textDataDataDetectorConfig() {
 
 
     /**
-     * @tc.number    textDataDataDetectorConfig_0004
-     * @tc.name      textDataDataDetectorConfig_0004
-     * @tc.desc      text api
-     * @tc.level       Level 1
+     * @tc.number textDataDataDetectorConfig_0004
+     * @tc.name textDataDataDetectorConfig_0004
+     * @tc.desc text api
+     * @tc.level Level 1
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('textDataDataDetectorConfig_0004', 0, async function (done) {
+    it('textDataDataDetectorConfig_0004', 0, async (done: Function) => {
 
       console.info('[textDataDataDetectorConfig_0004] START');
       let driver = await Driver.create()
@@ -153,7 +148,6 @@ export default function textDataDataDetectorConfig() {
       await CommonFunc.sleep(4000);
 
 
-
       let text1 = getInspectorByKey('dataDetectorConfigText');
       let Obj2 = JSON.parse(text1);
       expect(Obj2.$attrs.content).assertEqual('222');
@@ -161,9 +155,6 @@ export default function textDataDataDetectorConfig() {
       console.info('[textDataDataDetectorConfig_0004] END');
       done();
     });
-
-
-
 
 
   })

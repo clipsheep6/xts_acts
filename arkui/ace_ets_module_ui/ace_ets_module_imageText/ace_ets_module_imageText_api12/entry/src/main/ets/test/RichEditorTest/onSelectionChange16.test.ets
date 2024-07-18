@@ -19,8 +19,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 
 export default function onSelectionChange16() {
-  describe('onSelectionChange16', function () {
-    beforeEach(async function (done) {
+  describe('onSelectionChange16', () => {
+    beforeEach(async (done: Function) => {
       console.info("onSelectionChange16 beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditor/onSelectionChange16',
@@ -41,7 +41,7 @@ export default function onSelectionChange16() {
       console.info("onSelectionChange16 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("onSelectionChange16 after each called");
     });
@@ -53,7 +53,7 @@ export default function onSelectionChange16() {
      * @tc.type
     * @tc.size
      */
-    it('onSelectionChange16_0100', 0, async function (done) {
+    it('onSelectionChange16_0100', 0, async (done: Function) => {
       console.info('[onSelectionChange16_0100] START');
       await CommonFunc.sleep(1000);
 

@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RelativeBorder() {
-  describe('RelativeBorder', function () {
-    beforeEach(async function (done) {
+  describe('RelativeBorder', () => {
+    beforeEach(async (done: Function) => {
       console.info("RelativeBorder beforeEach start");
       try {
         router.clear();
@@ -27,7 +40,9 @@ export default function RelativeBorder() {
         console.info("get RelativeBorder state pages:" + JSON.stringify(pages));
         if (!("RelativeBorder" == pages.name)) {
           console.info("get  RelativeBorder pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/RelativeContainer/RelativeBorder"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/RelativeContainer/RelativeBorder"
+          })
           await CommonFunc.sleep(2000);
           console.info("push RelativeBorder page result:" + JSON.stringify(result));
         }
@@ -37,20 +52,20 @@ export default function RelativeBorder() {
       console.info("RelativeBorder foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("RelativeBorder after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0670
-     * @tc.desc      add BorderWidth
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0670
+     * @tc.desc add BorderWidth
+     * @tc.level Level 3
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
 
-    it('RelativeBorder_001', 0, async function (done) {
+    it('RelativeBorder_001', 0, async (done: Function) => {
       console.info('[RelativeBorder_001] START');
 
       await CommonFunc.sleep(1000);
@@ -75,10 +90,6 @@ export default function RelativeBorder() {
       console.info('[RelativeBorder_001] END');
       done();
     });
-
-
-
-
 
 
   })

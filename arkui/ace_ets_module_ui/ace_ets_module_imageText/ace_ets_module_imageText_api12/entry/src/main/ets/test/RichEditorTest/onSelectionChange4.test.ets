@@ -15,12 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 
 export default function onSelectionChange4() {
-  describe('onSelectionChange4', function () {
-    beforeEach(async function (done) {
+  describe('onSelectionChange4', () => {
+    beforeEach(async (done: Function) => {
       console.info("onSelectionChange4 beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditor/onSelectionChange4',
@@ -41,19 +54,19 @@ export default function onSelectionChange4() {
       console.info("onSelectionChange4 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("onSelectionChange4 after each called");
     });
     /**
-     * @tc.number    SUB_ACE_onSelectionChange4_0100
-     * @tc.name      testRichEditor
-     * @tc.desc      Determine whether the cursor change triggers onSelectionChange
-     * @tc.level     Level 2
+     * @tc.number SUB_ACE_onSelectionChange4_0100
+     * @tc.name testRichEditor
+     * @tc.desc Determine whether the cursor change triggers onSelectionChange
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('onSelectionChange4_0100', 0, async function (done) {
+    it('onSelectionChange4_0100', 0, async (done: Function) => {
       console.info('[onSelectionChange4_0100] START');
       await CommonFunc.sleep(1000);
 
@@ -63,8 +76,8 @@ export default function onSelectionChange4() {
       let richEditor = await driver.findComponent(ON.id('onSelectionChange4_RichEditor'));
       await richEditor.longClick();
       await CommonFunc.sleep(1000);
-      let Select  = await driver.findComponent(ON.text('全选'))
-      await Select .click()
+      let Select = await driver.findComponent(ON.text('全选'))
+      await Select.click()
       await CommonFunc.sleep(1000);
       let text1_1 = getInspectorByKey('onSelectionChange4_text1');
       let Obj1_1 = JSON.parse(text1_1);
@@ -91,7 +104,7 @@ export default function onSelectionChange4() {
       await CommonFunc.sleep(2500);
 
       let richEditor2 = await driver.findComponent(ON.id('onSelectionChange4_RichEditor'));
-      
+
       // doubleClick
       let centerPoint = await richEditor2.getBoundsCenter();
       let point = `${centerPoint.x} ${centerPoint.y}`;

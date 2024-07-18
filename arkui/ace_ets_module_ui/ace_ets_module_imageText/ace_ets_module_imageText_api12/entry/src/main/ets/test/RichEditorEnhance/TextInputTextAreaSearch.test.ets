@@ -14,12 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 
 export default function TextInputTextAreaSearch() {
-  describe('TextInputTextAreaSearch', function () {
-    beforeEach(async function (done) {
+  describe('TextInputTextAreaSearch', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextInputTextAreaSearch beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditorEnhance/TextInputTextAreaSearch',
@@ -41,25 +54,25 @@ export default function TextInputTextAreaSearch() {
       console.info("TextInputTextAreaSearch beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       let driver = Driver.create();
       await driver.delayMs(1000)
       console.info("TextInputTextAreaSearch after each called");
     });
     /**
      * @tc.number TextInputTextAreaSearch_0100
-     * @tc.name   TextInputTextAreaSearch_0100
-     * @tc.desc   Test custom keyboard avoidance.
+     * @tc.name TextInputTextAreaSearch_0100
+     * @tc.desc Test custom keyboard avoidance.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('TextInputTextAreaSearch_0100', 0, async function (done) {
+    it('TextInputTextAreaSearch_0100', 0, async (done: Function) => {
       // Test stop
       console.info('[TextInputTextAreaSearch_0100] START');
       let driver = Driver.create();
       await driver.delayMs(1000)
-      
+
       let TextInput_supportAvoidance = await driver.findComponent(ON.id("TextInput_supportAvoidance"));
       let point1 = await TextInput_supportAvoidance.getBoundsCenter();
       await TextInput_supportAvoidance.click()
@@ -74,13 +87,13 @@ export default function TextInputTextAreaSearch() {
 
     /**
      * @tc.number TextInputTextAreaSearch_0200
-     * @tc.name   TextInputTextAreaSearch_0200
-     * @tc.desc   Test custom keyboard avoidance.
+     * @tc.name TextInputTextAreaSearch_0200
+     * @tc.desc Test custom keyboard avoidance.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('TextInputTextAreaSearch_0200', 0, async function (done) {
+    it('TextInputTextAreaSearch_0200', 0, async (done: Function) => {
       // Test stop
       console.info('[TextInputTextAreaSearch_0200] START');
       let driver = Driver.create();
@@ -99,13 +112,13 @@ export default function TextInputTextAreaSearch() {
 
     /**
      * @tc.number TextInputTextAreaSearch_0300
-     * @tc.name   TextInputTextAreaSearch_0300
-     * @tc.desc   Test custom keyboard avoidance.
+     * @tc.name TextInputTextAreaSearch_0300
+     * @tc.desc Test custom keyboard avoidance.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('TextInputTextAreaSearch_0300', 0, async function (done) {
+    it('TextInputTextAreaSearch_0300', 0, async (done: Function) => {
       // Test stop
       console.info('[TextInputTextAreaSearch_0300] START');
       let driver = Driver.create();
@@ -119,6 +132,6 @@ export default function TextInputTextAreaSearch() {
       console.info('[TextInputTextAreaSearch_0300] END');
       done();
     });
-    
+
   })
 }

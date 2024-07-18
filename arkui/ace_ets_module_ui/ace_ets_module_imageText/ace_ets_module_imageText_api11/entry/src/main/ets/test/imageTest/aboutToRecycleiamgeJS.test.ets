@@ -14,13 +14,26 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 export default function aboutToRecycleiamge() {
-  describe('aboutToRecycleiamge', function () {
-    beforeEach(async function (done) {
+  describe('aboutToRecycleiamge', () => {
+    beforeEach(async (done: Function) => {
       console.info("aboutToRecycleiamge beforeEach start");
       let options = {
         uri: 'MainAbility/pages/image/aboutToRecycleiamge',
@@ -41,12 +54,12 @@ export default function aboutToRecycleiamge() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("aboutToRecycleiamge after each called");
     });
 
-    it('aboutToRecycleiamge_0100', 0, async function (done) {
+    it('aboutToRecycleiamge_0100', 0, async (done: Function) => {
       console.info('[aboutToRecycleiamge_0100] START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('aboutToRecyclImage');

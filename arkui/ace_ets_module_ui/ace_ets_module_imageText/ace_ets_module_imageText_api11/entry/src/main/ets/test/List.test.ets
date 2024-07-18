@@ -71,7 +71,7 @@ import relativeCTest from "./RelativeContainerTest/relative/relative.test"
 import getClipToFrameJsunit from './RenderNodeTest/RenderNodeTest_001/getClipToFrameJsunit.test'
 import getOpacityJsunit from './RenderNodeTest/RenderNodeTest_001/getOpacityJsunit.test'
 import getSizeJsunit from './RenderNodeTest/RenderNodeTest_001/getSizeJsunit.test'
-import SetSizeJsunit from './RenderNodeTest/RenderNodeTest_001/SetSizeJsunit.test.ets'
+import SetSizeJsunit from './RenderNodeTest/RenderNodeTest_001/SetSizeJsunit.test'
 import SetClipToFrameJsunit from './RenderNodeTest/RenderNodeTest_001/SetClipToFrameJsunit.test'
 import SetOpacityJsunit from './RenderNodeTest/RenderNodeTest_001/SetOpacityJsunit.test'
 import SetPositionJsunit from './RenderNodeTest/RenderNodeTest_001/SetPositionJsunit.test'
@@ -128,16 +128,16 @@ import ohosMatrix4Jsunit from './imageTest/OhosMatrix4Jsunit.test';
 import positionSettingJsunit from './textTest/PositionSettingJsunit.test';
 import ShapeClippingJsunit from './imageTest/ShapeClippingJsunit.test';
 import textAreaJsunit from './TextAreaTest/TextAreaJsunit.test';
-import textAreaUxTest  from './TextAreaTest/textareaux.test';
+import textAreaUxTest from './TextAreaTest/textareaux.test';
 import textInputJsunit from './TextInputTest/TextInputJsunit.test';
 import propJsunit from './textTest/PropJsunit.test';
 import imageJsunit from './imageTest/ImageJsunit.test';
 import spanJsunit from './spanTest/SpanJsunit.test';
 import textJsunit from './textTest/TextJsunit.test';
 import outline from './textTest/outline.test';
-import rotationTest from './RenderNodeTest/rotation.test.ets'
-import transformTest from './RenderNodeTest/transform.test.ets'
-import translationTest from './RenderNodeTest/translation.test.ets'
+import rotationTest from './RenderNodeTest/rotation.test'
+import transformTest from './RenderNodeTest/transform.test'
+import translationTest from './RenderNodeTest/translation.test'
 import stageFontTest from './textTest/stageFont.test';
 import stageMediaquery from './textTest/stageMediaquery.test';
 import buttonTest from './buttonTest/button'
@@ -147,14 +147,14 @@ import segmentbuttonTest from './SegmentButtonTest/segmentbutton'
 import search_caret from './SearchTest/search_caret.test';
 import search_maxLength from './SearchTest/search_maxLength.test';
 import search_maxLength2 from './SearchTest/search_maxLength2.test';
-import search_top from './SearchTest/search_top.test.ets'
-import search_center from './SearchTest/search_center.test.ets'
-import search_bottom from './SearchTest/search_bottom.test.ets'
+import search_top from './SearchTest/search_top.test'
+import search_center from './SearchTest/search_center.test'
+import search_bottom from './SearchTest/search_bottom.test'
 import SearchJsunit from './SearchTest/SearchJsunit.test';
 import textAreaUIJsunit from './TextAreaTest/textAreaUIJsunit.test';
-import textArea_top from './TextAreaTest/textArea_top.test.ets'
-import textArea_center from './TextAreaTest/textArea_center.test.ets'
-import textArea_bottom from './TextAreaTest/textArea_bottom.test.ets'
+import textArea_top from './TextAreaTest/textArea_top.test'
+import textArea_center from './TextAreaTest/textArea_center.test'
+import textArea_bottom from './TextAreaTest/textArea_bottom.test'
 import textAreaBC1Jsunit from './TextAreaTest/textAreaBC1Jsunit.test';
 import textAenEnabledJsunit from './TextAreaTest/textAenEnabledJsunit.test';
 import imageOneJsunit from './imageTest/imageOneJsunit.test';
@@ -173,18 +173,18 @@ import textOneJsunit from './textTest/textOneJsunit.test';
 import textTwoJsunit from './textTest/textTwoJsunit.test';
 import textEnabledJsunit from './textTest/textEnabledJsunit.test';
 import textChangeEnabledJsunit from './textTest/textChangeEnabledJsunit.test';
-import loadingProgressJsunit from './ProgressTest/loadingProgressJsunit.test.ets';
-import ProgressJsunit from './ProgressTest/ProgressJsunit.test.ets';
-import TextTimerJsunit from './TextTimerTest/TextTimerJsunit.test.ets';
-import ToggleJsunit from './ToggleTest/ToggleJsunit.test.ets';
-import marqueeUIJsunit from './marqueeTest/marqueeUIJsunit.test.ets';
-import PatternLockJsunit from './PatternLockTest/PatternLockJsunit.test.ets';
-import SelectJsunit from './selectTest/SelectJsunit.test.ets';
-import RichEditor01 from './RichEditorTest/RichEditor01.test.ets';
-import RichTextJsunit from './RichEditorTest/RichTextJsunit.test.ets';
-import spanUIJsunit from './spanTest/spanUIJsunit.test.ets';
-import fontJsunit from './fontTest/fontJsunit.test.ets';
-import RenderFitJsunit from './RenderNodeTest/RenderFitJsunit.test.ets';
+import loadingProgressJsunit from './ProgressTest/loadingProgressJsunit.test';
+import ProgressJsunit from './ProgressTest/ProgressJsunit.test';
+import TextTimerJsunit from './TextTimerTest/TextTimerJsunit.test';
+import ToggleJsunit from './ToggleTest/ToggleJsunit.test';
+import marqueeUIJsunit from './marqueeTest/marqueeUIJsunit.test';
+import PatternLockJsunit from './PatternLockTest/PatternLockJsunit.test';
+import SelectJsunit from './selectTest/SelectJsunit.test';
+import RichEditor01 from './RichEditorTest/RichEditor01.test';
+import RichTextJsunit from './RichEditorTest/RichTextJsunit.test';
+import spanUIJsunit from './spanTest/spanUIJsunit.test';
+import fontJsunit from './fontTest/fontJsunit.test';
+import RenderFitJsunit from './RenderNodeTest/RenderFitJsunit.test';
 import aboutToRecycleiamge from './imageTest/aboutToRecycleiamgeJS.test'
 import focusJsunit from './buttonTest/FocusJsunit.test';
 import imageJsunit55 from './imageTest/ImageJsunit55.test';
@@ -192,8 +192,8 @@ import playModeJsunit from './buttonTest/PlayModeJsunit.test';
 import richTextJsunitFOUR from './RichEditorTest/RichTextJsunitFOUR.test';
 import textClockJsunit from './textTest/TextClockJsunit.test';
 import textTimerJsunit from './textTest/TextTimerJsunit.test';
-import unitsModuleNameJsunit from './textTest/units.test.ets';
-import ImageApi from './imageTest/ImageApi.test.ets';
+import unitsModuleNameJsunit from './textTest/units.test';
+import ImageApi from './imageTest/ImageApi.test';
 import appVersionCodeJsunit from './textTest/app.test';
 import colorEnumJsunit from './textTest/color.test';
 import copyOptionJsunit from './textTest/copyOption.test';
@@ -205,8 +205,8 @@ import progress3Jsunit from './ProgressTest/Progress3Jsunit.test';
 import text3Jsunit from './textTest/Text3Jsunit.test';
 import span3Jsunit from './spanTest/Span3Jsunit.test';
 import button3Jsunit from './buttonTest/Button3Jsunit.test';
-import imageAnimatorJsunitt from './ImageAnimator/ImageAnimatorJsunit2.test.ets'
-import loadingProgressJsunit2 from './ProgressTest/LoadingProgressJsunit2.test.ets';
+import imageAnimatorJsunitt from './ImageAnimator/ImageAnimatorJsunit2.test'
+import loadingProgressJsunit2 from './ProgressTest/LoadingProgressJsunit2.test';
 import ButtonHoverTest from './buttonTest/ButtonHover.test';
 import ActsgetcomponentTest from './buttonTest/getcomponent.test';
 import ActsgetcomponentaddTest from './buttonTest/getcomponentadd.test';
@@ -354,7 +354,7 @@ export default function testsuite() {
   textAreaUxTest();
   search_caret();
   search_maxLength();
-  search_maxLength2();  
+  search_maxLength2();
   search_top();
   search_center();
   search_bottom();

@@ -19,8 +19,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 export default function textStrategyJsunit() {
-  describe('textStrategyJsunit', function () {
-    beforeEach(async function (done) {
+  describe('textStrategyJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("textStrategyJsunit beforeEach start");
       let options: router.RouterOptions = {
         url: 'MainAbility/pages/Text/textStrategy',
@@ -50,7 +50,7 @@ export default function textStrategyJsunit() {
     * @tc.type:
     * @tc.size:
     */
-    it('textStrategyJsunit_0100', 0, async function (done) {
+    it('textStrategyJsunit_0100', 0, async (done: Function) => {
       console.info('textStrategyJsunit_0100 START');
 
       let strJson = getInspectorByKey('text_Strategy_1');

@@ -15,12 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from "../../../MainAbility/common/Common";
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 
 export default function richEditorApi1() {
-  describe('richEditorApi1', function () {
-    beforeEach(async function (done) {
+  describe('richEditorApi1', () => {
+    beforeEach(async (done: Function) => {
       console.info("richEditorApi1 beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditor/richEditorApi/richEditorApi1',
@@ -41,19 +54,19 @@ export default function richEditorApi1() {
       console.info("richEditorApi1 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("richEditorApi1 after each called");
     });
     /**
-     * @tc.number    SUB_ACE_RICHEDITOR_RICHEDITORAPI1_0100
-     * @tc.name      testRichEditor
-     * @tc.desc      set api
-     * @tc.level     Level 2
+     * @tc.number SUB_ACE_RICHEDITOR_RICHEDITORAPI1_0100
+     * @tc.name testRichEditor
+     * @tc.desc set api
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('richEditorApi1_0100', 0, async function (done) {
+    it('richEditorApi1_0100', 0, async (done: Function) => {
       console.info('[richEditorApi1_0100] START');
       await CommonFunc.sleep(2000);
 

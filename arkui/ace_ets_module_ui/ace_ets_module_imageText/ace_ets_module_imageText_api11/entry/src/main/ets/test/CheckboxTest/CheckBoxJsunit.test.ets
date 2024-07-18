@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 const waitUiReadyMs = 1000;
 
 export default function checkBoxJsunit() {
-  describe('CheckBoxJsunit', function () {
-    beforeEach(async function (done) {
+  describe('CheckBoxJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("checkBoxJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/checkBox/checkBoxExample',
@@ -42,7 +42,7 @@ export default function checkBoxJsunit() {
       done();
     });
 
-    it('checkBoxJsunit_0100', 0, async function (done) {
+    it('checkBoxJsunit_0100', 0, async (done: Function) => {
        console.info('checkBoxJsunit_0100 START');
        await CommonFunc.sleep(3000);
        // get the checkbox component and test attribute
@@ -60,7 +60,7 @@ export default function checkBoxJsunit() {
        done(); 
     });
 
-   it('checkBoxJsunit_0200', 0, async function (done) {
+   it('checkBoxJsunit_0200', 0, async (done: Function) => {
       console.info('checkBoxJsunit_0200 START');
       await CommonFunc.sleep(1000);
       // modify the attribute normal value of checkbox dynamically
@@ -81,7 +81,7 @@ export default function checkBoxJsunit() {
       done();
     });
 
-    it('checkBoxJsunit_0300', 0, async function (done) {
+    it('checkBoxJsunit_0300', 0, async (done: Function) => {
       console.info('checkBoxJsunit_0300 START');
       await CommonFunc.sleep(2000);
       // modify the attribute illegal value of checkbox dynamically
@@ -95,7 +95,7 @@ export default function checkBoxJsunit() {
       done();
     });
 
-    it('checkBoxJsunit_0400', 0, async function (done) {
+    it('checkBoxJsunit_0400', 0, async (done: Function) => {
       console.info('checkBoxJsunit_0400 START');
       await CommonFunc.sleep(1000);
       // test the clicking event of checkbox
@@ -113,7 +113,7 @@ export default function checkBoxJsunit() {
       done();
     });
     
-    it('checkBoxJsunit_0500', 0, async function (done) {
+    it('checkBoxJsunit_0500', 0, async (done: Function) => {
       console.info('checkBoxJsunit_0300 START');
       await CommonFunc.sleep(2000);
       // verify the enum color
@@ -127,7 +127,7 @@ export default function checkBoxJsunit() {
       done();
     });
 
-    it('checkBoxJsunit_0600', 0, async function (done) {
+    it('checkBoxJsunit_0600', 0, async (done: Function) => {
       console.info('checkBoxJsunit_0600 START');
       await CommonFunc.sleep(2000);
       // verify the enum color of rgb
@@ -141,7 +141,7 @@ export default function checkBoxJsunit() {
       done();
     });
 
-    it('checkBoxJsunit_0700', 0, async function (done) {
+    it('checkBoxJsunit_0700', 0, async (done: Function) => {
       console.info('checkBoxJsunit_0700 START');
       await CommonFunc.sleep(1000);
       // more click

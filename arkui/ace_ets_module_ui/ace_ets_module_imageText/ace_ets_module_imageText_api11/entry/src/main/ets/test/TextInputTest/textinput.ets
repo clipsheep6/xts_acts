@@ -14,7 +14,9 @@
  */
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import router from '@ohos.router';
+
 let emitKey = "emitUserAgent";
+
 function sleep(time: number) {
   return new Promise<string>((resolve, reject) => {
     setTimeout(() => {
@@ -24,6 +26,7 @@ function sleep(time: number) {
     console.info(`sleep ${time} over...`)
   })
 }
+
 export default function textInputTest() {
   describe('ActsTextInputTest', () => {
     beforeEach(async (done: Function) => {

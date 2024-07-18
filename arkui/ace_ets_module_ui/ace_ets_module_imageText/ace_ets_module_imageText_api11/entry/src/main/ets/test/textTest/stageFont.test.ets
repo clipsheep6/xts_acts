@@ -61,7 +61,7 @@ export default function stageFontTest() {
         try {
           let strJson = getInspectorByKey('button');
           console.info('Stage_Font_0100 START  :' + JSON.stringify(strJson));
-          
+
           console.info("Stage_Font_0100 JSON.parse(strJson).$attrs.labelStyle is: " +
           JSON.stringify(JSON.parse(strJson).$attrs.labelStyle));
           console.info("Stage_Font_0100 fontFamily is: " +
@@ -81,7 +81,7 @@ export default function stageFontTest() {
         try {
           let strJson = getInspectorByKey('text');
           console.info('Stage_Font_0200 START  :' + JSON.stringify(strJson));
-          
+
           console.info("Stage_Font_0200 JSON.parse(strJson).$attrs.fontFamily is: " +
           JSON.stringify(JSON.parse(strJson).$attrs.fontFamily));
           expect(JSON.parse(strJson).$attrs.fontFamily).assertEqual("fontCustom");
@@ -100,7 +100,7 @@ export default function stageFontTest() {
         try {
           let strJson = getInspectorByKey('textArea');
           console.info('Stage_Font_0300 START  :' + JSON.stringify(strJson));
-          
+
           console.info("Stage_Font_0300 JSON.parse(strJson).$attrs.fontFamily is: " +
           JSON.stringify(JSON.parse(strJson).$attrs.fontFamily));
           expect(JSON.parse(strJson).$attrs.fontFamily).assertEqual("fontCustom");
@@ -119,7 +119,7 @@ export default function stageFontTest() {
         try {
           let strJson = getInspectorByKey('textInput');
           console.info('Stage_Font_0400 START  :' + JSON.stringify(strJson));
-          
+
           console.info("Stage_Font_0400 JSON.parse(strJson).$attrs.fontFamily is: " +
           JSON.stringify(JSON.parse(strJson).$attrs.fontFamily));
           expect(JSON.parse(strJson).$attrs.fontFamily).assertEqual("fontCustom");
@@ -138,7 +138,7 @@ export default function stageFontTest() {
         try {
           let strJson = getInspectorByKey('textSpan');
           console.info('Stage_Font_0500 START  :' + JSON.stringify(strJson));
-          
+
           console.info("Stage_Font_0500 JSON.parse(strJson).$attrs.fontFamily is: " +
           JSON.stringify(JSON.parse(strJson).$attrs.fontFamily));
           expect(JSON.parse(strJson).$attrs.fontFamily).assertEqual("fontCustom");
@@ -152,10 +152,10 @@ export default function stageFontTest() {
     });
 
     it('Stage_Font_0600', 0, async (done: Function) => {
-      let fontRegister:ESObject = globalThis.uiContent.getFont();
+      let fontRegister: ESObject = globalThis.uiContent.getFont();
       console.info('Stage_Font_0600 START');
       try {
-        let font:ESObject = fontRegister.registerFont(undefined)
+        let font: ESObject = fontRegister.registerFont(undefined)
         expect(font).assertUndefined();
       } catch (err) {
         console.error("push button page error " + JSON.stringify(err));
@@ -165,10 +165,10 @@ export default function stageFontTest() {
     });
 
     it('Stage_Font_0700', 0, async (done: Function) => {
-      let fontRegister:ESObject = globalThis.uiContent.getFont();
+      let fontRegister: ESObject = globalThis.uiContent.getFont();
       console.info('Stage_Font_0700 START');
       try {
-        let font:ESObject = fontRegister.registerFont()
+        let font: ESObject = fontRegister.registerFont()
         expect(font).assertUndefined();
       } catch (err) {
         console.error("push button page error " + JSON.stringify(err));
@@ -178,10 +178,10 @@ export default function stageFontTest() {
     });
 
     it('Stage_Font_0800', 0, async (done: Function) => {
-      let fontRegister:ESObject = globalThis.uiContent.getFont();
+      let fontRegister: ESObject = globalThis.uiContent.getFont();
       console.info('Stage_Font_0800 START');
       try {
-        let font:ESObject = fontRegister.registerFont(null)
+        let font: ESObject = fontRegister.registerFont(null)
         expect(font).assertUndefined();
       } catch (err) {
         console.error("push button page error " + JSON.stringify(err));

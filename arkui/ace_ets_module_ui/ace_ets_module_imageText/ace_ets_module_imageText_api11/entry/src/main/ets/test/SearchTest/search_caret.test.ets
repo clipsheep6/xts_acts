@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function search_caret() {
-  describe('search_caret', function () {
-    beforeEach(async function (done) {
+  describe('search_caret', () => {
+    beforeEach(async (done: Function) => {
       console.info("search_caret beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Search/search_caret',
@@ -49,7 +62,7 @@ export default function search_caret() {
       * @tc.desc  : set caretPosition to 1
       * @tc.level : Level 3
       */
-    it('search_caret_001', 0, async function (done) {
+    it('search_caret_001', 0, async (done: Function) => {
 
       console.info('[search_caret_001] START');
       let driver = Driver.create();
@@ -71,7 +84,7 @@ export default function search_caret() {
       * @tc.desc  : set caretPosition to 5
       * @tc.level : Level 3
       */
-    it('search_caret_002', 0, async function (done) {
+    it('search_caret_002', 0, async (done: Function) => {
 
       console.info('[search_caret_002] START');
       let driver = Driver.create();
@@ -93,7 +106,7 @@ export default function search_caret() {
       * @tc.desc  : set caretPosition to 3
       * @tc.level : Level 3
       */
-    it('search_caret_003', 0, async function (done) {
+    it('search_caret_003', 0, async (done: Function) => {
 
       console.info('[search_caret_003] START');
       let driver = Driver.create();
@@ -115,7 +128,7 @@ export default function search_caret() {
       * @tc.desc  : set caretPosition to 20
       * @tc.level : Level 3
       */
-    it('search_caret_004', 0, async function (done) {
+    it('search_caret_004', 0, async (done: Function) => {
 
       console.info('[search_caret_004] START');
       let driver = Driver.create();
@@ -137,7 +150,7 @@ export default function search_caret() {
       * @tc.desc  : set caretPosition to -1
       * @tc.level : Level 3
       */
-    it('search_caret_005', 0, async function (done) {
+    it('search_caret_005', 0, async (done: Function) => {
 
       console.info('[search_caret_005] START');
       let driver = Driver.create();

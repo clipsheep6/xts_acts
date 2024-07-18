@@ -18,8 +18,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function SymbolGlyphApi() {
-  describe('SymbolGlyphApi', function () {
-    beforeEach(async function (done) {
+  describe('SymbolGlyphApi', () => {
+    beforeEach(async (done: Function) => {
       console.info("SymbolGlyphApi beforeEach start");
       try {
         router.clear();
@@ -37,7 +37,7 @@ export default function SymbolGlyphApi() {
       console.info("SymbolGlyphApi foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("SymbolGlyphApi after each called");
     });
@@ -49,7 +49,7 @@ export default function SymbolGlyphApi() {
      * @tc.type
      */
 
-    it('SymbolGlyphApi_001', 0, async function (done) {
+    it('SymbolGlyphApi_001', 0, async (done: Function) => {
       console.info('[SymbolGlyphApi_001] START');
 
       await CommonFunc.sleep(1000);

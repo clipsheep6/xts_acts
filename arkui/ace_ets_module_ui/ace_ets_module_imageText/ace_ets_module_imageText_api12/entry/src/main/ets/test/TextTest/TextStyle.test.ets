@@ -15,11 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  MouseButton,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function TextStyle() {
-  describe('TextStyle', function () {
-    beforeEach(async function (done) {
+  describe('TextStyle', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextStyle beforeEach start");
       try {
         router.clear();
@@ -27,7 +41,9 @@ export default function TextStyle() {
         console.info("get TextStyle state pages:" + JSON.stringify(pages));
         if (!("TextStyle" == pages.name)) {
           console.info("get  TextStyle pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Text/TextStyle"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/Text/TextStyle"
+          })
           await CommonFunc.sleep(2000);
           console.info("push TextStyle page result:" + JSON.stringify(result));
         }
@@ -37,19 +53,19 @@ export default function TextStyle() {
       console.info("TextStyle foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("TextStyle after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_TEXT_styled_string_001
-     * @tc.desc      styled_string test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_TEXT_styled_string_001
+     * @tc.desc styled_string test
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('TextStyle_001', 0, async function (done) {
+    it('TextStyle_001', 0, async (done: Function) => {
       console.info('[TextStyle_001] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();
@@ -71,13 +87,13 @@ export default function TextStyle() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_TEXT_styled_string_002
-     * @tc.desc      styled_string test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_TEXT_styled_string_002
+     * @tc.desc styled_string test
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('TextStyle_002', 0, async function (done) {
+    it('TextStyle_002', 0, async (done: Function) => {
       console.info('[TextStyle_002] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();
@@ -99,13 +115,13 @@ export default function TextStyle() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_TEXT_styled_string_003
-     * @tc.desc      styled_string test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_TEXT_styled_string_003
+     * @tc.desc styled_string test
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('TextStyle_003', 0, async function (done) {
+    it('TextStyle_003', 0, async (done: Function) => {
       console.info('[TextStyle_003] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();
@@ -127,13 +143,13 @@ export default function TextStyle() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_TEXT_styled_string_004
-     * @tc.desc      styled_string test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_TEXT_styled_string_004
+     * @tc.desc styled_string test
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('TextStyle_004', 0, async function (done) {
+    it('TextStyle_004', 0, async (done: Function) => {
       console.info('[TextStyle_004] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();
@@ -155,13 +171,13 @@ export default function TextStyle() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_TEXT_styled_string_005
-     * @tc.desc      styled_string test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_TEXT_styled_string_005
+     * @tc.desc styled_string test
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('TextStyle_005', 0, async function (done) {
+    it('TextStyle_005', 0, async (done: Function) => {
       console.info('[TextStyle_005] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();
@@ -183,13 +199,13 @@ export default function TextStyle() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_TEXT_styled_string_006
-     * @tc.desc      styled_string test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_TEXT_styled_string_006
+     * @tc.desc styled_string test
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('TextStyle_006', 0, async function (done) {
+    it('TextStyle_006', 0, async (done: Function) => {
       console.info('[TextStyle_006] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();
@@ -209,8 +225,6 @@ export default function TextStyle() {
       done();
 
     });
-
-
 
 
   })

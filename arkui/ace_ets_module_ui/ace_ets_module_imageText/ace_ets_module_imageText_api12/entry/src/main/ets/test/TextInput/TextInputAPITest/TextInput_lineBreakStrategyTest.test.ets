@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function TextInput_lineBreakStrategyTest() {
-  describe('TextInput_lineBreakStrategyTest', function () {
-    beforeEach(async function (done) {
+  describe('TextInput_lineBreakStrategyTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextInput_lineBreakStrategyTest beforeEach start");
       let options = {
         url: "MainAbility/pages/TextInput/TextInputAPI/lineBreakStrategy",
@@ -40,20 +53,20 @@ export default function TextInput_lineBreakStrategyTest() {
       console.info("TextInput_lineBreakStrategyTest beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("TextInput_lineBreakStrategyTest after each called");
     });
 
     /**
-     * @tc.number    TextInput_lineBreakStrategyTest
-     * @tc.name      testBack
-     * @tc.desc      Return specified page by index value
-     * @tc.level     Level 3
+     * @tc.number TextInput_lineBreakStrategyTest
+     * @tc.name testBack
+     * @tc.desc Return specified page by index value
+     * @tc.level Level 3
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('TextInput_lineBreakStrategyTest_001', 0, async function (done) {
+    it('TextInput_lineBreakStrategyTest_001', 0, async (done: Function) => {
       console.info('[TextInput_lineBreakStrategyTest_001] START');
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();

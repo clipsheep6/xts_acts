@@ -14,14 +14,26 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function transformTest() {
-  describe('transformTest', function () {
-    beforeEach(async function (done) {
+  describe('transformTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("transformTest beforeEach start");
       let options = {
         uri: 'MainAbility/pages/RenderNode/transform',
@@ -42,16 +54,16 @@ export default function transformTest() {
       }
       done();
     });
-    
-     /**
-     * @tc.number    SUB_ACE_transformTest_0100
-     * @tc.name      transformTest_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
-     * @tc.type : 
+
+    /**
+     * @tc.number SUB_ACE_transformTest_0100
+     * @tc.name transformTest_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
+     * @tc.type :
      * @tc.size :
      */
-    it('transformTest_0100', 0, async function (done) {
+    it('transformTest_0100', 0, async (done: Function) => {
       console.info('transformTest_0100 START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('transform');
@@ -62,7 +74,7 @@ export default function transformTest() {
       console.info('[transformTest_0100] END');
       done();
     });
-    
+
 
   })
 }

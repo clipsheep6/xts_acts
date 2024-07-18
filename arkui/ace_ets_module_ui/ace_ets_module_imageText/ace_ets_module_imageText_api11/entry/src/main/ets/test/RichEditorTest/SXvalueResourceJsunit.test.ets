@@ -14,13 +14,26 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 export default function SXvalueResourceJsunit() {
-  describe('SXvalueResourceJsunit', function () {
-    beforeEach(async function (done) {
+  describe('SXvalueResourceJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("SXvalueResourceJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/RichEditor/SXvalueResource',
@@ -40,7 +53,7 @@ export default function SXvalueResourceJsunit() {
       }
       done();
     });
-    it('SXvalueResourceJsunit_0100', 0, async function (done) {
+    it('SXvalueResourceJsunit_0100', 0, async (done: Function) => {
       await CommonFunc.sleep(1000);
       console.info('SXvalueResourceJsunit_0100 START');
       let driver = Driver.create();

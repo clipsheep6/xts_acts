@@ -18,8 +18,8 @@ import CommonFunc from "../../../MainAbility/utils/Common";
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from "@ohos.UiTest";
 
 export default function AttributeUpdaterTest() {
-  describe("AttributeUpdaterTest", function () {
-    beforeEach(async function (done) {
+  describe("AttributeUpdaterTest", () => {
+    beforeEach(async (done: Function) => {
       console.info("AttributeUpdaterTest beforeEach start");
       let options = {
         url: "MainAbility/pages/Text/TextAPI/AttributeUpdater",
@@ -40,7 +40,7 @@ export default function AttributeUpdaterTest() {
       console.info("AttributeUpdaterTest beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("AttributeUpdaterTest after each called");
     });
@@ -53,7 +53,7 @@ export default function AttributeUpdaterTest() {
      * @tc.type
     * @tc.size
      */
-    it("AttributeUpdaterTest_001", 0, async function (done) {
+    it("AttributeUpdaterTest_001", 0, async (done: Function) => {
       console.info("[AttributeUpdaterTest_001] START");
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();

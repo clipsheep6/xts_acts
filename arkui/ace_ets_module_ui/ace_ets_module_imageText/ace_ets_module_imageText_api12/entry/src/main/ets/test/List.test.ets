@@ -168,7 +168,7 @@ export default function testsuite() {
   underlineColor();
   srcIndexTest();
   dstIndexTest();
-  
+
   RichEditorApi1();
   RichEditorApi3();
   RichEditorApi5();

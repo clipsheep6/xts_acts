@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function fontJsunit() {
-  describe('fontJsunit', function () {
-    beforeEach(async function (done) {
+  describe('fontJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("GridColOffsetJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/font/fontAdd',
@@ -43,7 +56,7 @@ export default function fontJsunit() {
       done();
     });
 
-    it('fontJsunit_0100', 0, async function (done) {
+    it('fontJsunit_0100', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0100 START');
       let driver = Driver.create();
@@ -57,7 +70,7 @@ export default function fontJsunit() {
       done();
     });
 
-    it('fontJsunit_0200', 0, async function (done) {
+    it('fontJsunit_0200', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0200 START');
       let driver = Driver.create();
@@ -71,54 +84,53 @@ export default function fontJsunit() {
       done();
     });
 
-     it('fontJsunit_0300', 0, async function (done) {
+    it('fontJsunit_0300', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0300 START');
       try {
         let font = globalThis.uiContext.getFont().getSystemFontList()
-        expect(font !=null).assertTrue();
+        expect(font != null).assertTrue();
       } catch (err) {
         console.error("fontJsunit_0300 error " + JSON.stringify(err));
       }
       done();
     });
 
-     it('fontJsunit_0400', 0, async function (done) {
+    it('fontJsunit_0400', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0400 START');
       try {
         let font = globalThis.uiContext.getFont().getFontByName('HarmonyOS Sans Italic')
-        expect(font !=null).assertTrue();
+        expect(font != null).assertTrue();
       } catch (err) {
         console.error("fontJsunit_0400 error " + JSON.stringify(err));
       }
       done();
     });
 
-     it('fontJsunit_0500', 0, async function (done) {
+    it('fontJsunit_0500', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0500 START');
       try {
         let font = globalThis.uiContext.getFont().getUIInspector();
-        expect(font !=null).assertTrue();
+        expect(font != null).assertTrue();
       } catch (err) {
         console.error("fontJsunit_0500 error " + JSON.stringify(err));
       }
       done();
     });
 
-    it('fontJsunit_0600', 0, async function (done) {
+    it('fontJsunit_0600', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0600 START');
       try {
         let font = globalThis.uiContext.getFont().getComponentUtils();
-        expect(font !=null).assertTrue();
+        expect(font != null).assertTrue();
       } catch (err) {
         console.error("fontJsunit_0600 error " + JSON.stringify(err));
       }
       done();
     });
-
 
 
   })

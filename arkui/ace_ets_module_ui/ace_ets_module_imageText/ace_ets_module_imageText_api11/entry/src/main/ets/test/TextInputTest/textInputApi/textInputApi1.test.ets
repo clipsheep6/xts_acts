@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from "../../../MainAbility/common/Common";
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function textInputApi1() {
-  describe('textInputApi1', function () {
-    beforeEach(async function (done) {
+  describe('textInputApi1', () => {
+    beforeEach(async (done: Function) => {
       console.info("textInputApi1 beforeEach start");
       let options = {
         url: 'MainAbility/pages/TextInput/textInputApi/textInputApi1',
@@ -40,7 +53,7 @@ export default function textInputApi1() {
       console.info("textInputApi1 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("textInputApi1 after each called");
     });
@@ -50,7 +63,7 @@ export default function textInputApi1() {
         * @tc.desc  : onSubmit event test
         * @tc.level : Level 2
         */
-    it('textInputApi1_001', 0, async function (done) {
+    it('textInputApi1_001', 0, async (done: Function) => {
 
       console.info('[textInputApi1_001] START');
       await CommonFunc.sleep(1000);

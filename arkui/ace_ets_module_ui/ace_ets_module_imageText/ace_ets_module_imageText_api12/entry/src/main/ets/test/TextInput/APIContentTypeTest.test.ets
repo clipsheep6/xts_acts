@@ -15,11 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  MouseButton,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function APIContentTypeTest() {
-  describe('APIContentTypeTest', function () {
-    beforeEach(async function (done) {
+  describe('APIContentTypeTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("APIContentTypeTest beforeEach start");
       try {
         router.clear();
@@ -27,7 +41,9 @@ export default function APIContentTypeTest() {
         console.info("get APIContentTypeTest state pages:" + JSON.stringify(pages));
         if (!("APIContentType" == pages.name)) {
           console.info("get  APIContentTypeTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/TextInput/APIContentType"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/TextInput/APIContentType"
+          })
           await CommonFunc.sleep(2000);
           console.info("push APIContentTypeTest page result:" + JSON.stringify(result));
         }
@@ -37,19 +53,19 @@ export default function APIContentTypeTest() {
       console.info("APIContentTypeTest foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("APIContentTypeTest after each called");
     });
 
     /**
-     * @tc.number    APIContentTypeTest_001
-     * @tc.desc      api
-     * @tc.level     Level 3
+     * @tc.number APIContentTypeTest_001
+     * @tc.desc api
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('APIContentTypeTest_001', 0, async function (done) {
+    it('APIContentTypeTest_001', 0, async (done: Function) => {
       console.info('[APIContentTypeTest_001] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();
@@ -74,7 +90,7 @@ export default function APIContentTypeTest() {
     * @tc.type :
     * @tc.size :
     */
-    it('APIContentTypeTest_0200', 0, async function (done) {
+    it('APIContentTypeTest_0200', 0, async (done: Function) => {
       console.info('APIContentTypeTest_0200 START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();
@@ -99,7 +115,7 @@ export default function APIContentTypeTest() {
     * @tc.type :
     * @tc.size :
     */
-    it('APIContentTypeTest_0300', 0, async function (done) {
+    it('APIContentTypeTest_0300', 0, async (done: Function) => {
       console.info('APIContentTypeTest_0300 START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();
@@ -124,7 +140,7 @@ export default function APIContentTypeTest() {
     * @tc.type :
     * @tc.size :
     */
-    it('APIContentTypeTest_0400', 0, async function (done) {
+    it('APIContentTypeTest_0400', 0, async (done: Function) => {
       console.info('APIContentTypeTest_0400 START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();

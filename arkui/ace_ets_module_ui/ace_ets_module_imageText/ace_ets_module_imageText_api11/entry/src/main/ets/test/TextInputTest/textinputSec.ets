@@ -971,7 +971,8 @@ export default function textinputSec() {
      */
     it('ArkUX_Stage_TextInput_PasswordIcon_1700', 0, async (done: Function) => {
       let passwordIcon: ESObject = {
-        onIconSrc: "../../resources/base/media/icon.png", offIconSrc: "../../resources/base/media/icon.png"
+        onIconSrc: "../../resources/base/media/icon.png",
+        offIconSrc: "../../resources/base/media/icon.png"
       }
       await forKey("passWordIcon", "", passwordIcon);
       try {

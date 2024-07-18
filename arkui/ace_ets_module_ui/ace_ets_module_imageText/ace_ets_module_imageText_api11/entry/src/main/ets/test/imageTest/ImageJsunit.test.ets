@@ -82,7 +82,7 @@ export default function imageJsunit() {
       expect(obj.$attrs.interpolation).assertEqual('ImageInterpolation.None');
       expect(obj.$attrs.renderMode).assertEqual('ImageRenderMode.Original');
       expect(obj.$attrs.sourceSize).assertEqual("[200.00 x 100.00]");
-      expect(obj.$attrs.alt).assertEqual('/resources/rawfile/person.png');
+      expect(obj.$attrs.alt).assertEqual('../../resources/rawfile/person.png');
       console.info('testGetImageAttr1 END');
       done();
     });

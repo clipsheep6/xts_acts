@@ -14,12 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 
 export default function RichEditor10() {
-  describe('RichEditor10', function () {
-    beforeEach(async function (done) {
+  describe('RichEditor10', () => {
+    beforeEach(async (done: Function) => {
       console.info("RichEditor10 beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditorEnhance/RichEditor10',
@@ -41,20 +54,20 @@ export default function RichEditor10() {
       console.info("RichEditor10 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       let driver = Driver.create();
       await driver.delayMs(1000)
       console.info("RichEditor10 after each called");
     });
     /**
-     * @tc.number    RichEditor10_0100
-     * @tc.name      RichEditor10_0100
-     * @tc.desc      Test lineBreakStrategy attributes.
+     * @tc.number RichEditor10_0100
+     * @tc.name RichEditor10_0100
+     * @tc.desc Test lineBreakStrategy attributes.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditor10_0100', 0, async function (done) {
+    it('RichEditor10_0100', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditor10_0100] START');
       let driver = Driver.create();

@@ -16,7 +16,17 @@
 import CommonFunc from '../../MainAbility/common/Common';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RichEditorApi3() {
   describe('RichEditorApi3', () => {
@@ -53,7 +63,7 @@ export default function RichEditorApi3() {
       console.info('RichEditorApi3_0100 START');
       await CommonFunc.sleep(1000);
 
-      sendEventByKey('RichEditorApi3_btn1',10,"")
+      sendEventByKey('RichEditorApi3_btn1', 10, "")
       await CommonFunc.sleep(1000);
 
       let text1 = getInspectorByKey('RichEditorApi3_text1');

@@ -16,7 +16,17 @@
 import CommonFunc from '../../MainAbility/common/Common';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RichEditorGetLayoutManagerTest1() {
   describe('RichEditorGetLayoutManagerTest1', () => {
@@ -49,10 +59,10 @@ export default function RichEditorGetLayoutManagerTest1() {
 
 
     /**
-     * @tc.number    RichEditorGetLayoutManagerTest1_0100
-     * @tc.name      RichEditorGetLayoutManagerTest1_0100
-     * @tc.desc      Test RichEditor getLayoutManager
-     * @tc.level     Level 2
+     * @tc.number RichEditorGetLayoutManagerTest1_0100
+     * @tc.name RichEditorGetLayoutManagerTest1_0100
+     * @tc.desc Test RichEditor getLayoutManager
+     * @tc.level Level 2
      */
     it('RichEditorGetLayoutManagerTest1_0100', 0, async (done: Function) => {
       console.info('RichEditorGetLayoutManagerTest1_0100 START');
@@ -74,7 +84,6 @@ export default function RichEditorGetLayoutManagerTest1() {
       console.info('RichEditorGetLayoutManagerTest1_0100 END');
       done();
     });
-
 
 
   })

@@ -16,7 +16,17 @@
 import CommonFunc from '../../MainAbility/utils/Common';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function TextInputApi1() {
   describe('TextInputApi1', () => {
@@ -46,7 +56,7 @@ export default function TextInputApi1() {
 
     /**
      * @tc.number TextInputApi1_0100
-     * @tc.name   testFocus
+     * @tc.name testFocus
      * @tc.desc
      */
     it('TextInputApi1_0100', 0, async (done: Function) => {

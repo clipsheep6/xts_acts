@@ -14,13 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, MouseButton} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix,
+  MouseButton
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 export default function textAreaBC1Jsunit() {
-  describe('textAreaBC1Jsunit', function () {
-    beforeEach(async function (done) {
+  describe('textAreaBC1Jsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("textAreaBC1Jsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TextArea/textAreaBC1',
@@ -48,7 +62,7 @@ export default function textAreaBC1Jsunit() {
     * @tc.desc  : Move the cursor out of the TextArea component
     * @tc.level : Level 3
     */
-    it('textAreaBC1Jsunit_0100', 0, async function (done) {
+    it('textAreaBC1Jsunit_0100', 0, async (done: Function) => {
       console.info('textAreaBC1Jsunit_0100 START');
       let driver = await UiDriver.create()
       await CommonFunc.sleep(1000);
@@ -72,7 +86,7 @@ export default function textAreaBC1Jsunit() {
    * @tc.desc  : In the TextArea, delete and add the text content verification effect in the TextArea
    * @tc.level : Level 3
    */
-    it('textAreaBC1Jsunit_0200', 0, async function (done) {
+    it('textAreaBC1Jsunit_0200', 0, async (done: Function) => {
       console.info('textAreaBC1Jsunit_0200 START');
       let driver = UiDriver.create();
       await CommonFunc.sleep(1000);
@@ -107,7 +121,7 @@ export default function textAreaBC1Jsunit() {
   * @tc.desc  : Set the text color and text size
   * @tc.level : Level 3
   */
-    it('textAreaBC1Jsunit_0300', 0, async function (done) {
+    it('textAreaBC1Jsunit_0300', 0, async (done: Function) => {
       console.info('textAreaBC1Jsunit_0300 START');
       let driver = UiDriver.create();
       await CommonFunc.sleep(1000);
@@ -120,11 +134,17 @@ export default function textAreaBC1Jsunit() {
       expect(obj1.$attrs.content).assertEqual('444');
       await CommonFunc.sleep(1000);
       console.info('textAreaBC1Jsunit_0300 START');
-      globalThis.value.message.notify({name:'placeholderColor',value:'#FFFFFFFF'})
+      globalThis.value.message.notify({
+        name: 'placeholderColor', value: '#FFFFFFFF'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'textColor',value:'#FF66DD00'})
+      globalThis.value.message.notify({
+        name: 'textColor', value: '#FF66DD00'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'fontSize',value:12})
+      globalThis.value.message.notify({
+        name: 'fontSize', value: 12
+      })
       await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('textArea1');
       let obj = JSON.parse(strJson);
@@ -146,7 +166,7 @@ export default function textAreaBC1Jsunit() {
     * @tc.desc  : Activate the handle inside the textArea component to verify the effect
     * @tc.level : Level 3
     */
-    it('textAreaBC1Jsunit_0400', 0, async function (done) {
+    it('textAreaBC1Jsunit_0400', 0, async (done: Function) => {
       console.info('textAreaBC1Jsunit_0400 START');
       let driver = await UiDriver.create()
       let Storage12Button1 = await driver.findComponent(BY.key('textArea1'));
@@ -173,12 +193,12 @@ export default function textAreaBC1Jsunit() {
     * @tc.desc  : View the default in the TextArea component
     * @tc.level : Level 3
     */
-    it('textAreaBC1Jsunit_0500', 0, async function (done) {
+    it('textAreaBC1Jsunit_0500', 0, async (done: Function) => {
       console.info('textAreaBC1Jsunit_0500 START');
       let driver = await UiDriver.create()
       let Storage12Button1 = await driver.findComponent(BY.key('textArea1'));
       await CommonFunc.sleep(1000);
-      console.log('dududud',Storage12Button1)
+      console.log('dududud', Storage12Button1)
       await Storage12Button1.click();
       await CommonFunc.sleep(1000);
       let strJsont = getInspectorByKey('isEdit');
@@ -193,30 +213,34 @@ export default function textAreaBC1Jsunit() {
     * @tc.desc  : Raise the handle in the TextArea component and copy and paste the text
     * @tc.level : Level 3
     */
-    it('textAreaBC1Jsunit_0600', 0, async function (done) {
+    it('textAreaBC1Jsunit_0600', 0, async (done: Function) => {
       console.info('textAreaBC1Jsunit_0600 START');
       await CommonFunc.sleep(1000);
       let driver = UiDriver.create();
       await CommonFunc.sleep(1000);
       let driverX = await Driver.create()
       let textAreaRect = CommonFunc.getComponentRectOnScreen('textArea1')
-      let clickX = Math.round((textAreaRect.right + textAreaRect.left)/2)
-      let clickY = Math.round((textAreaRect.bottom + textAreaRect.top)/2)
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      let clickX = Math.round((textAreaRect.right + textAreaRect.left) / 2)
+      let clickY = Math.round((textAreaRect.bottom + textAreaRect.top) / 2)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let allSelect = await driver.findComponent(BY.text('全选'));
       await CommonFunc.sleep(1000);
-      console.log('0600allSelectallSelect',allSelect)
+      console.log('0600allSelectallSelect', allSelect)
       if (allSelect != null) {
         console.log('0600我进来了--全选')
         await allSelect.click();
         await CommonFunc.sleep(1000);
       }
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let copy = await driver.findComponent(BY.text('复制'));
       await CommonFunc.sleep(1000);
-      console.log('0600allSelectallSelect复制',copy)
+      console.log('0600allSelectallSelect复制', copy)
       if (copy != null) {
         console.log('0600我进来了--复制')
         await copy.click();
@@ -228,7 +252,9 @@ export default function textAreaBC1Jsunit() {
       await CommonFunc.sleep(1000);
       console.info('textAreaBC1Jsunit_0600 component obj is: ' + txt);
       expect(txt).assertEqual('copy');
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let paste = await driver.findComponent(BY.text('粘贴'));
       if (paste != null) {
@@ -247,7 +273,7 @@ export default function textAreaBC1Jsunit() {
     * @tc.desc  : Cut text in the TextArea component
     * @tc.level : Level 3
     */
-    it('textAreaBC1Jsunit_0700', 0, async function (done) {
+    it('textAreaBC1Jsunit_0700', 0, async (done: Function) => {
       console.info('textAreaBC1Jsunit_0700 START');
       await CommonFunc.sleep(1000);
       let driver = UiDriver.create();
@@ -256,9 +282,11 @@ export default function textAreaBC1Jsunit() {
       await CommonFunc.sleep(1000);
       let driverX = await Driver.create()
       let textAreaRect = CommonFunc.getComponentRectOnScreen('textArea1')
-      let clickX = Math.round((textAreaRect.right + textAreaRect.left)/2)
-      let clickY = Math.round((textAreaRect.bottom + textAreaRect.top)/2)
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      let clickX = Math.round((textAreaRect.right + textAreaRect.left) / 2)
+      let clickY = Math.round((textAreaRect.bottom + textAreaRect.top) / 2)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let allSelect = await driver.findComponent(BY.text('全选'));
       await CommonFunc.sleep(2000);
@@ -266,7 +294,9 @@ export default function textAreaBC1Jsunit() {
         await allSelect.click();
         await CommonFunc.sleep(1000);
       }
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let cutComponent = await driver.findComponent(BY.text('剪切'));
       await CommonFunc.sleep(2000);
@@ -286,7 +316,7 @@ export default function textAreaBC1Jsunit() {
     * @tc.desc  : Move position within the textArea by hand keyboard and mouse in the TextArea component
     * @tc.level : Level 2
     */
-    it('textAreaBC1Jsunit_0800', 0, async function (done) {
+    it('textAreaBC1Jsunit_0800', 0, async (done: Function) => {
       let driver = await UiDriver.create()
       let text = await driver.findComponent(BY.key('textArea1'));
       await text.inputText('ee');
@@ -311,7 +341,7 @@ export default function textAreaBC1Jsunit() {
    * @tc.desc  : Move position inside the textArea by hand keyboard and mouse outside the TextArea component
    * @tc.level : Level 3
    */
-    it('textAreaBC1Jsunit_0900', 0, async function (done) {
+    it('textAreaBC1Jsunit_0900', 0, async (done: Function) => {
       let driver = await UiDriver.create()
       let text = await driver.findComponent(BY.key('textArea2'));
       await text.inputText('yy');

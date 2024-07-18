@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RelativePadding() {
-  describe('RelativePadding', function () {
-    beforeEach(async function (done) {
+  describe('RelativePadding', () => {
+    beforeEach(async (done: Function) => {
       console.info("RelativePadding beforeEach start");
       try {
         router.clear();
@@ -27,7 +40,9 @@ export default function RelativePadding() {
         console.info("get RelativePadding state pages:" + JSON.stringify(pages));
         if (!("RelativePadding" == pages.name)) {
           console.info("get  RelativePadding pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/RelativeContainer/RelativePadding"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/RelativeContainer/RelativePadding"
+          })
           await CommonFunc.sleep(2000);
           console.info("push RelativePadding page result:" + JSON.stringify(result));
         }
@@ -37,20 +52,20 @@ export default function RelativePadding() {
       console.info("RelativePadding foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("RelativePadding after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0660
-     * @tc.desc      add padding
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0660
+     * @tc.desc add padding
+     * @tc.level Level 3
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
 
-    it('RelativePadding_001', 0, async function (done) {
+    it('RelativePadding_001', 0, async (done: Function) => {
       console.info('[RelativePadding_001] START');
 
       await CommonFunc.sleep(1000);
@@ -75,10 +90,6 @@ export default function RelativePadding() {
       console.info('[RelativePadding_001] END');
       done();
     });
-
-
-
-
 
 
   })

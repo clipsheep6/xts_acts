@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function ProgressJsunit() {
-  describe('ProgressJsunit', function () {
-    beforeEach(async function (done) {
+  describe('ProgressJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("ProgressJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Progress/ProgressPage',
@@ -43,7 +56,7 @@ export default function ProgressJsunit() {
       done();
     });
 
-    it('ProgressJsunit_0100', 0, async function (done) {
+    it('ProgressJsunit_0100', 0, async (done: Function) => {
       // Get the information of the Progress component
       console.info('[ProgressJsunit_0100] START');
       await CommonFunc.sleep(1000);
@@ -67,10 +80,12 @@ export default function ProgressJsunit() {
       done();
     });
 
-    it('ProgressJsunit_0200', 0, async function (done) {
+    it('ProgressJsunit_0200', 0, async (done: Function) => {
       // Modify the total value of the Progress component
       console.info('[ProgressJsunit_0200] START');
-      globalThis.value.message.notify({name:'progressTotal',value:200})
+      globalThis.value.message.notify({
+        name: 'progressTotal', value: 200
+      })
       await CommonFunc.sleep(2000);
       // Get the total value of the Progress component
       let strJson = getInspectorByKey('pro1');
@@ -82,10 +97,12 @@ export default function ProgressJsunit() {
       done();
     });
 
-    it('ProgressJsunit_0300', 0, async function (done) {
+    it('ProgressJsunit_0300', 0, async (done: Function) => {
       // Modify the type of the Progress component
       console.info('[ProgressJsunit_0300] START');
-      globalThis.value.message.notify({name:'ProgressType',value:ProgressStyle.Capsule})
+      globalThis.value.message.notify({
+        name: 'ProgressType', value: ProgressStyle.Capsule
+      })
       await CommonFunc.sleep(2000);
       // Get the type of the Progress component
       let strJson = getInspectorByKey('pro1');
@@ -96,10 +113,12 @@ export default function ProgressJsunit() {
       done();
     });
 
-    it('ProgressJsunit_0400', 0, async function (done) {
+    it('ProgressJsunit_0400', 0, async (done: Function) => {
       // Modify the color of the Progress component
       console.info('[ProgressJsunit_0400] START');
-      globalThis.value.message.notify({name:'ProgressColor',value:Color.Blue})
+      globalThis.value.message.notify({
+        name: 'ProgressColor', value: Color.Blue
+      })
       await CommonFunc.sleep(2000);
       // Get the color of the Progress component
       let strJson = getInspectorByKey('pro1');
@@ -111,10 +130,12 @@ export default function ProgressJsunit() {
       done();
     });
 
-    it('ProgressJsunit_0500', 0, async function (done) {
+    it('ProgressJsunit_0500', 0, async (done: Function) => {
       // Modify the backgroundColor of the Progress component
       console.info('[ProgressJsunit_0500] START');
-      globalThis.value.message.notify({name:'backgroundColor',value:Color.Black})
+      globalThis.value.message.notify({
+        name: 'backgroundColor', value: Color.Black
+      })
       await CommonFunc.sleep(2000);
       // Get the backgroundColor of the Progress component
       let strJson = getInspectorByKey('pro1');
@@ -125,10 +146,12 @@ export default function ProgressJsunit() {
       done();
     });
 
-    it('ProgressJsunit_0600', 0, async function (done) {
+    it('ProgressJsunit_0600', 0, async (done: Function) => {
       // Modify the style of the Progress component
       console.info('[ProgressJsunit_0600] START');
-      globalThis.value.message.notify({name:'ProgressType',value:ProgressStyle.ScaleRing})
+      globalThis.value.message.notify({
+        name: 'ProgressType', value: ProgressStyle.ScaleRing
+      })
       await CommonFunc.sleep(2000);
 
       // Get the value of the modified style attribute
@@ -139,11 +162,13 @@ export default function ProgressJsunit() {
       console.info('[ProgressJsunit_0600] END');
       done();
     });
-    
-    it('ProgressJsunit_0700', 0, async function (done) {
+
+    it('ProgressJsunit_0700', 0, async (done: Function) => {
       // Modify the value of the Progress component
       console.info('[ProgressJsunit_0700] START');
-      globalThis.value.message.notify({name:'progressValue',value:20})
+      globalThis.value.message.notify({
+        name: 'progressValue', value: 20
+      })
       await CommonFunc.sleep(2000);
       // Get the value of the Progress component
       let strJson = getInspectorByKey('pro1');
@@ -154,10 +179,12 @@ export default function ProgressJsunit() {
       done();
     });
 
-    it('ProgressJsunit_0800', 0, async function (done) {
+    it('ProgressJsunit_0800', 0, async (done: Function) => {
       // Illegal modification of the value of the Progress component
       console.info('[ProgressJsunit_0800] START');
-      globalThis.value.message.notify({name:'progressValue',value:-20})
+      globalThis.value.message.notify({
+        name: 'progressValue', value: -20
+      })
       await CommonFunc.sleep(1500);
       // Get the value of Progress component after illegal modification
       let strJson = getInspectorByKey('pro1');
@@ -165,7 +192,9 @@ export default function ProgressJsunit() {
       console.info("[ProgressJsunit_0800] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.value).assertEqual('0.000000');
 
-      globalThis.value.message.notify({name:'progressValue',value:400})
+      globalThis.value.message.notify({
+        name: 'progressValue', value: 400
+      })
       await CommonFunc.sleep(1500);
       // Get the value of the Progress component after illegal modification again
       let strJson1 = getInspectorByKey('pro1');
@@ -176,7 +205,7 @@ export default function ProgressJsunit() {
       done();
     });
 
-    it('ProgressJsunit_0900', 0, async function (done) {
+    it('ProgressJsunit_0900', 0, async (done: Function) => {
       // Get the default value of the Progress component
       console.info('[ProgressJsunit_0900] START');
       let strJson = getInspectorByKey('pro2');

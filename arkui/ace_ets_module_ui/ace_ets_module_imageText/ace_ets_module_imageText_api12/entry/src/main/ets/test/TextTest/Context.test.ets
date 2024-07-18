@@ -18,8 +18,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function Context() {
-  describe('Context', function () {
-    beforeEach(async function (done) {
+  describe('Context', () => {
+    beforeEach(async (done: Function) => {
       console.info("Context beforeEach start");
       try {
         router.clear();
@@ -37,7 +37,7 @@ export default function Context() {
       console.info("Context foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("Context after each called");
     });
@@ -49,7 +49,7 @@ export default function Context() {
      * @tc.type
      */
 
-    it('Context_001', 0, async function (done) {
+    it('Context_001', 0, async (done: Function) => {
       console.info('[Context_001] START');
 
       await CommonFunc.sleep(1000);
@@ -72,7 +72,7 @@ export default function Context() {
      * @tc.type
      */
 
-    it('Context_002', 0, async function (done) {
+    it('Context_002', 0, async (done: Function) => {
       console.info('[Context_002] START');
 
       await CommonFunc.sleep(1000);

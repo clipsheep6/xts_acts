@@ -14,12 +14,26 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+
 export default function APIgetUIFontConfigJsunit() {
-  describe('APIgetUIFontConfigJsunit', function () {
-    beforeEach(async function (done) {
+  describe('APIgetUIFontConfigJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("APIgetUIFontConfigJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/font/APIgetUIFontConfig',
@@ -39,7 +53,7 @@ export default function APIgetUIFontConfigJsunit() {
       }
       done();
     });
-    it('APIgetUIFontConfigJsunit_0100', 0, async function (done) {
+    it('APIgetUIFontConfigJsunit_0100', 0, async (done: Function) => {
       await CommonFunc.sleep(1000);
       console.info('APIgetUIFontConfigJsunit_0100 START');
       let driver = Driver.create();

@@ -15,11 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  MouseButton,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function MarqueeMirroringTest() {
-  describe('MarqueeMirroringTest', function () {
-    beforeEach(async function (done) {
+  describe('MarqueeMirroringTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("MarqueeMirroringTest beforeEach start");
       try {
         router.clear();
@@ -28,8 +42,8 @@ export default function MarqueeMirroringTest() {
         if (!("MarqueeMirroringTest" == pages.name)) {
           console.info("get  MarqueeMirroringTest pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl({
-            url:"MainAbility/pages/Marquee/MarqueeMirroring"
-            })
+            url: "MainAbility/pages/Marquee/MarqueeMirroring"
+          })
           await CommonFunc.sleep(2000);
           console.info("push MarqueeMirroringTest page result:" + JSON.stringify(result));
         }
@@ -40,18 +54,18 @@ export default function MarqueeMirroringTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("MarqueeMirroringTest after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_MarqueeMirroringTest_001
-     * @tc.desc      Marquee onStart test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_MarqueeMirroringTest_001
+     * @tc.desc Marquee onStart test
+     * @tc.level Level 3
      * @tc.type
      */
-    it('MarqueeMirroringTest_001', 0, async function (done) {
+    it('MarqueeMirroringTest_001', 0, async (done: Function) => {
       console.info('[MarqueeMirroringTest_001] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
@@ -69,12 +83,12 @@ export default function MarqueeMirroringTest() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_MarqueeMirroringTest_002
-     * @tc.desc      Marquee onBounce test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_MarqueeMirroringTest_002
+     * @tc.desc Marquee onBounce test
+     * @tc.level Level 3
      * @tc.type
      */
-    it('MarqueeMirroringTest_002', 0, async function (done) {
+    it('MarqueeMirroringTest_002', 0, async (done: Function) => {
       console.info('[MarqueeMirroringTest_002] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
@@ -93,12 +107,12 @@ export default function MarqueeMirroringTest() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_MarqueeMirroringTest_003
-     * @tc.desc      Marquee onFinish test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_MarqueeMirroringTest_003
+     * @tc.desc Marquee onFinish test
+     * @tc.level Level 3
      * @tc.type
      */
-    it('MarqueeMirroringTest_003', 0, async function (done) {
+    it('MarqueeMirroringTest_003', 0, async (done: Function) => {
       console.info('[MarqueeMirroringTest_003] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);

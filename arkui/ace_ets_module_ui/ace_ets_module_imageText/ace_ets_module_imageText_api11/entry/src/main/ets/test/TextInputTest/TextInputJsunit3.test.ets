@@ -17,7 +17,9 @@ import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
 import { UiDriver, BY } from '@ohos.UiTest';
 import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
-import Utils from '../../MainAbility/common/Utils';;
+import Utils from '../../MainAbility/common/Utils';
+
+;
 
 export default function textInputJsunit3() {
   describe('appInfoTest_four_12', () => {

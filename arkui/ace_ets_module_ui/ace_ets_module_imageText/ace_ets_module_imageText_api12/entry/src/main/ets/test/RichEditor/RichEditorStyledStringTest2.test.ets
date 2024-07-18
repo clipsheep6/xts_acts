@@ -16,7 +16,17 @@
 import CommonFunc from '../../MainAbility/common/Common';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RichEditorStyledStringTest2() {
   describe('RichEditorStyledStringTest2', () => {
@@ -49,10 +59,10 @@ export default function RichEditorStyledStringTest2() {
 
 
     /**
-     * @tc.number    RichEditorStyledStringTest2_0100
-     * @tc.name      RichEditorStyledStringTest2_0100
-     * @tc.desc      Test RichEditor onContentChanged
-     * @tc.level     Level 2
+     * @tc.number RichEditorStyledStringTest2_0100
+     * @tc.name RichEditorStyledStringTest2_0100
+     * @tc.desc Test RichEditor onContentChanged
+     * @tc.level Level 2
      */
     it('RichEditorStyledStringTest2_0100', 0, async (done: Function) => {
       console.info('RichEditorStyledStringTest2_0100 START');
@@ -72,7 +82,6 @@ export default function RichEditorStyledStringTest2() {
       console.info('RichEditorStyledStringTest2_0100 END');
       done();
     });
-
 
 
   })

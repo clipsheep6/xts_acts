@@ -19,8 +19,8 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 
 export default function onSelectionChange19() {
-  describe('onSelectionChange19', function () {
-    beforeEach(async function (done) {
+  describe('onSelectionChange19', () => {
+    beforeEach(async (done: Function) => {
       console.info("onSelectionChange19 beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditor/onSelectionChange19',
@@ -41,7 +41,7 @@ export default function onSelectionChange19() {
       console.info("onSelectionChange19 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("onSelectionChange19 after each called");
     });
@@ -53,7 +53,7 @@ export default function onSelectionChange19() {
      * @tc.type
     * @tc.size
      */
-    it('onSelectionChange19_0100', 0, async function (done) {
+    it('onSelectionChange19_0100', 0, async (done: Function) => {
       console.info('[onSelectionChange19_0100] START');
       await CommonFunc.sleep(1000);
 

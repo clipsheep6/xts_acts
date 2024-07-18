@@ -18,8 +18,8 @@ import CommonFunc from '../../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function Text_lineBreakStrategyTest() {
-  describe('Text_lineBreakStrategyTest', function () {
-    beforeEach(async function (done) {
+  describe('Text_lineBreakStrategyTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("Text_lineBreakStrategyTest beforeEach start");
       let options = {
         url: "MainAbility/pages/Text/TextAPI/lineBreakStrategy",
@@ -40,7 +40,7 @@ export default function Text_lineBreakStrategyTest() {
       console.info("Text_lineBreakStrategyTest beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("Text_lineBreakStrategyTest after each called");
     });
@@ -53,7 +53,7 @@ export default function Text_lineBreakStrategyTest() {
      * @tc.type
     * @tc.size
      */
-    it('Text_lineBreakStrategyTest_001', 0, async function (done) {
+    it('Text_lineBreakStrategyTest_001', 0, async (done: Function) => {
       console.info('[Text_lineBreakStrategyTest_001] START');
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();

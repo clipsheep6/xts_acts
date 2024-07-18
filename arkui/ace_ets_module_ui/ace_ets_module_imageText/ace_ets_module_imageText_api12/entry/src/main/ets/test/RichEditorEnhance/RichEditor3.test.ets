@@ -14,12 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 
 export default function RichEditor3() {
-  describe('RichEditor3', function () {
-    beforeEach(async function (done) {
+  describe('RichEditor3', () => {
+    beforeEach(async (done: Function) => {
       console.info("RichEditor3 beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditorEnhance/RichEditor3',
@@ -41,25 +54,25 @@ export default function RichEditor3() {
       console.info("RichEditor3 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       let driver = Driver.create();
       await driver.delayMs(1000)
       console.info("RichEditor3 after each called");
     });
     /**
      * @tc.number RichEditor3_0100
-     * @tc.name   RichEditor3_0100
-     * @tc.desc   Test onIMEInputComplete callback.
+     * @tc.name RichEditor3_0100
+     * @tc.desc Test onIMEInputComplete callback.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditor3_0100', 0, async function (done) {
+    it('RichEditor3_0100', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditor3_0100] START');
       let driver = Driver.create();
       await driver.delayMs(1000)
-      
+
       let RichEditorGetAttribute = await driver.findComponent(ON.id("RichEditorGetAttribute"));
       await RichEditorGetAttribute.inputText('1')
       let PSTextAlign = await driver.findComponent(ON.id("PSTextAlign"));
@@ -75,13 +88,13 @@ export default function RichEditor3() {
 
     /**
      * @tc.number RichEditor3_0200
-     * @tc.name   RichEditor3_0200
-     * @tc.desc   Test getSPans callback.
+     * @tc.name RichEditor3_0200
+     * @tc.desc Test getSPans callback.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditor3_0200', 0, async function (done) {
+    it('RichEditor3_0200', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditor3_0200] START');
       let driver = Driver.create();
@@ -108,13 +121,13 @@ export default function RichEditor3() {
 
     /**
      * @tc.number RichEditor3_0300
-     * @tc.name   RichEditor3_0300
-     * @tc.desc   Test onSelect callback.
+     * @tc.name RichEditor3_0300
+     * @tc.desc Test onSelect callback.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditor3_0300', 0, async function (done) {
+    it('RichEditor3_0300', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditor3_0300] START');
       let driver = Driver.create();
@@ -141,13 +154,13 @@ export default function RichEditor3() {
 
     /**
      * @tc.number RichEditor3_0400
-     * @tc.name   RichEditor3_0400
-     * @tc.desc   Test getSelection callback.
+     * @tc.name RichEditor3_0400
+     * @tc.desc Test getSelection callback.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditor3_0400', 0, async function (done) {
+    it('RichEditor3_0400', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditor3_0400] START');
       let driver = Driver.create();
@@ -172,13 +185,13 @@ export default function RichEditor3() {
 
     /**
      * @tc.number RichEditor3_0500
-     * @tc.name   RichEditor3_0500
-     * @tc.desc   Test aboutToDelete callback.
+     * @tc.name RichEditor3_0500
+     * @tc.desc Test aboutToDelete callback.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditor3_0500', 0, async function (done) {
+    it('RichEditor3_0500', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditor3_0500] START');
       let driver = Driver.create();

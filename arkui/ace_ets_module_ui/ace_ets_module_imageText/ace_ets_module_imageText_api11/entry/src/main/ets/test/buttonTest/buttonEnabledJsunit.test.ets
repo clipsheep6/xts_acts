@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function buttonEnabledJsunit() {
-  describe('buttonEnabledJsunit', function () {
-    beforeEach(async function (done) {
+  describe('buttonEnabledJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("buttonEnabledJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/button/buttonEnabled',
@@ -43,7 +43,7 @@ export default function buttonEnabledJsunit() {
       done();
     });
 
-    it('buttonEnabledJsunit_0100', 0, async function (done) {
+    it('buttonEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('buttonEnabledJsunit_0100 START');
       let driver = await UiDriver.create()
@@ -59,7 +59,7 @@ export default function buttonEnabledJsunit() {
       done();
     });
 
-    it('buttonEnabledJsunit_0200', 0, async function (done) {
+    it('buttonEnabledJsunit_0200', 0, async (done: Function) => {
 
       console.info('buttonEnabledJsunit_0200 START');
       let driver = await UiDriver.create()
@@ -75,7 +75,7 @@ export default function buttonEnabledJsunit() {
       done();
     });
 
-    it('buttonEnabledJsunit_0300', 0, async function (done) {
+    it('buttonEnabledJsunit_0300', 0, async (done: Function) => {
 
       console.info('buttonEnabledJsunit_0300 START');
       let driver = await UiDriver.create()
@@ -91,7 +91,7 @@ export default function buttonEnabledJsunit() {
       done();
     });
 
-    it('buttonEnabledJsunit_0400', 0, async function (done) {
+    it('buttonEnabledJsunit_0400', 0, async (done: Function) => {
 
       console.info('buttonEnabledJsunit_0400 START');
       let driver = await UiDriver.create()
@@ -107,7 +107,7 @@ export default function buttonEnabledJsunit() {
       done();
     });
 
-    it('buttonEnabledJsunit_0500', 0, async function (done) {
+    it('buttonEnabledJsunit_0500', 0, async (done: Function) => {
 
       console.info('buttonEnabledJsunit_0500 START');
       let driver = await UiDriver.create()
@@ -123,7 +123,7 @@ export default function buttonEnabledJsunit() {
       done();
     });
 
-    it('buttonEnabledJsunit_0600', 0, async function (done) {
+    it('buttonEnabledJsunit_0600', 0, async (done: Function) => {
 
       console.info('buttonEnabledJsunit_0600 START');
       let driver = await UiDriver.create()
@@ -139,7 +139,7 @@ export default function buttonEnabledJsunit() {
       done();
     });
 
-    it('buttonEnabledJsunit_0700', 0, async function (done) {
+    it('buttonEnabledJsunit_0700', 0, async (done: Function) => {
 
       console.info('buttonEnabledJsunit_0700 START');
       let driver = await UiDriver.create()

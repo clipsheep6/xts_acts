@@ -14,14 +14,26 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function symbolEffect() {
-  describe('symbolEffect', function () {
-    beforeEach(async function (done) {
+  describe('symbolEffect', () => {
+    beforeEach(async (done: Function) => {
       console.info("symbolEffect beforeEach start");
       let options = {
         uri: "MainAbility/pages/SymbolGlyph/symbolEffect",
@@ -42,64 +54,67 @@ export default function symbolEffect() {
       }
       done();
     });
-    
-     /**
-     * @tc.number    SUB_ACE_symbolEffect_0100
-     * @tc.name      symbolEffect_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
-     * @tc.type : 
+
+    /**
+     * @tc.number SUB_ACE_symbolEffect_0100
+     * @tc.name symbolEffect_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
+     * @tc.type :
      * @tc.size :
      */
-    it('symbolEffect_0100', 0, async function (done) {
+    it('symbolEffect_0100', 0, async (done: Function) => {
       console.info('symbolEffect_0100 START');
       let strJson = getInspectorByKey('ScaleSymbolEffect');
       let obj = JSON.parse(strJson);
       console.info("[symbolEffect_0100] component obj is: " + JSON.stringify(obj));
       console.info("[symbolEffect_0100] symbolEffect: " + JSON.stringify(obj.$attrs.symbolEffect));
-      expect(obj.$attrs.symbolEffect).assertEqual('{"effectType":1,"scopeType":0,"commonSubType":1,"fillStyle":0,"isTxtActive":true,"isActive":true}');
+      expect(obj.$attrs.symbolEffect)
+        .assertEqual('{"effectType":1,"scopeType":0,"commonSubType":1,"fillStyle":0,"isTxtActive":true,"isActive":true}');
       console.info('[symbolEffect_0100] END');
       done();
     });
 
     /**
-     * @tc.number    SUB_ACE_symbolEffect_0200
-     * @tc.name      symbolEffect_0200
-     * @tc.desc      set api
-     * @tc.level:    Level 2
-     * @tc.type : 
+     * @tc.number SUB_ACE_symbolEffect_0200
+     * @tc.name symbolEffect_0200
+     * @tc.desc set api
+     * @tc.level: Level 2
+     * @tc.type :
      * @tc.size :
      */
-    it('symbolEffect_0200', 0, async function (done) {
+    it('symbolEffect_0200', 0, async (done: Function) => {
       console.info('symbolEffect_0200 START');
       let strJson = getInspectorByKey('AppearSymbolEffect');
       let obj = JSON.parse(strJson);
       console.info("[symbolEffect_0200] component obj is: " + JSON.stringify(obj));
       console.info("[symbolEffect_0200] symbolEffect: " + JSON.stringify(obj.$attrs.symbolEffect));
-      expect(obj.$attrs.symbolEffect).assertEqual('{"effectType":3,"scopeType":1,"commonSubType":0,"fillStyle":0,"isTxtActive":false,"triggerNum":0}');
+      expect(obj.$attrs.symbolEffect)
+        .assertEqual('{"effectType":3,"scopeType":1,"commonSubType":0,"fillStyle":0,"isTxtActive":false,"triggerNum":0}');
       console.info('[symbolEffect_0200] END');
       done();
     });
 
     /**
-     * @tc.number    SUB_ACE_symbolEffect_0300
-     * @tc.name      symbolEffect_0300
-     * @tc.desc      set api
-     * @tc.level:    Level 2
-     * @tc.type : 
+     * @tc.number SUB_ACE_symbolEffect_0300
+     * @tc.name symbolEffect_0300
+     * @tc.desc set api
+     * @tc.level: Level 2
+     * @tc.type :
      * @tc.size :
      */
-    it('symbolEffect_0300', 0, async function (done) {
+    it('symbolEffect_0300', 0, async (done: Function) => {
       console.info('symbolEffect_0300 START');
       let strJson = getInspectorByKey('DisappearSymbolEffect');
       let obj = JSON.parse(strJson);
       console.info("[symbolEffect_0300] component obj is: " + JSON.stringify(obj));
       console.info("[symbolEffect_0300] symbolEffect: " + JSON.stringify(obj.$attrs.symbolEffect));
-      expect(obj.$attrs.symbolEffect).assertEqual('{"effectType":4,"scopeType":1,"commonSubType":0,"fillStyle":0,"isTxtActive":false,"triggerNum":0}');
+      expect(obj.$attrs.symbolEffect)
+        .assertEqual('{"effectType":4,"scopeType":1,"commonSubType":0,"fillStyle":0,"isTxtActive":false,"triggerNum":0}');
       console.info('[symbolEffect_0300] END');
       done();
     });
-    
+
 
   })
 }

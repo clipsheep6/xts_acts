@@ -15,11 +15,24 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RichEditorFontFeatureJsunit() {
-  describe('RichEditorFontFeatureJsunit', function () {
-    beforeEach(async function (done) {
+  describe('RichEditorFontFeatureJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("RichEditorFontFeatureJsunit beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditorEnhance01/RichEditorFontFeature',
@@ -41,8 +54,8 @@ export default function RichEditorFontFeatureJsunit() {
       console.info("RichEditorFontFeatureJsunit beforeEach end");
       done();
     });
-    
-    afterEach(async function () {
+
+    afterEach(async () => {
       let driver = Driver.create();
       await driver.delayMs(1000)
       console.info("RichEditorFontFeatureJsunit after each called");
@@ -50,19 +63,19 @@ export default function RichEditorFontFeatureJsunit() {
 
     /**
      * @tc.number RichEditorFontFeatureJsunit_0100
-     * @tc.name   RichEditorFontFeatureJsunit_0100
-     * @tc.desc   Test setting properties for a single fontFeature.
+     * @tc.name RichEditorFontFeatureJsunit_0100
+     * @tc.desc Test setting properties for a single fontFeature.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditorFontFeatureJsunit_0100', 0, async function (done) {
+    it('RichEditorFontFeatureJsunit_0100', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditorFontFeatureJsunit_0100] START');
       let driver = Driver.create();
       await driver.delayMs(1000)
 
-      let  RichEditorFontFeatureUpdateBtn = await driver.findComponent(ON.id("RichEditorFontFeature_UpdateBtn1"));
+      let RichEditorFontFeatureUpdateBtn = await driver.findComponent(ON.id("RichEditorFontFeature_UpdateBtn1"));
       await RichEditorFontFeatureUpdateBtn.click()
       await driver.delayMs(2000)
 
@@ -71,9 +84,9 @@ export default function RichEditorFontFeatureJsunit() {
       await driver.delayMs(2000)
 
       let FontFeatureValueCon = await driver.findComponent(ON.text("getSpansAPI"));
-      console.info("StyleLineHeightValue"+ JSON.stringify(FontFeatureValueCon))
+      console.info("StyleLineHeightValue" + JSON.stringify(FontFeatureValueCon))
       let FontFeatureValue = await FontFeatureValueCon.getId();
-      console.info("RichEditorFontFeatureValue_"+ FontFeatureValue)
+      console.info("RichEditorFontFeatureValue_" + FontFeatureValue)
       await driver.delayMs(2000)
       expect(FontFeatureValue).assertEqual("RichEditorFontFeatureValue_\"subs\" 1")
       console.info('[RichEditorFontFeatureJsunit_0100] END');
@@ -82,13 +95,13 @@ export default function RichEditorFontFeatureJsunit() {
 
     /**
      * @tc.number RichEditorFontFeatureJsunit_0200
-     * @tc.name   RichEditorFontFeatureJsunit_0200
-     * @tc.desc   Test setting properties for a Multiple fontFeature.
+     * @tc.name RichEditorFontFeatureJsunit_0200
+     * @tc.desc Test setting properties for a Multiple fontFeature.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditorFontFeatureJsunit_0200', 0, async function (done) {
+    it('RichEditorFontFeatureJsunit_0200', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditorFontFeatureJsunit_0200] START');
       let driver = Driver.create();
@@ -103,9 +116,9 @@ export default function RichEditorFontFeatureJsunit() {
       await driver.delayMs(2000)
 
       let FontFeatureValueCon = await driver.findComponent(ON.text("getSpansAPI"));
-      console.info("StyleLineHeightValue"+ JSON.stringify(FontFeatureValueCon))
+      console.info("StyleLineHeightValue" + JSON.stringify(FontFeatureValueCon))
       let FontFeatureValue = await FontFeatureValueCon.getId();
-      console.info("RichEditorFontFeatureValue_"+ FontFeatureValue)
+      console.info("RichEditorFontFeatureValue_" + FontFeatureValue)
       await driver.delayMs(2000)
       expect(FontFeatureValue.split(" ").join("")).assertEqual("RichEditorFontFeatureValue_\"subs\"1,\"liga\"0")
       console.info('[RichEditorFontFeatureJsunit_0200] END');

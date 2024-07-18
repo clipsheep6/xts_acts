@@ -15,11 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  MouseButton,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RelativeChain8() {
-  describe('RelativeChain8', function () {
-    beforeEach(async function (done) {
+  describe('RelativeChain8', () => {
+    beforeEach(async (done: Function) => {
       console.info("RelativeChain8 beforeEach start");
       try {
         router.clear();
@@ -27,7 +41,9 @@ export default function RelativeChain8() {
         console.info("get RelativeChain8 state pages:" + JSON.stringify(pages));
         if (!("RelativeChain8" == pages.name)) {
           console.info("get  RelativeChain8 pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/RelativeContainer/RelativeChain8"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/RelativeContainer/RelativeChain8"
+          })
           await CommonFunc.sleep(2000);
           console.info("push RelativeChain8 page result:" + JSON.stringify(result));
         }
@@ -37,25 +53,27 @@ export default function RelativeChain8() {
       console.info("RelativeChain8 foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("RelativeChain8 after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0540
-     * @tc.desc      chainMode test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0540
+     * @tc.desc chainMode test
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('RelativeChain8_001', 0, async function (done) {
+    it('RelativeChain8_001', 0, async (done: Function) => {
       console.info('[RelativeChain8_001] START');
 
       await CommonFunc.sleep(1000);
       let rel = CommonFunc.getComponentRect('RelativeChain8');
       let driver: Driver = Driver.create();
-      await driver.mouseClick({x: Math.round(rel.left + vp2px(50)), y: Math.round(rel.top + vp2px(80))}, MouseButton.MOUSE_BUTTON_LEFT);
+      await driver.mouseClick({
+        x: Math.round(rel.left + vp2px(50)), y: Math.round(rel.top + vp2px(80))
+      }, MouseButton.MOUSE_BUTTON_LEFT);
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('RelativeChain8Text');
       await CommonFunc.sleep(200);
@@ -69,19 +87,21 @@ export default function RelativeChain8() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0530
-     * @tc.desc      chainMode test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0530
+     * @tc.desc chainMode test
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('RelativeChain8_002', 0, async function (done) {
+    it('RelativeChain8_002', 0, async (done: Function) => {
       console.info('[RelativeChain8_002] START');
 
       await CommonFunc.sleep(1000);
       let rel = CommonFunc.getComponentRect('RelativeChain82');
       let driver: Driver = Driver.create();
-      await driver.mouseClick({x: Math.round(rel.left + vp2px(50)), y: Math.round(rel.top + vp2px(80))}, MouseButton.MOUSE_BUTTON_LEFT);
+      await driver.mouseClick({
+        x: Math.round(rel.left + vp2px(50)), y: Math.round(rel.top + vp2px(80))
+      }, MouseButton.MOUSE_BUTTON_LEFT);
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('RelativeChain8Text');
       await CommonFunc.sleep(200);

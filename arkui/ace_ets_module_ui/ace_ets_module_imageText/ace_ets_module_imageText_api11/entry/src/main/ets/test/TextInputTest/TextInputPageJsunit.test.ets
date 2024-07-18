@@ -14,14 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, MouseButton} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix,
+  MouseButton
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function TextInputPageJsunit() {
-  describe('TextInputPageJsunit', function () {
-    beforeEach(async function (done) {
+  describe('TextInputPageJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextInputPageJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TextInput/TextInputPage',
@@ -43,7 +57,7 @@ export default function TextInputPageJsunit() {
       done();
     });
 
-    it('TextInputPageJsunit_0100', 0, async function (done) {
+    it('TextInputPageJsunit_0100', 0, async (done: Function) => {
       // Get the information of the TextInput component
       console.info('[TextInputPageJsunit_0100] START');
       await CommonFunc.sleep(1000);
@@ -64,19 +78,20 @@ export default function TextInputPageJsunit() {
       expect(obj.$attrs.placeholder).assertEqual('input your word...');
       expect(obj.$attrs.type).assertEqual('InputType.Email');
       expect(obj.$attrs.placeholderColor).assertEqual('#FF808080');
-      expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
+      expect(obj.$attrs.placeholderFont)
+        .assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
       expect(obj.$attrs.enterKeyType).assertEqual('EnterKeyType.Search');
       expect(obj.$attrs.caretColor).assertEqual('#FF0000FF');
       expect(obj.$attrs.maxLength).assertEqual('10');
       expect(obj.$attrs.style).assertEqual('TextInputStyle.Default');
       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Center');
       expect(obj.$attrs.copyOption).assertEqual('CopyOptions.InApp');
-      expect(obj.$attrs.showPasswordIcon).assertEqual(false); 
+      expect(obj.$attrs.showPasswordIcon).assertEqual(false);
       console.info('[TextInputPageJsunit_0100] END');
       done();
     });
 
-    it('TextInputPageJsunit_0200', 0, async function (done) {
+    it('TextInputPageJsunit_0200', 0, async (done: Function) => {
       // Get default attributes of TextInput component
       console.info('[TextInputPageJsunit_0200] START');
       await CommonFunc.sleep(1000);
@@ -96,7 +111,8 @@ export default function TextInputPageJsunit() {
       console.info("[TextInputPageJsunit_0200] textAlign: " + JSON.stringify(obj.$attrs.textAlign));
       expect(obj.$attrs.placeholder).assertEqual('inline style');
       expect(obj.$attrs.type).assertEqual('InputType.Normal');
-      expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"16.00fp","weight":"400","fontFamily":"sans-serif"}');
+      expect(obj.$attrs.placeholderFont)
+        .assertEqual('{"style":"FontStyle.Normal","size":"16.00fp","weight":"400","fontFamily":"sans-serif"}');
       expect(obj.$attrs.enterKeyType).assertEqual('EnterKeyType.Done');
       expect(obj.$attrs.maxLength).assertEqual('INF');
       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Start');
@@ -106,24 +122,42 @@ export default function TextInputPageJsunit() {
       done();
     });
 
-    it('TextInputPageJsunit_0300', 0, async function (done) {
+    it('TextInputPageJsunit_0300', 0, async (done: Function) => {
       // Modify the properties of TextInput component 
       console.info('[TextInputPageJsunit_0300] START');
-      globalThis.value.message.notify({name:'placeholder',value:'place input your word...'})
+      globalThis.value.message.notify({
+        name: 'placeholder', value: 'place input your word...'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'type',value:InputType.Normal})
+      globalThis.value.message.notify({
+        name: 'type', value: InputType.Normal
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'placeholderColor',value:Color.Green})
+      globalThis.value.message.notify({
+        name: 'placeholderColor', value: Color.Green
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'placeholderFont',value:{ size: 18, weight: 500 }})
+      globalThis.value.message.notify({
+        name: 'placeholderFont', value: {
+          size: 18, weight: 500
+        }
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'enterKeyType',value:EnterKeyType.Done})
+      globalThis.value.message.notify({
+        name: 'enterKeyType', value: EnterKeyType.Done
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'caretColor',value:Color.Red})
+      globalThis.value.message.notify({
+        name: 'caretColor', value: Color.Red
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'maxLength',value:8})
+      globalThis.value.message.notify({
+        name: 'maxLength', value: 8
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'textAlign',value:TextAlign.Start})
+      globalThis.value.message.notify({
+        name: 'textAlign', value: TextAlign.Start
+      })
       await CommonFunc.sleep(1000);
 
       // Get the propoties value of the TextInput component
@@ -141,7 +175,8 @@ export default function TextInputPageJsunit() {
       expect(obj.$attrs.placeholder).assertEqual('place input your word...');
       expect(obj.$attrs.type).assertEqual('InputType.Normal');
       expect(obj.$attrs.placeholderColor).assertEqual('#FF008000');
-      expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"18.00fp","weight":"500","fontFamily":"sans-serif"}');
+      expect(obj.$attrs.placeholderFont)
+        .assertEqual('{"style":"FontStyle.Normal","size":"18.00fp","weight":"500","fontFamily":"sans-serif"}');
       expect(obj.$attrs.enterKeyType).assertEqual('EnterKeyType.Done');
       expect(obj.$attrs.caretColor).assertEqual('#FFFF0000');
       expect(obj.$attrs.maxLength).assertEqual('8');
@@ -150,7 +185,7 @@ export default function TextInputPageJsunit() {
       done();
     });
 
-    it('TextInputPageJsunit_0400', 0, async function (done) {
+    it('TextInputPageJsunit_0400', 0, async (done: Function) => {
       // Verify functions of TextInput component
       console.info('[TextInputPageJsunit_0400] START');
 
@@ -186,14 +221,18 @@ export default function TextInputPageJsunit() {
       // Verify onCopy function of TextInput component
       let driverX = await Driver.create()
       let textInputRect = CommonFunc.getComponentRectOnScreen('textInput')
-      let clickX = Math.round((textInputRect.right + textInputRect.left)/2)
-      let clickY = Math.round((textInputRect.bottom + textInputRect.top)/2)
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      let clickX = Math.round((textInputRect.right + textInputRect.left) / 2)
+      let clickY = Math.round((textInputRect.bottom + textInputRect.top) / 2)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(3000);
       let textComponent3 = await driver.findComponent(BY.text('全选'));
       await textComponent3?.click()
       await CommonFunc.sleep(3000);
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let textComponent4 = await driver.findComponent(BY.text('复制'));
       await textComponent4.click()
@@ -207,12 +246,16 @@ export default function TextInputPageJsunit() {
       console.info("[TextInputPageJsunit_0400] Verify copy succ !");
 
       // Verify onCut function of TextInput component
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let textComponent5 = await driver.findComponent(BY.text('全选'));
       await textComponent5?.click()
       await CommonFunc.sleep(3000);
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let textComponent6 = await driver.findComponent(BY.text('剪切'));
       await textComponent6.click()
@@ -224,7 +267,9 @@ export default function TextInputPageJsunit() {
       console.info("[TextInputPageJsunit_0400] Verify cut succ !");
 
       // Verify onPaste function of TextInput component
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let textComponent7 = await driver.findComponent(BY.text('粘贴'));
       await textComponent7.click()

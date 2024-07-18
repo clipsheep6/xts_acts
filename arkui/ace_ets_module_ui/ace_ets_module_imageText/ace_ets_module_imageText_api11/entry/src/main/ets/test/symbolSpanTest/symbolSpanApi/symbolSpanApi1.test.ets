@@ -18,8 +18,8 @@ import CommonFunc from "../../../MainAbility/common/Common";
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function symbolSpanApi1() {
-  describe('symbolSpanApi1', function () {
-    beforeEach(async function (done) {
+  describe('symbolSpanApi1', () => {
+    beforeEach(async (done: Function) => {
       console.info("symbolSpanApi1 beforeEach start");
       let options = {
         url: 'MainAbility/pages/symbolSpan/symbolSpanApi/symbolSpanApi1',
@@ -40,7 +40,7 @@ export default function symbolSpanApi1() {
       console.info("symbolSpanApi1 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("symbolSpanApi1 after each called");
     });
@@ -50,9 +50,9 @@ export default function symbolSpanApi1() {
      * @tc.desc      set api
      * @tc.level     Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('symbolSpanApi1_0100', 0, async function (done) {
+    it('symbolSpanApi1_0100', 0, async (done: Function) => {
       console.info('[symbolSpanApi1_0100] START');
       await CommonFunc.sleep(2000);
 

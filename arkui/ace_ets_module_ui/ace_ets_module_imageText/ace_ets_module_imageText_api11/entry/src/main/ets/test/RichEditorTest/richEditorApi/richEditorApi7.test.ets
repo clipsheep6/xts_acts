@@ -75,7 +75,7 @@ export default function richEditorApi7() {
       let richEditor = CommonFunc.getComponentRectOnScreen('RichEditor7');
 
       await driver.mouseLongClick({
-        x:Math.round(richEditor.left) + 300, y: Math.round(richEditor.top) + 300
+        x: Math.round(richEditor.left) + 300, y: Math.round(richEditor.top) + 300
       }, MouseButton.MOUSE_BUTTON_LEFT)
       await CommonFunc.sleep(2000);
       let text1 = getInspectorByKey('richEditorApi7_text1');

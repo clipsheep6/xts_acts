@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function RichEditor01() {
-  describe('RichEditor01', function () {
-    beforeEach(async function (done) {
+  describe('RichEditor01', () => {
+    beforeEach(async (done: Function) => {
       console.info("RichEditor01 beforeEach start");
       let options = {
         uri: 'MainAbility/pages/RichEditor/RichEditor01',
@@ -45,7 +58,7 @@ export default function RichEditor01() {
 
 
     //onReady 事件测试
-    it('RichEditor01_001', 0, async function (done) {
+    it('RichEditor01_001', 0, async (done: Function) => {
 
       await CommonFunc.sleep(1000);
       console.info('[RichEditor01_001] START');
@@ -62,7 +75,7 @@ export default function RichEditor01() {
     });
 
     //aboutToIMEInput 事件测试
-    it('RichEditor01_002', 0, async function (done) {
+    it('RichEditor01_002', 0, async (done: Function) => {
 
       console.info('[RichEditor01_002] START');
       let driver = Driver.create();
@@ -84,7 +97,7 @@ export default function RichEditor01() {
     });
 
     //onIMEInputComplete 事件测试
-    it('RichEditor01_003', 0, async function (done) {
+    it('RichEditor01_003', 0, async (done: Function) => {
 
       console.info('[RichEditor01_003] START');
       let driver = Driver.create();
@@ -103,7 +116,7 @@ export default function RichEditor01() {
     });
 
     //set setCaretOffset to 6
-    it('RichEditor01_004', 0, async function (done) {
+    it('RichEditor01_004', 0, async (done: Function) => {
 
       console.info('[RichEditor01_004] START');
       let driver = Driver.create();
@@ -122,7 +135,7 @@ export default function RichEditor01() {
     });
 
     //set setCaretOffset to 100
-    it('RichEditor01_005', 0, async function (done) {
+    it('RichEditor01_005', 0, async (done: Function) => {
 
       console.info('[RichEditor01_005] START');
       let driver = Driver.create();
@@ -141,7 +154,7 @@ export default function RichEditor01() {
     });
 
     //set setCaretOffset to 100
-    it('RichEditor01_006', 0, async function (done) {
+    it('RichEditor01_006', 0, async (done: Function) => {
 
       console.info('[RichEditor01_006] START');
       let driver = Driver.create();
@@ -164,7 +177,7 @@ export default function RichEditor01() {
 
 
     //deleteSpans
-    // it('RichEditor01_007', 0, async function (done) {
+    // it('RichEditor01_007', 0, async (done: Function) => {
     //
     //   console.info('[RichEditor01_007] START');
     //   await CommonFunc.sleep(1000);
@@ -186,12 +199,6 @@ export default function RichEditor01() {
     //   console.info('[RichEditor01_007] END');
     //   done();
     // });
-
-
-
-
-
-
 
 
   })

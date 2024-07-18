@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function textEnabledJsunit() {
-  describe('textEnabledJsunit', function () {
-    beforeEach(async function (done) {
+  describe('textEnabledJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("textEnabledJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/text/textEnabled',
@@ -43,7 +56,7 @@ export default function textEnabledJsunit() {
       done();
     });
 
-    it('textEnabledJsunit_0100', 0, async function (done) {
+    it('textEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0100 START');
       let driver = await UiDriver.create()
@@ -59,7 +72,7 @@ export default function textEnabledJsunit() {
       done();
     });
 
-    it('textEnabledJsunit_0200', 0, async function (done) {
+    it('textEnabledJsunit_0200', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0200 START');
       let driver = await UiDriver.create()
@@ -75,7 +88,7 @@ export default function textEnabledJsunit() {
       done();
     });
 
-    it('textEnabledJsunit_0300', 0, async function (done) {
+    it('textEnabledJsunit_0300', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0300 START');
       let driver = await UiDriver.create()
@@ -91,7 +104,7 @@ export default function textEnabledJsunit() {
       done();
     });
 
-    it('textEnabledJsunit_0400', 0, async function (done) {
+    it('textEnabledJsunit_0400', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0400 START');
       let driver = await UiDriver.create()
@@ -107,7 +120,7 @@ export default function textEnabledJsunit() {
       done();
     });
 
-    it('textEnabledJsunit_0500', 0, async function (done) {
+    it('textEnabledJsunit_0500', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0500 START');
       let driver = await UiDriver.create()
@@ -123,7 +136,7 @@ export default function textEnabledJsunit() {
       done();
     });
 
-    it('textEnabledJsunit_0600', 0, async function (done) {
+    it('textEnabledJsunit_0600', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0600 START');
       let driver = await UiDriver.create()

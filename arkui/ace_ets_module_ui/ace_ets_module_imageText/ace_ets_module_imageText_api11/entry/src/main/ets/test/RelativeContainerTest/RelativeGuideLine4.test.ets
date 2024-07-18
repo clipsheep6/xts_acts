@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RelativeGuideLine4() {
-  describe('RelativeGuideLine4', function () {
-    beforeEach(async function (done) {
+  describe('RelativeGuideLine4', () => {
+    beforeEach(async (done: Function) => {
       console.info("RelativeGuideLine4 beforeEach start");
       try {
         router.clear();
@@ -27,7 +40,9 @@ export default function RelativeGuideLine4() {
         console.info("get RelativeGuideLine4 state pages:" + JSON.stringify(pages));
         if (!("RelativeGuideLine4" == pages.name)) {
           console.info("get  RelativeGuideLine4 pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/RelativeContainer/RelativeGuideLine4"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/RelativeContainer/RelativeGuideLine4"
+          })
           await CommonFunc.sleep(2000);
           console.info("push RelativeGuideLine4 page result:" + JSON.stringify(result));
         }
@@ -37,20 +52,20 @@ export default function RelativeGuideLine4() {
       console.info("RelativeGuideLine4 foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("RelativeGuideLine4 after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0090
-     * @tc.desc      direction and position test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0090
+     * @tc.desc direction and position test
+     * @tc.level Level 3
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
 
-    it('RelativeGuideLine4_001', 0, async function (done) {
+    it('RelativeGuideLine4_001', 0, async (done: Function) => {
       console.info('[RelativeGuideLine4_001] START');
 
       await CommonFunc.sleep(1000);
@@ -68,14 +83,14 @@ export default function RelativeGuideLine4() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0120
-     * @tc.desc      direction and position test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0120
+     * @tc.desc direction and position test
+     * @tc.level Level 3
      * @tc.type
      * @tc.size
      */
 
-    it('RelativeGuideLine4_002', 0, async function (done) {
+    it('RelativeGuideLine4_002', 0, async (done: Function) => {
       console.info('[RelativeGuideLine4_002] START');
       await CommonFunc.sleep(1000);
       let driver = await Driver.create();
@@ -97,14 +112,14 @@ export default function RelativeGuideLine4() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0130
-     * @tc.desc      direction and position test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0130
+     * @tc.desc direction and position test
+     * @tc.level Level 3
      * @tc.type
      * @tc.size
      */
 
-    it('RelativeGuideLine4_003', 0, async function (done) {
+    it('RelativeGuideLine4_003', 0, async (done: Function) => {
       console.info('[RelativeGuideLine4_003] START');
       await CommonFunc.sleep(1000);
       let driver = await Driver.create();
@@ -122,9 +137,6 @@ export default function RelativeGuideLine4() {
       console.info('[RelativeGuideLine4_003] END');
       done();
     });
-
-
-
 
 
   })

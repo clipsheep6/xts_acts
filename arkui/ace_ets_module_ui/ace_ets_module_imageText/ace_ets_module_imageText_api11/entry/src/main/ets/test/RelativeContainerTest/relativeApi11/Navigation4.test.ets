@@ -14,12 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../../MainAbility/utils/Common';
 
 export default function Navigation4() {
-  describe('Navigation4', function () {
-    beforeEach(async function (done) {
+  describe('Navigation4', () => {
+    beforeEach(async (done: Function) => {
       console.info("appendChildTest beforeEach start");
       let options = {
         uri: 'MainAbility/pages/RelativeContainer/relativeApi11/Navigation4',
@@ -43,14 +56,14 @@ export default function Navigation4() {
 
 
     /**
-     * @tc.number    Navigation4_0200
-     * @tc.name      Navigation4_0200
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number Navigation4_0200
+     * @tc.name Navigation4_0200
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('Navigation4_0100', 0, async function (done) {
+    it('Navigation4_0100', 0, async (done: Function) => {
       console.info('Navigation4_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);

@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function mediaCachedImageJsunit() {
 
-  describe('MediaCachedImageTest', function () {
-    beforeEach(async function (done) {
+  describe('MediaCachedImageTest', () => {
+    beforeEach(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/Image/MediaCachedImage',
       }
@@ -41,20 +41,20 @@ export default function mediaCachedImageJsunit() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("MediaCachedImage after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_BASIC_ETS_API_0100
-     * @tc.name      testGetImageAttr010
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASIC_ETS_API_0100
+     * @tc.name testGetImageAttr010
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('testGetImageAttr010', 0, async function (done) {
+    it('testGetImageAttr010', 0, async (done: Function) => {
       console.info('testGetImageAttr1 START');
       let strJson = getInspectorByKey('image1');
       let obj = JSON.parse(strJson);
@@ -80,14 +80,14 @@ export default function mediaCachedImageJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_BASIC_ETS_API_0120
-     * @tc.name      testGetImageAttr020
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASIC_ETS_API_0120
+     * @tc.name testGetImageAttr020
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('testGetImageAttr020', 0, async function (done) {
+    it('testGetImageAttr020', 0, async (done: Function) => {
       console.info('testGetImageAttr2 START');
       let strJson = getInspectorByKey('image2');
       let obj = JSON.parse(strJson);
@@ -103,14 +103,14 @@ export default function mediaCachedImageJsunit() {
       done();
     });
     /**
-     * @tc.number    SUB_ACE_BASIC_ETS_API_0130
-     * @tc.name      testGetImageAttr030
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASIC_ETS_API_0130
+     * @tc.name testGetImageAttr030
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('testGetImageAttr030', 0, async function (done) {
+    it('testGetImageAttr030', 0, async (done: Function) => {
       console.info('testGetImageAttr3 START');
       let strJson = getInspectorByKey('image3');
       let obj = JSON.parse(strJson);
@@ -125,14 +125,14 @@ export default function mediaCachedImageJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_BASIC_ETS_API_0140
-     * @tc.name      testGetImageAttr040
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASIC_ETS_API_0140
+     * @tc.name testGetImageAttr040
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('testGetImageAttr040', 0, async function (done) {
+    it('testGetImageAttr040', 0, async (done: Function) => {
       console.info('testGetImageAttr4 START');
       let strJson = getInspectorByKey('image4');
       let obj = JSON.parse(strJson);
@@ -147,14 +147,14 @@ export default function mediaCachedImageJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_BASIC_ETS_API_0150
-     * @tc.name      testGetImageAttr050
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASIC_ETS_API_0150
+     * @tc.name testGetImageAttr050
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('testGetImageAttr050', 0, async function (done) {
+    it('testGetImageAttr050', 0, async (done: Function) => {
       console.info('testGetImageAttr5 START');
       let strJson = getInspectorByKey('image5');
       let obj = JSON.parse(strJson);

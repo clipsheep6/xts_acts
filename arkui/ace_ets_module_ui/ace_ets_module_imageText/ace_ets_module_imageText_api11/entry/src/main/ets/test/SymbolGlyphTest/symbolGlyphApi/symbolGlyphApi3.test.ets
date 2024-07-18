@@ -18,8 +18,8 @@ import CommonFunc from "../../../MainAbility/common/Common";
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function symbolGlyphApi3() {
-  describe('symbolGlyphApi3', function () {
-    beforeEach(async function (done) {
+  describe('symbolGlyphApi3', () => {
+    beforeEach(async (done: Function) => {
       console.info("symbolGlyphApi3 beforeEach start");
       let options = {
         url: 'MainAbility/pages/SymbolGlyph/symbolGlyphApi/symbolGlyphApi3',
@@ -40,7 +40,7 @@ export default function symbolGlyphApi3() {
       console.info("symbolGlyphApi3 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("symbolGlyphApi3 after each called");
     });
@@ -52,7 +52,7 @@ export default function symbolGlyphApi3() {
      * @tc.type
     * @tc.size
      */
-    it('symbolGlyphApi3_0100', 0, async function (done) {
+    it('symbolGlyphApi3_0100', 0, async (done: Function) => {
       console.info('[symbolGlyphApi3_0100] START');
       await CommonFunc.sleep(2000);
 

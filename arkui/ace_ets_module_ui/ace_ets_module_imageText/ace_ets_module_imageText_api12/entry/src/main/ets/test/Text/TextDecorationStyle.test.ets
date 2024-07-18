@@ -20,8 +20,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 
 
 export default function typeNodeTextDecorationStyleTest() {
-  describe('typeNodeTextDecorationStyleTest', function () {
-    beforeEach(async function (done) {
+  describe('typeNodeTextDecorationStyleTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextDecorationStyleTest beforeEach start");
       let options = {
         uri: "MainAbility/pages/Text/TextDecorationStyle",
@@ -55,7 +55,7 @@ export default function typeNodeTextDecorationStyleTest() {
      * @tc.type :
      * @tc.size :
      */
-    it('TextDecorationStyleTest_0100', 0, async function (done) {
+    it('TextDecorationStyleTest_0100', 0, async (done: Function) => {
       console.info('TextDecorationStyleTest_0100 START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('TypeNode_TextDecorationStyleTest');

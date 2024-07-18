@@ -18,8 +18,8 @@ import CommonFunc from "../../../MainAbility/utils/Common";
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function UnitTest() {
-  describe('UnitTest', function () {
-    beforeEach(async function (done) {
+  describe('UnitTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("UnitTest beforeEach start");
       let options = {
         url: "MainAbility/pages/Text/TextAPI/Unit",
@@ -40,7 +40,7 @@ export default function UnitTest() {
       console.info("UnitTest beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("UnitTest after each called");
     });
@@ -53,7 +53,7 @@ export default function UnitTest() {
      * @tc.type
     * @tc.size
      */
-    it('UnitTest_001', 0, async function (done) {
+    it('UnitTest_001', 0, async (done: Function) => {
       console.info('[UnitTest_001] START');
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();

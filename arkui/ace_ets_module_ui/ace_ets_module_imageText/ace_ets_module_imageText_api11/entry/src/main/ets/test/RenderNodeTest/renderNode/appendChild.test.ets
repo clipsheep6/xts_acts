@@ -14,12 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../../MainAbility/utils/Common';
 
 export default function appendChildTest() {
-  describe('appendChildTest', function () {
-    beforeEach(async function (done) {
+  describe('appendChildTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("appendChildTest beforeEach start");
       let options = {
         uri: 'MainAbility/pages/RenderNode/renderNode/appendChild',
@@ -42,14 +55,14 @@ export default function appendChildTest() {
     });
 
     /**
-     * @tc.number    appendChildTest_0100
-     * @tc.name      appendChildTest_0100
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number appendChildTest_0100
+     * @tc.name appendChildTest_0100
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('appendChildTest_0100', 0, async function (done) {
+    it('appendChildTest_0100', 0, async (done: Function) => {
       console.info('appendChildTest_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -65,14 +78,14 @@ export default function appendChildTest() {
     });
 
     /**
-     * @tc.number    appendChildTest_0200
-     * @tc.name      appendChildTest_0200
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number appendChildTest_0200
+     * @tc.name appendChildTest_0200
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('appendChildTest_0200', 0, async function (done) {
+    it('appendChildTest_0200', 0, async (done: Function) => {
       console.info('appendChildTest_0200 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -88,14 +101,14 @@ export default function appendChildTest() {
     });
 
     /**
-     * @tc.number    appendChildTest_0300
-     * @tc.name      appendChildTest_0300
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number appendChildTest_0300
+     * @tc.name appendChildTest_0300
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('appendChildTest_0300', 0, async function (done) {
+    it('appendChildTest_0300', 0, async (done: Function) => {
       console.info('appendChildTest_0300 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -113,14 +126,14 @@ export default function appendChildTest() {
     });
 
     /**
-     * @tc.number    appendChildTest_0400
-     * @tc.name      appendChildTest_0400
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number appendChildTest_0400
+     * @tc.name appendChildTest_0400
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('appendChildTest_0400', 0, async function (done) {
+    it('appendChildTest_0400', 0, async (done: Function) => {
       console.info('appendChildTest_0400 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);

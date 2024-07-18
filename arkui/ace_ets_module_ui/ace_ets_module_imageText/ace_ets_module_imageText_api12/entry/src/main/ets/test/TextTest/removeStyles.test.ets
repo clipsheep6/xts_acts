@@ -18,8 +18,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function removeStyles() {
-  describe('removeStyles', function () {
-    beforeEach(async function (done) {
+  describe('removeStyles', () => {
+    beforeEach(async (done: Function) => {
       console.info("removeStyles beforeEach start");
       let options = {
         url: 'MainAbility/pages/Text/removeStyles',
@@ -40,7 +40,7 @@ export default function removeStyles() {
       console.info("removeStyles beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("removeStyles after each called");
     });
@@ -52,7 +52,7 @@ export default function removeStyles() {
      * @tc.type
     * @tc.size
      */
-    it('removeStyles_0100', 0, async function (done) {
+    it('removeStyles_0100', 0, async (done: Function) => {
       console.info('[removeStyles_0100] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);

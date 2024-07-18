@@ -14,12 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from "../../../MainAbility/common/Common";
 
 export default function UIfont() {
-  describe('UIfont', function () {
-    beforeEach(async function (done) {
+  describe('UIfont', () => {
+    beforeEach(async (done: Function) => {
       console.info("UIfont beforeEach start");
       let options = {
         uri: 'MainAbility/pages/font/UIfont/UIfont',
@@ -47,7 +60,7 @@ export default function UIfont() {
        * @tc.desc  : font fontDir test
        * @tc.level : Level 2
        */
-    it('UIfont_001', 0, async function (done) {
+    it('UIfont_001', 0, async (done: Function) => {
 
       console.info('[UIfont_001] START');
       await CommonFunc.sleep(1000);
@@ -73,7 +86,7 @@ export default function UIfont() {
        * @tc.desc  : font generic test
        * @tc.level : Level 2
        */
-    it('UIfont_002', 0, async function (done) {
+    it('UIfont_002', 0, async (done: Function) => {
 
       console.info('[UIfont_002] START');
       await CommonFunc.sleep(1000);
@@ -99,7 +112,7 @@ export default function UIfont() {
        * @tc.desc  : font fallbackGroups test
        * @tc.level : Level 2
        */
-    it('UIfont_003', 0, async function (done) {
+    it('UIfont_003', 0, async (done: Function) => {
 
       console.info('[UIfont_003] START');
       await CommonFunc.sleep(1000);
@@ -125,7 +138,7 @@ export default function UIfont() {
        * @tc.desc  : font alias test
        * @tc.level : Level 2
        */
-    it('UIfont_004', 0, async function (done) {
+    it('UIfont_004', 0, async (done: Function) => {
 
       console.info('[UIfont_004] START');
       await CommonFunc.sleep(1000);
@@ -144,10 +157,6 @@ export default function UIfont() {
       console.info('[UIfont_004] END');
       done();
     });
-
-
-
-
 
 
   })
