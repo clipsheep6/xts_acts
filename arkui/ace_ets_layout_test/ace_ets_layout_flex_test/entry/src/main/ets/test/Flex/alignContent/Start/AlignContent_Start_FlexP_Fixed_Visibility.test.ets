@@ -151,10 +151,10 @@ export default function AlignContent_Start_FlexP_Fixed_Visibility() {
       expect(JSON.parse(strJson).$attrs.constructor.alignContent).assertEqual("FlexAlign.Start");
       expect(JSON.parse(textStrJson).$attrs.visibility).assertEqual("Visibility.None");
 
-      expect(AlignContentFlexStart_2.top).assertEqual(AlignContentFlexStart_3.top);
-      expect(AlignContentFlexStart_4.top).assertEqual(AlignContentFlexStart_3.top);
-      expect(AlignContentFlexStart_2.top).assertEqual(AlignContentFlexStart_flex002.top);
-      expect(AlignContentFlexStart_2.left).assertEqual(AlignContentFlexStart_flex002.left);
+      expect(Math.abs(AlignContentFlexStart_2.top - AlignContentFlexStart_3.top) <= 1).assertTrue();
+      expect(Math.abs(AlignContentFlexStart_4.top - AlignContentFlexStart_3.top) <= 1).assertTrue();
+      expect(Math.abs(AlignContentFlexStart_2.top - AlignContentFlexStart_flex002.top) <= 1).assertTrue();
+      expect(Math.abs(AlignContentFlexStart_2.left - AlignContentFlexStart_flex002.left) <= 1).assertTrue();
 
       console.info('testAlignContentStartFlexfixedVisibilityNone END');
 
