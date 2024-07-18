@@ -3641,7 +3641,9 @@ export default function AVSession() {
         it('SUB_MULTIMEDIA_AVSESSION_GETALLCASTDISPLAYS_0100', 2, async function (done) {
             const isExtendedDisplayCast = canIUse('SystemCapability.Multimedia.AVSession.ExtendedDisplayCast');
             if (isExtendedDisplayCast) {
+                console.info(`isExtendedDisplayCast success: ${isExtendedDisplayCast}`);
                 session.getAllCastDisplays().then((data) => {
+                    console.info(`isExtendedDisplayCast success111: ${JSON.stringify(data)}`);
                     if (Array.isArray(data)) {
                         console.info(`getAllCastDisplays success: ${JSON.stringify(data)}`);
                         expect(true).assertTrue();
@@ -3651,6 +3653,7 @@ export default function AVSession() {
                         done();
                     }
                 }).catch((err) => {
+                    console.info(`getAllCastDisplays successfully111: ${err.code}, message: ${err.message}`)
                     expect(err.code).assertEqual(6600101);
                     console.info(`getAllCastDisplays successfully: ${err.code}, message: ${err.message}`)
                 })
