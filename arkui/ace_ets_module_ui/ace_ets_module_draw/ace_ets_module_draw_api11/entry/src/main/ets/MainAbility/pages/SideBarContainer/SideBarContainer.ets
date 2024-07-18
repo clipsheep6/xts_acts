@@ -16,8 +16,8 @@
 @Entry
 @Component
 struct SideBarContainerExample {
-  normalIcon: Resource = $r("app.media.icon")
-  selectedIcon: Resource = $r("app.media.icon")
+  normalIcon: Resource = $r('app.media.icon')
+  selectedIcon: Resource = $r('app.media.icon')
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
 

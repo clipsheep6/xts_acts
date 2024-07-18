@@ -39,6 +39,6 @@ struct Panel002 {
       .backgroundColor('green')
       .height(140)
       .width(261)
-    }.width("100%").height("100%")
+    }.width('100%').height('100%')
   }
 }
