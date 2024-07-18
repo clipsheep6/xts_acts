@@ -32,7 +32,7 @@ struct Panel002 {
     Column() {
       Panel(true) {
         Column() {
-          Text("panel002").fontSize(30)
+          Text('panel002').fontSize(30)
         }
       }
       .key('panel002')

@@ -27,7 +27,7 @@ struct SideBarContainerExample {
         ForEach(this.arr, (item: number) => {
           Column({ space: 5 }) {
             Image(this.current === item ? this.selectedIcon : this.normalIcon).width(64).height(64)
-            Text("Index0" + item)
+            Text('Index0' + item)
               .fontSize(25)
               .fontColor(this.current === item ? '#0A59F7' : '#999')
               .fontFamily('source-sans-pro,cursive,sans-serif')

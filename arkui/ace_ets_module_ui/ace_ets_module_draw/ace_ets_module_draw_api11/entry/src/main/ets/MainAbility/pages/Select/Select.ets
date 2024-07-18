@@ -22,10 +22,10 @@ struct SelectExample {
   @State arrowPosition: ArrowPosition = ArrowPosition.END
   build() {
     Column() {
-      Select([{ value: 'aaa', icon: "/common/public_icon.svg" },
-        { value: 'bbb', icon: "/common/public_icon.svg" },
-        { value: 'ccc', icon: "/common/public_icon.svg" },
-        { value: 'ddd', icon: "/common/public_icon.svg" }])
+      Select([{ value: 'aaa', icon: '/common/public_icon.svg' },
+        { value: 'bbb', icon: '/common/public_icon.svg' },
+        { value: 'ccc', icon: '/common/public_icon.svg' },
+        { value: 'ddd', icon: '/common/public_icon.svg' }])
         .selected(this.index)
         .value(this.text)
         .font({ size: 16, weight: 500 })
