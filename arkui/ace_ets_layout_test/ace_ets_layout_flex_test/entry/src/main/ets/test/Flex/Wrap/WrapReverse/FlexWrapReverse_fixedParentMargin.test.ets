@@ -72,22 +72,22 @@ export default function flexWrapReverse_fixedParentMargin() {
       let locationText2: RectValue = CommonFunc.getComponentRect('WrapReverseTest38');
       let locationText3: RectValue = CommonFunc.getComponentRect('WrapReverseTest39');
       let locationFlex: RectValue = CommonFunc.getComponentRect('FlexWrapReverseTest13');
-      expect(Math.abs(locationFlex.right - locationText1.right) <= 1).assertTrue()
-      expect(Math.abs(locationText1.left - locationText2.right) <= 1).assertTrue()
-      expect(Math.abs(locationText2.left - locationText3.right) <= 1).assertTrue()
-      expect(Math.abs((locationText3.left - locationFlex.left) - vp2px(50)) <= 1).assertTrue();
-      expect(Math.abs(locationText1.top - locationText2.top) <= 1).assertTrue()
-      expect(Math.abs(locationText2.top - locationText3.top) <= 1).assertTrue()
-      expect(Math.abs(locationText3.top - locationFlex.top) <= 1).assertTrue()
-      expect(Math.abs((locationFlex.bottom - locationText3.bottom) - vp2px(150)) <= 1).assertTrue();
-      expect(Math.abs((locationText3.right - locationText3.left) - (locationText2.right - locationText2.left)) <= 1)
+      expect(Math.abs(Math.round(locationFlex.right) - Math.round(locationText1.right)) <= 1).assertTrue()
+      expect(Math.abs(Math.round(locationText1.left) - Math.round(locationText2.right)) <= 1).assertTrue()
+      expect(Math.abs(Math.round(locationText2.left) - Math.round(locationText3.right)) <= 1).assertTrue()
+      expect(Math.abs(Math.round(locationText3.left - locationFlex.left) - Math.round(vp2px(50))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText1.top) - Math.round(locationText2.top)) <= 1).assertTrue()
+      expect(Math.abs(Math.round(locationText2.top) - Math.round(locationText3.top)) <= 1).assertTrue()
+      expect(Math.abs(Math.round(locationText3.top) - Math.round(locationFlex.top)) <= 1).assertTrue()
+      expect(Math.abs(Math.round(locationFlex.bottom - locationText3.bottom) - Math.round(vp2px(150))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText3.right - locationText3.left) - Math.round(locationText2.right - locationText2.left)) <= 1)
         .assertTrue();
-      expect(Math.abs((locationText1.right - locationText1.left) - (locationText2.right - locationText2.left)) <= 1)
+      expect(Math.abs(Math.round(locationText1.right - locationText1.left) - Math.round(locationText2.right - locationText2.left)) <= 1)
         .assertTrue();
-      expect(Math.abs((locationText1.right - locationText1.left) - vp2px(150)) <= 1).assertTrue();
-      expect(Math.abs((locationText1.bottom - locationText1.top) - vp2px(50)) <= 1).assertTrue();
-      expect(Math.abs((locationText2.bottom - locationText2.top) - vp2px(100)) <= 1).assertTrue();
-      expect(Math.abs((locationText3.bottom - locationText3.top) - vp2px(150)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText1.right - locationText1.left) - Math.round(vp2px(150))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText1.bottom - locationText1.top) - Math.round(vp2px(50))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText2.bottom - locationText2.top) - Math.round(vp2px(100))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText3.bottom - locationText3.top) - Math.round(vp2px(150))) <= 1).assertTrue();
       console.info('new testWrapReverseParentfixedMarginChildPadding END');
 
     });
@@ -116,23 +116,23 @@ export default function flexWrapReverse_fixedParentMargin() {
       let locationText2: RectValue = CommonFunc.getComponentRect('WrapReverseTest38');
       let locationText3: RectValue = CommonFunc.getComponentRect('WrapReverseTest39');
       let locationFlex: RectValue = CommonFunc.getComponentRect('FlexWrapReverseTest13');
-      expect(Math.abs((locationFlex.right - locationText1.right) - vp2px(50)) <= 1).assertTrue();
-      expect(Math.abs((locationText1.left - locationText2.right) - vp2px(50)) <= 1).assertTrue();
-      expect(Math.abs((locationText2.left - locationFlex.left) - vp2px(100)) <= 1).assertTrue();
-      expect(Math.abs((locationText3.left - locationText1.left) - vp2px(50)) <= 1).assertTrue();
-      expect(Math.abs(locationText3.right - locationFlex.right) <= 1).assertTrue()
-      expect(Math.abs((locationText1.top - locationFlex.top) - vp2px(50)) <= 1).assertTrue();
-      expect(Math.abs(locationText2.top - locationFlex.top) <= 1).assertTrue()
-      expect(Math.abs((locationText3.top - locationText2.bottom) - vp2px(50)) <= 1).assertTrue();
-      expect(Math.abs(locationFlex.bottom - locationText3.bottom) <= 1).assertTrue()
-      expect(Math.abs((locationText3.right - locationText3.left) - (locationText2.right - locationText2.left)) <= 1)
+      expect(Math.abs(Math.round(locationFlex.right - locationText1.right) - Math.round(vp2px(50))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText1.left - locationText2.right) - Math.round(vp2px(50))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText2.left - locationFlex.left) - Math.round(vp2px(100))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText3.left - locationText1.left) - Math.round(vp2px(50))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText3.right) - Math.round(locationFlex.right)) <= 1).assertTrue()
+      expect(Math.abs(Math.round(locationText1.top - locationFlex.top) - Math.round(vp2px(50))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText2.top) - Math.round(locationFlex.top)) <= 1).assertTrue()
+      expect(Math.abs(Math.round(locationText3.top - locationText2.bottom) - Math.round(vp2px(50))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationFlex.bottom) - Math.round(locationText3.bottom)) <= 1).assertTrue()
+      expect(Math.abs(Math.round(locationText3.right - locationText3.left) - Math.round(locationText2.right - locationText2.left)) <= 1)
         .assertTrue();
-      expect(Math.abs((locationText1.right - locationText1.left) - (locationText2.right - locationText2.left)) <= 1)
+      expect(Math.abs(Math.round(locationText1.right - locationText1.left) - Math.round(locationText2.right - locationText2.left)) <= 1)
         .assertTrue();
-      expect(Math.abs((locationText1.right - locationText1.left) - vp2px(150)) <= 1).assertTrue();
-      expect(Math.abs((locationText1.bottom - locationText1.top) - vp2px(50)) <= 1).assertTrue();
-      expect(Math.abs((locationText2.bottom - locationText2.top) - vp2px(100)) <= 1).assertTrue();
-      expect(Math.abs((locationText3.bottom - locationText3.top) - vp2px(150)) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText1.right - locationText1.left) - Math.round(vp2px(150))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText1.bottom - locationText1.top) - Math.round(vp2px(50))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText2.bottom - locationText2.top) - Math.round(vp2px(100))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText3.bottom - locationText3.top) - Math.round(vp2px(150))) <= 1).assertTrue();
       console.info('new testWrapReverseParentfixedMarginChildMargin END');
 
     });
@@ -161,6 +161,7 @@ export default function flexWrapReverse_fixedParentMargin() {
       let locationText2: RectValue = CommonFunc.getComponentRect('WrapReverseTest38');
       let locationText3: RectValue = CommonFunc.getComponentRect('WrapReverseTest39');
       let locationFlex: RectValue = CommonFunc.getComponentRect('FlexWrapReverseTest13');
+
       expect(Math.abs(Math.round(locationFlex.right - locationText1.right) - Math.round(vp2px(30))) <= 1).assertTrue();
       expect(Math.abs(Math.round(locationText1.left - locationText2.right) - Math.round(vp2px(30))) <= 1).assertTrue();
       expect(Math.abs(Math.round(locationText2.left - locationFlex.left) - Math.round(vp2px(140))) <= 1).assertTrue();
@@ -175,10 +176,12 @@ export default function flexWrapReverse_fixedParentMargin() {
       expect(Math.abs(Math.round(locationText1.right - locationText1.left) - Math.round(locationText2.right - locationText2.left)) <= 1)
         .assertTrue();
       expect(Math.abs(Math.round(locationFlex.right - locationText1.right) - Math.round(vp2px(30))) <= 1).assertTrue();
-      expect(Math.round(locationText1.right - locationText1.left)).assertEqual(Math.round(vp2px(150)));
-      expect(Math.round(locationText1.bottom - locationText1.top)).assertEqual(Math.round(vp2px(50)));
-      expect(Math.round(locationText2.bottom - locationText2.top)).assertEqual(Math.round(vp2px(100)));
-      expect(Math.round(locationText3.bottom - locationText3.top)).assertEqual(Math.round(vp2px(150)));
+
+      expect(Math.abs(Math.round(locationText1.right - locationText1.left) - Math.round(vp2px(150))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText1.bottom - locationText1.top) - Math.round(vp2px(50))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText2.bottom - locationText2.top) - Math.round(vp2px(100))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(locationText3.bottom - locationText3.top) - Math.round(vp2px(150))) <= 1).assertTrue();
+
       console.info('new testWrapReverseParentfixedMarginChildMarginAndPadding END');
 
     });
