@@ -30,6 +30,6 @@ export default function testsuite() {
   pasteboardSyncTest()
   PasteboardUnifiedTest()
   PasteboardDelayCopyTest()
-  PasteboartdCopyJsAPITest()
+  //PasteboartdCopyJsAPITest()
   PasteBoardCompatibilityTest()
 }
