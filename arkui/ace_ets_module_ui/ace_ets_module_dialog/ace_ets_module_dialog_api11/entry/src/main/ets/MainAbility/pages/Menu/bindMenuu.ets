@@ -45,7 +45,7 @@ struct MenuExample {
           try {
             let backData:events_emitter.EventData = {
               data: {
-                "ACTION": this.onActionCalled,
+                'ACTION': this.onActionCalled,
               }
             }
             let backEvent:events_emitter.InnerEvent = {
