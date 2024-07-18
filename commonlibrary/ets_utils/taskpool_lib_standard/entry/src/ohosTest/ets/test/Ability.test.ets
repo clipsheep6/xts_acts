@@ -748,7 +748,8 @@ export default function TaskPoolTest() {
           finalString += 'a';
         });
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: seqRunner:: dependent task not allowed.");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: " +
+                "A dependent task cannot be added to SequenceRunner.seqRunner:: dependent task not allowed.");
       }
       done();
     })
@@ -1884,7 +1885,8 @@ export default function TaskPoolTest() {
         runner.execute(task1).then(() => {
         });
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: seqRunner:: dependent task not allowed.");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: " +
+                "A dependent task cannot be added to SequenceRunner.seqRunner:: dependent task not allowed.");
       }
       done();
     })
@@ -2570,7 +2572,8 @@ export default function TaskPoolTest() {
           finalString += 'a';
         });
       } catch (e) {
-        expect(e.toString()).assertEqual("BusinessError: seqRunner:: dependent task not allowed.");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: " +
+                "A dependent task cannot be added to SequenceRunner.seqRunner:: dependent task not allowed.");
         expect(task1.totalDuration < 5).assertTrue();
         expect(task1.cpuDuration < 5).assertTrue();
         expect(task1.ioDuration < 5).assertTrue();
@@ -2653,7 +2656,8 @@ export default function TaskPoolTest() {
           finalString += 'a';
         });
       } catch (e) {
-        expect(e.toString()).assertEqual("BusinessError: seqRunner:: dependent task not allowed.");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: " +
+                "A dependent task cannot be added to SequenceRunner.seqRunner:: dependent task not allowed.");
         expect(task1.totalDuration < 5).assertTrue();
         expect(task1.cpuDuration < 5).assertTrue();
         expect(task1.ioDuration < 5).assertTrue();
@@ -3299,7 +3303,8 @@ export default function TaskPoolTest() {
       try {
         runner.execute(task1);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: seqRunner:: dependent task not allowed.");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: " +
+                "A dependent task cannot be added to SequenceRunner.seqRunner:: dependent task not allowed.");
       }
       done();
     })
@@ -3546,7 +3551,8 @@ export default function TaskPoolTest() {
       try {
         runner.execute(task1);
       } catch(e) {
-        expect((e as BusinessError).toString()).assertEqual("BusinessError: seqRunner:: dependent task not allowed.");
+        expect((e as BusinessError).toString()).assertEqual("BusinessError: " +
+                "A dependent task cannot be added to SequenceRunner.seqRunner:: dependent task not allowed.");
       }
 
       done();
