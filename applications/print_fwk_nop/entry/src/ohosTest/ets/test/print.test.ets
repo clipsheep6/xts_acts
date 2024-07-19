@@ -200,14 +200,14 @@ export default function printNopTest() {
     }
 
     /**
-     * @tc.number print_function_0500
+     * @tc.number print_nop_function_0500
      * @tc.name Test print
      * @tc.desc check the print function
      * @tc.size MEDIUM
      * @tc.type Function
      * @tc.level Level 2
      */
-    it('print_function_0500', 0, () => {
+    it('print_nop_function_0500', 0, () => {
       let jobName: string = 'jobName';
       let printAdapter = new MyPrintDocumentAdapter();
       let printAttributes = new MyPrintAttributes();
