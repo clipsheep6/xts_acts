@@ -37,7 +37,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0100', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0100', 0, async () => {
       let textData = new unifiedDataChannel.UnifiedData();
       let text = new unifiedDataChannel.Text();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -48,9 +48,9 @@ export default function PasteboartdCopyJsAPITest() {
         Value: 'delayPlaintext',
       };
       textData.addRecord(text);
-      systemPasteboard.setUnifiedData(textData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(textData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.TEXT) {
@@ -80,7 +80,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0200', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0200', 0, async () => {
       let plainTextData = new unifiedDataChannel.UnifiedData();
       let plainText = new unifiedDataChannel.PlainText();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -93,9 +93,9 @@ export default function PasteboartdCopyJsAPITest() {
       plainText.textContent = 'delayTextContent';
       plainText.abstract = 'delayTextContent';
       plainTextData.addRecord(plainText);
-      systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(plainTextData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
@@ -126,7 +126,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0300', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0300', 0, async () => {
       let hyperLinkData = new unifiedDataChannel.UnifiedData();
       let hyperLink = new unifiedDataChannel.Hyperlink();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -139,9 +139,9 @@ export default function PasteboartdCopyJsAPITest() {
       hyperLink.url = 'delayTextContent';
       hyperLink.description = 'delayTextContent';
       hyperLinkData.addRecord(hyperLink);
-      systemPasteboard.setUnifiedData(hyperLinkData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(hyperLinkData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.HYPERLINK) {
@@ -172,7 +172,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0400', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0400', 0, async () => {
       let htmlData = new unifiedDataChannel.UnifiedData();
       let html = new unifiedDataChannel.HTML();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -185,9 +185,9 @@ export default function PasteboartdCopyJsAPITest() {
       html.htmlContent = 'delayTextContent';
       html.plainContent = 'delayTextContent';
       htmlData.addRecord(html);
-      systemPasteboard.setUnifiedData(htmlData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(htmlData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.HTML) {
@@ -218,7 +218,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0500', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0500', 0, async () => {
       let fileData = new unifiedDataChannel.UnifiedData();
       let file = new unifiedDataChannel.File();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -230,9 +230,9 @@ export default function PasteboartdCopyJsAPITest() {
       };
       file.uri = 'delayTextContent';
       fileData.addRecord(file);
-      systemPasteboard.setUnifiedData(fileData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(fileData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.FILE) {
@@ -262,7 +262,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0600', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0600', 0, async () => {
       let folderData = new unifiedDataChannel.UnifiedData();
       let folder = new unifiedDataChannel.Folder();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -275,9 +275,9 @@ export default function PasteboartdCopyJsAPITest() {
       folder.uri = 'delayTextContent';
       folder.folderUri = 'delayTextContent';
       folderData.addRecord(folder);
-      systemPasteboard.setUnifiedData(folderData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(folderData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.FOLDER) {
@@ -308,7 +308,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0700', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0700', 0, async () => {
       let imageData = new unifiedDataChannel.UnifiedData();
       let image = new unifiedDataChannel.Image();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -321,9 +321,9 @@ export default function PasteboartdCopyJsAPITest() {
       image.uri = 'delayTextContent';
       image.imageUri='delayTextContent';
       imageData.addRecord(image);
-      systemPasteboard.setUnifiedData(imageData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(imageData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.IMAGE) {
@@ -354,7 +354,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0800', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0800', 0, async () => {
       let videData = new unifiedDataChannel.UnifiedData();
       let video = new unifiedDataChannel.Video();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -367,9 +367,9 @@ export default function PasteboartdCopyJsAPITest() {
       video.uri = 'delayTextContent';
       video.videoUri = 'schema://com.samples.test/files/test.mp4';
       videData.addRecord(video);
-      systemPasteboard.setUnifiedData(videData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(videData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.VIDEO) {
@@ -400,7 +400,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0900', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_0900', 0, async () => {
       let audioData = new unifiedDataChannel.UnifiedData();
       let audio = new unifiedDataChannel.Audio();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -413,9 +413,9 @@ export default function PasteboartdCopyJsAPITest() {
       audio.uri = 'delayTextContent';
       audio.audioUri = 'schema://com.samples.test/files/test.mp4';
       audioData.addRecord(audio);
-      systemPasteboard.setUnifiedData(audioData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(audioData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.AUDIO) {
@@ -446,7 +446,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1000', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1000', 0, async () => {
       let sdrData = new unifiedDataChannel.UnifiedData();
       let sdr  = new unifiedDataChannel.SystemDefinedRecord();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -459,9 +459,9 @@ export default function PasteboartdCopyJsAPITest() {
         content: u8Array,
       };
       sdrData.addRecord(sdr);
-      systemPasteboard.setUnifiedData(sdrData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(sdrData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.TEXT) {
@@ -491,7 +491,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1100', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1100', 0, async () => {
       let sdfData = new unifiedDataChannel.UnifiedData();
       let form = new unifiedDataChannel.SystemDefinedForm();
       form.formId = 123456;
@@ -509,9 +509,9 @@ export default function PasteboartdCopyJsAPITest() {
       properties.shareOptions = unifiedDataChannel.ShareOptions.IN_APP;
       sdfData.properties = properties;
       sdfData.addRecord(form);
-      systemPasteboard.setUnifiedData(sdfData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(sdfData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.TEXT) {
@@ -546,7 +546,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1200', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1200', 0, async () => {
       let appItemData = new unifiedDataChannel.UnifiedData();
       let appItem = new unifiedDataChannel.SystemDefinedAppItem();
       appItem.appId = 'MyAppId';
@@ -565,9 +565,9 @@ export default function PasteboartdCopyJsAPITest() {
       properties.shareOptions = unifiedDataChannel.ShareOptions.IN_APP;
       appItemData.properties = properties;
       appItemData.addRecord(appItem);
-      systemPasteboard.setUnifiedData(appItemData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(appItemData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.TEXT) {
@@ -603,7 +603,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1300', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1300', 0, async () => {
       let recordData = new unifiedDataChannel.UnifiedData();
       let record = new unifiedDataChannel.ApplicationDefinedRecord();
       let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -613,9 +613,9 @@ export default function PasteboartdCopyJsAPITest() {
       properties.shareOptions = unifiedDataChannel.ShareOptions.IN_APP;
       recordData.properties = properties;
       recordData.addRecord(record);
-      systemPasteboard.setUnifiedData(recordData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(recordData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.TEXT) {
@@ -656,9 +656,9 @@ export default function PasteboartdCopyJsAPITest() {
       properties.shareOptions = unifiedDataChannel.ShareOptions.IN_APP;
       sdpixelData.properties = properties;
       sdpixelData.addRecord(pixelMapRecord);
-      systemPasteboard.setUnifiedData(sdpixelData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(sdpixelData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let outputData = data;
           let records = outputData.getRecords();
           if (records[0].getType() == uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP){
@@ -689,7 +689,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1500', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1500', 0, async () => {
       let object: Want = {
         bundleName: "com.example.aafwk.test",
         abilityName: "com.example.aafwk.test.TwoAbility"
@@ -700,9 +700,9 @@ export default function PasteboartdCopyJsAPITest() {
       properties.shareOptions = unifiedDataChannel.ShareOptions.IN_APP;
       wantData.properties = properties;
       wantData.addRecord(want);
-      systemPasteboard.setUnifiedData(wantData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(wantData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.OPENHARMONY_WANT) {
@@ -744,7 +744,7 @@ export default function PasteboartdCopyJsAPITest() {
       try {
         systemPasteboard.setUnifiedDataSync(plainTextData);
         done();
-        systemPasteboard.getUnifiedData().then((data) => {
+        await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
@@ -777,7 +777,7 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1700', 0, () => {
+    it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1700', 0, async () => {
       let plainTextData = new unifiedDataChannel.UnifiedData();
       let plainText = new unifiedDataChannel.PlainText();
       let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
@@ -790,7 +790,7 @@ export default function PasteboartdCopyJsAPITest() {
       plainText.textContent = 'delayTextContent';
       plainText.abstract = 'delayTextContent';
       plainTextData.addRecord(plainText);
-      systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
+      await systemPasteboard.setUnifiedData(plainTextData).then((data: void) => {
         console.info('Succeeded in setting UnifiedData.');
         try{
           let data:unifiedDataChannel.UnifiedData = systemPasteboard.getUnifiedDataSync();
@@ -860,4 +860,3 @@ export default function PasteboartdCopyJsAPITest() {
     });
   })
 }
-
