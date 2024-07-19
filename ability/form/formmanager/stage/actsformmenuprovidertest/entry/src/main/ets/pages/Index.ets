@@ -77,8 +77,8 @@ struct Index {
           .bindMenu(this.MenuBuilder())
           .margin({ top: 10, left: 10, right: 10, bottom: 50 })
       }
-      .width('40%')
-      .height('50%')
+      .width('100%')
+      .height('100%')
     }
   }
 }
