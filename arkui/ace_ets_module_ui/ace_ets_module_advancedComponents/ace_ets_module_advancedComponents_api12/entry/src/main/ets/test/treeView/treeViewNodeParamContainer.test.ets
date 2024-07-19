@@ -63,11 +63,12 @@ export default function treeViewNodeParamContainer() {
       let driver = await Driver.create();
       await driver.delayMs(2000);
       // 查看treeViewNodeParamContainer是否存在以下入口。
-      let primaryTitle1 = await driver.findComponent(ON.text('目录5'));
-      let primaryTitle2 = await driver.findComponent(ON.text('目录3'));
-      expect(primaryTitle1 !== null).assertTrue();
-      expect(primaryTitle2 !== null).assertTrue();
-      await driver.delayMs(2000);
+      let addButton = await driver.findComponent(ON.text('Add'));
+      let modifyButton = await driver.findComponent(ON.text('Modify'));
+      let removeButton = await driver.findComponent(ON.text('Remove'));
+      expect(addButton !== null).assertTrue();
+      expect(modifyButton !== null).assertTrue();
+      expect(removeButton !== null).assertTrue();
       console.info('[treeViewNodeParamContainer_0100] END');
       done();
     });
