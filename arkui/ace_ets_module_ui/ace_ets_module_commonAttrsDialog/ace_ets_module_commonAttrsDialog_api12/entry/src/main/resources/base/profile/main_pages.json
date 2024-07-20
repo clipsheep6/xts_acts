@@ -16,6 +16,12 @@
         "MainAbility/pages/bindSheet/SheetTransition",
         "MainAbility/pages/menuControl/symbolIcon",
         "MainAbility/pages/Common/Menu/Menu_API/HoverScale",
-        "MainAbility/pages/Common/BindSheet/BindSheet_API/ScrollSizeMode"
+        "MainAbility/pages/Common/BindSheet/BindSheet_API/ScrollSizeMode",
+        "MainAbility/pages/UIContext/closeBindSheet",
+        "MainAbility/pages/UIContext/closeCustomDialog",
+        "MainAbility/pages/UIContext/openBindSheet",
+        "MainAbility/pages/UIContext/openCustomDialog",
+        "MainAbility/pages/UIContext/updateBindSheet",
+        "MainAbility/pages/UIContext/updateCustomDialog"
     ]
 }

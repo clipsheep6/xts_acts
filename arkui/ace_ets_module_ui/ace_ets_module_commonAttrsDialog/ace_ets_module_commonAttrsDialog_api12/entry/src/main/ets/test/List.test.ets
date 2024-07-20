@@ -28,6 +28,13 @@ import SheetTransition from './bindSheetTest/SheetTransition.test'
 import symbolIcon from './menuControlTest/symbolIcon.test'
 import HoverScale_APITest from './CommonTest/MenuTest/Menu_APITest/HoverScale_APITest';
 import ScrollSizeMode_APITest from './CommonTest/BindSheetTest/BindSheet_APITest/ScrollSizeMode_APITest';
+
+import closeBindSheetTest from './UIContextTest/closeBindSheetTest.test'
+import openBindSheetTest from './UIContextTest/openBindSheetTest.test'
+import updateBindSheetTest from './UIContextTest/updateBindSheetTest.test'
+import closeCustomDialogTest from './UIContextTest/closeCustomDialogTest.test'
+import openCustomDialogTest from './UIContextTest/openCustomDialogTest.test'
+import updateCustomDialogTest from './UIContextTest/updateCustomDialogTest.test'
 export default function testsuite() {
   aboutToAppearFalse();
   aboutToDisappearFalse();
@@ -45,4 +52,10 @@ export default function testsuite() {
   symbolIcon();
   HoverScale_APITest();
   ScrollSizeMode_APITest();
+  closeBindSheetTest();
+  openBindSheetTest();
+  updateBindSheetTest();
+  closeCustomDialogTest();
+  openCustomDialogTest();
+  updateCustomDialogTest();
 }
