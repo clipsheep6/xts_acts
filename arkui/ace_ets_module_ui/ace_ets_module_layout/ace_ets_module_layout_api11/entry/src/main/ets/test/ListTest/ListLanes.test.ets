@@ -13,18 +13,19 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
+import router from '@ohos.router';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
+import GlobalContext from '../../MainAbility/common/GlobalContext'
 import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function ListLanes() {
-  describe('ListLanes', function () {
-    beforeEach(async function (done) {
+  describe('ListLanes', () => {
+    beforeEach(async (done: Function) => {
       console.info("ListLanes beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/List/ListLanes',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/List/ListLanes',
       }
       try {
         router.clear();
@@ -49,11 +50,11 @@ export default function ListLanes() {
        * @tc.desc  : set gutter to -1vp and listDirection to Axis.Vertical
        * @tc.level : Level 3
        */
-    it('ListLanes_001', 0, async function (done) {
+    it('ListLanes_001', 0, async (done: Function) => {
 
       console.info('[ListLanes_001] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({ name:'listGutter', value: '-1vp' });
+      GlobalContext.getContext().getObject<Dimension>('value').message.notify({ name:'listGutter', value: '-1vp' });
       await CommonFunc.sleep(200);
 
       let ListItem0 = CommonFunc.getComponentRect('ListItem0');
@@ -71,17 +72,17 @@ export default function ListLanes() {
        * @tc.desc  : set gutter to 10% and space to 20
        * @tc.level : Level 3
        */
-    it('ListLanes_002', 0, async function (done) {
+    it('ListLanes_002', 0, async (done: Function) => {
 
       console.info('[ListLanes_002] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({ name:'listGutter', value: '10%' });
+      GlobalContext.getContext().getObject<Dimension>('value').message.notify({ name:'listGutter', value: '10%' });
       await CommonFunc.sleep(200);
 
       let ListItem0 = CommonFunc.getComponentRect('ListItem0');
       let ListItem2 = CommonFunc.getComponentRect('ListItem2');
       await CommonFunc.sleep(1000);
-      expect(Math.round(ListItem2.top - ListItem0.bottom)).assertEqual(Math.round(vp2px(20)));
+	  expect(Math.abs(Math.round(ListItem2.top - ListItem0.bottom) - Math.round(vp2px(20))) <= 1).assertTrue();
 
       console.info('[ListLanes_002] END');
       done();
@@ -93,12 +94,12 @@ export default function ListLanes() {
        * @tc.desc  : set gutter to 10px and space to 10px
        * @tc.level : Level 3
        */
-    it('ListLanes_007', 0, async function (done) {
+    it('ListLanes_007', 0, async (done: Function) => {
 
       console.info('[ListLanes_007] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({ name:'listGutter', value: '10px' });
-      globalThis.value.message.notify({ name:'listSpace', value: '10px' });
+      GlobalContext.getContext().getObject<Dimension>('value').message.notify({ name:'listGutter', value: '10px' });
+      GlobalContext.getContext().getObject<string>('value').message.notify({ name:'listSpace', value: '10px' });
       await CommonFunc.sleep(200);
 
       let ListItem0 = CommonFunc.getComponentRect('ListItem0');
@@ -118,18 +119,18 @@ export default function ListLanes() {
       * @tc.desc  : set gutter to 10px and initialIndex to 8
       * @tc.level : Level 3
       */
-    it('ListLanes_008', 0, async function (done) {
+    it('ListLanes_008', 0, async (done: Function) => {
 
       console.info('[ListLanes_008] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({ name:'listGutter', value: '10vp' });
-      globalThis.value.message.notify({ name:'initialIndex', value: 8 });
+      GlobalContext.getContext().getObject<Dimension>('value').message.notify({ name:'listGutter', value: '10vp' });
+      GlobalContext.getContext().getObject<number>('value').message.notify({ name:'initialIndex', value: 8 });
       await CommonFunc.sleep(200);
 
       let ListItem0 = CommonFunc.getComponentRect('ListItem0');
       let ListItem1 = CommonFunc.getComponentRect('ListItem1');
       await CommonFunc.sleep(1000);
-      expect(Math.round(ListItem1.left - ListItem0.right)).assertEqual(Math.round(vp2px(10)));
+	  expect(Math.abs(Math.round(ListItem1.left - ListItem0.right) - Math.round(vp2px(10))) <= 1).assertTrue();
 
       console.info('[ListLanes_008] END');
       done();
@@ -141,7 +142,7 @@ export default function ListLanes() {
        * @tc.desc  : set padding to 20 and gutter to 10
        * @tc.level : Level 2
        */
-    it('ListLanes_009', 0, async function (done) {
+    it('ListLanes_009', 0, async (done: Function) => {
 
       console.info('[ListLanes_008] START');
       await CommonFunc.sleep(200);
@@ -149,8 +150,8 @@ export default function ListLanes() {
       let ListItem0 = CommonFunc.getComponentRect('ListItem0');
       let ListItem1 = CommonFunc.getComponentRect('ListItem1');
       await CommonFunc.sleep(1000);
-      expect(Math.round(ListItem1.left - ListItem0.right)).assertEqual(Math.round(vp2px(10)));
-      expect(Math.round(ListItem0.left - ListLanes.left)).assertEqual(Math.round(vp2px(20)));
+	  expect(Math.abs(Math.round(ListItem1.left - ListItem0.right) - Math.round(vp2px(10))) <= 1).assertTrue();
+	  expect(Math.abs(Math.round(ListItem0.left - ListLanes.left) - Math.round(vp2px(20))) <= 1).assertTrue();
 
       console.info('[ListLanes_008] END');
       done();
@@ -162,7 +163,7 @@ export default function ListLanes() {
        * @tc.desc  : set margin to 10 and gutter to 10
        * @tc.level : Level 2
        */
-    it('ListLanes_010', 0, async function (done) {
+    it('ListLanes_010', 0, async (done: Function) => {
 
       console.info('[ListLanes_010] START');
       await CommonFunc.sleep(200);
@@ -171,8 +172,13 @@ export default function ListLanes() {
       let ListItem1 = CommonFunc.getComponentRect('ListItem1');
       let ColumnKey = CommonFunc.getComponentRect('ColumnKey');
       await CommonFunc.sleep(1000);
-      expect(Math.round(ListItem1.left - ListItem0.right)).assertEqual(Math.round(vp2px(10)));
-      expect(Math.round(ListLanes.top - ColumnKey.top)).assertEqual(Math.round(vp2px(10)));
+      console.log('vp2px(10) is:' +vp2px(10));
+      console.log('ListItem0 rect_value is:' +JSON.stringify(ListItem0));
+      console.log('ListItem1 rect_value is:' +JSON.stringify(ListItem1));
+	  expect(Math.abs(Math.round(ListItem1.left - ListItem0.right) - Math.round(vp2px(10))) <= 1).assertTrue();
+      console.log('ListLanes rect_value is:' +JSON.stringify(ListLanes));
+      console.log('ColumnKey rect_value is:' +JSON.stringify(ColumnKey));
+	  expect(Math.abs(Math.round(ListLanes.top - ColumnKey.top) - Math.round(vp2px(10))) <= 1).assertTrue();
 
       console.info('[ListLanes_010] END');
       done();

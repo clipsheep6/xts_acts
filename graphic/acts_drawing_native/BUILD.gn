@@ -26,6 +26,7 @@ ohos_moduletest_suite("ActsDrawingNativeTest") {
   sources = [
     "DrawingNativeBitmapTest.cpp",
     "DrawingNativeBrushTest.cpp",
+    "DrawingNativeCanvasCommon.cpp",
     "DrawingNativeCanvasTest.cpp",
     "DrawingNativeCanvasTestPart2.cpp",
     "DrawingNativeCanvasTestPart3.cpp",
@@ -34,29 +35,38 @@ ohos_moduletest_suite("ActsDrawingNativeTest") {
     "DrawingNativeColorSpaceTest.cpp",
     "DrawingNativeColorTest.cpp",
     "DrawingNativeFilterTest.cpp",
-    "DrawingNativeFontMgrTest.cpp",
     "DrawingNativeFontTest.cpp",
     "DrawingNativeGpuContextTest.cpp",
     "DrawingNativeImageFilterTest.cpp",
     "DrawingNativeImageTest.cpp",
     "DrawingNativeMaskFilterTest.cpp",
     "DrawingNativeMatrixTest.cpp",
+    "DrawingNativeMatrixTestPart2.cpp",
     "DrawingNativeMemoryStreamTest.cpp",
+    "DrawingNativePathEffectTest.cpp",
     "DrawingNativePathTest.cpp",
+    "DrawingNativePathTestPart2.cpp",
+    "DrawingNativePathTestPart3.cpp",
     "DrawingNativePenTest.cpp",
     "DrawingNativePixelMapTest.cpp",
     "DrawingNativePointTest.cpp",
     "DrawingNativeRectTest.cpp",
     "DrawingNativeRegionTest.cpp",
     "DrawingNativeRoundRectTest.cpp",
+    "DrawingNativeSamplingOptionsTest.cpp",
     "DrawingNativeShaderEffectTest.cpp",
     "DrawingNativeShadowLayerTest.cpp",
+    "DrawingNativeSurFaceTest.cpp",
     "DrawingNativeTextBlobTest.cpp",
+    "DrawingNativeTypeFaceTest.cpp",
   ]
 
   cflags = [
     "-Wall",
     "-Werror",
+    "-g3",
+    "-Dprivate=public",
+    "-Dprotected=public",
   ]
 
   include_dirs = [
@@ -70,13 +80,12 @@ ohos_moduletest_suite("ActsDrawingNativeTest") {
   }
 
   external_deps = [
-    "c_utils:utils",
     "graphic_2d:2d_graphics",
     "graphic_2d:EGL",
     "graphic_2d:GLESv3",
     "graphic_2d:native_drawing_ndk",
     "hilog:libhilog",
-    "openssl:libcrypto_shared",
+    "image_framework:pixelmap",
   ]
   deps = [ "//third_party/googletest:gtest_main" ]
 }

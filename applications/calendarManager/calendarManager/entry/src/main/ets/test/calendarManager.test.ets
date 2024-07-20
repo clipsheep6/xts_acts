@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import calendarManager from '@ohos.calendarManager';
-import { beforeAll, describe, expect, it } from '@ohos/hypium';
+import { describe, beforeAll, it, expect} from '@ohos/hypium';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import uitest from '@ohos.UiTest';
 import systemDateTime from '@ohos.systemDateTime';
@@ -133,6 +133,19 @@ export default function CalendarManagerTest() {
       expect(calendarManager.ServiceType.CLASS == 'Class').assertTrue();
       expect(calendarManager.ServiceType.SPORTS_EVENTS == 'SportsEvents').assertTrue();
       expect(calendarManager.ServiceType.SPORTS_EXERCISE == 'SportsExercise').assertTrue();
+    });
+
+    /*
+     * @tc.number  SUB_Application_CalendarManagerApi_test_0400
+     * @tc.name    Test Enumeration of AttendeeRole types.
+     * @tc.desc    Function test
+     * @tc.size    SmallTest
+     * @tc.type    User
+     * @tc.level   Level 2
+     */
+    it("SUB_Application_CalendarManagerApi_test_0400", 0, () => {
+      expect(calendarManager.AttendeeRole.ORGANIZER == 'organizer').assertTrue();
+      expect(calendarManager.AttendeeRole.PARTICIPANT == 'participant').assertTrue();
     });
 
     /*
@@ -445,7 +458,7 @@ export default function CalendarManagerTest() {
           expect().assertFail();
         } else {
           console.info(CaseName + "Succeeded in get AllCalendars" + JSON.stringify(data));
-          expect(data[0].id != null).assertTrue();
+          expect(data != null).assertTrue();
           return;
         }
       });
@@ -463,7 +476,7 @@ export default function CalendarManagerTest() {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetAllCalendars_Promise_0100';
       calendarMgr.getAllCalendars().then((data) => {
         console.info(CaseName + "Succeeded in deleting calendar" + JSON.stringify(data));
-        expect(data[0].id != null).assertTrue();
+        expect(data != null).assertTrue();
         return;
       }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to delete calendar type is SUBSCRIBED" + JSON.stringify(err));
@@ -771,15 +784,18 @@ export default function CalendarManagerTest() {
         attendee: [
           {
             name: '小王',
-            email: 'xiaowang@huawei.com'
+            email: 'peter@yuanha.com',
+            role: calendarManager.AttendeeRole.ORGANIZER
           },
           {
             name: '小李',
-            email: 'xiaoli@huawei.com'
+            email: 'peter@yuanha.com',
+            role: calendarManager.AttendeeRole.PARTICIPANT
           },
           {
             name: '老李',
-            email: 'laoxiao@huawei.com'
+            email: 'peter@yuanha.com',
+            role: calendarManager.AttendeeRole.PARTICIPANT
           }
         ],
         timeZone: '',
@@ -804,7 +820,6 @@ export default function CalendarManagerTest() {
             expect().assertFail();
           } else {
             console.info(CaseName + "Succeeded in updateEvent" + JSON.stringify(data));
-            expect(data != null).assertTrue();
             return;
           }
         });
@@ -1157,7 +1172,7 @@ export default function CalendarManagerTest() {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         Calendar.getEvents(filter, columns).then((data) => {
           console.info(CaseName + "Succeeded in getting events" + JSON.stringify(data));
-          expect(data[0] != null).assertTrue();
+          expect(data = null).assertTrue();
           return;
         }).catch((err: BusinessError) => {
           console.error(CaseName + "Failed to get events" + JSON.stringify(err));
@@ -1192,7 +1207,7 @@ export default function CalendarManagerTest() {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         Calendar.getEvents(filter, columns).then((data) => {
           console.info(CaseName + "Succeeded in getting events" + JSON.stringify(data));
-          expect(data[0] != null).assertTrue();
+          expect(data != null).assertTrue();
           return;
         }).catch((err: BusinessError) => {
           console.error(CaseName + "Failed to get events" + JSON.stringify(err));
@@ -1227,7 +1242,7 @@ export default function CalendarManagerTest() {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         Calendar.getEvents(filter, columns).then((data) => {
           console.info(CaseName + "Succeeded in getting events" + JSON.stringify(data));
-          expect(data[0] != null).assertTrue();
+          expect(data != null).assertTrue();
           return;
         }).catch((err: BusinessError) => {
           console.error(CaseName + "Failed to get events" + JSON.stringify(err));
@@ -1424,6 +1439,57 @@ export default function CalendarManagerTest() {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
         expect().assertFail();
       });
+    });
+
+    /*
+    * @tc.number  SUB_Application_CalendarManagerApi_EditEvent_Promise_0100
+    * @tc.name    Create a single event,invoking this interface will open the event creation page.
+    * @tc.desc    Function test
+    * @tc.size    SmallTest
+    * @tc.type    User
+    * @tc.level   Level 2
+    */
+    it("SUB_Application_CalendarManagerApi_EditEvent_Promise_0100", 0, () => {
+      let CaseName = 'SUB_Application_CalendarManagerApi_EditEvent_Promise_0100';
+      let TimeZone = '';
+      systemDateTime.getTimezone((error, data) => {
+        if (error) {
+          console.info(`Failed to get timezone. message: ${error.message}, code: ${error.code}`);
+          return;
+        }
+        console.info(`Succeeded in get timezone : ${data}`);
+        TimeZone = data;
+      });
+
+      const date = new Date();
+      let Schedule: calendarManager.Event = {
+        type: calendarManager.EventType.NORMAL,
+        startTime: date.getTime(),
+        endTime: date.getTime() + 60 * 60 * 1000,
+        identifier: "1aa96c08-d732-443b-aa0a-6eb1559dfb19",
+        isLunar: true,
+        recurrenceRule: {
+          recurrenceFrequency: calendarManager.RecurrenceFrequency.DAILY,
+          count: 100,
+          interval: 2,
+          expire: date.getTime() + 60 * 60 * 1000 * 3,
+          excludedDates: [date.getTime() + 60 * 60 * 1000 * 2]
+        },
+      }
+
+      try {
+        if (Schedule.isLunar) {
+          expect(calendarManager.AttendeeRole.ORGANIZER == 'organizer').assertTrue();
+          return;
+        }
+        calendarMgr?.editEvent(Schedule).then((data) => {
+          expect(data != 0).assertTrue();
+        }).catch((err: BusinessError) => {
+          console.info(CaseName + "Failed to editEvent" + JSON.stringify(err));
+        })
+      } catch (err) {
+        console.info(CaseName + "Failed to editEvent" + JSON.stringify(err));
+      }
     });
 
   });

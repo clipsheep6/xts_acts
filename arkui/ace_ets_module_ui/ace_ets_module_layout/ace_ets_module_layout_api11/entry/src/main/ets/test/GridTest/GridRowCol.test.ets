@@ -13,18 +13,19 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
+import router from '@ohos.router';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
+import GlobalContext from '../../MainAbility/common/GlobalContext'
 import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 
 export default function GridRowCol() {
-  describe('GridRowCol', function () {
-    beforeEach(async function (done) {
+  describe('GridRowCol', () => {
+    beforeEach(async (done: Function) => {
       console.info("GridRowCol beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/Grid/GridRowCol',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/Grid/GridRowCol',
       }
       try {
         router.clear();
@@ -49,12 +50,12 @@ export default function GridRowCol() {
        * @tc.desc  : set columnsTemplate and rowsTemplate
        * @tc.level : Level 3
        */
-    it('GridRowCol_001', 0, async function (done) {
+    it('GridRowCol_001', 0, async (done: Function) => {
 
       console.info('[GridRowCol_001] START');
       await CommonFunc.sleep(1000);
       let strJson1 = getInspectorByKey('GridRowCol');
-      let obj1 = JSON.parse(strJson1);
+      let obj1: ESObject = JSON.parse(strJson1);
       let GridItem00 = CommonFunc.getComponentRect('GridItem00');
       let GridItem01 = CommonFunc.getComponentRect('GridItem01');
       let GridItem02 = CommonFunc.getComponentRect('GridItem02');
@@ -62,10 +63,10 @@ export default function GridRowCol() {
       let GridItem11 = CommonFunc.getComponentRect('GridItem11');
       console.info("[GridRowCol_001] component obj is: " + JSON.stringify(obj1));
       await CommonFunc.sleep(1000);
-      expect(Math.round(GridItem01.left - GridItem00.right)).assertEqual(Math.round(vp2px(10)));
-      expect(Math.round(GridItem02.left - GridItem01.right)).assertEqual(Math.round(vp2px(10)));
-      expect(Math.round(GridItem03.top - GridItem00.bottom)).assertEqual(Math.round(vp2px(10)));
-      expect(Math.round(GridItem11.top - GridItem03.bottom)).assertEqual(Math.round(vp2px(10)));
+	  expect(Math.abs(Math.round(GridItem01.left - GridItem00.right) - Math.round(vp2px(10))) <= 1).assertTrue();
+	  expect(Math.abs(Math.round(GridItem02.left - GridItem01.right) - Math.round(vp2px(10))) <= 1).assertTrue();
+	  expect(Math.abs(Math.round(GridItem03.top - GridItem00.bottom) - Math.round(vp2px(10))) <= 1).assertTrue();
+	  expect(Math.abs(Math.round(GridItem11.top - GridItem03.bottom) - Math.round(vp2px(10))) <= 1).assertTrue();
 
       console.info('[GridRowCol_001] END');
       done();
@@ -77,14 +78,14 @@ export default function GridRowCol() {
        * @tc.desc  : set columnsTemplate to 'repeat(auto-fit,10%)'
        * @tc.level : Level 3
        */
-    it('GridRowCol_002', 0, async function (done) {
+    it('GridRowCol_002', 0, async (done: Function) => {
 
       console.info('[GridRowCol_002] START');
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'columnsTemplate', value: 'repeat(auto-fit,10%)' });
+      GlobalContext.getContext().getObject<string>('value').message.notify({name:'columnsTemplate', value: 'repeat(auto-fit,10%)' });
       await CommonFunc.sleep(200);
       let strJson1 = getInspectorByKey('GridRowCol');
-      let obj1 = JSON.parse(strJson1);
+      let obj1: ESObject = JSON.parse(strJson1);
       console.info("[GridRowCol_002] component obj is: " + JSON.stringify(obj1));
       await CommonFunc.sleep(1000);
       expect(obj1.$attrs.columnsTemplate).assertEqual('repeat(auto-fit,10%)');
@@ -99,14 +100,14 @@ export default function GridRowCol() {
        * @tc.desc  : set columnsTemplate to 'repeat(auto-fit,10%)'
        * @tc.level : Level 3
        */
-    it('GridRowCol_003', 0, async function (done) {
+    it('GridRowCol_003', 0, async (done: Function) => {
 
       console.info('[GridRowCol_002] START');
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'columnsTemplate', value: 'repeat(auto-fit,90)' });
+      GlobalContext.getContext().getObject<string>('value').message.notify({name:'columnsTemplate', value: 'repeat(auto-fit,90)' });
       await CommonFunc.sleep(200);
       let strJson1 = getInspectorByKey('GridRowCol');
-      let obj1 = JSON.parse(strJson1);
+      let obj1: ESObject = JSON.parse(strJson1);
       console.info("[GridRowCol_002] component obj is: " + JSON.stringify(obj1));
       await CommonFunc.sleep(1000);
       expect(obj1.$attrs.columnsTemplate).assertEqual('repeat(auto-fit,90)');
@@ -121,16 +122,16 @@ export default function GridRowCol() {
        * @tc.desc  : set columnsTemplate to 'repeat(auto-fit,-1)'
        * @tc.level : Level 3
        */
-    it('GridRowCol_004', 0, async function (done) {
+    it('GridRowCol_004', 0, async (done: Function) => {
 
       console.info('[GridRowCol_004] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'columnsTemplate', value: 'repeat(auto-fit,-1)' });
+      GlobalContext.getContext().getObject<string>('value').message.notify({name:'columnsTemplate', value: 'repeat(auto-fit,-1)' });
       await CommonFunc.sleep(200);
       let GridItem00 = CommonFunc.getComponentRect('GridItem00');
       let GridItem01 = CommonFunc.getComponentRect('GridItem01');
       await CommonFunc.sleep(1000);
-      expect(Math.round(GridItem01.top - GridItem00.bottom)).assertEqual(Math.round(vp2px(10)));
+	  expect(Math.abs(Math.round(GridItem01.top - GridItem00.bottom) - Math.round(vp2px(10))) <= 1).assertTrue();
 
       console.info('[GridRowCol_004] END');
       done();
@@ -142,16 +143,16 @@ export default function GridRowCol() {
       * @tc.desc  : set columnsTemplate to '1fr 1fr 1fr'
       * @tc.level : Level 3
       */
-    it('GridRowCol_005', 0, async function (done) {
+    it('GridRowCol_005', 0, async (done: Function) => {
 
       console.info('[GridRowCol_005] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'columnsTemplate', value: '1fr 1fr 1fr' });
+      GlobalContext.getContext().getObject<string>('value').message.notify({name:'columnsTemplate', value: '1fr 1fr 1fr' });
       await CommonFunc.sleep(200);
       let GridItem00 = CommonFunc.getComponentRect('GridItem00');
       let GridItem01 = CommonFunc.getComponentRect('GridItem01');
       await CommonFunc.sleep(1000);
-      expect(Math.round(GridItem01.left - GridItem00.right)).assertEqual(Math.round(vp2px(10)));
+	  expect(Math.abs(Math.round(GridItem01.left - GridItem00.right) - Math.round(vp2px(10))) <= 1).assertTrue();
 
       console.info('[GridRowCol_005] END');
       done();

@@ -1,6 +1,16 @@
 {
     "src": [
         "MainAbility/pages/index/index",
+        "MainAbility/pages/APIshouldBuiltInRecognizerParallelWith",
+        "MainAbility/pages/PanGesture/PanGestureExampleTemplate",
+        "MainAbility/pages/PinchGesture/PinchGestureTemplate",
+        "MainAbility/pages/RotationGesture/RotationGestureTemplate",
+        "MainAbility/pages/TapGesture/TapGestureTemplate",
+        "MainAbility/pages/LongPressGesture/LongPressGestureTemplate",
+        "MainAbility/pages/SwipeGesture/SwipeGestureTemplate",
+        "MainAbility/pages/PanGesture/PanGestureUpdate",
+        "MainAbility/pages/PinchGesture/PinchGestureUpdate",
+        "MainAbility/pages/RotationGesture/RotationGestureUpdate",
         "MainAbility/pages/DragController/APIPreDragStatus",
 	"MainAbility/pages/TapGesture/TapGestureBasicClickMouse",
         "MainAbility/pages/TapGesture/TapGestureBasicDoubleClickMouse",
@@ -13,6 +23,11 @@
         "MainAbility/pages/PanGesture/PanGestureExample03",
         "MainAbility/pages/SwipeGesture/SwipeGestureExample01",
         "MainAbility/pages/SwipeGesture/SwipeGestureExample03",
+	"MainAbility/pages/SwipeGesture/SwipeGestureExample02",
+        "MainAbility/pages/RotationGesture/RotationGestureBasic01",
+        "MainAbility/pages/RotationGesture/RotationGestureBasic02",
+        "MainAbility/pages/PinchGesture/PinchGestureBasic01",
+        "MainAbility/pages/PinchGesture/PinchGestureBasic02",
         "MainAbility/pages/addGestureApplyGesture",
         "MainAbility/pages/keyboardShortcut/ShortcutKeyTAB",
         "MainAbility/pages/keyboardShortcut/ShortcutKeyDPADUP",
@@ -31,6 +46,9 @@
         "MainAbility/pages/GestureHandler/clearGesture",
         "MainAbility/pages/GestureHandler/addParallelGestureTest1",
         "MainAbility/pages/onKeyEvent/OnKeyPreIme",
-        "MainAbility/pages/onKeyEvent/getModifierKeyState"
+        "MainAbility/pages/onKeyEvent/getModifierKeyState",
+        "MainAbility/pages/onAttach/onAttach",
+        "MainAbility/pages/GestureRecognizer/GestureRecognizerState",
+	"MainAbility/pages/PanGesture/Gesture"
     ]
 }

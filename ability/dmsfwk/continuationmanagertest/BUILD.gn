@@ -17,7 +17,7 @@ ohos_js_app_suite("continuationmanager_js_test") {
   test_hap = true
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "continuationmanager_js_test"
+  hap_name = "ActsContinuationManagerJsTest"
   part_name = "dmsfwk"
   subsystem_name = "ability"
 }

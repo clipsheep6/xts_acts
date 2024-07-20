@@ -23,8 +23,8 @@ ohos_js_hap_suite("ActsComponent3DTest") {
   ets2abc = true
   certificate_profile = "signature/openharmony_sx.p7b"
   hap_name = "ActsComponent3DTest"
-  part_name = "ace_engine"
-  subsystem_name = "arkui"
+  part_name = "graphic_2d"
+  subsystem_name = "graphic"
 }
 
 ohos_app_scope("ace_ets_component_Component3D_test_app_profile") {

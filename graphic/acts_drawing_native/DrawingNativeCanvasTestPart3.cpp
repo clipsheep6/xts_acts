@@ -15,7 +15,7 @@
 
 #include "gtest/gtest.h"
 
-#include "DrawingNativeCanvasTest.h"
+#include "DrawingNativeCanvasCommon.h"
 #include "drawing_bitmap.h"
 #include "drawing_brush.h"
 #include "drawing_canvas.h"
@@ -37,8 +37,6 @@
 #include "drawing_shader_effect.h"
 #include "drawing_text_blob.h"
 #include "drawing_typeface.h"
-#include "effect/color_filter.h"
-#include "effect/filter.h"
 
 using namespace testing;
 using namespace testing::ext;
@@ -597,6 +595,7 @@ HWTEST_F(DrawingNativeCanvasTest, testCanvasDrawTextBlobNormal, TestSize.Level0)
 
     // 2. OH_Drawing_TextBlobCreateFromText
     const char *str = "123456";
+    
     OH_Drawing_Font *font = OH_Drawing_FontCreate();
     OH_Drawing_TextBlob *textBlob =
         OH_Drawing_TextBlobCreateFromText(str, strlen(str), font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8);
@@ -621,6 +620,7 @@ HWTEST_F(DrawingNativeCanvasTest, testCanvasDrawTextBlobNull, TestSize.Level3) {
     OH_Drawing_Canvas *canvas = OH_Drawing_CanvasCreate();
     // 2. OH_Drawing_TextBlobCreateFromString
     const char *str = "123456";
+
     OH_Drawing_Font *font = OH_Drawing_FontCreate();
     OH_Drawing_TextBlob *textBlob =
         OH_Drawing_TextBlobCreateFromText(str, strlen(str), font, OH_Drawing_TextEncoding::TEXT_ENCODING_UTF8);
@@ -662,7 +662,6 @@ HWTEST_F(DrawingNativeCanvasTest, testCanvasDrawTextBlobAbnormal, TestSize.Level
     OH_Drawing_CanvasDrawTextBlob(canvas, textBlob, 10, -10);
     // 5. Release memory
     OH_Drawing_TextBlobDestroy(textBlob);
-    // 5. Release memory
     OH_Drawing_CanvasDestroy(canvas);
 }
 

@@ -16,14 +16,23 @@
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEvent from '@ohos.commonEventManager'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import fs from '@ohos.file.fs';
+import common from '@ohos.app.ability.common';
+
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let TAG;
+let abilityContext;
 
 var ACTS_GetGroupFunction = {
-  events: ['ACTS_GETGROUP1_EVENT', 'ACTS_GETGROUP2_EVENT']
+  events: ['ACTS_GETGROUP1_EVENT', 'ACTS_GETGROUP2_EVENT', 'ACTS_INPUTMETHOD_GETGROUP_EVENT']
 };
 
 export default function ActsGetgroupdirTest() {
   describe('ActsGetgroupdirTest', function () {
-    beforeAll(function () {})
+    beforeAll(function () {
+      abilityContext = AppStorage.get<common.UIAbilityContext>("getGroupDirContext");
+    })
     beforeEach(function () {})
     afterEach(function () {})
     afterAll(function () {})
@@ -36,7 +45,7 @@ export default function ActsGetgroupdirTest() {
     it('AMS_getGroupDir_001',0, async function (done) {
       console.log("start AMS_getGroupDir_001 =====>");
       let res;
-      await globalThis.myContext.getGroupDir("context_test1").then(data => {
+      await abilityContext.getGroupDir("context_test1").then(data => {
         console.error("getGroupDir AMS_getGroupDir_001 ====> result data" + data);
         expect(data).assertContain("/data/storage/el2/group");
       }).catch((error) => {
@@ -54,7 +63,7 @@ export default function ActsGetgroupdirTest() {
      */
     it('AMS_getGroupDir_002',0, async function (done) {
       console.log("start AMS_getGroupDir_002 =====>");
-      await globalThis.myContext.getGroupDir("111").then(data => {
+      await abilityContext.getGroupDir("111").then(data => {
         console.error("getGroupDir AMS_getGroupDir_002 ====> result data" + data);
         expect(data).assertEqual("");
       }).catch((error) => {
@@ -72,7 +81,7 @@ export default function ActsGetgroupdirTest() {
      */
     it('AMS_getGroupDir_003',0, async function (done) {
       console.log("start AMS_getGroupDir_003 =====>");
-      await globalThis.myContext.getGroupDir("context_hap1").then(data => {
+      await abilityContext.getGroupDir("context_hap1").then(data => {
         console.error("getGroupDir AMS_getGroupDir_003 ====> result data" + data);
         expect(data).assertEqual("");
       }).catch((error) => {
@@ -90,7 +99,7 @@ export default function ActsGetgroupdirTest() {
      */
     it('AMS_getGroupDir_004',0, async function (done) {
       console.log("start AMS_getGroupDir_004 =====>");
-      await globalThis.myContext.getGroupDir("context_test1", (err, data) => {
+      await abilityContext.getGroupDir("context_test1", (err, data) => {
         console.error("AMS_getGroupDir_004 ====> result data" + data);
         console.error("AMS_getGroupDir_004 ====> result err" + JSON.stringify(err));
         expect(data).assertContain("/data/storage/el2/group");
@@ -107,7 +116,7 @@ export default function ActsGetgroupdirTest() {
      */
     it('AMS_getGroupDir_005',0, async function (done) {
       console.log("start AMS_getGroupDir_005 =====>");
-      await globalThis.myContext.getGroupDir("", (err, data) => {
+      await abilityContext.getGroupDir("", (err, data) => {
         console.error("AMS_getGroupDir_005 ====> result data" + data);
         console.error("AMS_getGroupDir_005 ====> result err" + JSON.stringify(err));
         expect(data).assertEqual("");
@@ -124,7 +133,7 @@ export default function ActsGetgroupdirTest() {
      */
     it('AMS_getGroupDir_006',0, async function (done) {
       console.log("start AMS_getGroupDir_006 =====>");
-      await globalThis.myContext.getGroupDir("context_hap1", (err, data) => {
+      await abilityContext.getGroupDir("context_hap1", (err, data) => {
         console.error("AMS_getGroupDir_006 ====> result data" + data);
         console.error("AMS_getGroupDir_006 ====> result err" + JSON.stringify(err));
         expect(data).assertEqual("");
@@ -148,11 +157,11 @@ export default function ActsGetgroupdirTest() {
         subscriber = data;
 
         commonEvent.subscribe(subscriber, subscribeCallBack);
-        await globalThis.myContext.getGroupDir("context_hap1", (err, data) => {
+        await abilityContext.getGroupDir("context_hap1", (err, data) => {
           res = data;
           expect(err).assertNull();
         })
-        globalThis.myContext.startAbility({
+        abilityContext.startAbility({
             bundleName: 'com.example.getgroupdirhap2',
             abilityName: 'EntryAbility',
             moduleName: 'entry',
@@ -191,11 +200,11 @@ export default function ActsGetgroupdirTest() {
         subscriber = data;
 
         commonEvent.subscribe(subscriber, subscribeCallBack);
-        await globalThis.myContext.getGroupDir("context_hap2", (err, data) => {
+        await abilityContext.getGroupDir("context_hap2", (err, data) => {
           res = data;
           expect(err).assertNull();
         })
-        globalThis.myContext.startAbility({
+        abilityContext.startAbility({
             bundleName: 'com.example.getgroupdirhap2',
             abilityName: 'EntryAbility2',
             moduleName: 'entry',

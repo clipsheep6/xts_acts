@@ -22,6 +22,8 @@ export default function btBleServiceTest() {
 describe('btBleServiceTest', function() {
     let gattServer: bluetooth.GattServer;
     let gattClient: bluetooth.GattClientDevice;
+    let PERMISSION_TEXT:string = "允许";
+    let OPEN_BT_TEXT:string = "开启";
     function sleep(delay) {
         return new Promise(resovle => setTimeout(resovle, delay))
     }
@@ -46,7 +48,7 @@ describe('btBleServiceTest', function() {
             case 0:
                 console.info('[bluetooth_js] bt turn off:'+ JSON.stringify(sta));
                 btAccess.enableBluetooth();
-                await clickRequestPermission();
+                await clickRequestPermission(OPEN_BT_TEXT);
                 await sleep(10000);
                 break;
             case 1:
@@ -59,7 +61,7 @@ describe('btBleServiceTest', function() {
             case 3:
                 console.info('[bluetooth_js] bt turning off:'+ JSON.stringify(sta));
                 btAccess.enableBluetooth();
-                await clickRequestPermission();
+                await clickRequestPermission(OPEN_BT_TEXT);
                 await sleep(10000);
                 break;
             default:
@@ -67,12 +69,12 @@ describe('btBleServiceTest', function() {
         }
     }
 
-    async function clickRequestPermission() {
+    async function clickRequestPermission(text:string) {
         try {
             console.info('[bluetooth_js] clickRequestPermission start');
             let driver = Driver.create();
             await driver.delayMs(3000);
-            let button = await driver.findComponent(ON.text("允许"));
+            let button = await driver.findComponent(ON.text(text));
             await button.click();
             await driver.delayMs(3000);
             console.info('[bluetooth_js] clickRequestPermission end');
@@ -82,7 +84,7 @@ describe('btBleServiceTest', function() {
     }
 
     beforeAll(async function (done) {
-        await clickRequestPermission();
+        await clickRequestPermission(PERMISSION_TEXT);
         await openPhone();
         await tryToEnableBt()
         gattServer = bluetooth.createGattServer();
@@ -131,7 +133,7 @@ describe('btBleServiceTest', function() {
             done();
         } catch (error) {
             console.error(`[bluetooth_js]Connect_0100 failed, code is ${error.code},message is ${error.message}`);
-            expect(error.code).assertEqual('2900099');
+            expect(error.code).assertEqual(2900099);
         }
         done();
     })
@@ -166,7 +168,7 @@ describe('btBleServiceTest', function() {
             gattServer.addService(gattService);
         } catch (error) {
             console.error(`[bluetooth_js]AddService2 failed, code is ${error.code},message is ${error.message}`);
-            expect(error.code).assertEqual('2900099');
+            expect(error.code).assertEqual(2900099);
         }
         done(); 
     })
@@ -237,7 +239,7 @@ describe('btBleServiceTest', function() {
             })
         } catch (error) {
             console.error(`[bluetooth_js]notifyCharacteristicChanged error, code is ${error.code},message is ${error.message}`);
-            expect(error.code).assertEqual('2900099');
+            expect(error.code).assertEqual(2900099);
         }
         done();
     })
@@ -274,7 +276,7 @@ describe('btBleServiceTest', function() {
         } catch (error) {
             console.error('[bluetooth_js]notifyCharacteristicChanged2 failed, code:'
             +JSON.stringify(error.code)+'error.message:'+JSON.stringify(error.message));
-            expect(error.code).assertEqual('2900099');
+            expect(error.code).assertEqual(2900099);
         }
         done();
     })
@@ -299,7 +301,7 @@ describe('btBleServiceTest', function() {
         } catch (error) {
             console.error(`[bluetooth_js]sendResponse1 failed, code is ${error.code},
             message is ${error.message}`);
-            expect(error.code).assertEqual('2900099');
+            expect(error.code).assertEqual(2900099);
             done();
         }
     })
@@ -324,7 +326,7 @@ describe('btBleServiceTest', function() {
         } catch (error) {
             console.error(`[bluetooth_js]sendResponse2 failed, code is ${error.code},
             message is ${error.message}`);
-            expect(error.code).assertEqual('2900099');
+            expect(error.code).assertEqual(2900099);
             done();
         }
     })
@@ -344,7 +346,7 @@ describe('btBleServiceTest', function() {
         } catch (error) {
             console.error('[bluetooth_js]sendResponse3 error.code:'+JSON.stringify(error.code)+
                    'error.message:'+JSON.stringify(error.message));
-            expect(error.code).assertEqual('401');
+            expect(error.code).assertEqual(401);
             done();
         }
     })
@@ -369,7 +371,7 @@ describe('btBleServiceTest', function() {
         } catch (error) {
             console.error(`[bluetooth_js]sendResponse4 failed, code is ${error.code},
             message is ${error.message}`);
-            expect(error.code).assertEqual('2900099');
+            expect(error.code).assertEqual(2900099);
             done();
         } 
     })
@@ -388,7 +390,7 @@ describe('btBleServiceTest', function() {
             })
         } catch (err) {
             console.error("bluetooth mtu changed on errCode:" + err.code + ",bluetooth mtu changed on errMessage:" + err.message);
-            expect(err.code).assertEqual('2900099');
+            expect(err.code).assertEqual(2900099);
         }
         gattServer.off('BLEMtuChange');
         done();
@@ -409,7 +411,7 @@ describe('btBleServiceTest', function() {
             gattServer.off('BLEMtuChange');
         } catch (err) {
             console.error("bluetooth mtu changed off errCode:" + err.code + ",bluetooth mtu changed off errMessage:" + err.message);
-            expect(err.code).assertEqual('2900099');
+            expect(err.code).assertEqual(2900099);
         }
         done();
     })

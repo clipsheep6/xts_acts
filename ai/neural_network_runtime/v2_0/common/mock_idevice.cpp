@@ -96,6 +96,9 @@ namespace HDI {
 namespace Nnrt {
 namespace V2_0 {
 
+const uint32_t MAJOR_VERSION = 2;
+const uint32_t MINOR_VERSION = 0;
+
 sptr<INnrtDevice> INnrtDevice::Get(bool isStub)
 {
     return INnrtDevice::Get("mock_device_service", isStub);
@@ -191,8 +194,8 @@ int32_t MockIDevice::GetDeviceStatus(DeviceStatus& status)
 
 int32_t MockIDevice::GetVersion(uint32_t &majorVersion, uint32_t &minorVersion)
 {
-    majorVersion = 2;
-    minorVersion = 0;
+    majorVersion = MAJOR_VERSION;
+    minorVersion = MINOR_VERSION;
     return HDF_SUCCESS;
 }
 
@@ -288,7 +291,7 @@ int32_t MockIDevice::PrepareModel(const Model& model, const ModelConfig& config,
 }
 
 int32_t MockIDevice::PrepareOfflineModel(const std::vector<SharedBuffer>& offlineModels, const ModelConfig& config,
-     sptr<OHOS::HDI::Nnrt::V2_0::IPreparedModel>& preparedModel)
+    sptr<OHOS::HDI::Nnrt::V2_0::IPreparedModel>& preparedModel)
 {
     preparedModel = new (std::nothrow) V2_0::MockIPreparedModel();
     return V2_0::NNRT_ReturnCode::NNRT_SUCCESS;
@@ -351,7 +354,8 @@ int32_t MockIPreparedModel::Run(const std::vector<IOTensor>& inputs, const std::
     return HDF_SUCCESS;
 }
 
-int32_t MockIPreparedModel::GetInputDimRanges(std::vector<std::vector<uint32_t>>& minInputDims, std::vector<std::vector<uint32_t>>& maxInputDims)
+int32_t MockIPreparedModel::GetInputDimRanges(
+    std::vector<std::vector<uint32_t>>& minInputDims, std::vector<std::vector<uint32_t>>& maxInputDims)
 {
     minInputDims = {{1, 1, 1, 1}, {1, 1, 1, 1}};
     maxInputDims = {{1, 100, 100, 10}, {1, 100, 100, 10}};

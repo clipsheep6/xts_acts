@@ -13,10 +13,23 @@
  * limitations under the License.
  */
 import hilog from '@ohos.hilog';
+import featureAbility from '@ohos.ability.featureAbility';
+
+async function requestPermission() {
+    try {
+        let context = featureAbility.getContext();
+        await context.requestPermissionsFromUser(['ohos.permission.DISTRIBUTED_DATASYNC'], 666, (data) => {
+            console.info('TestApplication requestPermission data: ' + JSON.stringify(data));
+        });
+    } catch (err) {
+        console.error('TestApplication permission' + JSON.stringify(err));
+    }
+}
 
 export default {
     onCreate() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
+        requestPermission();
     },
     onDestroy() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');

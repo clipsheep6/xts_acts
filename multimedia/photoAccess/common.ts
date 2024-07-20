@@ -111,6 +111,7 @@ export function photoFetchOption(testNum: any, key: any, value: any) : photoAcce
       photoKeys.USER_COMMENT,
       photoKeys.DATE_ADDED_MS,
       photoKeys.DATE_MODIFIED_MS,
+      photoKeys.DYNAMIC_RANGE_TYPE,
       'all_exif',
     ],
     predicates: predicates

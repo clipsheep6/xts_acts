@@ -125,29 +125,12 @@ describe('threadWorkerTest', function () {
      * @tc.desc: worker constructor to Creates a worker instance when throw error.
      */
     it('threadWorker_constructor_test_005', 0, async function (done) {
-        var ss = []
-        let flag = 0
         try {
-            let a = 0
-            while (a <= 64) {
-                ss[a] = new worker.ThreadWorker("entry/ets/workers/newworker.js")
-                ss[a].onexit = function() {
-                    flag += 1
-                }
-                a += 1
-            }
+            let ss = new worker.ThreadWorker("entry/ets/workers/newworker.js", {type:"other", name:"worker"})
         } catch (error) {
             expect(error.name == "BusinessError").assertTrue()
-            let msg = "Worker initialization failure, the number of workers exceeds the maximum."
-            expect(error.message).assertEqual(msg)
-            let b = 0
-            while (b < 64) {
-                ss[b].terminate()
-                b += 1
-            }
-            while (flag != 64) {
-                await promiseCase()
-            }
+            expect(error.message == "Parameter error. The input parameters are invalid, the type must be classic," +
+                " unsupport others now.").assertTrue()
             done()
         }
     })
@@ -158,10 +141,12 @@ describe('threadWorkerTest', function () {
      */
     it('threadWorker_constructor_test_006', 0, async function (done) {
         try {
-            let ss = new worker.ThreadWorker("entry/ets/workers/newworker.js", {type:"other", name:"worker"})
+            let ss = new worker.ThreadWorker("entry/ets/workers/newworker.js",
+                                             {type:1, name:"new worker", shared: true})
         } catch (error) {
             expect(error.name == "BusinessError").assertTrue()
-            expect(error.message == "The input parameters are invalid, the type must be classic, unsupport others now.").assertTrue()
+            expect(error.message == "Parameter error. The input parameters are invalid, the type of type's value " +
+                "must be string.").assertTrue()
             done()
         }
     })
@@ -172,11 +157,11 @@ describe('threadWorkerTest', function () {
      */
     it('threadWorker_constructor_test_007', 0, async function (done) {
         try {
-            let ss = new worker.ThreadWorker("entry/ets/workers/newworker.js",
-                                             {type:1, name:"new worker", shared: true})
+            let ss = new worker.ThreadWorker("entry/ets/workers/newworker.js", {type:"classic", name:1, shared: true})
         } catch (error) {
             expect(error.name == "BusinessError").assertTrue()
-            expect(error.message == "The input parameters are invalid, the type of type must be string.").assertTrue()
+            expect(error.message == "Parameter error. The input parameters are invalid, the type of name must be " +
+                "string.").assertTrue()
             done()
         }
     })
@@ -185,35 +170,22 @@ describe('threadWorkerTest', function () {
      * @tc.name: threadWorker_constructor_test_008
      * @tc.desc: worker constructor to Creates a worker instance when throw error.
      */
-    it('threadWorker_constructor_test_008', 0, async function (done) {
+     it('threadWorker_constructor_test_008', 0, async function (done) {
         try {
-            let ss = new worker.ThreadWorker("entry/ets/workers/newworker.js", {type:"classic", name:1, shared: true})
+            let ss = new worker.ThreadWorker()
         } catch (error) {
             expect(error.name == "BusinessError").assertTrue()
-            expect(error.message == "The input parameters are invalid, the type of name in worker must be string.").assertTrue()
+            expect(error.message == "Parameter error. The input parameters are invalid, the number of parameters " +
+                "must be more than 1.").assertTrue()
             done()
         }
     })
 
     /**
      * @tc.name: threadWorker_constructor_test_009
-     * @tc.desc: worker constructor to Creates a worker instance when throw error.
-     */
-     it('threadWorker_constructor_test_009', 0, async function (done) {
-        try {
-            let ss = new worker.ThreadWorker()
-        } catch (error) {
-            expect(error.name == "BusinessError").assertTrue()
-            expect(error.message == "The input parameters are invalid, the number of create worker param must be more than 1 with new").assertTrue()
-            done()
-        }
-    })
-
-    /**
-     * @tc.name: threadWorker_constructor_test_010
      * @tc.desc: worker constructor to Creates a worker instance.
      */
-    it('threadWorker_constructor_test_010', 0, async function (done) {
+    it('threadWorker_constructor_test_009', 0, async function (done) {
         let ss = new worker.ThreadWorker("/entry/ets/workers/newworker.js");
         let isTerminate = false
         ss.onexit = function () {
@@ -228,10 +200,10 @@ describe('threadWorkerTest', function () {
     })
 
     /**
-     * @tc.name: threadWorker_constructor_test_011
+     * @tc.name: threadWorker_constructor_test_010
      * @tc.desc: worker constructor to Creates a worker instance.
      */
-    it('threadWorker_constructor_test_011', 0, async function (done) {
+    it('threadWorker_constructor_test_010', 0, async function (done) {
         let ss = new worker.ThreadWorker("@bundle:com.example.threadWorkertest/entry/ets/workers/newworker.js");
         let isTerminate = false
         ss.onexit = function () {
@@ -477,7 +449,8 @@ describe('threadWorkerTest', function () {
                 await promiseCase();
             }
             expect(error.name).assertEqual("BusinessError");
-            expect(error.message).assertEqual("The input parameters are invalid, Worker messageObject must be not null with postMessage");
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, Worker " +
+                "messageObject must be not null with postMessage");
         }
         done();
     })
@@ -501,7 +474,8 @@ describe('threadWorkerTest', function () {
                 await promiseCase();
             }
             expect(error.name).assertEqual("BusinessError");
-            expect(error.message).assertEqual("The input parameters are invalid, transfer list must be an Array");
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the type of the " +
+                "transfer list must be an array.");
         }
         done();
     })
@@ -585,7 +559,7 @@ describe('threadWorkerTest', function () {
             ss.postMessage("hello world")
             await promiseCase()
         } catch (error) {
-            let msg = "Worker instance is not running, maybe worker is terminated when PostMessage"
+            let msg = "The Worker instance is not running, maybe worker is terminated when PostMessage"
             expect(error.name).assertEqual("BusinessError")
             expect(error.message).assertEqual(msg)
             done()
@@ -724,7 +698,8 @@ describe('threadWorkerTest', function () {
             ss.on(1, ()=>{})
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 1st param must be string")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the type of " +
+                "listener first param must be string.")
             ss.onexit = function () {
                 isTerminate = true
             }
@@ -749,7 +724,8 @@ describe('threadWorkerTest', function () {
             ss.on("zhangSan", "error")
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 2st param must be callable")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the type of " +
+                "listener the second param must be callable.")
             ss.onexit = function () {
                 isTerminate = true
             }
@@ -774,7 +750,8 @@ describe('threadWorkerTest', function () {
             ss.on()
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, worker add listener param count must be not less than 2.")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the number of " +
+                "listener parameters is not less than 2.")
             ss.onexit = function () {
                 isTerminate = true
             }
@@ -814,7 +791,7 @@ describe('threadWorkerTest', function () {
             })
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("Worker instance is not running, maybe worker is terminated")
+            expect(error.message).assertEqual("The Worker instance is not running, maybe worker is terminated")
 
             done()
         }
@@ -933,7 +910,8 @@ describe('threadWorkerTest', function () {
             })
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 1st param must be string")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the type of " +
+                "listener first param must be string.")
             ss.onexit = function () {
                 isTerminate = true
             }
@@ -959,7 +937,8 @@ describe('threadWorkerTest', function () {
             ss.once("zhangsan", "error")
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 2st param must be callable")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the type of " +
+                "listener the second param must be callable.")
             ss.onexit = function () {
                 isTerminate = true
             }
@@ -985,7 +964,8 @@ describe('threadWorkerTest', function () {
             ss.once()
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, worker add listener param count must be not less than 2.")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the number of " +
+                "listener parameters is not less than 2.")
             ss.onexit = function () {
                 isTerminate = true
             }
@@ -1025,7 +1005,7 @@ describe('threadWorkerTest', function () {
             })
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("Worker instance is not running, maybe worker is terminated")
+            expect(error.message).assertEqual("The Worker instance is not running, maybe worker is terminated")
 
             done()
         }
@@ -1143,7 +1123,8 @@ describe('threadWorkerTest', function () {
             })
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 1st param must be string")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the type of " +
+                "listener first param must be string.")
             ss.onexit = function () {
                 isTerminate = true
             }
@@ -1170,7 +1151,8 @@ describe('threadWorkerTest', function () {
             ss.addEventListener("zhangsan", "error")
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 2st param must be callable")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the type of " +
+                "listener the second param must be callable.")
             ss.onexit = function () {
                 isTerminate = true
             }
@@ -1197,7 +1179,8 @@ describe('threadWorkerTest', function () {
             ss.addEventListener()
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, worker add listener param count must be not less than 2.")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the number of " +
+                "listener parameters is not less than 2.")
             ss.onexit = function () {
                 isTerminate = true
             }
@@ -1241,7 +1224,7 @@ describe('threadWorkerTest', function () {
 
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("Worker instance is not running, maybe worker is terminated")
+            expect(error.message).assertEqual("The Worker instance is not running, maybe worker is terminated")
             done()
         }
     })
@@ -1274,7 +1257,7 @@ describe('threadWorkerTest', function () {
             ss.dispatchEvent({type: "zhangsan", timeStamp: 0})
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("Worker instance is not running, maybe worker has been terminated")
+            expect(error.message).assertEqual("The Worker instance is not running, maybe worker has been terminated")
             done()
         }
     })
@@ -1378,7 +1361,7 @@ describe('threadWorkerTest', function () {
             ss.off("zhangsan")
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("Worker instance is not running, maybe worker is terminated")
+            expect(error.message).assertEqual("The Worker instance is not running, maybe worker is terminated")
             done()
         }
     })
@@ -1404,7 +1387,8 @@ describe('threadWorkerTest', function () {
             ss.off()
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, the remove listener param must be not less than 1")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the number of " +
+                "parameters is not less than 1.")
             ss.terminate()
             while (!isTerminate) {
                 await promiseCase()
@@ -1434,7 +1418,8 @@ describe('threadWorkerTest', function () {
             ss.off(1)
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, the type of remove listener 1st param must be string")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the type of " +
+                "removelistener the first param must be string.")
             ss.terminate()
             while (!isTerminate) {
                 await promiseCase()
@@ -1589,7 +1574,7 @@ describe('threadWorkerTest', function () {
             ss.removeAllListener()
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("Worker instance is not running, maybe worker is terminated")
+            expect(error.message).assertEqual("The Worker instance is not running, maybe worker is terminated")
             done()
         }
     })
@@ -1619,7 +1604,7 @@ describe('threadWorkerTest', function () {
             ss.removeEventListener("zhangsan")
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("Worker instance is not running, maybe worker is terminated")
+            expect(error.message).assertEqual("The Worker instance is not running, maybe worker is terminated")
             done()
         }
     })
@@ -1645,7 +1630,8 @@ describe('threadWorkerTest', function () {
             ss.removeEventListener()
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, the remove listener param must be not less than 1")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the number of " +
+                "parameters is not less than 1.")
             ss.terminate()
             while (!isTerminate) {
                 await promiseCase()
@@ -1675,7 +1661,8 @@ describe('threadWorkerTest', function () {
             ss.removeEventListener(1)
         } catch (error) {
             expect(error.name).assertEqual("BusinessError")
-            expect(error.message).assertEqual("The input parameters are invalid, the type of remove listener 1st param must be string")
+            expect(error.message).assertEqual("Parameter error. The input parameters are invalid, the type of " +
+                "removelistener the first param must be string.")
             ss.terminate()
             while (!isTerminate) {
                 await promiseCase()
@@ -1736,7 +1723,7 @@ describe('threadWorkerTest', function () {
         } catch (error) {
             expect(res).assertEqual(0)
             expect(error.name).assertEqual("BusinessError")
-            let msg = "Worker instance is not running, maybe worker is terminated when PostMessage"
+            let msg = "The Worker instance is not running, maybe worker is terminated when PostMessage"
             expect(error.message).assertEqual(msg)
 
             done()
@@ -2461,7 +2448,8 @@ describe('threadWorkerTest', function () {
         while (!isTerminate) {
             await promiseCase();
         }
-        expect(res).assertEqual("The input parameters are invalid, Worker param count must be more than 1 with new");
+        expect(res).assertEqual("Parameter error. The input parameters are invalid, the number of parameters must " +
+            "be more than 1.");
         done();
     })
 
@@ -2491,7 +2479,7 @@ describe('threadWorkerTest', function () {
         while (!isTerminate) {
             await promiseCase();
         }
-        expect(res).assertEqual("The input parameters are invalid, Transfer list must be an Array");
+        expect(res).assertEqual("Parameter error. The input parameters are invalid, Transfer list must be an Array");
         done();
     })
 
@@ -3116,6 +3104,31 @@ describe('threadWorkerTest', function () {
         }
         expect(res).assertEqual("97,98,99");
         done();
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_THREADWORKER_0009
+     * @tc.name: threadWorker_finally_test_001
+     * @tc.desc: worker constructor to Creates a worker instance when throw error.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('threadWorker_finally_test_001', 0, async function (done) {
+        var ss = []
+        let flag = 0
+        try {
+            let a = 0
+            while (a <= 64) {
+                ss[a] = new worker.ThreadWorker("entry/ets/workers/newworker.js")
+                a += 1
+            }
+        } catch (error) {
+            expect(error.name == "BusinessError").assertTrue()
+            let msg = "Worker initialization failed, the number of workers exceeds the maximum."
+            expect(error.message).assertEqual(msg)
+            done()
+        }
     })
 })
 }
