@@ -68,7 +68,7 @@ export default function installEnterPriseMdmBundleOfNormal() {
                 data.uninstall(bundleName, (err: BusinessError) => {
                   if (err) {
                     console.error('data uninstall failed. Cause: ' + err.message);
-                    expect().assertFail()
+                    expect(err.code).assertEqual(NO_PERMISSION_ERROR_CODE)
                     done()
                   } else {
                     expect(true).assertTrue()
