@@ -43,6 +43,9 @@
     "requestPermissions": [
       {
         "name": "ohos.permission.INSTALL_BUNDLE"
+      },
+      {
+        "name": "ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE"
       }
     ]
   },

@@ -59,6 +59,7 @@ export default function installEnterPriseNormalBundleOfNormal() {
         installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
           data.install(['/data/storage/el2/base/files/HitsBmMdmNormalHap.hap'], (err: BusinessError) => {
             if (err) {
+              console.error('data uninstall failed. Cause: ' + error.message);
               expect().assertFail()
               done()   
             } else {
@@ -66,6 +67,7 @@ export default function installEnterPriseNormalBundleOfNormal() {
               installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
                 data.uninstall(bundleName, (err: BusinessError) => {
                   if (err.code === NO_PERMISSION_ERROR_CODE) {
+                    console.error('data uninstall failed. Cause: ' + error.message);
                     expect(err.code).assertEqual(NO_PERMISSION_ERROR_CODE)
                     done()
                   } else {

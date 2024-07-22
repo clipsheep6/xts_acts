@@ -59,6 +59,7 @@ export default function unInstallBundleOfNormal() {
         installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
           data.install(['/data/storage/el2/base/files/HitsBmMdmNormalHap.hap'], (err: BusinessError) => {
             if (err) {
+              console.error('uninstall failed:' + err.message);
               expect().assertFail()
               done()   
             } else {

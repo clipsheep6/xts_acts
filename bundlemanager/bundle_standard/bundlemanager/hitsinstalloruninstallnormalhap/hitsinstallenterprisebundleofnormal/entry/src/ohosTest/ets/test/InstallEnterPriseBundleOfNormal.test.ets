@@ -59,6 +59,7 @@ export default function installEnterPriseBundleOfNormal() {
         installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
           data.install(['/data/storage/el2/base/files/HitsBmMdmNormalHap.hap'], (err: BusinessError) => {
             if (err) {
+              console.info('install err.' + error.message );
               expect().assertFail()
               done()   
             } else {

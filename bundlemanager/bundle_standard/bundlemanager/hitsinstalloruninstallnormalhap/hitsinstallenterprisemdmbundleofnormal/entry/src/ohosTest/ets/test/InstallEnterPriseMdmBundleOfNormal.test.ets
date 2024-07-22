@@ -66,6 +66,7 @@ export default function installEnterPriseMdmBundleOfNormal() {
               installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
                 data.uninstall(bundleName, (err: BusinessError) => {
                   if (err) {
+                    console.error('data uninstall failed. Cause: ' + error.message);
                     expect().assertFail()
                     done()
                   } else {
