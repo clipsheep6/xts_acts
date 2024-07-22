@@ -762,5 +762,28 @@ export default function graphicTextClass(context, windowStage, abilityStorage) {
         }
       }
     })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0028
+     * @tc.name      : testlayoutByPromise
+     * @tc.desc      : To test Paragraph layoutAsync interface.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testlayoutByPromise', 28, async function (done) {
+      let msg = "testlayoutByPromise "
+      console.info(msg + 'begin');
+      let paragraph = buildParagraph();
+      await paragraph.layout(100).then((data) => {
+        console.log(msg + `layout success !  ${JSON.stringify(data)}`);
+        expect(true).assertTrue();
+        done();
+      }).catch((error: Object) => {
+        console.log(msg + `layout failed ! error: ${JSON.stringify(error, ['code', 'message'])}`);
+        expect(false).assertTrue();
+        done();
+      });
+    })
   })
 }
