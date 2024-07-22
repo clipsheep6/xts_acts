@@ -38,9 +38,12 @@ export default function AVSessionManager() {
         })
 
         afterEach(async function () {
-            if (currentAVSession){
-                await currentAVSession.destroy();
-            }
+            await currentAVSession.destroy().then(() => {
+                console.info('TestLog: Session destroy success');
+            }).catch((err) => {
+                console.info(`TestLog: Session destroy error: code: ${err.code}, message: ${err.message}`);
+                expect(false).assertTrue();
+            });
             console.info('TestLog: End testing testcase');
         })
 
