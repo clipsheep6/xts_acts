@@ -59,6 +59,7 @@ export default function installEnterPriseMdmBundleOfNormal() {
         installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
           data.install(['/data/storage/el2/base/files/HitsBmMdmNormalHap.hap'], (err: BusinessError) => {
             if (err) {
+              console.error('data install failed. Cause: ' + err.message);
               expect().assertFail()
               done()   
             } else {
@@ -66,7 +67,7 @@ export default function installEnterPriseMdmBundleOfNormal() {
               installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
                 data.uninstall(bundleName, (err: BusinessError) => {
                   if (err) {
-                    console.error('data uninstall failed. Cause: ' + error.message);
+                    console.error('data uninstall failed. Cause: ' + err.message);
                     expect().assertFail()
                     done()
                   } else {
