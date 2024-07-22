@@ -15,6 +15,7 @@
 
 #include "common/common.h"
 #include <ace/xcomponent/native_interface_xcomponent.h>
+#include <arkui/native_animate.h>
 #include <arkui/native_type.h>
 #define res ((int)-2)
 #define res2 ((int)-1)
@@ -235,6 +236,484 @@ static napi_value testArkUI018(napi_env env, napi_callback_info info) {
         return result;
     }
     OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","test18 end");
+    NAPI_END;
+}
+
+static napi_value testArkUI019(napi_env env, napi_callback_info info) {
+    auto ret = OH_NativeXComponent_GetTouchPointWindowX(nullptr,0,nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI019-ret %{public}d", ret);
+    if(ret != -2){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI020(napi_env env, napi_callback_info info) {
+    auto ret = OH_NativeXComponent_GetTouchPointWindowY(nullptr,0,nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI020-ret %{public}d", ret);
+    if(ret != -2){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI021(napi_env env, napi_callback_info info) {
+    auto ret = OH_NativeXComponent_GetTouchPointDisplayX(nullptr,0,nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI021-ret %{public}d", ret);
+    if(ret != -2){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI022(napi_env env, napi_callback_info info) {
+    auto ret = OH_NativeXComponent_GetTouchPointDisplayY(nullptr,0,nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI022-ret %{public}d", ret);
+    if(ret != -2){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI023(napi_env env, napi_callback_info info) {
+    /*auto ret = OH_ArkUI_GestureEvent_GetNode(nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI023-ret %{public}p", ret);
+    if(ret != nullptr){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }*/
+    NAPI_END;
+}
+
+static napi_value testArkUI024(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_PointerEvent_SetStopPropagation(nullptr,true);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI024-ret %{public}d", ret);
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI025(napi_env env, napi_callback_info info) {
+    OH_ArkUI_AnimateOption_SetICurve(nullptr,0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI025-end");
+    NAPI_END;
+}
+
+static napi_value testArkUI026(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimateOption_GetICurve(nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI026-ret %{public}p", ret);
+    if(ret != nullptr){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI027(napi_env env, napi_callback_info info) {
+    /*auto ret = OH_ArkUI_KeyframeAnimateOption_create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI027-ret %{public}p", ret);
+    if(ret == nullptr){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }*/
+    NAPI_END;
+}
+
+static napi_value testArkUI028(napi_env env, napi_callback_info info) {
+    OH_ArkUI_KeyframeAnimateOption_Dispose(nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI028-end");
+    NAPI_END;
+}
+
+static napi_value testArkUI029(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_KeyframeAnimateOption_SetDelay(nullptr,0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI029-ret %{public}d", ret);
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI030(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_KeyframeAnimateOption_SetIterations(nullptr,0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI030-ret %{public}d", ret);
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI031(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_KeyframeAnimateOption_RegisterOnFinishCallback(nullptr,nullptr,nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI031-ret %{public}d", ret);
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI032(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_KeyframeAnimateOption_SetDuration(nullptr,0,0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI032-ret %{public}d", ret);
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI033(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_KeyframeAnimateOption_SetCurve(nullptr,0,0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI033-ret %{public}d", ret);
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI034(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback(nullptr,nullptr,nullptr,0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI034-ret %{public}d", ret);
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI035(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_KeyframeAnimateOption_GetDelay(nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI035-ret %{public}d", ret);
+    if(ret != 0){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI036(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_KeyframeAnimateOption_GetIterations(nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI036-ret %{public}d", ret);
+    if(ret != 1){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI037(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_KeyframeAnimateOption_GetDuration(nullptr,0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI037-ret %{public}d", ret);
+    if(ret != 0){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI038(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_KeyframeAnimateOption_GetCurve(nullptr,0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI038-ret %{public}p", ret);
+    if(ret != nullptr){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI039(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_SwiperIndicator_SetMaxDisplayCount(nullptr,0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI039-ret %{public}d", ret);
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI040(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_SwiperIndicator_GetMaxDisplayCount(nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI040-ret %{public}d", ret);
+    if(ret != 0){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI041(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI041-ret %{public}p", ret);
+    if(ret == nullptr){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI042(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_ArkUI_AnimatorOption_Dispose(ret);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI042-ret %{public}p", ret);
+    /*if(ret != 0){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }*/
+    NAPI_END;
+}
+
+static napi_value testArkUI043(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI043-ret %{public}p", ret);
+    int32_t ret1 = OH_ArkUI_AnimatorOption_SetDuration(ret,1);
+    int32_t ret2 = OH_ArkUI_AnimatorOption_GetDuration(ret);
+    if(ret2 != 1){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI044(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI044-ret %{public}p", ret);
+    int32_t ret1 = OH_ArkUI_AnimatorOption_SetDelay(ret,1);
+    int32_t ret2 = OH_ArkUI_AnimatorOption_GetDelay(ret);
+    if(ret2 != 1){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI045(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI045-ret %{public}p", ret);
+    int32_t ret1 = OH_ArkUI_AnimatorOption_SetIterations(ret,1);
+    int32_t ret2 = OH_ArkUI_AnimatorOption_GetIterations(ret);
+    if(ret2 != 1){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI046(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI046-ret %{public}p", ret);
+    int32_t ret1 = OH_ArkUI_AnimatorOption_SetFill(ret,ARKUI_ANIMATION_FILL_MODE_NONE);
+    ArkUI_AnimationFillMode ret2 = OH_ArkUI_AnimatorOption_GetFill(ret);
+    if(ret2 != ARKUI_ANIMATION_FILL_MODE_NONE){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI047(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI047-ret %{public}p", ret);
+    int32_t ret1 = OH_ArkUI_AnimatorOption_SetDirection(ret,ARKUI_ANIMATION_DIRECTION_NORMAL);
+    ArkUI_AnimationDirection ret2 = OH_ArkUI_AnimatorOption_GetDirection(ret);
+    if(ret2 != ARKUI_ANIMATION_DIRECTION_NORMAL){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI048(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI048-ret %{public}p", ret);
+    int32_t ret1 = OH_ArkUI_AnimatorOption_SetCurve(ret,nullptr);
+    auto ret2 = OH_ArkUI_AnimatorOption_GetCurve(ret);
+    if(ret2 != nullptr){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI049(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI049-ret %{public}p", ret);
+    int32_t ret1 = OH_ArkUI_AnimatorOption_SetBegin(ret,0);
+    int32_t ret2 = OH_ArkUI_AnimatorOption_GetBegin(ret);
+    if(ret2 != 0){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI050(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI050-ret %{public}p", ret);
+    int32_t ret1 = OH_ArkUI_AnimatorOption_SetEnd(ret,1);
+    int32_t ret2 = OH_ArkUI_AnimatorOption_GetEnd(ret);
+    if(ret2 != 1){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI051(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI051-ret %{public}p", ret);
+    int32_t ret1 = OH_ArkUI_AnimatorOption_SetExpectedFrameRateRange(ret,nullptr);
+    if(ret1 != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI052(napi_env env, napi_callback_info info) {
+    
+    NAPI_END;
+}
+
+static napi_value testArkUI053(napi_env env, napi_callback_info info) {
+    
+    NAPI_END;
+}
+
+static napi_value testArkUI054(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_Create(0);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI054-ret %{public}p", ret);
+    int32_t ret1 = OH_ArkUI_AnimatorOption_SetKeyframeCurve(ret,nullptr,1);
+    auto ret2 = OH_ArkUI_AnimatorOption_GetKeyframeCurve(ret,1);
+    if(ret2 != nullptr){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI055(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorEvent_GetUserData(nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI055-ret %{public}p", ret);
+    
+    if(ret != nullptr){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI056(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOnFrameEvent_GetUserData(nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI056-ret %{public}p", ret);
+    
+    if(ret != nullptr){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI057(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOnFrameEvent_GetValue(nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI057-ret %{public}f", ret);
+    
+    if(ret != 0.0f){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI058(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_RegisterOnFrameCallback(nullptr,nullptr,nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI058-ret %{public}d", ret);
+    
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI059(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_RegisterOnFinishCallback(nullptr,nullptr,nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI059-ret %{public}d", ret);
+    
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI060(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_RegisterOnCancelCallback(nullptr,nullptr,nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI060-ret %{public}d", ret);
+    
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
+    NAPI_END;
+}
+
+static napi_value testArkUI061(napi_env env, napi_callback_info info) {
+    auto ret = OH_ArkUI_AnimatorOption_RegisterOnRepeatCallback(nullptr,nullptr,nullptr);
+    OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "Manager","testArkUI061-ret %{public}d", ret);
+    
+    if(ret != 401){
+        napi_value result = nullptr;
+        napi_create_int32(env,1,&result);
+        return result;
+    }
     NAPI_END;
 }
 
