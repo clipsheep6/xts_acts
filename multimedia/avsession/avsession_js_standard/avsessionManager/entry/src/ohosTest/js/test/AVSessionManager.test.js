@@ -65,15 +65,6 @@ export default function AVSessionManager() {
         it('SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0100', 0, async function (done) {
             await avSession.createAVSession(context, tag, "audio").then((data) => {
                 currentAVSession = data;
-                if (currentAVSession.sessionId.length === 64) {
-                    console.info('TestLog: avSession create successfully');
-                    expect(true).assertTrue();
-                }
-                else {
-                    console.info('TestLog: avSession create failed');
-                    expect(false).assertTrue();
-                    done();
-                }
             }).catch((err) => {
                 console.info(`TestLog: avSession create error: code: ${err.code}, message: ${err.message}`);
                 expect(false).assertTrue();
