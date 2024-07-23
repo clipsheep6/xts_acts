@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 import promptAction from '@ohos.promptAction'
+
 let customDialogId: number = 0
+
 @Builder
 function customDialogBuilder3() {
   Column() {
@@ -52,7 +54,7 @@ struct openCustomDialog3 {
               isModal: false,
               showInSubWindow: true,
               builder: customDialogBuilder3.bind(this),
-              onWillDismiss:(dismissDialog: DismissDialogAction)=> {
+              onWillDismiss: (dismissDialog: DismissDialogAction) => {
                 console.info("reason=" + JSON.stringify(dismissDialog.reason))
                 this.text = "reason=" + JSON.stringify(dismissDialog.reason)
                 console.log("dialog onWillDismiss")

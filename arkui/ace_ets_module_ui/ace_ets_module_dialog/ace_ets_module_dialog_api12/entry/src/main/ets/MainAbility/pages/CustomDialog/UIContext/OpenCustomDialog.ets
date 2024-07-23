@@ -16,10 +16,12 @@ import { ComponentContent } from "@ohos.arkui.node";
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
 }
+
 @Builder
 function buildText(params: Params) {
   Column() {
@@ -45,10 +47,12 @@ struct openCustomDialogTest {
             let uiContext = this.getUIContext();
             let promptAction = uiContext.getPromptAction();
             let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-            promptAction.openCustomDialog(contentNode, { onDidAppear: () => { this.change = 'OpenCustomDialog' } });
+            promptAction.openCustomDialog(contentNode, { onDidAppear: () => {
+              this.change = 'OpenCustomDialog'
+            } });
             setTimeout(() => {
               promptAction.closeCustomDialog(contentNode);
-            }, 1000);     //1秒后自动关闭
+            }, 1000); //1秒后自动关闭
           })
           .id('btn')
       }

@@ -22,15 +22,33 @@ struct Text_accept {
   @State Text_Options: TextPickerDialogOptions = {
     range: this.fruits,
     selected: this.select,
-    disappearTextStyle: {color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}},
-    textStyle: {color: Color.Black, font: {size: 20, weight: FontWeight.Normal}},
-    selectedTextStyle: {color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}},
-    acceptButtonStyle: { type: ButtonType.Circle, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
-      fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
-      borderRadius: 20 },
-    cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
-      fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
-      borderRadius: 10 },
+    disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
+    textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
+    selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
+    acceptButtonStyle: {
+      type: ButtonType.Circle,
+      style: ButtonStyleMode.NORMAL,
+      role: ButtonRole.NORMAL,
+      fontColor: Color.Red,
+      fontSize: '26fp',
+      fontWeight: FontWeight.Bolder,
+      fontStyle: FontStyle.Normal,
+      fontFamily: 'sans-serif',
+      backgroundColor: '#80834511',
+      borderRadius: 20
+    },
+    cancelButtonStyle: {
+      type: ButtonType.Normal,
+      style: ButtonStyleMode.NORMAL,
+      role: ButtonRole.NORMAL,
+      fontColor: Color.Blue,
+      fontSize: '16fp',
+      fontWeight: FontWeight.Normal,
+      fontStyle: FontStyle.Italic,
+      fontFamily: 'sans-serif',
+      backgroundColor: '#50182431',
+      borderRadius: 10
+    },
   };
 
   build() {
@@ -44,7 +62,7 @@ struct Text_accept {
           .onClick(() => {
             TextPickerDialog.show(this.Text_Options)
             if (this.Text_Options.acceptButtonStyle!.type == ButtonType.Circle) {
-                this.acceptButtonStyle_Text = 'acceptButtonStyle_Text'
+              this.acceptButtonStyle_Text = 'acceptButtonStyle_Text'
             }
           })
           .id('btn')

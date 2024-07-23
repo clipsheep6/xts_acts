@@ -26,50 +26,51 @@ struct subMenuExpandingModeTest {
   @Builder
   SubMenu() {
     Menu() {
-      MenuItem({ content:'复制', labelInfo: 'Ctrl+C'})
-      MenuItem({content:'粘贴', labelInfo: 'Ctrl+V'})
+      MenuItem({ content: '复制', labelInfo: 'Ctrl+C' })
+      MenuItem({ content: '粘贴', labelInfo: 'Ctrl+V' })
     }
     .subMenuExpandingMode(this.menuSubMenuExpandingMode)
   }
 
   build() {
     Menu() {
-      MenuItem({ startIcon: $r('app.media.icon'), content: '菜单选项1'})
+      MenuItem({ startIcon: $r('app.media.icon'), content: '菜单选项1' })
         .selectIcon(true)
         .selected(this.select)
-        .onChange(()=>{
-          this.select = ! this.select
+        .onChange(() => {
+          this.select = !this.select
         })
-      MenuItem({ startIcon: $r('app.media.icon'), content: '菜单选项2'})
+      MenuItem({ startIcon: $r('app.media.icon'), content: '菜单选项2' })
         .enabled(false)
       MenuItem({
         startIcon: this.iconStr,
         content: '菜单选项',
         endIcon: this.iconStr2,
-        builder:():void=>this.SubMenu()
+        builder: (): void => this.SubMenu()
       })
-      MenuItemGroup({ header:'小标题'}) {
+      MenuItemGroup({ header: '小标题' }) {
         MenuItem({
           startIcon: this.iconStr,
           content: '菜单选项1',
-          endIcon:this.iconStr2,
-          builder:()=>this.SubMenu()
+          endIcon: this.iconStr2,
+          builder: () => this.SubMenu()
         })
         MenuItem({
-          startIcon:$r('app.media.icon'),
-          content:'菜单选项2',
+          startIcon: $r('app.media.icon'),
+          content: '菜单选项2',
           endIcon: this.iconStr2,
           builder: this.SubMenu()
         })
       }
+
       MenuItem({
         startIcon: this.iconStr,
-        content:'菜单选项3',
+        content: '菜单选项3',
       })
     }.menuItemDivider({ strokeWidth: LengthMetrics.vp(2),
       color: Color.Orange,
       startMargin: LengthMetrics.vp(3),
-      endMargin: LengthMetrics.vp(3)}).key('menuItemDividerText')
+      endMargin: LengthMetrics.vp(3) }).key('menuItemDividerText')
     .subMenuExpandingMode(SubMenuExpandingMode.SIDE_EXPAND)
   }
 }

@@ -13,22 +13,33 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 import window from '@ohos.window';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import { BusinessError } from '@ohos.base';
 
 
-
 export default function ActionSheetFalse() {
-  describe('ActionSheetFalse', function () {
-    beforeEach(async function (done) {
+  describe('ActionSheetFalse', () => {
+    beforeEach(async (done: Function) => {
       console.info("ActionSheetFalse beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/actionSheet/ActionSheetFalse',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/actionSheet/ActionSheetFalse',
       }
       try {
         router.clear();
@@ -36,7 +47,7 @@ export default function ActionSheetFalse() {
         console.info("get ActionSheetFalse state pages: " + JSON.stringify(pages));
         if (!("ActionSheetFalse" == pages.name)) {
           console.info("get ActionSheetFalse state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push ActionSheetFalse success: " + JSON.stringify(result));
         }
@@ -48,14 +59,14 @@ export default function ActionSheetFalse() {
     });
 
     /**
-     * @tc.number    SUB_ACE_ActionSheetFalse_0100
-     * @tc.name      ActionSheetFalse_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_ActionSheetFalse_0100
+     * @tc.name ActionSheetFalse_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('ActionSheetFalse_0100', 0, async function (done) {
+    it('ActionSheetFalse_0100', 0, async (done: Function) => {
       console.info('ActionSheetFalse_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -67,10 +78,10 @@ export default function ActionSheetFalse() {
       windowClass = await window.getLastWindow(globalThis.abilityContext);
       let properties: window.WindowProperties = windowClass.getWindowProperties();
       console.info("[ActionSheetFalse_0100] title: " + JSON.stringify(properties.type));
-      expect(properties.type).assertEqual(1)//1表示系统告警窗口TYPE_SYSTEM_ALERT
+      expect(properties.type).assertEqual(1) //1表示系统告警窗口TYPE_SYSTEM_ALERT
 
       await CommonFunc.sleep(1000);
-      await driver.click(Math.round(globalThis.winLeft + vp2px(100)),Math.round(globalThis.winTop + vp2px(100)));
+      await driver.click(Math.round(globalThis.winLeft + vp2px(100)), Math.round(globalThis.winTop + vp2px(100)));
       await CommonFunc.sleep(1000);
       console.info('[ActionSheetFalse_0100] END');
       done();

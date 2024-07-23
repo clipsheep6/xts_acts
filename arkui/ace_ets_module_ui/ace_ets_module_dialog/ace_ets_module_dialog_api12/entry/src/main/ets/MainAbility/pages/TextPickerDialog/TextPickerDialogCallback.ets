@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import events_emitter from '@ohos.events.emitter';
+
 @Entry
 @Component
 struct TextPickerDialogExampleA {
@@ -21,19 +22,19 @@ struct TextPickerDialogExampleA {
 
   build() {
     Row() {
-      Column() {       
+      Column() {
         Button("TextPickerDialog按esc弹窗逐层退出").key('TextPicker_dialog_B')
           .margin(20)
           .onClick(() => {
             TextPickerDialog.show({
               range: this.fruits,
               onWillAppear: () => {
-                var eventData = {
+                let eventData: events_emitter.EventData = {
                   data: {
                     "action": 'onWillAppear'
                   }
                 }
-                let event = {
+                let event: events_emitter.InnerEvent = {
                   eventId: 50001,
                   priority: events_emitter.EventPriority.LOW
                 }
@@ -41,12 +42,12 @@ struct TextPickerDialogExampleA {
                 console.info("TextPickerDialog: onWillAppear()")
               },
               onDidAppear: () => {
-                var eventData = {
+                let eventData: events_emitter.EventData = {
                   data: {
                     "action": 'onDidAppear'
                   }
                 }
-                let event = {
+                let event: events_emitter.InnerEvent = {
                   eventId: 50002,
                   priority: events_emitter.EventPriority.LOW
                 }
@@ -54,12 +55,12 @@ struct TextPickerDialogExampleA {
                 console.info("TextPickerDialog: onDidAppear()")
               },
               onWillDisappear: () => {
-                var eventData = {
+                let eventData: events_emitter.EventData = {
                   data: {
                     "action": 'onWillDisappear'
                   }
                 }
-                let event = {
+                let event: events_emitter.InnerEvent = {
                   eventId: 50003,
                   priority: events_emitter.EventPriority.LOW
                 }
@@ -67,12 +68,12 @@ struct TextPickerDialogExampleA {
                 console.info("TextPickerDialog: onWillDisappear()")
               },
               onDidDisappear: () => {
-                var eventData = {
+                let eventData: events_emitter.EventData = {
                   data: {
                     "action": 'onDidDisappear'
                   }
                 }
-                let event = {
+                let event: events_emitter.InnerEvent = {
                   eventId: 50004,
                   priority: events_emitter.EventPriority.LOW
                 }

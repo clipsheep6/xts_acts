@@ -13,17 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
+import router from '@ohos.router';
 import CommonFunc from "../../MainAbility/common/Common";
 import events_emitter from '@ohos.events.emitter';
 
-export default function bindPopupTest(){
-  describe('bindPopupTest', function (){
-    beforeEach(async function (done) {
-      let options = {
-        uri: 'MainAbility/pages/Menu/bindPopup',
+export default function bindPopupTest() {
+  describe('bindPopupTest', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/Menu/bindPopup',
       }
       try {
         router.clear();
@@ -31,7 +43,7 @@ export default function bindPopupTest(){
         console.info("get bindPopup state success " + JSON.stringify(pages));
         if (!("bindPopup" == pages.name)) {
           console.info("get bindPopup state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(1000);
           console.info("push bindPopup page success " + JSON.stringify(result));
         }
@@ -41,22 +53,22 @@ export default function bindPopupTest(){
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("bindPopup after each called");
     });
 
-    it('bindPopupTest_0100', 0, async function (done) {
+    it('bindPopupTest_0100', 0, async (done: Function) => {
       console.info('bindPopupTest_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1500);
-      let callback = (indexEvent) => {
+      let callback = (indexEvent: events_emitter.InnerEvent) => {
         console.info("bindPopupTest_0100 get state result is: " + JSON.stringify(indexEvent));
         expect(indexEvent.data.enableArrow).assertEqual(true);
         expect(indexEvent.data.maskColor).assertEqual(0x33000000);
         done();
       }
-      let indexEvent = {
+      let indexEvent: events_emitter.InnerEvent = {
         eventId: 67,
         priority: events_emitter.EventPriority.LOW
       }
@@ -65,26 +77,26 @@ export default function bindPopupTest(){
       } catch (err) {
         console.info("bindPopupTest_0100 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("bindPopupTest_0100 click result is: " + JSON.stringify(sendEventByKey('button',10,"")));
+      console.info("bindPopupTest_0100 click result is: " + JSON.stringify(sendEventByKey('button', 10, "")));
       await CommonFunc.sleep(1000);
-      console.info("bindPopupTest_0100 click Two result is: " + JSON.stringify(sendEventByKey('image',10,"")));
+      console.info("bindPopupTest_0100 click Two result is: " + JSON.stringify(sendEventByKey('image', 10, "")));
       await CommonFunc.sleep(1000);
-      await driver.click(Math.round(globalThis.winLeft + vp2px(200)),Math.round(globalThis.winTop + vp2px(200)));
+      await driver.click(Math.round(globalThis.winLeft + vp2px(200)), Math.round(globalThis.winTop + vp2px(200)));
       await CommonFunc.sleep(1000);
       console.info('bindPopupTest_0100 END');
     });
 
-    it('bindPopupTest_0200', 0, async function (done) {
+    it('bindPopupTest_0200', 0, async (done: Function) => {
       console.info('bindPopupTest_0200 START');
       let driver = await Driver.create()
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "enableArrow": false,
             "maskColor": 0x33000009
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 68,
           priority: events_emitter.EventPriority.LOW
         }
@@ -94,12 +106,12 @@ export default function bindPopupTest(){
         console.log("bindPopupTest_0200 change component data error: " + err.message);
       }
       await CommonFunc.sleep(1500);
-      let callbackOne = (indexEventOne) => {
+      let callbackOne = (indexEventOne: events_emitter.InnerEvent) => {
         console.info("bindPopupTest_0200 get state result is: " + JSON.stringify(indexEventOne));
         expect(indexEventOne.data.enableArrow).assertEqual(false);
         expect(indexEventOne.data.maskColor).assertEqual(0x33000009);
       }
-      let indexEventOne = {
+      let indexEventOne: events_emitter.InnerEvent = {
         eventId: 66,
         priority: events_emitter.EventPriority.LOW
       }
@@ -108,23 +120,23 @@ export default function bindPopupTest(){
       } catch (err) {
         console.info("bindPopupTest_0200 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("bindPopupTest_0200 click result is: " + JSON.stringify(sendEventByKey('button1',10,"")));
+      console.info("bindPopupTest_0200 click result is: " + JSON.stringify(sendEventByKey('button1', 10, "")));
       await CommonFunc.sleep(1000);
-      await driver.click(Math.round(globalThis.winLeft + vp2px(200)),Math.round(globalThis.winTop + vp2px(200)));
+      await driver.click(Math.round(globalThis.winLeft + vp2px(200)), Math.round(globalThis.winTop + vp2px(200)));
       await CommonFunc.sleep(1000);
       console.info('bindPopupTest_0200 END');
       done();
     });
 
-    it('bindPopupTest_0300', 0, async function (done) {
+    it('bindPopupTest_0300', 0, async (done: Function) => {
       console.info('bindPopupTest_0300 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1500);
-      let callback = (indexEvent) => {
+      let callback = (indexEvent: events_emitter.InnerEvent) => {
         console.info("bindPopupTest_0300 get state result is: " + JSON.stringify(indexEvent));
         expect(indexEvent.data.placementOnTop).assertEqual(false);
       }
-      let indexEvent = {
+      let indexEvent: events_emitter.InnerEvent = {
         eventId: 65,
         priority: events_emitter.EventPriority.LOW
       }
@@ -133,9 +145,9 @@ export default function bindPopupTest(){
       } catch (err) {
         console.info("bindPopupTest_0300 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("bindPopupTest_0300 click result is: " + JSON.stringify(sendEventByKey('button2',10,"")));
+      console.info("bindPopupTest_0300 click result is: " + JSON.stringify(sendEventByKey('button2', 10, "")));
       await CommonFunc.sleep(1000);
-      await driver.click(Math.round(globalThis.winLeft + vp2px(200)),Math.round(globalThis.winTop + vp2px(200)));
+      await driver.click(Math.round(globalThis.winLeft + vp2px(200)), Math.round(globalThis.winTop + vp2px(200)));
       await CommonFunc.sleep(1000);
       console.info('bindPopupTest_0300 END');
       done();

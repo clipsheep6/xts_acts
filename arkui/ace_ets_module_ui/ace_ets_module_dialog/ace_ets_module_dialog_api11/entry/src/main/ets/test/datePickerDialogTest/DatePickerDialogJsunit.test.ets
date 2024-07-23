@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function DatePickerDialogJsunit() {
-  describe('DatePickerDialogJsunit', function () {
-    beforeEach(async function (done) {
+  describe('DatePickerDialogJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("DatePickerDialogJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/datePickerDialog/DatePickerDialogOptions',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/datePickerDialog/DatePickerDialogOptions',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function DatePickerDialogJsunit() {
         console.info("get DatePickerDialogJsunit state pages: " + JSON.stringify(pages));
         if (!("DatePickerDialogOptions" == pages.name)) {
           console.info("get DatePickerDialogJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push DatePickerDialogJsunit page success " + JSON.stringify(result));
         }
@@ -43,20 +56,20 @@ export default function DatePickerDialogJsunit() {
       done()
     });
 
-    it('DatePickerDialogJsunit_0100', 0, async function (done) {
+    it('DatePickerDialogJsunit_0100', 0, async (done: Function) => {
 
       console.info('DatePickerDialogJsunit_0100 START');
-	  let driver = await UiDriver.create()
+      let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('DatePickerDialog'));
       await button.click();
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('DatePickerDialog');
-      let obj = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[DatePickerDialogJsunit_0100] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual("DatePickerDialog");
       console.info('[DatePickerDialogJsunit_0100] END');
-	  await driver.pressBack();
+      await driver.pressBack();
       done();
     });
 

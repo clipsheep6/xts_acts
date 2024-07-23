@@ -17,7 +17,8 @@
 @Entry
 @Component
 struct menuEnabledDemo {
-  @State mText: string  ='init'
+  @State mText: string = 'init'
+
   @Builder
   SubMenu() {
     Menu() {
@@ -27,7 +28,7 @@ struct menuEnabledDemo {
   }
 
   @Builder
-  MyMenu(){
+  MyMenu() {
     Menu() {
       MenuItem({
         content: "一级菜单",
@@ -51,8 +52,8 @@ struct menuEnabledDemo {
             console.info('handle Menu select')
           }
         }
-      ]).enabled(false)
-
+      ])
+      .enabled(false)
 
 
       Column() {
@@ -60,6 +61,7 @@ struct menuEnabledDemo {
       }
       .bindMenu(this.MyMenu)
       .width('100%')
+
       Text(this.mText).key('text')
       Button('test').onClick((event: ClickEvent) => {
         this.mText = 'enabled'

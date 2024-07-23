@@ -17,6 +17,7 @@ import { ComponentContent } from "@ohos.arkui.node";
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -48,10 +49,12 @@ struct closeCustomDialog {
             let uiContext = this.getUIContext();
             let promptAction = uiContext.getPromptAction();
             let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-            promptAction.openCustomDialog(contentNode, { onDidDisappear: () => { this.change = 'CloseCustomDialog' }});
+            promptAction.openCustomDialog(contentNode, { onDidDisappear: () => {
+              this.change = 'CloseCustomDialog'
+            } });
             setTimeout(() => {
               promptAction.closeCustomDialog(contentNode);
-            }, 1000);     //2秒后自动关闭
+            }, 1000); //2秒后自动关闭
           })
       }
       .width('100%')

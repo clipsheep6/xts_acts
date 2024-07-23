@@ -23,12 +23,30 @@ struct Time_accept {
     disappearTextStyle: { color: Color.Red, font: { size: 15, weight: FontWeight.Lighter } },
     textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
     selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
-    acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
-      fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
-      borderRadius: 20 },
-    cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
-      fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
-      borderRadius: 10 },
+    acceptButtonStyle: {
+      type: ButtonType.Normal,
+      style: ButtonStyleMode.NORMAL,
+      role: ButtonRole.NORMAL,
+      fontColor: Color.Red,
+      fontSize: '26fp',
+      fontWeight: FontWeight.Bolder,
+      fontStyle: FontStyle.Normal,
+      fontFamily: 'sans-serif',
+      backgroundColor: '#80834511',
+      borderRadius: 20
+    },
+    cancelButtonStyle: {
+      type: ButtonType.Normal,
+      style: ButtonStyleMode.NORMAL,
+      role: ButtonRole.NORMAL,
+      fontColor: Color.Blue,
+      fontSize: '16fp',
+      fontWeight: FontWeight.Normal,
+      fontStyle: FontStyle.Italic,
+      fontFamily: 'sans-serif',
+      backgroundColor: '#50182431',
+      borderRadius: 10
+    },
   }
 
   build() {

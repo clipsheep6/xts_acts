@@ -16,7 +16,17 @@
 import CommonFunc from '../../MainAbility/utils/Common';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function MenuApi1() {
   describe('MenuApi1', () => {
@@ -46,24 +56,22 @@ export default function MenuApi1() {
 
     /**
      * @tc.number MenuApi1_0100
-     * @tc.name   testFocus
+     * @tc.name testFocus
      * @tc.desc
      */
     it('MenuApi1_0100', 0, async (done: Function) => {
       console.info('MenuApi1_0100 START');
       await CommonFunc.sleep(1000);
 
-      if (globalThis.winLeft == 0) {
-        sendEventByKey('MenuApi1_btn1',10,"")
-        await CommonFunc.sleep(1000);
+      sendEventByKey('MenuApi1_btn1', 10, "")
+      await CommonFunc.sleep(1000);
 
-        sendEventByKey('MenuApi1_btn2',10,"")
-        await CommonFunc.sleep(1000);
+      sendEventByKey('MenuApi1_btn2', 10, "")
+      await CommonFunc.sleep(1000);
 
-        let text1 = getInspectorByKey('MenuApi1_text1');
-        expect(String(JSON.parse(text1).$attrs.content)).assertEqual('undefined')
-        await CommonFunc.sleep(1000);
-      }
+      let text1 = getInspectorByKey('MenuApi1_text1');
+      expect(String(JSON.parse(text1).$attrs.content)).assertEqual('undefined')
+      await CommonFunc.sleep(1000);
 
       console.info('MenuApi1_0100 END');
       done();

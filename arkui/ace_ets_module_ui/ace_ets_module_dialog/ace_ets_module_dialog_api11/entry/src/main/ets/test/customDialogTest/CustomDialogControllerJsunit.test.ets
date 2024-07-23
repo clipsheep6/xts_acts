@@ -14,7 +14,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import Utils from '../../MainAbility/common/Utils';;
+import Utils from '../../MainAbility/common/Utils';
 import events_emitter from '@ohos.events.emitter';
 
 export default function customDialogControllerJsunit() {

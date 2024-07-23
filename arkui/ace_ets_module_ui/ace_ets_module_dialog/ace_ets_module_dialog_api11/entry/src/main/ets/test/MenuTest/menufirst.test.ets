@@ -14,10 +14,10 @@
  */
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import router from '@system.router';
+import router from '@ohos.router';
 
-function sleep(time) {
-  return new Promise((resolve, reject) => {
+function sleep(time: number) {
+  return new Promise((resolve: (value: string) => void) => {
     setTimeout(() => {
       resolve("ok")
     }, time)
@@ -25,11 +25,12 @@ function sleep(time) {
     console.info(`sleep ${time} over...`)
   })
 }
+
 export default function menuTest() {
-  describe('ActsMenuFirstTest', function () {
-    beforeAll(async function (done) {
-      let options = {
-        uri: "MainAbility/pages/Menu/menufirst",
+  describe('ActsMenuFirstTest', () => {
+    beforeAll(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: "MainAbility/pages/Menu/menufirst",
       }
       try {
         router.clear();
@@ -37,7 +38,7 @@ export default function menuTest() {
         console.info("get menufirst state success " + JSON.stringify(pages));
         if (!("menufirst" == pages.name)) {
           console.info("get menufirst state success " + JSON.stringify(pages.name));
-          let result = await router.push(options)
+          let result = await router.pushUrl(options)
           console.info("push menufirst page success " + JSON.stringify(result));
         }
       } catch (err) {
@@ -47,13 +48,13 @@ export default function menuTest() {
       done()
     });
 
-   /**
+    /**
      * @tc.number ArkUX_Stage_Menu_EnableArrow_0100
      * @tc.name Tests whether the directional menu arrow is displayed
      * @tc.desc Tests whether the directional menu arrow is displayed
      */
-    it('ArkUX_Stage_Menu_EnableArrow_0100', 0, async function () {
-      let obj = JSON.parse(getInspectorByKey("menu"))
+    it('ArkUX_Stage_Menu_EnableArrow_0100', 0, async () => {
+      let obj: Record<string, ESObject> = JSON.parse(getInspectorByKey("menu"))
       console.info('ArkUX_Stage_Menu_EnableArrow_0100 enableArrow :' + JSON.stringify(obj.$attrs.enableArrow));
       expect(obj.$attrs.enableArrow).assertEqual(undefined)
     })
@@ -63,8 +64,8 @@ export default function menuTest() {
      * @tc.name Test directional menu arrow shows location distance
      * @tc.desc Test directional menu arrow shows location distance
      */
-    it('ArkUX_Stage_Menu_ArrowOffset_0100', 0, async function () {
-      let obj = JSON.parse(getInspectorByKey("menu"))
+    it('ArkUX_Stage_Menu_ArrowOffset_0100', 0, async () => {
+      let obj: Record<string, ESObject> = JSON.parse(getInspectorByKey("menu"))
       console.info('ArkUX_Stage_Menu_ArrowOffset_0100 arrowOffset :' + JSON.stringify(obj.$attrs.arrowOffset));
       expect(obj.$attrs.arrowOffset).assertEqual(undefined)
     })

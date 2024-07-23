@@ -15,7 +15,20 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from "../../../MainAbility/utils/Common";
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function SubMenuExpandingModeTest_SIDE() {
   describe('SubMenuExpandingModeTest_SIDE', () => {
@@ -46,26 +59,24 @@ export default function SubMenuExpandingModeTest_SIDE() {
     });
 
     /**
-     * @tc.number    SubMenuExpandingModeTest_SIDE_001
-     * @tc.name      testBack
-     * @tc.desc      Return specified page by index value
-     * @tc.level     Level 3
+     * @tc.number SubMenuExpandingModeTest_SIDE_001
+     * @tc.name testBack
+     * @tc.desc Return specified page by index value
+     * @tc.level Level 3
      * @tc.type
      * @tc.size
      */
     it('SubMenuExpandingModeTest_SIDE_001', 0, async (done: Function) => {
       console.info('[SubMenuExpandingModeTest_SIDE_001] START');
       await CommonFunc.sleep(1000);
-      if (globalThis.winLeft == 0) {
-        let driver: Driver = Driver.create();
-        let btn: Component = await driver.findComponent(ON.id("btn"));
-        await btn.click();
-        await CommonFunc.sleep(1000);
-        let menu = getInspectorByKey('menu');
-        console.info("$attrs--" + JSON.stringify(JSON.parse(menu).$attrs));
-        await CommonFunc.sleep(1000);
-        expect(JSON.parse(menu).$attrs.subMenuExpandingMode).assertEqual('SubMenuExpandingMode.SIDE');
-      }
+      let driver: Driver = Driver.create();
+      let btn: Component = await driver.findComponent(ON.id("btn"));
+      await btn.click();
+      await CommonFunc.sleep(1000);
+      let menu = getInspectorByKey('menu');
+      console.info("$attrs--" + JSON.stringify(JSON.parse(menu).$attrs));
+      await CommonFunc.sleep(1000);
+      expect(JSON.parse(menu).$attrs.subMenuExpandingMode).assertEqual('SubMenuExpandingMode.SIDE');
       console.info('[SubMenuExpandingModeTest_SIDE_001] END');
       done();
     });

@@ -23,6 +23,7 @@ struct PopupExample {
     fontSize: 15,
     fontColor: Color.Black,
   } as PopupTextOptions
+
   build() {
     Row() {
       Column({ space: 12 }) {

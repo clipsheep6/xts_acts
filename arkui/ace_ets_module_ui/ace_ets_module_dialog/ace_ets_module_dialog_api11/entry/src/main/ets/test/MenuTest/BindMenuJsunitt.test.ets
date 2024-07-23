@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import CommonFunc from "../../MainAbility/common/Common";
 
 export default function bindMenuTesttt() {
-  describe('bindMenuTesttt', function () {
-    beforeEach(async function (done) {
+  describe('bindMenuTesttt', () => {
+    beforeEach(async (done: Function) => {
       console.info("bindMenu beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/Menu/bindMenuu',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/Menu/bindMenuu',
       }
       try {
         router.clear();
@@ -31,7 +31,7 @@ export default function bindMenuTesttt() {
         console.info("get bindMenu state pages:" + JSON.stringify(pages));
         if (!("bindMenuu" == pages.name)) {
           console.info("get bindMenu state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push bindMenu page result:" + JSON.stringify(result));
         }
@@ -41,22 +41,22 @@ export default function bindMenuTesttt() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("bindMenu after each called");
     });
 
-    it('bindMenuTest_0100', 0, async function (done) {
+    it('bindMenuTest_0100', 0, async (done: Function) => {
       console.info('bindMenuTest_0100 START');
       await CommonFunc.sleep(1000);
-      console.info("bindMenuTest_0100 text click result is: " + JSON.stringify(sendEventByKey('text',10,"")));
+      console.info("bindMenuTest_0100 text click result is: " + JSON.stringify(sendEventByKey('text', 10, "")));
       await CommonFunc.sleep(1500);
-      let callback = (indexEvent) => {
+      let callback = (indexEvent: events_emitter.InnerEvent) => {
         console.info("bindMenuTest_0100 get state result is: " + JSON.stringify(indexEvent));
         expect(indexEvent.data.ACTION).assertEqual(true);
         done();
       }
-      let indexEvent = {
+      let indexEvent: events_emitter.InnerEvent = {
         eventId: 64,
         priority: events_emitter.EventPriority.LOW
       }
@@ -65,7 +65,7 @@ export default function bindMenuTesttt() {
       } catch (err) {
         console.info("bindMenuTest_0100 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("bindMenuTest_0100 button click result is: " + JSON.stringify(sendEventByKey('button',10,"")));
+      console.info("bindMenuTest_0100 button click result is: " + JSON.stringify(sendEventByKey('button', 10, "")));
       await CommonFunc.sleep(1000);
       console.info('bindMenuTest_0100 END');
       done();

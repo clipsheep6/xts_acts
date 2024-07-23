@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function ToastShowMode() {
-  describe('ToastShowMode', function () {
-    beforeEach(async function (done) {
+  describe('ToastShowMode', () => {
+    beforeEach(async (done: Function) => {
       console.info("ToastShowMode beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/promptAction/ToastShowMode',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/promptAction/ToastShowMode',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function ToastShowMode() {
         console.info("get ToastShowMode state pages: " + JSON.stringify(pages));
         if (!("ToastShowMode" == pages.name)) {
           console.info("get ToastShowMode state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push ToastShowMode success: " + JSON.stringify(result));
         }
@@ -50,7 +63,7 @@ export default function ToastShowMode() {
     * @tc.type :
     * @tc.size :
     */
-    it('ToastShowMode_0100', 0, async function (done) {
+    it('ToastShowMode_0100', 0, async (done: Function) => {
       console.info('ToastShowMode_0100 START');
       await CommonFunc.sleep(1000);
       let driver = await Driver.create()
@@ -59,7 +72,7 @@ export default function ToastShowMode() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('ShowMode_p1');
-      let obj = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[ToastShowMode_0100] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual('DEFAULT');
       console.info('[ToastShowMode_0100] END');
@@ -73,7 +86,7 @@ export default function ToastShowMode() {
     * @tc.type :
     * @tc.size :
     */
-    it('ToastShowMode_0200', 0, async function (done) {
+    it('ToastShowMode_0200', 0, async (done: Function) => {
       console.info('ToastShowMode_0200 START');
       await CommonFunc.sleep(1000);
       let driver = await Driver.create()
@@ -82,7 +95,7 @@ export default function ToastShowMode() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('ShowMode_p2');
-      let obj = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[ToastShowMode_0200] component obj is: " + JSON.stringify(obj));
       console.info("[ToastShowMode_0200] promptAction: " + JSON.stringify(obj.$attrs.promptAction));
       expect(obj.$attrs.label).assertEqual('TOP_MOST');

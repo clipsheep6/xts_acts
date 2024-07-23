@@ -13,17 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/common/Common';
 
 
 export default function DismissReasonTest() {
-  describe('DismissReasonTest', function () {
-    beforeEach(async function (done) {
+  describe('DismissReasonTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("DismissReasonTest beforeEach start");
-      let options = {
-        uri: "MainAbility/pages/Popup/DismissReason",
+      let options: router.RouterOptions = {
+        url: "MainAbility/pages/Popup/DismissReason",
       }
       try {
         router.clear();
@@ -31,7 +44,7 @@ export default function DismissReasonTest() {
         console.info("get DismissReasonTest state pages: " + JSON.stringify(pages));
         if (!("DismissReason" == pages.name)) {
           console.info("get DismissReasonTest state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push DismissReasonTest success: " + JSON.stringify(result));
         }
@@ -43,14 +56,14 @@ export default function DismissReasonTest() {
     });
 
     /**
-     * @tc.number    DismissReasonTest_0010
-     * @tc.name      DismissReasonTest_0010
-     * @tc.desc      popup: DismissReason: CLOSE_BUTTON
-     * @tc.level:    Level 2
+     * @tc.number DismissReasonTest_0010
+     * @tc.name DismissReasonTest_0010
+     * @tc.desc popup: DismissReason: CLOSE_BUTTON
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('DismissReasonTest_0010', 0, async function (done) {
+    it('DismissReasonTest_0010', 0, async (done: Function) => {
       console.info('DismissReasonTest_0010 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -60,7 +73,7 @@ export default function DismissReasonTest() {
       await driver.pressBack()
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('DismissReason_Button');
-      let obj = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[DismissReasonTest_0010] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual('DismissReason succ');
       console.info('[DismissReasonTest_0010] END');

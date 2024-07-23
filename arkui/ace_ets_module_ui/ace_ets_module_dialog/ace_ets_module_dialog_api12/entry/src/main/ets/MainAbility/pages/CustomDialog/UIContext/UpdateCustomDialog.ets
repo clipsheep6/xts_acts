@@ -17,6 +17,7 @@ import { ComponentContent } from "@ohos.arkui.node";
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -41,7 +42,7 @@ struct updateCustomDialog {
   build() {
     Row() {
       Column({ space: 12 }) {
-        Text(this.change) // CenterEnd = 7
+        Text(this.change)// CenterEnd = 7
           .id('UpdateCustomDialog')
         Button("click me")
           .id('btn')
@@ -54,7 +55,7 @@ struct updateCustomDialog {
             setTimeout(() => {
               promptAction.updateCustomDialog(contentNode, { alignment: this.alignmentStatus });
               this.change = this.alignmentStatus + ''
-            }, 1000);   //2秒后自动更新弹窗位置
+            }, 1000); //2秒后自动更新弹窗位置
           })
       }
       .width('100%')

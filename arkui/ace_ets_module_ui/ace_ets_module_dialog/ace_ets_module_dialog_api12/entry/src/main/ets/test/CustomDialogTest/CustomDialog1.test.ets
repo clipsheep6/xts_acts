@@ -13,18 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 import window from '@ohos.window';
 
 export default function CustomDialog1() {
-  describe('CustomDialog1', function () {
-    beforeEach(async function (done) {
+  describe('CustomDialog1', () => {
+    beforeEach(async (done: Function) => {
       console.info("CustomDialog1 beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/CustomDialog/CustomDialog1',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/CustomDialog/CustomDialog1',
       }
       try {
         router.clear();
@@ -32,7 +44,7 @@ export default function CustomDialog1() {
         console.info("get CustomDialog1 state pages: " + JSON.stringify(pages));
         if (!("CustomDialog1" == pages.name)) {
           console.info("get CustomDialog1 state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push CustomDialog1 success: " + JSON.stringify(result));
         }
@@ -53,7 +65,7 @@ export default function CustomDialog1() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('CustomDialog1_0100', 0, async function (done) {
+    it('CustomDialog1_0100', 0, async (done: Function) => {
       console.info('CustomDialog1_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -75,7 +87,7 @@ export default function CustomDialog1() {
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('CustomDialog1Text');
-      let obj = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[CustomDialog1_0100] component obj is: " + JSON.stringify(obj));
       console.info("[CustomDialog1_0100] title: " + JSON.stringify(obj.$attrs.content));
       expect(obj.$attrs.content).assertEqual("reason=0");
@@ -88,7 +100,7 @@ export default function CustomDialog1() {
     * @tc.desc  : To test that the Provide decorator supports union types.
     * @tc.level : Level 2
     */
-    it('CustomDialog1_0200', 0, async function (done) {
+    it('CustomDialog1_0200', 0, async (done: Function) => {
       console.info('CustomDialog1_0200 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -96,7 +108,7 @@ export default function CustomDialog1() {
       await button.click();
       await CommonFunc.sleep(1000);
 
-      await driver.click(Math.round(globalThis.winLeft+200), Math.round(globalThis.winTop+200));
+      await driver.click(Math.round(globalThis.winLeft + 200), Math.round(globalThis.winTop + 200));
       await CommonFunc.sleep(1000);
 
       let windowClass: window.Window | undefined = undefined;
@@ -110,7 +122,7 @@ export default function CustomDialog1() {
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('CustomDialog1Text');
-      let obj = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[CustomDialog1_0200] component obj is: " + JSON.stringify(obj));
       console.info("[CustomDialog1_0200] title: " + JSON.stringify(obj.$attrs.content));
       expect(obj.$attrs.content).assertEqual("reason=1");

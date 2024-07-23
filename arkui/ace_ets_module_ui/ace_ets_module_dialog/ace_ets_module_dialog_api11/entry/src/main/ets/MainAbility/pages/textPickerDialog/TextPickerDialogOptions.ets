@@ -29,15 +29,15 @@ struct TextPickerDialogOptions111 {
             selected: this.select,
             alignment: DialogAlignment.TopStart,
             offset: { dx: 10, dy: 100 },
-            maskRect: { x: 0, y: 90, width: 1000, height: 250  },
-            onAccept: (value: TextPickerResult)=> {
+            maskRect: { x: 0, y: 90, width: 1000, height: 250 },
+            onAccept: (value: TextPickerResult) => {
               this.select = value.index
               console.info("TextPickerDialog: onAccept()" + JSON.stringify(value))
             },
-            onCancel:()=> {
+            onCancel: () => {
               console.info("TextPickerDialog: onCancel()")
             },
-            onChange: (value: TextPickerResult)=> {
+            onChange: (value: TextPickerResult) => {
               console.info("TextPickerDialog: onChange()" + JSON.stringify(value))
             }
           })

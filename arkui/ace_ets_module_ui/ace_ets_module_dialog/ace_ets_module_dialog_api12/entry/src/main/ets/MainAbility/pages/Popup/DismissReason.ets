@@ -19,6 +19,7 @@
 struct DismissReason1 {
   @State handlePopup: boolean = false
   @State flag: string = "start"
+
   build() {
     Column() {
       Button(this.flag).id("DismissReason_Button")
@@ -49,8 +50,8 @@ struct DismissReason1 {
               if (dismissPopupAction.reason == DismissReason.PRESS_BACK) {
                 dismissPopupAction.dismiss()
                 this.flag = "DismissReason succ"
-              } 
-              if (dismissPopupAction.reason == DismissReason.CLOSE_BUTTON){
+              }
+              if (dismissPopupAction.reason == DismissReason.CLOSE_BUTTON) {
                 this.flag = "CLOSE_BUTTON succ"
               }
             }

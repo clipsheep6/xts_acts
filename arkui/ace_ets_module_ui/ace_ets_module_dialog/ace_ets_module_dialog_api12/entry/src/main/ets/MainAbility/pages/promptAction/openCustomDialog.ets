@@ -17,6 +17,7 @@ import { ComponentContent } from "@ohos.arkui.node";
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -28,7 +29,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -55,7 +56,8 @@ struct Index {
               let message = (error as BusinessError).message;
               let code = (error as BusinessError).code;
               console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-            };
+            }
+            ;
           })
       }
       .width('100%')

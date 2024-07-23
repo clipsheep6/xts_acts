@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function ActionSheetJsunit() {
-  describe('ActionSheetJsunit', function () {
-    beforeEach(async function (done) {
+  describe('ActionSheetJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("ActionSheetJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/actionSheet/ActionSheetOptions',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/actionSheet/ActionSheetOptions',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function ActionSheetJsunit() {
         console.info("get ActionSheetJsunit state pages: " + JSON.stringify(pages));
         if (!("ActionSheetOptions" == pages.name)) {
           console.info("get ActionSheetJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push ActionSheetJsunit success " + JSON.stringify(result));
         }
@@ -44,21 +57,21 @@ export default function ActionSheetJsunit() {
     });
 
 
-    it('ActionSheetJsunit_0100', 0, async function (done) {
+    it('ActionSheetJsunit_0100', 0, async (done: Function) => {
 
-     
+
       console.info('ActionSheetJsunit_0100 START');
-	  let driver = await UiDriver.create()
+      let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('ActionSheet'));
       await button.click();
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('ActionSheet');
-      let obj = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("[ActionSheetJsunit_0100] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.label).assertEqual("Click to Show ActionSheet");
       console.info('[ActionSheetJsunit_0100] END');
-	  await driver.pressBack();
+      await driver.pressBack();
       done();
     });
 

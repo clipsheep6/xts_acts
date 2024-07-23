@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { TipsDialog } from '@ohos.arkui.advanced.Dialog'
+
 @Entry
 @Component
 struct dialogApi {
@@ -41,7 +42,7 @@ struct dialogApi {
   build() {
     Row() {
       Stack() {
-        Column(){
+        Column() {
           Button("dialogApi")
             .width(96)
             .height(40)
@@ -49,7 +50,7 @@ struct dialogApi {
             .onClick(() => {
               this.dialogControllerImage.open()
             })
-        }.margin({bottom: 300})
+        }.margin({ bottom: 300 })
       }.align(Alignment.Bottom)
       .width('100%').height('100%')
     }

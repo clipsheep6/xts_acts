@@ -14,7 +14,7 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
+import router from '@ohos.router';
 
 function sleep(time: number) {
   return new Promise((resolve: (value: string) => void) => {
@@ -32,8 +32,8 @@ export default function panelJsunit() {
   describe('panelTest', () => {
 
     beforeEach(async () => {
-      let options = {
-        uri: 'MainAbility/pages/Panel/Panel',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/Panel/Panel',
       }
       try {
         router.clear();
@@ -41,7 +41,7 @@ export default function panelJsunit() {
         console.info("get Panel state success " + JSON.stringify(pages));
         if (!("Panel" == pages.name)) {
           console.info("get Panel state success " + JSON.stringify(pages.name));
-          let result = await router.push(options)
+          let result = await router.pushUrl(options)
           console.info("push Panel page success " + JSON.stringify(result));
         }
       } catch (err) {
@@ -63,7 +63,7 @@ export default function panelJsunit() {
       console.info('++++++++++++++++ Panel TestCase 1 START ++++++++++++++++');
       await sleep(1)
       let strJson = getInspectorByKey('panel');
-      let obj: Record<string, Object> = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("get inspector value is: " + JSON.stringify(obj));
       console.log(JSON.stringify(obj.$type))
       expect(obj.$type).assertEqual('Panel')
@@ -91,7 +91,7 @@ export default function panelJsunit() {
       console.info('++++++++++++++++ Panel TestCase 2 START ++++++++++++++++');
       await sleep(1)
       let strJson = getInspectorByKey('panel2');
-      let obj: Record<string, Object> = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("get inspector value is: " + JSON.stringify(obj));
       console.log(JSON.stringify(obj.$type))
       expect(obj.$type).assertEqual('Panel')
@@ -113,7 +113,7 @@ export default function panelJsunit() {
       console.info('++++++++++++++++ Panel TestCase 3 START ++++++++++++++++');
       await sleep(1)
       let strJson = getInspectorByKey('panel3');
-      let obj: Record<string, Object> = JSON.parse(strJson);
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
       console.info("get inspector value is: " + JSON.stringify(obj));
       console.log(JSON.stringify(obj.$type))
       expect(obj.$type).assertEqual('Panel')
