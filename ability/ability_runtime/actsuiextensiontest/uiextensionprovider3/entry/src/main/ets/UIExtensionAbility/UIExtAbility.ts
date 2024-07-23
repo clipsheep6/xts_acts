@@ -19,32 +19,32 @@ import Logger from '../model/Logger'
 const TAG: string = '[UIExtAbility]'
 
 export default class UIExtAbility extends UIExtensionAbility {
-    onCreate() {
-        Logger.log(TAG, `UIExtAbility onCreate`)
-        globalThis.context2 = this.context;
-    }
+  onCreate() {
+    Logger.log(TAG, `UIExtAbility onCreate`)
+    globalThis.context2 = this.context;
+  }
 
-    onForeground() {
-        Logger.log(TAG, `UIExtAbility onForeground`)
-    }
+  onForeground() {
+    Logger.log(TAG, `UIExtAbility onForeground`)
+  }
 
-    onBackground() {
-        Logger.log(TAG, `UIExtAbility onBackground`)
-    }
+  onBackground() {
+    Logger.log(TAG, `UIExtAbility onBackground`)
+  }
 
-    onDestroy() {
-        Logger.log(TAG, `UIExtAbility onDestroy`)
-    }
+  onDestroy() {
+    Logger.log(TAG, `UIExtAbility onDestroy`)
+  }
 
-    onSessionCreate(want, session) {
-        Logger.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
-        let storage: LocalStorage = new LocalStorage({
-            'session': session
-        });
-        session.loadContent('pages/index', storage);
-    }
+  onSessionCreate(want, session) {
+    Logger.log(TAG, `UIExtAbility onSessionCreate, want: ${JSON.stringify(want)}`)
+    let storage: LocalStorage = new LocalStorage({
+      'session': session
+    });
+    session.loadContent('pages/index', storage);
+  }
 
-    onSessionDestroy(session) {
-        Logger.log(TAG, `UIExtAbility onSessionDestroy`)
-    }
+  onSessionDestroy(session) {
+    Logger.log(TAG, `UIExtAbility onSessionDestroy`)
+  }
 };

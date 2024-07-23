@@ -19,16 +19,16 @@ import SubServiceExtStub from '../IdlServiceExt/SubService/sub_service_ext_stub'
 import { subCallback } from '../IdlServiceExt/SubService/sub_service_ext';
 import Logger from '../util/Logger';
 
-class ServiceExtStub extends SubServiceExtStub{
-
-  sub(num1: number, num2: number, callback: subCallback): void{
-      let res = num1 - num2
-      callback(0,res)
-      Logger.info(`sub result: ${res}`)
+class ServiceExtStub extends SubServiceExtStub {
+  sub(num1: number, num2: number, callback: subCallback): void {
+    let res = num1 - num2
+    callback(0, res)
+    Logger.info(`sub result: ${res}`)
   }
 }
 
 let successDifferentAppEvent005 = 'ACTS_UIExtension_DifferentApp005_Success';
+
 export default class SubServiceExtAbility005 extends ServiceExtension {
   onCreate(want) {
     Logger.info(`tss onCreate, want: ${want.abilityName}`)
@@ -44,7 +44,8 @@ export default class SubServiceExtAbility005 extends ServiceExtension {
   }
 
   onDisconnect(want) {
-    commonEventManager.publish(successDifferentAppEvent005, (err) => { });
+    commonEventManager.publish(successDifferentAppEvent005, (err) => {
+    });
     Logger.info(`onDisconnect, want: ${want.abilityName}`)
   }
 

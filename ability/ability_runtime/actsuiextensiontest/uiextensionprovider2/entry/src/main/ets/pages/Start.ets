@@ -27,7 +27,7 @@ struct Start {
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
         Button("back")
-          .onClick(()=>{
+          .onClick(() => {
             router.back();
           })
           .margin(10)

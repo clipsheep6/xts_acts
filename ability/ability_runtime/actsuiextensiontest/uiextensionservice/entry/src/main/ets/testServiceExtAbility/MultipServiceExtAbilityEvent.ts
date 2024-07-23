@@ -19,15 +19,16 @@ import MultipServiceExtStub from '../IdlServiceExt/MultipService/multip_service_
 import { multipCallback } from '../IdlServiceExt/MultipService/multip_service_ext';
 import Logger from '../util/Logger';
 
-class ServiceExtStub extends MultipServiceExtStub{
-
-  multip(num1: number, num2: number, callback: multipCallback): void{
-      let res = num1 * num2
-      callback(0,res)
-      Logger.info(`add result: ${res}`)
+class ServiceExtStub extends MultipServiceExtStub {
+  multip(num1: number, num2: number, callback: multipCallback): void {
+    let res = num1 * num2
+    callback(0, res)
+    Logger.info(`add result: ${res}`)
   }
 }
+
 let multiServiceDestroyEvent = 'multiServiceDestroyEvent';
+
 export default class MultipServiceExtAbilityEvent extends ServiceExtension {
   onCreate(want) {
     Logger.info(`tss onCreate, want: ${want.abilityName}`)
@@ -43,12 +44,14 @@ export default class MultipServiceExtAbilityEvent extends ServiceExtension {
   }
 
   onDisconnect(want) {
-    commonEventManager.publish(multiServiceDestroyEvent, (err) => { });
+    commonEventManager.publish(multiServiceDestroyEvent, (err) => {
+    });
     Logger.info(`MultipServiceExtAbilityEvent___onDisconnect, want: ${want.abilityName}`)
   }
 
   onDestroy() {
-    commonEventManager.publish(multiServiceDestroyEvent, (err) => { });
+    commonEventManager.publish(multiServiceDestroyEvent, (err) => {
+    });
     Logger.info(`MultipServiceExtAbilityEvent___onDestroy`)
   }
 }

@@ -19,7 +19,7 @@ const sleepTimeOne = 1000;
 
 function publishCallBack() {
   console.log('====>Publish CallBack ACTS_StartAbilityEvent====>');
-  globalThis.ability2Context.terminateSelf().then(()=>{
+  globalThis.ability2Context.terminateSelf().then(() => {
     console.log('====>terminateSelf success====>');
   });
 }
@@ -30,13 +30,12 @@ function timeout() {
       bundleName: 'com.example.uiextensiontest',
       abilityName: 'TestAbility',
     }
-  ).then(()=>{
+  ).then(() => {
     console.log('====>start com.example.uiextensiontest.TestAbility finish====>');
   });
 }
 
 export default class MainAbility2 extends Ability {
-
   onCreate(want, launchParam) {
     console.log('MainAbility2 onCreate');
   }

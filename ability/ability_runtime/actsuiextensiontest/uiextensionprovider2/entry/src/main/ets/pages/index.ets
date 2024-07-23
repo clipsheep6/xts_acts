@@ -28,7 +28,7 @@ let storage = LocalStorage.GetShared();
 struct Index {
   @State message: string = 'UIExtension'
   private session: UIExtensionContentSession = storage.get<UIExtensionContentSession>('session');
-  
+
   aboutToAppear() {
     let appearEvent = 'ACTS_UIExtension_AboutToAppear';
     let differentAppEvent007 = 'ACTS_UIExtension_DifferentApp007';
@@ -36,7 +36,7 @@ struct Index {
     let differentAppEvent010 = 'ACTS_UIExtension_DifferentApp010';
     var subscriber;
     var subscribeInfo = {
-      events: [differentAppEvent007,differentAppEvent009,differentAppEvent010]
+      events: [differentAppEvent007, differentAppEvent009, differentAppEvent010]
     }
     commonEventManager.createSubscriber(subscribeInfo).then(async (data) => {
       console.log(TAG + "createSubscriber data : " + JSON.stringify(data));
@@ -45,22 +45,22 @@ struct Index {
       commonEventManager.subscribe(subscriber, async (err, data) => {
         console.log(TAG + "SubscribeInfoCallback : " + JSON.stringify(data));
         console.log(TAG + "get data event ->" + data.event);
-       if (data.event == differentAppEvent007) { 
+        if (data.event == differentAppEvent007) {
           commonEventManager.unsubscribe(subscriber, async (err, data) => {
             console.log(TAG + "UnSubscribeInfoCallback : " + JSON.stringify(data));
           });
           this.doDifferentAppEvent007();
-        } else if (data.event == differentAppEvent009) { 
+        } else if (data.event == differentAppEvent009) {
           commonEventManager.unsubscribe(subscriber, async (err, data) => {
             console.log(TAG + "UnSubscribeInfoCallback : " + JSON.stringify(data));
           });
           this.doDifferentAppEvent009();
-        } else if (data.event == differentAppEvent010) { 
+        } else if (data.event == differentAppEvent010) {
           commonEventManager.unsubscribe(subscriber, async (err, data) => {
             console.log(TAG + "UnSubscribeInfoCallback : " + JSON.stringify(data));
           });
           this.doDifferentAppEvent010();
-        } 
+        }
       });
     }).catch((error) => {
       console.log(TAG + "createSubscriber error : " + JSON.stringify(error));
@@ -76,7 +76,7 @@ struct Index {
     }, sleepTimeOne);
   }
 
-  async doDifferentAppEvent007(){
+  async doDifferentAppEvent007() {
     let successDifferentAppEvent007_visible = 'ACTS_UIExtension_DifferentApp007_visibleSuccess';
     let successDifferentAppEvent007_unvisible = 'ACTS_UIExtension_DifferentApp007_unvisibleSuccess';
     console.log(TAG + "start doDifferentAppEvent007");
@@ -86,7 +86,8 @@ struct Index {
     };
     let optionsUnvisible = {
       onConnect(elementName, remote) {
-        commonEventManager.publish(successDifferentAppEvent007_unvisible, (err) => { }); 
+        commonEventManager.publish(successDifferentAppEvent007_unvisible, (err) => {
+        });
         console.info('successDifferentAppEvent006_unvisible___')
       },
       onDisconnect(elementName) {
@@ -100,7 +101,8 @@ struct Index {
     };
     let options = {
       onConnect(elementName, remote) {
-        commonEventManager.publish(successDifferentAppEvent007_visible, (err) => { }); 
+        commonEventManager.publish(successDifferentAppEvent007_visible, (err) => {
+        });
         console.info('successDifferentAppEvent006_visible___' + elementName);
       },
       onDisconnect(elementName) {
@@ -113,7 +115,7 @@ struct Index {
     await this.sleep(400);
   }
 
-  async doDifferentAppEvent009(){
+  async doDifferentAppEvent009() {
     let successDifferentAppEvent009_visible = 'ACTS_UIExtension_DifferentApp009_visibleSuccess';
     let successDifferentAppEvent009_unvisible = 'ACTS_UIExtension_DifferentApp009_unvisibleSuccess';
     console.log(TAG + "start doDifferentAppEvent009");
@@ -123,7 +125,8 @@ struct Index {
     };
     let optionsUnvisible = {
       onConnect(elementName, remote) {
-        commonEventManager.publish(successDifferentAppEvent009_unvisible, (err) => { }); 
+        commonEventManager.publish(successDifferentAppEvent009_unvisible, (err) => {
+        });
         console.info('successDifferentAppEvent006_unvisible___')
       },
       onDisconnect(elementName) {
@@ -137,7 +140,8 @@ struct Index {
     };
     let options = {
       onConnect(elementName, remote) {
-        commonEventManager.publish(successDifferentAppEvent009_visible, (err) => { }); 
+        commonEventManager.publish(successDifferentAppEvent009_visible, (err) => {
+        });
         console.info('successDifferentAppEvent006_visible___' + elementName);
       },
       onDisconnect(elementName) {
@@ -159,7 +163,7 @@ struct Index {
     await this.sleep(400);
   }
 
-  doDifferentAppEvent010(){
+  doDifferentAppEvent010() {
     let successDifferentAppEvent010_ext2 = 'ACTS_UIExtension_DifferentApp010_ext2_Success';
     console.log(TAG + "recv connectAbilityEvent");
     let want = {
@@ -168,7 +172,8 @@ struct Index {
     };
     let options = {
       onConnect(elementName, remote) {
-        commonEventManager.publish(successDifferentAppEvent010_ext2, (err) => { }); 
+        commonEventManager.publish(successDifferentAppEvent010_ext2, (err) => {
+        });
       },
       onDisconnect(elementName) {
       },
