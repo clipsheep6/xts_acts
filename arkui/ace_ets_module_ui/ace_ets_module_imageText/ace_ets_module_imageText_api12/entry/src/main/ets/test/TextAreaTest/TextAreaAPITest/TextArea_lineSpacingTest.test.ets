@@ -18,8 +18,8 @@ import CommonFunc from '../../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function TextArea_lineSpacingTest() {
-  describe('TextArea_lineSpacingTest', function () {
-    beforeEach(async function (done) {
+  describe('TextArea_lineSpacingTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextArea_lineSpacingTest beforeEach start");
       let options = {
         url: "MainAbility/pages/TextArea/TextAreaAPI/lineSpacing",
@@ -40,7 +40,7 @@ export default function TextArea_lineSpacingTest() {
       console.info("TextArea_lineSpacingTest beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("TextArea_lineSpacingTest after each called");
     });
@@ -53,7 +53,7 @@ export default function TextArea_lineSpacingTest() {
      * @tc.type
     * @tc.size
      */
-    it('TextArea_lineSpacingTest_001', 0, async function (done) {
+    it('TextArea_lineSpacingTest_001', 0, async (done: Function) => {
       console.info('[TextArea_lineSpacingTest_001] START');
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();

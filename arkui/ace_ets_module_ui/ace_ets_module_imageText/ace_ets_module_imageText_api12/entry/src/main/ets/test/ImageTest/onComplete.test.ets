@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function onComplete() {
-  describe('onComplete', function () {
-    beforeEach(async function (done) {
+  describe('onComplete', () => {
+    beforeEach(async (done: Function) => {
       console.info("onComplete beforeEach start");
       let options = {
         url: 'MainAbility/pages/Image/onComplete',
@@ -40,19 +53,19 @@ export default function onComplete() {
       console.info("onComplete beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("onComplete after each called");
     });
     /**
-     * @tc.number    onComplete_0100
-     * @tc.name      onComplete_0100
-     * @tc.desc      onComplete:event.loadingStatus
-     * @tc.level     Level 2
+     * @tc.number onComplete_0100
+     * @tc.name onComplete_0100
+     * @tc.desc onComplete:event.loadingStatus
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('onComplete_0100', 0, async function (done) {
+    it('onComplete_0100', 0, async (done: Function) => {
       console.info('[onComplete_0100] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
@@ -64,16 +77,15 @@ export default function onComplete() {
     });
 
 
-
     /**
-     * @tc.number    onComplete_0200
-     * @tc.name      onComplete_0200
-     * @tc.desc      onComplete:event.contentWidth
-     * @tc.level     Level 2
+     * @tc.number onComplete_0200
+     * @tc.name onComplete_0200
+     * @tc.desc onComplete:event.contentWidth
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('onComplete_0200', 0, async function (done) {
+    it('onComplete_0200', 0, async (done: Function) => {
       console.info('[onComplete_0200] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
@@ -85,16 +97,15 @@ export default function onComplete() {
     });
 
 
-
     /**
-     * @tc.number    onComplete_0300
-     * @tc.name      onComplete_0300
-     * @tc.desc      onComplete:event.contentHeight
-     * @tc.level     Level 2
+     * @tc.number onComplete_0300
+     * @tc.name onComplete_0300
+     * @tc.desc onComplete:event.contentHeight
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('onComplete_0300', 0, async function (done) {
+    it('onComplete_0300', 0, async (done: Function) => {
       console.info('[onComplete_0300] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
@@ -107,14 +118,14 @@ export default function onComplete() {
 
 
     /**
-     * @tc.number    onComplete_0400
-     * @tc.name      onComplete_0400
-     * @tc.desc      onComplete:event.contentOffsetX
-     * @tc.level     Level 2
+     * @tc.number onComplete_0400
+     * @tc.name onComplete_0400
+     * @tc.desc onComplete:event.contentOffsetX
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('onComplete_0400', 0, async function (done) {
+    it('onComplete_0400', 0, async (done: Function) => {
       console.info('[onComplete_0400] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
@@ -127,14 +138,14 @@ export default function onComplete() {
 
 
     /**
-     * @tc.number    onComplete_0500
-     * @tc.name      onComplete_0500
-     * @tc.desc      onComplete:event.contentOffsetY
-     * @tc.level     Level 2
+     * @tc.number onComplete_0500
+     * @tc.name onComplete_0500
+     * @tc.desc onComplete:event.contentOffsetY
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('onComplete_0500', 0, async function (done) {
+    it('onComplete_0500', 0, async (done: Function) => {
       console.info('[onComplete_0500] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
@@ -144,7 +155,6 @@ export default function onComplete() {
       console.info('[onSelectionChange1_0500] END');
       done();
     });
-
 
 
   })

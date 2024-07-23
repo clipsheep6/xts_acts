@@ -16,6 +16,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import events_emitter from '@ohos.events.emitter';
 import router from '@ohos.router';
 import Utils from '../Utils';
+
 function sleep(time: number) {
   return new Promise<string>((resolve, reject) => {
     setTimeout(() => {
@@ -46,6 +47,7 @@ async function forKey(Key: string, text: string) {
   }
   await sleep(2000)
 }
+
 const SUITE: string = 'textAreaUxTest'
 
 export default function textAreaUxTest() {

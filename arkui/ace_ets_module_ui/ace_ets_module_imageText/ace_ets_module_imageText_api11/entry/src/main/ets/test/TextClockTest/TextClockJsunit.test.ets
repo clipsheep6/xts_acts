@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function TextClockJsunit() {
-  describe('TextClockJsunit', function () {
-    beforeEach(async function (done) {
+  describe('TextClockJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextClock beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TextClock/TextClockPage',
@@ -43,7 +56,7 @@ export default function TextClockJsunit() {
       done();
     });
 
-    it('TextClock_0100', 0, async function (done) {
+    it('TextClock_0100', 0, async (done: Function) => {
       // Get the information of TextClock component
       console.info('[TextClock_0100] START');
       let strJson = getInspectorByKey('textClock');
@@ -65,12 +78,16 @@ export default function TextClockJsunit() {
       done();
     });
 
-    it('TextClock_0200', 0, async function (done) {
+    it('TextClock_0200', 0, async (done: Function) => {
       // Modify the attribute of TextClock component
       console.info('[TextClock_0200] START');
-      globalThis.value.message.notify({name:'timeZoneOffset',value:8})
+      globalThis.value.message.notify({
+        name: 'timeZoneOffset', value: 8
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'format',value:'yyyyMMddHms'})
+      globalThis.value.message.notify({
+        name: 'format', value: 'yyyyMMddHms'
+      })
       await CommonFunc.sleep(1000);
       // Get the attribute of TextClock component
       let strJson = getInspectorByKey('textClock');
@@ -83,7 +100,7 @@ export default function TextClockJsunit() {
       done();
     });
 
-    it('TextClock_0300', 0, async function (done) {
+    it('TextClock_0300', 0, async (done: Function) => {
       // Verify the functions of the button of start
       console.info('[TextClock_0300] START');
 

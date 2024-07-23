@@ -14,14 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, MouseButton} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix,
+  MouseButton
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function SearchJsunit() {
-  describe('SearchJsunit', function () {
-    beforeEach(async function (done) {
+  describe('SearchJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("SearchJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Search/SearchPage',
@@ -43,7 +57,7 @@ export default function SearchJsunit() {
       done();
     });
 
-    it('SearchJsunit_0100', 0, async function (done) {
+    it('SearchJsunit_0100', 0, async (done: Function) => {
       // Get the information of the Search component
       console.info('[SearchJsunit_0100] START');
       await CommonFunc.sleep(1000);
@@ -63,8 +77,10 @@ export default function SearchJsunit() {
       expect(obj.$attrs.searchButton).assertEqual('SEARCH');
       expect(obj.$attrs.placeholderColor).assertEqual('#FF808080');
       expect(obj.$attrs.value).assertEqual('');
-      expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
-      expect(obj.$attrs.textFont).assertEqual('{"fontSize":"14.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}');
+      expect(obj.$attrs.placeholderFont)
+        .assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
+      expect(obj.$attrs.textFont)
+        .assertEqual('{"fontSize":"14.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}');
       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Start');
       expect(obj.$attrs.copyOption).assertEqual('CopyOptions.InApp');
       expect(obj.$attrs.placeholder).assertEqual('Type to search...');
@@ -72,29 +88,50 @@ export default function SearchJsunit() {
       done();
     });
 
-    it('SearchJsunit_0200', 0, async function (done) {
+    it('SearchJsunit_0200', 0, async (done: Function) => {
       // Modify the properties of component Search
       console.info('[SearchJsunit_0200] START');
-      await CommonFunc.sleep(500);      
-      globalThis.value.message.notify({name:'icon',value:'./resources/base/media/star_3.png'})
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'searchButton',value:'search'})
+      globalThis.value.message.notify({
+        name: 'icon', value: './resources/base/media/star_3.png'
+   ../../../../../../test/SearchTest/resources/base/media/star_3.pngp(500);
+      globalThis.value.message.notify({
+        name: 'searchButton', value: 'search'
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'placeholderColor',value:Color.Green})
+      globalThis.value.message.notify({
+        name: 'placeholderColor', value: Color.Green
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'changeValue',value:'hello'})
+      globalThis.value.message.notify({
+        name: 'changeValue', value: 'hello'
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'placeholder',value:'Type to search...'})
+      globalThis.value.message.notify({
+        name: 'placeholder', value: 'Type to search...'
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'placeholderFont',value:'{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}'})
+      globalThis.value.message.notify({
+        name: 'placeholderFont',
+        value: '{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}'
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'textFont',value:'{"fontSize":"14.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}'})
+      globalThis.value.message.notify({
+        name: 'textFont',
+        value: '{"fontSize":"14.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}'
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'textAlign',value:TextAlign.Center})
+      globalThis.value.message.notify({
+        name: 'textAlign', value: TextAlign.Center
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'copyOption',value:CopyOptions.LocalDevice})
+      globalThis.value.message.notify({
+        name: 'copyOption', value: CopyOptions.LocalDevice
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'positionValue',value:2})
+      globalThis.value.message.notify({
+        name: 'positionValue', value: 2
+      })
       await CommonFunc.sleep(2000);
 
       // Get the properties of the Search component
@@ -111,10 +148,12 @@ export default function SearchJsunit() {
       console.info("[SearchJsunit_0200] textAlign: " + JSON.stringify(obj.$attrs.textAlign));
       console.info("[SearchJsunit_0200] copyOption: " + JSON.stringify(obj.$attrs.copyOption));
       //expect(obj.$attrs.icon).assertEqual('./resources/base/media/star_3.png');
-      expect(obj.$attrs.searchButton).assertEqual('search');
+ ../../../../../../test/SearchTest/resources/base/media/star_3.pngon).assertEqual('search');
       expect(obj.$attrs.value).assertEqual('hello');
-      expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
-      expect(obj.$attrs.textFont).assertEqual('{"fontSize":"14.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}');
+      expect(obj.$attrs.placeholderFont)
+        .assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
+      expect(obj.$attrs.textFont)
+        .assertEqual('{"fontSize":"14.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}');
       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Center');
       expect(obj.$attrs.copyOption).assertEqual('CopyOptions.Local');
       expect(obj.$attrs.placeholderColor).assertEqual('#FF008000');
@@ -123,12 +162,14 @@ export default function SearchJsunit() {
       done();
     });
 
-    it('SearchJsunit_0300', 0, async function (done) {
+    it('SearchJsunit_0300', 0, async (done: Function) => {
       // Verify the functions of the Search component
       console.info('[SearchJsunit_0300] START');
-      globalThis.value.message.notify({name:'changeValue',value:''})
+      globalThis.value.message.notify({
+        name: 'changeValue', value: ''
+      })
       await CommonFunc.sleep(1000);
-      
+
       // Verify the onChange function of the Search component
       let driver = await UiDriver.create()
       let textComponent1 = await driver.findComponent(BY.key('search'));
@@ -142,7 +183,7 @@ export default function SearchJsunit() {
 
       // Verify the onSubmit function of the Search component
       let textComponent2 = await driver.findComponent(BY.text('search'));
-      if(!textComponent2){
+      if (!textComponent2) {
         textComponent2 = await driver.findComponent(BY.text('SEARCH'));
       }
       await textComponent2.click()
@@ -156,17 +197,21 @@ export default function SearchJsunit() {
       // Verify the onCopy function of the Search component
       let driverX = await Driver.create()
       let searchRect = CommonFunc.getComponentRectOnScreen('search')
-      let clickX = Math.round((searchRect.right + searchRect.left)/2)
-      let clickY = Math.round((searchRect.bottom + searchRect.top)/2)
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      let clickX = Math.round((searchRect.right + searchRect.left) / 2)
+      let clickY = Math.round((searchRect.bottom + searchRect.top) / 2)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       console.info("[SearchJsunit_0300] first mouseClick succ ");
       let textComponent3 = await driver.findComponent(BY.text('全选'));
       await textComponent3?.click()
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let textComponent4 = await driver.findComponent(BY.text('复制'));
-      if ( textComponent4 == null ) {
+      if (textComponent4 == null) {
         console.info("[SearchJsunit_0300] after mouseClick can not find component 复制");
       }
       await textComponent4.click()
@@ -178,15 +223,19 @@ export default function SearchJsunit() {
       expect(obj3.$attrs.content).assertEqual('onCopy:hello');
 
       // Verify the onCut function of the Search component
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       console.info("[SearchJsunit_0300] secand mouseClick succ ");
       let textComponent5 = await driver.findComponent(BY.text('全选'));
       await textComponent5?.click()
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let textComponent6 = await driver.findComponent(BY.text('剪切'));
-      if ( textComponent6 == null ) {
+      if (textComponent6 == null) {
         console.info("[SearchJsunit_0300] after mouseClick can not find component 剪切");
       }
       await textComponent6.click()
@@ -198,10 +247,12 @@ export default function SearchJsunit() {
       expect(obj4.$attrs.content).assertEqual('onCut:hello');
 
       // Verify the onPaste function of the Search component
-      await driverX.mouseClick({ x: clickX, y: clickY }, MouseButton.MOUSE_BUTTON_RIGHT)
+      await driverX.mouseClick({
+        x: clickX, y: clickY
+      }, MouseButton.MOUSE_BUTTON_RIGHT)
       await CommonFunc.sleep(1000);
       let textComponent8 = await driver.findComponent(BY.text('粘贴'));
-      if ( textComponent8 == null ) {
+      if (textComponent8 == null) {
         console.info("[SearchJsunit_0300] after mouseClick can not find component 粘贴");
       }
       await textComponent8.click()
@@ -225,27 +276,45 @@ export default function SearchJsunit() {
       done();
     });
 
-    it('SearchJsunit_0400', 0, async function (done) {
+    it('SearchJsunit_0400', 0, async (done: Function) => {
       // Illegal modification of properties of component Search
       console.info('[SearchJsunit_0400] START');
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'icon',value:10})
+      globalThis.value.message.notify({
+        name: 'icon', value: 10
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'searchButton',value:10})
+      globalThis.value.message.notify({
+        name: 'searchButton', value: 10
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'placeholderColor',value:10})
+      globalThis.value.message.notify({
+        name: 'placeholderColor', value: 10
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'changeValue',value:10})
+      globalThis.value.message.notify({
+        name: 'changeValue', value: 10
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'placeholder',value:168})
+      globalThis.value.message.notify({
+        name: 'placeholder', value: 168
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'placeholderFont',value:'aaa'})
+      globalThis.value.message.notify({
+        name: 'placeholderFont', value: 'aaa'
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'textFont',value:'bbb'})
+      globalThis.value.message.notify({
+        name: 'textFont', value: 'bbb'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'textAlign',value:'test'})
+      globalThis.value.message.notify({
+        name: 'textAlign', value: 'test'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'copyOption',value:10})
+      globalThis.value.message.notify({
+        name: 'copyOption', value: 10
+      })
       await CommonFunc.sleep(2000);
 
       // Get the properties of the Search component
@@ -265,13 +334,17 @@ export default function SearchJsunit() {
       expect(obj.$attrs.searchButton).assertEqual('search');
       expect(obj.$attrs.placeholderColor).assertEqual('#FF00000A');
       expect(obj.$attrs.value).assertEqual('hello');
-      expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
-      expect(obj.$attrs.textFont).assertEqual('{"fontSize":"14.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}');
+      expect(obj.$attrs.placeholderFont)
+        .assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
+      expect(obj.$attrs.textFont)
+        .assertEqual('{"fontSize":"14.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}');
       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Start');
       expect(obj.$attrs.copyOption).assertEqual('');
       expect(obj.$attrs.placeholder).assertEqual('Type to search...');
       console.info('[SearchJsunit_0400] END');
       done();
     });
-  })
+  }
+
+  )
 }

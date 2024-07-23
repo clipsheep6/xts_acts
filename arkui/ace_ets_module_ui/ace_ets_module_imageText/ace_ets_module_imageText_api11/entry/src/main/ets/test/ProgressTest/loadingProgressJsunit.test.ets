@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 const waitUiReadyMs = 1000;
 
 export default function loadingProgressJsunit() {
-  describe('loadingProgressJsunit', function () {
-    beforeEach(async function (done) {
+  describe('loadingProgressJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("loadingProgressJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Progress/loadingprogress',
@@ -42,7 +42,7 @@ export default function loadingProgressJsunit() {
       done();
     });
 
-    it('loadingProgressJsunit_0100', 0, async function (done) {
+    it('loadingProgressJsunit_0100', 0, async (done: Function) => {
        console.info('loadingProgressJsunit_0100 START');
        await CommonFunc.sleep(1000);
        // get the gauge component and test attribute
@@ -53,7 +53,7 @@ export default function loadingProgressJsunit() {
        done();
     });
 
-   it('loadingProgressJsunit_0200', 0, async function (done) {
+   it('loadingProgressJsunit_0200', 0, async (done: Function) => {
       console.info('loadingProgressJsunit_0200 START');
       await CommonFunc.sleep(1000);
       // modify the color attribute normal value of loadingProgress dynamically
@@ -67,7 +67,7 @@ export default function loadingProgressJsunit() {
       done();
     });
 
-  it('loadingProgressJsunit_0300', 0, async function (done) {
+  it('loadingProgressJsunit_0300', 0, async (done: Function) => {
       console.info('loadingProgressJsunit_0300 START');
       await CommonFunc.sleep(1000);
       // modify the values attribute illegal value of loadingProgress dynamically

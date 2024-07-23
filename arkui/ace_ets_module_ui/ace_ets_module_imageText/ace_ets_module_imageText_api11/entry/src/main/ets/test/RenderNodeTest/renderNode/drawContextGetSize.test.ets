@@ -14,12 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../../MainAbility/utils/Common';
 
 export default function drawContextGetSizeTest() {
-  describe('drawContextGetSizeTest', function () {
-    beforeEach(async function (done) {
+  describe('drawContextGetSizeTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("drawContextGetSizeTest beforeEach start");
       let options = {
         uri: 'MainAbility/pages/RenderNode/renderNode/drawContextGetSize',
@@ -42,14 +55,14 @@ export default function drawContextGetSizeTest() {
     });
 
     /**
-     * @tc.number    drawContextGetSize
-     * @tc.name      drawContextGetSizeTest_0100
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number drawContextGetSize
+     * @tc.name drawContextGetSizeTest_0100
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('drawContextGetSizeTest_0100', 0, async function (done) {
+    it('drawContextGetSizeTest_0100', 0, async (done: Function) => {
       console.info('drawContextGetSizeTest_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);

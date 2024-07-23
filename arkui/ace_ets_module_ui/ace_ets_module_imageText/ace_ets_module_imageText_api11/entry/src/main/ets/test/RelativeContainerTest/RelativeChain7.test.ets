@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RelativeChain7() {
-  describe('RelativeChain7', function () {
-    beforeEach(async function (done) {
+  describe('RelativeChain7', () => {
+    beforeEach(async (done: Function) => {
       console.info("RelativeChain7 beforeEach start");
       try {
         router.clear();
@@ -27,7 +40,9 @@ export default function RelativeChain7() {
         console.info("get RelativeChain7 state pages:" + JSON.stringify(pages));
         if (!("RelativeChain7" == pages.name)) {
           console.info("get  RelativeChain7 pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/RelativeContainer/RelativeChain7"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/RelativeContainer/RelativeChain7"
+          })
           await CommonFunc.sleep(2000);
           console.info("push RelativeChain7 page result:" + JSON.stringify(result));
         }
@@ -37,20 +52,20 @@ export default function RelativeChain7() {
       console.info("RelativeChain7 foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("RelativeChain7 after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0510
-     * @tc.desc      chainMode test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0510
+     * @tc.desc chainMode test
+     * @tc.level Level 3
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
 
-    it('RelativeChain7_001', 0, async function (done) {
+    it('RelativeChain7_001', 0, async (done: Function) => {
       console.info('[RelativeChain7_001] START');
 
       await CommonFunc.sleep(1000);
@@ -74,7 +89,6 @@ export default function RelativeChain7() {
       console.info('[RelativeChain7_001] END');
       done();
     });
-
 
 
   })

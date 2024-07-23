@@ -20,8 +20,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function underlineColor() {
 
-  describe('underlineColor', function () {
-    beforeEach(async function (done) {
+  describe('underlineColor', () => {
+    beforeEach(async (done: Function) => {
       let options = {
         uri:  'MainAbility/pages/TextInput/underlineColor',
       }
@@ -42,7 +42,7 @@ export default function underlineColor() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("underlineColor after each called");
     });
@@ -57,7 +57,7 @@ export default function underlineColor() {
      */
 
 
-    it('underlineColor_0100', 0, async function (done) {
+    it('underlineColor_0100', 0, async (done: Function) => {
       console.info('underlineColor_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);

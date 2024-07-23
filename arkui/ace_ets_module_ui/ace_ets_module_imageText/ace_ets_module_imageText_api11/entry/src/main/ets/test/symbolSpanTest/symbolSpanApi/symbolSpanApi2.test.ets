@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from "../../../MainAbility/common/Common";
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function symbolSpanApi2Test() {
-  describe('symbolSpanApi2Test', function () {
-    beforeEach(async function (done) {
+  describe('symbolSpanApi2Test', () => {
+    beforeEach(async (done: Function) => {
       console.info("symbolSpanApi2 beforeEach start");
       let options = {
         url: 'MainAbility/pages/symbolSpan/symbolSpanApi/symbolspan',
@@ -40,20 +53,20 @@ export default function symbolSpanApi2Test() {
       console.info("symbolSpanApi2 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("symbolSpanApi2 after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_RICHEDITOR_symbolSpanApi2Test_0100
-     * @tc.name      testSymbolSpan
-     * @tc.desc      set api
-     * @tc.level     Level 2
+     * @tc.number SUB_ACE_RICHEDITOR_symbolSpanApi2Test_0100
+     * @tc.name testSymbolSpan
+     * @tc.desc set api
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('symbolSpanApi2Test_0100', 0, async function (done) {
+    it('symbolSpanApi2Test_0100', 0, async (done: Function) => {
       console.info('[symbolSpanApi2Test_0100] START');
       await CommonFunc.sleep(2000);
 
@@ -67,14 +80,14 @@ export default function symbolSpanApi2Test() {
     });
 
     /**
-     * @tc.number    SUB_ACE_RICHEDITOR_lifeCycleTest_0200
-     * @tc.name      test lifeCycleTest_0200
-     * @tc.desc      set api
-     * @tc.level     Level 2
+     * @tc.number SUB_ACE_RICHEDITOR_lifeCycleTest_0200
+     * @tc.name test lifeCycleTest_0200
+     * @tc.desc set api
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('lifeCycleTest_0200', 0, async function (done) {
+    it('lifeCycleTest_0200', 0, async (done: Function) => {
       console.info('[symbolSpanApi2Test_0200] START');
       await CommonFunc.sleep(2000);
 

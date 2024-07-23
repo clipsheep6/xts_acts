@@ -15,11 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  MouseButton,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function APIUnderlineColorTest() {
-  describe('APIUnderlineColorTest', function () {
-    beforeEach(async function (done) {
+  describe('APIUnderlineColorTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("APIUnderlineColorTest beforeEach start");
       try {
         router.clear();
@@ -27,7 +41,9 @@ export default function APIUnderlineColorTest() {
         console.info("get APIUnderlineColorTest state pages:" + JSON.stringify(pages));
         if (!("APIUnderlineColor" == pages.name)) {
           console.info("get  APIUnderlineColorTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/TextInput/APIUnderlineColor"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/TextInput/APIUnderlineColor"
+          })
           await CommonFunc.sleep(2000);
           console.info("push APIUnderlineColorTest page result:" + JSON.stringify(result));
         }
@@ -37,19 +53,19 @@ export default function APIUnderlineColorTest() {
       console.info("APIUnderlineColorTest foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("APIUnderlineColorTest after each called");
     });
 
     /**
-     * @tc.number    APIUnderlineColorTest_001
-     * @tc.desc      api
-     * @tc.level     Level 3
+     * @tc.number APIUnderlineColorTest_001
+     * @tc.desc api
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('APIUnderlineColorTest_001', 0, async function (done) {
+    it('APIUnderlineColorTest_001', 0, async (done: Function) => {
       console.info('[APIUnderlineColorTest_001] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();

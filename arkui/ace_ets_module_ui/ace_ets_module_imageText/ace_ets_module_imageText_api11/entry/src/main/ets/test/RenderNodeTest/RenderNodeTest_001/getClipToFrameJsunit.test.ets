@@ -15,10 +15,28 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix,
+  UiDirection,
+  MouseButton,
+  UIElementInfo,
+  UIEventObserver
+} from '@ohos.UiTest';
+
 export default function getClipToFrameJsunit() {
-  describe('getClipToFrameJsunit', function () {
-    beforeEach(async function (done) {
+  describe('getClipToFrameJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("getClipToFrameJsunit beforeEach start");
       let options = {
         url: "MainAbility/pages/RenderNode/renderNode001/getClipToFrame",
@@ -39,19 +57,19 @@ export default function getClipToFrameJsunit() {
       console.info("getClipToFrameJsunit beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("getClipToFrameJsunit after each called");
     });
     /**
-     * @tc.number    SUB_ACE_RICHEDITOR_getClipToFrameJsunit_001
-     * @tc.name      getClipToFrameJsunit
-     * @tc.desc      set api
-     * @tc.level     Level 2
+     * @tc.number SUB_ACE_RICHEDITOR_getClipToFrameJsunit_001
+     * @tc.name getClipToFrameJsunit
+     * @tc.desc set api
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('getClipToFrameJsunit_001', 0, async function (done) {
+    it('getClipToFrameJsunit_001', 0, async (done: Function) => {
       console.info('[getClipToFrameJsunit_001] START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('getClipToFrame');

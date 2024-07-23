@@ -14,14 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+
 const waitUiReadyMs = 1000;
 
 export default function imageThreeJsunit() {
-  describe('imageThreeJsunit', function () {
-    beforeEach(async function (done) {
+  describe('imageThreeJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("imageThreeJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/image/imageThree',
@@ -36,13 +50,13 @@ export default function imageThreeJsunit() {
           console.info("push imageThreeJsunit success " + JSON.stringify(result));
         }
       } catch (err) {
-          console.error("push imageThreeJsunit page error:" + err);
-	        expect().assertFail();
+        console.error("push imageThreeJsunit page error:" + err);
+        expect().assertFail();
       }
       done();
     });
 
-    it('imageThreeJsunit_0100', 0, async function (done) {
+    it('imageThreeJsunit_0100', 0, async (done: Function) => {
       console.info('imageThreeJsunit_0100 START');
       await CommonFunc.sleep(1000);
       // test the image complete Event
@@ -54,7 +68,7 @@ export default function imageThreeJsunit() {
       done();
     });
 
-    it('imageThreeJsunit_0200', 0, async function (done) {
+    it('imageThreeJsunit_0200', 0, async (done: Function) => {
       console.info('imageThreeJsunit_0100 START');
       await CommonFunc.sleep(1000);
       // test the image finish Event
@@ -63,9 +77,9 @@ export default function imageThreeJsunit() {
       console.info("[imageThreeJsunit_0200] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.content).assertEqual('init');
       done();
-    });  
-    
-    it('imageThreeJsunit_0300', 0, async function (done) {
+    });
+
+    it('imageThreeJsunit_0300', 0, async (done: Function) => {
       console.info('imageThreeJsunit_0300 START');
       await CommonFunc.sleep(1000);
       // test the image click event
@@ -80,11 +94,13 @@ export default function imageThreeJsunit() {
       done();
     });
 
-    it('imageThreeJsunit_0400', 0, async function (done) {
+    it('imageThreeJsunit_0400', 0, async (done: Function) => {
       console.info('imageThreeJsunit_0200 START');
       await CommonFunc.sleep(1000);
       // test the image error event
-      globalThis.value.message.notify({name:'imageName',value:'1.png'})
+      globalThis.value.message.notify({
+        name: 'imageName', value: '1.png'
+      })
       await CommonFunc.sleep(300);
       let strJson = getInspectorByKey('error');
       let obj = JSON.parse(strJson);

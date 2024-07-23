@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from "../../../MainAbility/common/Common";
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function spanApi1() {
-  describe('spanApi1', function () {
-    beforeEach(async function (done) {
+  describe('spanApi1', () => {
+    beforeEach(async (done: Function) => {
       console.info("spanApi1 beforeEach start");
       let options = {
         url: 'MainAbility/pages/span/spanApi/spanApi1',
@@ -40,19 +53,19 @@ export default function spanApi1() {
       console.info("spanApi1 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("spanApi1 after each called");
     });
     /**
-     * @tc.number    SUB_ACE_RICHEDITOR_spanApi1_0100
-     * @tc.name      testSpan
-     * @tc.desc      set api
-     * @tc.level     Level 2
+     * @tc.number SUB_ACE_RICHEDITOR_spanApi1_0100
+     * @tc.name testSpan
+     * @tc.desc set api
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('spanApi1_0100', 0, async function (done) {
+    it('spanApi1_0100', 0, async (done: Function) => {
       console.info('[spanApi1_0100] START');
       await CommonFunc.sleep(2000);
 

@@ -18,8 +18,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function TextInputEvent() {
-  describe('TextInputEvent', function () {
-    beforeEach(async function (done) {
+  describe('TextInputEvent', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextInputEvent beforeEach start");
       try {
         router.clear();
@@ -37,7 +37,7 @@ export default function TextInputEvent() {
       console.info("TextInputEvent foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("TextInputEvent after each called");
     });
@@ -51,7 +51,7 @@ export default function TextInputEvent() {
      * @tc.level      : Level 3
      */
 
-    it('TextInputEvent_001', 0, async function (done) {
+    it('TextInputEvent_001', 0, async (done: Function) => {
       console.info('[TextInputEvent_001] START');
 
       await CommonFunc.sleep(1000);
@@ -83,7 +83,7 @@ export default function TextInputEvent() {
      * @tc.level      : Level 3
      */
 
-    it('TextInputEvent_002', 0, async function (done) {
+    it('TextInputEvent_002', 0, async (done: Function) => {
       console.info('[TextInputEvent_002] START');
 
       await CommonFunc.sleep(1000);
@@ -116,7 +116,7 @@ export default function TextInputEvent() {
      * @tc.level      : Level 3
      */
 
-    it('TextInputEvent_003', 0, async function (done) {
+    it('TextInputEvent_003', 0, async (done: Function) => {
       console.info('[TextInputEvent_003] START');
 
       await CommonFunc.sleep(1000);
@@ -149,7 +149,7 @@ export default function TextInputEvent() {
      * @tc.level      : Level 3
      */
 
-    it('TextInputEvent_004', 0, async function (done) {
+    it('TextInputEvent_004', 0, async (done: Function) => {
       console.info('[TextInputEvent_004] START');
 
       await CommonFunc.sleep(1000);
@@ -182,7 +182,7 @@ export default function TextInputEvent() {
      * @tc.level      : Level 3
      */
 
-    it('TextInputEvent_005', 0, async function (done) {
+    it('TextInputEvent_005', 0, async (done: Function) => {
       console.info('[TextInputEvent_005] START');
 
       await CommonFunc.sleep(1000);
@@ -214,7 +214,7 @@ export default function TextInputEvent() {
      * @tc.level      : Level 3
      */
 
-    it('TextInputEvent_006', 0, async function (done) {
+    it('TextInputEvent_006', 0, async (done: Function) => {
       console.info('[TextInputEvent_006] START');
 
       await CommonFunc.sleep(1000);
@@ -248,7 +248,7 @@ export default function TextInputEvent() {
      * @tc.level      : Level 3
      */
 
-    it('TextInputEvent_007', 0, async function (done) {
+    it('TextInputEvent_007', 0, async (done: Function) => {
       console.info('[TextInputEvent_007] START');
 
       await CommonFunc.sleep(1000);

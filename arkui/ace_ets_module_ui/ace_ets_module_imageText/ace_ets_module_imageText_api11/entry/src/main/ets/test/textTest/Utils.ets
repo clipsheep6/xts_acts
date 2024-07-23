@@ -83,7 +83,7 @@ export default class Utils {
     if (drag) {
       await this.sleep(500)
     }
-    for (var i = 1;i <= swipeSteps; i++) {
+    for (var i = 1; i <= swipeSteps; i++) {
       var movePoint: TouchObject = {
         id: 1,
         x: downX + (xStep * i),

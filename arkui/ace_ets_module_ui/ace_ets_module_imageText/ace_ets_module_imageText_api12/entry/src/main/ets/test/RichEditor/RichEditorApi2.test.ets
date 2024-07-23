@@ -16,7 +16,17 @@
 import CommonFunc from '../../MainAbility/common/Common';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RichEditorApi2() {
   describe('RichEditorApi2', () => {
@@ -54,7 +64,8 @@ export default function RichEditorApi2() {
       await CommonFunc.sleep(1000);
 
       let RichEditorApi2_1 = getInspectorByKey('RichEditorApi2_1');
-      expect(JSON.stringify(JSON.parse(RichEditorApi2_1).$attrs.placeholder).replace(/\\\"/g,  '"')).assertEqual("\"{\"value\":\"input...\",\"style\":\"{\"font\":\"{\"size\":\"16.00fp\",\"weight\":\"FontWeight.Normal\",\"family\":\"HarmonyOS Sans\",\"style\":\"FontStyle.Normal\"}\",\"fontColor\":\"#FF808080\"}\"}\"");
+      expect(JSON.stringify(JSON.parse(RichEditorApi2_1).$attrs.placeholder).replace(/\\\"/g, '"'))
+        .assertEqual("\"{\"value\":\"input...\",\"style\":\"{\"font\":\"{\"size\":\"16.00fp\",\"weight\":\"FontWeight.Normal\",\"family\":\"HarmonyOS Sans\",\"style\":\"FontStyle.Normal\"}\",\"fontColor\":\"#FF808080\"}\"}\"");
 
       console.info('RichEditorApi2_0100 END');
       done();

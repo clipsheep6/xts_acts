@@ -14,12 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 
 export default function RichEditor5() {
-  describe('RichEditor5', function () {
-    beforeEach(async function (done) {
+  describe('RichEditor5', () => {
+    beforeEach(async (done: Function) => {
       console.info("RichEditor5 beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditorEnhance/RichEditor5',
@@ -41,20 +54,20 @@ export default function RichEditor5() {
       console.info("RichEditor5 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       let driver = Driver.create();
       await driver.delayMs(1000)
       console.info("RichEditor5 after each called");
     });
     /**
      * @tc.number RichEditor5_0100
-     * @tc.name   RichEditor5_0100
-     * @tc.desc   Test text change callback.
+     * @tc.name RichEditor5_0100
+     * @tc.desc Test text change callback.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditor5_0100', 0, async function (done) {
+    it('RichEditor5_0100', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditor5_0100] START');
       let driver = Driver.create();

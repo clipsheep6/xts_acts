@@ -14,12 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../../MainAbility/utils/Common';
 
 export default function Navigation1() {
-  describe('Navigation1', function () {
-    beforeEach(async function (done) {
+  describe('Navigation1', () => {
+    beforeEach(async (done: Function) => {
       console.info("appendChildTest beforeEach start");
       let options = {
         uri: 'MainAbility/pages/RelativeContainer/relativeApi11/Navigation2',
@@ -43,14 +56,14 @@ export default function Navigation1() {
 
 
     /**
-     * @tc.number    Navigation2_0100
-     * @tc.name      Navigation2_0100
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number Navigation2_0100
+     * @tc.name Navigation2_0100
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('Navigation2_0100', 0, async function (done) {
+    it('Navigation2_0100', 0, async (done: Function) => {
       console.info('Navigation2_0100 START');
       let strJson = getInspectorByKey('NavigtionText2');
       let obj = JSON.parse(strJson);

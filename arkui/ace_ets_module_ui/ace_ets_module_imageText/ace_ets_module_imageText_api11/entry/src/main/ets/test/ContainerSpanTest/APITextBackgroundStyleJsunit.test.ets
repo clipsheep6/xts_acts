@@ -19,8 +19,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 export default function APITextBackgroundStyleJsunit() {
-  describe('APITextBackgroundStyleJsunit', function () {
-    beforeEach(async function (done) {
+  describe('APITextBackgroundStyleJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("APITextBackgroundStyleJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/ContainerSpan/APITextBackgroundStyle',
@@ -40,7 +40,7 @@ export default function APITextBackgroundStyleJsunit() {
       }
       done();
     });
-    it('APITextBackgroundStyleJsunit_0100', 0, async function (done) {
+    it('APITextBackgroundStyleJsunit_0100', 0, async (done: Function) => {
       await CommonFunc.sleep(1000);
       console.info('APITextBackgroundStyleJsunit_0100 START');
       let strcontent = getInspectorByKey('APITextBackgroundStyleSpan');

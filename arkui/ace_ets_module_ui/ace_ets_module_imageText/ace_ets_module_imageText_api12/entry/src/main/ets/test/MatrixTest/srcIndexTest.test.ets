@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/common/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function srcIndexTest() {
-  describe('srcIndexTest', function () {
-    beforeEach(async function (done) {
+  describe('srcIndexTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("srcIndexTest beforeEach start");
       let options = {
         url: "MainAbility/pages/Matrix/srcIndex",
@@ -40,20 +53,20 @@ export default function srcIndexTest() {
       console.info("srcIndexTest beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("srcIndexTest after each called");
     });
 
     /**
-     * @tc.number    srcIndexTest_001
-     * @tc.name      testBack
-     * @tc.desc      Return specified page by index value
-     * @tc.level     Level 3
+     * @tc.number srcIndexTest_001
+     * @tc.name testBack
+     * @tc.desc Return specified page by index value
+     * @tc.level Level 3
      * @tc.type
      * @tc.size
      */
-    it('srcIndexTest_001', 0, async function (done) {
+    it('srcIndexTest_001', 0, async (done: Function) => {
       console.info('[srcIndexTest_001] START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();

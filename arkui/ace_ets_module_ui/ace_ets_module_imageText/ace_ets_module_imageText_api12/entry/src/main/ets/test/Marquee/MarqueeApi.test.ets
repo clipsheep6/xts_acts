@@ -15,11 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  MouseButton,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function MarqueeApi() {
-  describe('MarqueeApi', function () {
-    beforeEach(async function (done) {
+  describe('MarqueeApi', () => {
+    beforeEach(async (done: Function) => {
       console.info("MarqueeApi beforeEach start");
       try {
         router.clear();
@@ -27,7 +41,9 @@ export default function MarqueeApi() {
         console.info("get MarqueeApi state pages:" + JSON.stringify(pages));
         if (!("MarqueeApi" == pages.name)) {
           console.info("get  MarqueeApi pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Marquee/MarqueeApi"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/Marquee/MarqueeApi"
+          })
           await CommonFunc.sleep(2000);
           console.info("push MarqueeApi page result:" + JSON.stringify(result));
         }
@@ -37,19 +53,19 @@ export default function MarqueeApi() {
       console.info("MarqueeApi foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("MarqueeApi after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_MarqueeApi_001
-     * @tc.desc      styled_string test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_MarqueeApi_001
+     * @tc.desc styled_string test
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('MarqueeApi_001', 0, async function (done) {
+    it('MarqueeApi_001', 0, async (done: Function) => {
       console.info('[MarqueeApi_001] START');
 
       await CommonFunc.sleep(1000);
@@ -64,8 +80,6 @@ export default function MarqueeApi() {
       done();
 
     });
-
-
 
 
   })

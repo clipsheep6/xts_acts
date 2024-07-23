@@ -15,7 +15,7 @@
 
 import router from '@ohos.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import Utils from '../../MainAbility/common/Utils.ets'
+import Utils from '../../MainAbility/common/Utils'
 import events_emitter from '@ohos.events.emitter';
 
 export default function unitsModuleNameJsunit() {
@@ -115,7 +115,9 @@ export default function unitsModuleNameJsunit() {
       let strJson: string = getInspectorByKey('minWidthText');
       console.info("[testunitsMinWidth0001] component constraintSize strJson:" + strJson);
       expect(JSON.parse(strJson).$type).assertEqual('Text');
-      console.info('[testunitsMinWidth0001] constraintSize value :' + JSON.parse(JSON.parse(strJson).$attrs.constraintSize).minWidth);
+      console.info('[testunitsMinWidth0001] constraintSize value :' + JSON.parse(JSON.parse(strJson)
+        .$attrs
+        .constraintSize).minWidth);
       expect(JSON.parse(JSON.parse(strJson).$attrs.constraintSize).minWidth).assertEqual('200.00vp');
       console.info("[testunitsMinWidth0001] constraintSize value :" + JSON.parse(strJson).$attrs.constraintSize);
       done();
@@ -132,7 +134,9 @@ export default function unitsModuleNameJsunit() {
       let strJson: string = getInspectorByKey('minWidthText');
       console.info("[testunitsMinWidth0002] component constraintSize strJson:" + strJson);
       expect(JSON.parse(strJson).$type).assertEqual('Text');
-      console.info("[testunitsMinWidth0002] constraintSize is : " + JSON.parse(JSON.parse(strJson).$attrs.constraintSize));
+      console.info("[testunitsMinWidth0002] constraintSize is : " + JSON.parse(JSON.parse(strJson)
+        .$attrs
+        .constraintSize));
       expect(JSON.parse(strJson).$attrs.constraintSize.minWidth).assertEqual(undefined);
       console.info("[testunitsMinWidth0002] constraintSize value :" + JSON.parse(strJson).$attrs.constraintSize);
       done();

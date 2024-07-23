@@ -19,8 +19,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 export default function getLineMetrics() {
-  describe('getLineMetrics', function () {
-    beforeEach(async function (done) {
+  describe('getLineMetrics', () => {
+    beforeEach(async (done: Function) => {
       console.info("getLineMetrics beforeEach start");
       let options: router.RouterOptions = {
         url: 'MainAbility/pages/Text/getLineMetrics',
@@ -42,7 +42,7 @@ export default function getLineMetrics() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info(" getLineMetrics after each called");
     });

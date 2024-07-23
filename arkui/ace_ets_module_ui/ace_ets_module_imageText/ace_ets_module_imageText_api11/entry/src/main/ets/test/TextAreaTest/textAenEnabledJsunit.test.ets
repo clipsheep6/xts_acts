@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function textAenEnabledJsunit() {
-  describe('textAenEnabledJsunit', function () {
-    beforeEach(async function (done) {
+  describe('textAenEnabledJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("textAenEnabledJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TextArea/textAenEnabled',
@@ -43,7 +56,7 @@ export default function textAenEnabledJsunit() {
       done();
     });
 
-    it('textAenEnabledJsunit_0100', 0, async function (done) {
+    it('textAenEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('textAenEnabledJsunit_0100 START');
       let driver = await UiDriver.create()
@@ -59,7 +72,7 @@ export default function textAenEnabledJsunit() {
       done();
     });
 
-    it('textAenEnabledJsunit_0100', 0, async function (done) {
+    it('textAenEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('textAenEnabledJsunit_0100 START');
       let driver = await UiDriver.create()

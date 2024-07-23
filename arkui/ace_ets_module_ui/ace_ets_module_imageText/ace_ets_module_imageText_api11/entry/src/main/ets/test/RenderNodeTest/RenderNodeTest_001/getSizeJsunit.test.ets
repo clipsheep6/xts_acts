@@ -15,10 +15,28 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix,
+  UiDirection,
+  MouseButton,
+  UIElementInfo,
+  UIEventObserver
+} from '@ohos.UiTest';
+
 export default function getSizeJsunit() {
-  describe('getSizeJsunit', function () {
-    beforeEach(async function (done) {
+  describe('getSizeJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("getSizeJsunit beforeEach start");
       let options = {
         url: "MainAbility/pages/RenderNode/renderNode001/getSize",
@@ -40,14 +58,14 @@ export default function getSizeJsunit() {
       done();
     });
     /**
-     * @tc.number    SUB_ACE_RICHEDITOR_getSizeJsunit_001
-     * @tc.name      getSizeJsunit
-     * @tc.desc      set api
-     * @tc.level     Level 2
+     * @tc.number SUB_ACE_RICHEDITOR_getSizeJsunit_001
+     * @tc.name getSizeJsunit
+     * @tc.desc set api
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('getSizeJsunit_001', 0, async function (done) {
+    it('getSizeJsunit_001', 0, async (done: Function) => {
       console.info('[getSizeJsunit_001] START');
       await CommonFunc.sleep(1000);
       let strJson1 = getInspectorByKey('getWidth');

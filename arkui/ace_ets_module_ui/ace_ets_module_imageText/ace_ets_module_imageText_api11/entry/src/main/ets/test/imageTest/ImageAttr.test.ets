@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 import router from '@system.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import CommonFunc from "../../MainAbility/common/Common";
 
 import { Driver, ON } from '@ohos.UiTest';
 
 export default function ImageAttr() {
-  describe('ImageAttr', function () {
-    beforeEach(async function (done) {
+  describe('ImageAttr', () => {
+    beforeEach(async (done: Function) => {
       console.info("ImageAttr beforeEach start");
       let options = {
         uri: 'MainAbility/pages/image/ImageAttr',
@@ -41,18 +41,18 @@ export default function ImageAttr() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("ImageAttr after each called");
     });
 
     /**
-     * @tc.number      ImageAttr_001
-     * @tc.name        ImageAttr_001
-     * @tc.desc        Image test
-     * @tc.level       Level 2
+     * @tc.number ImageAttr_001
+     * @tc.name ImageAttr_001
+     * @tc.desc Image test
+     * @tc.level Level 2
      */
-    it('ImageAttr_001', 0, async function (done) {
+    it('ImageAttr_001', 0, async (done: Function) => {
       console.info('[ImageAttr_001] START');
 
       await CommonFunc.sleep(1000);
@@ -86,16 +86,13 @@ export default function ImageAttr() {
     });
 
 
-
-
-
     /**
-     * @tc.number      ImageAttr_002
-     * @tc.name        ImageAttr_002
-     * @tc.desc        Image test
-     * @tc.level       Level 2
+     * @tc.number ImageAttr_002
+     * @tc.name ImageAttr_002
+     * @tc.desc Image test
+     * @tc.level Level 2
      */
-    it('ImageAttr_002', 0, async function (done) {
+    it('ImageAttr_002', 0, async (done: Function) => {
       console.info('[ImageAttr_002] START');
       await CommonFunc.sleep(1000);
       let driver = await Driver.create()
@@ -116,7 +113,6 @@ export default function ImageAttr() {
       expect(obj3.$attrs.content).assertEqual('30');
 
 
-
       let strJson4 = getInspectorByKey('right_test');
       await CommonFunc.sleep(200);
       let obj4 = JSON.parse(strJson4);
@@ -126,9 +122,6 @@ export default function ImageAttr() {
       console.info('[ImageAttr_002] END');
       done();
     });
-
-
-
 
 
   })

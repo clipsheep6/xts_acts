@@ -14,12 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 
 export default function RichEditor7() {
-  describe('RichEditor7', function () {
-    beforeEach(async function (done) {
+  describe('RichEditor7', () => {
+    beforeEach(async (done: Function) => {
       console.info("RichEditor7 beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditorEnhance/RichEditor7',
@@ -41,20 +54,20 @@ export default function RichEditor7() {
       console.info("RichEditor7 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       let driver = Driver.create();
       await driver.delayMs(1000)
       console.info("RichEditor7 after each called");
     });
     /**
-     * @tc.number    RichEditor7_0100
-     * @tc.name      RichEditor7_0100
-     * @tc.desc      Test stop edinting function in RichEditor.
+     * @tc.number RichEditor7_0100
+     * @tc.name RichEditor7_0100
+     * @tc.desc Test stop edinting function in RichEditor.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditor7_0100', 0, async function (done) {
+    it('RichEditor7_0100', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditor7_0100] START');
       let driver = Driver.create();
@@ -75,14 +88,14 @@ export default function RichEditor7() {
       done();
     });
     /**
-     * @tc.number    RichEditor7_0200
-     * @tc.name      RichEditor7_0200
-     * @tc.desc      Test onSubmit callback return EnterKeyType when keepEditableState is false.
+     * @tc.number RichEditor7_0200
+     * @tc.name RichEditor7_0200
+     * @tc.desc Test onSubmit callback return EnterKeyType when keepEditableState is false.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditor7_0200', 0, async function (done) {
+    it('RichEditor7_0200', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditor7_0200] START');
       let driver = Driver.create();
@@ -93,7 +106,7 @@ export default function RichEditor7() {
       await driver.triggerKey(2054)
       let OnSubmitEnterKey = await driver.findComponent(ON.id("EnterKey"));
       let EnterKeyResult = await OnSubmitEnterKey.getText()
-      console.log("EnterKeyResult:"+EnterKeyResult)
+      console.log("EnterKeyResult:" + EnterKeyResult)
       let OnEditingChange = await driver.findComponent(ON.id("OnEditingChange2"));
       let IsEditing = await driver.findComponent(ON.id("IsEditing2"));
       let OnEditingChangeText = await OnEditingChange.getText()
@@ -106,14 +119,14 @@ export default function RichEditor7() {
       done();
     });
     /**
-     * @tc.number    RichEditor7_0300
-     * @tc.name      RichEditor7_0300
-     * @tc.desc       Test onSubmit callback return EnterKeyType when keepEditableState is true.
+     * @tc.number RichEditor7_0300
+     * @tc.name RichEditor7_0300
+     * @tc.desc Test onSubmit callback return EnterKeyType when keepEditableState is true.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('RichEditor7_0300', 0, async function (done) {
+    it('RichEditor7_0300', 0, async (done: Function) => {
       // Test stop
       console.info('[RichEditor7_0300] START');
       let driver = Driver.create();

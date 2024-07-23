@@ -14,11 +14,24 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../../MainAbility/utils/Common';
+
 export default function frame() {
-  describe('frame', function () {
-    beforeEach(async function (done) {
+  describe('frame', () => {
+    beforeEach(async (done: Function) => {
       console.info("frame beforeEach start");
       let options = {
         uri: 'MainAbility/pages/RenderNode/renderNode001/frame',
@@ -40,14 +53,14 @@ export default function frame() {
       done();
     });
     /**
-     * @tc.number    SUB_ACE_frame_0100
-     * @tc.name      frame_0100
-     * @tc.desc      getFrame api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_frame_0100
+     * @tc.name frame_0100
+     * @tc.desc getFrame api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('frame_0100', 0, async function (done) {
+    it('frame_0100', 0, async (done: Function) => {
       console.info('frame_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -63,14 +76,14 @@ export default function frame() {
       done();
     });
     /**
-     * @tc.number    SUB_ACE_frame_0200
-     * @tc.name      frame_0200
-     * @tc.desc      setFrame api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_frame_0200
+     * @tc.name frame_0200
+     * @tc.desc setFrame api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('frame_0200', 0, async function (done) {
+    it('frame_0200', 0, async (done: Function) => {
       console.info('frame_0200 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);

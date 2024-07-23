@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function SelectJsunit() {
-  describe('SelectJsunit', function () {
-    beforeEach(async function (done) {
+  describe('SelectJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("SelectJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/select/SelectPage',
@@ -43,7 +56,7 @@ export default function SelectJsunit() {
       done();
     });
 
-    it('SelectJsunit_0100', 0, async function (done) {
+    it('SelectJsunit_0100', 0, async (done: Function) => {
       // Get the information of the Select component
       console.info('[SelectJsunit_0100] START');
       await CommonFunc.sleep(1000);
@@ -65,10 +78,12 @@ export default function SelectJsunit() {
       expect(obj.$attrs.font).assertEqual('{"size":"16.00fp","weight":"500","family":"","style":"FontStyle.Normal"}');
       expect(obj.$attrs.fontColor).assertEqual('#FF000000');
       expect(obj.$attrs.selectedOptionBgColor).assertEqual('#FF808080');
-      expect(obj.$attrs.selectedOptionFont).assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
+      expect(obj.$attrs.selectedOptionFont)
+        .assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
       expect(obj.$attrs.selectedOptionFontColor).assertEqual('#FFFF0000');
       expect(obj.$attrs.optionBgColor).assertEqual('#FF808080');
-      expect(obj.$attrs.optionFont).assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
+      expect(obj.$attrs.optionFont)
+        .assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
       expect(obj.$attrs.optionFontColor).assertEqual('#FFFF0000');
       await CommonFunc.sleep(1000);
       let strJson1 = getInspectorByKey('indexValue');
@@ -79,28 +94,48 @@ export default function SelectJsunit() {
       done();
     });
 
-    it('SelectJsunit_0200', 0, async function (done) {
+    it('SelectJsunit_0200', 0, async (done: Function) => {
       // Modify the properties of component select
       console.info('[SelectJsunit_0200] START');
-      globalThis.value.message.notify({name:'selected',value:2})
+      globalThis.value.message.notify({
+        name: 'selected', value: 2
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'selectValue',value:'testButton'})
+      globalThis.value.message.notify({
+        name: 'selectValue', value: 'testButton'
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'selectFont',value:'{ size: 16, weight: 500 }'})
+      globalThis.value.message.notify({
+        name: 'selectFont', value: '{ size: 16, weight: 500 }'
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'selectedOptionBgColor',value:Color.Blue})
+      globalThis.value.message.notify({
+        name: 'selectedOptionBgColor', value: Color.Blue
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'selectedOptionFont',value:'{ size: 16, weight: 400 }'})
+      globalThis.value.message.notify({
+        name: 'selectedOptionFont', value: '{ size: 16, weight: 400 }'
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'selectedOptionFontColor',value:Color.Yellow})
+      globalThis.value.message.notify({
+        name: 'selectedOptionFontColor', value: Color.Yellow
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'optionBgColor',value:Color.Grey})
+      globalThis.value.message.notify({
+        name: 'optionBgColor', value: Color.Grey
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'optionFont',value:'{ size: 16, weight: 400 }'})
+      globalThis.value.message.notify({
+        name: 'optionFont', value: '{ size: 16, weight: 400 }'
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'optionFontColor',value:Color.Red})
+      globalThis.value.message.notify({
+        name: 'optionFontColor', value: Color.Red
+      })
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'fontColor',value:Color.Green})
+      globalThis.value.message.notify({
+        name: 'fontColor', value: Color.Green
+      })
       await CommonFunc.sleep(500);
 
       // Get the propoties value of the select component
@@ -109,20 +144,23 @@ export default function SelectJsunit() {
       console.info("[SelectJsunit_0200] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.selected).assertEqual('2');
       expect(obj.$attrs.value).assertEqual('testButton');
-      expect(obj.$attrs.font).assertEqual('{"size":"16.00fp","weight":"FontWeight.Medium","family":"","style":"FontStyle.Normal"}');
+      expect(obj.$attrs.font)
+        .assertEqual('{"size":"16.00fp","weight":"FontWeight.Medium","family":"","style":"FontStyle.Normal"}');
       expect(obj.$attrs.selectedOptionBgColor).assertEqual('#FF0000FF');
-      expect(obj.$attrs.selectedOptionFont).assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
+      expect(obj.$attrs.selectedOptionFont)
+        .assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
       expect(obj.$attrs.selectedOptionFontColor).assertEqual('#FFFFFF00');
       expect(obj.$attrs.optionBgColor).assertEqual('#FF808080');
-      expect(obj.$attrs.optionFont).assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
+      expect(obj.$attrs.optionFont)
+        .assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
       expect(obj.$attrs.optionFontColor).assertEqual('#FFFF0000');
-      expect(obj.$attrs.fontColor).assertEqual('#FF008000');  
+      expect(obj.$attrs.fontColor).assertEqual('#FF008000');
       await CommonFunc.sleep(1000);
       console.info('[SelectJsunit_0200] END');
       done();
     });
 
-    it('SelectJsunit_0300', 0, async function (done) {
+    it('SelectJsunit_0300', 0, async (done: Function) => {
       // Verify the functions of the select component
       console.info('[SelectJsunit_0300] START');
 
@@ -150,34 +188,60 @@ export default function SelectJsunit() {
       done();
     });
 
-    it('SelectJsunit_0400', 0, async function (done) {
+    it('SelectJsunit_0400', 0, async (done: Function) => {
       // Illegal modification of properties of component select
       console.info('[SelectJsunit_0400] START');
-      globalThis.value.message.notify({name:'optionValue',value:'-20'})
+      globalThis.value.message.notify({
+        name: 'optionValue', value: '-20'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'icon',value:'10'})
+      globalThis.value.message.notify({
+        name: 'icon', value: '10'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'selected',value:'test'})
+      globalThis.value.message.notify({
+        name: 'selected', value: 'test'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'selectValue',value:'10'})
+      globalThis.value.message.notify({
+        name: 'selectValue', value: '10'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'selectFont',value:'###'})
+      globalThis.value.message.notify({
+        name: 'selectFont', value: '###'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'fontColor',value:'123'})
+      globalThis.value.message.notify({
+        name: 'fontColor', value: '123'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'selectedOptionBgColor',value:'0'})
+      globalThis.value.message.notify({
+        name: 'selectedOptionBgColor', value: '0'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'selectedOptionFont',value:'%666'})
+      globalThis.value.message.notify({
+        name: 'selectedOptionFont', value: '%666'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'selectedOptionFontColor',value:'hello'})
+      globalThis.value.message.notify({
+        name: 'selectedOptionFontColor', value: 'hello'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'optionBgColor',value:'-10'})
+      globalThis.value.message.notify({
+        name: 'optionBgColor', value: '-10'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'optionFont',value:'aaa'})
+      globalThis.value.message.notify({
+        name: 'optionFont', value: 'aaa'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'optionFontColor',value:'123'})
+      globalThis.value.message.notify({
+        name: 'optionFontColor', value: '123'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'indexValue',value:'bbb'})
+      globalThis.value.message.notify({
+        name: 'indexValue', value: 'bbb'
+      })
       await CommonFunc.sleep(2000);
 
       // Get the propoties value of the select component
@@ -186,13 +250,16 @@ export default function SelectJsunit() {
       console.info("[SelectJsunit_0400] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.selected).assertEqual('0');
       expect(obj.$attrs.value).assertEqual('10');
-      expect(obj.$attrs.font).assertEqual('{"size":"16.00fp","weight":"FontWeight.Medium","family":"","style":"FontStyle.Normal"}');
+      expect(obj.$attrs.font)
+        .assertEqual('{"size":"16.00fp","weight":"FontWeight.Medium","family":"","style":"FontStyle.Normal"}');
       expect(obj.$attrs.fontColor).assertEqual('#FF00007B');
       expect(obj.$attrs.selectedOptionBgColor).assertEqual('#FF0000FF');
-      expect(obj.$attrs.selectedOptionFont).assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
+      expect(obj.$attrs.selectedOptionFont)
+        .assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
       expect(obj.$attrs.selectedOptionFontColor).assertEqual('#FFFFFF00');
       expect(obj.$attrs.optionBgColor).assertEqual('#FF0000FF');
-      expect(obj.$attrs.optionFont).assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
+      expect(obj.$attrs.optionFont)
+        .assertEqual('{"size":"16.00fp","weight":"400","family":"","style":"FontStyle.Normal"}');
       expect(obj.$attrs.optionFontColor).assertEqual('#FFFFFF00');
       await CommonFunc.sleep(1000);
       let strJson1 = getInspectorByKey('indexValue');

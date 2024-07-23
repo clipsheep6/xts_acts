@@ -14,14 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component,MouseButton, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  MouseButton,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function textInput_caret() {
-  describe('textInput_caret', function () {
-    beforeEach(async function (done) {
+  describe('textInput_caret', () => {
+    beforeEach(async (done: Function) => {
       console.info("textInput_caret beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TextInput/textInput_caret',
@@ -49,11 +63,13 @@ export default function textInput_caret() {
       * @tc.desc  : Use mouse click to get CaretOffset
       * @tc.level : Level 3
       */
-    it('textInput_caret_001', 0, async function (done) {
+    it('textInput_caret_001', 0, async (done: Function) => {
 
       console.info('[textInput_caret_001] START');
       let driver = Driver.create();
-      await driver.mouseClick({x:300, y:200}, MouseButton.MOUSE_BUTTON_LEFT);
+      await driver.mouseClick({
+        x: 300, y: 200
+      }, MouseButton.MOUSE_BUTTON_LEFT);
       console.info('mouse click success');
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('inputGetCaret'));

@@ -14,11 +14,25 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../../MainAbility/utils/Common';
+
 export default function getChildTest() {
-  describe('getChildTest', function () {
-    beforeEach(async function (done) {
+  describe('getChildTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("getChildTest beforeEach start");
       let options = {
         uri: 'MainAbility/pages/RenderNode/renderNode001/getChild',
@@ -40,14 +54,14 @@ export default function getChildTest() {
       done();
     });
     /**
-     * @tc.number    getChild
-     * @tc.name      getChildTest_0100
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number getChild
+     * @tc.name getChildTest_0100
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('getChildTest_0100', 0, async function (done) {
+    it('getChildTest_0100', 0, async (done: Function) => {
       console.info('getChildTest_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -65,14 +79,14 @@ export default function getChildTest() {
       done();
     });
     /**
-     * @tc.number    getChild
-     * @tc.name      getChildTest_0200
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number getChild
+     * @tc.name getChildTest_0200
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('getChildTest_0200', 0, async function (done) {
+    it('getChildTest_0200', 0, async (done: Function) => {
       console.info('getChildTest_0200 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -90,14 +104,14 @@ export default function getChildTest() {
       done();
     });
     /**
-     * @tc.number    getChild
-     * @tc.name      getChildTest_0300
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number getChild
+     * @tc.name getChildTest_0300
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('getChildTest_0300', 0, async function (done) {
+    it('getChildTest_0300', 0, async (done: Function) => {
       console.info('getChildTest_0300 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -117,14 +131,14 @@ export default function getChildTest() {
       done();
     });
     /**
-     * @tc.number    getChild
-     * @tc.name      getChildTest_0400
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number getChild
+     * @tc.name getChildTest_0400
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('getChildTest_0400', 0, async function (done) {
+    it('getChildTest_0400', 0, async (done: Function) => {
       console.info('getChildTest_0400 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);

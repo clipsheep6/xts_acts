@@ -15,10 +15,28 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix,
+  UiDirection,
+  MouseButton,
+  UIElementInfo,
+  UIEventObserver
+} from '@ohos.UiTest';
+
 export default function SetOpacityJsunit() {
-  describe('SetOpacityJsunit', function () {
-    beforeEach(async function (done) {
+  describe('SetOpacityJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("SetOpacityJsunit beforeEach start");
       let options = {
         url: "MainAbility/pages/RenderNode/renderNode001/SetOpacity",
@@ -39,19 +57,19 @@ export default function SetOpacityJsunit() {
       console.info("SetOpacityJsunit beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("SetOpacityJsunit after each called");
     });
     /**
-     * @tc.number    SUB_ACE_RICHEDITOR_SetOpacityJsunit_001
-     * @tc.name      SetOpacityJsunit
-     * @tc.desc      set api
-     * @tc.level     Level 2
+     * @tc.number SUB_ACE_RICHEDITOR_SetOpacityJsunit_001
+     * @tc.name SetOpacityJsunit
+     * @tc.desc set api
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('SetOpacityJsunit_001', 0, async function (done) {
+    it('SetOpacityJsunit_001', 0, async (done: Function) => {
       console.info('[SetOpacityJsunit_001] START');
       let driver = Driver.create();
       await CommonFunc.sleep(1000);

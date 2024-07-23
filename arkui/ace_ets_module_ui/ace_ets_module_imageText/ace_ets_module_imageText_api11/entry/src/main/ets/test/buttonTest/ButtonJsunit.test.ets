@@ -20,8 +20,8 @@ import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 const waitUiReadyMs = 1000;
 
 export default function buttonJsunit() {
-  describe('buttonJsunit', function () {
-    beforeEach(async function (done) {
+  describe('buttonJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("buttonJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/button/buttonExample',
@@ -42,7 +42,7 @@ export default function buttonJsunit() {
       done();
     });
 
-    it('buttonJsunit_0100', 0, async function (done) {
+    it('buttonJsunit_0100', 0, async (done: Function) => {
       console.info('buttonJsunitUITest_0100 START');
       await CommonFunc.sleep(1000);
       // 获取button组件的信息
@@ -60,7 +60,7 @@ export default function buttonJsunit() {
       done();
     });
 
-    it('buttonJsunit_0200', 0, async function (done) {
+    it('buttonJsunit_0200', 0, async (done: Function) => {
       console.info('buttonJsunitUITest_0200 START');
       await CommonFunc.sleep(1000);
       globalThis.value.message.notify({name:'stateEffect', value:false});
@@ -72,7 +72,7 @@ export default function buttonJsunit() {
       done();
     });
 
-    it('buttonJsunit_0300', 0, async function (done) {
+    it('buttonJsunit_0300', 0, async (done: Function) => {
        console.info('buttonJsunitUITest_0300 START');
        await CommonFunc.sleep(1000);
        // 动态修改Button组件的属性,设置为非法值
@@ -85,7 +85,7 @@ export default function buttonJsunit() {
        done();
     });
 
-    it('buttonJsunit_0400', 0, async function (done) {
+    it('buttonJsunit_0400', 0, async (done: Function) => {
        console.info('buttonJsunitUITest_0400 START');
        // check the button is click
        let driver = Driver.create();
@@ -97,7 +97,7 @@ export default function buttonJsunit() {
        done();
     });
 
-     it('buttonJsunit_0500', 0, async function (done) {
+     it('buttonJsunit_0500', 0, async (done: Function) => {
        console.info('buttonJsunitUITest_0500 START');
        // 判断按钮的点击事件,通过按钮的文本可以判断
        let driver = Driver.create();
@@ -112,7 +112,7 @@ export default function buttonJsunit() {
        done();
     });
 
-    it('buttonJsunit_0600', 0, async function (done) {
+    it('buttonJsunit_0600', 0, async (done: Function) => {
       // buton 通用字体属性判断
        console.info('buttonJsunitUITest_0600 START');
        await CommonFunc.sleep(1000);
@@ -137,7 +137,7 @@ export default function buttonJsunit() {
        done();
     });
 
-    it('buttonJsunit_0700', 0, async function (done) {
+    it('buttonJsunit_0700', 0, async (done: Function) => {
       // buton 通用字体非法属性判断
        console.info('buttonJsunitUITest_0700 START');
        await CommonFunc.sleep(1000);
@@ -162,7 +162,7 @@ export default function buttonJsunit() {
        done();
     });
 
-    it('buttonJsunit_0800', 0, async function (done) {
+    it('buttonJsunit_0800', 0, async (done: Function) => {
       console.info('buttonJsunitUITest_0800 START');
       await CommonFunc.sleep(1000);
       // 动态修改Button组件的属性

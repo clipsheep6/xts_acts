@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function TextTimerJsunit() {
-  describe('TextTimerJsunit', function () {
-    beforeEach(async function (done) {
+  describe('TextTimerJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextTimer beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TextTimer/TextTimerPage',
@@ -43,7 +56,7 @@ export default function TextTimerJsunit() {
       done();
     });
 
-    it('TextTimerJsunit_0100', 0, async function (done) {
+    it('TextTimerJsunit_0100', 0, async (done: Function) => {
       // Get the information of TextTimer component
       console.info('[TextTimerJsunit_0100] START');
       let strJson = getInspectorByKey('textTimer');
@@ -72,14 +85,20 @@ export default function TextTimerJsunit() {
       done();
     });
 
-    it('TextTimerJsunit_0200', 0, async function (done) {
+    it('TextTimerJsunit_0200', 0, async (done: Function) => {
       // Modify the attribute of TextTimer component
       console.info('[TextTimerJsunit_0200] START');
-      globalThis.value.message.notify({name:'isCountDown',value:'false'})
+      globalThis.value.message.notify({
+        name: 'isCountDown', value: 'false'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'count',value:30000})
+      globalThis.value.message.notify({
+        name: 'count', value: 30000
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'format',value:'HH:mm:ss.SS'})
+      globalThis.value.message.notify({
+        name: 'format', value: 'HH:mm:ss.SS'
+      })
       await CommonFunc.sleep(2000);
 
       // Get the attribute of TextTimer component
@@ -97,7 +116,7 @@ export default function TextTimerJsunit() {
       done();
     });
 
-    it('TextTimerJsunit_0300', 0, async function (done) {
+    it('TextTimerJsunit_0300', 0, async (done: Function) => {
       // Verify start function of TextTimer component
       console.info('[TextTimerJsunit_0300] START');
       let driver = await UiDriver.create()
@@ -125,7 +144,7 @@ export default function TextTimerJsunit() {
       done();
     });
 
-    it('TextTimerJsunit_0400', 0, async function (done) {
+    it('TextTimerJsunit_0400', 0, async (done: Function) => {
       // Verify pause function of TextTimer component
       console.info('[TextTimerJsunit_0400] START');
       let driver = await UiDriver.create()
@@ -141,7 +160,7 @@ export default function TextTimerJsunit() {
       let time = await elapsedTime.getText();
       console.info("[TextTimerJsunit_0400] time: " + JSON.stringify(time));
       await CommonFunc.sleep(1000);
-      
+
       let utcText1 = await utc.getText();
       console.info("[TextTimerJsunit_0400] utcText1: " + JSON.stringify(utcText1));
       expect(utcText == utcText1).assertTrue();
@@ -153,7 +172,7 @@ export default function TextTimerJsunit() {
       let startButton = await driver.findComponent(BY.text('start'));
       await startButton.click();
       await CommonFunc.sleep(1000);
-      
+
       let utcText2 = await utc.getText();
       console.info("[TextTimerJsunit_0400] utcText2: " + JSON.stringify(utcText2));
       expect(Number(utcText1) < Number(utcText2)).assertTrue();
@@ -166,7 +185,7 @@ export default function TextTimerJsunit() {
       done();
     });
 
-    it('TextTimerJsunit_0500', 0, async function (done) {
+    it('TextTimerJsunit_0500', 0, async (done: Function) => {
       // Verify reset function of TextTimer component
       console.info('[TextTimerJsunit_0500] START');
       let driver = await UiDriver.create()
@@ -202,14 +221,20 @@ export default function TextTimerJsunit() {
       done();
     });
 
-    it('TextTimerJsunit_0600', 0, async function (done) {
+    it('TextTimerJsunit_0600', 0, async (done: Function) => {
       // Illegal modification of properties of TextTimer component
       console.info('[TextTimerJsunit_0600] START');
-      globalThis.value.message.notify({name:'isCountDown',value:123})
+      globalThis.value.message.notify({
+        name: 'isCountDown', value: 123
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'count',value:'abc'})
+      globalThis.value.message.notify({
+        name: 'count', value: 'abc'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'format',value:123})
+      globalThis.value.message.notify({
+        name: 'format', value: 123
+      })
       await CommonFunc.sleep(2000);
 
       // Get the attribute of TextTimer component

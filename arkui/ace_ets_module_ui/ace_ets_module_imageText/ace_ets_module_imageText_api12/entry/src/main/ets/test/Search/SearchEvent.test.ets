@@ -18,8 +18,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function SearchEvent() {
-  describe('SearchEvent', function () {
-    beforeEach(async function (done) {
+  describe('SearchEvent', () => {
+    beforeEach(async (done: Function) => {
       console.info("SearchEvent beforeEach start");
       try {
         router.clear();
@@ -37,7 +37,7 @@ export default function SearchEvent() {
       console.info("SearchEvent foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("SearchEvent after each called");
     });
@@ -51,7 +51,7 @@ export default function SearchEvent() {
      * @tc.level      : Level 3
      */
 
-    it('SearchEvent_001', 0, async function (done) {
+    it('SearchEvent_001', 0, async (done: Function) => {
       console.info('[SearchEvent_001] START');
 
       await CommonFunc.sleep(1000);
@@ -83,7 +83,7 @@ export default function SearchEvent() {
      * @tc.level      : Level 3
      */
 
-    it('SearchEvent_002', 0, async function (done) {
+    it('SearchEvent_002', 0, async (done: Function) => {
       console.info('[SearchEvent_002] START');
 
       await CommonFunc.sleep(1000);
@@ -116,7 +116,7 @@ export default function SearchEvent() {
      * @tc.level      : Level 3
      */
 
-    it('SearchEvent_003', 0, async function (done) {
+    it('SearchEvent_003', 0, async (done: Function) => {
       console.info('[SearchEvent_003] START');
 
       await CommonFunc.sleep(1000);
@@ -149,7 +149,7 @@ export default function SearchEvent() {
      * @tc.level      : Level 3
      */
 
-    it('SearchEvent_004', 0, async function (done) {
+    it('SearchEvent_004', 0, async (done: Function) => {
       console.info('[SearchEvent_004] START');
 
       await CommonFunc.sleep(1000);
@@ -182,7 +182,7 @@ export default function SearchEvent() {
      * @tc.level      : Level 3
      */
 
-    it('SearchEvent_005', 0, async function (done) {
+    it('SearchEvent_005', 0, async (done: Function) => {
       console.info('[SearchEvent_005] START');
 
       await CommonFunc.sleep(1000);

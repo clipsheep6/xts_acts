@@ -18,8 +18,8 @@ import CommonFunc from '../../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function arkuiNodeRenderTest() {
-  describe('arkuiNodeRenderTest', function () {
-    beforeEach(async function (done) {
+  describe('arkuiNodeRenderTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("arkuiNodeRenderTest beforeEach start");
       try {
         router.clear();
@@ -37,7 +37,7 @@ export default function arkuiNodeRenderTest() {
       console.info("arkuiNodeRenderTest beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("arkuiNodeRenderTest after each called");
     });
@@ -50,7 +50,7 @@ export default function arkuiNodeRenderTest() {
      * @tc.type
     * @tc.size
      */
-    it('arkuiNodeRenderTest_0100', 0, async function (done) {
+    it('arkuiNodeRenderTest_0100', 0, async (done: Function) => {
       console.info('[arkuiNodeRenderTest_0100] START');
       await CommonFunc.sleep(2000);
       let json = getInspectorByKey('nodetext');

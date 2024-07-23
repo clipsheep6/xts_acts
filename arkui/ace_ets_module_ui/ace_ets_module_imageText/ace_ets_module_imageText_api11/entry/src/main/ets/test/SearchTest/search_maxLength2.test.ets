@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function search_maxLength2() {
-  describe('search_maxLength2', function () {
-    beforeEach(async function (done) {
+  describe('search_maxLength2', () => {
+    beforeEach(async (done: Function) => {
       console.info("search_caret beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Search/search_maxLength2',
@@ -49,7 +62,7 @@ export default function search_maxLength2() {
       * @tc.desc  : set maxLength to 9
       * @tc.level : Level 3
       */
-    it('SearchMaxLength2_001', 0, async (done:Function)=> {
+    it('SearchMaxLength2_001', 0, async (done: Function) => {
 
       console.info('SearchMaxLength2_001 START');
       let driver = Driver.create();
@@ -77,7 +90,7 @@ export default function search_maxLength2() {
       * @tc.desc  : set maxLength   first add and then subtract
       * @tc.level : Level 3
       */
-    it('SearchMaxLength2_002', 0, async (done:Function)=> {
+    it('SearchMaxLength2_002', 0, async (done: Function) => {
 
       console.info('SearchMaxLength2_002 START');
       let driver = Driver.create();
@@ -98,7 +111,6 @@ export default function search_maxLength2() {
 
       done();
     });
-
 
 
   })

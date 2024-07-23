@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function ToggleJsunit() {
-  describe('ToggleJsunit', function () {
-    beforeEach(async function (done) {
+  describe('ToggleJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("Toggle beforeEach start");
       let options = {
         uri: 'MainAbility/pages/Toggle/TogglePage',
@@ -43,7 +56,7 @@ export default function ToggleJsunit() {
       done();
     });
 
-    it('ToggleJsunit_0100', 0, async function (done) {
+    it('ToggleJsunit_0100', 0, async (done: Function) => {
       // Get the information of Toggle component
       console.info('[ToggleJsunit_0100] START');
       let strJson = getInspectorByKey('toggleCheckbox');
@@ -70,9 +83,9 @@ export default function ToggleJsunit() {
       done();
     });
 
-    it('ToggleJsunit_0200', 0, async function (done) {
+    it('ToggleJsunit_0200', 0, async (done: Function) => {
       // Verify switch function of Toggle component
-      console.info('[ToggleJsunit_0200] START');      
+      console.info('[ToggleJsunit_0200] START');
       let driver = await UiDriver.create();
       let switchButton = await driver.findComponent(BY.key('toggleSwitch'));
       await switchButton.click();
@@ -94,7 +107,7 @@ export default function ToggleJsunit() {
       done();
     });
 
-    it('ToggleJsunit_0300', 0, async function (done) {
+    it('ToggleJsunit_0300', 0, async (done: Function) => {
       // Verify checkbox function of Toggle component
       console.info('[ToggleJsunit_0300] START');
       await CommonFunc.sleep(1000);
@@ -116,7 +129,7 @@ export default function ToggleJsunit() {
       done();
     });
 
-    it('ToggleJsunit_0400', 0, async function (done) {
+    it('ToggleJsunit_0400', 0, async (done: Function) => {
       // Verify button function of Toggle component
       console.info('[ToggleJsunit_0400] START');
       let driver = await UiDriver.create();
@@ -137,16 +150,24 @@ export default function ToggleJsunit() {
       done();
     });
 
-    it('ToggleJsunit_0500', 0, async function (done) {
+    it('ToggleJsunit_0500', 0, async (done: Function) => {
       // Modify the attribute of Toggle component
       console.info('[ToggleJsunit_0500] START');
-      globalThis.value.message.notify({name:'type',value:ToggleType.Switch})
+      globalThis.value.message.notify({
+        name: 'type', value: ToggleType.Switch
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'isOn',value:'false'})
+      globalThis.value.message.notify({
+        name: 'isOn', value: 'false'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'selectedColor',value:'#FF008000'})
+      globalThis.value.message.notify({
+        name: 'selectedColor', value: '#FF008000'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'switchPointColor',value:'#FFFF0000'})
+      globalThis.value.message.notify({
+        name: 'switchPointColor', value: '#FFFF0000'
+      })
       await CommonFunc.sleep(5000);
 
       // Get the attribute of Toggle component
@@ -170,16 +191,24 @@ export default function ToggleJsunit() {
       done();
     });
 
-    it('ToggleJsunit_0600', 0, async function (done) {
+    it('ToggleJsunit_0600', 0, async (done: Function) => {
       // Illegal modification of properties of Toggle component
       console.info('[ToggleJsunit_0600] START');
-      globalThis.value.message.notify({name:'type',value:123})
+      globalThis.value.message.notify({
+        name: 'type', value: 123
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'isOn',value:'aaa'})
+      globalThis.value.message.notify({
+        name: 'isOn', value: 'aaa'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'selectedColor',value:123})
+      globalThis.value.message.notify({
+        name: 'selectedColor', value: 123
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'switchPointColor',value:'bbb'})
+      globalThis.value.message.notify({
+        name: 'switchPointColor', value: 'bbb'
+      })
       await CommonFunc.sleep(2000);
 
       // Get the attribute of Toggle component

@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function textChangeEnabledJsunit() {
-  describe('textChangeEnabledJsunit', function () {
-    beforeEach(async function (done) {
+  describe('textChangeEnabledJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("textChangeEnabledJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/text/textChangeEnabled',
@@ -43,7 +56,7 @@ export default function textChangeEnabledJsunit() {
       done();
     });
 
-    it('textChangeEnabledJsunit_0100', 0, async function (done) {
+    it('textChangeEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('textChangeEnabledJsunit_0100 START');
       let strJson = getInspectorByKey('aCanEnable');
@@ -55,7 +68,7 @@ export default function textChangeEnabledJsunit() {
       done();
     });
 
-    it('textChangeEnabledJsunit_0200', 0, async function (done) {
+    it('textChangeEnabledJsunit_0200', 0, async (done: Function) => {
 
       console.info('textChangeEnabledJsunit_0200 START');
       let strJson = getInspectorByKey('vCanEnable');

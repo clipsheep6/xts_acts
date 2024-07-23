@@ -19,8 +19,8 @@ import CommonFunc from '../../MainAbility/common/Common';
 
 
 export default function typeNodeTextSelectableMode3Test() {
-  describe('typeNodeTextSelectableMode3Test', function () {
-    beforeEach(async function (done) {
+  describe('typeNodeTextSelectableMode3Test', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextSelectableMode3Test beforeEach start");
       let options = {
         uri: "MainAbility/pages/Text/TextSelectableMode3",
@@ -50,7 +50,7 @@ export default function typeNodeTextSelectableMode3Test() {
      * @tc.type :
      * @tc.size :
      */
-    it('TextSelectableMode3Test_0100', 0, async function (done) {
+    it('TextSelectableMode3Test_0100', 0, async (done: Function) => {
       console.info('TextSelectableMode3Test_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);

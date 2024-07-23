@@ -15,7 +15,9 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import Utils from '../../MainAbility/common/Utils';;
+import Utils from '../../MainAbility/common/Utils';
+
+;
 
 export default function textTimerJsunit() {
   describe('appInfoTest_four_14', () => {

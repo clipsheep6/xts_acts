@@ -14,14 +14,26 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function outline() {
-  describe('outline', function () {
-    beforeEach(async function (done) {
+  describe('outline', () => {
+    beforeEach(async (done: Function) => {
       console.info("outline beforeEach start");
       let options = {
         uri: 'MainAbility/pages/text/outline',
@@ -42,16 +54,16 @@ export default function outline() {
       }
       done();
     });
-    
-     /**
-     * @tc.number    SUB_ACE_outline_0100
-     * @tc.name      outline_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
-     * @tc.type : 
+
+    /**
+     * @tc.number SUB_ACE_outline_0100
+     * @tc.name outline_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
+     * @tc.type :
      * @tc.size :
      */
-    it('outlineStyle_0100', 0, async function (done) {
+    it('outlineStyle_0100', 0, async (done: Function) => {
       console.info('outlineStyle_0100 START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('outline');
@@ -64,14 +76,14 @@ export default function outline() {
     });
 
     /**
-     * @tc.number    SUB_ACE_outline_0100
-     * @tc.name      outline_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_outline_0100
+     * @tc.name outline_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('outlineWidth_0200', 0, async function (done) {
+    it('outlineWidth_0200', 0, async (done: Function) => {
       console.info('outlineWidth_0200 START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('outline');
@@ -84,14 +96,14 @@ export default function outline() {
     });
 
     /**
-     * @tc.number    SUB_ACE_outline_0100
-     * @tc.name      outline_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_outline_0100
+     * @tc.name outline_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('outlineColor_0300', 0, async function (done) {
+    it('outlineColor_0300', 0, async (done: Function) => {
       console.info('outlineColor_0300 START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('outline');
@@ -104,14 +116,14 @@ export default function outline() {
     });
 
     /**
-     * @tc.number    SUB_ACE_outline_0100
-     * @tc.name      outline_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_outline_0100
+     * @tc.name outline_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('outlineRadius_0400', 0, async function (done) {
+    it('outlineRadius_0400', 0, async (done: Function) => {
       console.info('outlineRadius_0400 START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('outline');
@@ -122,7 +134,7 @@ export default function outline() {
       console.info('[outlineRadius_0400] END');
       done();
     });
-    
+
 
   })
 }

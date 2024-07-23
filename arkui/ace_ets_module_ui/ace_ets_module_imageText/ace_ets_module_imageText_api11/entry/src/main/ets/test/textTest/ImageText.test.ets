@@ -50,13 +50,13 @@ export default function ImageTextTest() {
       let strJson1: string = getInspectorByKey('ImageText_ImageSpan1');
       expect(JSON.parse(strJson1).$attrs.verticalAlign.split('.')[1]).assertEqual('BASELINE')
 
-      let strJson2: string  = getInspectorByKey('ImageText_ImageSpan2');
+      let strJson2: string = getInspectorByKey('ImageText_ImageSpan2');
       expect(JSON.parse(strJson2).$attrs.verticalAlign.split('.')[1]).assertEqual('CENTER')
 
-      let strJson3: string  = getInspectorByKey('ImageText_ImageSpan3');
+      let strJson3: string = getInspectorByKey('ImageText_ImageSpan3');
       expect(JSON.parse(strJson3).$attrs.verticalAlign.split('.')[1]).assertEqual('TOP')
 
-      let strJson4: string  = getInspectorByKey('ImageText_ImageSpan4');
+      let strJson4: string = getInspectorByKey('ImageText_ImageSpan4');
       expect(JSON.parse(strJson4).$attrs.verticalAlign.split('.')[1]).assertEqual('BOTTOM')
 
       console.info(`${SUITE} ${CASE} END`);

@@ -18,8 +18,8 @@ import CommonFunc from '../../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function marqueeOptionsTest() {
-  describe('marqueeOptionsTest', function () {
-    beforeEach(async function (done) {
+  describe('marqueeOptionsTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("marqueeOptionsTest beforeEach start");
       let options = {
         url: "MainAbility/pages/Text/TextAPI/marquee",
@@ -40,7 +40,7 @@ export default function marqueeOptionsTest() {
       console.info("marqueeOptionsTest beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("marqueeOptionsTest after each called");
     });
@@ -53,7 +53,7 @@ export default function marqueeOptionsTest() {
      * @tc.type
     * @tc.size
      */
-    it('marqueeOptionsTest_001', 0, async function (done) {
+    it('marqueeOptionsTest_001', 0, async (done: Function) => {
       console.info('[marqueeOptionsTest_001] START');
       await CommonFunc.sleep(1000);
       let marqueeOptions = getInspectorByKey('marqueeOptions');
@@ -64,7 +64,7 @@ export default function marqueeOptionsTest() {
       done();
     });
 
-    it('onMarqueeStateChangeTest_001', 0, async function (done) {
+    it('onMarqueeStateChangeTest_001', 0, async (done: Function) => {
       console.info('[onMarqueeStateChangeTest_001] START');
       await CommonFunc.sleep(1000);
       let MarqueeState = getInspectorByKey('MarqueeState');

@@ -14,12 +14,26 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+
 export default function SXsymbolStyleJsunit() {
-  describe('SXsymbolStyleJsunit', function () {
-    beforeEach(async function (done) {
+  describe('SXsymbolStyleJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("SXsymbolStyleJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/RichEditor/SXsymbolStyle',
@@ -39,7 +53,7 @@ export default function SXsymbolStyleJsunit() {
       }
       done();
     });
-    it('SXsymbolStyleJsunit_0100', 0, async function (done) {
+    it('SXsymbolStyleJsunit_0100', 0, async (done: Function) => {
       await CommonFunc.sleep(1000);
       console.info('SXsymbolStyleJsunit_0100 START');
       let driver = Driver.create();

@@ -14,14 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
+
 const waitUiReadyMs = 1000;
 
 export default function spanUIJsunit() {
-  describe('spanUIJsunit', function () {
-    beforeEach(async function (done) {
+  describe('spanUIJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("spanUIJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/span/spanUI',
@@ -36,13 +50,13 @@ export default function spanUIJsunit() {
           console.info("push spanUIJsunit success" + JSON.stringify(result));
         }
       } catch (err) {
-          console.error("push spanUIJsunit page error:" + err);
-	        expect().assertFail();
+        console.error("push spanUIJsunit page error:" + err);
+        expect().assertFail();
       }
       done();
     });
 
-    it('spanUIJsunit_0100', 0, async function (done) {
+    it('spanUIJsunit_0100', 0, async (done: Function) => {
       console.info('spanUIJsunit_0100 START');
       await CommonFunc.sleep(1000);
       // get the sapn component and test attribute
@@ -54,18 +68,22 @@ export default function spanUIJsunit() {
       expect(obj.$attrs.letterSpacing).assertEqual('10.00fp');
       expect(obj.$attrs.fontSize).assertEqual('12.00fp');
       expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.Underline","color":"#FFFFCCEE",' +
-      '"style":"TextDecorationStyle.SOLID"}');
+        '"style":"TextDecorationStyle.SOLID"}');
       console.info('spanUIJsunit_0100 END');
       done();
     });
 
-    it('spanUIJsunit_0200', 0, async function (done) {
+    it('spanUIJsunit_0200', 0, async (done: Function) => {
       console.info('spanUIJsunit_0200 START');
       await CommonFunc.sleep(1000);
       // modify the content and textCase attribute normal value  dynamically
-      globalThis.value.message.notify({name:'content',value:'I am test'})
+      globalThis.value.message.notify({
+        name: 'content', value: 'I am test'
+      })
       await CommonFunc.sleep(300);
-      globalThis.value.message.notify({name:'textCase',value:TextCase.LowerCase})
+      globalThis.value.message.notify({
+        name: 'textCase', value: TextCase.LowerCase
+      })
       await CommonFunc.sleep(300);
       // check the value of changed attribute
       let strJson = getInspectorByKey('testSpan');
@@ -76,11 +94,13 @@ export default function spanUIJsunit() {
       done();
     });
 
-    it('spanUIJsunit_0300', 0, async function (done) {
+    it('spanUIJsunit_0300', 0, async (done: Function) => {
       console.info('spanUIJsunit_0300 START');
       await CommonFunc.sleep(1000);
       // modify the values attribute enum textCase value of span dynamically
-      globalThis.value.message.notify({name:'textCase',value:TextCase.UpperCase})
+      globalThis.value.message.notify({
+        name: 'textCase', value: TextCase.UpperCase
+      })
       await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('testSpan');
       let obj = JSON.parse(strJson);
@@ -88,27 +108,33 @@ export default function spanUIJsunit() {
       expect(obj.$attrs.textCase).assertEqual('TextCase.UpperCase');
       done();
     });
-    
-    it('spanUIJsunit_0400', 0, async function (done) {
+
+    it('spanUIJsunit_0400', 0, async (done: Function) => {
       console.info('spanUIJsunit_0400 START');
       await CommonFunc.sleep(1000);
       // modify the values illegal attribute enum textCase value of span dynamically
-      globalThis.value.message.notify({name:'textCase',value:5})
+      globalThis.value.message.notify({
+        name: 'textCase', value: 5
+      })
       await CommonFunc.sleep(2000);
       let strJson = getInspectorByKey('testSpan');
       let obj = JSON.parse(strJson);
       console.info('spanUIJsunit_0400 component obj is: ' + obj.$attrs.textCase);
       expect(obj.$attrs.textCase).assertEqual('TextCase.UpperCase');
       done();
-    }); 
+    });
 
-    it('spanUIJsunit_0500', 0, async function (done) {
+    it('spanUIJsunit_0500', 0, async (done: Function) => {
       console.info('spanUIJsunit_0500 START');
       await CommonFunc.sleep(1000);
       // modify the normal values letter space and fontSize of span dynamically
-      globalThis.value.message.notify({name:'fontSize',value:20})
+      globalThis.value.message.notify({
+        name: 'fontSize', value: 20
+      })
       await CommonFunc.sleep(300);
-      globalThis.value.message.notify({name:'letterSpacing',value:25})
+      globalThis.value.message.notify({
+        name: 'letterSpacing', value: 25
+      })
       await CommonFunc.sleep(300);
       let strJson = getInspectorByKey('testSpan');
       let obj = JSON.parse(strJson);
@@ -116,80 +142,96 @@ export default function spanUIJsunit() {
       expect(obj.$attrs.letterSpacing).assertEqual('25.00fp');
       expect(obj.$attrs.fontSize).assertEqual('20.00fp');
       done();
-    }); 
+    });
 
-    it('spanUIJsunit_0600', 0, async function (done) {
+    it('spanUIJsunit_0600', 0, async (done: Function) => {
       console.info('spanUIJsunit_0600 START');
       await CommonFunc.sleep(1000);
       // modify the values decoration attribute  of span dynamically
-      globalThis.value.message.notify({name:'type',value:TextDecorationType.None})
+      globalThis.value.message.notify({
+        name: 'type', value: TextDecorationType.None
+      })
       await CommonFunc.sleep(300);
-      globalThis.value.message.notify({name:'color',value:'#FFAACC'})
+      globalThis.value.message.notify({
+        name: 'color', value: '#FFAACC'
+      })
       await CommonFunc.sleep(300);
       let strJson = getInspectorByKey('testSpan');
       let obj = JSON.parse(strJson);
       console.info('spanUIJsunit_0600 component obj is: ' + obj.$attrs.decoration);
       expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.None","color":"#FFFFAACC",' +
-      '"style":"TextDecorationStyle.SOLID"}');
+        '"style":"TextDecorationStyle.SOLID"}');
       done();
-    }); 
+    });
 
-    it('spanUIJsunit_0700', 0, async function (done) {
+    it('spanUIJsunit_0700', 0, async (done: Function) => {
       console.info('spanUIJsunit_0700 START');
       await CommonFunc.sleep(1000);
       // modify the values decoration attribute  of span dynamically
-      globalThis.value.message.notify({name:'type',value:TextDecorationType.Overline})
+      globalThis.value.message.notify({
+        name: 'type', value: TextDecorationType.Overline
+      })
       await CommonFunc.sleep(300);
       let strJson = getInspectorByKey('testSpan');
       let obj = JSON.parse(strJson);
       console.info('spanUIJsunit_0700 component obj is: ' + obj.$attrs.decoration);
       expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.Overline","color":"#FFFFAACC",' +
-      '"style":"TextDecorationStyle.SOLID"}');
-      globalThis.value.message.notify({name:'type',value:TextDecorationType.LineThrough})
+        '"style":"TextDecorationStyle.SOLID"}');
+      globalThis.value.message.notify({
+        name: 'type', value: TextDecorationType.LineThrough
+      })
       await CommonFunc.sleep(300);
       let strJson2 = getInspectorByKey('testSpan');
       let obj2 = JSON.parse(strJson2);
       console.info('spanUIJsunit_0700 component obj2 is: ' + obj2.$attrs.decoration);
       expect(obj2.$attrs.decoration).assertEqual('{"type":"TextDecorationType.LineThrough","color":"#FFFFAACC",' +
-      '"style":"TextDecorationStyle.SOLID"}');
+        '"style":"TextDecorationStyle.SOLID"}');
       done();
-    }); 
-    
-    it('spanUIJsunit_0800', 0, async function (done) {
+    });
+
+    it('spanUIJsunit_0800', 0, async (done: Function) => {
       console.info('spanUIJsunit_0800 START');
       await CommonFunc.sleep(1000);
       // modify the values decoration attribute  of span dynamically
-      globalThis.value.message.notify({name:'color',value: Color.Green})
+      globalThis.value.message.notify({
+        name: 'color', value: Color.Green
+      })
       await CommonFunc.sleep(300);
       let strJson = getInspectorByKey('testSpan');
       let obj = JSON.parse(strJson);
       console.info('spanUIJsunit_0800 component obj is: ' + obj.$attrs.decoration);
       expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.LineThrough","color":"#FF008000",' +
-      '"style":"TextDecorationStyle.SOLID"}');
-      globalThis.value.message.notify({name:'color',value:'rgb(238, 130, 238)'})
+        '"style":"TextDecorationStyle.SOLID"}');
+      globalThis.value.message.notify({
+        name: 'color', value: 'rgb(238, 130, 238)'
+      })
       await CommonFunc.sleep(300);
       let strJson2 = getInspectorByKey('testSpan');
       let obj2 = JSON.parse(strJson2);
       console.info('spanUIJsunit_0800 component obj2 is: ' + obj2.$attrs.decoration);
       expect(obj2.$attrs.decoration).assertEqual('{"type":"TextDecorationType.LineThrough","color":"#FFEE82EE",' +
-      '"style":"TextDecorationStyle.SOLID"}');
+        '"style":"TextDecorationStyle.SOLID"}');
       done();
-    }); 
-     
-    it('spanUIJsunit_0900', 0, async function (done) {
+    });
+
+    it('spanUIJsunit_0900', 0, async (done: Function) => {
       console.info('spanUIJsunit_0900 START');
       await CommonFunc.sleep(1000);
       // modify the values decoration attribute  of span illegal dynamically
-      globalThis.value.message.notify({name:'type',value:8})
+      globalThis.value.message.notify({
+        name: 'type', value: 8
+      })
       await CommonFunc.sleep(300);
-      globalThis.value.message.notify({name:'color',value:'#FCC'})
+      globalThis.value.message.notify({
+        name: 'color', value: '#FCC'
+      })
       await CommonFunc.sleep(300);
       let strJson = getInspectorByKey('testSpan');
       let obj = JSON.parse(strJson);
       console.info('spanUIJsunit_0900 component obj is: ' + obj.$attrs.decoration);
       expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.None","color":"#FFFFCCCC",' +
-      '"style":"TextDecorationStyle.SOLID"}');
+        '"style":"TextDecorationStyle.SOLID"}');
       done();
-    }); 
+    });
   })
 }

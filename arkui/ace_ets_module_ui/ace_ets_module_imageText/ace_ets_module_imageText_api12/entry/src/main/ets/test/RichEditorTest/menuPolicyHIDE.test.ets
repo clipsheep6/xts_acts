@@ -18,8 +18,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 
 export default function menuPolicyHIDE() {
-  describe('menuPolicyHIDE', function () {
-    beforeEach(async function (done) {
+  describe('menuPolicyHIDE', () => {
+    beforeEach(async (done: Function) => {
       console.info("menuPolicyHIDE beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditor/menuPolicyHIDE',
@@ -40,7 +40,7 @@ export default function menuPolicyHIDE() {
       console.info("menuPolicyHIDE beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("menuPolicyHIDE after each called");
     });
@@ -52,7 +52,7 @@ export default function menuPolicyHIDE() {
      * @tc.type
     * @tc.size
      */
-    it('menuPolicyHIDE_0100', 0, async function (done) {
+    it('menuPolicyHIDE_0100', 0, async (done: Function) => {
       console.info('[menuPolicyHIDE_0100] START');
       await CommonFunc.sleep(1000);
 

@@ -19,8 +19,8 @@ import CommonFunc from '../../MainAbility/utils/Common';
 import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
 
 export default function SXSymbolGlyphSINGLE01Jsunit() {
-  describe('SXSymbolGlyphSINGLE01Jsunit', function () {
-    beforeEach(async function (done) {
+  describe('SXSymbolGlyphSINGLE01Jsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("SXSymbolGlyphSINGLE01Jsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/SymbolGlyph/SXSymbolGlyphSINGLE01',
@@ -40,7 +40,7 @@ export default function SXSymbolGlyphSINGLE01Jsunit() {
       }
       done();
     });
-    it('SXSymbolGlyphSINGLE01Jsunit_0100', 0, async function (done) {
+    it('SXSymbolGlyphSINGLE01Jsunit_0100', 0, async (done: Function) => {
       await CommonFunc.sleep(1000);
       console.info('SXSymbolGlyphSINGLE01Jsunit_0100 START');
       let strcontent = getInspectorByKey('SXSymbolGlyphSINGLE01Key');

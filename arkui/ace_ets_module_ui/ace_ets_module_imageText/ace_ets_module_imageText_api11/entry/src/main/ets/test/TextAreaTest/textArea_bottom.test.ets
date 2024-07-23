@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function textArea_bottom() {
-  describe('textArea_bottom', function () {
-    beforeEach(async function (done) {
+  describe('textArea_bottom', () => {
+    beforeEach(async (done: Function) => {
       console.info("textArea_bottom beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TextArea/textArea_bottom',
@@ -49,7 +62,7 @@ export default function textArea_bottom() {
     * @tc.desc  : When textArea is in the bottom, clicking on the top of the input box triggers the keyboard
     * @tc.level : Level 2
     */
-    it('textArea_bottom_001', 0, async function (done) {
+    it('textArea_bottom_001', 0, async (done: Function) => {
 
       console.info('[textArea_bottom_001] START');
       await CommonFunc.sleep(1000);
@@ -63,14 +76,16 @@ export default function textArea_bottom() {
 
         let driver = await Driver.create();
         await CommonFunc.sleep(500);
-        await driver.mouseScroll({x:360, y:800}, true, 30, 2072)
+        await driver.mouseScroll({
+          x: 360, y: 800
+        }, true, 30, 2072)
         await CommonFunc.sleep(1000);
 
         console.log('assert  click before position')
         let textArea_01 = CommonFunc.getComponentRect('textArea_bottom_textArea_01');
         let y1 = textArea_01.top
         await driver.click(
-          (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) /2)),(Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) /45))
+          (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) / 2)), (Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) / 45))
         );
         await CommonFunc.sleep(1000);
 
@@ -90,7 +105,7 @@ export default function textArea_bottom() {
     * @tc.desc  : When textArea is in the bottom, clicking on the middle of the input box triggers the keyboard
     * @tc.level : Level 2
     */
-    it('textArea_bottom_002', 0, async function (done) {
+    it('textArea_bottom_002', 0, async (done: Function) => {
 
       console.info('[textArea_bottom_002] START');
       await CommonFunc.sleep(1000);
@@ -104,7 +119,9 @@ export default function textArea_bottom() {
 
         let driver = await Driver.create();
         await CommonFunc.sleep(500);
-        await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
+        await driver.mouseScroll({
+          x: 360, y: 640
+        }, true, 30, 2072)
         await CommonFunc.sleep(1000);
 
         let textArea_01 = CommonFunc.getComponentRect('textArea_bottom_textArea_01');
@@ -112,7 +129,7 @@ export default function textArea_bottom() {
         console.log('assert position')
         let y1 = textArea_01.bottom
         await driver.click(
-          (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) /2)),(Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) /2))
+          (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) / 2)), (Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) / 2))
         );
         await CommonFunc.sleep(1000);
         let textArea_02 = CommonFunc.getComponentRect('textArea_bottom_textArea_01');
@@ -130,7 +147,7 @@ export default function textArea_bottom() {
     * @tc.desc  : When textArea is in the bottom, clicking on the bottom of the input box triggers the keyboard
     * @tc.level : Level 2
     */
-    it('textArea_bottom_003', 0, async function (done) {
+    it('textArea_bottom_003', 0, async (done: Function) => {
 
       console.info('[textArea_bottom_003] START');
       await CommonFunc.sleep(1000);
@@ -144,14 +161,16 @@ export default function textArea_bottom() {
 
         let driver = await Driver.create();
         await CommonFunc.sleep(500);
-        await driver.mouseScroll({x:360, y:640}, true, 30, 2072)
+        await driver.mouseScroll({
+          x: 360, y: 640
+        }, true, 30, 2072)
         await CommonFunc.sleep(1000);
 
         let textArea_01 = CommonFunc.getComponentRect('textArea_bottom_textArea_01');
         console.log('assert position')
         let y1 = textArea_01.bottom
         await driver.click(
-          (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) /2)),(Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) /45 *44))
+          (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) / 2)), (Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) / 45 * 44))
         );
         await CommonFunc.sleep(1000);
         let textArea_02 = CommonFunc.getComponentRect('textArea_bottom_textArea_01');

@@ -16,7 +16,17 @@
 import CommonFunc from '../../MainAbility/common/Common';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
-import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function TextAreaApi4() {
   describe('TextAreaApi4', () => {
@@ -46,18 +56,19 @@ export default function TextAreaApi4() {
 
     /**
      * @tc.number TextAreaApi4_0100
-     * @tc.name   testTextArea
+     * @tc.name testTextArea
      * @tc.desc
      */
     it('TextAreaApi4_0100', 0, async (done: Function) => {
       console.info('TextAreaApi4_0100 START');
       await CommonFunc.sleep(1000);
 
-      sendEventByKey('TextAreaApi4_btn1',10,"")
+      sendEventByKey('TextAreaApi4_btn1', 10, "")
       await CommonFunc.sleep(1000);
 
       let text1 = getInspectorByKey('TextAreaApi4_text1');
-      expect(String(JSON.parse(text1).$attrs.content)).assertEqual('{"type":"TextDecorationType.Overline","color":"#FFFF0000","style":"TextDecorationStyle.DOUBLE"}')
+      expect(String(JSON.parse(text1).$attrs.content))
+        .assertEqual('{"type":"TextDecorationType.Overline","color":"#FFFF0000","style":"TextDecorationStyle.DOUBLE"}')
 
       await CommonFunc.sleep(1000);
 

@@ -15,11 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  MouseButton,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function imageAddApi() {
-  describe('imageAddApi', function () {
-    beforeEach(async function (done) {
+  describe('imageAddApi', () => {
+    beforeEach(async (done: Function) => {
       console.info("imageAddApi beforeEach start");
       try {
         router.clear();
@@ -27,7 +41,9 @@ export default function imageAddApi() {
         console.info("get imageAddApi state pages:" + JSON.stringify(pages));
         if (!("imageAddApi" == pages.name)) {
           console.info("get  Context pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Image/imageAddApi"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/Image/imageAddApi"
+          })
           await CommonFunc.sleep(2000);
           console.info("push imageAddApi page result:" + JSON.stringify(result));
         }
@@ -37,19 +53,19 @@ export default function imageAddApi() {
       console.info("imageAddApi foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("imageAddApi after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_IMAGE_001
-     * @tc.desc      dynamicRangeMode test of image
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_IMAGE_001
+     * @tc.desc dynamicRangeMode test of image
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('imageAddApi_001', 0, async function (done) {
+    it('imageAddApi_001', 0, async (done: Function) => {
       console.info('[imageAddApi_001] START');
 
       await CommonFunc.sleep(1000);
@@ -66,13 +82,13 @@ export default function imageAddApi() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_IMAGE_002
-     * @tc.desc      dynamicRangeMode test of image
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_IMAGE_002
+     * @tc.desc dynamicRangeMode test of image
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('imageAddApi_002', 0, async function (done) {
+    it('imageAddApi_002', 0, async (done: Function) => {
       console.info('[imageAddApi_002] START');
 
       await CommonFunc.sleep(1000);
@@ -89,13 +105,13 @@ export default function imageAddApi() {
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_COMPONENT_IMAGE_003
-     * @tc.desc      dynamicRangeMode test of image
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_COMPONENT_IMAGE_003
+     * @tc.desc dynamicRangeMode test of image
+     * @tc.level Level 3
      * @tc.type
      */
 
-    it('imageAddApi_003', 0, async function (done) {
+    it('imageAddApi_003', 0, async (done: Function) => {
       console.info('[imageAddApi_003] START');
 
       await CommonFunc.sleep(1000);
@@ -110,9 +126,6 @@ export default function imageAddApi() {
       done();
 
     });
-
-
-
 
 
   })

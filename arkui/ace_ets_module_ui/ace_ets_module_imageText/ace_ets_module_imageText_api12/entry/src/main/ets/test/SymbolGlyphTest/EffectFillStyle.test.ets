@@ -14,14 +14,26 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function EffectFillStyle() {
-  describe('EffectFillStyle', function () {
-    beforeEach(async function (done) {
+  describe('EffectFillStyle', () => {
+    beforeEach(async (done: Function) => {
       console.info("EffectFillStyle beforeEach start");
       let options = {
         uri: "MainAbility/pages/SymbolGlyph/EffectFillStyle",
@@ -42,41 +54,43 @@ export default function EffectFillStyle() {
       }
       done();
     });
-    
-     /**
-     * @tc.number    SUB_ACE_EffectFillStyle_0100
-     * @tc.name      EffectFillStyle_0100
-     * @tc.desc      set api
-     * @tc.level:    Level 2
-     * @tc.type : 
+
+    /**
+     * @tc.number SUB_ACE_EffectFillStyle_0100
+     * @tc.name EffectFillStyle_0100
+     * @tc.desc set api
+     * @tc.level: Level 2
+     * @tc.type :
      * @tc.size :
      */
-    it('EffectFillStyle_0100', 0, async function (done) {
+    it('EffectFillStyle_0100', 0, async (done: Function) => {
       console.info('EffectFillStyle_0100 START');
       let strJson = getInspectorByKey('ITERATIVE');
       let obj = JSON.parse(strJson);
       console.info("[EffectFillStyle_0100] component obj is: " + JSON.stringify(obj));
       console.info("[EffectFillStyle_0100] symbolEffect: " + JSON.stringify(obj.$attrs.symbolEffect));
-      expect(obj.$attrs.symbolEffect).assertEqual("{\"effectType\":2,\"scopeType\":0,\"commonSubType\":0,\"fillStyle\":1,\"isTxtActive\":true,\"isActive\":true}");
+      expect(obj.$attrs.symbolEffect)
+        .assertEqual("{\"effectType\":2,\"scopeType\":0,\"commonSubType\":0,\"fillStyle\":1,\"isTxtActive\":true,\"isActive\":true}");
       console.info('[EffectFillStyle_0100] END');
       done();
     });
 
     /**
-     * @tc.number    SUB_ACE_EffectFillStyle_0200
-     * @tc.name      EffectFillStyle_0200
-     * @tc.desc      set api
-     * @tc.level:    Level 2
-     * @tc.type : 
+     * @tc.number SUB_ACE_EffectFillStyle_0200
+     * @tc.name EffectFillStyle_0200
+     * @tc.desc set api
+     * @tc.level: Level 2
+     * @tc.type :
      * @tc.size :
      */
-    it('EffectFillStyle_0200', 0, async function (done) {
+    it('EffectFillStyle_0200', 0, async (done: Function) => {
       console.info('EffectFillStyle_0100 START');
       let strJson = getInspectorByKey('CUMULATIVE');
       let obj = JSON.parse(strJson);
       console.info("[EffectFillStyle_0200] component obj is: " + JSON.stringify(obj));
       console.info("[EffectFillStyle_0200] symbolEffect: " + JSON.stringify(obj.$attrs.symbolEffect));
-      expect(obj.$attrs.symbolEffect).assertEqual("{\"effectType\":2,\"scopeType\":0,\"commonSubType\":0,\"fillStyle\":0,\"isTxtActive\":true,\"isActive\":true}");
+      expect(obj.$attrs.symbolEffect)
+        .assertEqual("{\"effectType\":2,\"scopeType\":0,\"commonSubType\":0,\"fillStyle\":0,\"isTxtActive\":true,\"isActive\":true}");
       console.info('[EffectFillStyle_0200] END');
       done();
     });

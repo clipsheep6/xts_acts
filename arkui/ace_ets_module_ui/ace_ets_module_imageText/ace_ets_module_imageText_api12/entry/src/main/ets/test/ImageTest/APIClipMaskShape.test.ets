@@ -15,11 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  MouseButton,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function APIClipMaskShape() {
-  describe('APIClipMaskShape', function () {
-    beforeEach(async function (done) {
+  describe('APIClipMaskShape', () => {
+    beforeEach(async (done: Function) => {
       console.info("APIClipMaskShape beforeEach start");
       try {
         router.clear();
@@ -27,7 +41,9 @@ export default function APIClipMaskShape() {
         console.info("get APIClipMaskShape state pages:" + JSON.stringify(pages));
         if (!("APIClipMaskShape" == pages.name)) {
           console.info("get  Context pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Image/APIClipMaskShape"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/Image/APIClipMaskShape"
+          })
           await CommonFunc.sleep(2000);
           console.info("push APIClipMaskShape page result:" + JSON.stringify(result));
         }
@@ -37,19 +53,19 @@ export default function APIClipMaskShape() {
       console.info("APIClipMaskShape foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("APIClipMaskShape after each called");
     });
     /**
      * @tc.number api
-     * @tc.name   APIClipMaskShape_001
-     * @tc.desc   APIClipMaskShape_001
-     * @tc.size   APIClipMaskShape
-     * @tc.type   Attribute
-     * @tc.level  2
+     * @tc.name APIClipMaskShape_001
+     * @tc.desc APIClipMaskShape_001
+     * @tc.size APIClipMaskShape
+     * @tc.type Attribute
+     * @tc.level 2
      */
-    it('APIClipMaskShape_001', 0, async function (done) {
+    it('APIClipMaskShape_001', 0, async (done: Function) => {
       console.info('[APIClipMaskShape_001] START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('APIClipMaskShape_Image1');
@@ -59,8 +75,8 @@ export default function APIClipMaskShape() {
       console.info("[APIClipMaskShape_001] component obj attrs is: " + 'width' + obj.$attrs.width + 'height:' + obj.$attrs.height);
       // 会返回500.00px
       await CommonFunc.sleep(1000);
-      let width = obj.$attrs.width.slice(0,-5) + 'px'
-      let height = obj.$attrs.height.slice(0,-5) + 'px'
+      let width = obj.$attrs.width.slice(0, -5) + 'px'
+      let height = obj.$attrs.height.slice(0, -5) + 'px'
       expect(width).assertEqual('500px');
       expect(height).assertEqual('280px');
       console.info('[APIClipMaskShape_001] END');
@@ -68,13 +84,13 @@ export default function APIClipMaskShape() {
     });
     /**
      * @tc.number api
-     * @tc.name   APIClipMaskShape_002
-     * @tc.desc   APIClipMaskShape_002
-     * @tc.size   APIClipMaskShape
-     * @tc.type   Attribute
-     * @tc.level  2
+     * @tc.name APIClipMaskShape_002
+     * @tc.desc APIClipMaskShape_002
+     * @tc.size APIClipMaskShape
+     * @tc.type Attribute
+     * @tc.level 2
      */
-    it('APIClipMaskShape_002', 0, async function (done) {
+    it('APIClipMaskShape_002', 0, async (done: Function) => {
       console.info('[APIClipMaskShape_002] START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('APIClipMaskShape_Image2');
@@ -83,8 +99,8 @@ export default function APIClipMaskShape() {
       console.info("[APIClipMaskShape_002] component obj is: " + JSON.stringify(obj));
       console.info("[APIClipMaskShape_002] component obj attrs is: " + 'width' + obj.$attrs.width + 'height:' + obj.$attrs.height);
       await CommonFunc.sleep(1000);
-      let width = obj.$attrs.width.slice(0,-5) + 'px'
-      let height = obj.$attrs.height.slice(0,-5) + 'px'
+      let width = obj.$attrs.width.slice(0, -5) + 'px'
+      let height = obj.$attrs.height.slice(0, -5) + 'px'
       expect(width).assertEqual('300px');
       expect(height).assertEqual('300px');
       console.info('[APIClipMaskShape_002] END');

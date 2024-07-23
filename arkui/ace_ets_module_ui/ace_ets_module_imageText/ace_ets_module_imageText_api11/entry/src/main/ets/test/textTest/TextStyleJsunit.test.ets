@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -51,7 +50,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(1000);
       let strJson: string = getInspectorByKey('fontSize');
       console.info("[testTextStyle006] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle006] fontSize: " + JSON.parse(strJson).$attrs.fontSize);
       expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('16.00fp');
 
@@ -77,7 +76,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(4000);
       let strJson: string = getInspectorByKey('fontSize');
       console.info("[testTextStyle007] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle007] fontSize: " + JSON.parse(strJson).$attrs.fontSize);
       expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('16.00fp');
 
@@ -103,7 +102,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(4000);
       let strJson: string = getInspectorByKey('fontSize');
       console.info("[testTextStyle008] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle008] fontSize: " + JSON.parse(strJson).$attrs.fontSize);
       expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('16.00fp');
 
@@ -129,7 +128,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(4000);
       let strJson: string = getInspectorByKey('fontSize');
       console.info("[testTextStyle009] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle009] fontSize: " + JSON.parse(strJson).$attrs.fontSize);
       expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('16.00fp');
 
@@ -155,7 +154,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(4000);
       let strJson: string = getInspectorByKey('fontSize');
       console.info("[testTextStyle010] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle010] fontSize: " + JSON.parse(strJson).$attrs.fontSize);
       expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('16.00fp');
 
@@ -166,7 +165,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(1000);
       let strJson: string = getInspectorByKey('fontStyle');
       console.info("[testTextStyle011] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle011] fontStyle: " + JSON.parse(strJson).$attrs.fontStyle);
       expect(JSON.parse(strJson).$attrs.fontStyle).assertEqual('FontStyle.Italic');
 
@@ -192,7 +191,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson: string = getInspectorByKey('fontStyle');
       console.info("[testTextStyle012] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle012] fontStyle: " + JSON.parse(strJson).$attrs.fontStyle);
       expect(JSON.parse(strJson).$attrs.fontStyle).assertEqual('FontStyle.Normal');
 
@@ -218,7 +217,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson: string = getInspectorByKey('fontStyle');
       console.info("[testTextStyle013] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle013] fontStyle: " + JSON.parse(strJson).$attrs.fontStyle);
       expect(JSON.parse(strJson).$attrs.fontStyle).assertEqual('FontStyle.Normal');
 
@@ -244,7 +243,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson: string = getInspectorByKey('fontStyle');
       console.info("[testTextStyle014] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle014] fontStyle: " + JSON.parse(strJson).$attrs.fontStyle);
       expect(JSON.parse(strJson).$attrs.fontStyle).assertEqual('FontStyle.Normal');
 
@@ -270,7 +269,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson: string = getInspectorByKey('fontStyle');
       console.info("[testTextStyle015] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle015] fontStyle: " + JSON.parse(strJson).$attrs.fontStyle);
       expect(JSON.parse(strJson).$attrs.fontStyle).assertEqual('FontStyle.Normal');
 
@@ -281,7 +280,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(1000);
       let strJson: string = getInspectorByKey('fontWeight');
       console.info("[testTextStyle016] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle016] fontWeight: " + JSON.parse(strJson).$attrs.fontWeight);
       expect(JSON.parse(strJson).$attrs.fontWeight).assertEqual('700');
 
@@ -307,7 +306,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson: string = getInspectorByKey('fontWeight');
       console.info("[testTextStyle017] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle017] fontWeight: " + JSON.parse(strJson).$attrs.fontWeight);
       expect(JSON.parse(strJson).$attrs.fontWeight).assertEqual('400');
 
@@ -333,7 +332,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson: string = getInspectorByKey('fontWeight');
       console.info("[testTextStyle018] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle018] fontWeight: " + JSON.parse(strJson).$attrs.fontWeight);
       expect(JSON.parse(strJson).$attrs.fontWeight).assertEqual('FontWeight.Normal');
 
@@ -359,7 +358,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson: string = getInspectorByKey('fontWeight');
       console.info("[testTextStyle019] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle019] fontWeight: " + JSON.parse(strJson).$attrs.fontWeight);
       expect(JSON.parse(strJson).$attrs.fontWeight).assertEqual('FontWeight.Normal');
 
@@ -385,7 +384,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson: string = getInspectorByKey('fontWeight');
       console.info("[testTextStyle020] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle020] fontWeight: " + JSON.parse(strJson).$attrs.fontWeight);
       expect(JSON.parse(strJson).$attrs.fontWeight).assertEqual('FontWeight.Normal');
 
@@ -396,7 +395,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(1000);
       let strJson: string = getInspectorByKey('fontFamily');
       console.info("[testTextStyle021] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle021] fontFamily: " + JSON.parse(strJson).$attrs.fontFamily);
       expect(JSON.parse(strJson).$attrs.fontFamily).assertEqual('sans-serif');
 
@@ -422,7 +421,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson: string = getInspectorByKey('fontFamily');
       console.info("[testTextStyle022] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle022] fontFamily: " + JSON.parse(strJson).$attrs.fontFamily);
       expect(JSON.parse(strJson).$attrs.fontFamily).assertEqual('Arial');
 
@@ -448,7 +447,7 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson: string = getInspectorByKey('fontFamily');
       console.info("[testTextStyle023] component strJson:" + strJson);
-      
+
       console.info("[testTextStyle023] fontFamily: " + JSON.parse(strJson).$attrs.fontFamily);
       expect(JSON.parse(strJson).$attrs.fontFamily).assertEqual('error');
     });

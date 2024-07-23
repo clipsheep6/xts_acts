@@ -15,11 +15,25 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  MouseButton,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function TextStyleWavy() {
-  describe('TextStyleWavy', function () {
-    beforeEach(async function (done) {
+  describe('TextStyleWavy', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextStyleWavy beforeEach start");
       try {
         router.clear();
@@ -27,7 +41,9 @@ export default function TextStyleWavy() {
         console.info("get TextStyleWavy  state pages:" + JSON.stringify(pages));
         if (!("textPageWavy" == pages.name)) {
           console.info("get textPageWavy pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Text/textPageWavy"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/Text/textPageWavy"
+          })
           await CommonFunc.sleep(2000);
           console.info("push textPageWavy page result:" + JSON.stringify(result));
         }
@@ -37,20 +53,20 @@ export default function TextStyleWavy() {
       console.info("TextStyle foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("textPageWavy after each called");
     });
 
     /**
-     * @tc.number     TextDecorationStyleTest
-     * @tc.name      TextStyleWavy_001
-     * @tc.desc      TextDecorationStyle.WAVY test
-     * @tc.level:    Level 2
+     * @tc.number TextDecorationStyleTest
+     * @tc.name TextStyleWavy_001
+     * @tc.desc TextDecorationStyle.WAVY test
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('TextStyleWavy_001', 0, async function (done) {
+    it('TextStyleWavy_001', 0, async (done: Function) => {
       console.info('[TextStyleWavy_001] START');
 
       let strJson = getInspectorByKey('textWavy');
@@ -59,7 +75,8 @@ export default function TextStyleWavy() {
       console.info("[TextStyleWavy_001] component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
 
-      expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.Underline","color":"#FFFF0000","style":"TextDecorationStyle.WAVY"}');
+      expect(obj.$attrs.decoration)
+        .assertEqual('{"type":"TextDecorationType.Underline","color":"#FFFF0000","style":"TextDecorationStyle.WAVY"}');
       console.info('[TextStyleWavy_001] END');
       done();
 

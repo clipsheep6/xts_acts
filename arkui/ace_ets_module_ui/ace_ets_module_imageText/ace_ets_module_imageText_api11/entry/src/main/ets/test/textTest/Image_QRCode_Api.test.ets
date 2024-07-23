@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 import router from '@system.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from '../../MainAbility/utils/Common';
 import { Driver, ON } from '@ohos.UiTest';
 
 export default function Image_QRCode_Api() {
-  describe('Image_QRCode_Api', function () {
-    beforeEach(async function (done) {
+  describe('Image_QRCode_Api', () => {
+    beforeEach(async (done: Function) => {
       console.info("Image_QRCode_Api beforeEach start");
       let options = {
         uri: 'MainAbility/pages/text/Image_QRCode_Api',
@@ -40,18 +40,18 @@ export default function Image_QRCode_Api() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("Image_QRCode_Api after each called");
     });
 
     /**
-     * @tc.number      Image_QRCode_Api_001
-     * @tc.name        Image_QRCode_Api_001
-     * @tc.desc        QRCode test
-     * @tc.level       Level 2
+     * @tc.number Image_QRCode_Api_001
+     * @tc.name Image_QRCode_Api_001
+     * @tc.desc QRCode test
+     * @tc.level Level 2
      */
-    it('Image_QRCode_Api_001', 0, async function (done) {
+    it('Image_QRCode_Api_001', 0, async (done: Function) => {
       console.info('[Image_QRCode_Api_001] START');
       await Utils.sleep(1000);
 
@@ -66,12 +66,12 @@ export default function Image_QRCode_Api() {
     });
 
     /**
-     * @tc.number      Image_QRCode_Api_002
-     * @tc.name        Image_QRCode_Api_002
-     * @tc.desc        Image test
-     * @tc.level       Level 2
+     * @tc.number Image_QRCode_Api_002
+     * @tc.name Image_QRCode_Api_002
+     * @tc.desc Image test
+     * @tc.level Level 2
      */
-    it('Image_QRCode_Api_002', 0, async function (done) {
+    it('Image_QRCode_Api_002', 0, async (done: Function) => {
       console.info('[Image_QRCode_Api_002] START');
       await Utils.sleep(1000);
 
@@ -84,7 +84,6 @@ export default function Image_QRCode_Api() {
       console.info('[Image_QRCode_Api_002] END');
       done();
     });
-
 
 
   })

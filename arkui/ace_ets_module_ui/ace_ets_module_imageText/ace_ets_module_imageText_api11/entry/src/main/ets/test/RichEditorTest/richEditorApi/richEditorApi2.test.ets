@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from "../../../MainAbility/common/Common";
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function richEditorApi2() {
-  describe('richEditorApi2', function () {
-    beforeEach(async function (done) {
+  describe('richEditorApi2', () => {
+    beforeEach(async (done: Function) => {
       console.info("richEditorApi2 beforeEach start");
       let options = {
         url: 'MainAbility/pages/RichEditor/richEditorApi/richEditorApi2',
@@ -40,19 +53,19 @@ export default function richEditorApi2() {
       console.info("richEditorApi2 beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("richEditorApi2 after each called");
     });
     /**
-     * @tc.number    SUB_ACE_RICHEDITOR_richEditorApi2_0100
-     * @tc.name      testSpan
-     * @tc.desc      set api
-     * @tc.level     Level 2
+     * @tc.number SUB_ACE_RICHEDITOR_richEditorApi2_0100
+     * @tc.name testSpan
+     * @tc.desc set api
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('richEditorApi2_0100', 0, async function (done) {
+    it('richEditorApi2_0100', 0, async (done: Function) => {
       console.info('[richEditorApi2_0100] START');
       await CommonFunc.sleep(2000);
 
@@ -68,7 +81,8 @@ export default function richEditorApi2() {
 
       let text1 = getInspectorByKey('richEditorApi2_text1');
       let Obj1 = JSON.parse(text1);
-      expect(Obj1.$attrs.content).assertEqual(`{"size":[80,80],"verticalAlign":3,"objectFit":2,"layoutStyle":{"borderRadius":"50.00px","margin":"left: [0.00px]right: [0.00px]top: [0.00px]bottom: [0.00px]"}}`);
+      expect(Obj1.$attrs.content)
+        .assertEqual(`{"size":[80,80],"verticalAlign":3,"objectFit":2,"layoutStyle":{"borderRadius":"50.00px","margin":"left: [0.00px]right: [0.00px]top: [0.00px]bottom: [0.00px]"}}`);
 
       console.info('[testRichEditor_0100] END');
       done();

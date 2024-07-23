@@ -15,11 +15,24 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function RelativeBarrier() {
-  describe('RelativeBarrier', function () {
-    beforeEach(async function (done) {
+  describe('RelativeBarrier', () => {
+    beforeEach(async (done: Function) => {
       console.info("RelativeBarrier beforeEach start");
       try {
         router.clear();
@@ -27,7 +40,9 @@ export default function RelativeBarrier() {
         console.info("get RelativeBarrier state pages:" + JSON.stringify(pages));
         if (!("RelativeBarrier" == pages.name)) {
           console.info("get  RelativeBarrier pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/RelativeContainer/RelativeBarrier"})
+          let result = await router.pushUrl({
+            url: "MainAbility/pages/RelativeContainer/RelativeBarrier"
+          })
           await CommonFunc.sleep(2000);
           console.info("push RelativeBarrier page result:" + JSON.stringify(result));
         }
@@ -37,20 +52,20 @@ export default function RelativeBarrier() {
       console.info("RelativeBarrier foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("RelativeBarrier after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0280
-     * @tc.desc      chainMode test
-     * @tc.level     Level 3
+     * @tc.number SUB_ACE_UI_RELATIVECONTAINER_COLLABORATION_0280
+     * @tc.desc chainMode test
+     * @tc.level Level 3
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
 
-    it('RelativeBarrier_001', 0, async function (done) {
+    it('RelativeBarrier_001', 0, async (done: Function) => {
       console.info('[RelativeBarrier_001] START');
 
       await CommonFunc.sleep(1000);
@@ -66,11 +81,6 @@ export default function RelativeBarrier() {
       console.info('[RelativeBarrier_001] END');
       done();
     });
-
-
-
-
-
 
 
   })
