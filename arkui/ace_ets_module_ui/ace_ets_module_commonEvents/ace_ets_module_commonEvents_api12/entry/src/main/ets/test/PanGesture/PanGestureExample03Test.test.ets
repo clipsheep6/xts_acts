@@ -370,7 +370,7 @@ export default function PanGestureExample03Test() {
       console.log('PanGestureExample03Test_0010 obj26 $attrs content', JSON.parse(text26)
         .$attrs
         .content, JSON.parse(text26))
-      expect(JSON.parse(text26).$attrs.content).assertEqual('sourceTool:1');
+      expect(JSON.parse(text26).$attrs.content).assertEqual('sourceTool:FINGER');
 
       console.info('PanGestureExample03Test_0010 END');
       done();

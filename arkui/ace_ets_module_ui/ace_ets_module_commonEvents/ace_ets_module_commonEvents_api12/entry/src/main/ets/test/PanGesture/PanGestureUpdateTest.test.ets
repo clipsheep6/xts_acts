@@ -204,7 +204,7 @@ export default function PanGestureUpdateTest() {
       await CommonFunc.sleep(200);
       let text26 = getInspectorByKey('PanGestureUpdate_sourceTool');
       console.log('PanGestureUpdateTest_0010 obj26 $attrs content', JSON.parse(text26).$attrs.content, JSON.parse(text26));
-      expect(JSON.parse(text26).$attrs.content).assertEqual('sourceTool:1');
+      expect(JSON.parse(text26).$attrs.content).assertEqual('sourceTool:FINGER');
 
 
       console.info('PanGestureUpdateTest_0010 END');

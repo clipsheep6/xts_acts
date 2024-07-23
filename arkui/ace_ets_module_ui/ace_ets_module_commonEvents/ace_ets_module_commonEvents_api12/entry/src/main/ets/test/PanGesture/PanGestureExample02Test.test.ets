@@ -181,9 +181,9 @@ export default function PanGestureExample02Test() {
       expect(JSON.parse(getInspectorByKey('PanGestureExample02_tiltY')).$attrs.content).assertEqual('tiltY:0');
 
       await CommonFunc.sleep(200);
-      console.log('PanGestureExample02Test_0010 obj26 $attrs content', JSON.parse(getInspectorByKey('PanGestureExample02_sourceTool')).$attrs.content, JSON.parse(getInspectorByKey('PanGestureExample02_sourceTool')));
-      expect(JSON.parse(getInspectorByKey('PanGestureExample02_sourceTool')).$attrs.content).assertEqual('sourceTool:1');
-
+      let text26 = getInspectorByKey('PanGestureExample02_sourceTool');
+      console.log('PanGestureExample02Test_0010 obj26 $attrs content',JSON.parse(text26).$attrs.content,JSON.parse(text26))
+      expect(JSON.parse(text26).$attrs.content).assertEqual('sourceTool:FINGER');
 
       console.info('PanGestureExample02Test_0010 END');
       done();

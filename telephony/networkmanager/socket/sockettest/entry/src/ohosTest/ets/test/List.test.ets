@@ -22,6 +22,8 @@ import MulticastSocket from './MulticastSocket.test';
 import TCPSocketServerTest from './TCPSocketServer.test';
 import tlsSocketConnectionTest from './TlsSocketConnection.test';
 import TCPSocketConnectionTest from './TCPSocketConnection.test';
+import SocketGetLocalAddressTest from './SocketGetLocalAddress.test';
+import TlsSkipRemoteValidationTest from './TlsSkipRemoteValidation.test';
 
 export default function testsuite() {
   TLSSocketServerTest();
@@ -32,4 +34,6 @@ export default function testsuite() {
   MulticastSocket();
   TCPSocketServerTest();
   tlsSocketConnectionTest();
+  SocketGetLocalAddressTest();
+  TlsSkipRemoteValidationTest();
 }

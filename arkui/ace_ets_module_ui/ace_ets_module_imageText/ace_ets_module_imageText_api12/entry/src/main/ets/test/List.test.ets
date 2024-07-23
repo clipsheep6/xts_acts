@@ -128,8 +128,13 @@ import typeNodeTextSelectableMode1Test from './Text/TextSelectableMode1.test';
 import typeNodeTextSelectableMode2Test from './Text/TextSelectableMode2.test';
 import typeNodeTextSelectableMode3Test from './Text/TextSelectableMode3.test';
 import styledStringChange from './Text/styledStringChange.test'
+import searchTest from './Search/searchTest.test'
+import imageAddApi2 from './ImageTest/imageAddApi2.test'
+import styledStringAddApi from './Text/styledStringAddApi.test'
 import textAreaPreview from './TextArea/textAreaPreview.test'
 import textInputPreview from './TextInput/textInputPreview.test'
+import RelativeContainerApi1 from './RelativeContainer/RelativeContainerApi1.test'
+import TextAddApi1 from './Text/TextAddApi1.test'
 
 export default function testsuite() {
   APIContentTypeTest();
@@ -194,6 +199,8 @@ export default function testsuite() {
   TextAreaApi3();
   styledStringChange();
   textApi1();
+  RelativeContainerApi1()
+  TextAddApi1()
 
   TextArea_lineBreakStrategyTest();
   TextArea_lineSpacingTest();
@@ -232,6 +239,9 @@ export default function testsuite() {
   TextAreaTest()
   MarqueeMirroringTest()
   symbolEffect()
+  searchTest()
+  imageAddApi2()
+  styledStringAddApi()
 
   RichEditorApi8()
   RichEditorApi9()
