@@ -24,7 +24,7 @@
         "MainAbility/pages/Storage/appStorageRef",
         "MainAbility/pages/Storage/localStorageRef",
         "MainAbility/pages/Monitor/IMonitor",
-		"MainAbility/pages/ComponentV2/Local1",
+        "MainAbility/pages/ComponentV2/Local1",
 		"MainAbility/pages/ComponentV2/Local2",
 		"MainAbility/pages/ComponentV2/Param1",
 		"MainAbility/pages/ComponentV2/Param2",
@@ -33,6 +33,11 @@
 		"MainAbility/pages/ComponentV2/Monitor1",
 		"MainAbility/pages/ComponentV2/Monitor2",
 		"MainAbility/pages/ComponentV2/Monitor3",
-		"MainAbility/pages/ComponentV2/Monitor4"
+		"MainAbility/pages/ComponentV2/Monitor4",
+        "MainAbility/pages/Provider/Provider1",
+        "MainAbility/pages/Provider/Provider2",
+        "MainAbility/pages/Provider/Provider3",
+        "MainAbility/pages/Provider/Provider4",
+        "MainAbility/pages/Provider/Provider5"
     ]
 }
