@@ -64,7 +64,7 @@ export function fetchAllOption() : photoAccessHelper.FetchOptions {
   return ops;
 };
 
-export function fetchOption(testNum: any, key: any, value: any) : photoAccessHelper.FetchOptions {
+export function fetchOption(testNum, key, value) : photoAccessHelper.FetchOptions {
   const predicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(key, value);
   const ops : photoAccessHelper.FetchOptions = {
@@ -75,7 +75,7 @@ export function fetchOption(testNum: any, key: any, value: any) : photoAccessHel
   return ops;
 };
 
-export function albumFetchOption(testNum: any, key: any, value: any) : photoAccessHelper.FetchOptions {
+export function albumFetchOption(testNum, key, value) : photoAccessHelper.FetchOptions {
   const predicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(key, value);
   const ops : photoAccessHelper.FetchOptions = {
@@ -86,7 +86,7 @@ export function albumFetchOption(testNum: any, key: any, value: any) : photoAcce
   return ops;
 };
 
-export function photoFetchOption(testNum: any, key: any, value: any) : photoAccessHelper.FetchOptions {
+export function photoFetchOption(testNum, key, value) : photoAccessHelper.FetchOptions {
   const predicates = new dataSharePredicates.DataSharePredicates();
   predicates.equalTo(key, value);
   const ops : photoAccessHelper.FetchOptions = {
@@ -156,11 +156,11 @@ export async function getPermission(name = 'ohos.acts.multimedia.photoaccess') :
   }
 };
 
-export function isNum(value: number) : boolean {
+export function isNum(value) : boolean {
   return typeof value === 'number' && !isNaN(value);
 };
 
-export function getAssetId(uri: string) : string {
+export function getAssetId(uri) : string {
   const tag = 'Photo/';
   const index = uri.indexOf(tag);
   let str = uri.substring(index + tag.length);
@@ -168,7 +168,7 @@ export function getAssetId(uri: string) : string {
   return str;
 }
 
-export function getAlbumId(uri: string) : string {
+export function getAlbumId(uri) : string {
   const index = uri.lastIndexOf('/');
   let str = uri.substring(index + 1);
   console.info(`getAlbumId str: ${str}`);
@@ -184,7 +184,7 @@ export function genRadomStr(len: number) : string {
   return randomStr;
 }
 
-export async function createUserAlbum(testNum: any, albumName: any) : Promise<photoAccessHelper.Album> {
+export async function createUserAlbum(testNum, albumName) : Promise<photoAccessHelper.Album> {
   console.info(`${testNum} createUserAlbum albumName: ${albumName}`);
   let album: photoAccessHelper.Album;
   try {
@@ -201,7 +201,7 @@ export async function createUserAlbum(testNum: any, albumName: any) : Promise<ph
   });
 }
 
-export async function getFileAsset(testNum: any, fetchOps: any) : Promise<photoAccessHelper.PhotoAsset> {
+export async function getFileAsset(testNum, fetchOps) : Promise<photoAccessHelper.PhotoAsset> {
   let asset: photoAccessHelper.PhotoAsset;
   try {
     const helper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
@@ -230,7 +230,7 @@ export function getAlbumFetchResult() : photoAccessHelper.FetchResult<photoAcces
   return fetchResult;
 }
 
-export function checkUserAlbum(expect: (arg0: boolean) => { (): any; new(): any; assertEqual: { (arg0: string | number | boolean): void; new(): any; }; }, testNum: any, album: { albumName: any; albumType: any; albumSubtype: any; coverUri: any; albumUri: string; count: any; }, expectedName: any, expectedCover: string) : void {
+export function checkUserAlbum(expect, testNum, album, expectedName, expectedCover) : void {
   console.info(`${testNum} checkUserAlbum album.albumName: ${album.albumName}, expectedName: ${expectedName}`);
   expect(album.albumType).assertEqual(albumType.USER);
   expect(album.albumSubtype).assertEqual(albumSubtype.USER_GENERIC);
@@ -244,7 +244,7 @@ export function checkUserAlbum(expect: (arg0: boolean) => { (): any; new(): any;
   expect(album.count).assertEqual(0);
 }
 
-export function checkSystemAlbum(expect: (arg0: boolean) => { (): any; new(): any; assertEqual: { (arg0: string | boolean): void; new(): any; }; }, testNum: any, album: { albumType: any; albumSubtype: any; albumName: any; albumUri: string; }, expectedSubType: any) : void {
+export function checkSystemAlbum(expect, testNum, album, expectedSubType) : void {
   try {
     console.info(`${testNum} checkSystemAlbum expectedSubType: ${expectedSubType}`);
     expect(album.albumType).assertEqual(albumType.SYSTEM);
@@ -258,17 +258,17 @@ export function checkSystemAlbum(expect: (arg0: boolean) => { (): any; new(): an
 }
 
 export async function startAbility(bundleName: string, abilityName: string) : Promise<void> {
-  await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`).then((result: any) => {
+  await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`).then(result => {
     console.info(`[picker] start abilityFinished: ${result}`);
-  }).catch((err: any) => {
+  }).catch(err => {
     console.error(`[picker] start abilityFailed: ${err}`);
   });
 }
 
 export async function stopAbility(bundleName: string) : Promise<void> {
-  await delegator.executeShellCommand(`aa force-stop ${bundleName}`).then((result: any) => {
+  await delegator.executeShellCommand(`aa force-stop ${bundleName}`).then(result => {
     console.info(`[picker] stop abilityFinished: ${result}`);
-  }).catch((err: any) => {
+  }).catch(err => {
     console.error(`[picker] stop abilityFailed: ${err}`);
   });
 }
@@ -394,7 +394,7 @@ export async function pushCreateAssetSingle(names: Array<string>){
   }
 }
 
-export function createSandboxFileUri(extension: string) {
+export function createSandboxFileUri(extension) {
   let pathDir = globalThis.abilityContext.filesDir;
   let path = pathDir + '/test' + new Date().getTime() + '.' + extension;
   fs.openSync(path, fs.OpenMode.CREATE)
@@ -402,24 +402,24 @@ export function createSandboxFileUri(extension: string) {
 }
 
 // 监控相机状态
-export function registerCameraStatusChange(err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) {
+export async function registerCameraStatusChange(err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) {
   if (err !== undefined && err.code !== 0) {
-    console.error(`registerCameraStatusChange :: cameraStatus with errorCode ==> ${err.code}`);
+    console.error(`Camera :: registerCameraStatusChange :: cameraStatus with errorCode ==> ${err.code}`);
     return;
   }
-  console.info(`registerCameraStatusChange :: camera ==> ${cameraStatusInfo.camera.cameraId}`);
-  console.info(`registerCameraStatusChange :: status ==> ${cameraStatusInfo.status}`);
+  console.info(`Camera :: registerCameraStatusChange :: camera ==> ${cameraStatusInfo.camera.cameraId}`);
+  console.info(`Camera :: registerCameraStatusChange :: status ==> ${cameraStatusInfo.status}`);
 }
 // 监控打开相机
-export function onCameraStatusChange(cameraManager: camera.CameraManager): void {
-  cameraManager.on('cameraStatus', this.registerCameraStatusChange);
+export async function onCameraStatusChange(cameraManager: camera.CameraManager): Promise<void> {
+  cameraManager.on('cameraStatus', registerCameraStatusChange);
 }
 // 监控关闭相机
-export function offCameraStatusChange(cameraManager: camera.CameraManager): void {
-  cameraManager?.off('cameraStatus', this.registerCameraStatusChange);
+export async function offCameraStatusChange(cameraManager: camera.CameraManager): Promise<void> {
+  cameraManager?.off('cameraStatus', registerCameraStatusChange);
 }
 // 释放相机对象
-export function releaseCamera(): void {
+export async function releaseCamera(): Promise<void> {
   if (previewOutput) {
     try {
       previewOutput.release();
@@ -464,7 +464,8 @@ export function releaseCamera(): void {
 }
 
 // 监控 previewOutPut 对象
-function previewOutputCallBack() {
+async function previewOutputCallBack() {
+  console.log(`initCamera :: previewOutputCallBack ...`);
   previewOutput.on("frameStart", (): void => {
     console.log(`Camera :: Preview frame started`);
   });
@@ -472,7 +473,7 @@ function previewOutputCallBack() {
     console.log(`Camera :: Preview frame ended`);
   });
   previewOutput.on("error", (previewOutputError: BusinessError): void => {
-    console.error(`Preview output error, code: ${previewOutputError.code}`);
+    console.error(`Camera :: Preview output error, code: ${previewOutputError.code}`);
   });
 }
 
@@ -480,34 +481,34 @@ function previewOutputCallBack() {
 async function photoOutputCallBack(photoOutput: camera.PhotoOutput): Promise<void> {
   photoOutput.on('captureStartWithInfo', (err: BusinessError, captureStartInfo: camera.CaptureStartInfo) => {
     if (err !== undefined && err.code !== 0) {
-      console.error(`Callback Error, errorCode: ${err.code}`);
+      console.error(`Camera :: Callback Error, errorCode: ${err.code}`);
       return;
     }
-    console.info(`photo capture started, captureStartInfo : ${captureStartInfo}`);
+    console.info(`Camera :: photo capture started, captureStartInfo : ${captureStartInfo}`);
   });
   photoOutput.on('frameShutter', (err: BusinessError, frameShutterInfo: camera.FrameShutterInfo) => {
     if (err !== undefined && err.code !== 0) {
-      console.error(`Callback Error, errorCode: ${err.code}`);
+      console.error(`Camera :: Callback Error, errorCode: ${err.code}`);
       return;
     }
-    console.info(`CaptureId for frame : ${frameShutterInfo.captureId}`);
-    console.info(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
+    console.info(`Camera :: CaptureId for frame : ${frameShutterInfo.captureId}`);
+    console.info(`Camera :: Timestamp for frame : ${frameShutterInfo.timestamp}`);
   });
   photoOutput.on('captureEnd', (err: BusinessError, captureEndInfo: camera.CaptureEndInfo) => {
     if (err !== undefined && err.code !== 0) {
-      console.error(`Callback Error, errorCode: ${err.code}`);
+      console.error(`Camera :: Callback Error, errorCode: ${err.code}`);
       return;
     }
-    console.info(`photo capture end, captureId : ${captureEndInfo.captureId}`);
-    console.info(`frameCount : ${captureEndInfo.frameCount}`);
+    console.info(`Camera :: photo capture end, captureId : ${captureEndInfo.captureId}`);
+    console.info(`Camera :: frameCount : ${captureEndInfo.frameCount}`);
   });
   photoOutput.on('photoAssetAvailable', async (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset) => {
     if (err) {
-      console.info(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
+      console.info(`Camera :: photoAssetAvailable error: ${JSON.stringify(err)}.`);
       return;
     }
-    console.info('photoOutPutCallBack photoAssetAvailable');
-    console.info('saveCameraPhoto | discardCameraPhoto start');
+    console.info('Camera :: photoOutPutCallBack photoAssetAvailable');
+    console.info('Camera :: saveCameraPhoto | discardCameraPhoto start');
     try {
       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
       if (isSaveCameraPhoto) {
@@ -516,29 +517,31 @@ async function photoOutputCallBack(photoOutput: camera.PhotoOutput): Promise<voi
         assetChangeRequest.discardCameraPhoto();
       }
       await phAccessHelper.applyChanges(assetChangeRequest);
-      console.info('apply saveCameraPhoto | discardCameraPhoto successfully');
+      console.info('Camera :: apply saveCameraPhoto | discardCameraPhoto successfully');
     } catch (err) {
-      console.error(`apply saveCameraPhoto | discardCameraPhoto failed with error: ${err.code}, ${err.message}`);
+      console.error(`Camera :: apply saveCameraPhoto | discardCameraPhoto failed with error: ${err.code}, ${err.message}`);
     }
   });
 }
 
 export async function initCamera(surfaceId: string) {
   try {
-     // 先释放相机对象
-    releaseCamera();
+    // 先释放相机对象
+    await releaseCamera();
     // 获取相机管理实例
     cameraManager = camera.getCameraManager(context);
     if (cameraManager == undefined) {
       console.error(`Camera :: initCamera :: get CameraManager failed !`);
       return;
     }
+    console.log(`Camera :: initCamera :: get CameraManager success .`);
     // 获取相机对象列表
     cameraDevices = cameraManager.getSupportedCameras();
     if (cameraDevices.length <= 0) {
       console.log(`Camera :: initCamera :: have no camera object to choose !`);
       return;
     }
+    console.log(`Camera :: initCamera :: get cameraDevices success, length = ${cameraDevices.length}.`);
     // 指定当前准备使用的相机对象：第一个
     let currentCameraDevice: camera.CameraDevice = cameraDevices[0];
     // 查看支持的拍照模式
@@ -547,10 +550,11 @@ export async function initCamera(surfaceId: string) {
       console.log(`Camera :: initCamera :: camera have no sceneMode to select!`);
       return;
     }
+    console.log(`Camera :: initCamera :: get sceneModesArray success, sceneModesArray is ${sceneModesArray} .`);
     // 查看是否支持普通拍照模式，理论上，有摄像头的都支持
     let isSupportPhotoMode: boolean = sceneModesArray.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
     if (!isSupportPhotoMode) {
-      console.log(`Camera :: initCamera :: camera not support NORMAL_PHOTO sceneMode !`);
+      console.error(`Camera :: initCamera :: camera not support NORMAL_PHOTO sceneMode !`);
       return;
     }
     // 获取相机输出能力对象
@@ -559,12 +563,14 @@ export async function initCamera(surfaceId: string) {
       console.error(`Camera :: initCamera :: get cameraOutputCapability failed !`);
       return;
     }
+    console.log(`Camera :: initCamera :: get cameraOutputCapability success .`);
     // 获取支持的预览配置信息
     let previewProfilesArray: Array<camera.Profile> = cameraOutputCapability.previewProfiles;
     if (previewProfilesArray == undefined || previewProfilesArray.length <= 0) {
       console.error(`Camera :: initCamera :: previewProfiles have no item to choose !`);
       return;
     }
+    console.log(`Camera :: initCamera :: get previewProfilesArray success, previewProfile is ${previewProfilesArray[0]}`);
     // 创建预览输出流,预览配置信息为第一个
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
     if (previewOutput == undefined) {
@@ -572,13 +578,14 @@ export async function initCamera(surfaceId: string) {
       return;
     }
     // 监听预览对象的状态
-    previewOutputCallBack();
+    await previewOutputCallBack();
     // 获取支持的拍照信息
     let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
     if (photoProfilesArray == undefined || photoProfilesArray.length <= 0) {
       console.error(`Camera :: initCamera :: photoProfiles have no item to choose !`);
       return;
     }
+    console.log(`Camera :: initCamera :: get photoProfilesArray success, photoProfiles is ${photoProfilesArray[0]}`);
     // 创建photoOutput输出对象, 配置为默认第一个
     photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
     if (photoOutput == undefined) {
@@ -603,7 +610,7 @@ export async function initCamera(surfaceId: string) {
 async function sessionFlow(mode: camera.SceneMode) {
   try {
     // 创建会话对象
-    photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO);
+    photoSession = cameraManager.createSession(mode);
     // 开始会话
     photoSession.beginConfig();
     // 将各种对象添加进会话中
@@ -612,6 +619,7 @@ async function sessionFlow(mode: camera.SceneMode) {
     photoSession.addOutput(photoOutput);
     await photoOutputCallBack(photoOutput);
     await photoSession.commitConfig();
+    await photoSession.start();
   } catch (error) {
     console.error(`Camera :: sessionFlow failed, message = ${error}`)
     return;
@@ -628,15 +636,15 @@ export async function takePicture() {
     // 使用当前拍照设置进行拍照
     photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {
       if (err) {
-        console.error(`Failed to capture the photo ${err.message}`);
+        console.error(`takePicture :: Failed to capture the photo ${err.message}`);
         return;
       }
-      console.info('Callback invoked to indicate the photo capture request success.');
+      console.info('takePicture :: Callback invoked to indicate the photo capture request success.');
     });
     photoSession.stop();
     releaseCamera();
   } catch (error: BusinessError) {
-    console.error(`takePicture failed, message = ${error}`);
+    console.error(`takePicture :: takePicture failed, message = ${error}`);
   }
 }
 

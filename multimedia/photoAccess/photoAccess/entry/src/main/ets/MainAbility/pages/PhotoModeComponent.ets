@@ -17,33 +17,34 @@ import { takePicture } from "../../../../../../../common";
 
 const TAG: string = 'PhotoModeComponent';
 
+@Entry
 @Component
 struct PhotoModeComponent {
-   build() {
-        Column({ space: 24}) {
-            Row() {
-                // 拍照按钮
-                Column() {
-                    Row() {
-                        Button("拍照")
-                        .width("300px")
-                        .height("100px")
-                        .onClick(async () => {
-                            takePicture();
-                        })
-                    }
-                }
-            }
-            .width("100%")
-            .justifyContent(FlexAlign.Center)
-            .alignItems(VerticalAlign.Center)
+  build() {
+    Column({ space: 24}) {
+      Row() {
+        // 拍照按钮
+        Column() {
+          Row() {
+            Button("拍照")
+              .width("300px")
+              .height("100px")
+              .onClick(async () => {
+                takePicture();
+              })
+          }
         }
-        .justifyContent(FlexAlign.End)
-        .height("10%")
-        .padding({ left: 24, right: 24 })
-        .margin({ bottom: 24 })
-        .position({ x: "0%", y: "85%"})
-   }
- }
+      }
+      .width("100%")
+      .justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Center)
+    }
+    .justifyContent(FlexAlign.End)
+    .height("10%")
+    .padding({ left: 24, right: 24 })
+    .margin({ bottom: 24 })
+    .position({ x: "0%", y: "85%"})
+  }
+}
 
- export default PhotoModeComponent
+export default PhotoModeComponent
