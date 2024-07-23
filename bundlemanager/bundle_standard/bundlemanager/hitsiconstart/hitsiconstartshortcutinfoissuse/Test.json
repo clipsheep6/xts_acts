@@ -4,13 +4,13 @@
         "type": "OHJSUnitTest",
         "test-timeout": "180000",
         "shell-timeout": "180000",
-        "bundle-name": "com.hits.bm.uninstallbundle",
+        "bundle-name": "com.hits.shortcutinfo.issues",
         "module-name": "entry_test"
     },
     "kits": [
         {
             "test-file-name": [
-                "HitsBmUnInstallBundleTest.hap"
+                "HitsShortCutInfoIssuesTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
@@ -24,7 +24,13 @@
         {
             "type": "PushKit",
             "push": [
-                "HitsBmMdmTest.hap->/data/app/el2/100/base/com.hits.bm.uninstallbundle/files/"
+                "ShortCutoneTest.hap->/data/app/el2/100/base/com.hits.shortcutinfo.issues/files/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "teardown-command": [
+                "bm uninstall -n com.hits.shortcutone"
             ]
         }
     ]
