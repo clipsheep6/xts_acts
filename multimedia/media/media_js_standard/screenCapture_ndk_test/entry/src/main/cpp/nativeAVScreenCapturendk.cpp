@@ -463,23 +463,32 @@ static napi_value OriginAVScreenCaptureTest(napi_env env, napi_callback_info inf
 
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
-
+    OH_LOG_INFO(LOG_APP, "myLog1");
     vector<int> windowidsExclude0 = {-111};
     struct OH_AVScreenCapture_ContentFilter *contentFilter = OH_AVScreenCapture_CreateContentFilter();
+    OH_LOG_INFO(LOG_APP, "myLog2");
     OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
     OH_AVScreenCapture_ContentFilter_AddWindowContent(contentFilter, 
         &windowidsExclude0[0], static_cast<int32_t>(windowidsExclude0.size()));
     OH_AVScreenCapture_ExcludeContent(screenCapture, contentFilter);
+    OH_LOG_INFO(LOG_APP, "myLog3");
 
     SetScreenCaptureCallback(screenCapture, screenCaptureCb);
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
+    OH_LOG_INFO(LOG_APP, "myLog4");
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
-    sleep(g_recordTime);
+    OH_LOG_INFO(LOG_APP, "myLog5");
+
     OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_StopScreenCapture(screenCapture);
+    OH_LOG_INFO(LOG_APP, "myLog6");
     DelCallback(screenCapture);
+    OH_LOG_INFO(LOG_APP, "myLog7");
     OH_AVScreenCapture_ReleaseContentFilter(contentFilter);
+    OH_LOG_INFO(LOG_APP, "myLog8");
     OH_AVScreenCapture_Release(screenCapture);
+    OH_LOG_INFO(LOG_APP, "myLog9");
     CloseFile(audioFile, nullptr);
+    OH_LOG_INFO(LOG_APP, "myLog10");
     screenCaptureCb = nullptr;
     napi_value res;
     OH_AVSCREEN_CAPTURE_ErrCode result;
