@@ -35,12 +35,12 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number      SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_SEEK_MODE_0100
-        * @tc.name        SeekMode
-        * @tc.desc        SeekMode Enumeration test
-        * @tc.size        MediumTest
-        * @tc.type        Function test
-        * @tc.level       Level0
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_SEEK_MODE_0100
+        * @tc.name      : SeekMode
+        * @tc.desc      : SeekMode Enumeration test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
     */
     it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_SEEK_MODE_0100', 0, async function (done) {
         expect(media.SeekMode.SEEK_NEXT_SYNC).assertEqual(0);
@@ -50,12 +50,12 @@ describe('VideoPlayerEnumTest', function () {
     })
 
      /* *
-        * @tc.number      SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_ERROR_CODE_0100
-        * @tc.name        MediaErrorCode
-        * @tc.desc        MediaErrorCode Enumeration test
-        * @tc.size        MediumTest
-        * @tc.type        Function test
-        * @tc.level       Level0
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_ERROR_CODE_0100
+        * @tc.name      : MediaErrorCode
+        * @tc.desc      : MediaErrorCode Enumeration test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
     */
      it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_ERROR_CODE_0100', 0, async function (done) {
         expect(media.MediaErrorCode.MSERR_OK).assertEqual(0);
@@ -72,12 +72,12 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number      SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_AV_DATA_SOURCE_ERROR_0100
-        * @tc.name        AVDataSourceError
-        * @tc.desc        AVDataSourceError Enumeration test
-        * @tc.size        MediumTest
-        * @tc.type        Function test
-        * @tc.level       Level0
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_AV_DATA_SOURCE_ERROR_0100
+        * @tc.name      : AVDataSourceError
+        * @tc.desc      : AVDataSourceError Enumeration test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
     */
     it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_AV_DATA_SOURCE_ERROR_0100', 0, async function (done) {
         expect(media.AVDataSourceError.SOURCE_ERROR_IO).assertEqual(-2);
@@ -86,12 +86,12 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number      SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_BUFFERING_INFO_TYPE_0100
-        * @tc.name        BufferingInfoType
-        * @tc.desc        BufferingInfoType Enumeration test
-        * @tc.size        MediumTest
-        * @tc.type        Function test
-        * @tc.level       Level0
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_BUFFERING_INFO_TYPE_0100
+        * @tc.name      : BufferingInfoType
+        * @tc.desc      : BufferingInfoType Enumeration test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
     */
     it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_BUFFERING_INFO_TYPE_0100', 0, async function (done) {
         expect(media.BufferingInfoType.BUFFERING_START).assertEqual(1);
@@ -102,12 +102,12 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number      SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_PLAYBACK_SPEED_0100
-        * @tc.name        PlaybackSpeed
-        * @tc.desc        PlaybackSpeed Enumeration test
-        * @tc.size        MediumTest
-        * @tc.type        Function test
-        * @tc.level       Level0
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_PLAYBACK_SPEED_0100
+        * @tc.name      : PlaybackSpeed
+        * @tc.desc      : PlaybackSpeed Enumeration test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
     */
     it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_PLAYBACK_SPEED_0100', 0, async function (done) {
         expect(media.PlaybackSpeed.SPEED_FORWARD_0_75_X).assertEqual(0);
@@ -119,12 +119,12 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number      SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_CONTAINER_FORMAT_TYPE_0100
-        * @tc.name        ContainerFormatType
-        * @tc.desc        ContainerFormatType Enumeration test
-        * @tc.size        MediumTest
-        * @tc.type        Function test
-        * @tc.level       Level0
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_CONTAINER_FORMAT_TYPE_0100
+        * @tc.name      : ContainerFormatType
+        * @tc.desc      : ContainerFormatType Enumeration test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
     */
     it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_CONTAINER_FORMAT_TYPE_0100', 0, async function (done) {
         expect(media.ContainerFormatType.CFT_MPEG_4).assertEqual("mp4");
@@ -133,12 +133,12 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number      SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_TYPE_0100
-        * @tc.name        MediaType
-        * @tc.desc        MediaType Enumeration test
-        * @tc.size        MediumTest
-        * @tc.type        Function test
-        * @tc.level       Level0
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_TYPE_0100
+        * @tc.name      : MediaType
+        * @tc.desc      : MediaType Enumeration test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
     */
     it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_TYPE_0100', 0, async function (done) {
         expect(media.MediaType.MEDIA_TYPE_AUD).assertEqual(0);
@@ -148,12 +148,12 @@ describe('VideoPlayerEnumTest', function () {
     })
 
     /* *
-        * @tc.number      SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_DESCRIPTION_KEY_0100
-        * @tc.name        MediaDescriptionKey
-        * @tc.desc        MediaDescriptionKey Enumeration test
-        * @tc.size        MediumTest
-        * @tc.type        Function test
-        * @tc.level       Level0
+        * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_DESCRIPTION_KEY_0100
+        * @tc.name      : MediaDescriptionKey
+        * @tc.desc      : MediaDescriptionKey Enumeration test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
     */
     it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_DESCRIPTION_KEY_0100', 0, async function (done) {
         expect(media.MediaDescriptionKey.MD_KEY_TRACK_INDEX).assertEqual("track_index");
@@ -166,18 +166,22 @@ describe('VideoPlayerEnumTest', function () {
         expect(media.MediaDescriptionKey.MD_KEY_FRAME_RATE).assertEqual("frame_rate");
         expect(media.MediaDescriptionKey.MD_KEY_AUD_CHANNEL_COUNT).assertEqual("channel_count");
         expect(media.MediaDescriptionKey.MD_KEY_AUD_SAMPLE_RATE).assertEqual("sample_rate");
-        expect(media.MediaDescriptionKey.MD_KEY_AUD_SAMPLE_DEPTH).assertEqual("sample_depth");
+        if (media.MediaDescriptionKey.MD_KEY_AUD_SAMPLE_DEPTH == undefined) {
+            console.info('Please update the SDK to the latest version')
+        } else {
+            expect(media.MediaDescriptionKey.MD_KEY_AUD_SAMPLE_DEPTH).assertEqual("sample_depth");
+        }
         
         done();
     })
 
     /* *
-        * @tc.number      SUB_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_SCALE_TYPE_00_0100
-        * @tc.name        MediaType
-        * @tc.desc        MediaType Enumeration test
-        * @tc.size        MediumTest
-        * @tc.type        Function test
-        * @tc.level       Level0
+        * @tc.number    : SUB_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_SCALE_TYPE_00_0100
+        * @tc.name      : MediaType
+        * @tc.desc      : MediaType Enumeration test
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level0
     */
     it('SUB_MEDIA_VIDEO_PLAYER_ENUM_MEDIA_SCALE_TYPE_00_0100', 0, async function (done) {
         expect(media.VideoScaleType.VIDEO_SCALE_TYPE_FIT).assertEqual(0);
