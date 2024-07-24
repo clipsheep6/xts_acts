@@ -21,8 +21,8 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 const PARAMETER_ERROR = 401;
 
-export default function iconStartShortCutInfoIssuse() {
-  describe('IconStartShortCutInfoIssuse', () => {
+export default function iconStartShortCutNoPermission() {
+  describe('IconStartShortCutNoPermission', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
@@ -44,14 +44,14 @@ export default function iconStartShortCutInfoIssuse() {
     })
 
     /*
-     * @tc.number: Sub_Bms_Framework_Icon_Start_0100
-     * @tc.name: startShortcut01
-     * @tc.desc: StartShortcut interface ShortcutInfo parameter exception
+     * @tc.number: Sub_Bms_Framework_Icon_Start_0300
+     * @tc.name: startShortcut03
+     * @tc.desc: startShortcut interface permission exception
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 2
      */
-    it('startShortcut01', 0, (done: Function) => {
+    it('startShortcut03', 0, (done: Function) => {
       installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
         data.install(['/data/storage/el2/base/files/'], (err: BusinessError) => {
           console.log("install success");
@@ -62,85 +62,21 @@ export default function iconStartShortCutInfoIssuse() {
           }
         });
       })
+
       let code1: number = 0
       let code2: number = 0
-      let code3: number = 0
-      let code4: number = 0
-      try {
-        try {
-          launcherBundleManager.startShortcut(null)
-            .then(() => {
-              console.log("startShortcut success");
-            })
-        } catch (error) {
-          code1 = (error as BusinessError).code;
-          let message = (error as BusinessError).message;
-          console.error(`error is errCode1:${code1}  message:${message}`);
-        }
-        try {
-          launcherBundleManager.startShortcut(undefined)
-            .then(() => {
-              console.log("startShortcut success");
-            })
-        } catch (error) {
-          code2 = (error as BusinessError).code;
-          let message = (error as BusinessError).message;
-          console.error(`error is errCode2:${code2}  message:${message}`);
-        }
-        try {
-          launcherBundleManager.startShortcut(undefined, {})
-            .then(() => {
-              console.log("startShortcut success");
-            })
-        } catch (error) {
-          code3 = (error as BusinessError).code;
-          let message = (error as BusinessError).message;
-          console.error(`error is errCode3:${code3}  message:${message}`);
-        }
-        try {
-          launcherBundleManager.startShortcut(null, {})
-            .then(() => {
-              console.log("startShortcut success");
-            })
-        } catch (error) {
-          code4 = (error as BusinessError).code;
-          let message = (error as BusinessError).message;
-          console.error(`error is errCode4:${code4}  message:${message}`);
-        }
-        if ((code1 === PARAMETER_ERROR) && (code2 === PARAMETER_ERROR) && (code3 === PARAMETER_ERROR) && (code4 === PARAMETER_ERROR)) {
-          expect(true).assertTrue()
-          console.log("startShortcut assertTrue");
-          done();
-        }
-      } catch (errData) {
-        let code = (errData as BusinessError).code;
-        let message = (errData as BusinessError).message;
-        console.error(`errData is errCode:${code}  message:${message}`);
-      }
-    })
 
-    /*
-     * @tc.number: Sub_Bms_Framework_Icon_Start_0200
-     * @tc.name: startShortcut02
-     * @tc.desc: StartShortcut interface ShortcutInfo parameter exception
-     * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('startShortcut02', 0, (done: Function) => {
-      let flag1: boolean = false
-      let flag2: boolean = false
       try {
         let data: Array<launcherBundleManager.ShortcutInfo> = launcherBundleManager.getShortcutInfoSync("com.hits.shortcut");
         console.log("data1 is " + JSON.stringify(data));
         if (data) {
           try {
-            launcherBundleManager.startShortcut(data[0], null)
+            launcherBundleManager.startShortcut(data[0])
               .then(() => {
-                flag1 = true;
-                console.log("startShortcut success  flag1 " + flag1);
+                console.log("startShortcut success");
               }).catch((err: BusinessError) => {
               console.error(`startShortcut errData is errCode:${err.code}  message:${err.message}`);
+              code1 = err.code
             });
           } catch (error) {
             let code = (error as BusinessError).code;
@@ -154,32 +90,34 @@ export default function iconStartShortCutInfoIssuse() {
           try {
             launcherBundleManager.startShortcut(data2[0], {})
               .then(() => {
-                if(flag1){
-                  flag2 = true;
-                  console.log("startShortcut success  flag2 " + flag2);
-                  expect().assertTrue()
-                  done();
-                }
+                console.log("startShortcut success");
               }).catch((err: BusinessError) => {
               console.error(`errData is errCode:${err.code}  message:${err.message}`);
+              code2 = err.code
             });
 
           } catch (error) {
             let code = (error as BusinessError).code;
             let message = (error as BusinessError).message;
             console.error(`startShortcut2 error is errCode:${code}  message:${message}`);
+            expect().assertFalse()
+            done()
           }
         }
 
-        if(flag2&&flag1){
-          console.log("flag2&&flag1  " + JSON.stringify(data2));
+        if ((code1 === PARAMETER_ERROR) && (code2 === PARAMETER_ERROR)) {
+          expect().assertTrue()
+          console.log("startShortcut assertTrue");
+          done();
         }
       } catch (errData) {
         let code = (errData as BusinessError).code;
         let message = (errData as BusinessError).message;
         console.error(`errData is errCode:${code}  message:${message}`);
+        expect().assertFalse()
+        done()
       }
-
     })
+
   })
 }
