@@ -464,6 +464,7 @@ static napi_value OriginAVScreenCaptureTest(napi_env env, napi_callback_info inf
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     vector<int> windowidsExclude0 = {-111};
+    
     struct OH_AVScreenCapture_ContentFilter *contentFilter = OH_AVScreenCapture_CreateContentFilter();
     OH_AVScreenCapture_ContentFilter_AddAudioContent(contentFilter, OH_SCREEN_CAPTURE_NOTIFICATION_AUDIO);
     OH_AVScreenCapture_ContentFilter_AddWindowContent(contentFilter, 
