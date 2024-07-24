@@ -99,7 +99,7 @@ HWTEST_F(HksBnExpModTest, HksBnExpModTest001, TestSize.Level1)
     int32_t ret;
     if (g_testBnExpModParams[0].isTestValue) {
         ret = TestValue();
-        ASSERT_TRUE(ret == 0);
+        EXPECT_EQ(ret, 0);
     } else {
         struct HksBlob *x = NULL;
         struct HksBlob *a = NULL;
@@ -136,7 +136,7 @@ HWTEST_F(HksBnExpModTest, HksBnExpModTest001, TestSize.Level1)
         TestFreeBlob(&a);
         TestFreeBlob(&e);
         TestFreeBlob(&n);
-        ASSERT_TRUE(ret == 0);
+        EXPECT_EQ(ret, 0);
     }
 }
 }

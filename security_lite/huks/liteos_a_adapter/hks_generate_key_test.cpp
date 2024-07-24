@@ -122,7 +122,7 @@ HWTEST_F(HksGenerateKeyTest, HksGenerateKeyTest001, TestSize.Level1)
     HksFreeParamSet(&paramSet);
     HksFreeParamSet(&paramSetOut);
     HKS_TEST_LOG_I("[%u]TestGenerateKey, Testcase_GenerateKey_[%03u] pass!", times, g_testGenKeyParams[index].testId);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 #endif /* _CUT_AUTHENTICATE_ */
 }

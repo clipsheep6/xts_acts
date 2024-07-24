@@ -47,7 +47,10 @@ hctest_suite("ActsHuksHalFunctionTest") {
       "hks_x25519_test.c",
     ]
   } else {
-    defines = [ "_CUT_ED25519_" ]
+    defines = [
+      "_CUT_ED25519_",
+      "_CUT_LOG_",
+    ]
   }
   include_dirs = [
     "//base/security/huks/interfaces/inner_api/huks_standard/main/include",

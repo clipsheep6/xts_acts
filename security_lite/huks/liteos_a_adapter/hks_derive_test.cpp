@@ -204,7 +204,7 @@ static int32_t BaseTestDerive(uint32_t index)
 HWTEST_F(HksDeriveTest, HksDeriveTest001, TestSize.Level1)
 {
     int32_t ret = BaseTestDerive(0);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 #endif /* _CUT_AUTHENTICATE_ */
 
@@ -216,6 +216,6 @@ HWTEST_F(HksDeriveTest, HksDeriveTest001, TestSize.Level1)
 HWTEST_F(HksDeriveTest, HksDeriveTest002, TestSize.Level1)
 {
     int32_t ret = BaseTestDerive(1);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 }

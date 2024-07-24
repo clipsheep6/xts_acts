@@ -106,7 +106,7 @@ HWTEST_F(HksHashTest, HksHashTest001, TestSize.Level1)
     TestFreeBlob(&srcData);
     TestFreeBlob(&hash);
     HKS_TEST_LOG_I("[%u]TestHash, Testcase_Hash_[%03u] pass!", 1, g_testHashParams[0].testId);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 #endif /* _CUT_AUTHENTICATE_ */
 }

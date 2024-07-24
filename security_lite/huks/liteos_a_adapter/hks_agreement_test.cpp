@@ -107,9 +107,9 @@ HWTEST_F(HksAgreementTest, HksAgreementTest001, TestSize.Level1)
     if (g_testAgreeParams[0].genKeyParamSetParams.setKeyStorageFlag &&
         (g_testAgreeParams[0].genKeyParamSetParams.keyStorageFlag == HKS_STORAGE_TEMP)) {
         ret = GenerateLocalX25519Key(&privateKey, NULL, &g_testAgreeParams[0].localPrivateKeyParams, NULL);
-        ASSERT_TRUE(ret == 0);
+        EXPECT_EQ(ret, 0);
         ret = GenerateLocalX25519Key(NULL, &peerPublicKey, NULL, &g_testAgreeParams[0].localPublicKeyParams);
-        ASSERT_TRUE(ret == 0);
+        EXPECT_EQ(ret, 0);
     }
     /* 2. agreeKey */
     struct HksBlob *agreeKey = NULL;
@@ -118,10 +118,10 @@ HWTEST_F(HksAgreementTest, HksAgreementTest001, TestSize.Level1)
         g_testAgreeParams[0].agreedKeyParams.blobSize,
         g_testAgreeParams[0].agreedKeyParams.blobDataExist,
         g_testAgreeParams[0].agreedKeyParams.blobDataSize);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 
     ret = AgreeKey(&g_testAgreeParams[0].agreeParamSetParams, privateKey, peerPublicKey, agreeKey);
-    ASSERT_TRUE(ret == g_testAgreeParams[0].expectResult);
+    EXPECT_EQ(ret, g_testAgreeParams[0].expectResult);
 
     /* 3. delete key */
     if (!(g_testAgreeParams[0].genKeyParamSetParams.setKeyStorageFlag &&
@@ -129,15 +129,15 @@ HWTEST_F(HksAgreementTest, HksAgreementTest001, TestSize.Level1)
         ((g_testAgreeParams[0].keyAlias1Params.blobExist) &&
         (g_testAgreeParams[0].keyAlias2Params.blobExist))) {
         ret = HksDeleteKey(privateKey, NULL);
-        ASSERT_TRUE(ret == 0);
+        EXPECT_EQ(ret, 0);
         ret = HksDeleteKey(peerPubKeyAlias, NULL);
-        ASSERT_TRUE(ret == 0);
+        EXPECT_EQ(ret, 0);
     }
     TestFreeBlob(&privateKey);
     TestFreeBlob(&peerPubKeyAlias);
     TestFreeBlob(&peerPublicKey);
     TestFreeBlob(&agreeKey);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 
 /**
@@ -159,29 +159,29 @@ HWTEST_F(HksAgreementTest, HksAgreementTest002, TestSize.Level1)
         (g_testAgreeParams[0].genKeyParamSetParams.keyStorageFlag == HKS_STORAGE_TEMP)) {
         ret = GenerateLocalX25519Key(&privateKey, &peerPublicKey, &g_testAgreeParams[0].localPrivateKeyParams, \
             &g_testAgreeParams[0].localPublicKeyParams);
-        ASSERT_TRUE(ret == 0);
+        EXPECT_EQ(ret, 0);
         ret = GenerateLocalX25519Key(&privateKey2, &peerPublicKey2, &g_testAgreeParams[0].localPrivateKeyParams, \
             &g_testAgreeParams[0].localPublicKeyParams);
-        ASSERT_TRUE(ret == 0);
+        EXPECT_EQ(ret, 0);
     }
     /* 2. agreeKey */
     struct HksBlob *agreeKey = NULL;
     ret = TestConstuctBlob(&agreeKey, g_testAgreeParams[0].agreedKeyParams.blobExist, \
         g_testAgreeParams[0].agreedKeyParams.blobSize, g_testAgreeParams[0].agreedKeyParams.blobDataExist, \
         g_testAgreeParams[0].agreedKeyParams.blobDataSize);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 
     struct HksBlob *agreeKey2 = NULL;
     ret = TestConstuctBlob(&agreeKey2, g_testAgreeParams[0].agreedKeyParams.blobExist, \
         g_testAgreeParams[0].agreedKeyParams.blobSize, g_testAgreeParams[0].agreedKeyParams.blobDataExist, \
         g_testAgreeParams[0].agreedKeyParams.blobDataSize);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 
     ret = AgreeKey(&g_testAgreeParams[0].agreeParamSetParams, privateKey, peerPublicKey2, agreeKey);
-    ASSERT_TRUE(ret == g_testAgreeParams[0].expectResult);
+    EXPECT_EQ(ret, g_testAgreeParams[0].expectResult);
 
     ret = AgreeKey(&g_testAgreeParams[0].agreeParamSetParams, privateKey2, peerPublicKey, agreeKey2);
-    ASSERT_TRUE(ret == g_testAgreeParams[0].expectResult);
+    EXPECT_EQ(ret, g_testAgreeParams[0].expectResult);
     EXPECT_EQ(agreeKey->size, agreeKey2->size);
     EXPECT_EQ(memcmp(agreeKey->data, agreeKey2->data, agreeKey->size), 0);
 
@@ -189,8 +189,8 @@ HWTEST_F(HksAgreementTest, HksAgreementTest002, TestSize.Level1)
     if (!(g_testAgreeParams[0].genKeyParamSetParams.setKeyStorageFlag && \
         (g_testAgreeParams[0].genKeyParamSetParams.keyStorageFlag == HKS_STORAGE_TEMP)) && \
         ((g_testAgreeParams[0].keyAlias1Params.blobExist) && (g_testAgreeParams[0].keyAlias2Params.blobExist))) {
-        ASSERT_TRUE(HksDeleteKey(privateKey, NULL) == 0);
-        ASSERT_TRUE(HksDeleteKey(peerPubKeyAlias, NULL) == 0);
+        EXPECT_EQ(HksDeleteKey(privateKey, NULL), 0);
+        EXPECT_EQ(HksDeleteKey(peerPubKeyAlias, NULL), 0);
     }
     TestFreeBlob(&privateKey);
     TestFreeBlob(&peerPubKeyAlias);

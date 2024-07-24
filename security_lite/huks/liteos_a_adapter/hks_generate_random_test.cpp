@@ -80,6 +80,6 @@ HWTEST_F(HksGenerateRandomTest, HksGenerateRandomTest001, TestSize.Level1)
     EXPECT_EQ(g_testGenRandomParams[0].expectResult, ret);
 
     TestFreeBlob(&random);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 }

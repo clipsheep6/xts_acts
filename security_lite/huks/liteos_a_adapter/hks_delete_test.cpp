@@ -82,7 +82,7 @@ HWTEST_F(HksDeleteTest, HksDeleteTest001, TestSize.Level1)
     EXPECT_EQ(g_testKeyExistParams[0].expectResult, ret);
 
     TestFreeBlob(&keyAlias);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 
 #endif /* _CUT_AUTHENTICATE_ */
