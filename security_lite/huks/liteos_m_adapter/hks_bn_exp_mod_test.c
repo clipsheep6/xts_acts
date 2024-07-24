@@ -26,8 +26,6 @@
 
 #include <unistd.h>
 
-#define TEST_TASK_STACK_SIZE 0x80000
-
 static osPriority_t g_setPriority;
 
 /*
@@ -38,7 +36,7 @@ static osPriority_t g_setPriority;
  */
 LITE_TEST_SUIT(security, securityData, HksBnExpModTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksInitialize Begin!\n");
     TEST_ASSERT_EQUAL(0, HksInitialize());
@@ -62,7 +60,7 @@ static BOOL HksBnExpModTestSetUp()
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksBnExpModTestSetUp End2!\n");

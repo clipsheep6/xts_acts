@@ -25,8 +25,6 @@
 
 #include <unistd.h>
 
-#define TEST_TASK_STACK_SIZE 0x80000
-
 static osPriority_t g_setPriority;
 
 /*
@@ -37,7 +35,7 @@ static osPriority_t g_setPriority;
  */
 LITE_TEST_SUIT(security, securityData, HksAesTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksInitialize Begin!\n");
     TEST_ASSERT_EQUAL(0, HksInitialize());
@@ -60,7 +58,7 @@ static BOOL HksAesTestSetUp()
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksAesTestSetUp End2!\n");
@@ -77,32 +75,31 @@ static BOOL HksAesTestTearDown()
     return TRUE;
 }
 
-#define TEST_TASK_STACK_SIZE 0x80000
 
 static osPriority_t g_setPriority;
 
-static void ExecHksAesTest001(void const *argument)
+static void ExecHksAesTest001(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksAesTest001 Begin!\n");
     TEST_ASSERT_EQUAL(0, TestAes256ByAgree());
     HKS_TEST_LOG_I("HksAesTest001 End!\n");
 }
 
-static void ExecHksAesTest002(void const *argument)
+static void ExecHksAesTest002(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksAesTest002 Begin!\n");
     TEST_ASSERT_EQUAL(0, TestAes256ByAgree1());
     HKS_TEST_LOG_I("HksAesTest002 End!\n");
 }
 
-static void ExecHksAesTest003(void const *argument)
+static void ExecHksAesTest003(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksAesTest003 Begin!\n");
     TEST_ASSERT_EQUAL(0, TestAes256ByAgree2());
     HKS_TEST_LOG_I("HksAesTest003 End!\n");
 }
 
-static void ExecHksAesTest004(void const *argument)
+static void ExecHksAesTest004(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksAesTest004 Begin!\n");
     TEST_ASSERT_EQUAL(TestAes256ByLocal(), 0);
@@ -128,7 +125,7 @@ LITE_TEST_CASE(HksAesTest, HksAesTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksAesTest001, NULL, &attr);
+    id = osThreadNew(ExecHksAesTest001, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksAesTest001 End2!\n");
@@ -151,7 +148,7 @@ LITE_TEST_CASE(HksAesTest, HksAesTest002, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksAesTest002, NULL, &attr);
+    id = osThreadNew(ExecHksAesTest002, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksAesTest002 End2!\n");
@@ -174,7 +171,7 @@ LITE_TEST_CASE(HksAesTest, HksAesTest003, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksAesTest003, NULL, &attr);
+    id = osThreadNew(ExecHksAesTest003, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksAesTest003 End2!\n");
@@ -199,7 +196,7 @@ LITE_TEST_CASE(HksAesTest, HksAesTest004, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksAesTest004, NULL, &attr);
+    id = osThreadNew(ExecHksAesTest004, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksAesTest004 End2!\n");

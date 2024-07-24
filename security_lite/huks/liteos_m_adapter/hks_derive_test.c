@@ -27,7 +27,6 @@
 #define DEFAULT_DERIVE_SIZE 32
 #define DEFAULT_INFO_SIZE 55
 #define DEFAULT_SALT_SIZE 16
-#define TEST_TASK_STACK_SIZE 0x80000
 
 static osPriority_t g_setPriority;
 
@@ -39,7 +38,7 @@ static osPriority_t g_setPriority;
  */
 LITE_TEST_SUIT(security, securityData, HksDeriveTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksInitialize Begin!\n");
     TEST_ASSERT_EQUAL(0, HksInitialize());
@@ -62,7 +61,7 @@ static BOOL HksDeriveTestSetUp()
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksDeriveTestSetUp End2!\n");
@@ -246,7 +245,7 @@ static int32_t BaseTestDerive(uint32_t index)
     return ret;
 }
 
-static void ExecHksDeriveTest001(void const *argument)
+static void ExecHksDeriveTest001(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksDeriveTest001 Begin!\n");
     int32_t ret = BaseTestDerive(0);
@@ -254,7 +253,7 @@ static void ExecHksDeriveTest001(void const *argument)
     HKS_TEST_LOG_I("HksDeriveTest001 End!\n");
 }
 
-static void ExecHksDeriveTest002(void const *argument)
+static void ExecHksDeriveTest002(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksDeriveTest002 Begin!\n");
     int32_t ret = BaseTestDerive(1);
@@ -262,7 +261,7 @@ static void ExecHksDeriveTest002(void const *argument)
     HKS_TEST_LOG_I("HksDeriveTest002 End!\n");
 }
 
-static void ExecHksDeriveTest003(void const *argument)
+static void ExecHksDeriveTest003(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksDeriveTest003 Begin!\n");
     int32_t ret = BaseTestDerive(2);
@@ -288,7 +287,7 @@ LITE_TEST_CASE(HksDeriveTest, HksDeriveTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksDeriveTest001, NULL, &attr);
+    id = osThreadNew(ExecHksDeriveTest001, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksDeriveTest001 End2!\n");
@@ -310,7 +309,7 @@ LITE_TEST_CASE(HksDeriveTest, HksDeriveTest003, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksDeriveTest003, NULL, &attr);
+    id = osThreadNew(ExecHksDeriveTest003, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksDeriveTest001 End2!\n");
@@ -334,7 +333,7 @@ LITE_TEST_CASE(HksDeriveTest, HksDeriveTest002, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksDeriveTest002, NULL, &attr);
+    id = osThreadNew(ExecHksDeriveTest002, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksDeriveTest002 End2!\n");

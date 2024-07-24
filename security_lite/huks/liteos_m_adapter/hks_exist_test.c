@@ -28,8 +28,6 @@
 
 #include <unistd.h>
 
-#define TEST_TASK_STACK_SIZE 0x80000
-
 static osPriority_t g_setPriority;
 static const struct HksTestKeyExistParams g_testKeyExistParams[] = {
     /* normal case */
@@ -45,7 +43,7 @@ static const struct HksTestKeyExistParams g_testKeyExistParams[] = {
  */
 LITE_TEST_SUIT(security, securityData, HksExistTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
     (void)argument;
     HKS_TEST_LOG_I("HksInitialize Begin!\n");
@@ -53,7 +51,7 @@ static void ExecHksInitialize(void const *argument)
     HKS_TEST_LOG_I("HksInitialize End!\n");
 }
 
-static void ExecHksExistTest001(void const *argument)
+static void ExecHksExistTest001(__attribute__((unused)) void *argument)
 {
     (void)argument;
     int32_t ret;
@@ -99,7 +97,7 @@ static BOOL HksExistTestSetUp(void)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksGenerateKeyTestSetUp End2!\n");
@@ -133,7 +131,7 @@ LITE_TEST_CASE(HksExistTest, HksExistTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksExistTest001, NULL, &attr);
+    id = osThreadNew(ExecHksExistTest001, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksExistTest001 End2!\n");

@@ -22,9 +22,7 @@
 
 #include <unistd.h>
 
-#define TEST_TASK_STACK_SIZE 0x80000
-
-static void TestOsThread(void *argument)
+static void TestOsThread(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("TestOsThread");
 }

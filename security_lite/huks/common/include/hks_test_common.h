@@ -54,6 +54,8 @@
 
 #define DEFAULT_LOCAL_KEY_SIZE 256
 
+#define TEST_TASK_STACK_SIZE 0x8000
+
 #if defined(__LITEOS_M__) && __LITEOS_M__
 #define WAIT_TO_TEST_DONE 4 // Hi3861 do not support osThreadJoin, so we have to wait for the thread.
 static inline void HksWaitForThread(osThreadId_t id)

@@ -29,7 +29,6 @@
 #define HKS_DEFAULT_MAC_SRCDATA_SIZE 253
 #define HKS_DEFAULT_MAC_SHA256_SIZE 32
 
-#define TEST_TASK_STACK_SIZE 0x80000
 #define CAL_ARRAY_SIZE(arr) ((sizeof(arr)) / (sizeof((arr)[0])))
 //*********************************************
 #define SINGLE_PRINT_LENGTH 50
@@ -212,7 +211,7 @@ static const struct HksTestMacParams g_testMacParams[] = {
  */
 LITE_TEST_SUIT(security, securityData, HksMacTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksInitialize Begin!\n");
     TEST_ASSERT_EQUAL(0, HksInitialize());
@@ -236,7 +235,7 @@ static BOOL HksMacTestSetUp()
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksMacTestSetUp End2!\n");
@@ -352,7 +351,7 @@ static int32_t BaseTestMac(uint32_t index)
     return ret;
 }
 
-static void ExecHksMacTest001(void const *argument)
+static void ExecHksMacTest001(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksMacTest001 Begin!\n");
     int32_t ret = BaseTestMac(0);
@@ -360,7 +359,7 @@ static void ExecHksMacTest001(void const *argument)
     HKS_TEST_LOG_I("HksMacTest001 End!\n");
 }
 
-static void ExecHksMacTest002(void const *argument)
+static void ExecHksMacTest002(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksMacTest002 Begin!\n");
     int32_t ret = BaseTestMac(1);
@@ -386,7 +385,7 @@ LITE_TEST_CASE(HksMacTest, HksMacTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksMacTest001, NULL, &attr);
+    id = osThreadNew(ExecHksMacTest001, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksMacTest001 End2!\n");
@@ -410,7 +409,7 @@ LITE_TEST_CASE(HksMacTest, HksMacTest002, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksMacTest002, NULL, &attr);
+    id = osThreadNew(ExecHksMacTest002, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksMacTest002 End2!\n");

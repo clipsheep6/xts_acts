@@ -34,7 +34,6 @@
 #define DIGEST_SHA256_HASH_SIZE 32
 #define DIGEST_SHA384_HASH_SIZE 48
 #define DIGEST_SHA512_HASH_SIZE 64
-#define TEST_TASK_STACK_SIZE 0x80000
 
 static osPriority_t g_setPriority;
 
@@ -46,7 +45,7 @@ static osPriority_t g_setPriority;
  */
 LITE_TEST_SUIT(security, securityData, HksHashTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksInitialize Begin!\n");
     TEST_ASSERT_EQUAL(0, HksInitialize());
@@ -70,7 +69,7 @@ static BOOL HksHashTestSetUp()
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksMacTestSetUp End2!\n");
@@ -144,21 +143,21 @@ static void ExecHksHashTestCommon(int index)
     TEST_ASSERT_EQUAL(0, ret);
 }
 
-static void ExecHksHashTest001(void const *argument)
+static void ExecHksHashTest001(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksMacTest001 Begin!\n");
     ExecHksHashTestCommon(0);
     HKS_TEST_LOG_I("HksMacTest001 End!\n");
 }
 
-static void ExecHksHashTest002(void const *argument)
+static void ExecHksHashTest002(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksMacTest002 Begin!\n");
     ExecHksHashTestCommon(1);
     HKS_TEST_LOG_I("HksMacTest002 End!\n");
 }
 
-static void ExecHksHashTest003(void const *argument)
+static void ExecHksHashTest003(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksMacTest003 Begin!\n");
     ExecHksHashTestCommon(2);
@@ -182,7 +181,7 @@ LITE_TEST_CASE(HksHashTest, HksHashTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksHashTest001, NULL, &attr);
+    id = osThreadNew(ExecHksHashTest001, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksMacTest001 End2!\n");
@@ -204,7 +203,7 @@ LITE_TEST_CASE(HksHashTest, HksHashTest002, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksHashTest002, NULL, &attr);
+    id = osThreadNew(ExecHksHashTest002, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksMacTest001 End2!\n");
@@ -226,7 +225,7 @@ LITE_TEST_CASE(HksHashTest, HksHashTest003, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksHashTest003, NULL, &attr);
+    id = osThreadNew(ExecHksHashTest003, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksMacTest001 End2!\n");

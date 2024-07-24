@@ -29,7 +29,6 @@
 
 #define TMP_SIZE 512
 #define X25519_KEY_SIZE 32
-#define TEST_TASK_STACK_SIZE 0x80000
 
 static osPriority_t g_setPriority;
 
@@ -42,7 +41,7 @@ static osPriority_t g_setPriority;
  */
 LITE_TEST_SUIT(security, securityData, HksAgreementTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksInitialize Begin!\n");
     TEST_ASSERT_EQUAL(0, HksInitialize());
@@ -66,7 +65,7 @@ static BOOL HksAgreementTestSetUp()
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksAgreementTestSetUp End2!\n");
@@ -118,7 +117,7 @@ static int32_t AgreeKey(const struct HksTestAgreeParamSet *agreeParamSetParams, 
     return ret;
 }
 
-static void ExecHksAgreementTest001(void const *argument)
+static void ExecHksAgreementTest001(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksAgreementTest001 Begin!\n");
 
@@ -166,7 +165,7 @@ static void ExecHksAgreementTest001(void const *argument)
     HKS_TEST_LOG_I("HksAgreementTest001 End!\n");
 }
 
-static void ExecHksAgreementTest002(void const *argument)
+static void ExecHksAgreementTest002(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksAgreementTest002 Begin!\n");
 
@@ -231,7 +230,7 @@ LITE_TEST_CASE(HksAgreementTest, HksAgreementTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksAgreementTest001, NULL, &attr);
+    id = osThreadNew(ExecHksAgreementTest001, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksAgreementTest001 End2!\n");
@@ -255,7 +254,7 @@ LITE_TEST_CASE(HksAgreementTest, HksAgreementTest002, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksAgreementTest002, NULL, &attr);
+    id = osThreadNew(ExecHksAgreementTest002, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksAgreementTest002 End2!\n");

@@ -28,8 +28,6 @@
 
 #include <unistd.h>
 
-#define TEST_TASK_STACK_SIZE 0x80000
-
 static osPriority_t g_setPriority;
 static const struct HksTestKeyExistParams g_testKeyExistParams[] = {
     /* normal case */
@@ -43,14 +41,14 @@ static const struct HksTestKeyExistParams g_testKeyExistParams[] = {
  */
 LITE_TEST_SUIT(security, securityData, HksDeleteTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksInitialize Begin!\n");
     TEST_ASSERT_EQUAL(0, HksInitialize());
     HKS_TEST_LOG_I("HksInitialize End!\n");
 }
 
-static void ExecHksDeleteTest001(void const *argument)
+static void ExecHksDeleteTest001(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksDeleteTest001 Begin!\n");
     int32_t ret;
@@ -90,7 +88,7 @@ static BOOL HksDeleteTestSetUp()
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksDeriveTestSetUp End2!\n");
@@ -124,7 +122,7 @@ LITE_TEST_CASE(HksDeleteTest, HksDeleteTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksDeleteTest001, NULL, &attr);
+    id = osThreadNew(ExecHksDeleteTest001, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksDeleteTest001 End2!\n");

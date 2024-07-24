@@ -27,7 +27,6 @@
 #include "ohos_types.h"
 
 #define DEFAULT_X25519_PARAM_SET_OUT 104
-#define TEST_TASK_STACK_SIZE 0x80000
 
 static osPriority_t g_setPriority;
 
@@ -39,7 +38,7 @@ static osPriority_t g_setPriority;
  */
 LITE_TEST_SUIT(security, securityData, HksGenerateKeyTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksInitialize Begin!\n");
     TEST_ASSERT_EQUAL(0, HksInitialize());
@@ -63,7 +62,7 @@ static BOOL HksGenerateKeyTestSetUp()
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksGenerateKeyTestSetUp End2!\n");
@@ -96,7 +95,7 @@ static const struct HksTestGenKeyParams g_testGenKeyParams[] = {
     },
 };
 
-static void ExecHksGenerateKeyTest001(void const *argument)
+static void ExecHksGenerateKeyTest001(__attribute__((unused)) void *argument)
 {
     HKS_TEST_LOG_I("HksGenerateKeyTest001 Begin!\n");
 
@@ -168,7 +167,7 @@ LITE_TEST_CASE(HksGenerateKeyTest, HksGenerateKeyTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksGenerateKeyTest001, NULL, &attr);
+    id = osThreadNew(ExecHksGenerateKeyTest001, NULL, &attr);
     TEST_ASSERT_NOT_NULL(id);
     HksWaitForThread(id);
     HKS_TEST_LOG_I("HksGenerateKeyTest001 End2!\n");
