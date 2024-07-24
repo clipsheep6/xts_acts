@@ -504,7 +504,7 @@ async function photoOutputCallBack(photoOutput: camera.PhotoOutput): Promise<voi
   });
   photoOutput.on('photoAssetAvailable', async (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset) => {
     if (err) {
-      console.info(`:: Camera :: photoAssetAvailable error: ${JSON.stringify(err)}.`);
+      console.info(`Camera :: photoAssetAvailable error: ${JSON.stringify(err)}.`);
       return;
     }
     console.info(`Camera :: photoOutPutCallBack photoAssetAvailable`);
@@ -594,6 +594,7 @@ export async function initCamera(testNum: string, surfaceId: string, savePhotoFl
     cameraInput = cameraManager.createCameraInput(currentCameraDevice);
     // 打开相机
     await cameraInput.open();
+    photoOutputCallBack(photoOutput);
     // 监听相机对象状态
     onCameraStatusChange(cameraManager);
     // 会话流程

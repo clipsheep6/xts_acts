@@ -140,7 +140,7 @@ export default function handleCameraPhotoTest() {
     it('save_camera_photo_001', 0, async (done: Function) => {
       let testNum = 'save_camera_photo_001';
       let assetCount = await getAssetsCount(testNum);
-      if (assetCount == -1) {
+      if (assetCount <= -1) {
         console.error(`${testNum} :: failed to get photoAssets count !`);
         expect(false).assertTrue();
         done();
@@ -161,6 +161,41 @@ export default function handleCameraPhotoTest() {
       console.log(`${testNum} :: after saveCameraPhoto assets count = ${assetCount2}`);
       router.back();
       expect(assetCount2).assertEqual(assetCount + 1);
+      done();
+    })
+
+    /**
+     * @tc.number    : Sub_PhotoAccess_Helper_Discard_Camera_Photo_002
+     * @tc.name      : discard_camera_photo_001
+     * @tc.desc      : discard camera photo by photoAsset
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('discard_camera_photo_001', 0, async (done: Function) => {
+      let testNum = 'discard_camera_photo_001';
+      let assetCount = await getAssetsCount(testNum);
+      if (assetCount <= -1) {
+        console.error(`${testNum} :: failed to get photoAssets count !`);
+        expect(false).assertTrue();
+        done();
+      }
+      console.log(`${testNum} :: before saveCameraPhoto assets count = ${assetCount}`);
+      await sleep(200);
+      router.pushUrl({
+        url: 'MainAbility/pages/CameraIndex',
+        params: {
+          savePhotoFlag: false,
+          testNum: 'discard_camera_photo_001'
+        }
+      })
+      await sleep(5000);
+      await takePicture();
+      await sleep(5000);
+      let assetCount2 = await getAssetsCount(testNum);
+      console.log(`${testNum} :: after saveCameraPhoto assets count = ${assetCount2}`);
+      router.back();
+      expect(assetCount2).assertEqual(assetCount);
       done();
     })
 
