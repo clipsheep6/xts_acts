@@ -37,14 +37,12 @@
 #include <unistd.h>
 
 using namespace std;
-static int32_t g_recordTime = 3;
+static int32_t g_recordTime = 1;
 
 OH_AVCodec *g_videoEnc;
 constexpr uint32_t DEFAULT_WIDTH = 720;
 constexpr uint32_t DEFAULT_HEIGHT = 1280;
 constexpr OH_AVPixelFormat DEFAULT_PIXELFORMAT = AV_PIXEL_FORMAT_NV12;
-static int32_t g_aFlag = 0;
-static int32_t g_vFlag = 0;
 
 void SetConfig(OH_AVScreenCaptureConfig &config)
 {
@@ -111,12 +109,14 @@ static napi_value NormalAVScreenCaptureTest(napi_env env, napi_callback_info inf
     sleep(g_recordTime);
     OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_StopScreenCapture(screenCapture);
     OH_AVScreenCapture_Release(screenCapture);
+    
 
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OK;
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
+        OH_LOG_INFO(LOG_APP, "init/start/stop failed, init: %d, start: %d, stop: %d", result1, result2, result3);
     }
     napi_value res;
     napi_create_int32(env, result, &res);
@@ -142,10 +142,11 @@ static napi_value NormalAVScreenRecordTest(napi_env env, napi_callback_info info
     OH_AVScreenCapture_Release(screenCapture);
 
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OK;
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
+        OH_LOG_INFO(LOG_APP, "init/start/stop failed, init: %d, start: %d, stop: %d", result1, result2, result3);
     }
     napi_value res;
     napi_create_int32(env, result, &res);
@@ -262,10 +263,13 @@ static napi_value NormalAVScreenCaptureSurfaceTest(napi_env env, napi_callback_i
     OH_AVScreenCapture_Release(screenCapture);
 
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OK;
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK && result3 == AV_SCREEN_CAPTURE_ERR_OK 
+        && result4 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
+        OH_LOG_INFO(LOG_APP, "init/configure/getSurface/prepare failed, init: %d, configure: %d, getSurface: %d, prepare: %d"
+            , result1, result2, result3, result4);
     }
     napi_value res;
     napi_create_int32(env, result, &res);
@@ -332,9 +336,6 @@ void ScreenCaptureNdkTestCallback::OnAudioBufferAvailable(bool isReady, OH_Audio
             free(audioBuffer);
             audioBuffer = nullptr;
         }
-        if (g_aFlag == 1) {
-            OH_AVScreenCapture_ReleaseAudioBuffer(screenCapture_, type);
-        }
     } else {
         OH_LOG_INFO(LOG_APP, "AcquireAudioBuffer failed");
     }
@@ -356,9 +357,6 @@ void ScreenCaptureNdkTestCallback::OnVideoBufferAvailable(bool isReady)
             OH_LOG_INFO(LOG_APP, "AcquireVideoBuffer, videoBufferLen: %d, timestamp: %ld, size: %d",
                 length, timestamp, length);
             OH_NativeBuffer_Unreference(nativeBuffer);
-            if (g_vFlag == 1) {
-                OH_AVScreenCapture_ReleaseVideoBuffer(screenCapture_);
-            }
         } else {
             OH_LOG_INFO(LOG_APP, "AcquireVideoBuffer failed");
         }
@@ -473,7 +471,7 @@ static napi_value OriginAVScreenCaptureTest(napi_env env, napi_callback_info inf
     SetScreenCaptureCallback(screenCapture, screenCaptureCb);
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
-
+    sleep(g_recordTime);
     OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_StopScreenCapture(screenCapture);
     DelCallback(screenCapture);
     OH_AVScreenCapture_ReleaseContentFilter(contentFilter);
@@ -482,7 +480,7 @@ static napi_value OriginAVScreenCaptureTest(napi_env env, napi_callback_info inf
     screenCaptureCb = nullptr;
     napi_value res;
     OH_AVSCREEN_CAPTURE_ErrCode result;
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         OH_LOG_INFO(LOG_APP, "init/start/stop failed, init: %d, start: %d, stop: %d", result1, result2, result3);
