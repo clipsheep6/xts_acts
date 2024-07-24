@@ -22,8 +22,6 @@
 #define res4 ((int)0)
 #define res5 ((int)1)
 
-
-
 namespace ArkUICapiTest {
 
 static napi_value testArkUI001(napi_env env, napi_callback_info info)
