@@ -14,23 +14,27 @@
  */
 
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import router from '@ohos.router';
+import {describe, beforeAll, it, expect } from '@ohos/hypium';
 import { BusinessError } from '@ohos.base';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { sleep, getPermission, fetchOption, photoKeys, pushCreateAsset } from '../../../../../../../common';
-import router from '@ohos.router';
-import { Component, Driver, ON } from '@ohos.UiTest';
+import {
+  sleep,
+  getPermission,
+  fetchOption,
+  photoKeys,
+  pushCreateAsset,
+  takePicture
+} from '../../../../../../../common';
 
-export default function saveCameraPhotoTest() {
+export default function handleCameraPhotoTest() {
 
-  describe('saveCameraPhotoTest', () => {
+  describe('handleCameraPhotoTest', () => {
 
     let driver: Driver | undefined = undefined;
 
     beforeAll(async () => {
       console.info('beforeAll case');
-      driver = Driver.create();
-      console.log(`driver ====> ${driver}`);
       await getPermission();
       await sleep();
     });
@@ -144,24 +148,18 @@ export default function saveCameraPhotoTest() {
       console.log(`${testNum} :: before saveCameraPhoto assets count = ${assetCount}`);
       await sleep(200);
       router.pushUrl({
-        url: 'MainAbility/pages/CameraIndex'
-      })
-      let flag = 5;
-      while(flag > 0) {
-        await sleep(60000);
-        let btn = await driver.findComponent(ON.text('拍照'));
-        if (btn != undefined) {
-          await sleep(5000);
-          btn.click();
-          await sleep(500);
-          break;
+        url: 'MainAbility/pages/CameraIndex',
+        params: {
+          savePhotoFlag: true,
+          testNum: 'save_camera_photo_001'
         }
-        flag = flag - 1;
-      }
-      router.back();
-      await sleep(200);
+      })
+      await sleep(5000);
+      await takePicture();
+      await sleep(5000);
       let assetCount2 = await getAssetsCount(testNum);
       console.log(`${testNum} :: after saveCameraPhoto assets count = ${assetCount2}`);
+      router.back();
       expect(assetCount2).assertEqual(assetCount + 1);
       done();
     })

@@ -419,13 +419,13 @@ export async function offCameraStatusChange(cameraManager: camera.CameraManager)
   cameraManager?.off('cameraStatus', registerCameraStatusChange);
 }
 // 释放相机对象
-export async function releaseCamera(): Promise<void> {
+export async function releaseCamera(testNum: string): Promise<void> {
   if (previewOutput) {
     try {
       previewOutput.release();
-      console.log(`releaseCamera :: release previewOutput success`);
+      console.log(`${testNum} :: releaseCamera :: release previewOutput success`);
     } catch (error) {
-      console.log(`releaseCamera :: release previewOutput failed, error = ${error}`);
+      console.log(`${testNum} :: releaseCamera :: release previewOutput failed, error = ${error}`);
     } finally {
       previewOutput = undefined;
     }
@@ -433,9 +433,9 @@ export async function releaseCamera(): Promise<void> {
   if (photoOutput) {
     try {
       photoOutput.release();
-      console.log(`releaseCamera :: release photoOutput success`);
+      console.log(`${testNum} :: releaseCamera :: release photoOutput success`);
     } catch (error) {
-      console.log(`releaseCamera :: release photoOutput failed, error = ${error}`);
+      console.log(`${testNum} :: releaseCamera :: release photoOutput failed, error = ${error}`);
     } finally {
       photoOutput = undefined;
     }
@@ -443,9 +443,9 @@ export async function releaseCamera(): Promise<void> {
   if (photoSession) {
     try {
       photoSession.release();
-      console.log(`releaseCamera :: release photoSession success`);
+      console.log(`${testNum} :: releaseCamera :: release photoSession success`);
     } catch (error) {
-      console.log(`releaseCamera :: release photoSession failed, error = ${error}`);
+      console.log(`${testNum} :: releaseCamera :: release photoSession failed, error = ${error}`);
     } finally {
       photoSession = undefined;
     }
@@ -453,9 +453,9 @@ export async function releaseCamera(): Promise<void> {
   if (cameraInput) {
     try {
       cameraInput.close();
-      console.log(`releaseCamera :: close cameraInput succes`);
+      console.log(`${testNum} :: releaseCamera :: close cameraInput succes`);
     } catch (error) {
-      console.log(`releaseCamera :: close cameraInput failed, error = ${error}`);
+      console.log(`${testNum} :: releaseCamera :: close cameraInput failed, error = ${error}`);
     } finally {
       cameraInput = undefined;
     }
@@ -504,77 +504,75 @@ async function photoOutputCallBack(photoOutput: camera.PhotoOutput): Promise<voi
   });
   photoOutput.on('photoAssetAvailable', async (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset) => {
     if (err) {
-      console.info(`Camera :: photoAssetAvailable error: ${JSON.stringify(err)}.`);
+      console.info(`:: Camera :: photoAssetAvailable error: ${JSON.stringify(err)}.`);
       return;
     }
-    console.info('Camera :: photoOutPutCallBack photoAssetAvailable');
-    console.info('Camera :: saveCameraPhoto | discardCameraPhoto start');
+    console.info(`Camera :: photoOutPutCallBack photoAssetAvailable`);
     try {
       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
       if (isSaveCameraPhoto) {
+        console.info(`Camera :: saveCameraPhoto start`);
         assetChangeRequest.saveCameraPhoto();
       } else {
+        console.info(`Camera :: discardCameraPhoto start`);
         assetChangeRequest.discardCameraPhoto();
       }
       await phAccessHelper.applyChanges(assetChangeRequest);
-      console.info('Camera :: apply saveCameraPhoto | discardCameraPhoto successfully');
+      console.info(`Camera :: apply saveCameraPhoto | discardCameraPhoto successfully`);
     } catch (err) {
       console.error(`Camera :: apply saveCameraPhoto | discardCameraPhoto failed with error: ${err.code}, ${err.message}`);
     }
   });
 }
 
-export async function initCamera(surfaceId: string) {
+export async function initCamera(testNum: string, surfaceId: string, savePhotoFlag: boolean) {
+  console.log(`${testNum} :: initCamera start, savePhotoFlag is ${savePhotoFlag} ...`);
   try {
+    isSaveCameraPhoto = savePhotoFlag;
     // 先释放相机对象
-    await releaseCamera();
+    await releaseCamera(testNum);
     // 获取相机管理实例
     cameraManager = camera.getCameraManager(context);
     if (cameraManager == undefined) {
-      console.error(`Camera :: initCamera :: get CameraManager failed !`);
+      console.error(`${testNum} :: Camera :: initCamera :: get CameraManager failed !`);
       return;
     }
-    console.log(`Camera :: initCamera :: get CameraManager success .`);
     // 获取相机对象列表
     cameraDevices = cameraManager.getSupportedCameras();
     if (cameraDevices.length <= 0) {
-      console.log(`Camera :: initCamera :: have no camera object to choose !`);
+      console.log(`${testNum} :: Camera :: initCamera :: have no camera object to choose !`);
       return;
     }
-    console.log(`Camera :: initCamera :: get cameraDevices success, length = ${cameraDevices.length}.`);
     // 指定当前准备使用的相机对象：第一个
     let currentCameraDevice: camera.CameraDevice = cameraDevices[0];
     // 查看支持的拍照模式
     let sceneModesArray: Array<camera.SceneMode> = cameraManager.getSupportedSceneModes(currentCameraDevice);
     if (sceneModesArray == undefined || sceneModesArray.length <= 0) {
-      console.log(`Camera :: initCamera :: camera have no sceneMode to select!`);
+      console.log(`${testNum} :: Camera :: initCamera :: camera have no sceneMode to select!`);
       return;
     }
-    console.log(`Camera :: initCamera :: get sceneModesArray success, sceneModesArray is ${sceneModesArray} .`);
     // 查看是否支持普通拍照模式，理论上，有摄像头的都支持
     let isSupportPhotoMode: boolean = sceneModesArray.indexOf(camera.SceneMode.NORMAL_PHOTO) >= 0;
     if (!isSupportPhotoMode) {
-      console.error(`Camera :: initCamera :: camera not support NORMAL_PHOTO sceneMode !`);
+      console.error(`${testNum} :: Camera :: initCamera :: camera not support NORMAL_PHOTO sceneMode !`);
       return;
     }
     // 获取相机输出能力对象
     cameraOutputCapability = cameraManager.getSupportedOutputCapability(currentCameraDevice, camera.SceneMode.NORMAL_PHOTO);
     if (cameraOutputCapability == undefined) {
-      console.error(`Camera :: initCamera :: get cameraOutputCapability failed !`);
+      console.error(`${testNum} :: Camera :: initCamera :: get cameraOutputCapability failed !`);
       return;
     }
-    console.log(`Camera :: initCamera :: get cameraOutputCapability success .`);
     // 获取支持的预览配置信息
     let previewProfilesArray: Array<camera.Profile> = cameraOutputCapability.previewProfiles;
     if (previewProfilesArray == undefined || previewProfilesArray.length <= 0) {
-      console.error(`Camera :: initCamera :: previewProfiles have no item to choose !`);
+      console.error(`${testNum} :: Camera :: initCamera :: previewProfiles have no item to choose !`);
       return;
     }
-    console.log(`Camera :: initCamera :: get previewProfilesArray success, previewProfile is ${previewProfilesArray[0]}`);
     // 创建预览输出流,预览配置信息为第一个
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
     if (previewOutput == undefined) {
-      console.error(`Camera :: initCamera :: create previewOutput failed !`);
+      console.error(`${testNum} :: Camera :: initCamera :: create previewOutput failed !`);
       return;
     }
     // 监听预览对象的状态
@@ -582,14 +580,14 @@ export async function initCamera(surfaceId: string) {
     // 获取支持的拍照信息
     let photoProfilesArray: Array<camera.Profile> = cameraOutputCapability.photoProfiles;
     if (photoProfilesArray == undefined || photoProfilesArray.length <= 0) {
-      console.error(`Camera :: initCamera :: photoProfiles have no item to choose !`);
+      console.error(`${testNum} :: Camera :: initCamera :: photoProfiles have no item to choose !`);
       return;
     }
-    console.log(`Camera :: initCamera :: get photoProfilesArray success, photoProfiles is ${photoProfilesArray[0]}`);
+    console.log(`${testNum} :: Camera :: initCamera :: get photoProfilesArray success, photoProfiles is ${photoProfilesArray[0]}`);
     // 创建photoOutput输出对象, 配置为默认第一个
     photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
     if (photoOutput == undefined) {
-      console.error(`Camera :: initCamera :: create photoOutput failed !`);
+      console.error(`${testNum} :: Camera :: initCamera :: create photoOutput failed !`);
       return;
     }
     // 创建相机输入对象
@@ -599,15 +597,15 @@ export async function initCamera(surfaceId: string) {
     // 监听相机对象状态
     onCameraStatusChange(cameraManager);
     // 会话流程
-    await sessionFlow(camera.SceneMode.NORMAL_PHOTO);
+    await sessionFlow(testNum, camera.SceneMode.NORMAL_PHOTO);
   } catch (error) {
-    console.error(`Camera :: initCamera failed, message = ${error}`)
+    console.error(`${testNum} :: Camera :: initCamera failed, message = ${error}`)
     return;
   }
 }
 
 // 会话流程
-async function sessionFlow(mode: camera.SceneMode) {
+async function sessionFlow(testNum: string, mode: camera.SceneMode) {
   try {
     // 创建会话对象
     photoSession = cameraManager.createSession(mode);
@@ -617,34 +615,26 @@ async function sessionFlow(mode: camera.SceneMode) {
     photoSession.addInput(cameraInput);
     photoSession.addOutput(previewOutput);
     photoSession.addOutput(photoOutput);
-    await photoOutputCallBack(photoOutput);
     await photoSession.commitConfig();
     await photoSession.start();
   } catch (error) {
-    console.error(`Camera :: sessionFlow failed, message = ${error}`)
+    console.error(`${testNum} :: Camera :: sessionFlow failed, message = ${error}`);
     return;
   }
 }
 
 // 拍照
-export async function takePicture() {
+export async function takePicture(): Promise<void> {
   try {
-    let photoCaptureSetting: camera.PhotoCaptureSetting = {
-      quality: camera.QualityLevel.QUALITY_LEVEL_HIGH,
-      rotation: camera.ImageRotation.ROTATION_0
+    console.log(`takePicture start ...`);
+    let photoSettings: camera.PhotoCaptureSetting = {
+      quality: camera.QualityLevel.QUALITY_LEVEL_LOW,
+      mirror: false
     }
-    // 使用当前拍照设置进行拍照
-    photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {
-      if (err) {
-        console.error(`takePicture :: Failed to capture the photo ${err.message}`);
-        return;
-      }
-      console.info('takePicture :: Callback invoked to indicate the photo capture request success.');
-    });
-    photoSession.stop();
-    releaseCamera();
-  } catch (error: BusinessError) {
-    console.error(`takePicture :: takePicture failed, message = ${error}`);
+    await photoOutput?.capture(photoSettings);
+    console.log(`takePicture end ...`);
+  } catch (error) {
+    console.error(`Camera :: takePicture failed, message = ${error}`);
   }
 }
 
@@ -653,6 +643,5 @@ export {
   photoKeys,
   albumKeys,
   albumType,
-  albumSubtype,
-  isSaveCameraPhoto
+  albumSubtype
 };

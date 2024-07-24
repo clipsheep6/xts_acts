@@ -69,7 +69,7 @@ import requestImageNativeTest from './MediaAssetManager/requestImageNative'
 import requestCancelNativeTest from './MediaAssetManager/requestCancelNative'
 import requestVideoTest from './MediaAssetManager/requestVideo'
 import groupAlbumsTest from './PhotoAccessHelper/groupAlbums'
-import saveCameraPhotoTest from './MediaAssetChangeRequest/saveCameraPhoto'
+import handleCameraPhotoTest from './MediaAssetChangeRequest/handleCameraPhoto'
 
 export default function testsuite () {
   provisionResourcesTest()
@@ -129,5 +129,5 @@ export default function testsuite () {
   requestCancelNativeTest()
   requestVideoTest()
   groupAlbumsTest()
-  saveCameraPhotoTest()
+  handleCameraPhotoTest()
 }

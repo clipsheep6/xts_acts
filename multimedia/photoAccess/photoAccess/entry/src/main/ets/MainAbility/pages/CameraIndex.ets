@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
- import PhotoModeComponent from "./PhotoModeComponent";
- import { initCamera } from "../../../../../../../common";
+import router from '@ohos.router';
+import PhotoModeComponent from "./PhotoModeComponent";
+import { initCamera } from "../../../../../../../common";
 
 @Entry
 @Component
@@ -35,11 +36,15 @@ struct CameraIndex {
                     controller: this.mXComponentController
                 })
                 .onLoad(async () => {
+                    const params = router.getParams();
+                    let savePhoto = params['savePhotoFlag'];
+                    let testNum = params['testNum'];
+                    console.log(`onLoad :: savePhoto is ${savePhoto}, testNum is ${testNum}`);
                     this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
                     this.mXComponentController.setXComponentSurfaceSize({surfaceWidth: 1920, surfaceHeight: 1080});
                     console.log(`onLoad surfaceId: ${this.surfaceId}`);
                     // 初始化相机
-                    await initCamera(this.surfaceId);
+                    await initCamera(testNum, this.surfaceId, savePhoto);
                 })
                 .border({
                     width: {
