@@ -111,7 +111,8 @@ static napi_value NormalAVScreenCaptureTest(napi_env env, napi_callback_info inf
     OH_AVScreenCapture_Release(screenCapture);
 
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OK;
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK 
+        && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
@@ -141,7 +142,8 @@ static napi_value NormalAVScreenRecordTest(napi_env env, napi_callback_info info
     OH_AVScreenCapture_Release(screenCapture);
 
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OK;
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK 
+        && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
@@ -261,13 +263,14 @@ static napi_value NormalAVScreenCaptureSurfaceTest(napi_env env, napi_callback_i
     OH_AVScreenCapture_Release(screenCapture);
 
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OK;
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK && result3 == AV_SCREEN_CAPTURE_ERR_OK 
-        && result4 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK 
+        && result3 == AV_SCREEN_CAPTURE_ERR_OK && result4 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
-        OH_LOG_INFO(LOG_APP, "init/configure/getSurface/prepare failed, init: %d, configure: %d, getSurface: %d, prepare: %d"
-            , result1, result2, result3, result4);
+        OH_LOG_INFO(LOG_APP, 
+            "init/configure/getSurface/prepare failed, init: %d, configure: %d, getSurface: %d, prepare: %d", 
+            result1, result2, result3, result4);
     }
     napi_value res;
     napi_create_int32(env, result, &res);
@@ -478,7 +481,8 @@ static napi_value OriginAVScreenCaptureTest(napi_env env, napi_callback_info inf
     screenCaptureCb = nullptr;
     napi_value res;
     OH_AVSCREEN_CAPTURE_ErrCode result;
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK 
+        && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         OH_LOG_INFO(LOG_APP, "init/start/stop failed, init: %d, start: %d, stop: %d", result1, result2, result3);
