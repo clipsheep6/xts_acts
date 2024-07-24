@@ -109,7 +109,6 @@ static napi_value NormalAVScreenCaptureTest(napi_env env, napi_callback_info inf
     sleep(g_recordTime);
     OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_StopScreenCapture(screenCapture);
     OH_AVScreenCapture_Release(screenCapture);
-    
 
     OH_AVSCREEN_CAPTURE_ErrCode result = AV_SCREEN_CAPTURE_ERR_OK;
     if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
@@ -195,7 +194,6 @@ static napi_value NormalAVScreenCaptureSurfaceTest(napi_env env, napi_callback_i
     OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
-
 
     // 获取需要输入的Surface，以进行编码
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
