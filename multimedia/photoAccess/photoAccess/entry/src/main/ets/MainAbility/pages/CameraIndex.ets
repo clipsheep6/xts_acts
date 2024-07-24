@@ -14,14 +14,14 @@
  */
 
 import router from '@ohos.router';
-import PhotoModeComponent from "./PhotoModeComponent";
-import { initCamera } from "../../../../../../../common";
+import PhotoModeComponent from './PhotoModeComponent';
+import { initCamera } from '../../../../../../../common';
 
 @Entry
 @Component
 struct CameraIndex {
 
-    @StorageLink("isShow")
+    @StorageLink('isShow')
     isShow: boolean = true;
     private surfaceId: string = ''
     private mXComponentController: XComponentController = new XComponentController();
@@ -31,7 +31,7 @@ struct CameraIndex {
         Stack() {
             if (this.isShow) {
                 XComponent({
-                    id: 'xcomponent',
+                    id: 'xComponent',
                     type: XComponentType.SURFACE,
                     controller: this.mXComponentController
                 })
@@ -58,7 +58,7 @@ struct CameraIndex {
                 PhotoModeComponent(); 
             }
         }
-        .size({ width: "100%", height: "100%"})
+        .size({ width: '100%', height: '100%'})
         .backgroundColor(Color.Black)
     }
 }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { takePicture } from "../../../../../../../common";
+import { takePicture } from '../../../../../../../common';
 
 const TAG: string = 'PhotoModeComponent';
 
@@ -26,24 +26,24 @@ struct PhotoModeComponent {
         // 拍照按钮
         Column() {
           Row() {
-            Button("拍照")
-              .width("300px")
-              .height("100px")
+            Button('拍照')
+              .width('300px')
+              .height('100px')
               .onClick(async () => {
                 takePicture();
               })
           }
         }
       }
-      .width("100%")
+      .width('100%')
       .justifyContent(FlexAlign.Center)
       .alignItems(VerticalAlign.Center)
     }
     .justifyContent(FlexAlign.End)
-    .height("10%")
+    .height('10%')
     .padding({ left: 24, right: 24 })
     .margin({ bottom: 24 })
-    .position({ x: "0%", y: "85%"})
+    .position({ x: '0%', y: '85%'})
   }
 }
 
