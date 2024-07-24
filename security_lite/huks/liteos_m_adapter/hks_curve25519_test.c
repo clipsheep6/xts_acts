@@ -15,22 +15,22 @@
 
 #ifndef _CUT_AUTHENTICATE_
 #ifndef _CUT_ED25519_
-#include "hks_curve25519_test.h"
 
 #include "cmsis_os2.h"
 #include "hctest.h"
 
 #include "hks_api.h"
 #include "hks_param.h"
+#include "hks_test_common.h"
 #include "hks_test_curve25519.h"
 #include "los_config.h"
 #include "ohos_types.h"
 #include "securec.h"
 #include "cmsis_os2.h"
 #include "ohos_types.h"
+#include "unistd.h"
 
-#define TEST_TASK_STACK_SIZE      0x2000
-#define WAIT_TO_TEST_DONE         4
+#define TEST_TASK_STACK_SIZE 0x80000
 
 static osPriority_t g_setPriority;
 
@@ -44,10 +44,9 @@ LITE_TEST_SUIT(security, securityData, HksCurve25519Test);
 
 static void ExecHksInitialize(void const *argument)
 {
-    LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
-    LiteTestPrint("HksInitialize End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksInitialize Begin!\n");
+    TEST_ASSERT_EQUAL(0, HksInitialize());
+    HKS_TEST_LOG_I("HksInitialize End!\n");
 }
 /**
  * @tc.setup: define a setup for test suit, format:"CalcMultiTest + SetUp"
@@ -55,7 +54,7 @@ static void ExecHksInitialize(void const *argument)
  */
 static BOOL HksCurve25519TestSetUp()
 {
-    LiteTestPrint("setup\n");
+    HKS_TEST_LOG_I("setup\n");
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -67,8 +66,9 @@ static BOOL HksCurve25519TestSetUp()
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCurve25519TestSetUp End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksCurve25519TestSetUp End2!\n");
     return TRUE;
 }
 
@@ -78,40 +78,36 @@ static BOOL HksCurve25519TestSetUp()
  */
 static BOOL HksCurve25519TestTearDown()
 {
-    LiteTestPrint("tearDown\n");
+    HKS_TEST_LOG_I("tearDown\n");
     return TRUE;
 }
 
 static void LocalHksCurve25519Test001(void const *argument)
 {
-    LiteTestPrint("HksCurve25519Test001 Begin!\n");
-    TEST_ASSERT_TRUE(TestCurve25519All() == 0);
-    LiteTestPrint("HksCurve25519Test001 End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksCurve25519Test001 Begin!\n");
+    TEST_ASSERT_EQUAL(0, TestCurve25519All());
+    HKS_TEST_LOG_I("HksCurve25519Test001 End!\n");
 }
 
 static void LocalHksCurve25519Test002(void const *argument)
 {
-    LiteTestPrint("HksCurve25519Test002 Begin!\n");
-    TEST_ASSERT_TRUE(TestEd25519SignTeeVerifyLocal() == 0);
-    LiteTestPrint("HksCurve25519Test002 End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksCurve25519Test002 Begin!\n");
+    TEST_ASSERT_EQUAL(0, TestEd25519SignTeeVerifyLocal());
+    HKS_TEST_LOG_I("HksCurve25519Test002 End!\n");
 }
 
 static void LocalHksCurve25519Test003(void const *argument)
 {
-    LiteTestPrint("HksCurve25519Test003 Begin!\n");
-    TEST_ASSERT_TRUE(TestCurve25519SignWrong() == 0);
-    LiteTestPrint("HksCurve25519Test003 End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksCurve25519Test003 Begin!\n");
+    TEST_ASSERT_EQUAL(0, TestCurve25519SignWrong());
+    HKS_TEST_LOG_I("HksCurve25519Test003 End!\n");
 }
 
 static void LocalHksCurve25519Test004(void const *argument)
 {
-    LiteTestPrint("HksCurve25519Test004 Begin!\n");
-    TEST_ASSERT_TRUE(TestCurve25519verifyWrong() == 0);
-    LiteTestPrint("HksCurve25519Test004 End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksCurve25519Test004 Begin!\n");
+    TEST_ASSERT_EQUAL(0, TestCurve25519verifyWrong());
+    HKS_TEST_LOG_I("HksCurve25519Test004 End!\n");
 }
 
 /**
@@ -120,7 +116,7 @@ static void LocalHksCurve25519Test004(void const *argument)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksCurve25519Test, HksCurve25519Test001, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -132,8 +128,9 @@ LITE_TEST_CASE(HksCurve25519Test, HksCurve25519Test001, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)LocalHksCurve25519Test001, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCurve25519Test001 End2!\n");    
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksCurve25519Test001 End2!\n");
 }
 
 /**
@@ -154,8 +151,9 @@ LITE_TEST_CASE(HksCurve25519Test, HksCurve25519Test002, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)LocalHksCurve25519Test002, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCurve25519Test002 End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksCurve25519Test002 End2!\n");
 }
 
 /**
@@ -176,8 +174,9 @@ LITE_TEST_CASE(HksCurve25519Test, HksCurve25519Test003, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)LocalHksCurve25519Test003, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCurve25519Test003 End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksCurve25519Test003 End2!\n");
 }
 
 /**
@@ -198,8 +197,9 @@ LITE_TEST_CASE(HksCurve25519Test, HksCurve25519Test004, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)LocalHksCurve25519Test004, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksCurve25519Test004 End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksCurve25519Test004 End2!\n");
 }
 
 RUN_TEST_SUITE(HksCurve25519Test);

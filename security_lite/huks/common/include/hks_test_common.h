@@ -19,6 +19,13 @@
 #include "hks_type.h"
 #include "securec.h"
 
+#if defined(__LITEOS_M__) && __LITEOS_M__
+// the following is for HksWaitForThread
+#include "cmsis_os2.h"
+#include "hks_test_log.h"
+#include <unistd.h>
+#endif
+
 #define GOTO_ERROR_IF_FAIL(ret, err) \
     if ((ret) != 0) { \
         goto err; \
@@ -46,6 +53,20 @@
 #define TEST_MAX_FILE_NAME_LEN 512
 
 #define DEFAULT_LOCAL_KEY_SIZE 256
+
+#if defined(__LITEOS_M__) && __LITEOS_M__
+#define WAIT_TO_TEST_DONE 4 // Hi3861 do not support osThreadJoin, so we have to wait for the thread.
+static inline void HksWaitForThread(osThreadId_t id)
+{
+#ifndef CHIP_VER_Hi3861
+    osStatus_t joinStatus = osThreadJoin(id);
+    TEST_ASSERT_TRUE(joinStatus == osOK || joinStatus == osErrorResource);
+#else
+    (void)(id);
+    sleep(WAIT_TO_TEST_DONE);
+#endif
+}
+#endif
 
 /* inputparams: struct HksBlob *blob */
 struct HksTestBlobParams {

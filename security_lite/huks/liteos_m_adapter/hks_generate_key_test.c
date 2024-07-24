@@ -15,8 +15,6 @@
 
 #ifndef _CUT_AUTHENTICATE_
 
-#include "hks_generate_key_test.h"
-
 #include <hctest.h>
 #include <unistd.h>
 
@@ -29,8 +27,7 @@
 #include "ohos_types.h"
 
 #define DEFAULT_X25519_PARAM_SET_OUT 104
-#define TEST_TASK_STACK_SIZE      0x2000
-#define WAIT_TO_TEST_DONE         4
+#define TEST_TASK_STACK_SIZE 0x80000
 
 static osPriority_t g_setPriority;
 
@@ -44,10 +41,9 @@ LITE_TEST_SUIT(security, securityData, HksGenerateKeyTest);
 
 static void ExecHksInitialize(void const *argument)
 {
-    LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
-    LiteTestPrint("HksInitialize End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksInitialize Begin!\n");
+    TEST_ASSERT_EQUAL(0, HksInitialize());
+    HKS_TEST_LOG_I("HksInitialize End!\n");
 }
 
 /**
@@ -56,7 +52,7 @@ static void ExecHksInitialize(void const *argument)
  */
 static BOOL HksGenerateKeyTestSetUp()
 {
-    LiteTestPrint("setup\n");
+    HKS_TEST_LOG_I("setup\n");
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -68,8 +64,9 @@ static BOOL HksGenerateKeyTestSetUp()
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksGenerateKeyTestSetUp End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksGenerateKeyTestSetUp End2!\n");
     return TRUE;
 }
 
@@ -79,7 +76,7 @@ static BOOL HksGenerateKeyTestSetUp()
  */
 static BOOL HksGenerateKeyTestTearDown()
 {
-    LiteTestPrint("tearDown\n");
+    HKS_TEST_LOG_I("tearDown\n");
     return TRUE;
 }
 
@@ -101,7 +98,7 @@ static const struct HksTestGenKeyParams g_testGenKeyParams[] = {
 
 static void ExecHksGenerateKeyTest001(void const *argument)
 {
-    LiteTestPrint("HksGenerateKeyTest001 Begin!\n");  
+    HKS_TEST_LOG_I("HksGenerateKeyTest001 Begin!\n");
 
     uint32_t times = 1;
     uint32_t index = 0;
@@ -112,7 +109,7 @@ static void ExecHksGenerateKeyTest001(void const *argument)
         g_testGenKeyParams[index].keyAliasParams.blobSize,
         g_testGenKeyParams[index].keyAliasParams.blobDataExist,
         g_testGenKeyParams[index].keyAliasParams.blobDataSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *paramSet = NULL;
     struct GenerateKeyParamSetStructure paramStruct = { &paramSet,
@@ -126,33 +123,32 @@ static void ExecHksGenerateKeyTest001(void const *argument)
         g_testGenKeyParams[index].paramSetParams.setKeyStorageFlag,
         g_testGenKeyParams[index].paramSetParams.keyStorageFlag };
     ret = TestConstructGenerateKeyParamSet(&paramStruct);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     struct HksParamSet *paramSetOut = NULL;
     ret = TestConstructGenerateKeyParamSetOut(&paramSetOut,
         g_testGenKeyParams[index].paramSetParamsOut.paramSetExist,
         g_testGenKeyParams[index].paramSetParamsOut.paramSetSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksGenerateKeyRun(keyAlias, paramSet, paramSetOut, performTimes);
     if (ret != g_testGenKeyParams[index].expectResult) {
         HKS_TEST_LOG_I("failed, ret[%u] = %d", g_testGenKeyParams[index].testId, ret);
     }
-    TEST_ASSERT_TRUE(ret == g_testGenKeyParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testGenKeyParams[index].expectResult, ret);
 
     if ((ret == HKS_SUCCESS) &&
         !(g_testGenKeyParams[index].paramSetParams.setKeyStorageFlag == true) &&
         (g_testGenKeyParams[index].paramSetParams.keyStorageFlag == HKS_STORAGE_TEMP)) {
-        HKS_TEST_ASSERT(HksDeleteKey(keyAlias, NULL) == 0);
+        TEST_ASSERT_EQUAL(0, HksDeleteKey(keyAlias, NULL));
     }
     TestFreeBlob(&keyAlias);
     HksFreeParamSet(&paramSet);
     HksFreeParamSet(&paramSetOut);
     HKS_TEST_LOG_I("[%u]TestGenerateKey, Testcase_GenerateKey_[%03u] pass!", times, g_testGenKeyParams[index].testId);
-    TEST_ASSERT_TRUE(ret == 0);
-    
-    LiteTestPrint("HksGenerateKeyTest001 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(0, ret);
+
+    HKS_TEST_LOG_I("HksGenerateKeyTest001 End!\n");
 }
 
 /**
@@ -173,8 +169,9 @@ LITE_TEST_CASE(HksGenerateKeyTest, HksGenerateKeyTest001, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksGenerateKeyTest001, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksGenerateKeyTest001 End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksGenerateKeyTest001 End2!\n");
 }
 
 RUN_TEST_SUITE(HksGenerateKeyTest);

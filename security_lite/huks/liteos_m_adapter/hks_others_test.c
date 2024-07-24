@@ -15,20 +15,18 @@
 
 #ifndef _CUT_AUTHENTICATE_
 
-#include "hks_others_test.h"
-
 #include <hctest.h>
 #include <unistd.h>
 
 #include "hks_api.h"
 #include "hks_param.h"
+#include "hks_test_common.h"
 #include "hks_type.h"
 
 #include "cmsis_os2.h"
 #include "ohos_types.h"
 
-#define TEST_TASK_STACK_SIZE      0x2000
-#define WAIT_TO_TEST_DONE         4
+#define TEST_TASK_STACK_SIZE 0x80000
 
 static osPriority_t g_setPriority;
 
@@ -42,10 +40,9 @@ LITE_TEST_SUIT(security, securityData, HksOthersTest);
 
 static void ExecHksInitialize(void const *argument)
 {
-    LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
-    LiteTestPrint("HksInitialize End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksInitialize Begin!\n");
+    TEST_ASSERT_EQUAL(0, HksInitialize());
+    HKS_TEST_LOG_I("HksInitialize End!\n");
 }
 /**
  * @tc.setup: define a setup for test suit, format:"CalcMultiTest + SetUp"
@@ -53,7 +50,7 @@ static void ExecHksInitialize(void const *argument)
  */
 static BOOL HksOthersTestSetUp()
 {
-    LiteTestPrint("setup\n");
+    HKS_TEST_LOG_I("setup\n");
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -65,8 +62,9 @@ static BOOL HksOthersTestSetUp()
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTestSetUp End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksOthersTestSetUp End2!\n");
     return TRUE;
 }
 
@@ -76,80 +74,72 @@ static BOOL HksOthersTestSetUp()
  */
 static BOOL HksOthersTestTearDown()
 {
-    LiteTestPrint("tearDown\n");
+    HKS_TEST_LOG_I("tearDown\n");
     return TRUE;
 }
 
 static void ExcHksOthersTest001(void const *argument)
 {
-    LiteTestPrint("HksOthersTest001 Begin!\n");
+    HKS_TEST_LOG_I("HksOthersTest001 Begin!\n");
     int32_t ret = HksGetKeyParamSet(NULL, NULL, NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_NULL_POINTER);
-    LiteTestPrint("HksOthersTest001 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(HKS_ERROR_NULL_POINTER, ret);
+    HKS_TEST_LOG_I("HksOthersTest001 End!\n");
 }
 
 static void ExcHksOthersTest002(void const *argument)
 {
-    LiteTestPrint("HksOthersTest002 Begin!\n");
+    HKS_TEST_LOG_I("HksOthersTest002 Begin!\n");
     int32_t ret = HksGetKeyInfoList(NULL, NULL, NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_NULL_POINTER);
-    LiteTestPrint("HksOthersTest002 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(HKS_ERROR_NULL_POINTER, ret);
+    HKS_TEST_LOG_I("HksOthersTest002 End!\n");
 }
 
 static void ExcHksOthersTest003(void const *argument)
 {
-    LiteTestPrint("HksOthersTest003 Begin!\n");
+    HKS_TEST_LOG_I("HksOthersTest003 Begin!\n");
     int32_t ret = HksAttestKey(NULL, NULL, NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
-    LiteTestPrint("HksOthersTest003 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(HKS_ERROR_API_NOT_SUPPORTED, ret);
+    HKS_TEST_LOG_I("HksOthersTest003 End!\n");
 }
 
 static void ExcHksOthersTest004(void const *argument)
 {
-    LiteTestPrint("HksOthersTest004 Begin!\n");
+    HKS_TEST_LOG_I("HksOthersTest004 Begin!\n");
     int32_t ret = HksGetCertificateChain(NULL, NULL, NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
-    LiteTestPrint("HksOthersTest004 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(HKS_ERROR_API_NOT_SUPPORTED, ret);
+    HKS_TEST_LOG_I("HksOthersTest004 End!\n");
 }
 
 static void ExcHksOthersTest005(void const *argument)
 {
-    LiteTestPrint("HksOthersTest005 Begin!\n");
+    HKS_TEST_LOG_I("HksOthersTest005 Begin!\n");
     int32_t ret = HksGetCertificateChain(NULL, NULL, NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
-    LiteTestPrint("HksOthersTest005 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(HKS_ERROR_API_NOT_SUPPORTED, ret);
+    HKS_TEST_LOG_I("HksOthersTest005 End!\n");
 }
 
 static void ExcHksOthersTest006(void const *argument)
 {
-    LiteTestPrint("HksOthersTest006 Begin!\n");
+    HKS_TEST_LOG_I("HksOthersTest006 Begin!\n");
     int32_t ret = HksUnwrapKey(NULL, NULL, NULL, NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
-    LiteTestPrint("HksOthersTest006 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(HKS_ERROR_API_NOT_SUPPORTED, ret);
+    HKS_TEST_LOG_I("HksOthersTest006 End!\n");
 }
 
 static void ExcHksOthersTest007(void const *argument)
 {
-    LiteTestPrint("HksOthersTest007 Begin!\n");
+    HKS_TEST_LOG_I("HksOthersTest007 Begin!\n");
     int32_t ret = HksGetSdkVersion(NULL);
-    TEST_ASSERT_TRUE(ret == HKS_ERROR_NULL_POINTER);
-    LiteTestPrint("HksOthersTest007 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(HKS_ERROR_NULL_POINTER, ret);
+    HKS_TEST_LOG_I("HksOthersTest007 End!\n");
 }
 
 static void ExcHksOthersTest008(void const *argument)
 {
-    LiteTestPrint("HksOthersTest008 Begin!\n");
+    HKS_TEST_LOG_I("HksOthersTest008 Begin!\n");
     int32_t ret = HksInitialize();
-    TEST_ASSERT_TRUE(ret == HKS_SUCCESS);
-    LiteTestPrint("HksOthersTest008 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(HKS_SUCCESS, ret);
+    HKS_TEST_LOG_I("HksOthersTest008 End!\n");
 }
 
 /**
@@ -170,8 +160,9 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest001, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksOthersTest001, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTest001 End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksOthersTest001 End2!\n");
 }
 
 /**
@@ -180,7 +171,7 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest001, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksOthersTest, HksOthersTest002, Level1)
-{ 
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -192,8 +183,9 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest002, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksOthersTest002, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTest002 End2!\n");  
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksOthersTest002 End2!\n");
 }
 
 /**
@@ -202,7 +194,7 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest002, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksOthersTest, HksOthersTest003, Level1)
-{    
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -214,8 +206,9 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest003, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksOthersTest003, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTest003 End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksOthersTest003 End2!\n");
 }
 
 /**
@@ -224,7 +217,7 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest003, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksOthersTest, HksOthersTest004, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -236,8 +229,9 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest004, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksOthersTest004, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTest004 End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksOthersTest004 End2!\n");
 }
 
 /**
@@ -258,8 +252,9 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest005, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksOthersTest005, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTest005 End2!\n"); 
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksOthersTest005 End2!\n");
 }
 
 /**
@@ -280,8 +275,9 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest006, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksOthersTest006, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTest006 End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksOthersTest006 End2!\n");
 }
 
 /**
@@ -290,7 +286,7 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest006, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksOthersTest, HksOthersTest007, Level1)
-{    
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -302,8 +298,9 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest007, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksOthersTest007, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTest007 End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksOthersTest007 End2!\n");
 }
 
 /**
@@ -324,8 +321,9 @@ LITE_TEST_CASE(HksOthersTest, HksOthersTest008, Level1)
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
     id = osThreadNew((osThreadFunc_t)ExcHksOthersTest008, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksOthersTest008 End2!\n");
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksOthersTest008 End2!\n");
 }
 RUN_TEST_SUITE(HksOthersTest);
 

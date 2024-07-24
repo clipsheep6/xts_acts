@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_others_test.h"
-
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_type.h"

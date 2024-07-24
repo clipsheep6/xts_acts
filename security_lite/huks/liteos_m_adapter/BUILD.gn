@@ -32,20 +32,39 @@ hctest_suite("ActsHuksHalFunctionTest") {
     "hks_hash_test.c",
     "hks_mac_test.c",
     "hks_others_test.c",
+    "hks_test_aes.c",
+    "hks_test_api_performance.c",
+    "hks_test_cipher.c",
+    "hks_test_common.c",
+    "hks_test_curve25519.c",
+    "hks_test_file_operator.c",
+    "hks_test_mem.c",
+    "test_hc_test_framework.c",
   ]
+  if (huks_lite_enable_ecc_and_ed25519) {
+    sources += [
+      "hks_ecc_test.c",
+      "hks_x25519_test.c",
+    ]
+  }
   include_dirs = [
     "//base/security/huks/interfaces/inner_api/huks_standard/main/include",
-    "//base/iothardware/peripheral/interfaces/inner_api",
     "//base/security/huks/frameworks/huks_standard/main/common/include",
+    "//base/security/huks/utils/crypto_adapter",  # hks_client_service_adapter.h
+                                                  # for TranslateToX509PublicKey
     "../common/include",
+
+    "//base/iothardware/peripheral/interfaces/inner_api",
+    "//commonlibrary/c_utils/base/include",
+    "//third_party/bounds_checking_function/include",
+    "//base/hiviewdfx/hilog_lite/interfaces/native/kits/hilog_lite/",
+    "//test/xts/tools/lite/hctest/include",
+    "//third_party/unity/src",
   ]
 
-  deps = [ "//test/xts/acts/security_lite/huks/common:huks_test_common" ]
+  deps = [ "//base/hiviewdfx/hilog_lite/frameworks/mini:hilog_lite" ]
 
-  cflags = [
-    "-D_CUT_ED25519_",
-    "-D_CUT_LOG_",
-  ]
+  cflags = [ "-Werror=implicit-function-declaration" ]
   if (disable_authenticate == true) {
     cflags += [ "-D_CUT_AUTHENTICATE_" ]
   }

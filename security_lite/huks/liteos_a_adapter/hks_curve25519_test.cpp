@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_curve25519_test.h"
-
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_test_curve25519.h"

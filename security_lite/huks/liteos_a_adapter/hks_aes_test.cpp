@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_aes_test.h"
-
 #include "securec.h"
 
 #include "hks_api.h"

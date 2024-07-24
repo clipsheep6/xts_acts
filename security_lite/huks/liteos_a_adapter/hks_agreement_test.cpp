@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_agreement_test.h"
-
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_test_api_performance.h"
@@ -86,7 +84,7 @@ static int32_t AgreeKey(const struct HksTestAgreeParamSet *agreeParamSetParams, 
         agreeParamSetParams->setIsKeyAlias, agreeParamSetParams->isKeyAlias
     };
     int32_t ret = TestConstructAgreeParamSet(&paramStruct);
-    HKS_TEST_ASSERT(ret == 0);
+    EXPECT_EQ(0, ret);
 
     ret = HksAgreeKeyRun(agreeParamSet, privateKey, peerPublicKey, agreedKey, 1);
     HksFreeParamSet(&agreeParamSet);

@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_hash_test.h"
-
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_test_api_performance.h"
@@ -82,27 +80,27 @@ HWTEST_F(HksHashTest, HksHashTest001, TestSize.Level1)
     int32_t ret = TestConstructHashParamSet(&paramSet,
         g_testHashParams[0].paramSetParams.paramSetExist,
         g_testHashParams[0].paramSetParams.setDigest, g_testHashParams[0].paramSetParams.digest);
-    HKS_TEST_ASSERT(ret == 0);
+    EXPECT_EQ(0, ret);
 
     ret = TestConstuctBlob(&srcData,
         g_testHashParams[0].srcDataParams.blobExist,
         g_testHashParams[0].srcDataParams.blobSize,
         g_testHashParams[0].srcDataParams.blobDataExist,
         g_testHashParams[0].srcDataParams.blobDataSize);
-    HKS_TEST_ASSERT(ret == 0);
+    EXPECT_EQ(0, ret);
 
     ret = TestConstructBlobOut(&hash,
         g_testHashParams[0].hashParams.blobExist,
         g_testHashParams[0].hashParams.blobSize,
         g_testHashParams[0].hashParams.blobDataExist,
         g_testHashParams[0].hashParams.blobDataSize);
-    HKS_TEST_ASSERT(ret == 0);
+    EXPECT_EQ(0, ret);
 
     ret = HksHashRun(paramSet, srcData, hash, 1);
     if (ret != g_testHashParams[0].expectResult) {
         HKS_TEST_LOG_I("HksHashRun failed, ret[%u] = %d", g_testHashParams[0].testId, ret);
     }
-    HKS_TEST_ASSERT(ret == g_testHashParams[0].expectResult);
+    EXPECT_EQ(g_testHashParams[0].expectResult, ret);
 
     HksFreeParamSet(&paramSet);
     TestFreeBlob(&srcData);

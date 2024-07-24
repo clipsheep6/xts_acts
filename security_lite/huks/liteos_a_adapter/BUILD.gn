@@ -34,17 +34,29 @@ hcpptest_suite("ActsHuksLiteFunctionTest") {
     "hks_hash_test.cpp",
     "hks_mac_test.cpp",
     "hks_others_test.cpp",
+    "hks_test_aes.cpp",
+    "hks_test_api_performance.cpp",
+    "hks_test_cipher.cpp",
+    "hks_test_common.cpp",
+    "hks_test_curve25519.cpp",
+    "hks_test_file_operator.cpp",
+    "hks_test_mem.cpp",
   ]
 
   include_dirs = [
+    "//base/security/huks/interfaces/inner_api/huks_standard/main/include",
+    "../common/include",
+
     "//commonlibrary/c_utils/base/include",
     "//third_party/bounds_checking_function/include",
-    "../common/include",
+    "//base/hiviewdfx/hilog_lite/interfaces/native/innerkits/hilog/",
+    "//third_party/googletest/googletest/include",
+    "//third_party/googletest/googlemock/include",
   ]
 
   deps = [
+    "//base/hiviewdfx/hilog_lite/frameworks/featured:hilog_shared",
     "//base/security/huks/interfaces/inner_api/huks_lite:huks_3.0_sdk",
-    "//test/xts/acts/security_lite/huks/common:huks_test_common",
     "//third_party/bounds_checking_function:libsec_shared",
   ]
   cflags = [ "-Wno-error" ]
