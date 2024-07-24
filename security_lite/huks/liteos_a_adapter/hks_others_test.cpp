@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_others_test.h"
-
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_type.h"
@@ -62,7 +60,7 @@ void HksOthersTest::TearDown()
 HWTEST_F(HksOthersTest, HksOthersTest001, TestSize.Level1)
 {
     int32_t ret = HksGetKeyParamSet(NULL, NULL, NULL);
-    ASSERT_TRUE(ret == HKS_ERROR_NULL_POINTER);
+    EXPECT_EQ(ret, HKS_ERROR_NULL_POINTER);
 }
 
 /**
@@ -73,7 +71,7 @@ HWTEST_F(HksOthersTest, HksOthersTest001, TestSize.Level1)
 HWTEST_F(HksOthersTest, HksOthersTest002, TestSize.Level1)
 {
     int32_t ret = HksGetKeyInfoList(NULL, NULL, NULL);
-    ASSERT_TRUE(ret == HKS_ERROR_NULL_POINTER);
+    EXPECT_EQ(ret, HKS_ERROR_NULL_POINTER);
 }
 
 /**
@@ -84,7 +82,7 @@ HWTEST_F(HksOthersTest, HksOthersTest002, TestSize.Level1)
 HWTEST_F(HksOthersTest, HksOthersTest003, TestSize.Level1)
 {
     int32_t ret = HksAttestKey(NULL, NULL, NULL);
-    ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
+    EXPECT_EQ(ret, HKS_ERROR_API_NOT_SUPPORTED);
 }
 
 /**
@@ -95,7 +93,7 @@ HWTEST_F(HksOthersTest, HksOthersTest003, TestSize.Level1)
 HWTEST_F(HksOthersTest, HksOthersTest004, TestSize.Level1)
 {
     int32_t ret = HksGetCertificateChain(NULL, NULL, NULL);
-    ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
+    EXPECT_EQ(ret, HKS_ERROR_API_NOT_SUPPORTED);
 }
 
 /**
@@ -106,7 +104,7 @@ HWTEST_F(HksOthersTest, HksOthersTest004, TestSize.Level1)
 HWTEST_F(HksOthersTest, HksOthersTest005, TestSize.Level1)
 {
     int32_t ret = HksWrapKey(NULL, NULL, NULL, NULL);
-    ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
+    EXPECT_EQ(ret, HKS_ERROR_API_NOT_SUPPORTED);
 }
 
 /**
@@ -117,7 +115,7 @@ HWTEST_F(HksOthersTest, HksOthersTest005, TestSize.Level1)
 HWTEST_F(HksOthersTest, HksOthersTest006, TestSize.Level1)
 {
     int32_t ret = HksUnwrapKey(NULL, NULL, NULL, NULL);
-    ASSERT_TRUE(ret == HKS_ERROR_API_NOT_SUPPORTED);
+    EXPECT_EQ(ret, HKS_ERROR_API_NOT_SUPPORTED);
 }
 
 /**
@@ -128,7 +126,7 @@ HWTEST_F(HksOthersTest, HksOthersTest006, TestSize.Level1)
 HWTEST_F(HksOthersTest, HksOthersTest007, TestSize.Level1)
 {
     int32_t ret = HksGetSdkVersion(NULL);
-    ASSERT_TRUE(ret == HKS_ERROR_NULL_POINTER);
+    EXPECT_EQ(ret, HKS_ERROR_NULL_POINTER);
 }
 
 /**
@@ -139,7 +137,7 @@ HWTEST_F(HksOthersTest, HksOthersTest007, TestSize.Level1)
 HWTEST_F(HksOthersTest, HksOthersTest008, TestSize.Level1)
 {
     int32_t ret = HksInitialize();
-    ASSERT_TRUE(ret == HKS_SUCCESS);
+    EXPECT_EQ(ret, HKS_SUCCESS);
 }
 #endif /* _CUT_AUTHENTICATE_ */
 }

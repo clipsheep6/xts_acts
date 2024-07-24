@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_exist_test.h"
-
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_test_api_performance.h"
@@ -70,25 +68,25 @@ HWTEST_F(HksExistTest, HksExistTest001, TestSize.Level1)
     int32_t ret;
     struct HksBlob *keyAlias = NULL;
     if (g_testKeyExistParams[0].isGenKey) {
-        HKS_TEST_ASSERT(TestGenDefaultKeyAndGetAlias(&keyAlias) == 0);
+        EXPECT_EQ(0, TestGenDefaultKeyAndGetAlias(&keyAlias));
         ret = HksKeyExistRun(keyAlias, 1);
-        HKS_TEST_ASSERT(ret == g_testKeyExistParams[0].expectResult);
-        HKS_TEST_ASSERT(HksDeleteKey(keyAlias, NULL) == HKS_SUCCESS);
+        EXPECT_EQ(g_testKeyExistParams[0].expectResult, ret);
+        EXPECT_EQ(HKS_SUCCESS, HksDeleteKey(keyAlias, NULL));
     } else {
         ret = TestConstuctBlob(&keyAlias,
                                g_testKeyExistParams[0].keyAliasParams.blobExist,
                                g_testKeyExistParams[0].keyAliasParams.blobSize,
                                g_testKeyExistParams[0].keyAliasParams.blobDataExist,
                                g_testKeyExistParams[0].keyAliasParams.blobDataSize);
-        HKS_TEST_ASSERT(ret == 0);
+        EXPECT_EQ(0, ret);
         ret = HksKeyExistRun(keyAlias, 1);
         if (ret != g_testKeyExistParams[0].expectResult) {
             HKS_TEST_LOG_I("HksKeyExistRun 2 failed, ret[%u] = %d", g_testKeyExistParams[0].testId, ret);
         }
-        HKS_TEST_ASSERT(ret == g_testKeyExistParams[0].expectResult);
+        EXPECT_EQ(g_testKeyExistParams[0].expectResult, ret);
     }
     TestFreeBlob(&keyAlias);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 #endif /* _CUT_AUTHENTICATE_ */
 }

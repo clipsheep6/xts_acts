@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-#include "hks_generate_random_test.h"
 #include "hctest.h"
 
 #include "hks_api.h"
@@ -28,9 +27,6 @@
 
 #include <unistd.h>
 
-#define TEST_TASK_STACK_SIZE      0x2000
-#define WAIT_TO_TEST_DONE         4
-
 static osPriority_t g_setPriority;
 
 /*
@@ -41,12 +37,11 @@ static osPriority_t g_setPriority;
  */
 LITE_TEST_SUIT(security, securityData, HksGenerateRandomTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
-    LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
-    LiteTestPrint("HksInitialize End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksInitialize Begin!\n");
+    TEST_ASSERT_EQUAL(0, HksInitialize());
+    HKS_TEST_LOG_I("HksInitialize End!\n");
 }
 
 /**
@@ -55,7 +50,7 @@ static void ExecHksInitialize(void const *argument)
  */
 static BOOL HksGenerateRandomTestSetUp()
 {
-    LiteTestPrint("setup\n");
+    HKS_TEST_LOG_I("setup\n");
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -66,9 +61,10 @@ static BOOL HksGenerateRandomTestSetUp()
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksGenerateRandomTestSetUp End2!\n");
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksGenerateRandomTestSetUp End2!\n");
     return TRUE;
 }
 
@@ -78,7 +74,7 @@ static BOOL HksGenerateRandomTestSetUp()
  */
 static BOOL HksGenerateRandomTestTearDown()
 {
-    LiteTestPrint("tearDown\n");
+    HKS_TEST_LOG_I("tearDown\n");
     return TRUE;
 }
 
@@ -87,30 +83,29 @@ static const struct HksTestGenRandomParams g_testGenRandomParams[] = {
     { 0, HKS_SUCCESS, { true, HKS_MAX_RANDOM_LEN, true, HKS_MAX_RANDOM_LEN } },
 };
 
-static void ExecHksGenerateRandomTest001(void const *argument)
+static void ExecHksGenerateRandomTest001(__attribute__((unused)) void *argument)
 {
     int32_t ret;
     struct HksBlob *random = NULL;
-    LiteTestPrint("HksGenerateRandomTest001 Begin!\n");  
+    HKS_TEST_LOG_I("HksGenerateRandomTest001 Begin!\n");
 
     ret = TestConstructBlobOut(&random,
         g_testGenRandomParams[0].randomParams.blobExist,
         g_testGenRandomParams[0].randomParams.blobSize,
         g_testGenRandomParams[0].randomParams.blobDataExist,
         g_testGenRandomParams[0].randomParams.blobDataSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksGenerateRandomRun(random, 1);
     if (ret != g_testGenRandomParams[0].expectResult) {
         HKS_TEST_LOG_I("HksGenerateRandomRun failed, ret[%u] = %d", g_testGenRandomParams[0].testId, ret);
     }
-    TEST_ASSERT_TRUE(ret == g_testGenRandomParams[0].expectResult);
+    TEST_ASSERT_EQUAL(g_testGenRandomParams[0].expectResult, ret);
 
     TestFreeBlob(&random);
-    TEST_ASSERT_TRUE(ret == 0);
-    
-    LiteTestPrint("HksGenerateRandomTest001 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(0, ret);
+
+    HKS_TEST_LOG_I("HksGenerateRandomTest001 End!\n");
 }
 
 /**
@@ -130,9 +125,10 @@ LITE_TEST_CASE(HksGenerateRandomTest, HksGenerateRandomTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksGenerateRandomTest001, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksGenerateRandomTest001 End2!\n");
+    id = osThreadNew(ExecHksGenerateRandomTest001, NULL, &attr);
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksGenerateRandomTest001 End2!\n");
 }
 
 RUN_TEST_SUITE(HksGenerateRandomTest);
