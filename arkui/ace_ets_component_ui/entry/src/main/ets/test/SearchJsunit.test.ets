@@ -43,6 +43,14 @@ export default function SearchJsunit() {
       done();
     });
 
+    /*
+     *@tc.number     : SearchJsunit_0100
+     *@tc.name       : SearchJsunit_0100
+     *@tc.desc       : test Search attribute values
+     *@tc.size       : MediumTest
+     *@tc.type       : Function
+     *@tc.level      : Level 1
+     */
     it('SearchJsunit_0100', 0, async (done: Function) => {
       // Get the information of the Search component
       console.info('[SearchJsunit_0100] START');
@@ -72,6 +80,14 @@ export default function SearchJsunit() {
       done();
     });
 
+    /*
+     *@tc.number     : SearchJsunit_0200
+     *@tc.name       : SearchJsunit_0200
+     *@tc.desc       : test Search attribute values
+     *@tc.size       : MediumTest
+     *@tc.type       : Function
+     *@tc.level      : Level 1
+     */
     it('SearchJsunit_0200', 0, async (done: Function) => {
       // Modify the properties of component Search
       console.info('[SearchJsunit_0200] START');
@@ -86,9 +102,9 @@ export default function SearchJsunit() {
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({name:'placeholder',value:'Type to search...'})
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'placeholderFont',value:'{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}'})
+      globalThis.value.message.notify({name: 'placeholderFont', value: { style: FontStyle.Normal, size: "14.00fp", weight: 400, family: "sans-serif" }})
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({name:'textFont',value:'{"fontSize":"14.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}'})
+      globalThis.value.message.notify({ name: 'textFont', value: { size: "14.00fp", style: FontStyle.Normal, weight: 400, family: "HarmonyOS Sans" }})
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({name:'textAlign',value:TextAlign.Center})
       await CommonFunc.sleep(500);
@@ -123,6 +139,14 @@ export default function SearchJsunit() {
       done();
     });
 
+    /*
+     *@tc.number     : SearchJsunit_0300
+     *@tc.name       : SearchJsunit_0300
+     *@tc.desc       : test Search attribute values
+     *@tc.size       : MediumTest
+     *@tc.type       : Function
+     *@tc.level      : Level 1
+     */
     it('SearchJsunit_0300', 0, async (done: Function) => {
       // Verify the functions of the Search component
       console.info('[SearchJsunit_0300] START');
@@ -233,6 +257,14 @@ export default function SearchJsunit() {
       done();
     });
 
+    /*
+     *@tc.number     : SearchJsunit_0400
+     *@tc.name       : SearchJsunit_0400
+     *@tc.desc       : test Search attribute values
+     *@tc.size       : MediumTest
+     *@tc.type       : Function
+     *@tc.level      : Level 1
+     */
     it('SearchJsunit_0400', 0, async (done: Function) => {
       // Illegal modification of properties of component Search
       console.info('[SearchJsunit_0400] START');
@@ -274,7 +306,7 @@ export default function SearchJsunit() {
       expect(obj.$attrs.placeholderColor).assertEqual('#FF00000A');
       expect(obj.$attrs.value).assertEqual('hello');
       expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
-      expect(obj.$attrs.textFont).assertEqual('{"fontSize":"14.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}');
+      expect(obj.$attrs.textFont).assertEqual('{"fontSize":"16.00fp","fontStyle":"FontStyle.Normal","fontWeight":"400","fontFamily":"HarmonyOS Sans"}');
       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Start');
       expect(obj.$attrs.copyOption).assertEqual('');
       expect(obj.$attrs.placeholder).assertEqual('Type to search...');
