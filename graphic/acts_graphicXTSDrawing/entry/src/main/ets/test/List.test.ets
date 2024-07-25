@@ -20,6 +20,7 @@ import colorFilterTest from './ColorFilter.test';
 import penTest from './Pen.test';
 import brushTest from './Brush.test';
 import fontTest from './Font.test';
+import fontPart2Test from './FontPart2.test'
 import typefaceTest from './Typeface.test';
 import textBlobTest from './TextBlob.test';
 import drawingTsPathTest from './Path.test';
@@ -37,6 +38,7 @@ export default function testsuite() {
   penTest();
   brushTest();
   fontTest();
+  fontPart2Test();
   typefaceTest();
   textBlobTest();
   drawingTsPathTest();
