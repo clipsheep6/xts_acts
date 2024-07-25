@@ -4,8 +4,8 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 import { BusinessError } from '@ohos.base';
 import installer from '@ohos.bundle.installer';
 
-export default function abilityTest() {
-  describe('ActsAbilityTest', () => {
+export default function iconStartShortCutInfoIssuse() {
+  describe('IconStartShortCutInfoIssuse', () => {
     /*
      * @tc.number: Sub_Bms_Framework_Icon_Start_0100
      * @tc.name: ShortcutInfoOfStartShortcutInterfaceAbnormal
