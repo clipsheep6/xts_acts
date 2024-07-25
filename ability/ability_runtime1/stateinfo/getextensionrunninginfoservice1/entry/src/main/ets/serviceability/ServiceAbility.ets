@@ -13,9 +13,10 @@
  * limitations under the License.
  */
  
-import { Want,ServiceExtensionAbility } from '@kit.AbilityKit';
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import { rpc } from '@kit.IPCKit';
+import rpc from '@ohos.rpc';
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+import hilog from '@ohos.hilog';
 
 class StubTest extends rpc.RemoteObject {
   constructor(des: string) {
