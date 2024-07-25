@@ -806,7 +806,6 @@ export default function unistdNdkTest() {
       expect(a).assertEqual(0);
       done();
     });
-
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_EACCESS_0100
      * @tc.name       : testMuslUnistdEaccess001
@@ -820,7 +819,6 @@ export default function unistdNdkTest() {
       expect(a).assertEqual(0);
       done();
     });
-
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_ALARM_0100
      * @tc.name       : testMuslUnistdAlarm001
