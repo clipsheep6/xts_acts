@@ -6,7 +6,7 @@
       "icon": "$media:icon",
       "wants": [
         {
-          "bundleName": "com.hits.shortcutone",
+          "bundleName": "com.hits.shortcutinfo.issues",
           "moduleName": "entry",
           "abilityName": "EntryAbility",
           "parameters": {
