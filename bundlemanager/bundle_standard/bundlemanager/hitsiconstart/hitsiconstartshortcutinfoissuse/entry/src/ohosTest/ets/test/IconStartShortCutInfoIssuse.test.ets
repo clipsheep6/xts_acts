@@ -2,6 +2,7 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 import { BusinessError } from '@ohos.base';
+import installer from '@ohos.bundle.installer';
 
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
