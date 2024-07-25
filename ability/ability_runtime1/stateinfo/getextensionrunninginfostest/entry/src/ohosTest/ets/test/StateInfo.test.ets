@@ -30,7 +30,7 @@ export default function stateInfoTest() {
   let context = AppStorage.get<common.UIAbilityContext>('abilityContext');
   let service1Want: Want = {
     bundleName: 'com.hits.stateinfo.serviceappa',
-    abilityName: 'AppServiceA'
+    abilityName: 'ServiceAbility'
   }
   let app1Want: Want = {
     bundleName: 'com.hits.stateinfo.appa',

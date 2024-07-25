@@ -3,7 +3,7 @@
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
-    "mainElement": "AppServiceA",
+    "mainElement": "ServiceAbility",
     "deviceTypes": [
       "default",
       "tablet",
@@ -14,8 +14,8 @@
     "pages": "$profile:main_pages",
     "extensionAbilities": [
       {
-        "name": "AppServiceA",
-        "srcEntrance": "./ets/serviceability/AppServiceA.ts",
+        "name": "ServiceAbility",
+        "srcEntrance": "./ets/serviceability/ServiceAbility.ets",
         "label": "$string:ServiceAbility_label",
         "description": "$string:ServiceAbility_desc",
         "type": "service"

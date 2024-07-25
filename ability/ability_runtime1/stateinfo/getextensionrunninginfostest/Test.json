@@ -11,7 +11,9 @@
     "kits": [
         {
             "test-file-name": [
-                "HitsStateInfoGetRunningInfoTest.hap"
+                "HitsStateInfoGetRunningInfoTest.hap",
+				"HitsStateInfoServicAppA.hap",
+				"HitsStateInfoAppA.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
@@ -20,6 +22,20 @@
             "run-command": [
                 "power-shell wakeup",
                 "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "HitsStateInfoServicAppA.hap->/data/app/el2/100/base/com.hits.stateinfo.getrunninginfotest/files/",
+                "HitsStateInfoAppA.hap->/data/app/el2/100/base/com.hits.stateinfo.getrunninginfotest/files/",
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "teardown-command": [
+                "bm uninstall -n com.hits.stateinfo.serviceappa"
+                "bm uninstall -n com.hits.stateinfo.appa"
             ]
         }
     ]
