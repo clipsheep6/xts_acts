@@ -57,6 +57,8 @@ group("bundlemanager") {
       "sceneProject/bmsgetinfossixthscene:bmsThirdBundleTest6",
       "sceneProject/bmsgetinfosthirdscene:bmsThirdBundleTest3",
       "sceneProject/bmshortcutone:shortcutone",
+      "sceneProject/bmshortcutone:shortcutthree",
+      "sceneProject/bmshortcutone:shortcuttwo",
       "sceneProject/bmsmainabilityfirstscene:bmsMainAbilityFirstScene",
       "sceneProject/bmsmainabilitysecondscene:bmsMainAbilitySecondScene",
       "sceneProject/bmsmodulenameone:bmsModuleNameTest1",
