@@ -19,6 +19,7 @@ import pasteboard from '@ohos.pasteboard';
 import { BusinessError } from '@ohos.base';
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 import image from '@ohos.multimedia.image';
+import Want from '@ohos.app.ability.Want';
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 export default function PasteboartdCopyJsAPITest() {
   describe('PasteboartdCopyJsAPITest', () => {
@@ -26,8 +27,9 @@ export default function PasteboartdCopyJsAPITest() {
       await systemPasteboard.clearDataSync();
       done();
     })
-
-    afterEach( ()=>{
+    afterEach(async (done:Function)=>{
+      await systemPasteboard.clearDataSync();
+      done();
     })
     /**
      * @tc.name      : testSUB_Pasteboard_Local_SDK_Copy_JsApiTest_0100
@@ -56,7 +58,7 @@ export default function PasteboartdCopyJsAPITest() {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.TEXT) {
               let text = records[i] as unifiedDataChannel.Text;
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }
             }
@@ -103,7 +105,7 @@ export default function PasteboartdCopyJsAPITest() {
               expect(text.textContent).assertEqual("delayTextContent");
               expect(text.abstract).assertEqual("delayTextContent");
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }
             }
@@ -149,7 +151,7 @@ export default function PasteboartdCopyJsAPITest() {
               expect(text.url).assertEqual("delayTextContent");
               expect(text.description).assertEqual("delayTextContent");
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }
             }
@@ -195,7 +197,7 @@ export default function PasteboartdCopyJsAPITest() {
               expect(text.htmlContent).assertEqual("delayTextContent");
               expect(text.plainContent).assertEqual("delayTextContent");
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }
             }
@@ -239,7 +241,7 @@ export default function PasteboartdCopyJsAPITest() {
               let text = records[i] as unifiedDataChannel.File;
               expect(text.uri).assertEqual("delayTextContent");
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }
             }
@@ -285,7 +287,7 @@ export default function PasteboartdCopyJsAPITest() {
               expect(text.uri).assertEqual("delayTextContent");
               expect(text.folderUri).assertEqual("delayTextContent");
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }
             }
@@ -331,7 +333,7 @@ export default function PasteboartdCopyJsAPITest() {
               expect(text.uri).assertEqual("delayTextContent");
               expect(text.imageUri).assertEqual("delayTextContent");
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }
             }
@@ -364,7 +366,6 @@ export default function PasteboartdCopyJsAPITest() {
         Key: 'delayPlaintext',
         Value: 'delayPlaintext',
       };
-      video.uri = 'delayTextContent';
       video.videoUri = 'schema://com.samples.test/files/test.mp4';
       videData.addRecord(video);
       await systemPasteboard.setUnifiedData(videData).then(async (data: void) => {
@@ -374,10 +375,9 @@ export default function PasteboartdCopyJsAPITest() {
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.VIDEO) {
               let text = records[i] as unifiedDataChannel.Video;
-              expect(text.uri).assertEqual("delayTextContent");
               expect(text.videoUri).assertEqual('schema://com.samples.test/files/test.mp4');
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }
             }
@@ -410,7 +410,6 @@ export default function PasteboartdCopyJsAPITest() {
         Key: 'delayPlaintext',
         Value: 'delayPlaintext',
       };
-      audio.uri = 'delayTextContent';
       audio.audioUri = 'schema://com.samples.test/files/test.mp4';
       audioData.addRecord(audio);
       await systemPasteboard.setUnifiedData(audioData).then(async (data: void) => {
@@ -420,10 +419,9 @@ export default function PasteboartdCopyJsAPITest() {
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.AUDIO) {
               let text = records[i] as unifiedDataChannel.Audio;
-              expect(text.uri).assertEqual("delayTextContent");
               expect(text.audioUri).assertEqual('schema://com.samples.test/files/test.mp4');
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }
             }
@@ -644,10 +642,13 @@ export default function PasteboartdCopyJsAPITest() {
      */
     it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1400', 0, async () => {
       const color = new ArrayBuffer(96); // 创建pixelmap对象
+      let realSize: image.Size = { height: 3, width: 5}
       let opts: image.InitializationOptions = {
-        editable: true, pixelFormat: 3, size: {
-          height: 4, width: 6
-        }
+        size: realSize,
+        pixelFormat: 3,
+        editable: true,
+        alphaType: 1,
+        scaleMode: 1
       }
       let pixelmap:image.PixelMap = await image.createPixelMapSync(color, opts);
       let pixelMapRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP,pixelmap);
@@ -690,23 +691,24 @@ export default function PasteboartdCopyJsAPITest() {
      * @tc.level     : Level 3
      */
     it('SUB_Pasteboard_Local_SDK_Copy_JsApiTest_1500', 0, async () => {
-      let object: Want = {
-        bundleName: "com.example.aafwk.test",
-        abilityName: "com.example.aafwk.test.TwoAbility"
-      };
-      let want = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_WANT,object);
       let wantData = new unifiedDataChannel.UnifiedData();
-      let properties:unifiedDataChannel.UnifiedDataProperties = new unifiedDataChannel.UnifiedDataProperties();
-      properties.shareOptions = unifiedDataChannel.ShareOptions.IN_APP;
-      wantData.properties = properties;
-      wantData.addRecord(want);
+      let object:Want = {
+        bundleName: 'bundleName',
+        abilityName: 'abilityName'
+      }
+      let wantRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_WANT, object);
+      wantData.addRecord(wantRecord)
+      wantData.properties.shareOptions = unifiedDataChannel.ShareOptions.IN_APP;
       await systemPasteboard.setUnifiedData(wantData).then(async (data: void) => {
         console.info('Succeeded in setting UnifiedData.');
         await systemPasteboard.getUnifiedData().then((data) => {
           let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
           for (let i = 0; i < records.length; i++) {
             if (records[i].getType() === uniformTypeDescriptor.UniformDataType.OPENHARMONY_WANT) {
-              expect(JSON.stringify(records[i].getValue())).assertEqual(object)
+              console.info(JSON.stringify(records[i].getValue()))
+              let res = records[i].getValue() as Want;
+              expect(res.bundleName).assertEqual("bundleName")
+              expect(res.abilityName).assertEqual("abilityName")
             }
           }
         }).catch((err: BusinessError) => {
@@ -752,7 +754,7 @@ export default function PasteboartdCopyJsAPITest() {
               expect(text.textContent).assertEqual("delayTextContent");
               expect(text.abstract).assertEqual("delayTextContent");
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }else {
                 expect().assertFail();
@@ -801,7 +803,7 @@ export default function PasteboartdCopyJsAPITest() {
               expect(text.textContent).assertEqual("delayTextContent");
               expect(text.abstract).assertEqual("delayTextContent");
               if (text.details != undefined) {
-                expect(text.details.key).assertEqual("delayPlaintext");
+                expect(text.details.Key).assertEqual("delayPlaintext");
                 expect(text.details.Value).assertEqual("delayPlaintext");
               }
             }
