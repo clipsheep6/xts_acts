@@ -39,7 +39,7 @@ export default function PasteBoardCompatibilityTest() {
     //
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0100
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0100
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0100
      * @tc.desc setUnifiedData getData Type is delayPlainText
      * @tc.size MediumTest
@@ -81,7 +81,7 @@ export default function PasteBoardCompatibilityTest() {
       }
     })
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0200
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0200
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0200
      * @tc.desc setUnifiedData getData Type is Text
      * @tc.size MediumTest
@@ -123,7 +123,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0300
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0300
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0300
      * @tc.desc setUnifiedData getData Type is HyperLink
      * @tc.size MediumTest
@@ -168,7 +168,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0400
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0400
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0400
      * @tc.desc setUnifiedData getData Type is Html
      * @tc.size MediumTest
@@ -213,7 +213,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0500
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0500
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0500
      * @tc.desc setUnifiedData getData Type is File
      * @tc.size MediumTest
@@ -257,7 +257,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0600
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0600
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0600
      * @tc.desc setUnifiedData getData Type is Folder
      * @tc.size MediumTest
@@ -301,7 +301,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0700
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0700
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0700
      * @tc.desc setUnifiedData getData Type is image
      * @tc.size MediumTest
@@ -345,7 +345,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0800
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0800
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0800
      * @tc.desc setUnifiedData getData Type is Video
      * @tc.size MediumTest
@@ -389,7 +389,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0900
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0900
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest0900
      * @tc.desc setUnifiedData getData Type is Audio
      * @tc.size MediumTest
@@ -433,7 +433,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1000
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1000
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1000
      * @tc.desc setUnifiedData getData Type is sysForm
      * @tc.size MediumTest
@@ -481,7 +481,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1100
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1100
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1100
      * @tc.desc setUnifiedData getData Type is sysAppItem
      * @tc.size MediumTest
@@ -530,7 +530,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1200
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1200
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1200
      * @tc.desc setUnifiedData getData Type is appRecord
      * @tc.size MediumTest
@@ -571,7 +571,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1300
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1300
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1300
      * @tc.desc setUnifiedData getData Type is Want
      * @tc.size MediumTest
@@ -613,7 +613,7 @@ export default function PasteBoardCompatibilityTest() {
 
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1400
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1400
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1400
      * @tc.desc setUnifiedData getData Type is pixelMap
      * @tc.size MediumTest
@@ -660,7 +660,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1500
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1500
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1500
      * @tc.desc setUnifiedData getDataSync Type is delayPlainText
      * @tc.size MediumTest
@@ -701,7 +701,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1600
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1600
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1600
      * @tc.desc setUnifiedData getData Type is Text
      * @tc.size MediumTest
@@ -738,7 +738,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1700
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1700
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1700
      * @tc.desc setUnifiedDataSync getData Type is plainText
      * @tc.size MediumTest
@@ -777,7 +777,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1800
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1800
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1800
      * @tc.desc setUnifiedDataSync getData Type is delayPlainText
      * @tc.size MediumTest
@@ -821,7 +821,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1900
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1900
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest1900
      * @tc.desc setUnifiedDataSync getDataSync Type is delayPlainText
      * @tc.size MediumTest
@@ -864,7 +864,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2000
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2000
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2000
      * @tc.desc setData getUnifiedData Type is String
      * @tc.size MediumTest
@@ -894,7 +894,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2100
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2100
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2100
      * @tc.desc setData getUnifiedData Type is pixelMap
      * @tc.size MediumTest
@@ -939,7 +939,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2200
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2200
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2200
      * @tc.desc setData getUnifiedData Type is Want
      * @tc.size MediumTest
@@ -978,7 +978,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2300
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2300
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2300
      * @tc.desc setData getUnifiedData Type is ArrayBuffer
      * @tc.size MediumTest
@@ -1009,7 +1009,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2400
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2400
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2400
      * @tc.desc setData getUnifiedData Type is URI
      * @tc.size MediumTest
@@ -1039,7 +1039,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2500
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2500
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2500
      * @tc.desc setData getUnifiedData Type is HTML
      * @tc.size MediumTest
@@ -1070,7 +1070,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2600
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2600
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2600
      * @tc.desc setData getUnifiedDataSync Type is String
      * @tc.size MediumTest
@@ -1101,7 +1101,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2700
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2700
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2700
      * @tc.desc setDataSync getUnifiedData Type is String
      * @tc.size MediumTest
@@ -1132,7 +1132,7 @@ export default function PasteBoardCompatibilityTest() {
     })
 
     /**
-     * @tc.name SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2800
+     * @tc.name testSUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2800
      * @tc.number SUB_Pasteboard_Local_SDK_DelayCopy_CompatibilityTest2800
      * @tc.desc setDataSync getUnifiedDataSync Type is String
      * @tc.size MediumTest
