@@ -18,8 +18,7 @@ import installer from '@ohos.bundle.installer';
 import { BusinessError } from '@ohos.base';
 import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
-
-const PARAMETER_ERROR = 401;
+const PERMISSIONDENIED = 201;
 
 export default function iconStartShortCutNoPermission() {
   describe('IconStartShortCutNoPermission', () => {
@@ -82,6 +81,7 @@ export default function iconStartShortCutNoPermission() {
             let code = (error as BusinessError).code;
             let message = (error as BusinessError).message;
             console.error(`startShortcut1  error is errCode:${code}  message:${message}`);
+            expect(code).assertEqual(PERMISSIONDENIED);
           }
         }
         let data2: Array<launcherBundleManager.ShortcutInfo> = launcherBundleManager.getShortcutInfoSync("com.hits.shortcut");
@@ -100,16 +100,11 @@ export default function iconStartShortCutNoPermission() {
             let code = (error as BusinessError).code;
             let message = (error as BusinessError).message;
             console.error(`startShortcut2 error is errCode:${code}  message:${message}`);
-            expect().assertFalse()
-            done()
+            expect(code).assertEqual(PERMISSIONDENIED);
+            done();
           }
         }
 
-        if ((code1 === PARAMETER_ERROR) && (code2 === PARAMETER_ERROR)) {
-          expect().assertTrue()
-          console.log("startShortcut assertTrue");
-          done();
-        }
       } catch (errData) {
         let code = (errData as BusinessError).code;
         let message = (errData as BusinessError).message;

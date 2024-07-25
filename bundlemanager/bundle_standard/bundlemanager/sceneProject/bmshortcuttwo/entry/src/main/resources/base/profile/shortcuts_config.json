@@ -8,10 +8,7 @@
         {
           "bundleName": "com.hits.shortcutinfo.issue",
           "moduleName": "entry",
-          "abilityName": "EntryAbility",
-          "parameters": {
-            "testKey": "testValue"
-          }
+          "abilityName": "EntryAbility"
         }
       ]
     }

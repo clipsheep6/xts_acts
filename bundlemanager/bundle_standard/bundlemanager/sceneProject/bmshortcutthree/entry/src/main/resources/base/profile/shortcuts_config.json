@@ -10,7 +10,8 @@
           "moduleName": "entry",
           "abilityName": "EntryAbility",
           "parameters": {
-            "testKey": "testValue"
+            "testKey": "testValue",
+            "testKey2": "testValue2"
           }
         }
       ]

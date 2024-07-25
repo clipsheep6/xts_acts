@@ -13,9 +13,9 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_hap_assist_suite("shortcutone") {
+ohos_hap_assist_suite("shortcutTwo") {
   hap_profile = "entry/src/main/module.json"
-  hap_name = "ShortCutOneTest"
+  hap_name = "ShortCutTwoTest"
   subsystem_name = "bundlemanager"
   part_name = "bundle_framework"
   testonly = true
