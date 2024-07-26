@@ -34,6 +34,15 @@
         "MainAbility/pages/Rect/rect",
         "MainAbility/pages/Shape/shape",
         "MainAbility/pages/Circle/circle",
-        "MainAbility/pages/common"
+        "MainAbility/pages/common",
+        "MainAbility/pages/RectAngleAdvance/AlphabetIndex10",
+        "MainAbility/pages/RectAngleAdvance/Badge20",
+        "MainAbility/pages/RectAngleAdvance/Rect3_5",
+        "MainAbility/pages/RectAngleAdvance/Rect6_9",
+        "MainAbility/pages/RectAngleAdvance/Rect11_15",
+        "MainAbility/pages/RectAngleAdvance/Rect16_20",
+        "MainAbility/pages/RectAngleAdvance/Rect21_24",
+        "MainAbility/pages/RectAngleAdvance/Rect25_28",
+        "MainAbility/pages/RectAngleAdvance/NavDestination290"
     ]
 }
