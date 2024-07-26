@@ -16,7 +16,6 @@ import audio from '@ohos.multimedia.audio'
 import deviceInfo from '@ohos.deviceInfo'
 import image from '@ohos.multimedia.image'
 import media from '@ohos.multimedia.media'
-import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import Logger from '../model/Logger'
 import MediaUtils from '../model/MediaUtils'
 // @ts-ignore
