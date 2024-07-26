@@ -18,7 +18,7 @@ import drawing from '@ohos.graphics.drawing';
 import { getEnumCount } from './utils';
 
 export default function fontPart2Test() {
-  describe('DrawingTsFontTest' , () => {
+  describe('DrawingTsFontPart2Test' , () => {
     const DEFAULT = 0;
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async() => {
@@ -134,31 +134,31 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontCountTextTextMismatch', DEFAULT, () => {
+    it('testFontCountTextTextMismatch' , DEFAULT , () => {
       const msg = 'testFontCountTextTextMismatch';
       let font = new drawing.Font();
 
       try {
-        font.countText('ABCDE','ABCDE');
+        font.countText('ABCDE' , 'ABCDE');
         console.info(msg + ' countTextText succeeded');
-      } catch (e) {
-        console.info(msg + ` countTextText errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` countTextText errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.countText();
         console.info(msg + ' countTextText succeeded');
-      } catch (e) {
-        console.info(msg + ` countTextText errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` countTextText errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.countText(1111);
         console.info(msg + ' countTextText succeeded');
-      } catch (e) {
-        console.info(msg + ` countTextText errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` countTextText errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -201,7 +201,8 @@ export default function fontPart2Test() {
 
       try {
         font.setEdging(drawing.FontEdging.ALIAS);
-        let edging: drawing.FontEdging = font.getEdging()
+        let edging: drawing.FontEdging = font.getEdging();
+        expect(edging == drawing.FontEdging.ALIAS).assertTrue();
         console.info(msg + ' setAndGetEdging successed,GetEdging:' + edging);
       } catch( e ) {
         console.info(msg + ` setAndGetEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -210,7 +211,8 @@ export default function fontPart2Test() {
 
       try {
         font.setEdging(drawing.FontEdging.ANTI_ALIAS);
-        let edging: drawing.FontEdging = font.getEdging()
+        let edging: drawing.FontEdging = font.getEdging();
+        expect(edging == drawing.FontEdging.ANTI_ALIAS).assertTrue();
         console.info(msg + ' setAndGetEdging successed,GetEdging:' + edging);
       } catch( e ) {
         console.info(msg + ` setAndGetEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -219,7 +221,8 @@ export default function fontPart2Test() {
 
       try {
         font.setEdging(drawing.FontEdging.SUBPIXEL_ANTI_ALIAS);
-        let edging: drawing.FontEdging = font.getEdging()
+        let edging: drawing.FontEdging = font.getEdging();
+        expect(edging == drawing.FontEdging.SUBPIXEL_ANTI_ALIAS).assertTrue();
         console.info(msg + ' setAndGetEdging successed,GetEdging:' + edging);
       } catch( e ) {
         console.info(msg + ` setAndGetEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -241,17 +244,17 @@ export default function fontPart2Test() {
 
       try {
         font.setEdging(null);
-        console.info(msg + ' setAndGetEdging succeeded');
+        console.info(msg + ' setEdging succeeded');
       } catch( e ) {
-        console.info(msg + ` setAndGetEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.setEdging(undefined);
-        console.info(msg + ' setAndGetEdging succeeded');
+        console.info(msg + ' setEdging succeeded');
       } catch( e ) {
-        console.info(msg + ` setAndGetEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -264,39 +267,39 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndGetEdgingMismatch', DEFAULT, () => {
+    it('testFontSetAndGetEdgingMismatch' , DEFAULT , () => {
       const msg = 'testFontSetAndGetEdgingMismatch';
       let font = new drawing.Font();
 
       try {
-        font.setEdging(drawing.FontEdging.ALIAS, drawing.FontEdging.ALIAS);
+        font.setEdging(drawing.FontEdging.ALIAS , drawing.FontEdging.ALIAS);
         console.info(msg + ' setEdging succeeded');
-      } catch (e) {
-        console.info(msg + ` setEdging errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.setEdging();
         console.info(msg + ' setEdging succeeded');
-      } catch (e) {
-        console.info(msg + ` setEdging errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.setEdging('s');
         console.info(msg + ' setEdging succeeded');
-      } catch (e) {
-        console.info(msg + ` setEdging errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
-        font.getEdging('s')
+        font.getEdging('s');
         console.info(msg + ' getEdging succeeded');
-      } catch (e) {
-        console.info(msg + ` getEdging errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` getEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -312,12 +315,12 @@ export default function fontPart2Test() {
     it('testFontSetAndGetEdgingMultipleCalls' , DEFAULT , () => {
       const msg = 'testFontSetAndGetEdgingMultipleCalls';
       let font = new drawing.Font();
-      const randomEnum = Math.floor(Math.random() * getEnumCount(drawing.FontEdging));
 
       for ( let i = 0 ; i < 20 ; i ++ ) {
+        const randomEnum = Math.floor(Math.random() * getEnumCount(drawing.FontEdging));
         try {
           font.setEdging(randomEnum);
-          let edging: drawing.FontEdging = font.getEdging()
+          let edging: drawing.FontEdging = font.getEdging();
           console.info(msg + ' setAndGetEdging successed,GetEdging:' + edging);
         } catch( e ) {
           console.info(msg + ` setAndGetEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -326,21 +329,22 @@ export default function fontPart2Test() {
       }
 
       for ( let i = 0 ; i < 20 ; i ++ ) {
+        const randomEnum = Math.floor(Math.random() * getEnumCount(drawing.FontEdging));
         try {
           font.setEdging(randomEnum);
-          console.info(msg + ' setAndGetEdging successed');
+          console.info(msg + ' setEdging successed');
         } catch( e ) {
-          console.info(msg + ` setAndGetEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
           expect().assertFail();
         }
       }
 
       for ( let i = 0 ; i < 20 ; i ++ ) {
         try {
-          let edging: drawing.FontEdging = font.getEdging()
-          console.info(msg + ' setAndGetEdging successed,GetEdging:' + edging);
+          let edging: drawing.FontEdging = font.getEdging();
+          console.info(msg + ' getEdging successed,GetEdging:' + edging);
         } catch( e ) {
-          console.info(msg + ` setAndGetEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          console.info(msg + ` getEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
           expect().assertFail();
         }
       }
@@ -360,9 +364,9 @@ export default function fontPart2Test() {
 
       try {
         font.setEdging(10);
-        console.info(msg + ' setAndGetEdging succeeded');
+        console.info(msg + ' setEdging succeeded');
       } catch( e ) {
-        console.info(msg + ` setAndGetEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -382,6 +386,7 @@ export default function fontPart2Test() {
       try {
         font.setHinting(drawing.FontHinting.NONE);
         let hinting: drawing.FontHinting = font.getHinting();
+        expect(hinting == drawing.FontHinting.NONE).assertTrue();
         console.info(msg + ' setAndGetHinting successed,getHinting:' + hinting);
       } catch( e ) {
         console.info(msg + ` setAndGetHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -391,6 +396,7 @@ export default function fontPart2Test() {
       try {
         font.setHinting(drawing.FontHinting.SLIGHT);
         let hinting: drawing.FontHinting = font.getHinting();
+        expect(hinting == drawing.FontHinting.SLIGHT).assertTrue();
         console.info(msg + ' setAndGetHinting successed,getHinting:' + hinting);
       } catch( e ) {
         console.info(msg + ` setAndGetHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -400,6 +406,7 @@ export default function fontPart2Test() {
       try {
         font.setHinting(drawing.FontHinting.NORMAL);
         let hinting: drawing.FontHinting = font.getHinting();
+        expect(hinting == drawing.FontHinting.NORMAL).assertTrue();
         console.info(msg + ' setAndGetHinting successed,getHinting:' + hinting);
       } catch( e ) {
         console.info(msg + ` setAndGetHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -409,6 +416,7 @@ export default function fontPart2Test() {
       try {
         font.setHinting(drawing.FontHinting.FULL);
         let hinting: drawing.FontHinting = font.getHinting();
+        expect(hinting == drawing.FontHinting.FULL).assertTrue();
         console.info(msg + ' setAndGetHinting successed,getHinting:' + hinting);
       } catch( e ) {
         console.info(msg + ` setAndGetHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -430,17 +438,17 @@ export default function fontPart2Test() {
 
       try {
         font.setHinting(null);
-        console.info(msg + ' setAndGetHinting succeeded');
+        console.info(msg + ' setHinting succeeded');
       } catch( e ) {
-        console.info(msg + ` setAndGetHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.setHinting(undefined);
-        console.info(msg + ' setAndGetHinting succeeded');
+        console.info(msg + ' setHinting succeeded');
       } catch( e ) {
-        console.info(msg + ` setAndGetHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -453,39 +461,39 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndGetHintingMismatch', DEFAULT, () => {
+    it('testFontSetAndGetHintingMismatch' , DEFAULT , () => {
       const msg = 'testFontSetAndGetHintingMismatch';
       let font = new drawing.Font();
 
       try {
         font.setHinting(drawing.FontHinting.NONE，drawing.FontHinting.NONE);
         console.info(msg + ' setHinting succeeded');
-      } catch (e) {
-        console.info(msg + ` setHinting errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.setHinting();
         console.info(msg + ' setHinting succeeded');
-      } catch (e) {
-        console.info(msg + ` setHinting errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.setHinting('s');
         console.info(msg + ' setHinting succeeded');
-      } catch (e) {
-        console.info(msg + ` setHinting errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.getHinting('s')
         console.info(msg + ' getHinting succeeded');
-      } catch (e) {
-        console.info(msg + ` getHinting errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` getHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -501,9 +509,9 @@ export default function fontPart2Test() {
     it('testFontSetAndGetHintingMultipleCalls' , DEFAULT , () => {
       const msg = 'testFontSetAndGetHintingMultipleCalls';
       let font = new drawing.Font();
-      const randomEnum = Math.floor(Math.random() * getEnumCount(drawing.FontHinting));
 
       for ( let i = 0 ; i < 20 ; i ++ ) {
+        const randomEnum = Math.floor(Math.random() * getEnumCount(drawing.FontHinting));
         try {
           font.setHinting(randomEnum);
           let hinting: drawing.FontHinting = font.getHinting()
@@ -515,11 +523,12 @@ export default function fontPart2Test() {
       }
 
       for ( let i = 0 ; i < 20 ; i ++ ) {
+        const randomEnum = Math.floor(Math.random() * getEnumCount(drawing.FontHinting));
         try {
           font.setHinting(randomEnum);
-          console.info(msg + ' setAndGetHinting successed');
+          console.info(msg + ' setHinting successed');
         } catch( e ) {
-          console.info(msg + ` setAndGetHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
           expect().assertFail();
         }
       }
@@ -527,9 +536,9 @@ export default function fontPart2Test() {
       for ( let i = 0 ; i < 20 ; i ++ ) {
         try {
           let hinting: drawing.FontHinting = font.getHinting();
-          console.info(msg + ' setAndGetHinting successed,getHinting:' + hinting);
+          console.info(msg + ' getHinting successed,getHinting:' + hinting);
         } catch( e ) {
-          console.info(msg + ` setAndGetHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          console.info(msg + ` getHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
           expect().assertFail();
         }
       }
@@ -642,39 +651,39 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndGetScaleXMismatch', DEFAULT, () => {
+    it('testFontSetAndGetScaleXMismatch' , DEFAULT , () => {
       const msg = 'testFontSetAndGetScaleXMismatch';
       let font = new drawing.Font();
 
       try {
-        font.setScaleX(10,10);
+        font.setScaleX(10 , 10);
         console.info(msg + ' setScaleX succeeded');
-      } catch (e) {
-        console.info(msg + ` setScaleX errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.setScaleX();
         console.info(msg + ' setScaleX succeeded');
-      } catch (e) {
-        console.info(msg + ` setScaleX errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.setScaleX('s');
         console.info(msg + ' setScaleX succeeded');
-      } catch (e) {
-        console.info(msg + ` setScaleX errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.getScaleX('s');
         console.info(msg + ' getScaleX succeeded');
-      } catch (e) {
-        console.info(msg + ` getScaleX errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` getScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -809,39 +818,39 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndGetSkewXMismatch', DEFAULT, () => {
+    it('testFontSetAndGetSkewXMismatch' , DEFAULT , () => {
       const msg = 'testFontSetAndGetSkewXMismatch';
       let font = new drawing.Font();
 
       try {
-        font.setSkewX(10,10);
+        font.setSkewX(10 , 10);
         console.info(msg + ' setSkewX succeeded');
-      } catch (e) {
-        console.info(msg + ` setSkewX errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.setSkewX();
         console.info(msg + ' setSkewX succeeded');
-      } catch (e) {
-        console.info(msg + ` setSkewX errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.setSkewX('s');
         console.info(msg + ' setSkewX succeeded');
-      } catch (e) {
-        console.info(msg + ` setSkewX errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` setSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         font.getSkewX('s');
         console.info(msg + ' getSkewX succeeded');
-      } catch (e) {
-        console.info(msg + ` getSkewX errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` getSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -929,15 +938,15 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontIsSubpixelMismatch', DEFAULT, () => {
+    it('testFontIsSubpixelMismatch' , DEFAULT , () => {
       const msg = 'testFontIsSubpixelMismatch';
       let font = new drawing.Font();
 
       try {
         font.isSubpixel('s');
         console.info(msg + ' isSubpixel succeeded');
-      } catch (e) {
-        console.info(msg + ` isSubpixel errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` isSubpixel errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -1004,15 +1013,15 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontIsLinearMetricsMismatch', DEFAULT, () => {
+    it('testFontIsLinearMetricsMismatch' , DEFAULT , () => {
       const msg = 'testFontIsLinearMetricsMismatch';
       let font = new drawing.Font();
 
       try {
         font.isLinearMetrics('s');
         console.info(msg + ' isLinearMetrics succeeded');
-      } catch (e) {
-        console.info(msg + ` isLinearMetrics errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` isLinearMetrics errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -1032,7 +1041,7 @@ export default function fontPart2Test() {
       for ( let i = 0 ; i < 20 ; i ++ ) {
         try {
           let linearMetrics: boolean = font.isLinearMetrics();
-          console.info(msg + ' isLinearMetrics successed,isSubpixel:' + linearMetrics);
+          console.info(msg + ' isLinearMetrics successed,linearMetrics:' + linearMetrics);
         } catch( e ) {
           console.info(msg + ` isLinearMetrics errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
           expect().assertFail();
@@ -1055,7 +1064,7 @@ export default function fontPart2Test() {
       try {
         font.enableEmbolden(true);
         let embolden: boolean = font.isEmbolden();
-        console.info(msg + ' enableEmbolden successed,isSubpixel:' + embolden);
+        console.info(msg + ' enableEmbolden successed,embolden:' + embolden);
       } catch( e ) {
         console.info(msg + ` enableEmbolden errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
@@ -1064,7 +1073,7 @@ export default function fontPart2Test() {
       try {
         font.enableEmbolden(false);
         let embolden: boolean = font.isEmbolden();
-        console.info(msg + ' enableEmbolden successed,isSubpixel:' + embolden);
+        console.info(msg + ' enableEmbolden successed,embolden:' + embolden);
       } catch( e ) {
         console.info(msg + ` enableEmbolden errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
@@ -1079,15 +1088,15 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontIsEmboldenMismatch', DEFAULT, () => {
+    it('testFontIsEmboldenMismatch' , DEFAULT , () => {
       const msg = 'testFontIsEmboldenMismatch';
       let font = new drawing.Font();
 
       try {
         font.isEmbolden('s');
         console.info(msg + ' isEmbolden succeeded');
-      } catch (e) {
-        console.info(msg + ` isEmbolden errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+      } catch( e ) {
+        console.info(msg + ` isEmbolden errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
       }
     });
@@ -1107,7 +1116,7 @@ export default function fontPart2Test() {
       for ( let i = 0 ; i < 20 ; i ++ ) {
         try {
           let embolden: boolean = font.isEmbolden();
-          console.info(msg + ' isEmbolden successed,isSubpixel:' + embolden);
+          console.info(msg + ' isEmbolden successed,embolden:' + embolden);
         } catch( e ) {
           console.info(msg + ` isEmbolden errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
           expect().assertFail();
@@ -1229,9 +1238,9 @@ export default function fontPart2Test() {
     it('testFontMeasureSingleCharacterMultipleCalls' , DEFAULT , () => {
       const msg = 'testFontMeasureSingleCharacterMultipleCalls';
       let font = new drawing.Font();
-      const randomString = Math.random().toString(36).substring(2 , 3);
 
       for ( let i = 0 ; i < 20 ; i ++ ) {
+        const randomString = Math.random().toString(36).substring(2 , 3);
         try {
           let width: number = font.measureSingleCharacter(randomString)
           console.info(msg + ' measureSingleCharacter successed,width:' + width);
@@ -1268,6 +1277,489 @@ export default function fontPart2Test() {
       } catch( e ) {
         console.info(msg + ` measureSingleCharacter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1700
+     * @tc.name      : testFontSetAndIsBaselineSnapNormal
+     * @tc.desc      : Test for testFontSetAndIsBaselineSnapNormal.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('testFontSetAndIsBaselineSnapNormal' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsBaselineSnapNormal';
+      let font = new drawing.Font();
+
+      try {
+        let baselineSnap: boolean = font.isBaselineSnap();
+        console.info(msg + ' setAndIsBaselineSnap successed,baselineSnap:' + baselineSnap);
+      } catch( e ) {
+        console.info(msg + ` setAndIsBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        font.setBaselineSnap(true);
+        let baselineSnap: boolean = font.isBaselineSnap();
+        expect(baselineSnap == true).assertTrue();
+        console.info(msg + ' setAndIsBaselineSnap successed,baselineSnap:' + baselineSnap);
+      } catch( e ) {
+        console.info(msg + ` setAndIsBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        font.setBaselineSnap(false);
+        let baselineSnap: boolean = font.isBaselineSnap();
+        expect(baselineSnap == false).assertTrue();
+        console.info(msg + ' setAndIsBaselineSnap successed,baselineSnap:' + baselineSnap);
+      } catch( e ) {
+        console.info(msg + ` setAndIsBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1701
+     * @tc.name      : testFontSetAndIsBaselineSnapNull
+     * @tc.desc      : Test for testFontSetAndIsBaselineSnapNull.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsBaselineSnapNull' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsBaselineSnapNull';
+      let font = new drawing.Font();
+
+      try {
+        font.setBaselineSnap(null);
+        console.info(msg + ' setAndIsBaselineSnap successed');
+      } catch( e ) {
+        console.info(msg + ` setAndIsBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.setBaselineSnap(undefined);
+        console.info(msg + ' setAndIsBaselineSnap succeeded');
+      } catch( e ) {
+        console.info(msg + ` setAndIsBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1702
+     * @tc.name      : testFontSetAndIsBaselineSnapMismatch
+     * @tc.desc      : Test for testFontSetAndIsBaselineSnapMismatch.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsBaselineSnapMismatch' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsBaselineSnapMismatch';
+      let font = new drawing.Font();
+
+      try {
+        font.setBaselineSnap(true , true);
+        console.info(msg + ' setBaselineSnap succeeded');
+      } catch( e ) {
+        console.info(msg + ` setBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.setBaselineSnap();
+        console.info(msg + ' setBaselineSnap succeeded');
+      } catch( e ) {
+        console.info(msg + ` setBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.setBaselineSnap('s');
+        console.info(msg + ' setBaselineSnap succeeded');
+      } catch( e ) {
+        console.info(msg + ` setBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.isBaselineSnap('s');
+        console.info(msg + ' isBaselineSnap succeeded');
+      } catch( e ) {
+        console.info(msg + ` isBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1703
+     * @tc.name      : testFontSetAndIsBaselineSnapMultipleCalls
+     * @tc.desc      : Test for testFontSetAndIsBaselineSnapMultipleCalls.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsBaselineSnapMultipleCalls' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsBaselineSnapMultipleCalls';
+      let font = new drawing.Font();
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          const randomBoolean = Math.random() < 0.5;
+          font.setBaselineSnap(randomBoolean);
+          let baselineSnap: boolean = font.isBaselineSnap();
+          console.info(msg + ' setAndIsBaselineSnap successed,baselineSnap:' + baselineSnap);
+        } catch( e ) {
+          console.info(msg + ` setAndIsBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          const randomBoolean = Math.random() < 0.5;
+          font.setBaselineSnap(randomBoolean);
+          console.info(msg + ' setBaselineSnap successed');
+        } catch( e ) {
+          console.info(msg + ` setBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          let baselineSnap: boolean = font.isBaselineSnap();
+          console.info(msg + ' isBaselineSnap successed,baselineSnap:' + baselineSnap);
+        } catch( e ) {
+          console.info(msg + ` isBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1800
+     * @tc.name      : testFontSetAndIsForceAutoHintingNormal
+     * @tc.desc      : Test for testFontSetAndIsForceAutoHintingNormal.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('testFontSetAndIsForceAutoHintingNormal' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsForceAutoHintingNormal';
+      let font = new drawing.Font();
+
+      try {
+        let forceAutoHinting: boolean = font.isForceAutoHinting();
+        console.info(msg + ' SetAndIsForceAutoHinting successed,isForceAutoHinting:' + forceAutoHinting);
+      } catch( e ) {
+        console.info(msg + ` SetAndIsForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        font.setForceAutoHinting(true);
+        let forceAutoHinting: boolean = font.isForceAutoHinting();
+        expect(forceAutoHinting == true).assertTrue();
+        console.info(msg + ' SetAndIsForceAutoHinting successed,isForceAutoHinting:' + forceAutoHinting);
+      } catch( e ) {
+        console.info(msg + ` SetAndIsForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        font.setForceAutoHinting(false);
+        let forceAutoHinting: boolean = font.isForceAutoHinting();
+        expect(forceAutoHinting == false).assertTrue();
+        console.info(msg + ' SetAndIsForceAutoHinting successed,isForceAutoHinting:' + forceAutoHinting);
+      } catch( e ) {
+        console.info(msg + ` SetAndIsForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1801
+     * @tc.name      : testFontSetAndIsForceAutoHintingNull
+     * @tc.desc      : Test for testFontSetAndIsForceAutoHintingNull.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsForceAutoHintingNull' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsForceAutoHintingNull';
+      let font = new drawing.Font();
+
+      try {
+        font.setForceAutoHinting(null);
+        console.info(msg + ' setForceAutoHinting successed');
+      } catch( e ) {
+        console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.setForceAutoHinting(undefined);
+        console.info(msg + ' setForceAutoHinting succeeded');
+      } catch( e ) {
+        console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1802
+     * @tc.name      : testFontSetAndIsForceAutoHintingMismatch
+     * @tc.desc      : Test for testFontSetAndIsForceAutoHintingMismatch.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsForceAutoHintingMismatch' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsForceAutoHintingMismatch';
+      let font = new drawing.Font();
+
+      try {
+        font.setForceAutoHinting(true , true);
+        console.info(msg + ' setForceAutoHinting succeeded');
+      } catch( e ) {
+        console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.setForceAutoHinting();
+        console.info(msg + ' setForceAutoHinting succeeded');
+      } catch( e ) {
+        console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.setForceAutoHinting('s');
+        console.info(msg + ' setForceAutoHinting succeeded');
+      } catch( e ) {
+        console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.isForceAutoHinting('s');
+        console.info(msg + ' isForceAutoHinting succeeded');
+      } catch( e ) {
+        console.info(msg + ` isForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1803
+     * @tc.name      : testFontSetAndIsForceAutoHintingMultipleCalls
+     * @tc.desc      : Test for testFontSetAndIsForceAutoHintingMultipleCalls.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsForceAutoHintingMultipleCalls' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsForceAutoHintingMultipleCalls';
+      let font = new drawing.Font();
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          const randomBoolean = Math.random() < 0.5;
+          font.setForceAutoHinting(randomBoolean);
+          let forceAutoHinting: boolean = font.isForceAutoHinting();
+          console.info(msg + ' setAndIsForceAutoHinting successed,forceAutoHinting:' + forceAutoHinting);
+        } catch( e ) {
+          console.info(msg + ` setAndIsForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          const randomBoolean = Math.random() < 0.5;
+          font.setForceAutoHinting(randomBoolean);
+          console.info(msg + ' setForceAutoHinting successed');
+        } catch( e ) {
+          console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          let forceAutoHinting: boolean = font.isForceAutoHinting();
+          console.info(msg + ' isForceAutoHinting successed,forceAutoHinting:' + forceAutoHinting);
+        } catch( e ) {
+          console.info(msg + ` isForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1900
+     * @tc.name      : testFontSetAndIsEmbeddedBitmapsNormal
+     * @tc.desc      : Test for testFontSetAndIsEmbeddedBitmapsNormal.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('testFontSetAndIsEmbeddedBitmapsNormal' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsEmbeddedBitmapsNormal';
+      let font = new drawing.Font();
+
+      try {
+        font.isEmbeddedBitmaps();
+        console.info(msg + ' isEmbeddedBitmaps successed');
+      } catch( e ) {
+        console.info(msg + ` isEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        font.setEmbeddedBitmaps(true);
+        let embeddedBitmaps: boolean = font.isEmbeddedBitmaps();
+        expect(embeddedBitmaps == true).assertTrue();
+        console.info(msg + ' setAndIsEmbeddedBitmaps successed,embeddedBitmaps:' + embeddedBitmaps);
+      } catch( e ) {
+        console.info(msg + ` setAndIsEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        font.setEmbeddedBitmaps(false);
+        let embeddedBitmaps: boolean = font.isEmbeddedBitmaps();
+        expect(embeddedBitmaps == false).assertTrue();
+        console.info(msg + ' setAndIsEmbeddedBitmaps successed,embeddedBitmaps:' + embeddedBitmaps);
+      } catch( e ) {
+        console.info(msg + ` setAndIsEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1901
+     * @tc.name      : testFontSetAndIsEmbeddedBitmapsNull
+     * @tc.desc      : Test for testFontSetAndIsEmbeddedBitmapsNull.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsEmbeddedBitmapsNull' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsEmbeddedBitmapsNull';
+      let font = new drawing.Font();
+
+      try {
+        font.setEmbeddedBitmaps(null);
+        console.info(msg + ' setEmbeddedBitmaps successed');
+      } catch( e ) {
+        console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.setEmbeddedBitmaps(undefined);
+        console.info(msg + ' setEmbeddedBitmaps succeeded');
+      } catch( e ) {
+        console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1902
+     * @tc.name      : testFontSetAndIsEmbeddedBitmapsMismatch
+     * @tc.desc      : Test for testFontSetAndIsEmbeddedBitmapsMismatch.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsEmbeddedBitmapsMismatch' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsEmbeddedBitmapsMismatch';
+      let font = new drawing.Font();
+
+      try {
+        font.setEmbeddedBitmaps(true , true);
+        console.info(msg + ' setEmbeddedBitmaps succeeded');
+      } catch( e ) {
+        console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.setEmbeddedBitmaps();
+        console.info(msg + ' setEmbeddedBitmaps succeeded');
+      } catch( e ) {
+        console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.setEmbeddedBitmaps('s');
+        console.info(msg + ' setEmbeddedBitmaps succeeded');
+      } catch( e ) {
+        console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.isEmbeddedBitmaps('s');
+        console.info(msg + ' isEmbeddedBitmaps succeeded');
+      } catch( e ) {
+        console.info(msg + ` isEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1903
+     * @tc.name      : testFontSetAndIsEmbeddedBitmapsMultipleCalls
+     * @tc.desc      : Test for testFontSetAndIsEmbeddedBitmapsMultipleCalls.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsEmbeddedBitmapsMultipleCalls' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsEmbeddedBitmapsMultipleCalls';
+      let font = new drawing.Font();
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          const randomBoolean = Math.random() < 0.5;
+          font.setEmbeddedBitmaps(randomBoolean);
+          let embeddedBitmaps: boolean = font.isEmbeddedBitmaps();
+          console.info(msg + ' setAndIsEmbeddedBitmaps successed,embeddedBitmaps:' + embeddedBitmaps);
+        } catch( e ) {
+          console.info(msg + ` setAndIsEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          const randomBoolean = Math.random() < 0.5;
+          font.setEmbeddedBitmaps(randomBoolean);
+          console.info(msg + ' setEmbeddedBitmaps successed');
+        } catch( e ) {
+          console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          let embeddedBitmaps: boolean = font.isEmbeddedBitmaps();
+          console.info(msg + ' isEmbeddedBitmaps successed,embeddedBitmaps:' + embeddedBitmaps);
+        } catch( e ) {
+          console.info(msg + ` isEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
       }
     });
   });
