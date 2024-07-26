@@ -21,6 +21,7 @@ import penTest from './Pen.test';
 import brushTest from './Brush.test';
 import fontTest from './Font.test';
 import fontPart2Test from './FontPart2.test'
+import fontPart3Test from './FontPart3.test'
 import typefaceTest from './Typeface.test';
 import textBlobTest from './TextBlob.test';
 import drawingTsPathTest from './Path.test';
@@ -28,6 +29,8 @@ import drawingTsCanvasTest from './Canvas.test';
 import drawingTsCanvasPart2Test from './CanvasPart2.test';
 import drawingTsCanvasPart3Test from './CanvasPart3.test';
 import drawingTsRegionTest from './Region.test'
+import drawingTsMatrixTest from './Matrix.test';
+import drawingTsMatrixTestPart2  from './MatrixPart2.test'
 
 export default function testsuite() {
   samplingOptionsTest();
@@ -39,6 +42,9 @@ export default function testsuite() {
   brushTest();
   fontTest();
   fontPart2Test();
+  fontPart3Test();
+  drawingTsMatrixTest();
+  drawingTsMatrixTestPart2();
   typefaceTest();
   textBlobTest();
   drawingTsPathTest();
