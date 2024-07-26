@@ -13,36 +13,39 @@
 * limitations under the License.
 */
 
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.info('ActsStageContextAssistOne MainAbility3 onCreate')
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.info('ActsStageContextAssistOne MainAbility3 onCreate');
+  }
 
-    onDestroy() {
-        console.info('ActsStageContextAssistOne MainAbility3 onDestroy')
-    }
+  onDestroy() {
+    console.info('ActsStageContextAssistOne MainAbility3 onDestroy');
+  }
 
-    onWindowStageCreate(windowStage) {
-        console.info('ActsStageContextAssistOne MainAbility3 onWindowStageCreate')
-        windowStage.setUIContent(this.context, 'pages/index', null)
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('ActsStageContextAssistOne MainAbility3 onWindowStageCreate');
+    windowStage.loadContent('pages/index', null);
+  }
 
-    onWindowStageDestroy() {
-        console.info('ActsStageContextAssistOne MainAbility3 onWindowStageDestroy')
-    }
+  onWindowStageDestroy() {
+    console.info('ActsStageContextAssistOne MainAbility3 onWindowStageDestroy');
+  }
 
-    onForeground() {
-        console.info('ActsStageContextAssistOne MainAbility3 onForeground')
-        globalThis.abilityContextA = this.context
-        commonEvent.publish("StartMainAbility3_CommonEvent_ContextOne", () => {
-            console.log("Publish StartMainAbility3_CommonEvent_ContextOne callback")
-        })
-    }
+  onForeground() {
+    console.info('ActsStageContextAssistOne MainAbility3 onForeground');
+    globalThis.abilityContextA = this.context;
+    commonEvent.publish("StartMainAbility3_CommonEvent_ContextOne", () => {
+      console.log("Publish StartMainAbility3_CommonEvent_ContextOne callback");
+    })
+  }
 
-    onBackground() {
-        console.info('ActsStageContextAssistOne MainAbility3 onBackground')
-    }
-};
+  onBackground() {
+    console.info('ActsStageContextAssistOne MainAbility3 onBackground');
+  }
+}

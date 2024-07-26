@@ -13,65 +13,76 @@
 * limitations under the License.
 */
 
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 export default class MainAbility extends Ability {
-    onCreate(want: any, launchParam: any) {
-        console.info('ActsStageContextAssistTwo MainAbility4 onCreate')
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.info('ActsStageContextAssistTwo MainAbility4 onCreate');
+  }
+
+  onDestroy() {
+    console.info('MainAbilityMonitor onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('ActsStageContextAssistTwo MainAbility4 onWindowStageCreate');
+    windowStage.loadContent('MainAbility/pages/index', null);
+  }
+
+  onWindowStageDestroy() {
+    console.info('ActsStageContextAssistTwo MainAbility4 onWindowStageDestroy');
+  }
+
+  async onForeground() {
+    console.info('ActsStageContextAssistTwo MainAbility4 onForeground');
+    let contextJson = {
+      'cacheDir': this.context.cacheDir,
+      'tempDir': this.context.tempDir,
+      'filesDir': this.context.filesDir,
+      'distributedFilesDir': this.context.distributedFilesDir,
+      'databaseDir': this.context.databaseDir,
+      'preferencesDir': this.context.preferencesDir,
+      'bundleCodeDir': this.context.bundleCodeDir
+    };
+
+    let abilityAppContext = this.context.getApplicationContext();
+
+    let appContextJson = {
+      'cacheDir': abilityAppContext.cacheDir,
+      'tempDir': abilityAppContext.tempDir,
+      'filesDir': abilityAppContext.filesDir,
+      'distributedFilesDir': abilityAppContext.distributedFilesDir,
+      'databaseDir': abilityAppContext.databaseDir,
+      'preferencesDir': abilityAppContext.preferencesDir,
+      'bundleCodeDir': abilityAppContext.bundleCodeDir
+    };
+
+    let errCode;
+
+    try {
+      this.context.createBundleContext("com.example.stagecontextpropertiestest");
+    } catch (error) {
+      console.log("ActsStageContextAssistTwo createBundleContext is error:" + JSON.stringify(error));
+      errCode = error.code;
     }
 
-    onDestroy() {
-        console.info('MainAbilityMonitor onDestroy')
+    let commonEventData = {
+      parameters: {
+        abilityContextAssistTwo: contextJson,
+        abilityAppContextAssistTwo: appContextJson,
+        abilityBundleContextTest: errCode
+      }
     }
+    commonEvent.publish("StartMainAbility4_CommonEvent_ContextOne", commonEventData, () => {
+      console.log("Publish StartMainAbility4_CommonEvent_ContextOne callback");
+    })
+  }
 
-    onWindowStageCreate(windowStage) {
-        console.info('ActsStageContextAssistTwo MainAbility4 onWindowStageCreate')
-        windowStage.setUIContent(this.context, 'MainAbility/pages/index', null)
-    }
-
-    onWindowStageDestroy() {
-        console.info('ActsStageContextAssistTwo MainAbility4 onWindowStageDestroy')
-    }
-
-    async onForeground() {
-        console.info('ActsStageContextAssistTwo MainAbility4 onForeground')
-        let contextJson = {
-            'cacheDir': this.context.cacheDir, 'tempDir': this.context.tempDir, 'filesDir': this.context.filesDir,
-            'distributedFilesDir': this.context.distributedFilesDir, 'databaseDir': this.context.databaseDir,
-            'preferencesDir': this.context.preferencesDir, 'bundleCodeDir': this.context.bundleCodeDir
-        };
-
-        let abilityAppContext = this.context.getApplicationContext()
-
-        let appContextJson = {
-            'cacheDir': abilityAppContext.cacheDir, 'tempDir': abilityAppContext.tempDir, 'filesDir': abilityAppContext.filesDir,
-            'distributedFilesDir': abilityAppContext.distributedFilesDir, 'databaseDir': abilityAppContext.databaseDir,
-            'preferencesDir': abilityAppContext.preferencesDir, 'bundleCodeDir': abilityAppContext.bundleCodeDir
-        };
-
-        let errCode;
-
-        try {
-            this.context.createBundleContext("com.example.stagecontextpropertiestest")
-        } catch (error) {
-            console.log("ActsStageContextAssistTwo createBundleContext is error:" + JSON.stringify(error))
-            errCode = error.code
-        }
-
-        let commonEventData = {
-            parameters: {
-                abilityContextAssistTwo: contextJson,
-                abilityAppContextAssistTwo: appContextJson,
-                abilityBundleContextTest: errCode
-            }
-        }
-        commonEvent.publish("StartMainAbility4_CommonEvent_ContextOne", commonEventData, () => {
-            console.log("Publish StartMainAbility4_CommonEvent_ContextOne callback")
-        })
-    }
-
-    onBackground() {
-        console.info('ActsStageContextAssistTwo MainAbility4 onBackground')
-    }
-};
+  onBackground() {
+    console.info('ActsStageContextAssistTwo MainAbility4 onBackground');
+  }
+}

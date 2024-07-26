@@ -13,43 +13,45 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate")
-        globalThis.abilityWant = want;
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("[Demo] MainAbility onCreate");
+  }
 
-    onDestroy() {
-        console.log("[Demo] MainAbility onDestroy")
-    }
+  onDestroy() {
+    console.log("[Demo] MainAbility onDestroy");
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate")
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] MainAbility onWindowStageCreate");
 
-        windowStage.loadContent("pages/index", (err, data) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-        });
-    }
+    windowStage.loadContent("pages/index", (err, data) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+    });
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility onWindowStageDestroy")
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("[Demo] MainAbility onWindowStageDestroy");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] MainAbility onForeground")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("[Demo] MainAbility onForeground");
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] MainAbility onBackground")
-    }
-};
+  onBackground() {
+    // Ability has back to background
+    console.log("[Demo] MainAbility onBackground");
+  }
+}

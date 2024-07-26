@@ -17,7 +17,7 @@
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ets",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
@@ -50,17 +50,6 @@
             ]
           }
         ]
-      }
-    ],
-    "extensionAbilities": [
-      {
-        "name": "inputMethod",
-        "srcEntry": "./ets/inputmethodextability/InputMethodService.ts",
-        "description": "$string:ExtensionAbility_desc",
-        "icon": "$media:icon",
-        "label": "$string:ExtensionAbility_label",
-        "type": "inputMethod",
-        "exported": true
       }
     ],
     "requestPermissions": [
