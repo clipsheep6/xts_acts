@@ -34,6 +34,7 @@ import wantConstant from '@ohos.app.ability.wantConstant';
 import { BusinessError } from '@ohos.base';
 import commonEventManager from '@ohos.commonEventManager';
 import systemParameterEnhance from '@ohos.systemParameterEnhance';
+import systemparameter from '@ohos.systemParameterEnhance';
 
 let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 let EXTENSION_INFO_ERR = 16000001;
@@ -1114,6 +1115,31 @@ export default function ApiCoverTest() {
         console.log(`${tag}, it end`);
         done();
       })
+    });
+
+    /*
+     * @tc.number : SUB_Ability_AbilityRuntime_ProcessCache_0400
+     * @tc.name   : Call setSupportedProcessCache.
+     * @tc.desc   : The function call should return no permission error.
+     * @tc.size   : LargeTest
+     * @tc.type   : Function
+     * @tc.level  : 3
+     */
+    it('SUB_Ability_AbilityRuntime_ProcessCache_0400', 0, async (done: Function) => {
+      let TEST_CASE_TAG = 'ActsProcessCacheTest_0400';
+      let timeOutFlag = false;
+      console.log(`${TEST_CASE_TAG} test begin`);
+      let maxCacheNum = parseInt(systemParameter.getSync('persist.sys.abilityms.maxProcessCacheNum', '0'));
+      if (maxCacheNum <= 0) {
+        console.log(`${TEST_CASE_TAG} ProcessCache not support this device`);
+        try {
+          AppStorage.get<common.ApplicationContext>("applicationContext")!.setSupportedProcessCache(false);
+        } catch (error) {
+          console.error(`${TEST_CASE_TAG} err: ${error}`);
+          expect(error.code).assertEqual(801);
+        }
+      }
+      done();
     });
   })
 }
