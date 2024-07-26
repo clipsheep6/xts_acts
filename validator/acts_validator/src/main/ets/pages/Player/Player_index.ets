@@ -47,8 +47,6 @@ struct IndexPage {
   @State result: string = '';
   @State TEST: number = 0;
   private TestCaseList: TestCase[] = [
-    { title: 'PlayerAudio', uri: 'pages/Player/PlayAudioList' },
-    { title: 'PlayerVideo', uri: 'pages/Player/PlayVideoList' },
     { title: 'PlayerNetWork', uri: 'pages/Player/PlayNetWorkList' }
   ]
   @State ColorObject: Object[] = VarColor;

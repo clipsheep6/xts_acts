@@ -43,9 +43,6 @@ struct IndexPage {
   @State result: string = '';
   @State TEST: number = 0;
   private TestCaseList: TestCase[] = [
-    { title: 'CameraPreviewFormat', uri: 'pages/Camera/CameraPreviewFormat' },
-    { title: 'CameraPhotoFormat', uri: 'pages/Camera/CameraPhotoFormat' },
-    { title: 'CameraFlash', uri: 'pages/Camera/CameraFlash' },
   ]
   @State ColorObject: Object[] = letColor;
   @State ColorTrue: number[] = [];
