@@ -12,8 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import stateInfoTest from './StateInfo.test';
+import stateInfoAppTest from './StateInfoApp.test';
+import stateInfoServiceExtensionTest from './StateInfoServiceExtension.test';
 
 export default function testsuite() {
-  stateInfoTest();
+  stateInfoAppTest();
+  stateInfoServiceExtensionTest();
 }
