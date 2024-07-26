@@ -1,0 +1,41 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.hits.shortcutinfo.issue",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "HitsShortCutInfoIssueTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ShortCutOneTest.hap->/data/app/el2/100/base/com.hits.shortcutinfo.issue/files/",
+                "ShortCutTwoTest.hap->/data/app/el2/100/base/com.hits.shortcutinfo.issue/files/",
+                "ShortCutThreeTest.hap->/data/app/el2/100/base/com.hits.shortcutinfo.issue/files/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "teardown-command": [
+                "bm uninstall -n com.hits.shortcutone",
+                "bm uninstall -n com.hits.shortcuttwo",
+                "bm uninstall -n com.hits.shortcutthree"
+            ]
+        }
+    ]
+}
