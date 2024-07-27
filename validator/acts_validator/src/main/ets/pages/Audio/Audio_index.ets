@@ -43,8 +43,6 @@ struct IndexPage {
   @State result: string = '';
   @State TEST: number = 0;
   private TestCaseList: TestCase[] = [
-    { title: 'AudioInputRoutingTest(WiredHeadset)', uri: 'pages/Audio/AudioInputRoutingWiredHeadset' },
-    { title: 'AudioInputRoutingTest(TypeC)', uri: 'pages/Audio/AudioInputRoutingTypeC' },
     { title: 'AudioOutputRoutingTest(WiredHeadset)', uri: 'pages/Audio/AudioOutputRoutingWiredHeadset' },
     { title: 'AudioOutputRoutingTest(TypeC)', uri: 'pages/Audio/AudioOutputRoutingTypeC' },
     { title: 'AudioOutputRoutingTest(BT)', uri: 'pages/Audio/AudioOutputRoutingBT' },

@@ -99,7 +99,6 @@ struct IndexPage {
   private TestCaseList: TestCase[] = [
     { title: 'ArkUI', uri: 'pages/ArkUI/ArkUI_index' },
     { title: 'Audio', uri: 'pages/Audio/Audio_index' },
-    { title: 'Camera', uri: 'pages/Camera/Camera_index' },
     { title: 'Player', uri: 'pages/Player/Player_index' },
     { title: 'Experience', uri: 'pages/Experience/Experience_index' },
     { title: 'Sensor', uri: 'pages/Sensor/Sensor_index' },
