@@ -19,8 +19,8 @@ import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY,
 
 
 export default function ListAddApi() {
-  describe('ListAddApi', function () {
-    beforeEach(async function (done) {
+  describe('ListAddApi',  () => {
+    beforeEach(async (done: Function) =>  {
       console.info("ListAddApi beforeEach start");
       try {
         router.clear();
@@ -38,7 +38,7 @@ export default function ListAddApi() {
       console.info("ListAddApi foreEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async (done: Function) => {
       await CommonFunc.sleep(1000);
       console.info("ListAddApi after each called");
     });
@@ -52,7 +52,7 @@ export default function ListAddApi() {
      * @tc.level      : Level 3
      */
 
-    it('ListAddApi_001', 0, async function (done) {
+    it('ListAddApi_001', 0, async (done: Function) => {
       console.info('[ListAddApi_001] START');
       await CommonFunc.sleep(1000);
       let driver: Driver = Driver.create();
@@ -61,11 +61,10 @@ export default function ListAddApi() {
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('ListAddApiText1');
       await CommonFunc.sleep(200);
-      let obj = JSON.parse(strJson);
-      console.info("[ListAddApi_001] component obj is: " + JSON.stringify(obj));
+      console.info("[ListAddApi_001] component obj is: " + JSON.stringify(JSON.parse(strJson)));
       await CommonFunc.sleep(1000);
 
-      expect(obj.$attrs.content).assertEqual('true');
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('true');
       console.info('[ListAddApi_001] END');
       done();
     });

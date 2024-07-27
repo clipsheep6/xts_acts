@@ -4839,6 +4839,8 @@ export const TestArkUIAddApi022: () => number;
 
 export const TestArkUIAddApi023: () => number;
 
+export const TestArkUIAddApi024: () => number;
+
 export const testAnimation_001: () => number;
 export const testAnimation_002: () => number;
 export const testAnimation_003: () => number;

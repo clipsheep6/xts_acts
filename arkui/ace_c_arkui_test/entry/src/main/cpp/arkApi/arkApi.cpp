@@ -233,5 +233,15 @@ static napi_value TestArkUIAddApi023(napi_env env, napi_callback_info info)
     NAPI_END;
 }
 
+static napi_value TestArkUIAddApi024(napi_env env, napi_callback_info info)
+{
+    auto nodeContentEvent = [](ArkUI_NodeContentEvent *event) {
+        ArkUI_NodeContentHandle content = OH_ArkUI_NodeContentEvent_GetNodeContentHandle(event);
+    };
+    OH_ArkUI_NodeContent_SetUserData(nullptr, nullptr);
+    auto userData2 = OH_ArkUI_NodeContent_GetUserData(nullptr);
+    OH_ArkUI_GetNodeContentFromNapiValue(nullptr, nullptr, nullptr);
+    NAPI_END;
+}
 
 }
