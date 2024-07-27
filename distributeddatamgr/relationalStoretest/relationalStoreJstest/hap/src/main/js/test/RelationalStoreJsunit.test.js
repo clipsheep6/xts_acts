@@ -52,7 +52,10 @@ describe('relationalStoreTest', function () {
     console.info(TAG + "*************Unit Test Begin*************");
 
     /**
-     * @tc.name RelationalStore store getRdbStore test
+     * @tc.name testRdbStore0001
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_0900
      * @tc.desc RelationalStore store getRdbStore test
      */
@@ -72,7 +75,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.name RelationalStore store getRdbStore and create table
+     * @tc.name testRdbStore0002
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_1000
      * @tc.desc RelationalStore store getRdbStore and create table
      */
@@ -94,7 +100,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.name RelationalStore storegetRdbStore with wrong path
+     * @tc.name testRdbStore0003
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_1100
      * @tc.desc RelationalStore store getRdbStore with wrong path
      */
@@ -122,7 +131,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.name RelationalStore store deleteRdbStore
+     * @tc.name testRdbStore0004
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_1200
      * @tc.desc RelationalStore store deleteRdbStore
      */
@@ -140,7 +152,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.name RelationalStore store deleteRdbStore
+     * @tc.name testRdbStore0005
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_1300
      * @tc.desc RelationalStore store deleteRdbStore
      */
@@ -159,7 +174,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.name RelationalStore store getRdbStore test
+     * @tc.name testRdbStore0006
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_1400
      * @tc.desc RelationalStore store getRdbStore test
      */
@@ -185,7 +203,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.name RelationalStore store getRdbStore test
+     * @tc.name testRdbStore0007
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_1500
      * @tc.desc RelationalStore store getRdbStore test
      */
@@ -211,7 +232,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.name RelationalStore store deleteRdbStore test
+     * @tc.name testRdbStore0008
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_1600
      * @tc.desc RelationalStore store deleteRdbStore test
      */
@@ -229,7 +253,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.name RelationalStore store deleteRdbStore test
+     * @tc.name testRdbStore0009
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_1700
      * @tc.desc RelationalStore store deleteRdbStore test
      */
@@ -247,7 +274,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_1800
+     * @tc.number SUB_DDM_RelationalStore_Version_0010
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get relational store version test
      * @tc.desc relational version
      */
@@ -277,7 +307,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_1900
+     * @tc.number SUB_DDM_RelationalStore_Version_0020
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get relational store version test
      * @tc.desc relational version
      */
@@ -312,7 +345,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_2000
+     * @tc.number SUB_DDM_RelationalStore_Different_Version_0010
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S1Store then Get S2Store
      * @tc.desc relational version
      */
@@ -333,10 +369,9 @@ describe('relationalStoreTest', function () {
             await promise.then(async (rdbStore) => {
                 store = rdbStore;
                 console.info(`SUB_DDM_RelationalStore_Different_Version_0010 Get RdbStore successfully.`);
-                expect().assertFail();
             }).catch((err) => {
                 console.error(`SUB_DDM_RelationalStore_Different_Version_0010 Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-                expect(err.code).assertEqual(14800017);
+                expect().assertFail();
             })
         } catch (error) {
             console.error(`SUB_DDM_RelationalStore_Different_Version_0010 Get RdbStore failed error, code is ${error.code},message is ${error.message}`);
@@ -347,7 +382,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_2100
+     * @tc.number SUB_DDM_RelationalStore_Different_Version_0020
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S1Store then Get S3Store
      * @tc.desc relational version
      */
@@ -368,10 +406,9 @@ describe('relationalStoreTest', function () {
             await promise.then(async (rdbStore) => {
                 store = rdbStore;
                 console.info(`SUB_DDM_RelationalStore_Different_Version_0020 Get RdbStore successfully.`);
-                expect().assertFail();
             }).catch((err) => {
                 console.error(`SUB_DDM_RelationalStore_Different_Version_0020 Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-                expect(err.code).assertEqual(14800017);
+                expect().assertFail();
             })
         } catch (error) {
             console.error(`SUB_DDM_RelationalStore_Different_Version_0020 Get RdbStore failed error, code is ${error.code},message is ${error.message}`);
@@ -382,7 +419,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_2200
+     * @tc.number SUB_DDM_RelationalStore_Different_Version_0030
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S1Store then Get S4Store
      * @tc.desc relational version
      */
@@ -403,10 +443,9 @@ describe('relationalStoreTest', function () {
             await promise.then(async (rdbStore) => {
                 store = rdbStore;
                 console.info(`SUB_DDM_RelationalStore_Different_Version_0030 Get RdbStore successfully.`);
-                expect().assertFail();
             }).catch((err) => {
                 console.error(`SUB_DDM_RelationalStore_Different_Version_0030 Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-                expect(err.code).assertEqual(14800017);
+                expect().assertFail();
             })
         } catch (error) {
             console.error(`SUB_DDM_RelationalStore_Different_Version_0030 Get RdbStore failed error, code is ${error.code},message is ${error.message}`);
@@ -417,7 +456,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_2300
+     * @tc.number SUB_DDM_RelationalStore_Different_Version_0040
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S2Store then Get S4Store
      * @tc.desc relational version
      */
@@ -438,10 +480,9 @@ describe('relationalStoreTest', function () {
             await promise.then(async (rdbStore) => {
                 store = rdbStore;
                 console.info(`SUB_DDM_RelationalStore_Different_Version_0040 Get RdbStore successfully.`);
-                expect().assertFail();
             }).catch((err) => {
                 console.error(`SUB_DDM_RelationalStore_Different_Version_0040 Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-                expect(err.code).assertEqual(14800017);
+                expect().assertFail();
             })
         } catch (error) {
             console.error(`SUB_DDM_RelationalStore_Different_Version_0040 Get RdbStore failed error, code is ${error.code},message is ${error.message}`);
@@ -452,7 +493,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_2400
+     * @tc.number SUB_DDM_RelationalStore_Different_Version_0050
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S2Store then Get S3Store
      * @tc.desc relational version
      */
@@ -473,10 +517,9 @@ describe('relationalStoreTest', function () {
             await promise.then(async (rdbStore) => {
                 store = rdbStore;
                 console.info(`SUB_DDM_RelationalStore_Different_Version_0050 Get RdbStore successfully.`);
-                expect().assertFail();
             }).catch((err) => {
                 console.error(`SUB_DDM_RelationalStore_Different_Version_0050 Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-                expect(err.code).assertEqual(14800017);
+                expect().assertFail();
             })
         } catch (error) {
             console.error(`SUB_DDM_RelationalStore_Different_Version_0050 Get RdbStore failed error, code is ${error.code},message is ${error.message}`);
@@ -487,7 +530,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_2500
+     * @tc.number SUB_DDM_RelationalStore_Different_Version_0060
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S4Store then Get S1Store
      * @tc.desc relational version
      */
@@ -522,7 +568,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_2600
+     * @tc.number SUB_DDM_RelationalStore_Different_Version_0070
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S3Store then Get S2Store
      * @tc.desc relational version
      */
@@ -557,7 +606,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_2700
+     * @tc.number SUB_DDM_RelationalStore_Same_Version_0010
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S1Store then Get S1Store
      * @tc.desc relational version
      */
@@ -588,7 +640,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_2800
+     * @tc.number SUB_DDM_RelationalStore_Same_Version_0020
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S2Store then Get S2Store
      * @tc.desc relational version
      */
@@ -623,7 +678,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_2900
+     * @tc.number SUB_DDM_RelationalStore_Same_Version_0030
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S3Store then Get S3Store
      * @tc.desc relational version
      */
@@ -657,7 +715,10 @@ describe('relationalStoreTest', function () {
     })
 
     /**
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_TransactionJsAPITest_3000
+     * @tc.number SUB_DDM_RelationalStore_Same_Version_0040
+     * @tc.type Function
+     * @tc.level Level 2
+     * @tc.size MediumTest
      * @tc.name Get S4Store then Get S4Store
      * @tc.desc relational version
      */
