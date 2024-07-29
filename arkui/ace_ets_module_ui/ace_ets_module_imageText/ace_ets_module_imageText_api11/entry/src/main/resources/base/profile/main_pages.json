@@ -207,6 +207,10 @@
         "MainAbility/pages/span/span3",
         "MainAbility/pages/text/text3",
 	"MainAbility/pages/ImageAnimator/imageAnimator2",
-        "MainAbility/pages/Progress/loadingProgress2"
+        "MainAbility/pages/Progress/loadingProgress2",
+        "MainAbility/pages/text/TextAdvance/textPrioSize",
+        "MainAbility/pages/text/TextAdvance/text30",
+        "MainAbility/pages/text/TextAdvance/text40",
+        "MainAbility/pages/text/TextAdvance/text50"
     ]
 }
