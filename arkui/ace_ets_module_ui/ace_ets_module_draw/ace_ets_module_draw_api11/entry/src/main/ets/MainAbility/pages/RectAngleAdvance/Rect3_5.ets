@@ -60,7 +60,7 @@ struct Rect3_5Example {
       CheckboxGroup({ group: 'checkboxGroup1' })
         .selectedColor('#007DFF')
         .onChange((itemName: CheckboxGroupResult) => {
-          console.info("checkbox group content" + JSON.stringify(itemName))
+          console.info('checkbox group content' + JSON.stringify(itemName))
         })
         .width(90)
         .height(60)
