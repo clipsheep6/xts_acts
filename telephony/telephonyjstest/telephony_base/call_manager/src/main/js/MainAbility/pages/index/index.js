@@ -28,16 +28,16 @@ export default {
   data: {
     title: ''
   },
-  onInit () {
+  onInit() {
     this.title = this.$t('strings.world');
   },
-  onShow () {
+  onShow() {
     console.info('onShow finish!');
     var abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
     var abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     console.info('start run testcase!!!')
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   },
-  onReady () {
+  onReady() {
   },
 };

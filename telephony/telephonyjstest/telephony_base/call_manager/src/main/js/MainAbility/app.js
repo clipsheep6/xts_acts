@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 export default {
-  onCreate () {
+  onCreate() {
     console.info('TestApplication onCreate');
   },
-  onDestroy () {
+  onDestroy() {
     console.info('TestApplication onDestroy');
   }
 };
