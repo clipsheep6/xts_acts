@@ -34,7 +34,7 @@
         {
             "type": "ShellKit",
             "teardown-command": [
-                "bm uninstall -n com.hits.stateinfo.serviceappa"
+                "bm uninstall -n com.hits.stateinfo.serviceappa",
                 "bm uninstall -n com.hits.stateinfo.appa"
             ]
         }
