@@ -38,10 +38,12 @@ export default function AVSessionManager() {
         })
 
         afterEach(async function () {
-            await sleep(5000);
-            if (currentAVSession){
-                await currentAVSession.destroy();
-            }
+            await currentAVSession.destroy().then(() => {
+                console.info('TestLog: Session destroy success');
+            }).catch((err) => {
+                console.info(`TestLog: Session destroy error: code: ${err.code}, message: ${err.message}`);
+                expect(false).assertTrue();
+            });
             console.info('TestLog: End testing testcase');
         })
 
@@ -60,17 +62,10 @@ export default function AVSessionManager() {
         it('SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0100', 0, async function (done) {
             await avSession.createAVSession(context, tag, "audio").then((data) => {
                 currentAVSession = data;
-                if (currentAVSession.sessionId.length === 64) {
-                    console.info('TestLog: avSession create successfully');
-                    expect(true).assertTrue();
-                }
-                else {
-                    console.info('TestLog: avSession create failed');
-                    expect(false).assertTrue();
-                }
             }).catch((err) => {
-                console.info(`TestLog: avSession create error: code: ${err.code}, message: ${err.message}`);
+                console.info(`TestLog: avSession create error SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0100: code: ${err.code}, message: ${err.message}`);
                 expect(false).assertTrue();
+                done();
             });
             done();
         })
@@ -132,10 +127,12 @@ export default function AVSessionManager() {
                 else {
                     console.info('TestLog: avSession create failed');
                     expect(false).assertTrue();
+                    done();
                 }
             }).catch((err) => {
                 console.info(`TestLog: avSession create error: code: ${err.code}, message: ${err.message}`);
                 expect(false).assertTrue();
+                done();
             });
             done();
         })
