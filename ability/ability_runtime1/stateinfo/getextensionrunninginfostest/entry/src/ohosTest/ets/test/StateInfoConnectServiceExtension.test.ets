@@ -26,7 +26,7 @@ function sleep(time: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, time))
 }
 
-export default function stateInfoServiceExtensionTest() {
+export default function stateInfoConnectServiceExtensionTest() {
   let context: common.UIAbilityContext | undefined = undefined;
   let service1Want: Want = {
     bundleName: 'com.hits.stateinfo.serviceappa',
@@ -34,7 +34,7 @@ export default function stateInfoServiceExtensionTest() {
   }
   let upperLimit = 30;
   let connection: number = -1;
-  describe('stateInfoServiceExtensionTest', () => {
+  describe('stateInfoConnectServiceExtensionTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
@@ -44,22 +44,26 @@ export default function stateInfoServiceExtensionTest() {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
-      context = AppStorage.get<common.UIAbilityContext>('abilityContext');
-      let connectOptions: common.ConnectOptions = {
-        onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
-          hilog.info(Domain, TAG, `beforeEach onConnect`);
-        },
-        onDisconnect(elementName: bundleManager.ElementName) {
-          hilog.info(Domain, TAG, `beforeEach onDisconnect`);
-        },
-        onFailed(code: number) {
-          hilog.info(Domain, TAG, `beforeEach onFailed ${code}`);
-        }
-      };
-      // 连接server1
-      connection = context!.connectServiceExtensionAbility(service1Want, connectOptions);
-      hilog.info(Domain, TAG, `beforeEach connection ${connection}`);
-      sleep(500);
+      try {
+        context = AppStorage.get<common.UIAbilityContext>('abilityContext');
+        let connectOptions: common.ConnectOptions = {
+          onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+            hilog.info(Domain, TAG, `beforeEach onConnect`);
+          },
+          onDisconnect(elementName: bundleManager.ElementName) {
+            hilog.info(Domain, TAG, `beforeEach onDisconnect`);
+          },
+          onFailed(code: number) {
+            hilog.info(Domain, TAG, `beforeEach onFailed ${code}`);
+          }
+        };
+        // 连接server1
+        connection = context!.connectServiceExtensionAbility(service1Want, connectOptions);
+        hilog.info(Domain, TAG, `beforeEach connection ${connection}`);
+        sleep(500);
+      } catch (error) {
+        hilog.error(Domain, TAG, `beforeEach error,error code is: ${error.code}, error message is: ${error.message}`);
+      }
     })
     afterEach(() => {
       // Presets a clear action, which is performed after each unit test case ends.
