@@ -13,26 +13,25 @@
  * limitations under the License.
  */
 class MyButtonStyle1 implements ContentModifier<ButtonConfiguration> {
-  x: number = 0
-  y: number = 0
-  selectedColor:Color = Color.Black
+  public x: number = 0
+  public y: number = 0
+  public selectedColor:Color = Color.Black
 
-  constructor(x : number, y: number,ColorType:Color) {
+  constructor(x : number, y: number,colorType:Color) {
     this.x = x
     this.y = y
-    this.selectedColor = ColorType
+    this.selectedColor = colorType
   }
-  applyContent() : WrappedBuilder<[ButtonConfiguration]>
-  {
+  applyContent() : WrappedBuilder<[ButtonConfiguration]> {
     return wrapBuilder(buildButton2)
   }
 }
 
 @Builder function buildButton2(config: ButtonConfiguration) {
   Column({space:30}) {
-    Text(config.enabled ? "enabled true" : "enabled false")
-    Text('圆圈状态' + (config.pressed ? "（ 按压 ）" : "（ 非按压 ）"))
-    Text("{x:"+(config.enabled ? (config.contentModifier as MyButtonStyle1).x.toString() : "0")+",y:"+(config.enabled ? (config.contentModifier as MyButtonStyle1).y.toString(): "0")+"}").id('circlePosition')
+    Text(config.enabled ? 'enabled true' : 'enabled false')
+    Text('圆圈状态' + (config.pressed ? '（ 按压 ）' : '（ 非按压 ）'))
+    Text('{x:'+(config.enabled ? (config.contentModifier as MyButtonStyle1).x.toString() : '0')+',y:'+(config.enabled ? (config.contentModifier as MyButtonStyle1).y.toString(): '0')+'}').id('circlePosition')
     Circle({ width: 50, height: 50 })
       .fill(config.pressed ? (config.contentModifier as MyButtonStyle1).selectedColor : Color.Black)
       .gesture(
@@ -49,8 +48,8 @@ struct ButtonAttrsExample {
   @State buttonEnabled: boolean = true;
   @State positionX: number = 0;
   @State positionY: number = 0;
-  @State buttonPosition: string = "";
-  @State message: string = "";
+  @State buttonPosition: string = '';
+  @State message: string = '';
   build() {
     Column() {
       Text(this.buttonPosition).id('buttonPosition')
@@ -60,8 +59,8 @@ struct ButtonAttrsExample {
         .onClick((event) => {
           this.positionX = event.displayX
           this.positionY = event.displayY
-          this.buttonPosition = "{x:"+this.positionX+",y:"+this.positionY+"}"
-          this.message = "button click"
+          this.buttonPosition = '{x:'+this.positionX+',y:'+this.positionY+'}'
+          this.message = 'button click'
         }).enabled(this.buttonEnabled)
       Button('buttonEnabled')
         .onClick(() => {
@@ -76,13 +75,13 @@ struct ButtonAttrsExample {
       Button('undefined')
         .contentModifier(undefined)
         .onClick(() => {
-          this.message = "undefined button click"
+          this.message = 'undefined button click'
         })
         .id('undefined')
       Button('null')
         .contentModifier(null)
         .onClick(() => {
-          this.message = "null button click"
+          this.message = 'null button click'
         })
         .id('null')
     }.height('100%').width('100%').justifyContent(FlexAlign.Center)

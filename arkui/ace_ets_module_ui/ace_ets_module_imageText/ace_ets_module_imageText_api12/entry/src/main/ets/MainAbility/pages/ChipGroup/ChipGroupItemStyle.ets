@@ -25,11 +25,11 @@ struct ChipGroupItemStyleExample {
       ChipGroup({
         items: [
           {
-            label: { text: "操作块1" },
+            label: { text: '操作块1' },
             allowClose: false,
           },
           {
-            label: { text: "操作块2" },
+            label: { text: '操作块2' },
             allowClose: false,
           }
         ],
@@ -102,13 +102,13 @@ struct ChipGroupItemStyleExample {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('w illegal')
           .onClick(() => {
-            this._size = { width:$r("app.string.illegal_size"), height: 100 }
+            this._size = { width:$r('app.string.illegal_size'), height: 100 }
           })
           .id('w_illegal')
 
         Button('h illegal')
           .onClick(() => {
-            this._size = { width: 100, height:$r("app.string.illegal_size") }
+            this._size = { width: 100, height:$r('app.string.illegal_size') }
           })
           .id('h_illegal')
 

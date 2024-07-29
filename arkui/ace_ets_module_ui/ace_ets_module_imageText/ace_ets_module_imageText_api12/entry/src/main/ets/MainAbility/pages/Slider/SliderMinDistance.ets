@@ -15,13 +15,13 @@
 @Entry
 @Component
 struct SliderMinDistanceExample {
-  @State text5:string="";
-  @State text6:string="";
-  @State text8:string="";
-  @State text9:string="";
-  @State text10:string="";
-  @State text11:string="";
-  @State text17:string="";
+  @State text5:string='';
+  @State text6:string='';
+  @State text8:string='';
+  @State text9:string='';
+  @State text10:string='';
+  @State text11:string='';
+  @State text17:string='';
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(this.text5)
@@ -31,7 +31,7 @@ struct SliderMinDistanceExample {
       Slider({value:40,max:100,min:0}).id('Slider50')
         .onChange((value: number, mode: SliderChangeMode) => {
         if(mode==2){
-          this.text5 = ""+value.toFixed(0);
+          this.text5 = ''+value.toFixed(0);
         }
       })
         .width(300)
@@ -43,7 +43,7 @@ struct SliderMinDistanceExample {
       Slider({value:40,max:100,min:0}).id('Slider60')
         .onChange((value: number, mode: SliderChangeMode) => {
         if(mode==2){
-            this.text6 = ""+value.toFixed(0);
+            this.text6 = ''+value.toFixed(0);
           }
         })
         .minResponsiveDistance(-1)
@@ -56,7 +56,7 @@ struct SliderMinDistanceExample {
       Slider({value:40,max:100,min:0}).id('Slider80')
         .onChange((value: number, mode: SliderChangeMode) => {
           if(mode==2){
-            this.text8 = ""+value.toFixed(0);
+            this.text8 = ''+value.toFixed(0);
           }
         })
         .minResponsiveDistance(undefined)
@@ -69,7 +69,7 @@ struct SliderMinDistanceExample {
       Slider({value:40,max:100,min:0}).id('Slider90')
         .onChange((value: number, mode: SliderChangeMode) => {
           if(mode==2){
-            this.text9 = ""+value.toFixed(0);
+            this.text9 = ''+value.toFixed(0);
           }
         })
         .minResponsiveDistance(-100)
@@ -82,7 +82,7 @@ struct SliderMinDistanceExample {
       Slider({value:90,max:100,min:0}).id('Slider100')
         .onChange((value: number, mode: SliderChangeMode) => {
        if(mode==2){
-          this.text10 = ""+value.toFixed(0);
+          this.text10 = ''+value.toFixed(0);
         }
       })
         .minResponsiveDistance(20)
@@ -95,7 +95,7 @@ struct SliderMinDistanceExample {
       Slider({value:90,max:100,min:0}).id('Slider110')
         .onChange((value: number, mode: SliderChangeMode) => {
         if(mode==2){
-            this.text11 = ""+value.toFixed(0);
+            this.text11 = ''+value.toFixed(0);
           }
         })
         .minResponsiveDistance(20)
@@ -108,7 +108,7 @@ struct SliderMinDistanceExample {
       Slider({value:0,max:101,min:0}).id('Slider170')
         .onChange((value: number, mode: SliderChangeMode) => {
          if(mode==2){
-            this.text17 = ""+value.toFixed(0);
+            this.text17 = ''+value.toFixed(0);
           }
         })
         .minResponsiveDistance(100)

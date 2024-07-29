@@ -25,11 +25,11 @@ struct ChipGroupItemSpaceSize {
       ChipGroup({
         items: [
           {
-            label: { text: "操作块1" },
+            label: { text: '操作块1' },
             allowClose: false,
           },
           {
-            label: { text: "操作块2" },
+            label: { text: '操作块2' },
             allowClose: false,
           }
         ],

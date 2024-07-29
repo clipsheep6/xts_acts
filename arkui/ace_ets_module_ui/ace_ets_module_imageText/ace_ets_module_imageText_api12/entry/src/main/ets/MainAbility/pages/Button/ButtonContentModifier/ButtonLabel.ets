@@ -15,8 +15,7 @@
 class MyButtonStyle implements ContentModifier<ButtonConfiguration>{
   constructor() {
   }
-  applyContent() : WrappedBuilder<[ButtonConfiguration]>
-  {
+  applyContent() : WrappedBuilder<[ButtonConfiguration]> {
     return wrapBuilder(buildButton1)
   }
 }
@@ -34,19 +33,19 @@ class MyButtonStyle implements ContentModifier<ButtonConfiguration>{
 @Entry
 @Component
 struct ButtonLabelExample {
-  @State longStr:string="";
-  @State text:string="";
+  @State longStr:string='';
+  @State text:string='';
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(this.text)
         .borderWidth(2)
         .id('text')
         .fontSize(20)
-      Button("begin")
+      Button('begin')
         .onClick(() => {
           let i:number;
           for(i=2000;i>0;i--){
-            this.longStr = this.longStr+"123";
+            this.longStr = this.longStr+'123';
           }
         }).margin(10).backgroundColor('#ff89bbef').id('begin')
       Button(null)
@@ -63,14 +62,14 @@ struct ButtonLabelExample {
           this.text = JSON.parse(strJson).$attrs.label
         })
         .id('undefined')
-      Button("abc")
+      Button('abc')
         .contentModifier(new MyButtonStyle())
         .onClick(()=>{
           let strJson = getInspectorByKey('abc')
           this.text = JSON.parse(strJson).$attrs.label
         })
         .id('abc')
-      Button("")
+      Button('')
         .contentModifier(new MyButtonStyle())
         .onClick(()=>{
           let strJson = getInspectorByKey('empty')

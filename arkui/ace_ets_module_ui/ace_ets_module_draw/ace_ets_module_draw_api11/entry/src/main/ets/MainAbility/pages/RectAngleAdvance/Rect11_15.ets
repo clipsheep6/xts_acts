@@ -64,9 +64,9 @@ struct Rect11_15Example {
           .height(100)
           .id('DatePicker')
         FormLink({
-          action: "router",
+          action: 'router',
         }) {
-          Button("router")
+          Button('router')
         }
         .width(200)
         .height(100)
@@ -79,10 +79,10 @@ struct Rect11_15Example {
       }
       FormComponent({
         id:0,
-        name:"Form1",
-        bundle:"com.arkui.ace.draw",
-        ability:"MainAbility",
-        module:"entry"
+        name:'Form1',
+        bundle:'com.arkui.ace.draw',
+        ability:'MainAbility',
+        module:'entry'
       })
         .allowUpdate(true)
         .size({width:360,height:360})

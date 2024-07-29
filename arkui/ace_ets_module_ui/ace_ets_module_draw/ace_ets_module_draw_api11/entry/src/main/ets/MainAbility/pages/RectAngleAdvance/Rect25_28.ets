@@ -57,13 +57,13 @@ struct Rect25_28Example {
 
       Menu() {
         MenuItem({
-          startIcon: $r("app.media.icon"),
-          content: "Menu option",
+          startIcon: $r('app.media.icon'),
+          content: 'Menu option',
         }).width(90).height(90).id('MenuItem')
         MenuItemGroup({ header: 'Subtitle' }) {
           MenuItem({
-            startIcon: $r("app.media.icon"),
-            content: "Menu option",
+            startIcon: $r('app.media.icon'),
+            content: 'Menu option',
           }).height(42)
         }.width(90).height(90).id('MenuItemGroup')
       }

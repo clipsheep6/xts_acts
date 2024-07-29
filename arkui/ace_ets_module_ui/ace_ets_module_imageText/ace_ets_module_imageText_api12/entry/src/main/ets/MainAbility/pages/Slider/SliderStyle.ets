@@ -15,40 +15,40 @@
 @Entry
 @Component
 struct SliderStyleExample {
-  @State undefined_text:string="";
-  @State null_text:string="";
-  @State empty_text:string="";
-  @State dynamic_text:string="";
+  @State undefinedText:string='';
+  @State nullText:string='';
+  @State emptyText:string='';
+  @State dynamicText:string='';
   @State sliderStyle:SliderStyle=SliderStyle.OutSet;
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
 
-      Text(this.undefined_text).id('undefined_text')
+      Text(this.undefined_text).id('undefinedText')
       Slider({value:0, max:100,min:0,style:undefined}).id('undefined')
         .onChange((value: number, mode: SliderChangeMode) => {
           if(mode==2){
-            this.undefined_text = ""+value.toFixed(0);
+            this.undefined_text = ''+value.toFixed(0);
           }
         })
-      Text(this.null_text).id('null_text')
+      Text(this.null_text).id('nullText')
       Slider({value:0, max:100,min:0,style:null}).id('null')
         .onChange((value: number, mode: SliderChangeMode) => {
           if(mode==2){
-            this.null_text = ""+value.toFixed(0);
+            this.null_text = ''+value.toFixed(0);
           }
         })
-      Text(this.empty_text).id('empty_text')
+      Text(this.empty_text).id('emptyText')
       Slider({value:0, max:100,min:0}).id('empty')
         .onChange((value: number, mode: SliderChangeMode) => {
           if(mode==2){
-            this.empty_text = ""+value.toFixed(0);
+            this.empty_text = ''+value.toFixed(0);
           }
         })
-      Text(this.dynamic_text).id('dynamic_text')
+      Text(this.dynamic_text).id('dynamicText')
       Slider({value:0, max:100,min:0,style:this.sliderStyle}).id('dynamic')
         .onChange((value: number, mode: SliderChangeMode) => {
           if(mode==2){
-            this.dynamic_text = ""+value.toFixed(0);
+            this.dynamic_text = ''+value.toFixed(0);
           }
         })
 

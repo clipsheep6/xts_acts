@@ -22,7 +22,7 @@ struct BadgeExample1 {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('getRectangleById')
         .onClick(() => {
-          let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("Badge");
+          let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById('Badge');
           this.text  = '{"width":'+modePosition.size.width/1.5+',"height":'+modePosition.size.height/1.5+'}';
         }).margin(10).id('button')
       Text(this.text)

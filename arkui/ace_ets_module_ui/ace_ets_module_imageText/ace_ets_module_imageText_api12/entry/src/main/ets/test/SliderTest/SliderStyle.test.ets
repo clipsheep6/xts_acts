@@ -68,7 +68,7 @@ export default function SliderStyle() {
       let endY = rect.top
       // slider
       await driver.swipe(StartX, StartY, endX, endY, 600)
-      let text: Component = await driver.findComponent(ON.id('undefined_text'));
+      let text: Component = await driver.findComponent(ON.id('undefinedText'));
       let value = await text.getText();
       expect(value).assertEqual('40');
       // click
@@ -96,7 +96,7 @@ export default function SliderStyle() {
       let endY = rect.top
       // slider
       await driver.swipe(StartX, StartY, endX, endY, 600)
-      let text: Component = await driver.findComponent(ON.id('null_text'));
+      let text: Component = await driver.findComponent(ON.id('nullText'));
       let value = await text.getText();
       expect(value).assertEqual('40');
       //click
@@ -124,7 +124,7 @@ export default function SliderStyle() {
       let endY = rect.top
       // slider
       await driver.swipe(StartX, StartY, endX, endY, 600)
-      let text: Component = await driver.findComponent(ON.id('empty_text'));
+      let text: Component = await driver.findComponent(ON.id('emptyText'));
       let value = await text.getText();
       expect(value).assertEqual('40');
       //click
@@ -152,7 +152,7 @@ export default function SliderStyle() {
       let endY = rect.top
       // slider
       await driver.swipe(StartX, StartY, endX, endY, 600)
-      let text: Component = await driver.findComponent(ON.id('dynamic_text'));
+      let text: Component = await driver.findComponent(ON.id('dynamicText'));
       let value = await text.getText();
       expect(value).assertEqual('40');
       let button: Component = await driver.findComponent(ON.id('changeStyle'));

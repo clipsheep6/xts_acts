@@ -45,7 +45,7 @@ export default function ButtonContentModifier() {
 
     afterEach(async () => {
       await Utils.sleep(1000);
-      console.info("ButtonLabel after each called");
+      console.info('ButtonLabel after each called');
     });
 
     /*
@@ -62,7 +62,7 @@ export default function ButtonContentModifier() {
       await button.click();
       let text: Component = await driver.findComponent(ON.id('text'));
       let label = await text.getText();
-      expect(label).assertEqual("");
+      expect(label).assertEqual('');
       done();
     });
 
@@ -80,7 +80,7 @@ export default function ButtonContentModifier() {
       await button.click();
       let text: Component = await driver.findComponent(ON.id('text'));
       let label = await text.getText();
-      expect(label).assertEqual("");
+      expect(label).assertEqual('');
       done();
     });
 
@@ -98,14 +98,14 @@ export default function ButtonContentModifier() {
       await button.click();
       let text: Component = await driver.findComponent(ON.id('text'));
       let label = await text.getText();
-      expect(label).assertEqual("abc");
+      expect(label).assertEqual('abc');
       done();
     });
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0040
      * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0040
-     * @tc.desc    set button label to ""
+     * @tc.desc    set button label to ''
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0040', 0, async (done:Function) => {
       await routerPush('ButtonLabel');
@@ -116,7 +116,7 @@ export default function ButtonContentModifier() {
       await button.click();
       let text: Component = await driver.findComponent(ON.id('text'));
       let label = await text.getText();
-      expect(label).assertEqual("");
+      expect(label).assertEqual('');
       done();
     });
 
@@ -137,10 +137,10 @@ export default function ButtonContentModifier() {
       await button.click();
       let text: Component = await driver.findComponent(ON.id('text'));
       let label = await text.getText();
-      let str:string = "";
+      let str:string = '';
       let n:number;
       for(n=2000;n>0;n--){
-        str = str+"123";
+        str = str+'123';
       }
       expect(label).assertEqual(str);
       done();

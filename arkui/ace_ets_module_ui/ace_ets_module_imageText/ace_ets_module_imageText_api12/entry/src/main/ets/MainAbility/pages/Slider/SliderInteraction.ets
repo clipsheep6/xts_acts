@@ -15,8 +15,8 @@
 @Entry
 @Component
 struct SliderInteractionExample {
-  @State text14:string="";
-  @State text16:string="";
+  @State text14:string='';
+  @State text16:string='';
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(this.text14)
@@ -27,7 +27,7 @@ struct SliderInteractionExample {
       Slider({value:0,max:100,min:0}).id('Slider140')
         .onChange((value: number, mode: SliderChangeMode) => {
           if(mode==2){
-            this.text14 = ""+value.toFixed(0);
+            this.text14 = ''+value.toFixed(0);
           }
         })
         .sliderInteractionMode(SliderInteraction.SLIDE_AND_CLICK)
@@ -39,7 +39,7 @@ struct SliderInteractionExample {
       Slider({value:0,max:100,min:0}).id('Slider160')
         .onChange((value: number, mode: SliderChangeMode) => {
           if(mode==2){
-            this.text16 = ""+value.toFixed(0);
+            this.text16 = ''+value.toFixed(0);
           }
         })
         .sliderInteractionMode(SliderInteraction.SLIDE_ONLY)

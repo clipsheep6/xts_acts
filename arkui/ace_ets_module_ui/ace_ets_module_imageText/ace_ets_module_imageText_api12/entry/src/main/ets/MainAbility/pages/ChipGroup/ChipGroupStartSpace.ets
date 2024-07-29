@@ -25,11 +25,11 @@ struct ChipGroupStartSpace {
       ChipGroup({
         items: [
           {
-            label: { text: "操作块1" },
+            label: { text: '操作块1' },
             allowClose: false,
           },
           {
-            label: { text: "操作块2" },
+            label: { text: '操作块2' },
             allowClose: false,
           }
         ],
@@ -88,7 +88,7 @@ struct ChipGroupStartSpace {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('sys_legit')
           .onClick(() => {
-            // "8.0vp"
+            // '8.0vp'
             this.chipGroupItemSize = { startSpace: $r('sys.float.ohos_id_elements_margin_horizontal_m')}
           })
           .id('sys_legit')
@@ -104,13 +104,13 @@ struct ChipGroupStartSpace {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('app_legit')
           .onClick(() => {
-            this.chipGroupItemSize = { startSpace: $r("app.string.legit_size")}
+            this.chipGroupItemSize = { startSpace: $r('app.string.legit_size')}
           })
           .id('app_legit')
 
         Button('app_illegal')
           .onClick(() => {
-            this.chipGroupItemSize = {startSpace: $r("app.string.illegal_size")}
+            this.chipGroupItemSize = {startSpace: $r('app.string.illegal_size')}
           })
           .id('app_illegal')
 

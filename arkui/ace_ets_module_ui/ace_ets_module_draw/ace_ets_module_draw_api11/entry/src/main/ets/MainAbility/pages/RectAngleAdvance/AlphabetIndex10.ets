@@ -30,7 +30,7 @@ struct AlphabetIndexerSample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }){
       Button('getRectangleById')
         .onClick(() => {
-          let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("AlphabetIndexer");
+          let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById('AlphabetIndexer');
           this.text  = '{"width":'+modePosition.size.width/1.5+',"height":'+modePosition.size.height/1.5+'}';
         }).margin(10).id('button')
       Text(this.text)

@@ -104,13 +104,13 @@ struct ChipGroupEndSpace {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('app_legit')
           .onClick(() => {
-            this.chipGroupItemSize = { endSpace: $r("app.string.legit_size")}
+            this.chipGroupItemSize = { endSpace: $r('app.string.legit_size')}
           })
           .id('app_legit')
 
         Button('app_illegal')
           .onClick(() => {
-            this.chipGroupItemSize = {endSpace: $r("app.string.illegal_size")}
+            this.chipGroupItemSize = {endSpace: $r('app.string.illegal_size')}
           })
           .id('app_illegal')
 
