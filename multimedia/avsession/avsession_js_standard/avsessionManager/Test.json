@@ -1,11 +1,12 @@
 {
-    "description": "Configuration for hjunit demo Tests",
+    "description": "Configuration for avsession manager Tests",
     "driver": {
         "type": "OHJSUnitTest",
-        "test-timeout": "180000",
-        "shell-timeout": "180000",
+        "test-timeout": "1800000",
+        "shell-timeout": "900000",
         "bundle-name": "com.example.myapplication",
-        "package-name": "com.example.myapplication"
+        "package-name": "com.example.myapplication",
+        "testcase-timeout": "20000"
     },
     "kits": [
         {
@@ -14,12 +15,6 @@
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
-        },{
-            "type": "ShellKit",
-            "run-command": [
-                "power-shell wakeup",
-                "power-shell setmode 602"
-            ]
         }
     ]
 }
