@@ -217,6 +217,7 @@ import textAreaJsunit3 from './TextAreaTest/TextAreaJsunit3.test';
 import textInputJsunit3 from './TextInputTest/TextInputJsunit3.test';
 import textObscuredTest from './textTest/textObscuredTest.test';
 import textSpanFontTest from './textTest/textSpanFont.test';
+import textAdvance from './textTest/TextAdvance.test'
 
 export default function testsuite() {
   ToggleJsunit();
@@ -424,4 +425,5 @@ export default function testsuite() {
   textObscuredTest();
   textSpanFontTest();
   textArea_bottom();
+  textAdvance();
 }
