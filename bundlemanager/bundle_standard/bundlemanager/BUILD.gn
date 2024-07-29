@@ -32,6 +32,7 @@ group("bundlemanager") {
       "actsbundlemanagertest:ActsBundleManagerTest",
       "actsbundlenativeninthapitest:ActsBundleNativeNinthApiTest",
       "actsbundlenativetest:ActsBundleNativeTest",
+      "hitsbmsdefaultapptest:ActsBundleNativeTest",
       "sceneProject/bmsaccesstokenfive:bmsAccessTokenTest5",
       "sceneProject/bmsaccesstokenfour:bmsAccessTokenTest4",
       "sceneProject/bmsaccesstokenone:bmsAccessTokenTest1",
@@ -64,6 +65,7 @@ group("bundlemanager") {
       "sceneProject/bmssecondright:second_right",
       "sceneProject/bmsstagedemoone:bmsStageDemo1",
       "sceneProject/bmsstagedemotwo:bmsStageDemo2",
+      "sceneProject/bmsdefaultapp:hits_bms_default_app",
     ]
   }
 }
