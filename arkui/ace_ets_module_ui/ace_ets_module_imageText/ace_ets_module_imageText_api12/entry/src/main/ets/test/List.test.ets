@@ -133,6 +133,13 @@ import textInputPreview from './TextInput/textInputPreview.test'
 import RelativeContainerApi1 from './RelativeContainer/RelativeContainerApi1.test'
 import TextAddApi1 from './Text/TextAddApi1.test'
 import editMeunOptionsTest from './Text/editMeunOptions.test'
+import ButtonContentModifier from './ButtonTest/ButtonContentModifier.test'
+import ToggleAttrs from './ToggleTest/ToggleAttrs.test'
+import SliderInteractionMode from './SliderTest/SliderInteractionMode.test'
+import SliderMinDistance from './SliderTest/SliderMinDistance.test'
+import SliderStyle from './SliderTest/SliderStyle.test'
+import ChipGroupItemStyle from './ChipGroupTest/ChipGroupItemStyle.test'
+import ChipGroupSpace from './ChipGroupTest/ChipGroupSpace.test'
 
 export default function testsuite() {
   APIContentTypeTest();
@@ -254,4 +261,12 @@ export default function testsuite() {
   textAreaPreview();
   textInputPreview();
   editMeunOptionsTest();
+
+  ButtonContentModifier();
+  ToggleAttrs();
+  SliderInteractionMode();
+  SliderMinDistance();
+  SliderStyle();
+  ChipGroupItemStyle();
+  ChipGroupSpace();
 }

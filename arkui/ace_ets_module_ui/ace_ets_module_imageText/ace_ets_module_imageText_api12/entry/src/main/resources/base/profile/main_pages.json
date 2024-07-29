@@ -125,6 +125,17 @@
     "MainAbility/pages/Text/TextSelectableMode3",
     "MainAbility/pages/TextArea/textAreaPreview",
     "MainAbility/pages/TextInput/textInputPreview",
-    "MainAbility/pages/Text/editMeunOptions"
+    "MainAbility/pages/Text/editMeunOptions",
+    "MainAbility/pages/Button/ButtonContentModifier/ButtonLabel",
+    "MainAbility/pages/Button/ButtonContentModifier/ButtonAttrs",
+    "MainAbility/pages/Button/ButtonContentModifier/ButtonTriggerClick011",
+    "MainAbility/pages/Toggle/ToggleAttrs",
+    "MainAbility/pages/Slider/SliderMinDistance",
+    "MainAbility/pages/Slider/SliderInteraction",
+    "MainAbility/pages/Slider/SliderStyle",
+    "MainAbility/pages/ChipGroup/ChipGroupItemStyle",
+    "MainAbility/pages/ChipGroup/ChipGroupEndSpace",
+    "MainAbility/pages/ChipGroup/ChipGroupItemSpaceSize",
+    "MainAbility/pages/ChipGroup/ChipGroupStartSpace"
   ]
 }

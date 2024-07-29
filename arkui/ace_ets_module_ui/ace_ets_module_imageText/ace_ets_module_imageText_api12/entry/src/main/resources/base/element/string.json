@@ -59,6 +59,14 @@
         {
           "name": "start_50",
           "value": "50"
-      }
+      },
+        {
+          "name": "legit_size",
+          "value": "20vp"
+        },
+        {
+          "name": "illegal_size",
+          "value": "abc"
+        }
   ]
 }
