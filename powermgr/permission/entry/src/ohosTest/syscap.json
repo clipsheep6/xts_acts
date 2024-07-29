@@ -1,0 +1,12 @@
+{
+    "devices": {
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.PowerManager.PowerManager.Core",
+                    "SystemCapability.PowerManager.PowerManager.Extension"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "devices": {
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Location.Location.Core",
+                    "SystemCapability.Location.Location.Gnss",
+                    "SystemCapability.Location.Location.Geofence",
+                    "SystemCapability.Location.Location.Geocoder",
+                    "SystemCapability.Location.Location.Lite"
+                ]
+            }
+        ]
+    }
+}

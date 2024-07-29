@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask",
+                    "SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask",
+                    "SystemCapability.ResourceSchedule.BackgroundTaskManager.EfficiencyResourcesApply"
+                ]
+            }
+        ]
+    }
+}

@@ -12,11 +12,7 @@
     "package": "ohos.acts.distributedschedule.continuationmanager",
     "name": ".entry",
     "mainAbility": ".MainAbility",
-    "deviceType": [
-      "default",
-      "tablet",
-      "2in1"
-    ],
+    "deviceType": [],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
@@ -50,7 +46,7 @@
     ],
     "reqPermissions": [
       {
-          "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
       }
     ],
     "js": [

@@ -1,0 +1,12 @@
+{
+    "devices": {
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.WindowManager.WindowManager.Core",
+                    "SystemCapability.Window.SessionManager"
+                ]
+            }
+        ]
+    }
+}

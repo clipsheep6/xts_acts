@@ -15,6 +15,7 @@
     "deviceType": [
       "default",
       "tablet",
+      "wearable",
       "2in1"
     ],
     "distro": {

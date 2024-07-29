@@ -12,11 +12,7 @@
     "package": "com.ohos.socket",
     "name": ".entry_test",
     "mainAbility": ".TestAbility",
-    "deviceType": [
-      "default",
-      "tablet",
-      "2in1"
-    ],
+    "deviceType": [],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry_test",
@@ -36,12 +32,12 @@
         "reason": "ceshi"
       },
       {
-        "name":"ohos.permission.GET_NETWORK_INFO",
-        "reason":"need use ohos.permission.GET_NETWORK_INFO"
+        "name": "ohos.permission.GET_NETWORK_INFO",
+        "reason": "need use ohos.permission.GET_NETWORK_INFO"
       },
-	    {
-        "name":"ohos.permission.INTERNET",
-        "reason":"need use ohos.permission.INTERNET"
+      {
+        "name": "ohos.permission.INTERNET",
+        "reason": "need use ohos.permission.INTERNET"
       }
     ],
     "abilities": [

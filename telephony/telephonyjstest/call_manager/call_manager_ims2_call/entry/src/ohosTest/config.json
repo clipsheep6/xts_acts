@@ -12,11 +12,7 @@
     "package": "com.ohos.actscallmanagerims2calltest",
     "name": ".entry_test",
     "mainAbility": ".TestAbility",
-    "deviceType": [
-      "default",
-      "tablet",
-      "2in1"
-    ],
+    "deviceType": [],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry_test",
@@ -36,16 +32,16 @@
         "reason": "ceshi"
       },
       {
-        "name":"ohos.permission.WRITE_CONTACTS",
-        "reason":"need use ohos.permission.WRITE_CONTACTS"
+        "name": "ohos.permission.WRITE_CONTACTS",
+        "reason": "need use ohos.permission.WRITE_CONTACTS"
       },
       {
-        "name":"ohos.permission.READ_CONTACTS",
-        "reason":"need use ohos.permission.READ_CONTACTS"
+        "name": "ohos.permission.READ_CONTACTS",
+        "reason": "need use ohos.permission.READ_CONTACTS"
       },
       {
-        "name":"ohos.permission.PLACE_CALL",
-        "reason":"need use ohos.permission.PLACE_CALL"
+        "name": "ohos.permission.PLACE_CALL",
+        "reason": "need use ohos.permission.PLACE_CALL"
       }
     ],
     "abilities": [

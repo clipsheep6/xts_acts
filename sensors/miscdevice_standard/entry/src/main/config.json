@@ -12,11 +12,7 @@
     "package": "ohos.acts.sensors.miscdevice.function",
     "name": ".entry",
     "mainAbility": ".MainAbility",
-    "deviceType": [
-      "default",
-      "tablet",
-      "2in1"
-    ],
+    "deviceType": [],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
@@ -62,8 +58,8 @@
     ],
     "reqPermissions": [
       {
-          "name": "ohos.permission.VIBRATE",
-          "reason": "need use ohos.permission.VIBRATE"
+        "name": "ohos.permission.VIBRATE",
+        "reason": "need use ohos.permission.VIBRATE"
       }
     ]
   }
