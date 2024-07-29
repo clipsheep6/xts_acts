@@ -1,0 +1,20 @@
+{
+  "shortcuts": [
+    {
+      "shortcutId": "id_test1",
+      "label": "$string:entry_label",
+      "icon": "$media:icon",
+      "wants": [
+        {
+          "bundleName": "com.hits.shortcutinfo.issue",
+          "moduleName": "entry",
+          "abilityName": "EntryAbility",
+          "parameters": {
+            "testKey": "testValue",
+            "testKey2": "testValue2"
+          }
+        }
+      ]
+    }
+  ]
+}
