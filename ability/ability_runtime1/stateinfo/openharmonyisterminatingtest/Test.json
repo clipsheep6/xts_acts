@@ -1,0 +1,41 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.hits.stateinfo.isterminating",
+        "module-name": "entry_test",
+		"testcase-timeout": "20000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "HitsStateInfoIsTerminatingTest.hap",
+				"HitsStateInfoServicAppA.hap",
+				"HitsStateInfoServicAppB.hap",
+				"HitsStateInfoAppA.hap",
+				"HitsStateInfoAppB.hap",
+				"HitsStateInfoAppC.hap",
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "teardown-command": [
+                "bm uninstall -n com.hits.stateinfo.serviceappa",
+                "bm uninstall -n com.hits.stateinfo.serviceappb",
+                "bm uninstall -n com.hits.stateinfo.appa",
+                "bm uninstall -n com.hits.stateinfo.appb",
+                "bm uninstall -n com.hits.stateinfo.appc"
+            ]
+        }
+    ]
+}
