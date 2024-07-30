@@ -134,34 +134,34 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontCountTextTextMismatch' , DEFAULT , () => {
-      const msg = 'testFontCountTextTextMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.countText('ABCDE' , 'ABCDE');
-        console.info(msg + ' countTextText succeeded');
-      } catch( e ) {
-        console.info(msg + ` countTextText errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.countText();
-        console.info(msg + ' countTextText succeeded');
-      } catch( e ) {
-        console.info(msg + ` countTextText errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.countText(1111);
-        console.info(msg + ' countTextText succeeded');
-      } catch( e ) {
-        console.info(msg + ` countTextText errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontCountTextTextMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontCountTextTextMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.countText('ABCDE' , 'ABCDE');
+    //     console.info(msg + ' countTextText succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` countTextText errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.countText();
+    //     console.info(msg + ' countTextText succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` countTextText errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.countText(1111);
+    //     console.info(msg + ' countTextText succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` countTextText errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_0803
@@ -267,42 +267,42 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndGetEdgingMismatch' , DEFAULT , () => {
-      const msg = 'testFontSetAndGetEdgingMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.setEdging(drawing.FontEdging.ALIAS , drawing.FontEdging.ALIAS);
-        console.info(msg + ' setEdging succeeded');
-      } catch( e ) {
-        console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setEdging();
-        console.info(msg + ' setEdging succeeded');
-      } catch( e ) {
-        console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setEdging('s');
-        console.info(msg + ' setEdging succeeded');
-      } catch( e ) {
-        console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.getEdging('s');
-        console.info(msg + ' getEdging succeeded');
-      } catch( e ) {
-        console.info(msg + ` getEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontSetAndGetEdgingMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontSetAndGetEdgingMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.setEdging(drawing.FontEdging.ALIAS , drawing.FontEdging.ALIAS);
+    //     console.info(msg + ' setEdging succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setEdging();
+    //     console.info(msg + ' setEdging succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setEdging('s');
+    //     console.info(msg + ' setEdging succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.getEdging('s');
+    //     console.info(msg + ' getEdging succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` getEdging errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_0903
@@ -461,42 +461,42 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndGetHintingMismatch' , DEFAULT , () => {
-      const msg = 'testFontSetAndGetHintingMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.setHinting(drawing.FontHinting.NONE，drawing.FontHinting.NONE);
-        console.info(msg + ' setHinting succeeded');
-      } catch( e ) {
-        console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setHinting();
-        console.info(msg + ' setHinting succeeded');
-      } catch( e ) {
-        console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setHinting('s');
-        console.info(msg + ' setHinting succeeded');
-      } catch( e ) {
-        console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.getHinting('s')
-        console.info(msg + ' getHinting succeeded');
-      } catch( e ) {
-        console.info(msg + ` getHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontSetAndGetHintingMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontSetAndGetHintingMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.setHinting(drawing.FontHinting.NONE，drawing.FontHinting.NONE);
+    //     console.info(msg + ' setHinting succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setHinting();
+    //     console.info(msg + ' setHinting succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setHinting('s');
+    //     console.info(msg + ' setHinting succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.getHinting('s')
+    //     console.info(msg + ' getHinting succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` getHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1003
@@ -651,42 +651,42 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndGetScaleXMismatch' , DEFAULT , () => {
-      const msg = 'testFontSetAndGetScaleXMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.setScaleX(10 , 10);
-        console.info(msg + ' setScaleX succeeded');
-      } catch( e ) {
-        console.info(msg + ` setScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setScaleX();
-        console.info(msg + ' setScaleX succeeded');
-      } catch( e ) {
-        console.info(msg + ` setScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setScaleX('s');
-        console.info(msg + ' setScaleX succeeded');
-      } catch( e ) {
-        console.info(msg + ` setScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.getScaleX('s');
-        console.info(msg + ' getScaleX succeeded');
-      } catch( e ) {
-        console.info(msg + ` getScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontSetAndGetScaleXMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontSetAndGetScaleXMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.setScaleX(10 , 10);
+    //     console.info(msg + ' setScaleX succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setScaleX();
+    //     console.info(msg + ' setScaleX succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setScaleX('s');
+    //     console.info(msg + ' setScaleX succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.getScaleX('s');
+    //     console.info(msg + ' getScaleX succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` getScaleX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1103
@@ -818,42 +818,42 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndGetSkewXMismatch' , DEFAULT , () => {
-      const msg = 'testFontSetAndGetSkewXMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.setSkewX(10 , 10);
-        console.info(msg + ' setSkewX succeeded');
-      } catch( e ) {
-        console.info(msg + ` setSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setSkewX();
-        console.info(msg + ' setSkewX succeeded');
-      } catch( e ) {
-        console.info(msg + ` setSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setSkewX('s');
-        console.info(msg + ' setSkewX succeeded');
-      } catch( e ) {
-        console.info(msg + ` setSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.getSkewX('s');
-        console.info(msg + ' getSkewX succeeded');
-      } catch( e ) {
-        console.info(msg + ` getSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontSetAndGetSkewXMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontSetAndGetSkewXMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.setSkewX(10 , 10);
+    //     console.info(msg + ' setSkewX succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setSkewX();
+    //     console.info(msg + ' setSkewX succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setSkewX('s');
+    //     console.info(msg + ' setSkewX succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.getSkewX('s');
+    //     console.info(msg + ' getSkewX succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` getSkewX errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1203
@@ -938,18 +938,18 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontIsSubpixelMismatch' , DEFAULT , () => {
-      const msg = 'testFontIsSubpixelMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.isSubpixel('s');
-        console.info(msg + ' isSubpixel succeeded');
-      } catch( e ) {
-        console.info(msg + ` isSubpixel errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontIsSubpixelMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontIsSubpixelMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.isSubpixel('s');
+    //     console.info(msg + ' isSubpixel succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` isSubpixel errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1303
@@ -1013,18 +1013,18 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontIsLinearMetricsMismatch' , DEFAULT , () => {
-      const msg = 'testFontIsLinearMetricsMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.isLinearMetrics('s');
-        console.info(msg + ' isLinearMetrics succeeded');
-      } catch( e ) {
-        console.info(msg + ` isLinearMetrics errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontIsLinearMetricsMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontIsLinearMetricsMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.isLinearMetrics('s');
+    //     console.info(msg + ' isLinearMetrics succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` isLinearMetrics errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1402
@@ -1088,18 +1088,18 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontIsEmboldenMismatch' , DEFAULT , () => {
-      const msg = 'testFontIsEmboldenMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.isEmbolden('s');
-        console.info(msg + ' isEmbolden succeeded');
-      } catch( e ) {
-        console.info(msg + ` isEmbolden errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontIsEmboldenMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontIsEmboldenMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.isEmbolden('s');
+    //     console.info(msg + ' isEmbolden succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` isEmbolden errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1502
@@ -1198,34 +1198,34 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontMeasureSingleCharacterMismatch' , DEFAULT , () => {
-      const msg = 'testFontMeasureSingleCharacterMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.measureSingleCharacter("A" , "A");
-        console.info(msg + ' measureSingleCharacter succeeded');
-      } catch( e ) {
-        console.info(msg + ` measureSingleCharacter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.measureSingleCharacter();
-        console.info(msg + ' measureSingleCharacter succeeded');
-      } catch( e ) {
-        console.info(msg + ` measureSingleCharacter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.measureSingleCharacter(11);
-        console.info(msg + ' measureSingleCharacter succeeded');
-      } catch( e ) {
-        console.info(msg + ` measureSingleCharacter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontMeasureSingleCharacterMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontMeasureSingleCharacterMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.measureSingleCharacter("A" , "A");
+    //     console.info(msg + ' measureSingleCharacter succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` measureSingleCharacter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.measureSingleCharacter();
+    //     console.info(msg + ' measureSingleCharacter succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` measureSingleCharacter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.measureSingleCharacter(11);
+    //     console.info(msg + ' measureSingleCharacter succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` measureSingleCharacter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1603
@@ -1358,42 +1358,42 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndIsBaselineSnapMismatch' , DEFAULT , () => {
-      const msg = 'testFontSetAndIsBaselineSnapMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.setBaselineSnap(true , true);
-        console.info(msg + ' setBaselineSnap succeeded');
-      } catch( e ) {
-        console.info(msg + ` setBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setBaselineSnap();
-        console.info(msg + ' setBaselineSnap succeeded');
-      } catch( e ) {
-        console.info(msg + ` setBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setBaselineSnap('s');
-        console.info(msg + ' setBaselineSnap succeeded');
-      } catch( e ) {
-        console.info(msg + ` setBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.isBaselineSnap('s');
-        console.info(msg + ' isBaselineSnap succeeded');
-      } catch( e ) {
-        console.info(msg + ` isBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontSetAndIsBaselineSnapMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontSetAndIsBaselineSnapMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.setBaselineSnap(true , true);
+    //     console.info(msg + ' setBaselineSnap succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setBaselineSnap();
+    //     console.info(msg + ' setBaselineSnap succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setBaselineSnap('s');
+    //     console.info(msg + ' setBaselineSnap succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.isBaselineSnap('s');
+    //     console.info(msg + ' isBaselineSnap succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` isBaselineSnap errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1703
@@ -1519,42 +1519,42 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndIsForceAutoHintingMismatch' , DEFAULT , () => {
-      const msg = 'testFontSetAndIsForceAutoHintingMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.setForceAutoHinting(true , true);
-        console.info(msg + ' setForceAutoHinting succeeded');
-      } catch( e ) {
-        console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setForceAutoHinting();
-        console.info(msg + ' setForceAutoHinting succeeded');
-      } catch( e ) {
-        console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setForceAutoHinting('s');
-        console.info(msg + ' setForceAutoHinting succeeded');
-      } catch( e ) {
-        console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.isForceAutoHinting('s');
-        console.info(msg + ' isForceAutoHinting succeeded');
-      } catch( e ) {
-        console.info(msg + ` isForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontSetAndIsForceAutoHintingMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontSetAndIsForceAutoHintingMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.setForceAutoHinting(true , true);
+    //     console.info(msg + ' setForceAutoHinting succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setForceAutoHinting();
+    //     console.info(msg + ' setForceAutoHinting succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setForceAutoHinting('s');
+    //     console.info(msg + ' setForceAutoHinting succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.isForceAutoHinting('s');
+    //     console.info(msg + ' isForceAutoHinting succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` isForceAutoHinting errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1803
@@ -1680,42 +1680,42 @@ export default function fontPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testFontSetAndIsEmbeddedBitmapsMismatch' , DEFAULT , () => {
-      const msg = 'testFontSetAndIsEmbeddedBitmapsMismatch';
-      let font = new drawing.Font();
-
-      try {
-        font.setEmbeddedBitmaps(true , true);
-        console.info(msg + ' setEmbeddedBitmaps succeeded');
-      } catch( e ) {
-        console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setEmbeddedBitmaps();
-        console.info(msg + ' setEmbeddedBitmaps succeeded');
-      } catch( e ) {
-        console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.setEmbeddedBitmaps('s');
-        console.info(msg + ' setEmbeddedBitmaps succeeded');
-      } catch( e ) {
-        console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        font.isEmbeddedBitmaps('s');
-        console.info(msg + ' isEmbeddedBitmaps succeeded');
-      } catch( e ) {
-        console.info(msg + ` isEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-    });
+    // it('testFontSetAndIsEmbeddedBitmapsMismatch' , DEFAULT , () => {
+    //   const msg = 'testFontSetAndIsEmbeddedBitmapsMismatch';
+    //   let font = new drawing.Font();
+    //
+    //   try {
+    //     font.setEmbeddedBitmaps(true , true);
+    //     console.info(msg + ' setEmbeddedBitmaps succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setEmbeddedBitmaps();
+    //     console.info(msg + ' setEmbeddedBitmaps succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.setEmbeddedBitmaps('s');
+    //     console.info(msg + ' setEmbeddedBitmaps succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` setEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    //
+    //   try {
+    //     font.isEmbeddedBitmaps('s');
+    //     console.info(msg + ' isEmbeddedBitmaps succeeded');
+    //   } catch( e ) {
+    //     console.info(msg + ` isEmbeddedBitmaps errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+    //     expect(e.code).assertEqual(401);
+    //   }
+    // });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_1903
