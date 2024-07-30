@@ -410,26 +410,26 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    // it('testPenConstructorNull' , DEFAULT , () => {
-    //   const msg = 'testPenConstructorNull';
-    //   const pen = new drawing.Pen();
-    //
-    //   try {
-    //     new drawing.Pen(null);
-    //     console.info(msg + ' drawing.Pen(null) succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` drawing.Pen(null) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     new drawing.Pen(undefined);
-    //     console.info(msg + ' drawing.Pen(undefined) succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` drawing.Pen(undefined) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenConstructorNull' , DEFAULT , () => {
+      const msg = 'testPenConstructorNull';
+      const pen = new drawing.Pen();
+
+      try {
+        new drawing.Pen(null);
+        console.info(msg + ' drawing.Pen(null) succeeded');
+      } catch( e ) {
+        console.info(msg + ` drawing.Pen(null) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        new drawing.Pen(undefined);
+        console.info(msg + ' drawing.Pen(undefined) succeeded');
+      } catch( e ) {
+        console.info(msg + ` drawing.Pen(undefined) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_1702
