@@ -35,31 +35,6 @@ function checkAppVersionInfo(msg: string, data: ESObject) {
 }
 export default function getHapModuleInfoJsunit() {
   describe('getAppVersionInfoTest', () => {
-    let TAG1 = "SUB_AA_OpenHarmony == getAppVersionInfoTest: ";
-    let sleepTimeOne = 1000;
-    let id: number;
-    beforeAll(async (done: Function) => {
-      console.log(TAG1 + "beforeAll called");
-      let myReason = 'test FaShowOnLockTest';
-      let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-        console.log(TAG1 + "Request suspension delay will time out.");
-      })
-      id = delayInfo.requestId;
-      console.log(TAG1 + "requestId is : " + id);
-      setTimeout(() => {
-        console.log(TAG1 + "beforeAll end");
-        done();
-      }, sleepTimeOne);
-    })
-
-    afterAll(async (done: Function) => {
-      console.log(TAG1 + "afterAll called");
-      backgroundTaskManager.cancelSuspendDelay(id);
-      setTimeout(() => {
-        console.log(TAG1 + "afterAll end");
-        done();
-      }, sleepTimeOne)
-    })
 
     /**
      * @tc.number: context_getAppVersionInfo_test_0100
@@ -69,7 +44,6 @@ export default function getHapModuleInfoJsunit() {
      */
     it('context_getAppVersionInfo_test_0100', 0, async (done: Function) => {
       console.info('[context_getAppVersionInfo_test_0100] START');
-      await Utils.sleep(1000);
       let timeOldStamp = Utils.getNowTime();
       let context = ability_featureAbility.getContext();
       context.getAppVersionInfo()
@@ -78,14 +52,15 @@ export default function getHapModuleInfoJsunit() {
           Utils.getDurationTime('context_getAppVersionInfo_test_0100', timeOldStamp, timeNewStamp);
           console.info('[context_getAppVersionInfo_test_0100] data is:' + JSON.stringify(data));
           expect(typeof (data)).assertEqual("object");
+          console.info('---[context_getAppVersionInfo_test_0100] check---');
+          checkAppVersionInfo('context_getAppVersionInfo_test_0100', data);
+          console.info('[context_getAppVersionInfo_test_0100] FINISH');
+          done();
         }).catch((error: BusinessError) => {
         console.error('[context_getAppVersionInfo_test_0100] failed:' + JSON.stringify(error));
+        expect().assertFail();
+        done();
       })
-      let promise = await context.getAppVersionInfo();
-      console.info('---[context_getAppVersionInfo_test_0100] check---');
-      checkAppVersionInfo('context_getAppVersionInfo_test_0100', promise);
-      console.info('[context_getAppVersionInfo_test_0100] FINISH');
-      done();
     })
 
     /**
@@ -97,7 +72,6 @@ export default function getHapModuleInfoJsunit() {
     it('context_getAppVersionInfo_test_0200', 0, async (done: Function) => {
       try {
         console.info('[context_getAppVersionInfo_test_0200] START');
-        await Utils.sleep(1000);
         let timeOldStamp = await Utils.getNowTime();
         let context = ability_featureAbility.getContext();
         context.getAppVersionInfo((error, data) => {
@@ -105,15 +79,16 @@ export default function getHapModuleInfoJsunit() {
           Utils.getDurationTime('context_getAppVersionInfo_test_0200', timeOldStamp, timeNewStamp);
           console.info('[context_getAppVersionInfo_test_0200] data is:' + JSON.stringify(data));
           expect(typeof (data)).assertEqual("object");
+          console.info('---[context_getAppVersionInfo_test_0200] check---');
+          checkAppVersionInfo('context_getAppVersionInfo_test_0200', data);
+          console.info('[context_getAppVersionInfo_test_0200] FINISH');
+          done();
         })
-        let callback = await context.getAppVersionInfo();
-        console.info('---[context_getAppVersionInfo_test_0200] check---');
-        checkAppVersionInfo('context_getAppVersionInfo_test_0200', callback);
-        console.info('[context_getAppVersionInfo_test_0200] FINISH');
-        done();
       }
       catch (error) {
         console.error('[context_getAppVersionInfo_test_0200] failed: ' + JSON.stringify(error));
+        expect().assertFail();
+        done();
       }
     })
   })

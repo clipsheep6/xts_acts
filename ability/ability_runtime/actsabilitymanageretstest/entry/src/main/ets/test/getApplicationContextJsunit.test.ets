@@ -20,31 +20,6 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 export default function getHapModuleInfoJsunit() {
   describe('getApplicationContextTest', () => {
-    let TAG1 = "SUB_AA_OpenHarmony == getApplicationContextTest: ";
-    let sleepTimeOne = 1000;
-    let id: number;
-    beforeAll(async (done: Function) => {
-      console.log(TAG1 + "beforeAll called");
-      let myReason = 'test FaShowOnLockTest';
-      let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-        console.log(TAG1 + "Request suspension delay will time out.");
-      })
-      id = delayInfo.requestId;
-      console.log(TAG1 + "requestId is : " + id);
-      setTimeout(() => {
-        console.log(TAG1 + "beforeAll end");
-        done();
-      }, sleepTimeOne);
-    })
-
-    afterAll(async (done: Function) => {
-      console.log(TAG1 + "afterAll called");
-      backgroundTaskManager.cancelSuspendDelay(id);
-      setTimeout(() => {
-        console.log(TAG1 + "afterAll end");
-        done();
-      }, sleepTimeOne)
-    })
 
     /**
      * @tc.number: context_getApplicationContext_test_0100
@@ -55,7 +30,6 @@ export default function getHapModuleInfoJsunit() {
     it('context_getApplicationContext_test_0100', 0, async (done: Function) => {
       try {
         console.info('[context_getApplicationContext_test_0100] START');
-        await Utils.sleep(1000);
         let timeOldStamp = Utils.getNowTime();
         let context = ability_featureAbility.getContext().getApplicationContext();
         let timeNewStamp = Utils.getNowTime();
@@ -67,7 +41,9 @@ export default function getHapModuleInfoJsunit() {
       }
       catch (error) {
         console.error('[context_getApplicationContext_test_0100] failed:' + JSON.stringify(error));
-      }
+        expect().assertFail();
+        done();
+     }
     })
   })
 }
