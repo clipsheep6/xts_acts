@@ -18,6 +18,7 @@ import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import DateTimeUtil from './DateTimeUtil';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import fs from '@ohos.file.fs';
+import { Camera_MediaType } from './Constants';
 
 export default class MediaUtils {
   private static instance: MediaUtils = new MediaUtils();
@@ -76,6 +77,41 @@ export default class MediaUtils {
     if (globalThis.settingDataObj.photoFormat == 4) {
       return 'jpeg';
     }
+  }
+
+  async createAndGetUriVideoNew(mediaType: number, mContext) {
+    console.info('1128xmj createAndGetUriVideo');
+    let info = this.getInfoFromTypeNew(mediaType)
+    let dateTimeUtil = new DateTimeUtil()
+    let name = `${dateTimeUtil.getDate()}_${dateTimeUtil.getTime()}`
+    let tmp = `/`
+    let displayName = `${tmp}${info.prefix}${name}${info.suffix}`
+    console.info('1128xmj createAndGetUri displayName : ' + displayName);
+
+    let filesDirPath  = mContext.filesDir + displayName;
+    console.info('1128xmj createAndGetUri filesDirPath : ' + JSON.stringify(filesDirPath));
+    let file = fs.openSync(filesDirPath , fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    console.info('1128xmj fd : ' + file.fd);
+    return file.fd;
+  }
+
+  getInfoFromTypeNew(mediaType: number) {
+    let result = {
+      prefix: '', suffix: ''
+    };
+    switch (mediaType) {
+      case Camera_MediaType.IMAGE:
+        result.prefix = 'IMG_';
+        result.suffix = `.${this.onChangePhotoFormat()}`;
+        break;
+      case Camera_MediaType.VIDEO:
+        result.prefix = 'VID_';
+        result.suffix = '.mp4';
+        break;
+      default:
+        break;
+    }
+    return result;
   }
 
   getInfoFromType(mediaType: number) {

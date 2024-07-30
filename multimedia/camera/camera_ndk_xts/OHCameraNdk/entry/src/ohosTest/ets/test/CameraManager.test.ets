@@ -24,6 +24,7 @@ import account from '@ohos.account.osAccount';
 const TAG = "CAMERA_LOGTAG_JS";
 const CAMERA_OK = 0;
 const CAMERA_ERROR_7400101 = 7400101; //参数错误
+const CAMERA_INVALID_ARGUMENT = 7400101; // 参数错误
 let receiver: image.ImageReceiver;
 let mPhotoSurface: string;
 function getCameraManagerInstance(index: number) {
@@ -44,6 +45,14 @@ function getSupportedCamerasInstance() {
   }
 }
 
+function getSupportedSceneModes() {
+  let ret = cameras.oHCameraManagerGetSupportedSceneModes(0);
+  if (ret != 0) {
+    console.info(TAG + "getSupportedSceneModes FAILED");
+    expect().assertFail();
+  }
+}
+
 function getSupportedCameraOutputCapabilityInstance() {
   let ret = cameras.oHGetSupportedCameraOutputCapability(0);
   if (ret != 0) {
@@ -52,10 +61,26 @@ function getSupportedCameraOutputCapabilityInstance() {
   }
 }
 
+function getSupportedCameraOutputCapabilityWithSceneMode() {
+  let ret = cameras.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(0);
+  if (ret != 0) {
+    console.info(TAG + "getSupportedCameraOutputCapabilityWithSceneMode FAILED");
+    expect().assertFail();
+  }
+}
+
 function createPreviewOutputInstance() {
   let ret = cameras.oHCameraManagerCreatePreviewOutput(0);
   if (ret != 0) {
     console.info(TAG + "createPreviewOutputInstance FAILED");
+    expect().assertFail();
+  }
+}
+
+function setSceneMode(index_sceneMode: number) {
+  let ret = cameras.oHCameraManagerSetSceneMode(index_sceneMode);
+  if (ret != 0) {
+    console.info(TAG + "setSceneMode FAILED");
     expect().assertFail();
   }
 }
@@ -762,6 +787,70 @@ export default function CameraManagerTest() {
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
     /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePreviewOutputUsedInPreconfig0100
+     * @tc.name       : testOHCameraManagerCreatePreviewOutputUsedInPreconfig0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePreviewOutputUsedInPreconfig0100', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance()
+      getSupportedCameraOutputCapabilityInstance()
+      let ret = cameras.OHCameraManagerCreatePreviewOutputUsedInPreconfig(0);
+      console.log(TAG+"testOHCameraManagerCreatePreviewOutputUsedInPreconfig0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePreviewOutputUsedInPreconfig0200
+     * @tc.name       : testOHCameraManagerCreatePreviewOutputUsedInPreconfig0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePreviewOutputUsedInPreconfig0200', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance()
+      getSupportedCameraOutputCapabilityInstance()
+      let ret = cameras.OHCameraManagerCreatePreviewOutputUsedInPreconfig(1);
+      console.log(TAG+"testOHCameraManagerCreatePreviewOutputUsedInPreconfig0200:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePreviewOutputUsedInPreconfig0300
+     * @tc.name       : testOHCameraManagerCreatePreviewOutputUsedInPreconfig0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePreviewOutputUsedInPreconfig0300', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance()
+      getSupportedCameraOutputCapabilityInstance()
+      let ret = cameras.OHCameraManagerCreatePreviewOutputUsedInPreconfig(2);
+      console.log(TAG+"testOHCameraManagerCreatePreviewOutputUsedInPreconfig0300:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePreviewOutputUsedInPreconfig0400
+     * @tc.name       : testOHCameraManagerCreatePreviewOutputUsedInPreconfig0400
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePreviewOutputUsedInPreconfig0400', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance()
+      getSupportedCameraOutputCapabilityInstance()
+      let ret = cameras.OHCameraManagerCreatePreviewOutputUsedInPreconfig(3);
+      console.log(TAG+"testOHCameraManagerCreatePreviewOutputUsedInPreconfig0400:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputRegisterCallback0100
      * @tc.name       : testOHPreviewOutputRegisterCallback0100
      * @tc.size       : MediumTest
@@ -943,7 +1032,297 @@ export default function CameraManagerTest() {
       console.log(TAG+"testOHCameraManagerCreatePhotoOutput0500:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedSceneModes0100
+     * @tc.name       : testOHCameraManagerGetSupportedSceneModes0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedSceneModes0100', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      let ret = cameras.oHCameraManagerGetSupportedSceneModes(0);
+      console.log(TAG+"testOHCameraManagerGetSupportedSceneModes0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedSceneModes0200
+     * @tc.name       : testOHCameraManagerGetSupportedSceneModes0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedSceneModes0200', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      let ret = cameras.oHCameraManagerGetSupportedSceneModes(1);
+      console.log(TAG+"testOHCameraManagerGetSupportedSceneModes0200:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedSceneModes0300
+     * @tc.name       : testOHCameraManagerGetSupportedSceneModes0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedSceneModes0300', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      let ret = cameras.oHCameraManagerGetSupportedSceneModes(2);
+      console.log(TAG+"testOHCameraManagerGetSupportedSceneModes0300:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedSceneModes0400
+     * @tc.name       : testOHCameraManagerGetSupportedSceneModes0400
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedSceneModes0400', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      let ret = cameras.oHCameraManagerGetSupportedSceneModes(3);
+      console.log(TAG+"testOHCameraManagerGetSupportedSceneModes0400:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerDeleteSceneModes0100
+     * @tc.name       : testOHCameraManagerDeleteSceneModes0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerDeleteSceneModes0100', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      getSupportedSceneModes();
+      let ret = cameras.oHCameraManagerDeleteSceneModes(0);
+      console.log(TAG+"testOHCameraManagerDeleteSceneModes0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerDeleteSceneModes0200
+     * @tc.name       : testOHCameraManagerDeleteSceneModes0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerDeleteSceneModes0200', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      getSupportedSceneModes();
+      let ret = cameras.oHCameraManagerDeleteSceneModes(1);
+      console.log(TAG+"testOHCameraManagerDeleteSceneModes0200:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerDeleteSceneModes0300
+     * @tc.name       : testOHCameraManagerDeleteSceneModes0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerDeleteSceneModes0300', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      getSupportedSceneModes();
+      let ret = cameras.oHCameraManagerDeleteSceneModes(2);
+      console.log(TAG+"testOHCameraManagerDeleteSceneModes0300:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0100
+     * @tc.name       : testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0100', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      getSupportedSceneModes();
+      setSceneMode(0);
+      let ret = cameras.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(0);
+      console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0200
+     * @tc.name       : testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0200', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      getSupportedSceneModes();
+      setSceneMode(1);
+      let ret = cameras.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(0);
+      console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0200:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0300
+     * @tc.name       : testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0300', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      getSupportedSceneModes();
+      setSceneMode(2);
+      let ret = cameras.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(0);
+      console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0300:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0400
+     * @tc.name       : testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0400
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0400', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      getSupportedSceneModes();
+      setSceneMode(0);
+      let ret = cameras.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(1);
+      console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0400:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0500
+     * @tc.name       : testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0500
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0500', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      getSupportedSceneModes();
+      setSceneMode(0);
+      let ret = cameras.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(2);
+      console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0500:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0600
+     * @tc.name       : testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0600
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0600', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      getSupportedSceneModes();
+      setSceneMode(0);
+      let ret = cameras.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(3);
+      console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0600:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0700
+     * @tc.name       : testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0700
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0700', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance();
+      getSupportedSceneModes();
+      setSceneMode(0);
+      let ret = cameras.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(4);
+      console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0700:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePhotoOutputUsedInPreconfig0100
+     * @tc.name       : testOHCameraManagerCreatePhotoOutputUsedInPreconfig0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePhotoOutputUsedInPreconfig0100', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance()
+      getSupportedCameraOutputCapabilityInstance();
 
+      let ret = cameras.OHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 0)
+      console.log(TAG+"testOHCameraManagerCreatePhotoOutputUsedInPreconfig0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePhotoOutputUsedInPreconfig0200
+     * @tc.name       : testOHCameraManagerCreatePhotoOutputUsedInPreconfig0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePhotoOutputUsedInPreconfig0200', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance()
+      getSupportedCameraOutputCapabilityInstance();
+      let ret = cameras.OHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 1)
+      console.log(TAG+"testOHCameraManagerCreatePhotoOutputUsedInPreconfig0200:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePhotoOutputUsedInPreconfig0300
+     * @tc.name       : testOHCameraManagerCreatePhotoOutputUsedInPreconfig0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePhotoOutputUsedInPreconfig0300', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance()
+      getSupportedCameraOutputCapabilityInstance();
+      let ret = cameras.OHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 2)
+      console.log(TAG+"testOHCameraManagerCreatePhotoOutputUsedInPreconfig0300:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePhotoOutputUsedInPreconfig0400
+     * @tc.name       : testOHCameraManagerCreatePhotoOutputUsedInPreconfig0400
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePhotoOutputUsedInPreconfig0400', 0, () => {
+      getCameraManagerInstance(0);
+      getSupportedCamerasInstance()
+      getSupportedCameraOutputCapabilityInstance();
+      let ret = cameras.OHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 3)
+      console.log(TAG+"testOHCameraManagerCreatePhotoOutputUsedInPreconfig0400:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
   })
 }
-
