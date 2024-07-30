@@ -132,6 +132,8 @@ import textAreaPreview from './TextArea/textAreaPreview.test'
 import textInputPreview from './TextInput/textInputPreview.test'
 import RelativeContainerApi1 from './RelativeContainer/RelativeContainerApi1.test'
 import TextAddApi1 from './Text/TextAddApi1.test'
+import StyledStringKeyTest1 from './StyledString/StyledStringKeyTest1.test'
+import RichEditorAddApi from './RichEditor/RichEditorAddApi.test'
 import editMeunOptionsTest from './Text/editMeunOptions.test'
 import ButtonContentModifier from './ButtonTest/ButtonContentModifier.test'
 import ToggleAttrs from './ToggleTest/ToggleAttrs.test'
@@ -177,7 +179,6 @@ export default function testsuite() {
   underlineColor();
   srcIndexTest();
   dstIndexTest();
-  
   RichEditorApi1();
   RichEditorApi3();
   RichEditorApi5();
@@ -204,14 +205,12 @@ export default function testsuite() {
   styledStringChange();
   RelativeContainerApi1()
   TextAddApi1()
-
   TextArea_lineBreakStrategyTest();
   TextArea_lineSpacingTest();
   TextInput_lineBreakStrategyTest();
   Text_lineBreakStrategyTest();
   Text_lineSpacingTest();
   textStrategyJsunit();
-
   EffectFillStyle()
   EffectScope()
   menuPolicyHIDE()
@@ -229,7 +228,6 @@ export default function testsuite() {
   AttributeUpdaterTest();
   UnitTest();
   APIClipMaskShape();
-
   RichEditorChangeValueTest1();
   RichEditorGetLayoutManagerTest1();
   RichEditorStyledStringTest1();
@@ -244,7 +242,6 @@ export default function testsuite() {
   searchTest()
   imageAddApi2()
   styledStringAddApi()
-
   RichEditorApi8()
   RichEditorApi9()
   RichEditorApi10()
@@ -257,9 +254,10 @@ export default function testsuite() {
   typeNodeTextSelectableMode1Test();
   typeNodeTextSelectableMode2Test();
   typeNodeTextSelectableMode3Test();
-
   textAreaPreview();
   textInputPreview();
+  StyledStringKeyTest1();
+  RichEditorAddApi();
   editMeunOptionsTest();
 
   ButtonContentModifier();
