@@ -14,7 +14,7 @@
  */
 
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
-import { describe, it, expect } from '@ohos/hypium'
+import { describe, it, expect, beforeAll } from '@ohos/hypium'
 import dataSharePredicates from '@ohos.data.dataSharePredicates'
 import { Component, Driver, ON } from '@ohos.UiTest';
 
@@ -43,34 +43,43 @@ export default function showAssetsCreationDialogTest() {
     const context = globalThis.abilityContext;
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-    const createAssetByType = async (done: Function, testNum: string, fileUriList: Array<string>,
-      photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig>, isVideo: boolean) => {
+    const showImagesCreationDialog = async (done: Function, testNum: string, fileUriList: Array<string>,
+      photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig>) => {
       try {
-        let desFileUris: Array<string> = phAccessHelper.showAssetsCreationDialog(fileUriList, photoCreationConfigs);
-        console.log(`${testNum} :: showAssetsCreationDialog invoke success, driver is ${driver}`);
-        await sleep();
+        let desFileUris: Array<string> | undefined = undefined;
+        phAccessHelper.showAssetsCreationDialog(fileUriList, photoCreationConfigs).then((data) => {
+          console.log(`${testNum} :: showAssetsCreationDialog :: data length is ${data.length}`);
+          desFileUris = data;
+        });
         let button: Component = await driver.waitForComponent(ON.text('允许'),2000);
         if (button !== undefined) {
           await button.click();
         }
-        console.log(`${testNum} :: showAssetsCreationDialog success, data is ${desFileUris[0]}`);
+        await sleep(1000);
+        console.log(`${testNum} :: showAssetsCreationDialog success, desFileUris is ${desFileUris[0]}`);
         const ops = fetchAllOption();
         let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(ops);
         let count_before = fetchResult.getCount();
         console.log(`${testNum} :: count before apply change is ${count_before} `);
-        for (let i = 0; i < desFileUris.length; i++) {
-          if (!isVideo) {
-            let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, desFileUris[i]);
-            await phAccessHelper.applyChanges(assetChangeRequest);
-            console.info('apply createImageAssetRequest successfully');
-          } else {
-            let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(context, desFileUris[i]);
-            await phAccessHelper.applyChanges(assetChangeRequest);
-            console.info('apply createVideoAssetRequest successfully');
-          }
+        let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+        // 返回的 uri 是媒体库中资源的uri，而不是沙箱路径的uri
+        predicates.in('uri', desFileUris);
+        let fetchOptions: photoAccessHelper.FetchOptions = {
+          fetchColumns: [],
+          predicates: predicates
+        };
+        let fetchResult2: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+        let photoAssets: Array<photoAccessHelper.PhotoAsset> = await fetchResult2.getAllObjects();
+        for (let i = 0; i < photoAssets.length; i++) {
+          let changeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAssets[i]);
+          console.log(`${testNum} :: create MediaAssetChangeRequest success, cycle is ${i + 1}`);
+          changeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUriList[i]);
+          console.log(`${testNum} :: addResource success, cycle is ${i + 1}`);
+          await phAccessHelper.applyChanges(changeRequest);
+          console.log(`${testNum} ::applyChange success, cycle is ${i + 1}`);
         }
-        let fetchResult2: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(ops);
-        let count_after = fetchResult2.getCount();
+        let fetchResult3: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(ops);
+        let count_after = fetchResult3.getCount();
         console.log(`${testNum} :: count after apply change is ${count_after} `);
         expect(count_after).assertEqual(count_before + desFileUris.length);
         done();
@@ -102,9 +111,8 @@ export default function showAssetsCreationDialogTest() {
             subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
           }
         ];
-      createAssetByType(done, testNum, fileUriList, photoCreationConfigs, false);
+      showImagesCreationDialog(done, testNum, fileUriList, photoCreationConfigs);
     })
-
 
   })
 }
