@@ -2205,5 +2205,48 @@ export default function BitVectorTest() {
         }
       })
     });
+    /**
+     * @tc.number    : BITVECTOR_TEST_077
+     * @tc.name      : BitVector_iterator_Func_001
+     * @tc.desc      : Returns an iterator where each item is a JavaScript object and returns that object.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("BitVector_iterator_Func_001", 0, async () => {
+      let lock = new ArkTSUtils.locks.AsyncLock();
+      lock.lockAsync<void>(() => {
+        let bitVector = new collections.BitVector(0);
+        bitVector.push(1);
+        bitVector.push(1);
+        bitVector.push(1);
+        let iter = bitVector[Symbol.iterator]();
+        let temp: IteratorResult<number> = iter.next();
+        while (!temp.done) {
+          expect(1).assertEqual(temp.value);
+          temp = iter.next();
+        }
+      })
+    });
+    /**
+     * @tc.number    : BITVECTOR_TEST_077
+     * @tc.name      : BitVector_iterator_Func_002
+     * @tc.desc      : Returns an iterator where each item is a JavaScript object and returns that object.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it("BitVector_iterator_Func_002", 0, async () => {
+      let lock = new ArkTSUtils.locks.AsyncLock();
+      lock.lockAsync<void>(() => {
+        let bitVector = new collections.BitVector(0);
+        bitVector.push(1);
+        bitVector.push(1);
+        bitVector.push(1);
+        for (let bit of bitVector) {
+          expect(1).assertEqual(bit);
+        }
+      })
+    });
   });
 }
