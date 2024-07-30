@@ -50,8 +50,11 @@ export default function textAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0010
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0010
+     * @tc.name    testAspectRatio001
      * @tc.desc    Set the displayPriority of two components to 1 and 1.9 respectively
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0010', 0, async (done:Function) => {
       await routerPush('textPrioSize');
@@ -68,8 +71,11 @@ export default function textAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0020
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0020
+     * @tc.name    testAspectRatio002
      * @tc.desc    Set the displayPriority to  1.5 and the height to 200
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0020', 0, async (done:Function) => {
       await routerPush('textPrioSize');
@@ -83,10 +89,13 @@ export default function textAdvance() {
     });
 
     /*
-    * @tc.number SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0060
-    * @tc.name   SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0060
-    * @tc.desc    set width to 40px, height to 10px
-    */
+     * @tc.number SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0060
+     * @tc.name   testAspectRatio006
+     * @tc.desc    set width to 40px, height to 10px
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
+     */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0060', 0, async (done:Function) => {
       await routerPush('textPrioSize');
       console.info('SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0060 START');
@@ -100,10 +109,13 @@ export default function textAdvance() {
     });
 
     /*
-    * @tc.number SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0070
-    * @tc.name   SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0070
-    * @tc.desc    set aspectRatio to a negative number
-    */
+     * @tc.number SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0070
+     * @tc.name   testAspectRatio007
+     * @tc.desc    set aspectRatio to a negative number
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
+     */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0070', 0, async (done:Function) => {
       await routerPush('textPrioSize');
       console.info('SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0070 START');
@@ -115,8 +127,11 @@ export default function textAdvance() {
 
     /*
      * @tc.number SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0030
-     * @tc.name   SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0030
+     * @tc.name   testAspectRatio003
      * @tc.desc    Medium containers show priority 2 and priority 3 components
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0030', 0, async (done:Function) => {
       await routerPush('text30');
@@ -127,8 +142,11 @@ export default function textAdvance() {
 
     /*
      * @tc.number SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0040
-     * @tc.name   SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0040
+     * @tc.name   testAspectRatio004
      * @tc.desc    big containers show all components
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0040', 0, async (done:Function) => {
       await routerPush('text40');
@@ -139,8 +157,11 @@ export default function textAdvance() {
 
     /*
      * @tc.number SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0050
-     * @tc.name   SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0050
+     * @tc.name   testAspectRatio005
      * @tc.desc    small containers only priority 3 component show
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0050', 0, async (done:Function) => {
       await routerPush('text50');

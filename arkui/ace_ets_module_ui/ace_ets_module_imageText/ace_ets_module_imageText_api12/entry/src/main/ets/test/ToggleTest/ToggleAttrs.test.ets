@@ -51,8 +51,11 @@ export default function ToggleAttrs() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0010
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0010
+     * @tc.name    ToggleC001
      * @tc.desc    set TOGGLE selectedColor to red
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0010', 0, async (done:Function) => {
       await routerPush('ToggleAttrs');
@@ -65,8 +68,11 @@ export default function ToggleAttrs() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0030
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0030
+     * @tc.name    Toggle003
      * @tc.desc   When the state of toggle changed, print log
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0030', 0, async (done:Function) => {
       await routerPush('ToggleAttrs');
@@ -74,14 +80,20 @@ export default function ToggleAttrs() {
       await Utils.sleep(2000);
       let driver: Driver = Driver.create();
       let toggle: Component = await driver.findComponent(ON.id('logToggle'));
-      toggle.click();
+      await toggle.click();
+      let text: Component = await driver.findComponent(ON.id('message'));
+      let message= await text.getText();
+      expect(message).assertEqual('Toggle changed');
       done();
     });
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0110
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0110
+     * @tc.name    Toggle011
      * @tc.desc    width 100vp, height 100vp
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0110', 0, async (done:Function) => {
       await routerPush('ToggleAttrs');
@@ -95,8 +107,11 @@ export default function ToggleAttrs() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0120
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0120
+     * @tc.name    Toggle012
      * @tc.desc    set x of position to 100vp
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0120', 0, async (done:Function) => {
       await routerPush('ToggleAttrs');
@@ -109,8 +124,11 @@ export default function ToggleAttrs() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0130
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0130
+     * @tc.name    Toggle013
      * @tc.desc    set toggle Focusable
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0130', 0, async (done:Function) => {
       await routerPush('ToggleAttrs');
@@ -125,8 +143,11 @@ export default function ToggleAttrs() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0140
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0140
+     * @tc.name    Toggle014
      * @tc.desc    set enable of toggle to 0
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0140', 0, async (done:Function) => {
       await routerPush('ToggleAttrs');
@@ -143,8 +164,11 @@ export default function ToggleAttrs() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0160
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0160
+     * @tc.name    Toggle016
      * @tc.desc    set margin of toggle to 100
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_TOGGLE_C_0160', 0, async (done:Function) => {
       await routerPush('ToggleAttrs');

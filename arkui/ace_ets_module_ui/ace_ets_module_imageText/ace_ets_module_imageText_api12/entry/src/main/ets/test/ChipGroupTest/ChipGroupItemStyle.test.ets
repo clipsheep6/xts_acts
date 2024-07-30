@@ -54,8 +54,11 @@ export default function ChipGroupItemStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0900
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0900
+     * @tc.name    ChipGroup090
      * @tc.desc    set the size of ChipGroup itemStyle to {width:100,height:100}
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0900', 0, async (done:Function) => {
       await routerPush('ChipGroupItemStyle');
@@ -78,8 +81,11 @@ export default function ChipGroupItemStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0920
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0920
+     * @tc.name    ChipGroup092
      * @tc.desc    set the size of ChipGroup itemStyle to {width:'100px',height:100}, {width:100,height:'100px'}
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0920', 0, async (done:Function) => {
       await routerPush('ChipGroupItemStyle');
@@ -111,8 +117,11 @@ export default function ChipGroupItemStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0930
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0930
+     * @tc.name    ChipGroup093
      * @tc.desc    set the size of ChipGroup itemStyle to {width:'100vp',height:100}, {width:100,height:'100vp'}
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0930', 0, async (done:Function) => {
       await routerPush('ChipGroupItemStyle');
@@ -140,8 +149,11 @@ export default function ChipGroupItemStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0940
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0940
+     * @tc.name    ChipGroup094
      * @tc.desc    set the size of ChipGroup itemStyle to {width:'100fp',height:100}, {width:100,height:'100fp'}
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0940', 0, async (done:Function) => {
       await routerPush('ChipGroupItemStyle');
@@ -169,8 +181,11 @@ export default function ChipGroupItemStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0950
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0950
+     * @tc.name    ChipGroup095
      * @tc.desc    set the size of ChipGroup itemStyle to {width:'100lpx',height:100}, {width:100,height:'100lpx'}
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0950', 0, async (done:Function) => {
       await routerPush('ChipGroupItemStyle');
@@ -202,8 +217,11 @@ export default function ChipGroupItemStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0980
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0980
+     * @tc.name    ChipGroup098
      * @tc.desc    set the size of ChipGroup itemStyle to {width:illegal,height:100}, {width:100,height:illegal}
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_0980', 0, async (done:Function) => {
       await routerPush('ChipGroupItemStyle');
@@ -231,8 +249,11 @@ export default function ChipGroupItemStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1030
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1030
+     * @tc.name    ChipGroup103
      * @tc.desc    set the size of ChipGroup itemStyle to {width:undefined,height:100}, {width:100,height:undefined}
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1030', 0, async (done:Function) => {
       await routerPush('ChipGroupItemStyle');
@@ -260,8 +281,11 @@ export default function ChipGroupItemStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1040
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1040
+     * @tc.name    ChipGroup104
      * @tc.desc    set the size of ChipGroup itemStyle to {width:null,height:100}, {width:100,height:null}
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1040', 0, async (done:Function) => {
       await routerPush('ChipGroupItemStyle');

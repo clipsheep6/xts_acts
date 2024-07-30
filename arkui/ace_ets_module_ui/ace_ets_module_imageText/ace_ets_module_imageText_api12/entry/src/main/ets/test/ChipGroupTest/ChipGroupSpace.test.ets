@@ -54,8 +54,11 @@ export default function ChipGroupSpace() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1270
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1270
+     * @tc.name    ChipGroup127
      * @tc.desc    set the itemSpace of ChipGroup to -5, 0, 10
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1270', 0, async (done:Function) => {
       await routerPush('ChipGroupItemSpaceSize');
@@ -83,8 +86,11 @@ export default function ChipGroupSpace() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1290
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1290
+     * @tc.name    ChipGroup129
      * @tc.desc    set the itemSpace of ChipGroup to Outliers, null, empty, undefined
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1280', 0, async (done:Function) => {
       await routerPush('ChipGroupItemSpaceSize');
@@ -117,8 +123,11 @@ export default function ChipGroupSpace() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1300
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1300
+     * @tc.name    ChipGroup130
      * @tc.desc    set the startSpace of ChipGroup to -5, 0, 10
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1300', 0, async (done:Function) => {
       await routerPush('ChipGroupStartSpace');
@@ -146,8 +155,11 @@ export default function ChipGroupSpace() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1320
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1320
+     * @tc.name    ChipGroup132
      * @tc.desc    set the startSpace of ChipGroup to Outliers, null, empty, undefined
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1320', 0, async (done:Function) => {
       await routerPush('ChipGroupStartSpace');
@@ -180,8 +192,11 @@ export default function ChipGroupSpace() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1330
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1330
+     * @tc.name    ChipGroup133
      * @tc.desc    set the startSpace of ChipGroup to system resource
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1330', 0, async (done:Function) => {
       await routerPush('ChipGroupStartSpace');
@@ -204,8 +219,11 @@ export default function ChipGroupSpace() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1340
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1340
+     * @tc.name    ChipGroup134
      * @tc.desc    set the startSpace of ChipGroup to app resource
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1340', 0, async (done:Function) => {
       await routerPush('ChipGroupStartSpace');
@@ -228,8 +246,11 @@ export default function ChipGroupSpace() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1370
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1370
+     * @tc.name    ChipGroup137
      * @tc.desc    set the endSpace of ChipGroup to -5, 0, 10
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1370', 0, async (done:Function) => {
       await routerPush('ChipGroupEndSpace');
@@ -257,8 +278,11 @@ export default function ChipGroupSpace() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1390
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1390
+     * @tc.name    ChipGroup139
      * @tc.desc    set the endSpace of ChipGroup to Outliers, null, empty, undefined
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1390', 0, async (done:Function) => {
       await routerPush('ChipGroupEndSpace');
@@ -291,8 +315,11 @@ export default function ChipGroupSpace() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1400
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1400
+     * @tc.name    ChipGroup140
      * @tc.desc    set the endSpace of ChipGroup to system resource
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1400', 0, async (done:Function) => {
       await routerPush('ChipGroupEndSpace');
@@ -315,8 +342,11 @@ export default function ChipGroupSpace() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1410
-     * @tc.name    SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1410
+     * @tc.name    ChipGroup141
      * @tc.desc    set the endSpace of ChipGroup to app resource
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1410', 0, async (done:Function) => {
       await routerPush('ChipGroupEndSpace');

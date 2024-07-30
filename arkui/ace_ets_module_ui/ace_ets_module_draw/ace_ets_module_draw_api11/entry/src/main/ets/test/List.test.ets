@@ -41,7 +41,7 @@ import pathNewTest from './pathTest/path.test';
 import polygonNewJsunit from './polygonTest/polygon.test';
 import polyLineNeJsunit from './polylineTest/polyLine.test';
 import rectNeJsunit from './RectTest/rect.test';
-import rectangleAdvance from './Rectangle.test'
+import rectangleAdvance from './RectAngleTest/Rectangle.test'
 
 export default function testsuite() {
   ellipseJsunit();

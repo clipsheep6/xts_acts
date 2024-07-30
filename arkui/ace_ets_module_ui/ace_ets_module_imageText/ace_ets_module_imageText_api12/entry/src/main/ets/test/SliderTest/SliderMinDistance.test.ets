@@ -52,8 +52,11 @@ export default function SliderMinDistance() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0050
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0050
+     * @tc.name    SliderInteractionMode005
      * @tc.desc    don't set the minResponsiveDistance of slider
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0050', 0, async (done:Function) => {
       await routerPush('SliderMinDistance');
@@ -75,8 +78,11 @@ export default function SliderMinDistance() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0060
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0060
+     * @tc.name    SliderInteractionMode006
      * @tc.desc    set the minResponsiveDistance of slider to -1
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0060', 0, async (done:Function) => {
       await routerPush('SliderMinDistance');
@@ -97,10 +103,13 @@ export default function SliderMinDistance() {
     });
 
     /*
-    * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0080
-    * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0080
-    * @tc.desc    set the minResponsiveDistance of slider to undefined
-    */
+     * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0080
+     * @tc.name    SliderInteractionMode008
+     * @tc.desc    set the minResponsiveDistance of slider to undefined
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
+     */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0080', 0, async (done:Function) => {
       await routerPush('SliderMinDistance');
       console.info('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0080 START');
@@ -121,8 +130,11 @@ export default function SliderMinDistance() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0090
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0090
+     * @tc.name    SliderInteractionMode009
      * @tc.desc    set the minResponsiveDistance of slider to min-max
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0090', 0, async (done:Function) => {
       await routerPush('SliderMinDistance');
@@ -144,8 +156,11 @@ export default function SliderMinDistance() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0100
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0100
+     * @tc.name    SliderInteractionMode010
      * @tc.desc    swipe the Slider 20 cm to the border
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0100', 0, async (done:Function) => {
       await routerPush('SliderMinDistance');
@@ -167,8 +182,11 @@ export default function SliderMinDistance() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0110
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0110
+     * @tc.name    SliderInteractionMode011
      * @tc.desc    swipe the Slider 10 cm to the border
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0110', 0, async (done:Function) => {
       await routerPush('SliderMinDistance');
@@ -190,8 +208,11 @@ export default function SliderMinDistance() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0170
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0170
+     * @tc.name    SliderInteractionMode017
      * @tc.desc    set the minResponsiveDistance of slider to 100
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0170', 0, async (done:Function) => {
       await routerPush('SliderMinDistance');

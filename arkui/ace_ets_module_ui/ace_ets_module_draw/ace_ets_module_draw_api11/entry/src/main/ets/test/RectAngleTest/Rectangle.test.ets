@@ -14,8 +14,8 @@
  */
 import router from '@ohos.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import CommonFunc from '../MainAbility/utils/Common';
-import Utils from '../MainAbility/common/Utils'
+import CommonFunc from '../../MainAbility/utils/Common';
+import Utils from '../../MainAbility/common/Utils'
 import { Component, Driver, ON } from '@ohos.UiTest';
 import componentUtils from '@ohos.arkui.componentUtils'
 
@@ -54,10 +54,13 @@ export default function rectangleAdvance() {
       console.info("rectangleAdvance before all called");
     });
 
-    /*
-     * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0010
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0010
-     * @tc.desc    Verify the AlphabetIndexer component supports the function of getRectangleById
+    /**
+     * @tc.number    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0010
+     * @tc.name      testDRAWAREA001
+     * @tc.desc      Verify the AlphabetIndexer component supports the function of getRectangleById
+     * @tc.level     Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0010', 0, async (done:Function) => {
       await routerPush('AlphabetIndex10');
@@ -74,10 +77,13 @@ export default function rectangleAdvance() {
       done();
     });
 
-    /*
-     * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0020
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0020
-     * @tc.desc    Verify the Badge component supports the function of getRectangleById
+    /**
+     * @tc.number    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0020
+     * @tc.name      testDRAWAREA002
+     * @tc.desc      Verify the Badge component supports the function of getRectangleById
+     * @tc.level     Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0020', 0, async (done:Function) => {
       await routerPush('Badge20');
@@ -92,10 +98,13 @@ export default function rectangleAdvance() {
       done();
     });
 
-    /*
-     * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0030
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0030
-     * @tc.desc    Verify the button component supports the function of getRectangleById
+    /**
+     * @tc.number    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0030
+     * @tc.name      testDRAWAREA003
+     * @tc.desc      Verify the button component supports the function of getRectangleById
+     * @tc.level     Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0030', 0, async (done:Function) => {
       await routerPush('Rect3_5');
@@ -112,8 +121,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0040
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0040
+     * @tc.name    testDRAWAREA004
      * @tc.desc    Verify the canvas component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0040', 0, async (done:Function) => {
       await routerPush('Rect3_5');
@@ -130,8 +142,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0050
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0050
+     * @tc.name    testDRAWAREA005
      * @tc.desc    Verify the checkboxGroup component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0050', 0, async (done:Function) => {
       await routerPush('Rect3_5');
@@ -148,8 +163,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0060
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0060
+     * @tc.name    testDRAWAREA006
      * @tc.desc    Verify the checkbox component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0050', 0, async (done:Function) => {
       await routerPush('Rect6_9');
@@ -166,8 +184,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0070
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0070
+     * @tc.name    testDRAWAREA007
      * @tc.desc    Verify the circle component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0070', 0, async (done:Function) => {
       await routerPush('Rect6_9');
@@ -184,8 +205,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0080
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0080
+     * @tc.name    testDRAWAREA008
      * @tc.desc    Verify the column component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0080', 0, async (done:Function) => {
       await routerPush('Rect6_9');
@@ -202,8 +226,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0090
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0090
+     * @tc.name    testDRAWAREA009
      * @tc.desc    Verify the counter component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0090', 0, async (done:Function) => {
       await routerPush('Rect6_9');
@@ -220,8 +247,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0110
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0110
+     * @tc.name    testDRAWAREA011
      * @tc.desc    Verify the DatePicker component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0110', 0, async (done:Function) => {
       await routerPush('Rect11_15');
@@ -238,8 +268,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0120
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0120
+     * @tc.name    testDRAWAREA012
      * @tc.desc    Verify the Divider component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0120', 0, async (done:Function) => {
       await routerPush('Rect11_15');
@@ -256,8 +289,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0130
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0130
+     * @tc.name    testDRAWAREA013
      * @tc.desc    Verify the Ellipse component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0130', 0, async (done:Function) => {
       await routerPush('Rect11_15');
@@ -274,8 +310,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0140
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0140
+     * @tc.name    testDRAWAREA014
      * @tc.desc    Verify the FormComponent component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0140', 0, async (done:Function) => {
       await routerPush('Rect11_15');
@@ -292,8 +331,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0150
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0150
+     * @tc.name    testDRAWAREA015
      * @tc.desc    Verify the FormLink component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0150', 0, async (done:Function) => {
       await routerPush('Rect11_15');
@@ -310,8 +352,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0160
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0160
+     * @tc.name    testDRAWAREA016
      * @tc.desc    Verify the Gauge component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0160', 0, async (done:Function) => {
       await routerPush('Rect16_20');
@@ -328,8 +373,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0170
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0170
+     * @tc.name    testDRAWAREA017
      * @tc.desc    Verify the GridRow component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0170', 0, async (done:Function) => {
       await routerPush('Rect16_20');
@@ -346,8 +394,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0180
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0180
+     * @tc.name    testDRAWAREA018
      * @tc.desc    Verify the Grid component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0180', 0, async (done:Function) => {
       await routerPush('Rect16_20');
@@ -364,8 +415,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0190
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0190
+     * @tc.name    testDRAWAREA019
      * @tc.desc    Verify the ImageAnimator component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0190', 0, async (done:Function) => {
       await routerPush('Rect16_20');
@@ -382,8 +436,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0200
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0200
+     * @tc.name    testDRAWAREA020
      * @tc.desc    Verify the ImageSpan component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0200', 0, async (done:Function) => {
       await routerPush('Rect16_20');
@@ -400,8 +457,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0210
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0210
+     * @tc.name    testDRAWAREA021
      * @tc.desc    Verify the Image component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0210', 0, async (done:Function) => {
       await routerPush('Rect21_24');
@@ -418,8 +478,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0220
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0220
+     * @tc.name    testDRAWAREA022
      * @tc.desc    Verify the Line component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0220', 0, async (done:Function) => {
       await routerPush('Rect21_24');
@@ -436,8 +499,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0230
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0230
+     * @tc.name    testDRAWAREA023
      * @tc.desc    Verify the ListItemGroup component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0230', 0, async (done:Function) => {
       await routerPush('Rect21_24');
@@ -454,8 +520,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0240
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0240
+     * @tc.name    testDRAWAREA024
      * @tc.desc    Verify the ListItem component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0240', 0, async (done:Function) => {
       await routerPush('Rect21_24');
@@ -472,8 +541,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0250
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0250
+     * @tc.name    testDRAWAREA025
      * @tc.desc    Verify the List component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0250', 0, async (done:Function) => {
       await routerPush('Rect25_28');
@@ -490,8 +562,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0260
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0260
+     * @tc.name    testDRAWAREA026
      * @tc.desc    Verify the MenuItemGroup component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0260', 0, async (done:Function) => {
       await routerPush('Rect25_28');
@@ -508,8 +583,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0270
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0270
+     * @tc.name    testDRAWAREA027
      * @tc.desc    Verify the MenuItem component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0270', 0, async (done:Function) => {
       await routerPush('Rect25_28');
@@ -526,8 +604,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0280
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0280
+     * @tc.name    testDRAWAREA028
      * @tc.desc    Verify the Menu component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0280', 0, async (done:Function) => {
       await routerPush('Rect25_28');
@@ -544,8 +625,11 @@ export default function rectangleAdvance() {
 
     /*
      * @tc.number  SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0290
-     * @tc.name    SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0290
+     * @tc.name    testDRAWAREA029
      * @tc.desc    Verify the NavDestination component supports the function of getRectangleById
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_ATTRIBUTES_POSITION_SIZE_DRAWAREA_0290', 0, async (done:Function) => {
       await routerPush('NavDestination290');

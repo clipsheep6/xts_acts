@@ -52,8 +52,11 @@ export default function SliderInteractionMode() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0140
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0140
+     * @tc.name    SliderInteractionMode014
      * @tc.desc    set the sliderInteractionMode of slider to SLIDE_AND_CLICK
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0140', 0, async (done:Function) => {
       await routerPush('SliderInteraction');
@@ -80,8 +83,11 @@ export default function SliderInteractionMode() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0160
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0160
+     * @tc.name    SliderInteractionMode016
      * @tc.desc    set the sliderInteractionMode of slider to SLIDE_ONLY
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0160', 0, async (done:Function) => {
       await routerPush('SliderInteraction');

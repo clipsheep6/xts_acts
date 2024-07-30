@@ -52,8 +52,11 @@ export default function SliderStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0010
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0010
+     * @tc.name    SliderInteractionMode017
      * @tc.desc    set the style of slider to undefined
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0010', 0, async (done:Function) => {
       await routerPush('SliderStyle');
@@ -80,8 +83,11 @@ export default function SliderStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0020
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0020
+     * @tc.name    SliderInteractionMode017
      * @tc.desc    set the style of slider to null
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0020', 0, async (done:Function) => {
       await routerPush('SliderStyle');
@@ -108,8 +114,11 @@ export default function SliderStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0030
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0030
+     * @tc.name    SliderInteractionMode017
      * @tc.desc    don't set the style of Slider
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0030', 0, async (done:Function) => {
       await routerPush('SliderStyle');
@@ -136,8 +145,11 @@ export default function SliderStyle() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0040
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0040
+     * @tc.name    SliderInteractionMode017
      * @tc.desc    Dynamic switch the style of Slider
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_SLIDER_SLIDERINTERACTIONMODE_0040', 0, async (done:Function) => {
       await routerPush('SliderStyle');

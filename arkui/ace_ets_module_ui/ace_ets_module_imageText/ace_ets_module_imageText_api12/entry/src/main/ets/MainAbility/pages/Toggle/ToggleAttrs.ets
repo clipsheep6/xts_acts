@@ -18,9 +18,11 @@
 struct ToggleAttrsExample {
   @State colorFocus:string='#ff688ade'
   @State colorEnable:string='#ff688ade'
+  @State message:string=''
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Text(this.message).id('message')
         Toggle({ type: ToggleType.Switch, isOn: true  })
           .selectedColor('#ffff0026')
           .switchPointColor('#FFFFFF')
@@ -30,6 +32,7 @@ struct ToggleAttrsExample {
           .switchPointColor('#FFFFFF')
           .onChange((isOn: boolean) => {
             console.log('Component status:' + isOn)
+            this.message = 'Toggle changed'
           }).id('logToggle')
         Toggle({ type: ToggleType.Switch, isOn: false})
           .selectedColor('#ff688ade')

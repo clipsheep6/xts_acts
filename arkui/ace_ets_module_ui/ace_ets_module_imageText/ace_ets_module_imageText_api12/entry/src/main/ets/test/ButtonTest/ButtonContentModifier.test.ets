@@ -50,8 +50,11 @@ export default function ButtonContentModifier() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0010
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0010
+     * @tc.name    buttonCustomizing001
      * @tc.desc    set button label to null
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0010', 0, async (done:Function) => {
       await routerPush('ButtonLabel');
@@ -68,8 +71,11 @@ export default function ButtonContentModifier() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0020
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0020
+     * @tc.name    buttonCustomizing002
      * @tc.desc    set button label to undefined
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0020', 0, async (done:Function) => {
       await routerPush('ButtonLabel');
@@ -86,8 +92,11 @@ export default function ButtonContentModifier() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0030
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0030
+     * @tc.name    buttonCustomizing003
      * @tc.desc    set button label to abc
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0030', 0, async (done:Function) => {
       await routerPush('ButtonLabel');
@@ -104,8 +113,11 @@ export default function ButtonContentModifier() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0040
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0040
+     * @tc.name    buttonCustomizing004
      * @tc.desc    set button label to ""
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0040', 0, async (done:Function) => {
       await routerPush('ButtonLabel');
@@ -122,8 +134,11 @@ export default function ButtonContentModifier() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0050
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0050
+     * @tc.name    buttonCustomizing005
      * @tc.desc    set button label to longStr
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0050', 0, async (done:Function) => {
       await routerPush('ButtonLabel');
@@ -148,8 +163,11 @@ export default function ButtonContentModifier() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0070
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0070
+     * @tc.name    buttonCustomizing007
      * @tc.desc    set button enable to false
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0070', 0, async (done:Function) => {
       await routerPush('ButtonAttrs');
@@ -170,8 +188,11 @@ export default function ButtonContentModifier() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0080
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0080
+     * @tc.name    buttonCustomizing008
      * @tc.desc    Add the triggerClick to get the click coordinates from the callback
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0080', 0, async (done:Function) => {
       await routerPush('ButtonAttrs');
@@ -191,8 +212,11 @@ export default function ButtonContentModifier() {
 
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0110
-     * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0110
+     * @tc.name    buttonCustomizing011
      * @tc.desc     don't add the triggerClick, button can't be clicked
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
      */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0110', 0, async (done:Function) => {
       routerPush('ButtonTriggerClick011');
@@ -209,8 +233,11 @@ export default function ButtonContentModifier() {
 
     /*
     * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0120
-    * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0120
+    * @tc.name    buttonCustomizing012
     * @tc.desc    set contentModifier to undefined
+    * @tc.level   Level 3
+    * @tc.type
+    * @tc.size
     */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0120', 0, async (done:Function) => {
       routerPush('ButtonAttrs');
@@ -226,10 +253,13 @@ export default function ButtonContentModifier() {
     });
 
     /*
-    * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0130
-    * @tc.name    SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0130
-    * @tc.desc    set contentModifier to null
-    */
+     * @tc.number  SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0130
+     * @tc.name    buttonCustomizing013
+     * @tc.desc    set contentModifier to null
+     * @tc.level   Level 3
+     * @tc.type
+     * @tc.size
+     */
     it('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0130', 0, async (done:Function) => {
       routerPush('ButtonAttrs');
       console.info('SUB_ACE_UI_COMPONENT_BUTTON_BUTTON_CUSTOMIZING_0130 START');
