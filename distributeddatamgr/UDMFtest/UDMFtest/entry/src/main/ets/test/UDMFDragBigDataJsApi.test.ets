@@ -75,6 +75,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Text;
             if (record.details != undefined ){
               expect(record.details.content).assertEqual(LONG_TESTOVER2M);
@@ -132,6 +133,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Text;
             if (record.details != undefined ){
               expect(record.details.content).assertEqual(LONG_TEST2M);
@@ -190,6 +192,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Text;
             if (record.details != undefined ){
               expect(record.details.content).assertEqual(LONG_TESTIN2M);
@@ -248,6 +251,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Text;
             if (record.details != undefined ){
               expect(record.details.content).assertEqual(LONG_TESTOVER4M);
@@ -306,6 +310,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Text;
             if (record.details != undefined ){
               expect(record.details.content).assertEqual(LONG_TEST4M);
@@ -364,6 +369,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Text;
             if (record.details != undefined ){
               expect(record.details.content).assertEqual(LONG_TESTIN4M);
@@ -427,6 +433,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record:unifiedDataChannel.Text  = data[0].getRecords()[0];
             if (record.details != undefined ){
               expect(record.details.content).assertEqual(LONG_TEST);
@@ -485,11 +492,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.PlainText;
             expect(record.textContent).assertEqual(LONG_TEST2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -539,11 +548,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.PlainText;
             expect(record.textContent).assertEqual(LONG_TESTOVER2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -593,11 +604,14 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.PlainText;
             expect(record.textContent).assertEqual(LONG_TESTIN2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
+              console.info(TAG, 'delete success.1111111111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -647,11 +661,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.PlainText;
             expect(record.textContent).assertEqual(LONG_TEST4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -701,11 +717,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.PlainText;
             expect(record.textContent).assertEqual(LONG_TESTOVER4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -755,11 +773,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.PlainText;
             expect(record.textContent).assertEqual(LONG_TESTIN4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -809,11 +829,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Hyperlink;
             expect(record.description).assertEqual(LONG_TEST2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -863,11 +885,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Hyperlink;
             expect(record.description).assertEqual(LONG_TESTOVER2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -917,11 +941,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Hyperlink;
             expect(record.description).assertEqual(LONG_TESTIN2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -971,11 +997,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Hyperlink;
             expect(record.description).assertEqual(LONG_TEST4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1025,11 +1053,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Hyperlink;
             expect(record.description).assertEqual(LONG_TESTOVER4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1079,11 +1109,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Hyperlink;
             expect(record.description).assertEqual(LONG_TESTIN4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1133,11 +1165,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.HTML;
             expect(record.plainContent).assertEqual(LONG_TEST2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1187,11 +1221,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.HTML;
             expect(record.plainContent).assertEqual(LONG_TESTOVER2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1241,11 +1277,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.HTML;
             expect(record.plainContent).assertEqual(LONG_TESTIN2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1295,11 +1333,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.HTML;
             expect(record.plainContent).assertEqual(LONG_TEST4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1349,11 +1389,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.HTML;
             expect(record.plainContent).assertEqual(LONG_TESTOVER4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1403,11 +1445,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.HTML;
             expect(record.plainContent).assertEqual(LONG_TESTIN4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1460,6 +1504,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedRecord;
             if ((record.details) != undefined ) {
               expect(record.details.content).assertEqual(LONG_TEST2M);
@@ -1521,6 +1566,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedRecord;
             if ((record.details) != undefined){
               expect(record.details.content).assertEqual(LONG_TESTOVER2M);
@@ -1582,6 +1628,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedRecord;
             if ((record.details) != undefined ){
               expect(record.details.content).assertEqual(LONG_TESTIN2M);
@@ -1643,6 +1690,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedRecord;
             if ((record.details) != undefined){
               expect(record.details.content).assertEqual(LONG_TEST4M);
@@ -1704,6 +1752,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedRecord;
             if ((record.details) != undefined){
               expect(record.details.content).assertEqual(LONG_TESTOVER4M);
@@ -1765,6 +1814,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedRecord;
             if ((record.details)!=undefined){
               expect(record.details.content).assertEqual(LONG_TESTIN4M);
@@ -1823,11 +1873,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedForm;
             expect(record.module).assertEqual(LONG_TEST2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1877,11 +1929,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedForm;
             expect(record.module).assertEqual(LONG_TESTOVER2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1931,11 +1985,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedForm;
             expect(record.module).assertEqual(LONG_TESTIN2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -1985,11 +2041,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedForm;
             expect(record.module).assertEqual(LONG_TEST4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2039,11 +2097,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedForm;
             expect(record.module).assertEqual(LONG_TESTOVER4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2093,11 +2153,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedForm;
             expect(record.module).assertEqual(LONG_TESTIN4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2147,11 +2209,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedAppItem;
             expect(record.abilityName).assertEqual(LONG_TEST2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2201,11 +2265,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedAppItem;
             expect(record.abilityName).assertEqual(LONG_TESTOVER2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2255,11 +2321,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedAppItem;
             expect(record.abilityName).assertEqual(LONG_TESTIN2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2309,11 +2377,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedAppItem;
             expect(record.abilityName).assertEqual(LONG_TEST4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2363,11 +2433,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedAppItem;
             expect(record.abilityName).assertEqual(LONG_TESTOVER4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2417,11 +2489,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedAppItem;
             expect(record.abilityName).assertEqual(LONG_TESTIN4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2472,11 +2546,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Folder;
             expect(record.uri).assertEqual(LONG_TEST2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2526,11 +2602,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Folder;
             expect(record.uri).assertEqual(LONG_TESTOVER2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2580,11 +2658,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Folder;
             expect(record.uri).assertEqual(LONG_TESTIN2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2634,11 +2714,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Folder;
             expect(record.uri).assertEqual(LONG_TEST4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2688,11 +2770,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Folder;
             expect(record.uri).assertEqual(LONG_TESTOVER4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2742,11 +2826,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Folder;
             expect(record.uri).assertEqual(LONG_TESTIN4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2796,11 +2882,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.File;
             expect(record.uri).assertEqual(LONG_TEST2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2850,11 +2938,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.File;
             expect(record.uri).assertEqual(LONG_TESTOVER2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2904,11 +2994,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.File;
             expect(record.uri).assertEqual(LONG_TESTIN2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -2958,11 +3050,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.File;
             expect(record.uri).assertEqual(LONG_TEST4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3012,11 +3106,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.File;
             expect(record.uri).assertEqual(LONG_TESTOVER4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3066,11 +3162,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.File;
             expect(record.uri).assertEqual(LONG_TESTIN4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3121,11 +3219,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Image;
             expect(record.uri).assertEqual(LONG_TEST2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3175,11 +3275,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Image;
             expect(record.uri).assertEqual(LONG_TESTOVER2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3229,11 +3331,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Image;
             expect(record.uri).assertEqual(LONG_TESTIN2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3283,11 +3387,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Image;
             expect(record.uri).assertEqual(LONG_TEST4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3337,11 +3443,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Image;
             expect(record.uri).assertEqual(LONG_TESTOVER4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3391,11 +3499,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Image;
             expect(record.uri).assertEqual(LONG_TESTIN4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3445,11 +3555,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Video;
             expect(record.uri).assertEqual(LONG_TEST2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3499,11 +3611,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Video;
             expect(record.uri).assertEqual(LONG_TESTOVER2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3553,11 +3667,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Video;
             expect(record.uri).assertEqual(LONG_TESTIN2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3607,11 +3723,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Video;
             expect(record.uri).assertEqual(LONG_TEST4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3661,11 +3779,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Video;
             expect(record.uri).assertEqual(LONG_TESTOVER4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3715,11 +3835,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Video;
             expect(record.uri).assertEqual(LONG_TESTIN4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3769,11 +3891,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Audio;
             expect(record.uri).assertEqual(LONG_TEST2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3823,11 +3947,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Audio;
             expect(record.uri).assertEqual(LONG_TESTOVER2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3877,11 +4003,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Audio;
             expect(record.uri).assertEqual(LONG_TESTIN2M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3931,11 +4059,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Audio;
             expect(record.uri).assertEqual(LONG_TEST4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -3985,11 +4115,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Audio;
             expect(record.uri).assertEqual(LONG_TESTOVER4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -4039,11 +4171,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.Audio;
             expect(record.uri).assertEqual(LONG_TESTIN4M);
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -4098,6 +4232,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedPixelMap;
             if ((record.details) != undefined){
               expect(record.details.recordKey1).assertEqual('s');
@@ -4162,6 +4297,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedPixelMap;
             if((record.details) != undefined) {
               expect(record.details.recordKey1).assertEqual('ss');
@@ -4223,11 +4359,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedPixelMap;
             expect((record.rawData).toString()).assertEqual(LONG_U8_ARRAY.toString());
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -4283,6 +4421,8 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedPixelMap;
             if((record.details) != undefined) {
               expect(record.details.recordKey1).assertEqual('s');
@@ -4347,6 +4487,7 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedPixelMap;
             if((record.details) != undefined) {
               expect(record.details.recordKey1).assertEqual('ss');
@@ -4408,11 +4549,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.SystemDefinedPixelMap;
             expect((record.rawData).toString()).assertEqual(LONG_U8_ARRAY.toString());
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -4465,12 +4608,14 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.ApplicationDefinedRecord;
             expect(record.applicationDefinedType).assertEqual('s');
             expect((record.rawData).toString()).assertEqual(LONG_U8_ARRAY.toString());
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -4523,12 +4668,14 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.ApplicationDefinedRecord;
             expect(record.applicationDefinedType).assertEqual('ss');
             expect((record.rawData).toString()).assertEqual(LONG_U8_ARRAY.toString());
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -4580,11 +4727,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.ApplicationDefinedRecord;
             expect((record.rawData).toString()).assertEqual(LONG_U8_ARRAY.toString());
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -4637,12 +4786,14 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.ApplicationDefinedRecord;
             expect(record.applicationDefinedType).assertEqual('s');
             expect((record.rawData).toString()).assertEqual(LONG_U8_ARRAY.toString());
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -4695,12 +4846,14 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.ApplicationDefinedRecord;
             expect(record.applicationDefinedType).assertEqual('ss');
             expect((record.rawData).toString()).assertEqual(LONG_U8_ARRAY.toString());
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
@@ -4752,11 +4905,13 @@ export default function UDMFDragBigDataJsApiTest() {
           unifiedDataChannel.queryData(options).then((data) => {
             console.info(TAG, 'query success.');
             expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
             let record = data[0].getRecords()[0] as unifiedDataChannel.ApplicationDefinedRecord;
             expect((record.rawData).toString()).assertEqual(LONG_U8_ARRAY.toString());
             unifiedDataChannel.deleteData(options).then((data) => {
-              console.info(TAG, 'delete success.');
-              expect(data.length).assertEqual(1);
+              console.info(TAG, 'query success.');
+            expect(data.length).assertEqual(1);
+            console.info(TAG, 'query success.1111111111111');
               done();
             }).catch(() => {
               console.error(TAG, 'Unreachable code!');
