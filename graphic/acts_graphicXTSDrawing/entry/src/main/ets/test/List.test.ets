@@ -18,10 +18,12 @@ import pathEffectTest from './PathEffect.test';
 import shadowLayerTest from './ShadowLayer.test';
 import colorFilterTest from './ColorFilter.test';
 import penTest from './Pen.test';
+import penPart2Test from './PenPart2.test'
 import brushTest from './Brush.test';
 import fontTest from './Font.test';
 import fontPart2Test from './FontPart2.test'
 import fontPart3Test from './FontPart3.test'
+import latticeTest from './Lattice.test'
 import typefaceTest from './Typeface.test';
 import textBlobTest from './TextBlob.test';
 import drawingTsPathTest from './Path.test';
@@ -39,10 +41,12 @@ export default function testsuite() {
   shadowLayerTest();
   colorFilterTest();
   penTest();
+  penPart2Test();
   brushTest();
   fontTest();
   fontPart2Test();
   fontPart3Test();
+  latticeTest();
   drawingTsMatrixTest();
   drawingTsMatrixTestPart2();
   typefaceTest();
