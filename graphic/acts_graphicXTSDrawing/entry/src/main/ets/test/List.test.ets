@@ -24,15 +24,17 @@ import fontTest from './Font.test';
 import fontPart2Test from './FontPart2.test'
 import fontPart3Test from './FontPart3.test'
 import latticeTest from './Lattice.test'
+import imageFilterTest from './ImageFilter.test'
 import typefaceTest from './Typeface.test';
 import textBlobTest from './TextBlob.test';
 import drawingTsPathTest from './Path.test';
 import drawingTsCanvasTest from './Canvas.test';
 import drawingTsCanvasPart2Test from './CanvasPart2.test';
 import drawingTsCanvasPart3Test from './CanvasPart3.test';
-import drawingTsRegionTest from './Region.test'
+import drawingTsRegionTest from './Region.test';
 import drawingTsMatrixTest from './Matrix.test';
-import drawingTsMatrixTestPart2  from './MatrixPart2.test'
+import drawingTsMatrixTestPart2 from './MatrixPart2.test';
+import roundRectTest from './RoundRect.test';
 
 export default function testsuite() {
   samplingOptionsTest();
@@ -46,6 +48,7 @@ export default function testsuite() {
   fontTest();
   fontPart2Test();
   fontPart3Test();
+  imageFilterTest();
   latticeTest();
   drawingTsMatrixTest();
   drawingTsMatrixTestPart2();
@@ -56,4 +59,5 @@ export default function testsuite() {
   drawingTsCanvasPart2Test();
   drawingTsCanvasPart3Test(); 
   drawingTsRegionTest();
+  roundRectTest();
 }
