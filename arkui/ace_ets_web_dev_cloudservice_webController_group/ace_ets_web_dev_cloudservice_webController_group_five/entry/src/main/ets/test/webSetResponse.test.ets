@@ -81,7 +81,9 @@ export default function ActsAceWebSetResponse() {
     it('testWebSetResponseStatus', 0, async (done: Function) => {
       emitKey = "emitWebSetResponseStatus"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebSetResponseStatus", true, 1001, done);
+      Utils.registerBaseEvent("testWebSetResponseStatus", true, 1001, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webSetNetErrorCode', 10, '');
     })
 
@@ -96,7 +98,9 @@ export default function ActsAceWebSetResponse() {
     it('testWebSetResponseStatusText', 0, async (done: Function) => {
       emitKey = "emitWebSetResponseStatusText"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebSetResponseStatusText", true, 1002, done);
+      Utils.registerBaseEvent("testWebSetResponseStatusText", true, 1002, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webSetNetErrorCode', 10, '');
     })
 
@@ -111,7 +115,9 @@ export default function ActsAceWebSetResponse() {
     it('testWebSetResponseMimeType', 0, async (done: Function) => {
       emitKey = "emitWebSetResponseMimeType"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebSetResponseMimeType", true, 1003, done);
+      Utils.registerBaseEvent("testWebSetResponseMimeType", true, 1003, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webSetNetErrorCode', 10, '');
     })
 
@@ -126,7 +132,9 @@ export default function ActsAceWebSetResponse() {
     it('testWebSetResponseEncoding', 0, async (done: Function) => {
       emitKey = "emitWebSetResponseEncoding"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebSetResponseEncoding", true, 1004, done);
+      Utils.registerBaseEvent("testWebSetResponseEncoding", true, 1004, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webSetNetErrorCode', 10, '');
     })
 
@@ -141,7 +149,9 @@ export default function ActsAceWebSetResponse() {
     it('testWebSetResponseHeaderNameNull', 0, async (done: Function) => {
       emitKey = "emitWebSetResponseHeaderNameNull"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebSetResponseHeaderNameNull", true, 1005, done);
+      Utils.registerBaseEvent("testWebSetResponseHeaderNameNull", true, 1005, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webSetNetErrorCode', 10, '');
     })
 
@@ -156,7 +166,9 @@ export default function ActsAceWebSetResponse() {
     it('testWebSetResponseHeaderValueNull', 0, async (done: Function) => {
       emitKey = "emitWebSetResponseHeaderValueNull"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebSetResponseHeaderValueNull", true, 1006, done);
+      Utils.registerBaseEvent("testWebSetResponseHeaderValueNull", true, 1006, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webSetNetErrorCode', 10, '');
     })
 
@@ -171,7 +183,9 @@ export default function ActsAceWebSetResponse() {
     it('testWebSetResponseHeaderOverwriteNull', 0, async (done: Function) => {
       emitKey = "emitWebSetResponseHeaderOverwriteNull"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebSetResponseHeaderOverwriteNull", true, 1007, done);
+      Utils.registerBaseEvent("testWebSetResponseHeaderOverwriteNull", true, 1007, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webSetNetErrorCode', 10, '');
     })
   })
