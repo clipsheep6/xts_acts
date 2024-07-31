@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import stateInfoAppTest from './StateInfoApp.test';
-import stateInfoServiceExtensionTest from './StateInfoServiceExtension.test';
+import onApplicationState from './OnApplicationState.test';
+import getForegroundApplicationsTest from './GetForegroundApplications.test';
 
 export default function testsuite() {
-  stateInfoAppTest();
-  stateInfoServiceExtensionTest();
+  onApplicationState();
+  getForegroundApplicationsTest();
 }

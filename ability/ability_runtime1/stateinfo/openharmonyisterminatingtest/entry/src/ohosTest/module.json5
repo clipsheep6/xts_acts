@@ -20,8 +20,7 @@
     "mainElement": "TestAbility",
     "deviceTypes": [
       "default",
-      "tablet",
-	  "2in1"
+      "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -50,7 +49,7 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.GET_RUNNING_INFO"
+        "name": "ohos.permission.RUNNING_STATE_OBSERVER"
       }
     ]
   }

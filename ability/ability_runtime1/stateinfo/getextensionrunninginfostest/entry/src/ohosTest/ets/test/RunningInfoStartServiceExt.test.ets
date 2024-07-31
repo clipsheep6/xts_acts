@@ -26,15 +26,15 @@ function sleep(time: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, time))
 }
 
-export default function stateInfoStartServiceExtensionTest() {
+export default function runningInfoStartServiceExt() {
   let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-  let service1Want: Want = {
-    bundleName: 'com.hits.stateinfo.serviceappa',
+  let serviceEmptyWant: Want = {
+    bundleName: 'com.hits.stateinfoservice.empty',
     abilityName: 'ServiceAbility'
   }
   let upperLimit = 30;
   let ready = false;
-  describe('stateInfoStartServiceExtensionTest', () => {
+  describe('runningInfoStartServiceExt', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
@@ -46,7 +46,7 @@ export default function stateInfoStartServiceExtensionTest() {
       // This API supports only one parameter: preset action function.
       try {
         // 启动server1
-        abilityDelegator.startAbility(service1Want);
+        abilityDelegator.startAbility(serviceEmptyWant);
         hilog.info(Domain, TAG, `beforeEach startServiceExtensionAbility success`);
         sleep(500);
         ready = true;
@@ -91,7 +91,7 @@ export default function stateInfoStartServiceExtensionTest() {
                   let result = false;
                   for (let index = 0; index < runningInfos.length; index++) {
                     let info: abilityManager.ExtensionRunningInfo = runningInfos[index];
-                    if (info.processName == service1Want.bundleName) {
+                    if (info.processName == serviceEmptyWant.bundleName) {
                       result = true;
                       break;
                     }
@@ -131,7 +131,7 @@ export default function stateInfoStartServiceExtensionTest() {
           let hasService1 = false;
           for (let index = 0; index < runningInfos.length; index++) {
             let info: abilityManager.ExtensionRunningInfo = runningInfos[index];
-            if (info.processName == service1Want.bundleName) {
+            if (info.processName == serviceEmptyWant.bundleName) {
               hasService1 = true;
               break;
             }
@@ -177,7 +177,7 @@ export default function stateInfoStartServiceExtensionTest() {
                   let result = false;
                   for (let index = 0; index < runningInfos.length; index++) {
                     let info: abilityManager.ExtensionRunningInfo = runningInfos[index];
-                    if (info.processName == service1Want.bundleName) {
+                    if (info.processName == serviceEmptyWant.bundleName) {
                       result = true;
                       break;
                     }
@@ -219,7 +219,7 @@ export default function stateInfoStartServiceExtensionTest() {
           let hasService1 = false;
           for (let index = 0; index < runningInfos.length; index++) {
             let info: abilityManager.ExtensionRunningInfo = runningInfos[index];
-            if (info.processName == service1Want.bundleName) {
+            if (info.processName == serviceEmptyWant.bundleName) {
               hasService1 = true;
               break;
             }

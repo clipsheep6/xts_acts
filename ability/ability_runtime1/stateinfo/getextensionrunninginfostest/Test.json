@@ -12,8 +12,8 @@
         {
             "test-file-name": [
                 "HitsStateInfoGetRunningInfoTest.hap",
-				"HitsStateInfoServicAppA.hap",
-				"HitsStateInfoAppA.hap"
+                "HitsStateInfoServiceEmpty.hap",
+                "HitsStateInfoAppEmpty.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
@@ -25,17 +25,10 @@
             ]
         },
         {
-            "type": "PushKit",
-            "push": [
-                "HitsStateInfoServicAppA.hap->/data/app/el2/100/base/com.hits.stateinfo.getrunninginfotest/files/",
-                "HitsStateInfoAppA.hap->/data/app/el2/100/base/com.hits.stateinfo.getrunninginfotest/files/",
-            ]
-        },
-        {
             "type": "ShellKit",
             "teardown-command": [
-                "bm uninstall -n com.hits.stateinfo.serviceappa",
-                "bm uninstall -n com.hits.stateinfo.appa"
+                "bm uninstall -n com.hits.stateinfoservice.empty",
+                "bm uninstall -n com.hits.stateinfo.empty"
             ]
         }
     ]

@@ -12,11 +12,8 @@
         {
             "test-file-name": [
                 "HitsStateInfoIsTerminatingTest.hap",
-				"HitsStateInfoServicAppA.hap",
-				"HitsStateInfoServicAppB.hap",
-				"HitsStateInfoAppA.hap",
-				"HitsStateInfoAppB.hap",
-				"HitsStateInfoAppC.hap",
+                "HitsStateInfoServiceEmpty.hap",
+                "HitsStateInfoAppEmpty.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
@@ -30,11 +27,8 @@
         {
             "type": "ShellKit",
             "teardown-command": [
-                "bm uninstall -n com.hits.stateinfo.serviceappa",
-                "bm uninstall -n com.hits.stateinfo.serviceappb",
-                "bm uninstall -n com.hits.stateinfo.appa",
-                "bm uninstall -n com.hits.stateinfo.appb",
-                "bm uninstall -n com.hits.stateinfo.appc"
+                "bm uninstall -n com.hits.stateinfoservice.empty",
+                "bm uninstall -n com.hits.stateinfo.empty"
             ]
         }
     ]
