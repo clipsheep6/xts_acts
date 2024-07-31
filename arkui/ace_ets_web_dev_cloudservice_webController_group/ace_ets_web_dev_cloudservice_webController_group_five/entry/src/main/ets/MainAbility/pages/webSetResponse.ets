@@ -123,7 +123,7 @@ struct webSetResponse {
                     case 'emitWebSetResponseHeaderNameNull': {
                       let response: webview.WebSchemeHandlerResponse = new webview.WebSchemeHandlerResponse();
                       try {
-                        response.setHeaderByName(null, "test", true);
+                        response.setHeaderByName(null, 'test', true);
                         Utils.emitEvent(false, 1005)
                       } catch (error) {
                         let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -140,7 +140,7 @@ struct webSetResponse {
                     case 'emitWebSetResponseHeaderValueNull': {
                       let response: webview.WebSchemeHandlerResponse = new webview.WebSchemeHandlerResponse();
                       try {
-                        response.setHeaderByName("test", null, true);
+                        response.setHeaderByName('test', null, true);
                         Utils.emitEvent(false, 1006)
                       } catch (error) {
                         let e:business_error.BusinessError = error as business_error.BusinessError;
@@ -157,7 +157,7 @@ struct webSetResponse {
                     case 'emitWebSetResponseHeaderOverwriteNull': {
                       let response: webview.WebSchemeHandlerResponse = new webview.WebSchemeHandlerResponse();
                       try {
-                        response.setHeaderByName("test", "test", null);
+                        response.setHeaderByName('test', 'test', null);
                         Utils.emitEvent(false, 1007)
                       } catch (error) {
                         let e:business_error.BusinessError = error as business_error.BusinessError;
