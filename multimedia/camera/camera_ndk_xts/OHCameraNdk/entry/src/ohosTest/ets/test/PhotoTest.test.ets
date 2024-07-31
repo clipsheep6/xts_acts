@@ -303,7 +303,7 @@ export default function PhotoTest() {
      */
     it('testOHPreviewOutputGetActiveProfile0100', 0, () => {
 
-      let ret = cameras.OHPreviewOutputGetActiveProfile(0);
+      let ret = cameras.oHPreviewOutputGetActiveProfile(0);
       console.log(TAG+"testOHPreviewOutputGetActiveProfile0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -317,7 +317,7 @@ export default function PhotoTest() {
      */
     it('testOHPreviewOutputGetActiveProfile0200', 0, () => {
 
-      let ret = cameras.OHPreviewOutputGetActiveProfile(1);
+      let ret = cameras.oHPreviewOutputGetActiveProfile(1);
       console.log(TAG+"testOHPreviewOutputGetActiveProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -331,7 +331,7 @@ export default function PhotoTest() {
      */
     it('testOHPreviewOutputGetActiveProfile0300', 0, () => {
 
-      let ret = cameras.OHPreviewOutputGetActiveProfile(2);
+      let ret = cameras.oHPreviewOutputGetActiveProfile(2);
       console.log(TAG+"testOHPreviewOutputGetActiveProfile0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -345,7 +345,7 @@ export default function PhotoTest() {
      */
     it('testOHPreviewOutputDeleteProfile0100', 0, () => {
 
-      let ret = cameras.OHPreviewOutputDeleteProfile(0);
+      let ret = cameras.oHPreviewOutputDeleteProfile(0);
       console.log(TAG+"testOHPreviewOutputDeleteProfile0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -359,7 +359,7 @@ export default function PhotoTest() {
      */
     it('testOHPreviewOutputDeleteProfile0200', 0, () => {
 
-      let ret = cameras.OHPreviewOutputDeleteProfile(1);
+      let ret = cameras.oHPreviewOutputDeleteProfile(1);
       console.log(TAG+"testOHPreviewOutputDeleteProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -568,7 +568,7 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputGetActiveProfile0100', 0, () => {
-      let ret = cameras.OHPhotoOutputGetActiveProfile(0);
+      let ret = cameras.oHPhotoOutputGetActiveProfile(0);
       console.log(TAG+"testOHPhotoOutputGetActiveProfile0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -581,7 +581,7 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputGetActiveProfile0200', 0, () => {
-      let ret = cameras.OHPhotoOutputGetActiveProfile(1);
+      let ret = cameras.oHPhotoOutputGetActiveProfile(1);
       console.log(TAG+"testOHPhotoOutputGetActiveProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -594,7 +594,7 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputGetActiveProfile0300', 0, () => {
-      let ret = cameras.OHPhotoOutputGetActiveProfile(2);
+      let ret = cameras.oHPhotoOutputGetActiveProfile(2);
       console.log(TAG+"testOHPhotoOutputGetActiveProfile0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -607,7 +607,7 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputGetActiveProfile0400', 0, () => {
-      let ret = cameras.OHPhotoOutputGetActiveProfile(3);
+      let ret = cameras.oHPhotoOutputGetActiveProfile(3);
       console.log(TAG+"testOHPhotoOutputGetActiveProfile0400:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -620,7 +620,7 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputDeleteProfile0100', 0, () => {
-      let ret = cameras.OHPhotoOutputDeleteProfile(0);
+      let ret = cameras.oHPhotoOutputDeleteProfile(0);
       console.log(TAG+"testOHPhotoOutputDeleteProfile0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -633,7 +633,7 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputDeleteProfile0200', 0, () => {
-      let ret = cameras.OHPhotoOutputDeleteProfile(1);
+      let ret = cameras.oHPhotoOutputDeleteProfile(1);
       console.log(TAG+"testOHPhotoOutputDeleteProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })

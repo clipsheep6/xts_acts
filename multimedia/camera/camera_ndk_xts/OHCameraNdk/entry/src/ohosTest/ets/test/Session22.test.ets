@@ -33,10 +33,13 @@ let receiver: image.ImageReceiver;
 let mPhotoSurface: string;
 
 let mediaUtil = MediaUtils.getInstance();
-let videoSurfaceId: string;  // 从media.AVRecorder获取，用于创建录像输出实例
+let videoSurfaceId: string;  // 这个变量应在使用前被赋值，从media.AVRecorder获取,用于创建录像输出实例
 let videoRecorder: media.AVRecorder;
 // 配置参数以实际硬件设备支持的范围为准
-let videoProfile: media.AVRecorderProfile = {
+let videoConfig: media.AVRecorderConfig = {
+  audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
+  profile : {
     audioBitrate : 48000,
     audioChannels : 2,
     audioCodec : media.CodecMimeType.AUDIO_AAC,
@@ -47,11 +50,7 @@ let videoProfile: media.AVRecorderProfile = {
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
-}
-let videoConfig: media.AVRecorderConfig = {
-  audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
-  profile : videoProfile,
+    }
   url : 'fd://', // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
   rotation : 0, // 合理值0、90、180、270，非合理值prepare接口将报错
 }
@@ -2490,7 +2489,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionCanPreconfig0100', 0, () => {
-      let ret = cameras.OHCaptureSessionCanPreconfig(Camera_PreconfigType.PRECONFIG_720P, 0);
+      let ret = cameras.oHCaptureSessionCanPreconfig(Camera_PreconfigType.PRECONFIG_720P, 0);
       console.log(TAG+"testOHCaptureSessionCanPreconfig0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -2503,7 +2502,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionCanPreconfig0200', 0, () => {
-      let ret = cameras.OHCaptureSessionCanPreconfig(Camera_PreconfigType.PRECONFIG_720P, 1);
+      let ret = cameras.oHCaptureSessionCanPreconfig(Camera_PreconfigType.PRECONFIG_720P, 1);
       console.log(TAG+"testOHCaptureSessionCanPreconfig0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -2516,7 +2515,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionCanPreconfig0300', 0, () => {
-      let ret = cameras.OHCaptureSessionCanPreconfig(Camera_PreconfigType.EXCEPTION_ENUMERATION_VALUE, 0);
+      let ret = cameras.oHCaptureSessionCanPreconfig(Camera_PreconfigType.EXCEPTION_ENUMERATION_VALUE, 0);
       console.log(TAG+"testOHCaptureSessionCanPreconfig0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -2529,7 +2528,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionCanPreconfig0400', 0, () => {
-      let ret = cameras.OHCaptureSessionCanPreconfig(Camera_PreconfigType.PRECONFIG_720P, 2);
+      let ret = cameras.oHCaptureSessionCanPreconfig(Camera_PreconfigType.PRECONFIG_720P, 2);
       console.log(TAG+"testOHCaptureSessionCanPreconfig0400:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -2542,7 +2541,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionCanPreconfigWithRatio0100', 0, () => {
-      let ret = cameras.OHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
+      let ret = cameras.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
         Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
       console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -2556,7 +2555,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionCanPreconfigWithRatio0200', 0, () => {
-      let ret = cameras.OHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
+      let ret = cameras.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
         Camera_PreconfigRatio.PRECONFIG_RATIO_1, 1);
       console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
@@ -2570,7 +2569,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionCanPreconfigWithRatio0300', 0, () => {
-      let ret = cameras.OHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.EXCEPTION_ENUMERATION_VALUE,
+      let ret = cameras.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.EXCEPTION_ENUMERATION_VALUE,
         Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
       console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
@@ -2584,7 +2583,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionCanPreconfigWithRatio0400', 0, () => {
-      let ret = cameras.OHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
+      let ret = cameras.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
         Camera_PreconfigRatio.EXCEPTION_ENUMERATION_VALUE, 0);
       console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0400:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
@@ -2598,7 +2597,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionPreconfig0100', 0, () => {
-      let ret = cameras.OHCaptureSessionPreconfig(Camera_PreconfigType.PRECONFIG_720P, 0);
+      let ret = cameras.oHCaptureSessionPreconfig(Camera_PreconfigType.PRECONFIG_720P, 0);
       console.log(TAG+"testOHCaptureSessionPreconfig0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -2611,7 +2610,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionPreconfig0200', 0, () => {
-      let ret = cameras.OHCaptureSessionPreconfig(Camera_PreconfigType.PRECONFIG_720P, 1);
+      let ret = cameras.oHCaptureSessionPreconfig(Camera_PreconfigType.PRECONFIG_720P, 1);
       console.log(TAG+"testOHCaptureSessionPreconfig0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -2624,7 +2623,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionPreconfig0300', 0, () => {
-      let ret = cameras.OHCaptureSessionPreconfig(Camera_PreconfigType.EXCEPTION_ENUMERATION_VALUE, 0);
+      let ret = cameras.oHCaptureSessionPreconfig(Camera_PreconfigType.EXCEPTION_ENUMERATION_VALUE, 0);
       console.log(TAG+"testOHCaptureSessionPreconfig0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -2637,7 +2636,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionPreconfigWithRatio0100', 0, () => {
-      let ret = cameras.OHCaptureSessionPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
+      let ret = cameras.oHCaptureSessionPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
         Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
       console.log(TAG+"testOHCaptureSessionPreconfigWithRatio0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -2651,7 +2650,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionPreconfigWithRatio0200', 0, () => {
-      let ret = cameras.OHCaptureSessionPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
+      let ret = cameras.oHCaptureSessionPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
         Camera_PreconfigRatio.PRECONFIG_RATIO_1, 1);
       console.log(TAG+"testOHCaptureSessionPreconfigWithRatio0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
@@ -2665,7 +2664,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionPreconfigWithRatio0300', 0, () => {
-      let ret = cameras.OHCaptureSessionPreconfigWithRatio(Camera_PreconfigType.EXCEPTION_ENUMERATION_VALUE,
+      let ret = cameras.oHCaptureSessionPreconfigWithRatio(Camera_PreconfigType.EXCEPTION_ENUMERATION_VALUE,
         Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
       console.log(TAG+"testOHCaptureSessionPreconfigWithRatio0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
@@ -2679,7 +2678,7 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionPreconfigWithRatio0400', 0, () => {
-      let ret = cameras.OHCaptureSessionPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
+      let ret = cameras.oHCaptureSessionPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
         Camera_PreconfigRatio.EXCEPTION_ENUMERATION_VALUE, 0);
       console.log(TAG+"testOHCaptureSessionPreconfigWithRatio0400:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);

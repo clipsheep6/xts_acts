@@ -27,12 +27,15 @@ const TAG = "CAMERA_LOGTAG_JS";
 const CAMERA_OK = 0;
 const CAMERA_ERROR_7400101 = 7400101; //参数错误
 let mediaUtil = MediaUtils.getInstance();
-let videoSurfaceId: string;  // 从media.AVRecorder获取，用于创建录像输出实例
+let videoSurfaceId: string;  // 这个变量应在使用前被赋值，从media.AVRecorder获取,用于创建录像输出实例
 let videoRecorder: media.AVRecorder;
 let receiver: image.ImageReceiver;
 let mPhotoSurface: string;
 // 配置参数以实际硬件设备支持的范围为准
-let videoProfile: media.AVRecorderProfile = {
+let videoConfig: media.AVRecorderConfig = {
+  audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
+  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
+  profile : {
     audioBitrate : 48000,
     audioChannels : 2,
     audioCodec : media.CodecMimeType.AUDIO_AAC,
@@ -43,11 +46,7 @@ let videoProfile: media.AVRecorderProfile = {
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
-}
-let videoConfig: media.AVRecorderConfig = {
-  audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
-  profile : videoProfile,
+    }
   url : 'fd://', // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
   rotation : 0, // 合理值0、90、180、270，非合理值prepare接口将报错
 }
@@ -323,7 +322,7 @@ export default function VideoTest22() {
      * @tc.level      : Level 3
      */
     it('testOHVideoOutputGetActiveProfile0100', 0, () => {
-      let ret = cameras.OHVideoOutputGetActiveProfile(0);
+      let ret = cameras.oHVideoOutputGetActiveProfile(0);
       console.log(TAG+"testOHVideoOutputGetActiveProfile0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -336,7 +335,7 @@ export default function VideoTest22() {
      * @tc.level      : Level 3
      */
     it('testOHVideoOutputGetActiveProfile0200', 0, () => {
-      let ret = cameras.OHVideoOutputGetActiveProfile(1);
+      let ret = cameras.oHVideoOutputGetActiveProfile(1);
       console.log(TAG+"testOHVideoOutputGetActiveProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -349,7 +348,7 @@ export default function VideoTest22() {
      * @tc.level      : Level 3
      */
     it('testOHVideoOutputGetActiveProfile0300', 0, () => {
-      let ret = cameras.OHVideoOutputGetActiveProfile(2);
+      let ret = cameras.oHVideoOutputGetActiveProfile(2);
       console.log(TAG+"testOHVideoOutputGetActiveProfile0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -362,7 +361,7 @@ export default function VideoTest22() {
      * @tc.level      : Level 3
      */
     it('testOHVideoOutputDeleteProfile0100', 0, () => {
-      let ret = cameras.OHVideoOutputDeleteProfile(0);
+      let ret = cameras.oHVideoOutputDeleteProfile(0);
       console.log(TAG+"testOHVideoOutputDeleteProfile0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -375,7 +374,7 @@ export default function VideoTest22() {
      * @tc.level      : Level 3
      */
     it('testOHVideoOutputDeleteProfile0200', 0, () => {
-      let ret = cameras.OHVideoOutputDeleteProfile(1);
+      let ret = cameras.oHVideoOutputDeleteProfile(1);
       console.log(TAG+"testOHVideoOutputDeleteProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -389,7 +388,7 @@ export default function VideoTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCameraManagerCreateVideoOutputUsedInPreconfig0100', 0, () => {
-      let ret = cameras.OHCameraManagerCreateVideoOutputUsedInPreconfig(videoSurfaceId,0);
+      let ret = cameras.oHCameraManagerCreateVideoOutputUsedInPreconfig(videoSurfaceId,0);
       console.log(TAG+"testOHCameraManagerCreateVideoOutputUsedInPreconfig0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -403,7 +402,7 @@ export default function VideoTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCameraManagerCreateVideoOutputUsedInPreconfig0200', 0, () => {
-      let ret = cameras.OHCameraManagerCreateVideoOutputUsedInPreconfig(videoSurfaceId,1);
+      let ret = cameras.oHCameraManagerCreateVideoOutputUsedInPreconfig(videoSurfaceId,1);
       console.log(TAG+"testOHCameraManagerCreateVideoOutputUsedInPreconfig0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -417,7 +416,7 @@ export default function VideoTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCameraManagerCreateVideoOutputUsedInPreconfig0300', 0, () => {
-      let ret = cameras.OHCameraManagerCreateVideoOutputUsedInPreconfig(videoSurfaceId,2);
+      let ret = cameras.oHCameraManagerCreateVideoOutputUsedInPreconfig(videoSurfaceId,2);
       console.log(TAG+"testOHCameraManagerCreateVideoOutputUsedInPreconfig0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -431,7 +430,7 @@ export default function VideoTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCameraManagerCreateVideoOutputUsedInPreconfig0400', 0, () => {
-      let ret = cameras.OHCameraManagerCreateVideoOutputUsedInPreconfig(videoSurfaceId,3);
+      let ret = cameras.oHCameraManagerCreateVideoOutputUsedInPreconfig(videoSurfaceId,3);
       console.log(TAG+"testOHCameraManagerCreateVideoOutputUsedInPreconfig0400:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })

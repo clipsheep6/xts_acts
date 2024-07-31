@@ -56,10 +56,10 @@ NDKCamera::NDKCamera(char *str, int index)
     : cameras_(nullptr), cameraOutputCapability_(nullptr), captureSession_(nullptr), size_(0), profile_(nullptr),
       previewOutput_(nullptr), photoOutput_(nullptr), videoOutput_(nullptr), metaDataObjectType_(nullptr),
       metadataOutput_(nullptr), cameraInput_(nullptr), isCameraMuted_(nullptr), previewSurfaceId_(str),
-      sceneModes_(nullptr), sceneModes_size_(0), camera_(nullptr), sceneMode_(NORMAL_PHOTO),
-      secureSeqId_(0), isAddInput_(false),colorSpacesSize_(0),isTorchSupported_(false),colorSpace_(nullptr),
-      frameRateRange_(nullptr),frameRatesSize_(0),videoFrameRatesSize_(0), cameraVProfile_(nullptr),
-	  cameraProfile_(nullptr),
+      sceneModes_(nullptr), sceneModesSize_(0), camera_(nullptr), sceneMode_(NORMAL_PHOTO),
+      secureSeqId_(0), isAddInput_(false), colorSpacesSize_(0), isTorchSupported_(false), colorSpace_(nullptr),
+      frameRateRange_(nullptr), frameRatesSize_(0), videoFrameRatesSize_(0), videoActiveProfile_(nullptr),
+      cameraProfile_(nullptr),
       ret_(CAMERA_OK) {
     valid_ = false;
     // 创建CameraManager实例。
@@ -238,7 +238,7 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutput(int useCaseCode)
     return ret_;
 }
 
-Camera_ErrorCode NDKCamera::CreatePreviewOutputUsedInPreconfig(int useCaseCode) 
+Camera_ErrorCode NDKCamera::CreatePreviewOutputUsedInPreconfig(int useCaseCode)
 {
     profile_ = cameraOutputCapability_->previewProfiles[0];
 
@@ -503,6 +503,7 @@ void CaptureSessionOnError(Camera_CaptureSession *session, Camera_ErrorCode erro
     NDKCamera::cameraCallbackCode_ = SESSION_ON_ERROR;
     LOG("CaptureSession errorCode = %d", errorCode);
 }
+
 CaptureSession_Callbacks *NDKCamera::GetCaptureSessionRegister(void)
 {
     static CaptureSession_Callbacks captureSessionCallbacks = {.onFocusStateChange = CaptureSessionOnFocusStateChange,
@@ -541,8 +542,7 @@ CaptureSession_Callbacks *NDKCamera::GetCaptureSessionRegister(int useCaseCode)
     static CaptureSession_Callbacks captureSessionCallbacks;
     if (useCaseCode == PARAMETER_OK) {
         captureSessionCallbacks = {.onFocusStateChange = CaptureSessionOnFocusStateChange,
-                                   .onError = CaptureSessionOnError};
-                                   
+                                   .onError = CaptureSessionOnError};   
     } else if (useCaseCode == PARAMETER1_ERROR) {
         captureSessionCallbacks = {.onFocusStateChange = nullptr,
                                    .onError = nullptr};
@@ -925,7 +925,7 @@ Camera_ErrorCode NDKCamera::SessionCanPreconfig(uint32_t mode, int useCaseCode) 
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_CaptureSession_CanPreconfig(captureSession_, preconfigType, nullptr);
     } else {
-        ret_ = OH_CaptureSession_CanPreconfig(nullptr, preconfigType , &canPreconfig_);
+        ret_ = OH_CaptureSession_CanPreconfig(nullptr, preconfigType, &canPreconfig_);
     }
     return ret_;
 }
@@ -1113,17 +1113,17 @@ Camera_ErrorCode NDKCamera::VideoOutputRelease(int useCaseCode)
 }
 Camera_ErrorCode NDKCamera::VideoOutputGetActiveProfile(int useCaseCode) {
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_VideoOutput_GetActiveProfile(videoOutput_, &cameraVProfile_);
+        ret_ = OH_VideoOutput_GetActiveProfile(videoOutput_, &videoActiveProfile_);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_VideoOutput_GetActiveProfile(videoOutput_, nullptr);
     } else {
-        ret_ = OH_VideoOutput_GetActiveProfile(nullptr, &cameraVProfile_);
+        ret_ = OH_VideoOutput_GetActiveProfile(nullptr, &videoActiveProfile_);
     }
     return ret_;
 }
 Camera_ErrorCode NDKCamera::VideoOutputDeleteProfile(int useCaseCode) {
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_VideoOutput_DeleteProfile(cameraVProfile_);
+        ret_ = OH_VideoOutput_DeleteProfile(videoActiveProfile_);
     } else {
         ret_ = OH_VideoOutput_DeleteProfile(nullptr);
     }
@@ -1316,15 +1316,15 @@ Camera_ErrorCode NDKCamera::GetSupportedSceneModes(int useCaseCode)
         ret_ = GetCameraFromCameras(cameras_, &camera_);
     }
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_CameraManager_GetSupportedSceneModes(camera_, &sceneModes_, &sceneModes_size_);
+        ret_ = OH_CameraManager_GetSupportedSceneModes(camera_, &sceneModes_, &sceneModesSize_);
     } else if (useCaseCode == PARAMETER3_ERROR) {
         ret_ = OH_CameraManager_GetSupportedSceneModes(camera_, &sceneModes_, nullptr);
     } else if (useCaseCode == PARAMETER2_ERROR) {
-        ret_ = OH_CameraManager_GetSupportedSceneModes(camera_, nullptr, &sceneModes_size_);
+        ret_ = OH_CameraManager_GetSupportedSceneModes(camera_, nullptr, &sceneModesSize_);
     } else {
-        ret_ = OH_CameraManager_GetSupportedSceneModes(nullptr, &sceneModes_, &sceneModes_size_);
+        ret_ = OH_CameraManager_GetSupportedSceneModes(nullptr, &sceneModes_, &sceneModesSize_);
     }
-    if (sceneModes_ == nullptr || ret_ != CAMERA_OK || sceneModes_size_ == 0) {
+    if (sceneModes_ == nullptr || ret_ != CAMERA_OK || sceneModesSize_ == 0) {
         ret_ = CAMERA_INVALID_ARGUMENT;
         LOG("获取相机设备支持的模式失败. %{public}d", ret_);
     } else {

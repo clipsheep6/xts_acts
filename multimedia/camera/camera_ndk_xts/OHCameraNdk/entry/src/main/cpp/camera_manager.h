@@ -87,7 +87,6 @@ public:
     uint32_t colorSpacesSize_;
     uint32_t frameRatesSize_;
     uint32_t videoFrameRatesSize_;
-    OH_NativeBuffer_ColorSpace* colorSpace_;
     Camera_FrameRateRange* frameRateRange_;
     Camera_FlashMode flashMode_;
     Camera_ExposureMode exposureMode_; // 获取当前曝光模式。
@@ -233,11 +232,11 @@ private:
     Camera_Manager *cameraManager_; // CameraManager实例。
     Camera_CaptureSession *captureSession_; // 拍照会话实例
     uint32_t size_; // 记录支持的Camera_Device列表的大小。
-    uint32_t sceneModes_size_; // 记录支持的Camera_SceneMode列表大小。
+    uint32_t sceneModesSize_; // 记录支持的Camera_SceneMode列表大小。
     const Camera_Profile *profile_;  // 相机配置信息
     Camera_Profile *cameraProfile_;
     const Camera_VideoProfile *vProfile_;  // 录像配置信息
-    Camera_VideoProfile *cameraVProfile_;
+    Camera_VideoProfile *videoActiveProfile_;
     Camera_PreviewOutput *previewOutput_; // 预览输出实例
     Camera_PhotoOutput *photoOutput_;     // 拍照输出实例
     Camera_VideoOutput *videoOutput_;     // 录像输出实例

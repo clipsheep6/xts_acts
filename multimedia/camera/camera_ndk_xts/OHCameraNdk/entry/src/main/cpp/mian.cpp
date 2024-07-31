@@ -201,7 +201,7 @@ static napi_value OHCameraManagerCreatePreviewOutput(napi_env env, napi_callback
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCameraManagerCreatePreviewOutputUsedInPreconfig(napi_env env, napi_callback_info info) 
+static napi_value OHCameraManagerCreatePreviewOutputUsedInPreconfig(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -352,7 +352,8 @@ static napi_value OHCameraManagerCreatePhotoOutput(napi_env env, napi_callback_i
     napi_create_int32(env, ret, &result);
     return result;
 }
-static napi_value OHCameraManagerCreatePhotoOutputUsedInPreconfig(napi_env env, napi_callback_info info) {
+static napi_value OHCameraManagerCreatePhotoOutputUsedInPreconfig(napi_env env, napi_callback_info info)
+{
     napi_value result;
 
     size_t argc = 2;
@@ -1080,7 +1081,8 @@ static napi_value OHCaptureSessionSetVideoStabilizationMode(napi_env env, napi_c
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionCanPreconfig(napi_env env, napi_callback_info info) {
+static napi_value OHCaptureSessionCanPreconfig(napi_env env, napi_callback_info info)
+{
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
@@ -1096,26 +1098,28 @@ static napi_value OHCaptureSessionCanPreconfig(napi_env env, napi_callback_info 
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionCanPreconfigWithRatio(napi_env env, napi_callback_info info) {
+static napi_value OHCaptureSessionCanPreconfigWithRatio(napi_env env, napi_callback_info info)
+{
     size_t argc = 3;
     napi_value args[3] = {nullptr};
     napi_value result;
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    int32_t mode;
-    napi_get_value_int32(env, args[0], &mode);
-    int32_t mode2;
-    napi_get_value_int32(env, args[1], &mode2);
+    int32_t preconfigTypeValue;
+    napi_get_value_int32(env, args[0], &preconfigTypeValue);
+    int32_t preconfigRatioValue;
+    napi_get_value_int32(env, args[1], &preconfigRatioValue);
     int32_t index;
     napi_get_value_int32(env, args[2], &index);
 
-    Camera_ErrorCode code = ndkCamera->SessionCanPreconfigWithRatio(mode, mode2, index);
+    Camera_ErrorCode code = ndkCamera->SessionCanPreconfigWithRatio(preconfigTypeValue, preconfigRatioValue, index);
     napi_create_int32(env, code, &result);
     return result;
 }
 
-static napi_value OHCaptureSessionPreconfig(napi_env env, napi_callback_info info) {
+static napi_value OHCaptureSessionPreconfig(napi_env env, napi_callback_info info)
+{
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
@@ -1131,21 +1135,22 @@ static napi_value OHCaptureSessionPreconfig(napi_env env, napi_callback_info inf
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionPreconfigWithRatio(napi_env env, napi_callback_info info) {
+static napi_value OHCaptureSessionPreconfigWithRatio(napi_env env, napi_callback_info info)
+{
     size_t argc = 3;
     napi_value args[3] = {nullptr};
     napi_value result;
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    int32_t mode;
-    napi_get_value_int32(env, args[0], &mode);
-    int32_t mode2;
-    napi_get_value_int32(env, args[1], &mode2);
+    int32_t preconfigTypeValue;
+    napi_get_value_int32(env, args[0], &preconfigTypeValue);
+    int32_t preconfigRatioValue;
+    napi_get_value_int32(env, args[1], &preconfigRatioValue);
     int32_t index;
     napi_get_value_int32(env, args[2], &index);
 
-    Camera_ErrorCode code = ndkCamera->SessionPreconfigWithRatio(mode, mode2, index);
+    Camera_ErrorCode code = ndkCamera->SessionPreconfigWithRatio(preconfigTypeValue, preconfigRatioValue, index);
     napi_create_int32(env, code, &result);
     return result;
 }
@@ -1219,7 +1224,8 @@ static napi_value OHCameraManagerCreateVideoOutput(napi_env env, napi_callback_i
     napi_create_int32(env, ret, &result);
     return result;
 }
-static napi_value OHCameraManagerCreateVideoOutputUsedInPreconfig(napi_env env, napi_callback_info info) {
+static napi_value OHCameraManagerCreateVideoOutputUsedInPreconfig(napi_env env, napi_callback_info info)
+{
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_value result;
@@ -1334,7 +1340,8 @@ static napi_value OHVideoOutputRelease(napi_env env, napi_callback_info info)
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHVideoOutputGetActiveProfile(napi_env env, napi_callback_info info) {
+static napi_value OHVideoOutputGetActiveProfile(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_value result;
@@ -1349,7 +1356,8 @@ static napi_value OHVideoOutputGetActiveProfile(napi_env env, napi_callback_info
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHVideoOutputDeleteProfile(napi_env env, napi_callback_info info) {
+static napi_value OHVideoOutputDeleteProfile(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_value result;
@@ -1428,7 +1436,8 @@ static napi_value OHPreviewOutputRelease(napi_env env, napi_callback_info info)
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHPreviewOutputGetActiveProfile(napi_env env, napi_callback_info info) {
+static napi_value OHPreviewOutputGetActiveProfile(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_value result;
@@ -1443,7 +1452,8 @@ static napi_value OHPreviewOutputGetActiveProfile(napi_env env, napi_callback_in
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHPreviewOutputDeleteProfile(napi_env env, napi_callback_info info) {
+static napi_value OHPreviewOutputDeleteProfile(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_value result;
@@ -1506,7 +1516,8 @@ static napi_value OHPhotoOutputIsMirrorSupported(napi_env env, napi_callback_inf
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHPhotoOutputGetActiveProfile(napi_env env, napi_callback_info info) {
+static napi_value OHPhotoOutputGetActiveProfile(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_value result;
@@ -1521,7 +1532,8 @@ static napi_value OHPhotoOutputGetActiveProfile(napi_env env, napi_callback_info
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHPhotoOutputDeleteProfile(napi_env env, napi_callback_info info) {
+static napi_value OHPhotoOutputDeleteProfile(napi_env env, napi_callback_info info)
+{
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     napi_value result;
@@ -1665,7 +1677,7 @@ static napi_value OHCameraManagerDeleteSceneModes(napi_env env, napi_callback_in
     return result;
 }
 static napi_value OHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(napi_env env,
- napi_callback_info info)
+    napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -1827,7 +1839,7 @@ napi_property_descriptor desc1[] = {
      nullptr, napi_default, nullptr},
     {"oHCameraManagerCreatePreviewOutput", nullptr, OHCameraManagerCreatePreviewOutput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"OHCameraManagerCreatePreviewOutputUsedInPreconfig", nullptr, OHCameraManagerCreatePreviewOutputUsedInPreconfig,
+    {"oHCameraManagerCreatePreviewOutputUsedInPreconfig", nullptr, OHCameraManagerCreatePreviewOutputUsedInPreconfig,
      nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHCameraManagerCreateCameraInput", nullptr, OHCameraManagerCreateCameraInput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
@@ -1841,7 +1853,7 @@ napi_property_descriptor desc1[] = {
      napi_default, nullptr},
     {"oHCameraManagerCreatePhotoOutput", nullptr, OHCameraManagerCreatePhotoOutput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"OHCameraManagerCreatePhotoOutputUsedInPreconfig", nullptr, OHCameraManagerCreatePhotoOutputUsedInPreconfig, 
+    {"oHCameraManagerCreatePhotoOutputUsedInPreconfig", nullptr, OHCameraManagerCreatePhotoOutputUsedInPreconfig,
      nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHCameraManagerCreateMetadataOutput", nullptr, OHCameraManagerCreateMetadataOutput, nullptr, nullptr,
      nullptr, napi_default, nullptr},
@@ -1926,18 +1938,18 @@ napi_property_descriptor desc3[] = {
      nullptr, nullptr, napi_default, nullptr},
     {"oHCaptureSessionRemovePhotoOutput", nullptr, OHCaptureSessionRemovePhotoOutput, nullptr, nullptr,
      nullptr, napi_default, nullptr},
-    {"OHCaptureSessionCanPreconfig", nullptr, OHCaptureSessionCanPreconfig, nullptr, nullptr, nullptr, napi_default,
+    {"oHCaptureSessionCanPreconfig", nullptr, OHCaptureSessionCanPreconfig, nullptr, nullptr, nullptr, napi_default,
      nullptr},
-    {"OHCaptureSessionCanPreconfigWithRatio", nullptr, OHCaptureSessionCanPreconfigWithRatio, nullptr, nullptr, nullptr,
+    {"oHCaptureSessionCanPreconfigWithRatio", nullptr, OHCaptureSessionCanPreconfigWithRatio, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"OHCaptureSessionPreconfig", nullptr, OHCaptureSessionPreconfig, nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"OHCaptureSessionPreconfigWithRatio", nullptr, OHCaptureSessionPreconfigWithRatio, nullptr, nullptr, nullptr,
+    {"oHCaptureSessionPreconfig", nullptr, OHCaptureSessionPreconfig, nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"oHCaptureSessionPreconfigWithRatio", nullptr, OHCaptureSessionPreconfigWithRatio, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHCaptureSessionAddVideoOutput", nullptr, OHCaptureSessionAddVideoOutput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHCameraManagerCreateVideoOutput", nullptr, OHCameraManagerCreateVideoOutput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"OHCameraManagerCreateVideoOutputUsedInPreconfig", nullptr, OHCameraManagerCreateVideoOutputUsedInPreconfig,
+    {"oHCameraManagerCreateVideoOutputUsedInPreconfig", nullptr, OHCameraManagerCreateVideoOutputUsedInPreconfig,
      nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHVideoOutputRegisterCallback", nullptr, OHVideoOutputRegisterCallback, nullptr, nullptr, nullptr,
      napi_default, nullptr},
@@ -1948,8 +1960,10 @@ napi_property_descriptor desc3[] = {
     {"oHCaptureSessionRemoveVideoOutput", nullptr, OHCaptureSessionRemoveVideoOutput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHVideoOutputRelease", nullptr, OHVideoOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"OHVideoOutputGetActiveProfile", nullptr, OHVideoOutputGetActiveProfile, nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"OHVideoOutputDeleteProfile", nullptr, OHVideoOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"oHVideoOutputGetActiveProfile", nullptr, OHVideoOutputGetActiveProfile, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
+    {"oHVideoOutputDeleteProfile", nullptr, OHVideoOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
     {"oHCameraManagerUnRegisterCallback", nullptr, OHCameraManagerUnregisterCallback, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHPreviewOutputStart", nullptr, OHPreviewOutputStart, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1957,17 +1971,17 @@ napi_property_descriptor desc3[] = {
     {"oHPreviewOutputRelease", nullptr, OHPreviewOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHPhotoOutputRegisterCallback", nullptr, OHPhotoOutputRegisterCallback, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"OHPreviewOutputGetActiveProfile", nullptr, OHPreviewOutputGetActiveProfile, nullptr, nullptr, nullptr,
+    {"oHPreviewOutputGetActiveProfile", nullptr, OHPreviewOutputGetActiveProfile, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"OHPreviewOutputDeleteProfile", nullptr, OHPreviewOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
+    {"oHPreviewOutputDeleteProfile", nullptr, OHPreviewOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
      nullptr},
     {"oHPhotoOutputUnregisterCallback", nullptr, OHPhotoOutputUnregisterCallback, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHPhotoOutputIsMirrorSupported", nullptr, OHPhotoOutputIsMirrorSupported, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"OHPhotoOutputGetActiveProfile", nullptr, OHPhotoOutputGetActiveProfile, nullptr, nullptr, nullptr, napi_default,
+    {"oHPhotoOutputGetActiveProfile", nullptr, OHPhotoOutputGetActiveProfile, nullptr, nullptr, nullptr, napi_default,
      nullptr},
-    {"OHPhotoOutputDeleteProfile", nullptr, OHPhotoOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
+    {"oHPhotoOutputDeleteProfile", nullptr, OHPhotoOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
      nullptr},
     {"oHPhotoOutputCapture", nullptr, OHPhotoOutputCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHPhotoOutputCaptureWithCaptureSetting", nullptr, OHPhotoOutputCaptureWithCaptureSetting, nullptr, nullptr,

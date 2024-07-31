@@ -798,7 +798,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance(0);
       getSupportedCamerasInstance()
       getSupportedCameraOutputCapabilityInstance()
-      let ret = cameras.OHCameraManagerCreatePreviewOutputUsedInPreconfig(0);
+      let ret = cameras.oHCameraManagerCreatePreviewOutputUsedInPreconfig(0);
       console.log(TAG+"testOHCameraManagerCreatePreviewOutputUsedInPreconfig0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -814,7 +814,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance(0);
       getSupportedCamerasInstance()
       getSupportedCameraOutputCapabilityInstance()
-      let ret = cameras.OHCameraManagerCreatePreviewOutputUsedInPreconfig(1);
+      let ret = cameras.oHCameraManagerCreatePreviewOutputUsedInPreconfig(1);
       console.log(TAG+"testOHCameraManagerCreatePreviewOutputUsedInPreconfig0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -830,7 +830,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance(0);
       getSupportedCamerasInstance()
       getSupportedCameraOutputCapabilityInstance()
-      let ret = cameras.OHCameraManagerCreatePreviewOutputUsedInPreconfig(2);
+      let ret = cameras.oHCameraManagerCreatePreviewOutputUsedInPreconfig(2);
       console.log(TAG+"testOHCameraManagerCreatePreviewOutputUsedInPreconfig0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -846,7 +846,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance(0);
       getSupportedCamerasInstance()
       getSupportedCameraOutputCapabilityInstance()
-      let ret = cameras.OHCameraManagerCreatePreviewOutputUsedInPreconfig(3);
+      let ret = cameras.oHCameraManagerCreatePreviewOutputUsedInPreconfig(3);
       console.log(TAG+"testOHCameraManagerCreatePreviewOutputUsedInPreconfig0400:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -1272,7 +1272,7 @@ export default function CameraManagerTest() {
       getSupportedCamerasInstance()
       getSupportedCameraOutputCapabilityInstance();
 
-      let ret = cameras.OHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 0)
+      let ret = cameras.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 0)
       console.log(TAG+"testOHCameraManagerCreatePhotoOutputUsedInPreconfig0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
@@ -1288,7 +1288,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance(0);
       getSupportedCamerasInstance()
       getSupportedCameraOutputCapabilityInstance();
-      let ret = cameras.OHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 1)
+      let ret = cameras.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 1)
       console.log(TAG+"testOHCameraManagerCreatePhotoOutputUsedInPreconfig0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -1304,7 +1304,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance(0);
       getSupportedCamerasInstance()
       getSupportedCameraOutputCapabilityInstance();
-      let ret = cameras.OHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 2)
+      let ret = cameras.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 2)
       console.log(TAG+"testOHCameraManagerCreatePhotoOutputUsedInPreconfig0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
@@ -1320,7 +1320,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance(0);
       getSupportedCamerasInstance()
       getSupportedCameraOutputCapabilityInstance();
-      let ret = cameras.OHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 3)
+      let ret = cameras.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 3)
       console.log(TAG+"testOHCameraManagerCreatePhotoOutputUsedInPreconfig0400:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
