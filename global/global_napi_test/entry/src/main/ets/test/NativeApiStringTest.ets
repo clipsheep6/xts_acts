@@ -736,7 +736,7 @@ export default function abilityTest() {
     /* *
     * @tc.number  SUB_GLOBAL_getDrawableDescriptorDataByName_NDK_0100
     * @tc.name    test ResourceManager NDK interface
-    * @tc.desc    test ResourceManager NDK interface
+    * @tc.desc    test ResourceManager NDK interface.
     */
     it('getDrawableDescriptorDataByName_ndktest_0100', 0, async (done: Function) => {
       console.log("getDrawableDescriptorDataByName_ndktest_0100 1");
