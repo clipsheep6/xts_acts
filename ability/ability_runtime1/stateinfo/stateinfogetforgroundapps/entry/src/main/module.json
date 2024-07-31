@@ -23,6 +23,11 @@
         "startWindowBackground": "$color:start_window_background",
         "exported": true
       }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_RUNNING_INFO"
+      }
     ]
   }
 }

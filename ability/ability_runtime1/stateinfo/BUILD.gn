@@ -17,13 +17,12 @@ group("hits_ability_runtime_stateinfo") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "demo_stage:demo_stage_ohosTest",
-      "getextensionrunninginfoapp2:hits_stateinfo_app2",
       "getextensionrunninginfoapp3:hits_stateinfo_app3",
       "getextensionrunninginfoservice2:hits_stateinfo_service2",
       "getextensionrunninginfostest:hits_stateinfo_getrunninginfo_test",
       "openharmonyisterminatingtest:hits_stateinfo_isterminating_test",
       "stateinfoappempty:hits_stateinfo_app_empty",
+      "stateinfogetforgroundapps:hits_stateinfo_getforgrdapps",
       "stateinfoserviceempty:hits_stateinfo_service_empty",
     ]
   }

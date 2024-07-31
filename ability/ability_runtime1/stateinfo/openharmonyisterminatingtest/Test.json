@@ -13,7 +13,8 @@
             "test-file-name": [
                 "HitsStateInfoIsTerminatingTest.hap",
                 "HitsStateInfoServiceEmpty.hap",
-                "HitsStateInfoAppEmpty.hap"
+                "HitsStateInfoAppEmpty.hap",
+                "HitsStateInfoGetFrogrdApps.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
@@ -28,7 +29,8 @@
             "type": "ShellKit",
             "teardown-command": [
                 "bm uninstall -n com.hits.stateinfoservice.empty",
-                "bm uninstall -n com.hits.stateinfo.empty"
+                "bm uninstall -n com.hits.stateinfo.empty",
+                "bm uninstall -n com.hits.stateinfo.getforgroundapps"
             ]
         }
     ]
