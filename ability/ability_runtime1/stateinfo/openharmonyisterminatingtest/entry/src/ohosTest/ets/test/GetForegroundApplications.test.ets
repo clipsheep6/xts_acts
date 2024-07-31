@@ -15,7 +15,7 @@
 
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Level, Size } from '@ohos/hypium';
-import { appManager, Want } from '@kit.AbilityKit';
+import { appManager, common, Want } from '@kit.AbilityKit';
 import { abilityDelegatorRegistry, Driver } from '@kit.TestKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import commonEvent from '@ohos.commonEventManager';
@@ -51,9 +51,8 @@ export default function getForegroundApplicationsTest() {
   };
   let subscriber: commonEvent.CommonEventSubscriber;
 
-
-  let appEmptyWant: Want = {
-    bundleName: 'com.hits.stateinfo.empty',
+  let appGegForgrdAppsWant: Want = {
+    bundleName: 'com.hits.stateinfo.getforgroundapps',
     abilityName: 'EntryAbility'
   }
   let app2Want: Want = {
@@ -120,7 +119,7 @@ export default function getForegroundApplicationsTest() {
                   let result = false;
                   for (let index = 0; index < appStateDataArray.length; index++) {
                     let info: appManager.AppStateData = appStateDataArray[index];
-                    if (info.bundleName == CURRENT_BUNDLE_NAME) {
+                    if (info.bundleName == CURRENT_BUNDLE_NAME && info.state === 2 && info.uid > 0) {
                       result = true;
                       break;
                     }
@@ -144,7 +143,7 @@ export default function getForegroundApplicationsTest() {
           commonEvent.subscribe(subscriber, subscribeCallBack);
           await sleep(1000);
           //启动辅助app
-          await abilityDelegator.startAbility(appEmptyWant);
+          await abilityDelegator.startAbility(appGegForgrdAppsWant);
           //倒计时结束公共事件等待结果
           setTimeout(() => {
             if (!flag) {

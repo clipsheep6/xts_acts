@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.hits.stateinfo.appc",
+    "bundleName": "com.hits.stateinfo.startAbility",
     "vendor": "huawei",
     "versionCode": 1000000,
     "versionName": "1.0.0",

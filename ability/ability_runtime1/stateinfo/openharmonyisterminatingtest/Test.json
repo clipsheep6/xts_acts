@@ -14,7 +14,9 @@
                 "HitsStateInfoIsTerminatingTest.hap",
                 "HitsStateInfoServiceEmpty.hap",
                 "HitsStateInfoAppEmpty.hap",
-                "HitsStateInfoGetFrogrdApps.hap"
+                "HitsStateInfoGetFrogrdApps.hap",
+                "HitsStateInfoStartAbility.hap",
+                "HitsStateInfoBackAbility.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
@@ -30,7 +32,9 @@
             "teardown-command": [
                 "bm uninstall -n com.hits.stateinfoservice.empty",
                 "bm uninstall -n com.hits.stateinfo.empty",
-                "bm uninstall -n com.hits.stateinfo.getforgroundapps"
+                "bm uninstall -n com.hits.stateinfo.getforgroundapps",
+                "bm uninstall -n com.hits.stateinfo.startAbility",
+                "bm uninstall -n com.hits.stateinfo.backAbility"
             ]
         }
     ]
