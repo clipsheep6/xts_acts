@@ -21,9 +21,10 @@ import { currentFun, transferArrayBuffer, transferAtomics, setCloneListTest, set
   printArgsFunc, Sum, delaySum, Add, funcStrCat, arraySum, objectSum, Multi, AdditionDelay, WaitforRunner,
   errorTest, testCancelDelayed, dependend, hashMapTest, delay, randomTest, outerTaskFunc,
   isConcurrentTest1, isConcurrentTest2, sequenceRunnerTest, sequenceRunnerPriorityTest, CancelAndExecuteDelayed,
-  errorManageTest, dealHashMapTest, noUseConcurrentTest } from './testFunclist'
+  errorManageTest, dealHashMapTest, noUseConcurrentTest, sendableFuncTest, sendableClassTest } from './testFunclist'
 import { A, B, StrCat, printArgs } from './exportFunclist'
 import HashMap from '@ohos.util.HashMap';
+import { sendableFunc, SendableClassTest } from './sendable';
 
 export default function TaskPoolTest() {
   describe('ActsAbilityTest', () => {
@@ -4248,6 +4249,36 @@ export default function TaskPoolTest() {
       taskGroup2.addTask(task2);
       await taskpool.execute(taskGroup2);
       expect(task2.isDone()).assertTrue();
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0183
+     * @tc.name      : TaskPoolTestClass182
+     * @tc.desc      : taskpool sendableFunc add sendableClass test
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass186', 0, async (done: Function) => {
+      let isTerminate1: boolean = false;
+      let isTerminate2: boolean = true;
+      let task1 = new taskpool.Task(sendableFuncTest, sendableFunc);
+      taskpool.execute(task1).then((res) => {
+        isTerminate1 = true;
+        expect(res).assertEqual(500);
+      })
+
+      let classTest: SendableClassTest = new SendableClassTest(sendableFunc);
+      let task2 = new taskpool.Task(sendableClassTest, classTest);
+      taskpool.execute(task2).then((res) => {
+        isTerminate2 = true;
+        expect(res).assertEqual(600);
+      })
+
+      while (!isTerminate1 && !isTerminate2) {
+        await promiseCase();
+      }
       done();
     })
   })

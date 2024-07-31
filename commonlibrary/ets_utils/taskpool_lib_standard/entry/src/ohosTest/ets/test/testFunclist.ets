@@ -18,6 +18,7 @@ import { BusinessError } from '@ohos.base'
 import { StrCat, A, B, printStrArgs, printArgs } from './exportFunclist'
 import HashMap from '@ohos.util.HashMap';
 import { errorManager } from '@kit.AbilityKit';
+import { SendableClassTest } from './sendable';
 
 export async function currentFun(): Promise<void> {
   "use concurrent"
@@ -359,4 +360,17 @@ export function dealHashMapTest(hashMap:HashMap<string, number>) {
 
 export function noUseConcurrentTest(arg:string) {
   return arg;
+}
+
+export function sendableFuncTest(func : Function) : number {
+  "use concurrent"
+  let num : number = func();
+  return num;
+}
+
+export function sendableClassTest(classT : SendableClassTest) : number {
+  "use concurrent"
+  let num = classT.foo();
+  num += classT.func();
+  return num;
 }
