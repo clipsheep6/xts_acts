@@ -23,7 +23,7 @@ export default function subscribedAbstractPropertyJsunit() {
         done();
         return;
       }
-      const subscribedAbstractProperty = new SubscribedAbstractProperty('subscribtest');
+      const subscribedAbstractProperty:SubscribedAbstractProperty = new SubscribedAbstractProperty('subscribtest');
       subscribedAbstractProperty.notifyPropertyRead();
       subscribedAbstractProperty.notifyHasChanged('subscribtest');
       subscribedAbstractProperty.unlinkSuscriber(0);

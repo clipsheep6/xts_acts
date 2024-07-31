@@ -13,16 +13,29 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import router from '@system.router';
+import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {PointerMatrix, UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function PinchGestureTemplateTest() {
-  describe('PinchGestureTemplateTest', function () {
-    beforeEach(async function (done) {
+  describe('PinchGestureTemplateTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("PinchGestureTemplateTest beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/PinchGesture/PinchGestureTemplate',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/PinchGesture/PinchGestureTemplate',
       }
       try {
         router.clear();
@@ -30,7 +43,7 @@ export default function PinchGestureTemplateTest() {
         console.info("get PinchGestureTemplateTest state pages:" + JSON.stringify(pages));
         if (!("PinchGestureTemplate" == pages.name)) {
           console.info("get PinchGestureTemplateTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push PinchGestureTemplateTest page result:" + JSON.stringify(result));
         }
@@ -41,39 +54,45 @@ export default function PinchGestureTemplateTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(2000);
       console.info("PinchGestureTemplateTest after each called");
     });
 
     /**
      * @tc.number
-    * @tc.name      PinchGestureTemplateTest_0010
-     * @tc.desc      api test PinchGesture
-     * @tc.level:    Level
+     * @tc.name PinchGestureTemplateTest_0010
+     * @tc.desc api test PinchGesture
+     * @tc.level: Level
      * @tc.type :
      * @tc.size :
      */
-    it('PinchGestureTemplateTest_0010', 0, async function (done) {
+    it('PinchGestureTemplateTest_0010', 0, async (done: Function) => {
       console.info('PinchGestureTemplateTest_0010 START');
       await CommonFunc.sleep(1000);
       let areaObj1 = CommonFunc.getComponentRectOnScreen('PinchGestureTemplate_Click');
       let areaHeight1 = areaObj1.bottom - areaObj1.top
       let areaWidth1 = areaObj1.right - areaObj1.left
-      console.log('PinchGestureTemplateTest_0010 areaObj1 start',areaObj1.left,areaObj1.top,areaObj1.right,areaObj1.bottom)
-      console.log('PinchGestureTemplateTest_0010 areaObj1 clicked finger[0] start',Math.round(areaObj1.left),Math.round(areaObj1.top))
-      console.log('PinchGestureTemplateTest_0010 areaObj1 clicked finger[0] end',Math.round(areaObj1.right),Math.round(areaObj1.top))
-      console.log('PinchGestureTemplateTest_0010 areaObj1 clicked finger[1] start',Math.round(areaObj1.right),Math.round(areaObj1.bottom))
-      console.log('PinchGestureTemplateTest_0010 areaObj1 clicked finger[1] end',Math.round(areaObj1.left),Math.round(areaObj1.bottom))
+      console.log('PinchGestureTemplateTest_0010 areaObj1 start', areaObj1.left, areaObj1.top, areaObj1.right, areaObj1.bottom)
+      console.log('PinchGestureTemplateTest_0010 areaObj1 clicked finger[0] start', Math.round(areaObj1.left), Math.round(areaObj1.top))
+      console.log('PinchGestureTemplateTest_0010 areaObj1 clicked finger[0] end', Math.round(areaObj1.right), Math.round(areaObj1.top))
+      console.log('PinchGestureTemplateTest_0010 areaObj1 clicked finger[1] start', Math.round(areaObj1.right), Math.round(areaObj1.bottom))
+      console.log('PinchGestureTemplateTest_0010 areaObj1 clicked finger[1] end', Math.round(areaObj1.left), Math.round(areaObj1.bottom))
       let driver: Driver = Driver.create();
       await CommonFunc.sleep(1000);
       let pointersSize = 120;
       let pointers = PointerMatrix.create(2, pointersSize);
       for (let step = 0; step < pointersSize; step++) {
-        pointers.setPoint(0, step, {x: Math.round(areaObj1.left + areaWidth1 * 0.3 / pointersSize * step), y: Math.round(areaObj1.top + areaHeight1 * 0.5) })
+        pointers.setPoint(0, step, {
+          x: Math.round(areaObj1.left + areaWidth1 * 0.3 / pointersSize * step),
+          y: Math.round(areaObj1.top + areaHeight1 * 0.5)
+        })
       }
       for (let step = 0; step < pointersSize; step++) {
-        pointers.setPoint(1, step, {x: Math.round(areaObj1.right - areaWidth1 * 0.3 / pointersSize * step), y: Math.round(areaObj1.top + areaHeight1 * 0.5) })
+        pointers.setPoint(1, step, {
+          x: Math.round(areaObj1.right - areaWidth1 * 0.3 / pointersSize * step),
+          y: Math.round(areaObj1.top + areaHeight1 * 0.5)
+        })
       }
       await driver.injectMultiPointerAction(pointers);
       await CommonFunc.sleep(4000);
@@ -81,9 +100,10 @@ export default function PinchGestureTemplateTest() {
       await button.click();
       await CommonFunc.sleep(3000);
       let text1 = getInspectorByKey('PinchGestureTemplate_Text');
-      let obj1 = JSON.parse(text1);
-      console.log('PanGestureExampleTemplateTest_0010 obj1 $attrs content',obj1.$attrs.content,obj1)
-      expect(obj1.$attrs.content).assertEqual('templateFlag:true');
+      console.log('PanGestureExampleTemplateTest_0010 obj1 $attrs content', JSON.parse(text1)
+        .$attrs
+        .content, JSON.parse(text1))
+      expect(JSON.parse(text1).$attrs.content).assertEqual('templateFlag:true');
       console.info('PinchGestureTemplateTest_0010 END');
       done();
     });

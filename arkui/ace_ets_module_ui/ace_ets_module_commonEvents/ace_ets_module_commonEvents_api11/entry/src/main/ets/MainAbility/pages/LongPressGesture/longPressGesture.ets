@@ -31,50 +31,50 @@ struct LongPressGestureExample {
     .border({ width: 1 })
     .margin(30)
     .gesture(
-    LongPressGesture({ repeat: true })
-      .onAction(() => {
-        console.info("longPressGesture current action onAction")
-        this.eventString = 'onAction';
-        console.info('onAction current action state is: ' + this.eventString);
-        try {
-          let backData = {
-            data: {
-              "ACTION": this.eventString,
+      LongPressGesture({ repeat: true })
+        .onAction(() => {
+          console.info("longPressGesture current action onAction")
+          this.eventString = 'onAction';
+          console.info('onAction current action state is: ' + this.eventString);
+          try {
+            let backData: events_emitter.EventData = {
+              data: {
+                "ACTION": this.eventString,
+              }
             }
-          }
-          let backEvent = {
-            eventId: 125,
-            priority: events_emitter.EventPriority.LOW
-          }
-          console.info("start to emit action state");
-          events_emitter.emit(backEvent, backData);
-        } catch (err) {
-          console.info("emit action state err: " + JSON.stringify(err.message));
-        }
-      })
-      .onActionEnd(() => {
-        console.info("longPressGesture current action end")
-        this.eventString = 'onActionEnd';
-        console.info('onActionEnd current action state is: ' + this.eventString);
-        try {
-          let backData = {
-            data: {
-              "ACTION": this.eventString,
+            let backEvent: events_emitter.InnerEvent = {
+              eventId: 125,
+              priority: events_emitter.EventPriority.LOW
             }
+            console.info("start to emit action state");
+            events_emitter.emit(backEvent, backData);
+          } catch (err) {
+            console.info("emit action state err: " + JSON.stringify(err.message));
           }
-          let backEvent = {
-            eventId: 126,
-            priority: events_emitter.EventPriority.LOW
+        })
+        .onActionEnd(() => {
+          console.info("longPressGesture current action end")
+          this.eventString = 'onActionEnd';
+          console.info('onActionEnd current action state is: ' + this.eventString);
+          try {
+            let backData: events_emitter.EventData = {
+              data: {
+                "ACTION": this.eventString,
+              }
+            }
+            let backEvent: events_emitter.InnerEvent = {
+              eventId: 126,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("start to emit action state");
+            events_emitter.emit(backEvent, backData);
+          } catch (err) {
+            console.info("emit action state err: " + JSON.stringify(err.message));
           }
-          console.info("start to emit action state");
-          events_emitter.emit(backEvent, backData);
-        } catch (err) {
-          console.info("emit action state err: " + JSON.stringify(err.message));
-        }
-      })
-      .onActionCancel(() => {
-        console.info("longPressGesture current action cancel");
-      })
+        })
+        .onActionCancel(() => {
+          console.info("longPressGesture current action cancel");
+        })
     )
   }
 }

@@ -67,19 +67,19 @@ import PanDirectionJsunit from './PanGestureTest/PanDirectionJsunit.test';
 import subscribedAbstractPropertyJsunit from './Abstract/SubscribedAbstractPropertyJsunit.test';
 import subscribaleAbstractJsunit from './Abstract/SubscribaleAbstractJsunit.test';
 
-import uiAppearanceALWAYS_DARKJsunit from './onAppearTest/uiAppearance.test.ets';
-import gestureParallelJsunit from './GestureGroupTest/gesture.test.ets';
+import uiAppearanceALWAYS_DARKJsunit from './onAppearTest/uiAppearance.test';
+import gestureParallelJsunit from './GestureGroupTest/gesture.test';
 import gestureSetDirectionJsunit from './PanGestureTest/gesture.test';
 import lazyForEachOnDataAddJsunit from './lazyForeachTest/lazyForEach.test';
-import PanGestureEventJsunit from './PanGestureTest/PanGestureEventJsunit.test.ets';
-import gestureEnabledJsunit from './PanGestureTest/gestureEnabledJsunit.test.ets'
-import PanGesture3Jsunit from './PanGestureTest/PanGestureJsunit.test.ets';
-import longPressGestureJsUnit from './LongPressGestureTest/LongPressGesture.test.ets';
-import tapGestureTest from './TapGestureTest/TapGesture.test.ets';
-import priorityGestureJsunit from './TapGestureTest/PriorityGestureJsunit.test.ets';
-import parallelGestureJsunit from './TapGestureTest/ParallelGestureJsunit.test.ets';
-import commonJsunit from './CommonJsunit.test.ets';
-import motionPathJsunit from './MotionPathJsunit.test.ets';
+import PanGestureEventJsunit from './PanGestureTest/PanGestureEventJsunit.test';
+import gestureEnabledJsunit from './PanGestureTest/gestureEnabledJsunit.test'
+import PanGesture3Jsunit from './PanGestureTest/PanGestureJsunit.test';
+import longPressGestureJsUnit from './LongPressGestureTest/LongPressGesture.test';
+import tapGestureTest from './TapGestureTest/TapGesture.test';
+import priorityGestureJsunit from './TapGestureTest/PriorityGestureJsunit.test';
+import parallelGestureJsunit from './TapGestureTest/ParallelGestureJsunit.test';
+import commonJsunit from './CommonJsunit.test';
+import motionPathJsunit from './MotionPathJsunit.test';
 
 export default function testsuite() {
   touchJsunit();

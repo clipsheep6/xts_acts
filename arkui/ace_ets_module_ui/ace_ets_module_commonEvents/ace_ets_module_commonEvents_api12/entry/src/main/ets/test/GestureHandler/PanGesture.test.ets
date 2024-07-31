@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, it, expect} from "@ohos/hypium"
-import {UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
+import { describe, beforeAll, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+import { UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function PanGestureHandlerTest() {
 
-  describe('PanGestureHandlerTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('PanGestureHandlerTest', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/GestureHandler/PanGestureHandler',
       }
       try {
@@ -31,7 +31,7 @@ export default function PanGestureHandlerTest() {
         console.info("get PanGestureHandler state pages: " + JSON.stringify(pages));
         if (!("PanGestureHandler" == pages.name)) {
           console.info("get PanGestureHandler state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push PanGestureHandler success: " + JSON.stringify(result));
         }
@@ -42,20 +42,20 @@ export default function PanGestureHandlerTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("PanGestureHandler after each called");
     });
 
     /**
-     * @tc.number    PanGestureHandler_0010
-     * @tc.name      PanGestureHandlerOptions
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number PanGestureHandler_0010
+     * @tc.name PanGestureHandlerOptions
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('PanGestureHandler_0010', 0, async function (done) {
+    it('PanGestureHandler_0010', 0, async (done: Function) => {
       console.info('PanGestureHandler_0010 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -68,8 +68,7 @@ export default function PanGestureHandlerTest() {
         Math.round(right - 100), Math.round((top + bottom) / 2));
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('PanGestureHandler1');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('pan succ');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('pan succ');
       console.info('[PanGestureHandler_0010] END');
       done();
     });

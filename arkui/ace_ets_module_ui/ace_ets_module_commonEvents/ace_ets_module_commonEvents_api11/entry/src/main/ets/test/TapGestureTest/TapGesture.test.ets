@@ -49,10 +49,10 @@ export default function tapGestureTest() {
       await Utils.sleep(1000)
       let rect = Utils.getComponentRect('tapGesture')
       console.info("[testTapGesture01] rectInfo is " + JSON.stringify(rect));
-      let x_value: string = rect.left + (rect.right - rect.left) / 2;
-      let y_value: string = rect.top + (rect.bottom - rect.top) / 2;
-      let x_value_two: string = rect.left + (rect.right - rect.left) / 20;
-      let y_value_two: string = rect.top + (rect.bottom - rect.top) / 20;
+      let x_value: number = rect.left + (rect.right - rect.left) / 2;
+      let y_value: number = rect.top + (rect.bottom - rect.top) / 2;
+      let x_value_two: number = rect.left + (rect.right - rect.left) / 20;
+      let y_value_two: number = rect.top + (rect.bottom - rect.top) / 20;
       console.info("[testTapGesture01] onTouch location is: " + "[x]=== " + x_value + "   [y]===" + y_value);
       let point: TouchObject = {
         id: 1, x: x_value, y: y_value, type: TouchType.Move,

@@ -13,17 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/common/Common';
 
 
 export default function typeNodeGestureTest() {
-  describe('typeNodeGestureTest', function () {
-    beforeEach(async function (done) {
+  describe('typeNodeGestureTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("GestureTest beforeEach start");
-      let options = {
-        uri: "MainAbility/pages/PanGesture/Gesture",
+      let options: router.RouterOptions = {
+        url: "MainAbility/pages/PanGesture/Gesture",
       }
       try {
         router.clear();
@@ -31,7 +44,7 @@ export default function typeNodeGestureTest() {
         console.info("get GestureTest state pages: " + JSON.stringify(pages));
         if (!("Gesture" == pages.name)) {
           console.info("get GestureTest state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push GestureTest success: " + JSON.stringify(result));
         }
@@ -43,14 +56,14 @@ export default function typeNodeGestureTest() {
     });
 
     /**
-     * @tc.number    GestureTest_0100
-     * @tc.name      GestureTest_0100
-     * @tc.desc      TypedFrameNode: Gesture
-     * @tc.level:    Level 2
+     * @tc.number GestureTest_0100
+     * @tc.name GestureTest_0100
+     * @tc.desc TypedFrameNode: Gesture
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('GestureTest_0100', 0, async function (done) {
+    it('GestureTest_0100', 0, async (done: Function) => {
       console.info('GestureTest_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -58,9 +71,8 @@ export default function typeNodeGestureTest() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('gesture');
-      let obj = JSON.parse(strJson);
-      console.info("[GestureTest_0100] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.content).assertEqual('2');
+      console.info("[GestureTest_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('2');
       console.info('[GestureTest_0100] END');
       done();
     });

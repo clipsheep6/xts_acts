@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function gestureEnabledJsunit() {
-  describe('gestureEnabledJsunit', function () {
-    beforeEach(async function (done) {
+  describe('gestureEnabledJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("gestureEnabledJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/PanGesture/gestureEnabled',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/PanGesture/gestureEnabled',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function gestureEnabledJsunit() {
         console.info("get gestureEnabledJsunit state pages: " + JSON.stringify(pages));
         if (!("gestureEnabled" == pages.name)) {
           console.info("get gestureEnabledJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push gestureEnabledJsunit success: " + JSON.stringify(result));
         }
@@ -42,20 +55,20 @@ export default function gestureEnabledJsunit() {
       }
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('value'));
       await button.click();
     });
-	
-	  /**
+
+    /**
      * @tc.number: SUB_ACE_TS_COMPONENT_TAPGESTURE_01
      * @tc.name : gestureEnabledJsunit_0100
      * @tc.desc : Does the TapGesture click trigger
      */
 
-    it('gestureEnabledJsunit_0100', 0, async function (done) {
+    it('gestureEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('gestureEnabledJsunit_0100 START');
       let driver = await UiDriver.create()
@@ -63,21 +76,20 @@ export default function gestureEnabledJsunit() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('gestureText');
-      let obj = JSON.parse(strJson);
-      console.info("[gestureEnabledJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[gestureEnabledJsunit_0100] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("TapGesture单击 已触发");
+      console.info("[gestureEnabledJsunit_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[gestureEnabledJsunit_0100] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("TapGesture单击 已触发");
       console.info('[gestureEnabledJsunit_0100] END');
       done();
     });
-	
-	/**
+
+    /**
      * @tc.number: SUB_ACE_TS_COMPONENT_TAPGESTURE_02
      * @tc.name : gestureEnabledJsunit_0200
      * @tc.desc : Does the TapGesture click trigger
      */
 
-    it('gestureEnabledJsunit_0200', 0, async function (done) {
+    it('gestureEnabledJsunit_0200', 0, async (done: Function) => {
 
       console.info('gestureEnabledJsunit_0200 START');
       let driver = await UiDriver.create()
@@ -85,21 +97,20 @@ export default function gestureEnabledJsunit() {
       await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('gestureText');
-      let obj = JSON.parse(strJson);
-      console.info("[gestureEnabledJsunit_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[gestureEnabledJsunit_0200] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("Gesture enabled false");
+      console.info("[gestureEnabledJsunit_0200] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[gestureEnabledJsunit_0200] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("Gesture enabled false");
       console.info('[gestureEnabledJsunit_0200] END');
       done();
     });
-	
-	/**
+
+    /**
      * @tc.number: SUB_ACE_TS_COMPONENT_TAPGESTURE_03
      * @tc.name : gestureEnabledJsunit_0300
      * @tc.desc : Does the TapGesture doubleClick trigger
      */
 
-    it('gestureEnabledJsunit_0300', 0, async function (done) {
+    it('gestureEnabledJsunit_0300', 0, async (done: Function) => {
 
       console.info('gestureEnabledJsunit_0300 START');
       let driver = await UiDriver.create()
@@ -107,21 +118,20 @@ export default function gestureEnabledJsunit() {
       await button.doubleClick();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('gestureText');
-      let obj = JSON.parse(strJson);
-      console.info("[gestureEnabledJsunit_0300] component obj is: " + JSON.stringify(obj));
-      console.info("[gestureEnabledJsunit_0300] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("Gesture enabled false");
+      console.info("[gestureEnabledJsunit_0300] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[gestureEnabledJsunit_0300] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("Gesture enabled false");
       console.info('[gestureEnabledJsunit_0300] END');
       done();
     });
-	
-	/**
+
+    /**
      * @tc.number: SUB_ACE_TS_COMPONENT_TAPGESTURE_04
      * @tc.name : gestureEnabledJsunit_0400
      * @tc.desc : Does the TapGesture longClick trigger
      */
 
-    it('gestureEnabledJsunit_0400', 0, async function (done) {
+    it('gestureEnabledJsunit_0400', 0, async (done: Function) => {
 
       console.info('gestureEnabledJsunit_0400 START');
       let driver = await UiDriver.create()
@@ -129,10 +139,9 @@ export default function gestureEnabledJsunit() {
       await button.longClick();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('gestureText');
-      let obj = JSON.parse(strJson);
-      console.info("[gestureEnabledJsunit_0400] component obj is: " + JSON.stringify(obj));
-      console.info("[gestureEnabledJsunit_0400] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("Gesture enabled false");
+      console.info("[gestureEnabledJsunit_0400] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[gestureEnabledJsunit_0400] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("Gesture enabled false");
       console.info('[gestureEnabledJsunit_0400] END');
       done();
     });

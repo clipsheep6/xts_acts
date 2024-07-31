@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, it, expect} from "@ohos/hypium"
-import {UiComponent, Component, Driver, ON, BY, MouseButton} from '@ohos.UiTest';
+import { describe, beforeAll, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+import { UiComponent, Component, Driver, ON, BY, MouseButton } from '@ohos.UiTest';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function SourceToolTest() {
 
-  describe('SourceToolTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('SourceToolTest', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/GestureHandler/SourceTool',
       }
       try {
@@ -31,7 +31,7 @@ export default function SourceToolTest() {
         console.info("get SourceTool state pages: " + JSON.stringify(pages));
         if (!("SourceTool" == pages.name)) {
           console.info("get SourceTool state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push SourceTool success: " + JSON.stringify(result));
         }
@@ -42,20 +42,20 @@ export default function SourceToolTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("SourceTool after each called");
     });
 
     /**
-     * @tc.number    SourceTool_0010
-     * @tc.name      SourceTool: SourceTool.MOUSE
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number SourceTool_0010
+     * @tc.name SourceTool: SourceTool.MOUSE
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('SourceTool_0010', 0, async function (done) {
+    it('SourceTool_0010', 0, async (done: Function) => {
       console.info('SourceTool_0010 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -64,25 +64,26 @@ export default function SourceToolTest() {
       let bottom = colum.bottom
       let left = colum.left
       let right = colum.right
-      await driver.mouseClick({x:Math.round((left + right) / 2), y: Math.round((top + bottom) / 2)},
+      await driver.mouseClick({
+        x: Math.round((left + right) / 2), y: Math.round((top + bottom) / 2)
+      },
         MouseButton.MOUSE_BUTTON_LEFT);
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('sourceTool1_id');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('7');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('7');
       console.info('[SourceTool_0010] END');
       done();
     });
 
     /**
-     * @tc.number    SourceTool_0020
-     * @tc.name      SourceTool: SourceTool.TOUCHPAD
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number SourceTool_0020
+     * @tc.name SourceTool: SourceTool.TOUCHPAD
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('SourceTool_0020', 0, async function (done) {
+    it('SourceTool_0020', 0, async (done: Function) => {
       console.info('SourceTool_0020 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -95,21 +96,20 @@ export default function SourceToolTest() {
         Math.round(right - 20), Math.round((top + bottom) / 2));
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('sourceTool1_id');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('1');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('1');
       console.info('[SourceTool_0020] END');
       done();
     });
 
     /**
-     * @tc.number    SourceTool_0030
-     * @tc.name      SourceTool: SourceTool.JOYSTICK
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number SourceTool_0030
+     * @tc.name SourceTool: SourceTool.JOYSTICK
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('SourceTool_0030', 0, async function (done) {
+    it('SourceTool_0030', 0, async (done: Function) => {
       console.info('SourceTool_0030 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -117,21 +117,20 @@ export default function SourceToolTest() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('sourceTool1_id');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('10');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('10');
       console.info('[SourceTool_0030] END');
       done();
     });
 
     /**
-     * @tc.number    axisHorizontal_0040
-     * @tc.name      axisHorizontal
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number axisHorizontal_0040
+     * @tc.name axisHorizontal
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('axisHorizontal_0040', 0, async function (done) {
+    it('axisHorizontal_0040', 0, async (done: Function) => {
       console.info('axisHorizontal_0040 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -144,21 +143,20 @@ export default function SourceToolTest() {
         Math.round(right - 20), Math.round((top + bottom) / 2));
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('axisHorizontal_id');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('0');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('0');
       console.info('[axisHorizontal_0040] END');
       done();
     });
 
     /**
-     * @tc.number    axisVertical_0050
-     * @tc.name      axisVertical
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number axisVertical_0050
+     * @tc.name axisVertical
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('axisVertical_0050', 0, async function (done) {
+    it('axisVertical_0050', 0, async (done: Function) => {
       console.info('axisVertical_0050 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -171,8 +169,7 @@ export default function SourceToolTest() {
         Math.round(right - 20), Math.round((top + bottom) / 2));
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('axisVertical_id');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('0');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('0');
       console.info('[axisVertical_0050] END');
       done();
     });

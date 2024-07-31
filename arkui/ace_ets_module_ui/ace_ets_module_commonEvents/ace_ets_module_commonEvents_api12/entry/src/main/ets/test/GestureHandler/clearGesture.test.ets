@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, it, expect} from "@ohos/hypium"
-import {UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
+import { describe, beforeAll, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+import { UiComponent, UiDriver, Component, Driver, ON, BY, } from '@ohos.UiTest';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function clearGestureTest() {
 
-  describe('clearGestureTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('clearGestureTest', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/GestureHandler/clearGesture',
       }
       try {
@@ -31,7 +31,7 @@ export default function clearGestureTest() {
         console.info("get clearGesture state pages: " + JSON.stringify(pages));
         if (!("clearGesture" == pages.name)) {
           console.info("get clearGesture state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push clearGesture success: " + JSON.stringify(result));
         }
@@ -42,20 +42,20 @@ export default function clearGestureTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("clearGesture after each called");
     });
 
     /**
-     * @tc.number    clearGesture_0010
-     * @tc.name      test the api of clearGesture
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number clearGesture_0010
+     * @tc.name test the api of clearGesture
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('clearGesture_0010', 0, async function (done) {
+    it('clearGesture_0010', 0, async (done: Function) => {
       console.info('clearGesture_0010 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(500);
@@ -63,8 +63,7 @@ export default function clearGestureTest() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('clearGesture_id');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('clearGesture succ');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('clearGesture succ');
       console.info('[clearGesture_0010] END');
       done();
     });

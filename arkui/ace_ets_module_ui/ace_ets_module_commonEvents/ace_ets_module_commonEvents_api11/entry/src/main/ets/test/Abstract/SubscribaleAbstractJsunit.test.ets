@@ -27,8 +27,8 @@ export default function SubscribaleAbstractJsunit() {
       done();
       return;
       console.info('[stateManagement_SubscribaleAbstract_addOwningProperty_0100] START');
-      let subscriber = new IPropertySubscriber();
-      let abstract = new SubscribaleAbstract();
+      let subscriber:IPropertySubscriber = new IPropertySubscriber();
+      let abstract:SubscribaleAbstract = new SubscribaleAbstract();
       abstract.addOwningProperty(subscriber);
       let numbers = abstract.owningProperties_;
       abstract.removeOwningProperty(subscriber)
@@ -48,8 +48,8 @@ export default function SubscribaleAbstractJsunit() {
       done();
       return;
       console.info('[stateManagement_ISinglePropertyChangeSubscriber_hasChanged_0100] START');
-      let subscriber = new ISinglePropertyChangeSubscriber<string>(
-        (data) => {
+      let subscriber:ISinglePropertyChangeSubscriber<string> = new ISinglePropertyChangeSubscriber<string>(
+        (data:ESObject) => {
           console.info('[stateManagement_SubscribaleAbstract_addOwningProperty_0100] data = ' + data);
         }
       );
@@ -69,7 +69,7 @@ export default function SubscribaleAbstractJsunit() {
       console.info('[stateManagement_PersistentStorage_0100] Start');
       let persistentStorage = new PersistentStorage(AppStorage, new Storage());
       persistentStorage.PersistProp<string>("key10", "value10");
-      let persistProp = {
+      let persistProp:PersistentStorage = {
         "properties": [{
                          key: "colorMode", defaultValue: ColorMode.LIGHT
                        }, {
@@ -92,7 +92,7 @@ export default function SubscribaleAbstractJsunit() {
       done();
       return;
       console.info('[stateManagement_IPropertySubscriber_0100] Start');
-      let iPropertySubscriber =new IPropertySubscriber();
+      let iPropertySubscriber:IPropertySubscriber =new IPropertySubscriber();
       let id = iPropertySubscriber.id();
       let aboutToBeDeleted = iPropertySubscriber.aboutToBeDeleted();
       expect(true).assertTrue();
@@ -105,38 +105,47 @@ export default function SubscribaleAbstractJsunit() {
     * @tc.name    stateManagement stateManagement_SyncedPropertyOneWay_0100   validation
     * @tc.desc    Function test
     */
-    it('stateManagement_SyncedPropertyOneWay_0100', 0, (done:Function) =>{
+    it('stateManagement_SyncedPropertyOneWay_0100', 0, (done: Function) => {
       done();
       return;
       console.info('[stateManagement_SyncedPropertyOneWay_0100] Start');
-      let oneWay = new SyncedPropertyOneWay(new SubscribedAbstractProperty<string>());
+
+      // 为 SyncedPropertyOneWay 和 SubscribedAbstractProperty 显式指定类型参数
+      let oneWay: SyncedPropertyOneWay<string> = new SyncedPropertyOneWay<string>(new SubscribedAbstractProperty<string>());
       oneWay.set("key12");
-      let key12 = oneWay.get();
+
+      let key12: string = oneWay.get();
       oneWay.hasChanged("key12");
       oneWay.aboutToBeDeleted(new SubscribedAbstractProperty<string>());
-      let source_ = oneWay.source_;
-      let wrappedValue_ = oneWay.oneWay;
+
+      let source_: SubscribedAbstractProperty<string> = oneWay.source_;
+      let wrappedValue_: boolean = oneWay.oneWay;
+
       expect(true).assertTrue();
       console.info('[stateManagement_SyncedPropertyOneWay_0100] END');
       done();
     });
-
     /**
     * @tc.number  stateManagement_SyncedPropertyTwoWay_0100
     * @tc.name    stateManagement SyncedPropertyTwoWay   validation
     * @tc.desc    Function test
     */
-    it('stateManagement_SyncedPropertyTwoWay_0100', 0, (done:Function) =>{
+    it('stateManagement_SyncedPropertyTwoWay_0100', 0, (done: Function) => {
       done();
       return;
       console.info('[stateManagement_SyncedPropertyTwoWay_0100] Start');
-      let twoWay = new SyncedPropertyTwoWay(new SubscribedAbstractProperty<string>());
+
+      // 为 SyncedPropertyTwoWay 和 SubscribedAbstractProperty 显式指定类型参数
+      let twoWay: SyncedPropertyTwoWay<string> = new SyncedPropertyTwoWay<string>(new SubscribedAbstractProperty<string>());
       twoWay.set("key12");
-      let key12 = twoWay.get();
+
+      let key12: string = twoWay.get();
       twoWay.hasChanged("key12");
       twoWay.aboutToBeDeleted(new SubscribedAbstractProperty<string>());
-      let source_ = twoWay.source_;
-      let wrappedValue_ = twoWay.oneWay;
+
+      let source_: SubscribedAbstractProperty<string> = twoWay.source_;
+      let wrappedValue_: boolean = twoWay.oneWay;
+
       expect(true).assertTrue();
       console.info('[stateManagement_SyncedPropertyTwoWay_0100] END');
       done();

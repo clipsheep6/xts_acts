@@ -13,17 +13,30 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
+import router from '@ohos.router';
 import CommonFunc from '../MainAbility/utils/Common';
 
 export default function addGestureApplyGesture() {
 
-  describe('addGestureApplyGesture', function () {
-    beforeEach(async function (done) {
-      let options = {
-        uri: 'MainAbility/pages/addGestureApplyGesture',
+  describe('addGestureApplyGesture', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/addGestureApplyGesture',
       }
       try {
         router.clear();
@@ -31,7 +44,7 @@ export default function addGestureApplyGesture() {
         console.info("get addGestureApplyGesture state pages: " + JSON.stringify(pages));
         if (!("addGestureApplyGesture" == pages.name)) {
           console.info("get addGestureApplyGesture state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push addGestureApplyGesture success: " + JSON.stringify(result));
         }
@@ -42,22 +55,22 @@ export default function addGestureApplyGesture() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("addGestureApplyGesture after each called");
     });
 
     /**
-     * @tc.number    SUB_ACE_BASIC_ETS_API_0100
-     * @tc.name      testGetImageAttr010
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASIC_ETS_API_0100
+     * @tc.name testGetImageAttr010
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
 
 
-    it('addGestureApplyGesture_0100', 0, async function (done) {
+    it('addGestureApplyGesture_0100', 0, async (done: Function) => {
       console.info('addGestureApplyGesture_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
@@ -65,15 +78,11 @@ export default function addGestureApplyGesture() {
       await button1.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('gestureText1');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.label).assertEqual('666');
+      expect(JSON.parse(strJson).$attrs.label).assertEqual('666');
       await CommonFunc.sleep(1000);
       console.info('[addGestureApplyGesture_0100] END');
       done();
     });
-
-
-
 
 
   })

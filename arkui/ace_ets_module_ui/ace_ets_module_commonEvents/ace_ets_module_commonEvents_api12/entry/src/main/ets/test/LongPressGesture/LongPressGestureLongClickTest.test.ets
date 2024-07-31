@@ -13,16 +13,29 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import router from '@system.router';
+import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function LongPressGestureLongClickTest() {
-  describe('LongPressGestureLongClickTest', function () {
-    beforeEach(async function (done) {
+  describe('LongPressGestureLongClickTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("LongPressGestureLongClickTest beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/LongPressGesture/LongPressGestureLongClick',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/LongPressGesture/LongPressGestureLongClick',
       }
       try {
         router.clear();
@@ -30,7 +43,7 @@ export default function LongPressGestureLongClickTest() {
         console.info("get LongPressGestureLongClickTest state pages:" + JSON.stringify(pages));
         if (!("LongPressGestureLongClick" == pages.name)) {
           console.info("get LongPressGestureLongClickTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push LongPressGestureLongClickTest page result:" + JSON.stringify(result));
         }
@@ -41,202 +54,251 @@ export default function LongPressGestureLongClickTest() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(2000);
       console.info("LongPressGestureLongClickTest after each called");
     });
 
     /**
      * @tc.number
-     * @tc.name      LongPressGestureLongClickTest_0010
-     * @tc.desc      api test TapGesture
-     * @tc.level:    Level
+     * @tc.name LongPressGestureLongClickTest_0010
+     * @tc.desc api test TapGesture
+     * @tc.level: Level
      * @tc.type :
      * @tc.size :
      */
-    it('LongPressGestureLongClickTest_0010', 0, async function (done) {
+    it('LongPressGestureLongClickTest_0010', 0, async (done: Function) => {
       console.info('LongPressGestureLongClickTest_0010 START');
       await CommonFunc.sleep(1000);
       let FatherObj = CommonFunc.getComponentRectOnScreen('LongPressGestureLongClick_Father');
       let FatherObjHeight = FatherObj.bottom - FatherObj.top
       let FatherObjWidth = FatherObj.right - FatherObj.left
-      console.log('LongPressGestureLongClickTest_0010 FatherObj',FatherObj.left,FatherObj.top,FatherObj.right,FatherObj.bottom)
+      console.log('LongPressGestureLongClickTest_0010 FatherObj', FatherObj.left, FatherObj.top, FatherObj.right, FatherObj.bottom)
       await CommonFunc.sleep(1000);
       let areaObj = CommonFunc.getComponentRectOnScreen('LongPressGestureLongClick_Click');
       let areaHeight = areaObj.bottom - areaObj.top
       let areaWidth = areaObj.right - areaObj.left
-      console.log('LongPressGestureLongClickTest_0010 areaObj',areaObj.left,areaObj.top,areaObj.right,areaObj.bottom)
-      console.log('LongPressGestureLongClickTest_0010 areaObj clicked',Math.round(areaObj.left + areaWidth/2),Math.round(areaObj.top + areaHeight/2))
+      console.log('LongPressGestureLongClickTest_0010 areaObj', areaObj.left, areaObj.top, areaObj.right, areaObj.bottom)
+      console.log('LongPressGestureLongClickTest_0010 areaObj clicked', Math.round(areaObj.left + areaWidth / 2), Math.round(areaObj.top + areaHeight / 2))
 
       let driver = Driver.create();
       await CommonFunc.sleep(1000);
-      await driver.longClick(Math.round(areaObj.left + areaWidth/2),Math.round(areaObj.top + areaHeight/2));
+      await driver.longClick(Math.round(areaObj.left + areaWidth / 2), Math.round(areaObj.top + areaHeight / 2));
       await CommonFunc.sleep(3000);
 
       let text1 = getInspectorByKey('LongPressGestureLongClick_repeat');
-      let obj1 = JSON.parse(text1);
-      console.log('LongPressGestureLongClickTest_0010 obj1 $attrs content',obj1.$attrs.content,obj1)
-      expect(obj1.$attrs.content).assertEqual('repeat:false');
+      console.log('LongPressGestureLongClickTest_0010 obj1 $attrs content', JSON.parse(text1)
+        .$attrs
+        .content, JSON.parse(text1))
+      expect(JSON.parse(text1).$attrs.content).assertEqual('repeat:false');
 
       await CommonFunc.sleep(200);
       let text2 = getInspectorByKey('LongPressGestureLongClick_offsetX');
-      let obj2 = JSON.parse(text2);
-      console.log('LongPressGestureLongClickTest_0010 obj2 $attrs content',obj2.$attrs.content,obj2)
-      expect(obj2.$attrs.content).assertEqual('offsetX:0');
+      console.log('LongPressGestureLongClickTest_0010 obj2 $attrs content', JSON.parse(text2)
+        .$attrs
+        .content, JSON.parse(text2))
+      expect(JSON.parse(text2).$attrs.content).assertEqual('offsetX:0');
 
       await CommonFunc.sleep(200);
       let text3 = getInspectorByKey('LongPressGestureLongClick_offsetY');
-      let obj3 = JSON.parse(text3);
-      console.log('LongPressGestureLongClickTest_0010 obj3 $attrs content',obj3.$attrs.content,obj3)
-      expect(obj3.$attrs.content).assertEqual('offsetY:0');
+      console.log('LongPressGestureLongClickTest_0010 obj3 $attrs content', JSON.parse(text3)
+        .$attrs
+        .content, JSON.parse(text3))
+      expect(JSON.parse(text3).$attrs.content).assertEqual('offsetY:0');
 
       await CommonFunc.sleep(200);
       let text4 = getInspectorByKey('LongPressGestureLongClick_angle');
-      let obj4 = JSON.parse(text4);
-      console.log('LongPressGestureLongClickTest_0010 obj4 $attrs content',obj4.$attrs.content,obj4)
-      expect(obj4.$attrs.content).assertEqual('angle:0');
+      console.log('LongPressGestureLongClickTest_0010 obj4 $attrs content', JSON.parse(text4)
+        .$attrs
+        .content, JSON.parse(text4))
+      expect(JSON.parse(text4).$attrs.content).assertEqual('angle:0');
 
       await CommonFunc.sleep(200);
       let text5 = getInspectorByKey('LongPressGestureLongClick_scale');
-      let obj5 = JSON.parse(text5);
-      console.log('LongPressGestureLongClickTest_0010 obj5 $attrs content',obj5.$attrs.content,obj5)
-      expect(obj5.$attrs.content).assertEqual('scale:1');
+      console.log('LongPressGestureLongClickTest_0010 obj5 $attrs content', JSON.parse(text5)
+        .$attrs
+        .content, JSON.parse(text5))
+      expect(JSON.parse(text5).$attrs.content).assertEqual('scale:1');
 
       await CommonFunc.sleep(200);
       let text6 = getInspectorByKey('LongPressGestureLongClick_pinchCenterX');
-      let obj6 = JSON.parse(text6);
-      console.log('LongPressGestureLongClickTest_0010 obj6 $attrs content',obj6.$attrs.content,obj6)
-      expect(obj6.$attrs.content).assertEqual('pinchCenterX:0');
+      console.log('LongPressGestureLongClickTest_0010 obj6 $attrs content', JSON.parse(text6)
+        .$attrs
+        .content, JSON.parse(text6))
+      expect(JSON.parse(text6).$attrs.content).assertEqual('pinchCenterX:0');
 
       await CommonFunc.sleep(200);
       let text7 = getInspectorByKey('LongPressGestureLongClick_pinchCenterY');
-      let obj7 = JSON.parse(text7);
-      console.log('LongPressGestureLongClickTest_0010 obj7 $attrs content',obj7.$attrs.content,obj7)
-      expect(obj7.$attrs.content).assertEqual('pinchCenterY:0');
+      console.log('LongPressGestureLongClickTest_0010 obj7 $attrs content', JSON.parse(text7)
+        .$attrs
+        .content, JSON.parse(text7))
+      expect(JSON.parse(text7).$attrs.content).assertEqual('pinchCenterY:0');
 
       await CommonFunc.sleep(200);
       let text8 = getInspectorByKey('LongPressGestureLongClick_speed');
-      let obj8 = JSON.parse(text8);
-      console.log('LongPressGestureLongClickTest_0010 obj8 $attrs content',obj8.$attrs.content,obj8)
-      expect(obj8.$attrs.content).assertEqual('speed:0');
+      console.log('LongPressGestureLongClickTest_0010 obj8 $attrs content', JSON.parse(text8)
+        .$attrs
+        .content, JSON.parse(text8))
+      expect(JSON.parse(text8).$attrs.content).assertEqual('speed:0');
 
       await CommonFunc.sleep(200);
       let text9 = getInspectorByKey('LongPressGestureLongClick_fingerList_id');
-      let obj9 = JSON.parse(text9);
-      console.log('LongPressGestureLongClickTest_0010 obj9 $attrs content',obj9.$attrs.content,obj9)
-      expect(obj9.$attrs.content).assertEqual('fingerList_id:0');
+      console.log('LongPressGestureLongClickTest_0010 obj9 $attrs content', JSON.parse(text9)
+        .$attrs
+        .content, JSON.parse(text9))
+      expect(JSON.parse(text9).$attrs.content).assertEqual('fingerList_id:0');
 
       await CommonFunc.sleep(200);
       let text10 = getInspectorByKey('LongPressGestureLongClick_fingerList_globalX');
-      let obj10 = JSON.parse(text10);
-      console.log('LongPressGestureLongClickTest_0010 obj10 $attrs content',vp2px(Number(obj10.$attrs.content)),Math.round(areaObj.left + areaWidth/2))
-      console.log('LongPressGestureLongClickTest_0010 obj10 $attrs fingerList_globalX',obj10.$attrs.content, Number(obj10.$attrs.content), vp2px(Number(obj10.$attrs.content)))
-      expect(Math.abs(Math.round((vp2px(Number(obj10.$attrs.content)))- (Math.round(areaObj.left + areaWidth/2)))) <= 1).assertTrue();
+      console.log('LongPressGestureLongClickTest_0010 obj10 $attrs content', vp2px(Number(JSON.parse(text10)
+        .$attrs
+        .content)), Math.round(areaObj.left + areaWidth / 2))
+      console.log('LongPressGestureLongClickTest_0010 obj10 $attrs fingerList_globalX', JSON.parse(text10)
+        .$attrs
+        .content, Number(JSON.parse(text10).$attrs.content), vp2px(Number(JSON.parse(text10).$attrs.content)))
+      expect(Math.abs(Math.round((vp2px(Number(JSON.parse(text10)
+        .$attrs
+        .content))) - (Math.round(areaObj.left + areaWidth / 2)))) <= 1).assertTrue();
 
       await CommonFunc.sleep(200);
       let text11 = getInspectorByKey('LongPressGestureLongClick_fingerList_globalY');
-      let obj11 = JSON.parse(text11);
-      console.log('LongPressGestureLongClickTest_0010 obj11 $attrs content',vp2px(Number(obj11.$attrs.content)),Math.round(areaObj.top + areaHeight/2))
-      console.log('LongPressGestureLongClickTest_0010 obj11 $attrs fingerList_globalY',obj11.$attrs.content,Number(obj11.$attrs.content),vp2px(Number(obj11.$attrs.content)))
-      expect(Math.abs(Math.round((vp2px(Number(obj11.$attrs.content)))- (Math.round(areaObj.top + areaHeight/2)))) <= 1).assertTrue();
+      console.log('LongPressGestureLongClickTest_0010 obj11 $attrs content', vp2px(Number(JSON.parse(text11)
+        .$attrs
+        .content)), Math.round(areaObj.top + areaHeight / 2))
+      console.log('LongPressGestureLongClickTest_0010 obj11 $attrs fingerList_globalY', JSON.parse(text11)
+        .$attrs
+        .content, Number(JSON.parse(text11).$attrs.content), vp2px(Number(JSON.parse(text11).$attrs.content)))
+      expect(Math.abs(Math.round((vp2px(Number(JSON.parse(text11)
+        .$attrs
+        .content))) - (Math.round(areaObj.top + areaHeight / 2)))) <= 1).assertTrue();
 
       await CommonFunc.sleep(200);
       let text12 = getInspectorByKey('LongPressGestureLongClick_fingerList_localX');
-      let obj12 = JSON.parse(text12);
-      console.log('LongPressGestureLongClickTest_0010 obj12 $attrs content',vp2px(Number(obj12.$attrs.content)),Math.round(areaObj.left + areaWidth/2) - areaObj.left)
-      console.log('LongPressGestureLongClickTest_0010 obj12 $attrs fingerList_localX',obj12.$attrs.content,Number(obj12.$attrs.content),vp2px(Number(obj12.$attrs.content)))
-      expect(Math.abs(Math.round((vp2px(Number(obj12.$attrs.content)))- (Math.round(areaObj.left + areaWidth/2) - areaObj.left))) <= 1).assertTrue();
+      console.log('LongPressGestureLongClickTest_0010 obj12 $attrs content', vp2px(Number(JSON.parse(text12)
+        .$attrs
+        .content)), Math.round(areaObj.left + areaWidth / 2) - areaObj.left)
+      console.log('LongPressGestureLongClickTest_0010 obj12 $attrs fingerList_localX', JSON.parse(text12)
+        .$attrs
+        .content, Number(JSON.parse(text12).$attrs.content), vp2px(Number(JSON.parse(text12).$attrs.content)))
+      expect(Math.abs(Math.round((vp2px(Number(JSON.parse(text12)
+        .$attrs
+        .content))) - (Math.round(areaObj.left + areaWidth / 2) - areaObj.left))) <= 1).assertTrue();
 
       await CommonFunc.sleep(200);
       let text13 = getInspectorByKey('LongPressGestureLongClick_fingerList_localY');
-      let obj13 = JSON.parse(text13);
-      console.log('LongPressGestureLongClickTest_0010 obj13 $attrs content',vp2px(Number(obj13.$attrs.content)),Math.round(areaObj.top + areaHeight/2) - areaObj.top)
-      console.log('LongPressGestureLongClickTest_0010 obj13 $attrs fingerList_localY',obj13.$attrs.content,Number(obj13.$attrs.content),vp2px(Number(obj13.$attrs.content)))
-      expect(Math.abs(Math.round((vp2px(Number(obj13.$attrs.content)))- (Math.round(areaObj.top + areaHeight/2) - areaObj.top))) <= 1).assertTrue();
+      console.log('LongPressGestureLongClickTest_0010 obj13 $attrs content', vp2px(Number(JSON.parse(text13)
+        .$attrs
+        .content)), Math.round(areaObj.top + areaHeight / 2) - areaObj.top)
+      console.log('LongPressGestureLongClickTest_0010 obj13 $attrs fingerList_localY', JSON.parse(text13)
+        .$attrs
+        .content, Number(JSON.parse(text13).$attrs.content), vp2px(Number(JSON.parse(text13).$attrs.content)))
+      expect(Math.abs(Math.round((vp2px(Number(JSON.parse(text13)
+        .$attrs
+        .content))) - (Math.round(areaObj.top + areaHeight / 2) - areaObj.top))) <= 1).assertTrue();
 
       await CommonFunc.sleep(200);
       let text16 = getInspectorByKey('LongPressGestureLongClick_target_area_width');
-      let obj16 = JSON.parse(text16);
-      console.log('LongPressGestureLongClickTest_0010 obj16 $attrs content',obj16.$attrs.content,obj16)
-      expect(obj16.$attrs.content).assertEqual('target_area_width:240');
+      console.log('LongPressGestureLongClickTest_0010 obj16 $attrs content', JSON.parse(text16)
+        .$attrs
+        .content, JSON.parse(text16))
+      expect(JSON.parse(text16).$attrs.content).assertEqual('target_area_width:240');
 
       await CommonFunc.sleep(200);
       let text17 = getInspectorByKey('LongPressGestureLongClick_target_area_height');
-      let obj17 = JSON.parse(text17);
-      console.log('LongPressGestureLongClickTest_0010 obj17 $attrs content',obj17.$attrs.content,obj17)
-      expect(obj17.$attrs.content).assertEqual('target_area_height:80');
+      console.log('LongPressGestureLongClickTest_0010 obj17 $attrs content', JSON.parse(text17)
+        .$attrs
+        .content, JSON.parse(text17))
+      expect(JSON.parse(text17).$attrs.content).assertEqual('target_area_height:80');
 
       await CommonFunc.sleep(200);
       let text18 = getInspectorByKey('LongPressGestureLongClick_target_area_position_x');
-      let obj18 = JSON.parse(text18);
-      console.log('LongPressGestureLongClickTest_0010 obj18 $attrs content',vp2px(Number(obj18.$attrs.content)),areaObj.left-FatherObj.left)
-      expect(Math.abs(Math.round((vp2px(Number(obj18.$attrs.content)))- (areaObj.left-FatherObj.left))) <= 1).assertTrue();
+      console.log('LongPressGestureLongClickTest_0010 obj18 $attrs content', vp2px(Number(JSON.parse(text18)
+        .$attrs
+        .content)), areaObj.left - FatherObj.left)
+      expect(Math.abs(Math.round((vp2px(Number(JSON.parse(text18)
+        .$attrs
+        .content))) - (areaObj.left - FatherObj.left))) <= 1).assertTrue();
 
       await CommonFunc.sleep(200);
       let text19 = getInspectorByKey('LongPressGestureLongClick_target_area_position_y');
-      let obj19 = JSON.parse(text19);
-      console.log('LongPressGestureLongClickTest_0010 obj19 $attrs content',vp2px(Number(obj19.$attrs.content)),areaObj.top-FatherObj.top)
-      expect(Math.abs(Math.round((vp2px(Number(obj19.$attrs.content)))- (areaObj.top-FatherObj.top))) <= 1).assertTrue();
+      console.log('LongPressGestureLongClickTest_0010 obj19 $attrs content', vp2px(Number(JSON.parse(text19)
+        .$attrs
+        .content)), areaObj.top - FatherObj.top)
+      expect(Math.abs(Math.round((vp2px(Number(JSON.parse(text19)
+        .$attrs
+        .content))) - (areaObj.top - FatherObj.top))) <= 1).assertTrue();
 
       await CommonFunc.sleep(200);
       let text20 = getInspectorByKey('LongPressGestureLongClick_target_area_globalPosition_x');
-      let obj20 = JSON.parse(text20);
-      console.log('LongPressGestureLongClickTest_0010 obj20 $attrs content',vp2px(Number(obj20.$attrs.content)),areaObj.left)
-      expect(Math.abs(Math.round((vp2px(Number(obj20.$attrs.content)))- (areaObj.left))) <= 1).assertTrue();
+      console.log('LongPressGestureLongClickTest_0010 obj20 $attrs content', vp2px(Number(JSON.parse(text20)
+        .$attrs
+        .content)), areaObj.left)
+      expect(Math.abs(Math.round((vp2px(Number(JSON.parse(text20).$attrs.content))) - (areaObj.left))) <= 1)
+        .assertTrue();
 
       await CommonFunc.sleep(200);
       let text21 = getInspectorByKey('LongPressGestureLongClick_target_area_globalPosition_y');
-      let obj21 = JSON.parse(text21);
-      console.log('LongPressGestureLongClickTest_0010 obj21 $attrs content',vp2px(Number(obj21.$attrs.content)),areaObj.top)
-      expect(Math.abs(Math.round((vp2px(Number(obj21.$attrs.content)))- (areaObj.top))) <= 1).assertTrue();
+      console.log('LongPressGestureLongClickTest_0010 obj21 $attrs content', vp2px(Number(JSON.parse(text21)
+        .$attrs
+        .content)), areaObj.top)
+      expect(Math.abs(Math.round((vp2px(Number(JSON.parse(text21).$attrs.content))) - (areaObj.top))) <= 1)
+        .assertTrue();
 
       await CommonFunc.sleep(200);
       let text22 = getInspectorByKey('LongPressGestureLongClick_source');
-      let obj22 = JSON.parse(text22);
-      console.log('LongPressGestureLongClickTest_0010 obj22 $attrs content',obj22.$attrs.content,obj22)
-      expect(obj22.$attrs.content).assertEqual('source:2');
+      console.log('LongPressGestureLongClickTest_0010 obj22 $attrs content', JSON.parse(text22)
+        .$attrs
+        .content, JSON.parse(text22))
+      expect(JSON.parse(text22).$attrs.content).assertEqual('source:2');
 
       await CommonFunc.sleep(200);
       let text23 = getInspectorByKey('LongPressGestureLongClick_pressure');
-      let obj23 = JSON.parse(text23);
-      console.log('LongPressGestureLongClickTest_0010 obj23 $attrs content',obj23.$attrs.content,obj23)
-      expect(obj23.$attrs.content).assertEqual('pressure:0');
+      console.log('LongPressGestureLongClickTest_0010 obj23 $attrs content', JSON.parse(text23)
+        .$attrs
+        .content, JSON.parse(text23))
+      expect(JSON.parse(text23).$attrs.content).assertEqual('pressure:0');
 
       await CommonFunc.sleep(200);
       let text24 = getInspectorByKey('LongPressGestureLongClick_tiltX');
-      let obj24 = JSON.parse(text24);
-      console.log('LongPressGestureLongClickTest_0010 obj24 $attrs content',obj24.$attrs.content,obj24)
-      expect(obj24.$attrs.content).assertEqual('tiltX:0');
+      console.log('LongPressGestureLongClickTest_0010 obj24 $attrs content', JSON.parse(text24)
+        .$attrs
+        .content, JSON.parse(text24))
+      expect(JSON.parse(text24).$attrs.content).assertEqual('tiltX:0');
 
       await CommonFunc.sleep(200);
       let text25 = getInspectorByKey('LongPressGestureLongClick_tiltY');
-      let obj25 = JSON.parse(text25);
-      console.log('LongPressGestureLongClickTest_0010 obj25 $attrs content',obj25.$attrs.content,obj25)
-      expect(obj25.$attrs.content).assertEqual('tiltY:0');
+      console.log('LongPressGestureLongClickTest_0010 obj25 $attrs content', JSON.parse(text25)
+        .$attrs
+        .content, JSON.parse(text25))
+      expect(JSON.parse(text25).$attrs.content).assertEqual('tiltY:0');
 
       await CommonFunc.sleep(200);
       let text26 = getInspectorByKey('LongPressGestureLongClick_sourceTool');
-      let obj26 = JSON.parse(text26);
-      console.log('LongPressGestureLongClickTest_0010 obj26 $attrs content',obj26.$attrs.content,obj26)
-      expect(obj26.$attrs.content).assertEqual('sourceTool:FINGER');
+      console.log('LongPressGestureLongClickTest_0010 obj26 $attrs content', JSON.parse(text26)
+        .$attrs
+        .content, JSON.parse(text26))
+      expect(JSON.parse(text26).$attrs.content).assertEqual('sourceTool:FINGER');
 
       await CommonFunc.sleep(200);
       let text27 = getInspectorByKey('LongPressGestureLongClick_velocityX');
-      let obj27 = JSON.parse(text27);
-      console.log('LongPressGestureLongClickTest_0010 obj27 $attrs content',obj27.$attrs.content,obj27)
-      expect(obj27.$attrs.content).assertEqual('velocityX:0');
+      console.log('LongPressGestureLongClickTest_0010 obj27 $attrs content', JSON.parse(text27)
+        .$attrs
+        .content, JSON.parse(text27))
+      expect(JSON.parse(text27).$attrs.content).assertEqual('velocityX:0');
 
       await CommonFunc.sleep(200);
       let text28 = getInspectorByKey('LongPressGestureLongClick_velocityY');
-      let obj28 = JSON.parse(text28);
-      console.log('LongPressGestureLongClickTest_0010 obj28 $attrs content',obj28.$attrs.content,obj28)
-      expect(obj28.$attrs.content).assertEqual('velocityY:0');
+      console.log('LongPressGestureLongClickTest_0010 obj28 $attrs content', JSON.parse(text28)
+        .$attrs
+        .content, JSON.parse(text28))
+      expect(JSON.parse(text28).$attrs.content).assertEqual('velocityY:0');
 
       await CommonFunc.sleep(200);
       let text29 = getInspectorByKey('LongPressGestureLongClick_velocity');
-      let obj29 = JSON.parse(text29);
-      console.log('LongPressGestureLongClickTest_0010 obj29 $attrs content',obj29.$attrs.content,obj29)
-      expect(obj29.$attrs.content).assertEqual('velocity:0');
+      console.log('LongPressGestureLongClickTest_0010 obj29 $attrs content', JSON.parse(text29)
+        .$attrs
+        .content, JSON.parse(text29))
+      expect(JSON.parse(text29).$attrs.content).assertEqual('velocity:0');
 
       console.info('LongPressGestureLongClickTest_0010 END');
       done();
