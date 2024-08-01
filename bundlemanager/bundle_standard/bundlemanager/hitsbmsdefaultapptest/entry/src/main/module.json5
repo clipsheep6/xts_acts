@@ -48,11 +48,11 @@
             "uris": [
               {
                 "type": "image/*",
-                "scheme": 'file'
+                "scheme": "file"
               },
               {
                 "type": "application/vnd.ms-excel",
-                "scheme": 'file'
+                "scheme": "file"
               }
             ]
           }
