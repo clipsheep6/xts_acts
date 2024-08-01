@@ -1,6 +1,10 @@
 {
   "string": [
     {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
       "name": "entry_MainAbility",
       "value": "entry_MainAbility"
     },
@@ -67,6 +71,38 @@
         {
           "name": "illegal_size",
           "value": "abc"
-        }
+        },
+    {
+      "name": "phone_entry_dsc",
+      "value": "i am an entry for phone"
+    },
+    {
+      "name": "phone_entry_main",
+      "value": "the phone entry ability"
+    },
+    {
+      "name": "entry_label",
+      "value": "ActsContextTest"
+    },
+    {
+      "name": "form_description",
+      "value": "my form"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "my whether"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "app_name",
+      "value": "Demo"
+    },
+    {
+      "name": "start_50",
+      "value": "50"
+    }
   ]
 }
