@@ -262,7 +262,7 @@ struct WebViewControllerDownloadTest {
             case "testGetPercentComplete001": {
               try {
                 this.controller.startDownload(this.downloadUrl);
-                await Utils.sleep(6000)
+                await Utils.sleep(1000)
                 Utils.emitEvent(this.percentComplete > 0 && this.percentComplete < 100, 79656)
               } catch (error) {
                 let e: business_error.BusinessError = error as business_error.BusinessError;
@@ -460,16 +460,16 @@ struct WebViewControllerDownloadTest {
             case "testResume001": {
               try {
                 this.controller.startDownload(this.downloadUrl);
-                await Utils.sleep(3000)
+                await Utils.sleep(1000)
                 if (this.downloadingItem) {
                   this.downloadingItem.pause()
                 }
-                await Utils.sleep(2000)
+                await Utils.sleep(1000)
                 if (this.currentDownloadState == webView.WebDownloadState.PAUSED) {
                   if (this.downloadingItem) {
                     this.downloadingItem.resume()
                   }
-                  await Utils.sleep(2000)
+                  await Utils.sleep(1000)
                   Utils.emitEvent(this.currentDownloadState, 79692)
                 }
               } catch (error) {
