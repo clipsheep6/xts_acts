@@ -134,7 +134,8 @@ static napi_value TestDrawableDescriptorCreate003(napi_env env, napi_callback_in
     napi_value args = nullptr;
 
     ASSERT_EQ(OH_ArkUI_GetDrawableDescriptorFromNapiValue(env, args, &drawable), ARKUI_ERROR_CODE_PARAM_INVALID);
-    ASSERT_EQ(OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue(env, args, &drawable), ARKUI_ERROR_CODE_NO_ERROR);
+    ASSERT_EQ(OH_ArkUI_GetDrawableDescriptorFromResourceNapiValue(env, args, &drawable),
+        ARKUI_ERROR_CODE_PARAM_INVALID);
 
     NAPI_END;
 }
