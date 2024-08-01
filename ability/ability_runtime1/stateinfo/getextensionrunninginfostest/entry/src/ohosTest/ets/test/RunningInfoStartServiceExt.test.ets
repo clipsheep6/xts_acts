@@ -19,7 +19,7 @@ import { abilityManager, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-const TAG: string = 'StateInfo_GetExtensionRunningInfos';
+const TAG: string = 'GetExtensionRunningInfosTest';
 const Domain: number = 0x0000;
 
 function sleep(time: number): Promise<void> {
@@ -29,7 +29,7 @@ function sleep(time: number): Promise<void> {
 export default function runningInfoStartServiceExt() {
   let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
   let serviceEmptyWant: Want = {
-    bundleName: 'com.hits.stateinfoservice.empty',
+    bundleName: 'com.acts.stateinfoservice.empty',
     abilityName: 'ServiceAbility'
   }
   let upperLimit = 30;
@@ -162,7 +162,7 @@ export default function runningInfoStartServiceExt() {
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_GetExtensionRunningInfos_3200 start ${ready}`);
           expect(ready).assertTrue();
           // 停止server1
-          await abilityDelegator.executeShellCommand('com.hits.stateinfo.serviceappa');
+          await abilityDelegator.executeShellCommand('aa force-stop com.acts.stateinfoservice.empty');
           await sleep(500);
           // 获取RunningInfos
           let functionCheckRunningInfos = async () => {
@@ -212,7 +212,7 @@ export default function runningInfoStartServiceExt() {
           hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_GetExtensionRunningInfos_3300 start`);
           expect(ready).assertTrue();
           // 停止server1
-          await abilityDelegator.executeShellCommand('com.hits.stateinfo.serviceappa');
+          await abilityDelegator.executeShellCommand('aa force-stop com.acts.stateinfoservice.empty');
           await sleep(500);
           // 获取RunningInfos
           let runningInfos = await abilityManager.getExtensionRunningInfos(upperLimit);

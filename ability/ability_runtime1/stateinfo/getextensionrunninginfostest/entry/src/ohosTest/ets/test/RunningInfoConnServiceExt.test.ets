@@ -19,7 +19,7 @@ import { abilityManager, bundleManager, common, Want } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = 'StateInfo_GetExtensionRunningInfos';
+const TAG: string = 'GetExtensionRunningInfosTest';
 const Domain: number = 0x0000;
 
 function sleep(time: number): Promise<void> {
@@ -29,11 +29,12 @@ function sleep(time: number): Promise<void> {
 export default function runningInfoConnServiceExt() {
   let context: common.UIAbilityContext | undefined = undefined;
   let serviceEmptyWant: Want = {
-    bundleName: 'com.hits.stateinfoservice.empty',
+    bundleName: 'com.acts.stateinfoservice.empty',
     abilityName: 'ServiceAbility'
   }
   let upperLimit = 30;
   let connection: number = -1;
+  let ready = false;
   describe('runningInfoConnServiceExt', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(() => {
@@ -49,6 +50,7 @@ export default function runningInfoConnServiceExt() {
         let connectOptions: common.ConnectOptions = {
           onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
             hilog.info(Domain, TAG, `beforeEach onConnect`);
+            ready = true;
           },
           onDisconnect(elementName: bundleManager.ElementName) {
             hilog.info(Domain, TAG, `beforeEach onDisconnect`);
@@ -85,8 +87,8 @@ export default function runningInfoConnServiceExt() {
     it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_GetExtensionRunningInfos_2500",
       TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
         try {
-          hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_GetExtensionRunningInfos_2500 start ${connection}`);
-          expect(connection).assertLarger(0);
+          hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_GetExtensionRunningInfos_2500 start ${ready}`);
+          expect(ready).assertTrue();
           // 断开server1
           await context!.disconnectServiceExtensionAbility(connection);
           await sleep(500);
@@ -134,8 +136,8 @@ export default function runningInfoConnServiceExt() {
     it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_GetExtensionRunningInfos_2600",
       TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
         try {
-          hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_GetExtensionRunningInfos_2600 start`);
-          expect(connection).assertLarger(-1);
+          hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_GetExtensionRunningInfos_2600 start ${ready}`);
+          expect(ready).assertTrue();
           // 断开server1
           await context!.disconnectServiceExtensionAbility(connection);
           await sleep(500);

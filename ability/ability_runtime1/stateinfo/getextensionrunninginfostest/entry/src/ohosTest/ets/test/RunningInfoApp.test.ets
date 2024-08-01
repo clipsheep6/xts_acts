@@ -20,7 +20,7 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TAG: string = 'StateInfo_GetExtensionRunningInfos';
+const TAG: string = 'GetExtensionRunningInfosTest';
 const Domain: number = 0x0000;
 
 function sleep(time: number): Promise<void> {

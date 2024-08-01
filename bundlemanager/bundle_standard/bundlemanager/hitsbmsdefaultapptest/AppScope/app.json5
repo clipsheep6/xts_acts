@@ -14,7 +14,7 @@
  */
 {
   "app": {
-    "bundleName": "com.hits.stateinfo.getrunninginfotest",
+    "bundleName": "com.hits.bms.defaultapptest",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

@@ -53,7 +53,7 @@ export default function onApplicationState() {
     abilityName: 'EntryAbility'
   }
   let serviceEmptyWant: Want = {
-    bundleName: 'com.hits.stateinfoservice.empty',
+    bundleName: 'com.acts.stateinfoservice.empty',
     abilityName: 'ServiceAbility'
   }
   let appStartAbilityWant: Want = {

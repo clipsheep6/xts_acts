@@ -30,8 +30,12 @@ function sleep(time: number): Promise<void> {
 
 export default function bmsDefaultAppTest() {
   let currentApp: bundleManager.ElementName = {
-    bundleName: 'net.openvalley.myapplication',
-    abilityName: "TestAbility"
+    bundleName: 'com.hits.bms.defaultapptest',
+    abilityName: "EntryAbility"
+  };
+  let defaultApp: bundleManager.ElementName = {
+    bundleName: 'com.hits.defaultapp',
+    abilityName: "EntryAbility"
   };
   describe('bmsDefaultApp', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -151,10 +155,7 @@ export default function bmsDefaultAppTest() {
           hilog.info(Domain, TAG,
             `Sub_Bms_Framework_Status_DefaultApp_3700 start`);
 
-          defaultAppManager.setDefaultApplicationSync(defaultAppManager.ApplicationType.IMAGE, {
-            bundleName: 'com.hits.defaultapp',
-            abilityName: "EntryAbility"
-          });
+          defaultAppManager.setDefaultApplicationSync(defaultAppManager.ApplicationType.IMAGE, defaultApp);
           sleep(500);
           defaultAppManager.resetDefaultApplicationSync(defaultAppManager.ApplicationType.IMAGE);
         } catch (e) {
