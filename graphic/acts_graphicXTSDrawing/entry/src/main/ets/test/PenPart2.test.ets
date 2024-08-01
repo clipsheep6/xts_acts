@@ -415,7 +415,7 @@ export default function penPart2Test() {
       const pen = new drawing.Pen();
 
       try {
-        new drawing.Pen(null);
+        const pen = new drawing.Pen(null);
         console.info(msg + ' drawing.Pen(null) succeeded');
       } catch( e ) {
         console.info(msg + ` drawing.Pen(null) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -423,7 +423,7 @@ export default function penPart2Test() {
       }
 
       try {
-        new drawing.Pen(undefined);
+        const pen = new drawing.Pen(undefined);
         console.info(msg + ' drawing.Pen(undefined) succeeded');
       } catch( e ) {
         console.info(msg + ` drawing.Pen(undefined) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
