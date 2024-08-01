@@ -143,7 +143,7 @@ export default function textJsunit() {
       let strJsonNew = getInspectorByKey('text1');
       let objNew = JSON.parse(strJsonNew);
       console.info("textTest_0006 component is: " + JSON.stringify(objNew.$attrs));
-      expect(objNew.$attrs.fontSize).assertEqual("10.00fp")
+      expect(objNew.$attrs.fontSize).assertEqual(fp2px(30).toFixed(2) + "px")
       console.info('textTest_0006 END');
       done();
     });
@@ -219,7 +219,7 @@ export default function textJsunit() {
       let strJsonNew = getInspectorByKey('text1');
       let objNew = JSON.parse(strJsonNew);
       console.info("textTest_0010 component is: " + JSON.stringify(objNew.$attrs));
-      expect(objNew.$attrs.wordBreak).assertEqual("normal")
+      expect(objNew.$attrs.wordBreak).assertEqual("WordBreak.NORMAL")
       console.info('textTest_0010 END');
       done();
     });
@@ -459,7 +459,7 @@ export default function textJsunit() {
       let strJsonNew = getInspectorByKey('text1');
       let objNew = JSON.parse(strJsonNew);
       console.info("textTest_0011 component is: " + JSON.stringify(objNew.$attrs));
-      expect(objNew.$attrs.wordBreak).assertEqual("break-all")
+      expect(objNew.$attrs.wordBreak).assertEqual("WordBreak.BREAK_ALL")
       console.info('textTest_0011 END');
       done();
     });

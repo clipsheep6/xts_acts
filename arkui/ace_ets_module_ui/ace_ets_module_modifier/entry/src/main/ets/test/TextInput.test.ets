@@ -41,12 +41,12 @@ export default function textInput() {
     });
 
     /**
-     * @tc.number textInputJsunit_0100
-     * @tc.name Test the properties of components
-     * @tc.desc Set maxLines values
-     * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level 0
+     * @tc.number: textInputJsunit_0100
+     * @tc.name  : Test the properties of components
+     * @tc.desc  : Set maxLines values
+     * @tc.size  : MediumTest
+     * @tc.type  : Function
+     * @tc.level : 0
      */
     it('textInputJsunit_0100', 0, async (done: Function) => {
       console.info('textInputJsunit_0100 START');
@@ -77,12 +77,12 @@ export default function textInput() {
     });
 
     /**
-     * @tc.number textInputJsunit_0102
-     * @tc.name Test the properties of components
-     * @tc.desc Set showError values
-     * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level 0
+     * @tc.number: textInputJsunit_0102
+     * @tc.name  : Test the properties of components
+     * @tc.desc  : Set showError values
+     * @tc.size  : MediumTest
+     * @tc.type  : Function
+     * @tc.level : 0
      */
     it('textInputJsunit_0102', 0, async (done: Function) => {
       console.info('textInputJsunit_0102 START');
@@ -197,7 +197,7 @@ export default function textInput() {
       let strJson = getInspectorByKey('textInputKey1');
       let obj = JSON.parse(strJson);
       console.info("[textInputJsunit_0109] obj is: " + JSON.stringify(obj.$attrs));
-      expect(obj.$attrs.caretStyle).assertEqual("{\"width\":\"12.00vp\"}");
+      expect(obj.$attrs.caretStyle).assertEqual('{"color":"#FF007DFF","width":"12.00vp"}');
       console.info('textInputJsunit_0109 END');
       done();
     });
