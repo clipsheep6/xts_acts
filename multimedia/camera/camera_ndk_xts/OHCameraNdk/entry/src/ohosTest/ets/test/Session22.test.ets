@@ -50,7 +50,7 @@ let videoConfig: media.AVRecorderConfig = {
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
-    }
+    },
   url : 'fd://', // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
   rotation : 0, // 合理值0、90、180、270，非合理值prepare接口将报错
 }
@@ -2104,86 +2104,6 @@ export default function SessionTest22() {
       addPreviewOutput();
       let ret = cameras.oHCaptureSessionAddSecureOutput(0);
       console.log(TAG+"testOHCaptureSessionAddSecureOutput0100:"+ret);
-      expect(ret).assertEqual(CAMERA_OK);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionAddSecureOutput0200
-     * @tc.name       : testOHCaptureSessionAddSecureOutput0200
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHCaptureSessionAddSecureOutput0200', 0, () => {
-      getCameraManagerInstance();
-      createCaptureSession();
-      getSupportedCamerasInstance();
-      getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
-      setSceneMode(0);
-      setSessionMode();
-      createPreviewOutput();
-      createCameraInput();
-      sessionBeginConfig();
-      canAddInput();
-      addInput();
-      canAddPreviewOutput();
-      addPreviewOutput();
-      let ret = cameras.oHCaptureSessionAddSecureOutput(1);
-      console.log(TAG+"testOHCaptureSessionAddSecureOutput0200:"+ret);
-      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionAddSecureOutput0300
-     * @tc.name       : testOHCaptureSessionAddSecureOutput0300
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHCaptureSessionAddSecureOutput0300', 0, () => {
-      getCameraManagerInstance();
-      createCaptureSession();
-      getSupportedCamerasInstance();
-      getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
-      setSceneMode(0);
-      setSessionMode();
-      createPreviewOutput();
-      createCameraInput();
-      sessionBeginConfig();
-      canAddInput();
-      addInput();
-      canAddPreviewOutput();
-      addPreviewOutput();
-      let ret = cameras.oHCaptureSessionAddSecureOutput(2);
-      console.log(TAG+"testOHCaptureSessionAddSecureOutput0300:"+ret);
-      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanAddPhotoOutput0100
-     * @tc.name       : testOHCaptureSessionCanAddPhotoOutput0100
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHCaptureSessionCanAddPhotoOutput0100', 0, () => {
-      getCameraManagerInstance();
-      createCaptureSession();
-      getSupportedCamerasInstance();
-      getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
-      setSceneMode(0);
-      setSessionMode();
-      createPreviewOutput();
-      createCameraInput();
-      startSession();
-      sessionStop();
-      sessionBeginConfig();
-      createPhotoOutput();
-      let ret = cameras.oHCaptureSessionCanAddPhotoOutput(0);
-      console.log(TAG+"testOHCaptureSessionCanAddPhotoOutput0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
     /**

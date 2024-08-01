@@ -46,7 +46,7 @@ let videoConfig: media.AVRecorderConfig = {
     videoFrameWidth : 640,
     videoFrameHeight : 480,
     videoFrameRate : 30
-    }
+    },
   url : 'fd://', // 文件需先由调用者创建，赋予读写权限，将文件fd传给此参数，eg.fd://45
   rotation : 0, // 合理值0、90、180、270，非合理值prepare接口将报错
 }

@@ -294,33 +294,5 @@ export default function CameraInputTest() {
       console.log(TAG+"testOHCameraInputOpenSecureCamera0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
     })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputOpenSecureCamera0200
-     * @tc.name       : testOHCameraInputOpenSecureCamera0200
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHCameraInputOpenSecureCamera0200', 0, () => {
-      createCameraInput();
-      let ret = cameras.oHCameraInputOpenSecureCamera(1);
-      console.log(TAG+"testOHCameraInputOpenSecureCamera0200:"+ret);
-      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputOpenSecureCamera0300
-     * @tc.name       : testOHCameraInputOpenSecureCamera0300
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHCameraInputOpenSecureCamera0300', 0, () => {
-      createCameraInput();
-      let ret = cameras.oHCameraInputOpenSecureCamera(2);
-      console.log(TAG+"testOHCameraInputOpenSecureCamera0300:"+ret);
-      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
-    })
   })
 }

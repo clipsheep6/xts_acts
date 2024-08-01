@@ -83,11 +83,6 @@ public:
     bool isVideoSupported_;
     bool canPreconfig_;      // 是否支持预配置。
     bool isAddInput_;       // 能否添加输入
-    bool isTorchSupported_;
-    uint32_t colorSpacesSize_;
-    uint32_t frameRatesSize_;
-    uint32_t videoFrameRatesSize_;
-    Camera_FrameRateRange* frameRateRange_;
     Camera_FlashMode flashMode_;
     Camera_ExposureMode exposureMode_; // 获取当前曝光模式。
     Camera_Point point_;               // 焦点

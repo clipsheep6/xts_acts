@@ -56,10 +56,8 @@ NDKCamera::NDKCamera(char *str, int index)
     : cameras_(nullptr), cameraOutputCapability_(nullptr), captureSession_(nullptr), size_(0), profile_(nullptr),
       previewOutput_(nullptr), photoOutput_(nullptr), videoOutput_(nullptr), metaDataObjectType_(nullptr),
       metadataOutput_(nullptr), cameraInput_(nullptr), isCameraMuted_(nullptr), previewSurfaceId_(str),
-      sceneModes_(nullptr), sceneModesSize_(0), camera_(nullptr), sceneMode_(NORMAL_PHOTO),
-      secureSeqId_(0), isAddInput_(false), colorSpacesSize_(0), isTorchSupported_(false), colorSpace_(nullptr),
-      frameRateRange_(nullptr), frameRatesSize_(0), videoFrameRatesSize_(0), videoActiveProfile_(nullptr),
-      cameraProfile_(nullptr),
+      sceneModes_(nullptr), sceneModesSize_(0), camera_(nullptr), sceneMode_(NORMAL_PHOTO), secureSeqId_(0),
+      isAddInput_(false), videoActiveProfile_(nullptr), cameraProfile_(nullptr),
       ret_(CAMERA_OK) {
     valid_ = false;
     // 创建CameraManager实例。
