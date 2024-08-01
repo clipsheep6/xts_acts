@@ -162,7 +162,7 @@ export default function runningInfoStartServiceExt() {
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_GetExtensionRunningInfos_3200 start ${ready}`);
           expect(ready).assertTrue();
           // 停止server1
-          await abilityDelegator.executeShellCommand('aa force-stop com.acts.stateinfoservice.empty');
+          await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
           await sleep(500);
           // 获取RunningInfos
           let functionCheckRunningInfos = async () => {
@@ -212,7 +212,7 @@ export default function runningInfoStartServiceExt() {
           hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_GetExtensionRunningInfos_3300 start`);
           expect(ready).assertTrue();
           // 停止server1
-          await abilityDelegator.executeShellCommand('aa force-stop com.acts.stateinfoservice.empty');
+          await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
           await sleep(500);
           // 获取RunningInfos
           let runningInfos = await abilityManager.getExtensionRunningInfos(upperLimit);

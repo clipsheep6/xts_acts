@@ -54,18 +54,21 @@ export default function runningInfoApp() {
         hilog.info(Domain, TAG, `beforeEach startAbility success`);
         ready = true;
         sleep(500);
-
-        abilityDelegator.executeShellCommand('aa force-stop com.hits.stateinfo.appa');
+      } catch (error) {
+        hilog.error(Domain, TAG, `beforeEach error,error code is: ${error.code}, error message is: ${error.message}`);
+      }
+    })
+    afterEach(async () => {
+      // Presets a clear action, which is performed after each unit test case ends.
+      // The number of execution times is the same as the number of test cases defined by **it**.
+      // This API supports only one parameter: clear action function.
+      try {
+        abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
         hilog.info(Domain, TAG, `beforeEach force-stop ability success`);
         sleep(500);
       } catch (error) {
         hilog.error(Domain, TAG, `beforeEach error,error code is: ${error.code}, error message is: ${error.message}`);
       }
-    })
-    afterEach(() => {
-      // Presets a clear action, which is performed after each unit test case ends.
-      // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.

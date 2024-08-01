@@ -21,7 +21,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import commonEvent from '@ohos.commonEventManager';
 import base from '@ohos.base';
 
-const TAG: string = 'StateInfo_IsTerminating';
+const TAG: string = 'StateInfo_IsTerminatingTest';
 const Domain: number = 0x0000;
 const CASE_TIME_OUT = 5000;
 

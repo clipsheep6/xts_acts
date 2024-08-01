@@ -33,8 +33,8 @@
                 "bm uninstall -n com.acts.stateinfoservice.empty",
                 "bm uninstall -n com.hits.stateinfo.empty",
                 "bm uninstall -n com.hits.stateinfo.getforgroundapps",
-                "bm uninstall -n com.hits.stateinfo.startAbility",
-                "bm uninstall -n com.hits.stateinfo.backAbility"
+                "bm uninstall -n com.hits.stateinfo.startability",
+                "bm uninstall -n com.hits.stateinfo.backability"
             ]
         }
     ]

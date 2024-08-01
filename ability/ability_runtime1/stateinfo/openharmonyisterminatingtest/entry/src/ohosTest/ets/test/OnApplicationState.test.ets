@@ -20,7 +20,7 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 import { process } from '@kit.ArkTS';
 import { rpc } from '@kit.IPCKit';
 
-const TAG: string = 'StateInfo_IsTerminating';
+const TAG: string = 'StateInfo_IsTerminatingTest';
 const Domain: number = 0x0000;
 
 function sleep(time: number): Promise<void> {
@@ -47,7 +47,6 @@ let appStateEmpty: appManager.ApplicationStateObserver = {
 
 export default function onApplicationState() {
   let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-  let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
   let appEmptyWant: Want = {
     bundleName: 'com.hits.stateinfo.empty',
     abilityName: 'EntryAbility'
@@ -57,11 +56,11 @@ export default function onApplicationState() {
     abilityName: 'ServiceAbility'
   }
   let appStartAbilityWant: Want = {
-    bundleName: 'com.hits.stateinfo.startAbility',
+    bundleName: 'com.hits.stateinfo.startability',
     abilityName: 'EntryAbility'
   }
   let appBackAbilityWant: Want = {
-    bundleName: 'com.hits.stateinfo.backAbility',
+    bundleName: 'com.hits.stateinfo.backability',
     abilityName: 'EntryAbility'
   }
   let testOnApplicationStateAbilityWant: Want = {
@@ -100,7 +99,6 @@ export default function onApplicationState() {
       try {
         appManager.off('applicationState', applicationStateNumber);
       } catch (e) {
-        hilog.error(Domain, TAG, `afterEach error,error code is: ${e.code}, error message is: ${e.message}`);
       }
     })
     /**
@@ -117,38 +115,20 @@ export default function onApplicationState() {
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-               applicationState onAppStarted`);
           },
           onAppStopped(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-               applicationState onAppStopped`);
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-               applicationState onForegroundApplicationChanged`);
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-               applicationState onAbilityStateChanged`);
           },
           onProcessCreated(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-               applicationState onProcessCreated`);
           },
           onProcessDied(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-               applicationState onProcessDied`);
           },
           onProcessStateChanged(processData: appManager.ProcessData): void {
             hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
+              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0100
                applicationState onProcessStateChanged ${JSON.stringify(processData)}`);
             onChangePid = processData.pid;
           }
@@ -156,7 +136,7 @@ export default function onApplicationState() {
         try {
           applicationStateNumber = appManager.on('applicationState', appState);
         } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
+          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0100
            error,error code is: ${e.code}, error message is: ${e.message}`);
         }
         try {
@@ -197,7 +177,7 @@ export default function onApplicationState() {
         try {
           applicationStateNumber = appManager.on('applicationState', appStateEmpty);
         } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
+          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0200
            error,error code is: ${e.code}, error message is: ${e.message}`);
         }
         try {
@@ -244,35 +224,31 @@ export default function onApplicationState() {
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-               applicationState onAppStarted`);
           },
           onAppStopped(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-               applicationState onAppStopped`);
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
                applicationState onForegroundApplicationChanged ${JSON.stringify(appStateData)}`);
-            if (appStateData.bundleName == appEmptyWant.bundleName) {
+            if (appStateData.bundleName == appEmptyWant.bundleName
+              && !onForegroundApplicationChangedEmptyApp) {
               onForegroundApplicationChangedEmptyApp =
                 appStateData.uid > 0
                   && appStateData.state == 2;
             }
-            if (appStateData.bundleName == 'com.hits.stateinfo.isterminating') {
+            if (appStateData.bundleName == 'com.hits.stateinfo.isterminating' &&
+              !onForegroundApplicationChangedCurrentApp) {
               onForegroundApplicationChangedCurrentApp =
                 appStateData.uid > 0
-                  && appStateData.state == 3;
+                  && appStateData.state == 4;
             }
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
                applicationState onAbilityStateChanged ${JSON.stringify(abilityStateData)}`);
-            if (abilityStateData.bundleName == appEmptyWant.bundleName) {
+            if (abilityStateData.bundleName == appEmptyWant.bundleName && !onAbilityStateChangedEmptyApp) {
               onAbilityStateChangedEmptyApp =
                 abilityStateData.abilityName == appEmptyWant.abilityName
                   && abilityStateData.pid > 0
@@ -280,12 +256,13 @@ export default function onApplicationState() {
                   && abilityStateData.state == 2;
             }
 
-            if (abilityStateData.bundleName == 'com.hits.stateinfo.isterminating') {
+            if (abilityStateData.bundleName == 'com.hits.stateinfo.isterminating'
+              && !onAbilityStateChangedCurrentApp) {
               onAbilityStateChangedCurrentApp =
                 abilityStateData.abilityName == 'TestAbility'
                   && abilityStateData.pid > 0
                   && abilityStateData.uid > 0
-                  && abilityStateData.state == 3;
+                  && abilityStateData.state == 4;
             }
 
           },
@@ -293,23 +270,26 @@ export default function onApplicationState() {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
                applicationState onProcessCreated ${JSON.stringify(processData)}`);
-            if (processData.bundleName == appEmptyWant.bundleName) {
+            if (processData.bundleName == appEmptyWant.bundleName && !onProcessCreatedEmptyApp) {
               onProcessCreatedEmptyApp =
                 processData.pid > 0 && processData.uid > 0;
             }
 
           },
           onProcessDied(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-               applicationState onProcessDied`);
           },
           onProcessStateChanged(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-               applicationState onProcessStateChanged ${JSON.stringify(processData)}`);
           }
         }
+
+        try {
+          await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
+          sleep(1000)
+        } catch (e) {
+          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
+           error,error code is: ${e.code}, error message is: ${e.message}`);
+        }
+
         try {
           applicationStateNumber = appManager.on('applicationState', appState);
         } catch (e) {
@@ -334,7 +314,14 @@ export default function onApplicationState() {
           //启动辅助hap
           await abilityDelegator.startAbility(appEmptyWant);
           await sleep(1000);
-          // 再次注册监听失败
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
+            onProcessCreatedEmptyApp ${onProcessCreatedEmptyApp}
+            onAbilityStateChangedEmptyApp ${onAbilityStateChangedEmptyApp}
+            onAbilityStateChangedCurrentApp ${onAbilityStateChangedCurrentApp}
+            onForegroundApplicationChangedEmptyApp ${onForegroundApplicationChangedEmptyApp}
+            onForegroundApplicationChangedCurrentApp ${onForegroundApplicationChangedCurrentApp}
+            `);
           expect(onProcessCreatedEmptyApp).assertTrue();
           expect(onAbilityStateChangedEmptyApp).assertTrue();
           expect(onAbilityStateChangedCurrentApp).assertTrue();
@@ -405,7 +392,7 @@ export default function onApplicationState() {
           }
         }
         try {
-          applicationStateNumber = appManager.on('applicationState', appStateEmpty);
+          applicationStateNumber = appManager.on('applicationState', appState);
         } catch (e) {
           hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0500
            error,error code is: ${e.code}, error message is: ${e.message}`);
@@ -426,7 +413,12 @@ export default function onApplicationState() {
           // 再次注册监听失败
           expect(result).assertEqual(-123);
           //取消注册
+          let hasCallback = false;
           appManager.off('applicationState', applicationStateNumber);
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0500
+           off applicationState applicationStateNumber ${applicationStateNumber}`);
+          await sleep(3000);
           //启动辅助hap
           await abilityDelegator.startAbility(appEmptyWant);
           await sleep(1000);
@@ -456,20 +448,15 @@ export default function onApplicationState() {
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600
-               applicationState onAppStarted`);
           },
           onAppStopped(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600
-               applicationState onAppStopped`);
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600
                applicationState onForegroundApplicationChanged ${JSON.stringify(appStateData)}`);
-            if (appStateData.bundleName == testOnApplicationStateAbilityWant.bundleName) {
+            if (appStateData.bundleName == testOnApplicationStateAbilityWant.bundleName &&
+              !onForegroundApplicationChanged2App) {
               onForegroundApplicationChanged2App =
                 appStateData.uid > 0
                   && appStateData.state == 2;
@@ -479,35 +466,28 @@ export default function onApplicationState() {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600
                applicationState onAbilityStateChanged ${JSON.stringify(abilityStateData)}`);
-            if (abilityStateData.bundleName == testOnApplicationStateAbilityWant.bundleName) {
+            if (abilityStateData.bundleName == testOnApplicationStateAbilityWant.bundleName &&
+              !onAbilityStateChanged2App) {
               onAbilityStateChanged2App =
                 abilityStateData.abilityName == testOnApplicationStateAbilityWant.abilityName
                   && abilityStateData.pid > 0
                   && abilityStateData.uid > 0
                   && abilityStateData.state == 2;
             }
-            if (abilityStateData.bundleName == 'com.hits.stateinfo.isterminating') {
+            if (abilityStateData.bundleName == 'com.hits.stateinfo.isterminating'
+              && !onAbilityStateChangedCurrentApp) {
               onAbilityStateChangedCurrentApp =
                 abilityStateData.abilityName == 'TestAbility'
                   && abilityStateData.pid > 0
                   && abilityStateData.uid > 0
-                  && abilityStateData.state == 3;
+                  && abilityStateData.state == 4;
             }
           },
           onProcessCreated(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600
-               applicationState onProcessCreated ${JSON.stringify(processData)}`);
           },
           onProcessDied(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600
-               applicationState onProcessDied`);
           },
           onProcessStateChanged(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600
-               applicationState onProcessStateChanged ${JSON.stringify(processData)}`);
           }
         }
         try {
@@ -558,30 +538,18 @@ export default function onApplicationState() {
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700
-               applicationState onAppStarted`);
           },
           onAppStopped(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700
-               applicationState onAppStopped`);
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700
-               applicationState onForegroundApplicationChanged`);
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700
-               applicationState onAbilityStateChanged`);
           },
           onProcessCreated(processData: appManager.ProcessData): void {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700
                applicationState onProcessCreated`);
-            if (processData.bundleName == serviceEmptyWant.bundleName) {
+            if (processData.bundleName == serviceEmptyWant.bundleName && !onProcessCreatedServiceEmpty) {
               onProcessCreatedServiceEmpty =
                 processData.pid > 0
                   && processData.uid > 0
@@ -589,14 +557,8 @@ export default function onApplicationState() {
             }
           },
           onProcessDied(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700
-               applicationState onProcessDied`);
           },
           onProcessStateChanged(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700
-               applicationState onProcessStateChanged ${JSON.stringify(processData)}`);
           }
         }
         try {
@@ -622,6 +584,7 @@ export default function onApplicationState() {
               hilog.info(Domain, TAG, `beforeEach onFailed ${code}`);
             }
           };
+          let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
           let conn = context!.connectServiceExtensionAbility(serviceEmptyWant, connectOptions);
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700 conn ${conn}`);
@@ -657,73 +620,63 @@ export default function onApplicationState() {
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
-               applicationState onAppStarted`);
           },
           onAppStopped(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
-               applicationState onAppStopped`);
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
                applicationState onForegroundApplicationChanged`);
-            if (appStateData.bundleName == testAbility3Want.bundleName) {
+            if (appStateData.bundleName == testAbility3Want.bundleName &&
+              !step3OnForegroundApplicationChangedTestAbility3) {
               step3OnForegroundApplicationChangedTestAbility3 =
                 appStateData.uid > 0
-                && appStateData.state == 2;
+                  && appStateData.state == 2;
             }
 
-            if (appStateData.bundleName == testAbility2Want.bundleName) {
+            if (appStateData.bundleName == testAbility2Want.bundleName &&
+              !step4OnForegroundApplicationChangedTestAbility2) {
               step4OnForegroundApplicationChangedTestAbility2 =
                 appStateData.uid > 0
-                && appStateData.state == 2;
+                  && appStateData.state == 2;
             }
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
                applicationState onAbilityStateChanged`);
-            if (abilityStateData.bundleName == testAbility3Want.bundleName) {
+            if (abilityStateData.bundleName == testAbility3Want.bundleName && !step3OnAbilityStateChangedTestAbility3) {
               step3OnAbilityStateChangedTestAbility3 =
                 abilityStateData.uid > 0
-                abilityStateData.pid > 0
-                  && abilityStateData.state == 2;
-
-              step4OnAbilityStateChangedTestAbility3 =
-                abilityStateData.uid > 0
-                abilityStateData.pid > 0
-                  && abilityStateData.state == 3;
+              abilityStateData.pid > 0
+                && abilityStateData.state == 2;
             }
 
-            if (abilityStateData.bundleName == testAbility2Want.bundleName) {
+            if (abilityStateData.bundleName == testAbility3Want.bundleName && !step4OnAbilityStateChangedTestAbility3) {
+              step4OnAbilityStateChangedTestAbility3 =
+                abilityStateData.uid > 0
+              abilityStateData.pid > 0
+                && abilityStateData.state == 4;
+            }
+
+            if (abilityStateData.bundleName == testAbility2Want.bundleName && !step3OnAbilityStateChangedTestAbility2) {
               step3OnAbilityStateChangedTestAbility2 =
                 abilityStateData.uid > 0
               abilityStateData.pid > 0
-                && abilityStateData.state == 3;
-
-              step3OnAbilityStateChangedTestAbility2 =
+                && abilityStateData.state == 4;
+            }
+            if (abilityStateData.bundleName == testAbility2Want.bundleName && !step4OnAbilityStateChangedTestAbility2) {
+              step4OnAbilityStateChangedTestAbility2 =
                 abilityStateData.uid > 0
               abilityStateData.pid > 0
                 && abilityStateData.state == 2;
             }
           },
           onProcessCreated(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
-               applicationState onProcessCreated`);
           },
           onProcessDied(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
-               applicationState onProcessDied`);
           },
           onProcessStateChanged(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
-               applicationState onProcessStateChanged ${JSON.stringify(processData)}`);
           }
         }
         try {
@@ -741,18 +694,33 @@ export default function onApplicationState() {
           // 第2、3步
           await abilityDelegator.startAbility(testAbility2Want);
           await sleep(1000);
-          let mTestAbility2Context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('TestAbility2Context');
+          let mTestAbility2Context: common.UIAbilityContext | undefined =
+            AppStorage.get<common.UIAbilityContext>('TestAbility2Context');
           mTestAbility2Context!.startAbility(testAbility3Want);
+          await sleep(2000);
           // 判断结果
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
+            step3OnAbilityStateChangedTestAbility3 ${step3OnAbilityStateChangedTestAbility3}
+            step3OnAbilityStateChangedTestAbility2 ${step3OnAbilityStateChangedTestAbility2}
+            step3OnForegroundApplicationChangedTestAbility3 ${step3OnForegroundApplicationChangedTestAbility3}
+            `);
           expect(step3OnAbilityStateChangedTestAbility3).assertTrue();
           expect(step3OnAbilityStateChangedTestAbility2).assertTrue();
           expect(step3OnForegroundApplicationChangedTestAbility3).assertTrue();
           await sleep(1000);
           //第四部
-          let mTestAbility3Context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('TestAbility3Context');
+          let mTestAbility3Context: common.UIAbilityContext | undefined =
+            AppStorage.get<common.UIAbilityContext>('TestAbility3Context');
           mTestAbility3Context!.startAbility(testAbility2Want);
           await sleep(1000);
           // 判断结果
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
+            step4OnAbilityStateChangedTestAbility3 ${step4OnAbilityStateChangedTestAbility3}
+            step4OnAbilityStateChangedTestAbility2 ${step4OnAbilityStateChangedTestAbility2}
+            step4OnForegroundApplicationChangedTestAbility2 ${step4OnForegroundApplicationChangedTestAbility2}
+            `);
           expect(step4OnAbilityStateChangedTestAbility3).assertTrue();
           expect(step4OnAbilityStateChangedTestAbility2).assertTrue();
           expect(step4OnForegroundApplicationChangedTestAbility2).assertTrue();
@@ -779,44 +747,26 @@ export default function onApplicationState() {
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900
-               applicationState onAppStarted`);
           },
           onAppStopped(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900
-               applicationState onAppStopped`);
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900
                applicationState onForegroundApplicationChanged`);
-            if (appStateData.bundleName == serviceEmptyWant.bundleName) {
+            if (appStateData.bundleName == serviceEmptyWant.bundleName && !onForegroundApplicationChanged) {
               onForegroundApplicationChanged =
-                  appStateData.uid > 0
-                  && appStateData.state == 3;
+                appStateData.uid > 0
+                  && appStateData.state == 4;
             }
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900
-               applicationState onAbilityStateChanged`);
           },
           onProcessCreated(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900
-               applicationState onProcessCreated`);
           },
           onProcessDied(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900
-               applicationState onProcessDied`);
           },
           onProcessStateChanged(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900
-               applicationState onProcessStateChanged ${JSON.stringify(processData)}`);
           }
         }
         try {
@@ -843,9 +793,10 @@ export default function onApplicationState() {
               hilog.info(Domain, TAG, `beforeEach onFailed ${code}`);
             }
           };
+          let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
           let conn = context!.connectServiceExtensionAbility(serviceEmptyWant, connectOptions);
           hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700 conn ${conn}`);
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 conn ${conn}`);
           await sleep(1000);
           await context!.disconnectServiceExtensionAbility(conn);
           await sleep(1000);
@@ -879,26 +830,22 @@ export default function onApplicationState() {
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1100
-               applicationState onAppStarted`);
           },
           onAppStopped(appStateData: appManager.AppStateData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1100
-               applicationState onAppStopped`);
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1100
-               applicationState onForegroundApplicationChanged`);
-            if (appStateData.bundleName == appBackAbilityWant.bundleName) {
+               applicationState onForegroundApplicationChanged ${JSON.stringify(appStateData)}`);
+            if (appStateData.bundleName == appBackAbilityWant.bundleName
+              && !step3OnForegroundApplicationChangedBackAbility) {
               step3OnForegroundApplicationChangedBackAbility =
                 appStateData.uid > 0
                   && appStateData.state == 2;
             }
 
-            if (appStateData.bundleName == appStartAbilityWant.bundleName) {
+            if (appStateData.bundleName == appStartAbilityWant.bundleName
+              && !step4OnForegroundApplicationChangedStartAbility) {
               step4OnForegroundApplicationChangedStartAbility =
                 appStateData.uid > 0
                   && appStateData.state == 2;
@@ -907,45 +854,43 @@ export default function onApplicationState() {
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
             hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1100
-               applicationState onAbilityStateChanged`);
-            if (abilityStateData.bundleName == appBackAbilityWant.bundleName) {
+               applicationState onAbilityStateChanged ${JSON.stringify(abilityStateData)}`);
+            if (abilityStateData.bundleName == appBackAbilityWant.bundleName &&
+              !step3OnAbilityStateChangedBackAbility) {
               step3OnAbilityStateChangedBackAbility =
                 abilityStateData.uid > 0
               abilityStateData.pid > 0
                 && abilityStateData.state == 2;
+            }
 
+            if (abilityStateData.bundleName == appBackAbilityWant.bundleName &&
+              !step4OnAbilityStateChangedBackAbility) {
               step4OnAbilityStateChangedBackAbility =
                 abilityStateData.uid > 0
               abilityStateData.pid > 0
-                && abilityStateData.state == 3;
+                && abilityStateData.state == 4;
             }
 
-            if (abilityStateData.bundleName == appStartAbilityWant.bundleName) {
+            if (abilityStateData.bundleName == appStartAbilityWant.bundleName &&
+              !step3OnAbilityStateChangedStartAbility) {
               step3OnAbilityStateChangedStartAbility =
                 abilityStateData.uid > 0
               abilityStateData.pid > 0
-                && abilityStateData.state == 3;
-
-              step3OnAbilityStateChangedStartAbility =
+                && abilityStateData.state == 4;
+            }
+            if (abilityStateData.bundleName == appStartAbilityWant.bundleName &&
+              !step4OnAbilityStateChangedStartAbility) {
+              step4OnAbilityStateChangedStartAbility =
                 abilityStateData.uid > 0
               abilityStateData.pid > 0
                 && abilityStateData.state == 2;
             }
           },
           onProcessCreated(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1100
-               applicationState onProcessCreated`);
           },
           onProcessDied(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1100
-               applicationState onProcessDied`);
           },
           onProcessStateChanged(processData: appManager.ProcessData): void {
-            hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1100
-               applicationState onProcessStateChanged ${JSON.stringify(processData)}`);
           }
         }
         try {
@@ -962,14 +907,26 @@ export default function onApplicationState() {
           await sleep(1000);
           // 第2、3步
           await abilityDelegator.startAbility(appStartAbilityWant);
-          await sleep(2000);
+          await sleep(3000);
           // 判断结果
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1100
+            step3OnAbilityStateChangedBackAbility ${step3OnAbilityStateChangedBackAbility}
+            step3OnAbilityStateChangedStartAbility ${step3OnAbilityStateChangedStartAbility}
+            step3OnForegroundApplicationChangedBackAbility ${step3OnForegroundApplicationChangedBackAbility}
+            `);
           expect(step3OnAbilityStateChangedBackAbility).assertTrue();
           expect(step3OnAbilityStateChangedStartAbility).assertTrue();
           expect(step3OnForegroundApplicationChangedBackAbility).assertTrue();
           //backAbility 10s 后start 第二个辅助应用Ability，自动执行第四部
           await sleep(12000);
           // 判断结果
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1100
+            step4OnAbilityStateChangedBackAbility ${step4OnAbilityStateChangedBackAbility}
+            step4OnAbilityStateChangedStartAbility ${step4OnAbilityStateChangedStartAbility}
+            step4OnForegroundApplicationChangedStartAbility ${step4OnForegroundApplicationChangedStartAbility}
+            `);
           expect(step4OnAbilityStateChangedBackAbility).assertTrue();
           expect(step4OnAbilityStateChangedStartAbility).assertTrue();
           expect(step4OnForegroundApplicationChangedStartAbility).assertTrue();
