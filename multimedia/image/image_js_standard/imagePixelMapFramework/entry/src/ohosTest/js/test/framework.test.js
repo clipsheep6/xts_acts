@@ -2090,5 +2090,61 @@ export default function imagePixelMapFramework() {
                 return;
             }
         });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEPIXELMAPFROMSURFACESYNC_0100
+         * @tc.name      : testCreatePixelMapFromSurfaceSync_receiver
+         * @tc.desc      : 1.create ImageReceiver
+         *                 2.createPixelMapFromSurfaceSync
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("testCreatePixelMapFromSurfaceSync_receiver", 0, async function (done) {
+            var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
+            if (receiver == undefined) {
+                expect(false).assertTrue();
+                done();
+                return;
+            } else {
+                globalreceiver = receiver;
+                var error = receiver.checkDeviceTest;
+                if (DEVICE_CODE == error) {
+                    expect(error == DEVICE_CODE).assertTrue();
+                    done();
+                    return;
+                }
+                let pass = false;
+                receiver.on("imageArrival", (err) => {
+                    if (err) {
+                        expect(false).assertTrue();
+                        done();
+                        return;
+                    } else {
+                        pass = true;
+                    }
+                });
+                receiver.getReceivingSurfaceId().then((id) => {
+                    logger.log('SurfaceId success'+ id);
+                    expect(isString(id)).assertTrue();
+                    let region = { size: { height: 3, width: 3 }, x: 1, y: 1 };
+                    try{
+                        image.createPixelMapFromSurfaceSync(id, region)
+                        console.log('receiver surfaceId Successed in createPixelMapFromSurfaceSync')
+                        expect().assertFail();
+                        done();
+                    }catch (error){
+                        console.log('receiver surfaceId Failed in createPixelMapFromSurfaceSync')
+                        expect(true).assertTrue();
+                        done();
+                    }
+                })
+                var dummy = receiver.test;
+                await sleep(2000);
+                expect(pass).assertTrue();
+                done();
+                return;
+            }
+        });
     })
 }
