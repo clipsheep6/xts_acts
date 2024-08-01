@@ -22,12 +22,14 @@ export default function ContextJsunit() {
   describe('faContextTest', () => {
 
     /*
-     * @tc.number: context_getCacheDir_test_0100
-     * @tc.name: getCacheDir : Obtains the Cache directory on internal storage.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level   0
-     */
-    it("context_getCacheDir_test_0100", 0, async (done: Function) => {
+    *@tc.number     : Context_GetCacheDir_Test_0100
+    *@tc.name       : Context_GetCacheDir_Test_0100
+    *@tc.desc       : Check the return value of getCacheDir (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetCacheDir_Test_0100", 0, async (done: Function) => {
       console.log("------------------start context_getCacheDir_test_0100-------------------");
       try {
         let timeOldStamp = Utils.getNowTime();
@@ -50,12 +52,14 @@ export default function ContextJsunit() {
     })
 
     /*
-     * @tc.number: context_getCacheDir_test_0200
-     * @tc.name: getCacheDir : Obtains the Cache directory on internal storage.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     * @tc.level   0
-     */
-    it("context_getCacheDir_test_0200", 0, async (done: Function) => {
+    *@tc.number     : Context_GetCacheDir_Test_0200
+    *@tc.name       : Context_GetCacheDir_Test_0200
+    *@tc.desc       : Check the return value of getCacheDir (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetCacheDir_Test_0200", 0, async (done: Function) => {
       console.log("------------------start context_getCacheDir_test_0200-------------------");
       try {
         let timeOldStamp = Utils.getNowTime();
@@ -77,12 +81,14 @@ export default function ContextJsunit() {
     })
 
     /*
-     * @tc.number: context_getFilesDir_test_0100
-     * @tc.name: getFilesDir : Obtains the files directory on internal storage.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level   0
-     */
-    it("context_getFilesDir_test_0100", 0, async (done: Function) => {
+    *@tc.number     : Context_GetFilesDir_Test_0100
+    *@tc.name       : Context_GetFilesDir_Test_0100
+    *@tc.desc       : Check the return value of getFilesDir (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetFilesDir_Test_0100", 0, async (done: Function) => {
       console.log("------------------start context_getFilesDir_test_0100-------------------");
       try {
         let timeOldStamp = await Utils.getNowTime();
@@ -105,12 +111,14 @@ export default function ContextJsunit() {
     })
 
     /*
-     * @tc.number: context_getFilesDir_test_0200
-     * @tc.name: getFilesDir : Obtains the files directory on internal storage.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     * @tc.level   0
-     */
-    it("context_getFilesDir_test_0200", 0, async (done: Function) => {
+    *@tc.number     : Context_GetFilesDir_Test_0200
+    *@tc.name       : Context_GetFilesDir_Test_0200
+    *@tc.desc       : Check the return value of getFilesDir (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetFilesDir_Test_0200", 0, async (done: Function) => {
       console.log("------------------start context_getFilesDir_test_0200-------------------");
       try {
         let timeOldStamp = await Utils.getNowTime();
@@ -131,14 +139,15 @@ export default function ContextJsunit() {
       }
     })
 
-
     /*
-     * @tc.number: context_getOrCreateDistributedDir_test_0100
-     * @tc.name: getOrCreateDistributedDir : Obtains the directory of Distributed files.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level   0
-     */
-    it("context_getOrCreateDistributedDir_0100", 0, async (done: Function) => {
+    *@tc.number     : Context_GetOrCreateDistributedDir_0100
+    *@tc.name       : Context_GetOrCreateDistributedDir_0100
+    *@tc.desc       : Check the return value of getOrCreateDistributedDir (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetOrCreateDistributedDir_0100", 0, async (done: Function) => {
       console.log("------------------start context_getOrCreateDistributedDir_0100-------------------");
       try {
         let timeOldStamp = Utils.getNowTime();
@@ -160,12 +169,14 @@ export default function ContextJsunit() {
     })
 
     /*
-     * @tc.number: context_getOrCreateDistributedDir_0200
-     * @tc.name: getOrCreateDistributedDir : Obtains the directory of Distributed files.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     * @tc.level   0
-     */
-    it("context_getOrCreateDistributedDir_0200", 0, async (done: Function) => {
+    *@tc.number     : Context_GetOrCreateDistributedDir_0200
+    *@tc.name       : Context_GetOrCreateDistributedDir_0200
+    *@tc.desc       : Check the return value of getOrCreateDistributedDir (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetOrCreateDistributedDir_0200", 0, async (done: Function) => {
       console.log("------------------start context_getOrCreateDistributedDir_0200-------------------");
       try {
         let timeOldStamp = await Utils.getNowTime();
@@ -187,12 +198,14 @@ export default function ContextJsunit() {
     })
 
     /*
-     * @tc.number: context_getAppType_0100
-     * @tc.name: getAppType : Obtains the type of current application.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level   0
-     */
-    it("context_getAppType_0100", 0, async (done: Function) => {
+    *@tc.number     : Context_GetAppType_0100
+    *@tc.name       : Context_GetAppType_0100
+    *@tc.desc       : Check the return value of getAppType (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetAppType_0100", 0, async (done: Function) => {
       console.log("------------------start context_getAppType_0100-------------------");
       try {
         let timeOldStamp = Utils.getNowTime();
@@ -215,12 +228,14 @@ export default function ContextJsunit() {
     })
 
     /*
-     * @tc.number: context_getAppType_0200
-     * @tc.name: getAppType : Obtains the type of current application.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     * @tc.level   0
-     */
-    it("context_getAppType_0200", 0, async (done: Function) => {
+    *@tc.number     : Context_GetAppType_0200
+    *@tc.name       : Context_GetAppType_0200
+    *@tc.desc       : Check the return value of getAppType (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetAppType_0200", 0, async (done: Function) => {
       console.log("------------------start context_getAppType_0200-------------------");
       try {
         let timeOldStamp = await Utils.getNowTime();

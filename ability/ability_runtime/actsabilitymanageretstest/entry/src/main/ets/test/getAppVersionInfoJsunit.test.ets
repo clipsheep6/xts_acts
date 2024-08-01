@@ -36,13 +36,15 @@ function checkAppVersionInfo(msg: string, data: ESObject) {
 export default function getHapModuleInfoJsunit() {
   describe('getAppVersionInfoTest', () => {
 
-    /**
-     * @tc.number: context_getAppVersionInfo_test_0100
-     * @tc.name: getAppVersionInfo:Gets the version information for the application.
-     * @tc.desc: Check the return type of the interface (by Promise)
-     * @tc.level 0
-     */
-    it('context_getAppVersionInfo_test_0100', 0, async (done: Function) => {
+    /*
+    *@tc.number     : Context_GetAppVersionInfo_Test_0100
+    *@tc.name       : Context_GetAppVersionInfo_Test_0100
+    *@tc.desc       : Check the return value of getAppVersionInfo (by Promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetAppVersionInfo_Test_0100', 0, async (done: Function) => {
       console.info('[context_getAppVersionInfo_test_0100] START');
       let timeOldStamp = Utils.getNowTime();
       let context = ability_featureAbility.getContext();
@@ -63,13 +65,15 @@ export default function getHapModuleInfoJsunit() {
       })
     })
 
-    /**
-     * @tc.number: context_getAppVersionInfo_test_0200
-     * @tc.name: getAppVersionInfo:Gets the version information for the application.
-     * @tc.desc: Check the return type of the interface (by Callback)
-     * @tc.level 0
-     */
-    it('context_getAppVersionInfo_test_0200', 0, async (done: Function) => {
+    /*
+    *@tc.number     : Context_GetAppVersionInfo_Test_0200
+    *@tc.name       : Context_GetAppVersionInfo_Test_0200
+    *@tc.desc       : Check the return value of getAppVersionInfo (by Callback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetAppVersionInfo_Test_0200', 0, async (done: Function) => {
       try {
         console.info('[context_getAppVersionInfo_test_0200] START');
         let timeOldStamp = await Utils.getNowTime();

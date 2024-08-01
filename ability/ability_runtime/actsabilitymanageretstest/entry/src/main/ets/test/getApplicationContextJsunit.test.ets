@@ -21,13 +21,15 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 export default function getHapModuleInfoJsunit() {
   describe('getApplicationContextTest', () => {
 
-    /**
-     * @tc.number: context_getApplicationContext_test_0100
-     * @tc.name: getApplicationContext:Gets the application context information.
-     * @tc.desc: Check the return value of the interface
-     * @tc.level 0
-     */
-    it('context_getApplicationContext_test_0100', 0, async (done: Function) => {
+    /*
+    *@tc.number     : Context_GetApplicationContext_Test_0100
+    *@tc.name       : Context_GetApplicationContext_Test_0100
+    *@tc.desc       : Check the return value of getApplicationContext
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetApplicationContext_Test_0100', 0, async (done: Function) => {
       try {
         console.info('[context_getApplicationContext_test_0100] START');
         let timeOldStamp = Utils.getNowTime();

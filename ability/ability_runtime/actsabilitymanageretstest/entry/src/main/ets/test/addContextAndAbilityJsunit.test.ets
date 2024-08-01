@@ -37,12 +37,14 @@ export default function addContextAndAbilityJsunit() {
   describe('addContextTest', () => {
 
     /*
- * @tc.number: context_isUpdatingConfigurations_test_0100
- * @tc.name: isUpdatingConfigurations : Obtains whether the configuration of the current ability is changing.
- * @tc.desc: Check the return value of the interface (by promise)
- * @tc.level   0
- */
-    it('context_isUpdatingConfigurations_test_0100', 0, async (done: Function) => {
+    *@tc.number     : Context_IsUpdatingConfigurations_Test_0100
+    *@tc.name       : Context_IsUpdatingConfigurations_Test_0100
+    *@tc.desc       : Check the return value of isUpdatingConfigurations (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_IsUpdatingConfigurations_Test_0100', 0, async (done: Function) => {
       console.info(TAG_TEST_0100 + 'promise START');
       let detailed: boolean;
       let startTime = Utils.getNowTime();
@@ -65,12 +67,14 @@ export default function addContextAndAbilityJsunit() {
     })
 
     /*
- * @tc.number: context_isUpdatingConfigurations_test_0200
- * @tc.name: isUpdatingConfigurations : Obtains whether the configuration of the current ability is changing.
- * @tc.desc: Check the return value of the interface (by AsyncCallback)
- * @tc.level   0
- */
-    it('context_isUpdatingConfigurations_test_0200', 0, async (done: Function) => {
+    *@tc.number     : Context_IsUpdatingConfigurations_Test_0200
+    *@tc.name       : Context_IsUpdatingConfigurations_Test_0200
+    *@tc.desc       : Check the return value of isUpdatingConfigurations (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_IsUpdatingConfigurations_Test_0200', 0, async (done: Function) => {
       let detailed: boolean;
       console.info(TAG_TEST_0200 + 'callBack START');
       try {
@@ -94,13 +98,14 @@ export default function addContextAndAbilityJsunit() {
     })
 
     /*
- * @tc.number: context_printDrawnCompleted_test_0100
- * @tc.name: printDrawnCompleted : Inform the system of the time required to complete the drawing of the page
-  capability.
- * @tc.desc: Check the return value of the interface (by promise)
- * @tc.level   0
- */
-    it('context_printDrawnCompleted_test_0100', 0, async (done: Function) => {
+    *@tc.number     : Context_PrintDrawnCompleted_Test_0100
+    *@tc.name       : Context_PrintDrawnCompleted_Test_0100
+    *@tc.desc       : Check the return value of printDrawnCompleted (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_PrintDrawnCompleted_Test_0100', 0, async (done: Function) => {
       let detailed: ESObject;
       console.info(TAG_TEST_0300 + 'callBack START');
       let startTime = await Utils.getNowTime();
@@ -120,15 +125,15 @@ export default function addContextAndAbilityJsunit() {
       })
     })
 
-
     /*
- * @tc.number: context_printDrawnCompleted_test_0200
- * @tc.name: printDrawnCompleted : Inform the system of the time required to complete the drawing of the page
-  capability.
- * @tc.desc: Check the return value of the interface (by AsyncCallback)
- * @tc.level   0
- */
-    it('context_printDrawnCompleted_test_0200', 0, async (done: Function) => {
+    *@tc.number     : Context_PrintDrawnCompleted_Test_0200
+    *@tc.name       : Context_PrintDrawnCompleted_Test_0200
+    *@tc.desc       : Check the return value of printDrawnCompleted (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_PrintDrawnCompleted_Test_0200', 0, async (done: Function) => {
       let detailed: ESObject;
       console.info(TAG_TEST_0400 + 'callBack START');
       try {
@@ -150,14 +155,15 @@ export default function addContextAndAbilityJsunit() {
       }
     })
 
-
     /*
- * @tc.number: context_getAppMemorySize_test_0100
- * @tc.name: getAppMemorySize : Obtains the memory size of the application.
- * @tc.desc: Check the return value of the interface (by promise)
- * @tc.level   0
- */
-    it('context_getAppMemorySize_test_0100', 0, async (done: Function) => {
+    *@tc.number     : Context_GetAppMemorySize_Test_0100
+    *@tc.name       : Context_GetAppMemorySize_Test_0100
+    *@tc.desc       : Check the return value of getAppMemorySize (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetAppMemorySize_Test_0100', 0, async (done: Function) => {
       console.info(TAG_TEST_0500 + 'promise START');
       let detailed: number;
       let startTime = await Utils.getNowTime();
@@ -179,12 +185,14 @@ export default function addContextAndAbilityJsunit() {
     })
 
     /*
- * @tc.number: context_getAppMemorySize_test_0200
- * @tc.name: getAppMemorySize : Obtains the memory size of the application.
- * @tc.desc: Check the return value of the interface (by AsyncCallback)
- * @tc.level   0
- */
-    it('context_getAppMemorySize_test_0200', 0, async (done: Function) => {
+    *@tc.number     : Context_GetAppMemorySize_Test_0200
+    *@tc.name       : Context_GetAppMemorySize_Test_0200
+    *@tc.desc       : Check the return value of getAppMemorySize (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetAppMemorySize_Test_0200', 0, async (done: Function) => {
       console.info(TAG_TEST_0600 + 'callBack START');
       let startTime = Utils.getNowTime();
       appManager.getAppMemorySize((error, data) => {
@@ -200,12 +208,14 @@ export default function addContextAndAbilityJsunit() {
     });
 
     /*
- * @tc.number: context_isRamConstrainedDevice_test_0100
- * @tc.name: isRamConstrainedDevice : Obtains whether the current device has low ram.
- * @tc.desc: Check the return value of the interface (by promise)
- * @tc.level   0
- */
-    it('context_isRamConstrainedDevice_test_0100', 0, async (done: Function) => {
+    *@tc.number     : Context_IsRamConstrainedDevice_Test_0100
+    *@tc.name       : Context_IsRamConstrainedDevice_Test_0100
+    *@tc.desc       : Check the return value of isRamConstrainedDevice (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_IsRamConstrainedDevice_Test_0100', 0, async (done: Function) => {
       let detailed: boolean;
       console.info(TAG_TEST_0700 + 'promise START');
       let startTime = Utils.getNowTime();
@@ -226,12 +236,14 @@ export default function addContextAndAbilityJsunit() {
     })
 
     /*
- * @tc.number: context_isRamConstrainedDevice_test_0200
- * @tc.name: isRamConstrainedDevice : Obtains whether the current device has low ram.
- * @tc.desc: Check the return value of the interface (by AsyncCallback)
- * @tc.level   0
- */
-    it('context_isRamConstrainedDevice_test_0200', 0, async (done: Function) => {
+    *@tc.number     : Context_IsRamConstrainedDevice_Test_0200
+    *@tc.name       : Context_IsRamConstrainedDevice_Test_0200
+    *@tc.desc       : Check the return value of isRamConstrainedDevice (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_IsRamConstrainedDevice_Test_0200', 0, async (done: Function) => {
       console.info(TAG_TEST_0800 + 'callBack START');
       let startTime = await Utils.getNowTime();
       appManager.isRamConstrainedDevice((error, data) => {
@@ -245,13 +257,16 @@ export default function addContextAndAbilityJsunit() {
       })
       console.log('------------------ ' + TAG_TEST_0800 + ' end -------------------');
     })
+
     /*
-     * @tc.number: context_featureAbility_test_0100
-     * @tc.name: featureAbility.ErrorCode : featureAbility.ErrorCode
-     * @tc.desc: Check the featureAbility.ErrorCode.NO_ERROR
-     * @tc.level 0
-     */
-    it('context_featureAbility_test_0100', 0, async (done: Function) => {
+    *@tc.number     : Context_FeatureAbility_Test_0100
+    *@tc.name       : Context_FeatureAbility_Test_0100
+    *@tc.desc       : Check featureAbility.ErrorCode
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_FeatureAbility_Test_0100', 0, async (done: Function) => {
       console.info(TAG_TEST_0900 + ' NO_ERROR START');
       let no_error = ability_featureAbility.ErrorCode.NO_ERROR;
       console.info(TAG_TEST_0900 + ' featureAbility no_error is: ' + no_error);
@@ -262,12 +277,14 @@ export default function addContextAndAbilityJsunit() {
     })
 
     /*
-     * @tc.number: context_featureAbility_test_0200
-     * @tc.name: featureAbility.ErrorCode : featureAbility.ErrorCode
-     * @tc.desc: Check the featureAbility.ErrorCode.INVALID_PARAMETER
-     * @tc.level 0
-     */
-    it('context_featureAbility_test_0200', 0, async (done: Function) => {
+    *@tc.number     : Context_FeatureAbility_Test_0200
+    *@tc.name       : Context_FeatureAbility_Test_0200
+    *@tc.desc       : Check featureAbility.ErrorCode
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_FeatureAbility_Test_0200', 0, async (done: Function) => {
       console.info(TAG_TEST_0010 + ' INVALID_PARAMETER START');
       let invalid_parameter = ability_featureAbility.ErrorCode.INVALID_PARAMETER;
       console.info(TAG_TEST_0010 + ' featureAbility invalid_parameter is: ' + invalid_parameter);
@@ -278,12 +295,14 @@ export default function addContextAndAbilityJsunit() {
     })
 
     /*
-     * @tc.number: context_featureAbility_test_0300
-     * @tc.name: featureAbility.ErrorCode : featureAbility.ErrorCode
-     * @tc.desc: Check the featureAbility.ErrorCode.ABILITY_NOT_FOUND
-     * @tc.level 0
-     */
-    it('context_featureAbility_test_0300', 0, async (done: Function) => {
+    *@tc.number     : Context_FeatureAbility_Test_0300
+    *@tc.name       : Context_FeatureAbility_Test_0300
+    *@tc.desc       : Check featureAbility.ErrorCode
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_FeatureAbility_Test_0300', 0, async (done: Function) => {
       console.info(TAG_TEST_0011 + ' ABILITY_NOT_FOUND START');
       let ability_not_found = ability_featureAbility.ErrorCode.ABILITY_NOT_FOUND;
       console.info(TAG_TEST_0011 + ' featureAbility ability_not_found is: ' + ability_not_found);
@@ -294,12 +313,14 @@ export default function addContextAndAbilityJsunit() {
     })
 
     /*
-     * @tc.number: context_featureAbility_test_0400
-     * @tc.name: featureAbility.ErrorCode : featureAbility.ErrorCode
-     * @tc.desc: Check the featureAbility.ErrorCode.PERMISSION_DENY
-     * @tc.level 0
-     */
-    it('context_featureAbility_test_0400', 0, async (done: Function) => {
+    *@tc.number     : Context_FeatureAbility_Test_0400
+    *@tc.name       : Context_FeatureAbility_Test_0400
+    *@tc.desc       : Check featureAbility.ErrorCode
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_FeatureAbility_Test_0400', 0, async (done: Function) => {
       console.info(TAG_TEST_0012 + ' PERMISSION_DENY START');
       let permission_deny = ability_featureAbility.ErrorCode.PERMISSION_DENY;
       console.info(TAG_TEST_0012 + ' featureAbility permission_deny is: ' + permission_deny);

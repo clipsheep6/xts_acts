@@ -200,13 +200,15 @@ function checkApplicationInfo(msg: string, info: ESObject) {
 export default function getHapModuleInfoJsunit() {
   describe('getAbilityInfoTest', () => {
 
-    /**
-     * @tc.number: context_getAbilityInfo_test_0100
-     * @tc.name: getAbilityInfo:Query the current attributionability details.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level 0
-     */
-    it('context_getAbilityInfo_test_0100', 0, async (done: Function) => {
+    /*
+    *@tc.number     : Context_GetAbilityInfo_Test_0100
+    *@tc.name       : Context_GetAbilityInfo_Test_0100
+    *@tc.desc       : Check the return value of getAbilityInfo (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetAbilityInfo_Test_0100', 0, async (done: Function) => {
       console.info('[context_getAbilityInfo_test_0100] START');
       let timeOldStamp = await Utils.getNowTime();
       let context = ability_featureAbility.getContext();
@@ -227,13 +229,15 @@ export default function getHapModuleInfoJsunit() {
         })
     })
 
-    /**
-     * @tc.number: context_getAbilityInfo_test_0200
-     * @tc.name: getAbilityInfo:Query the current attributionability details.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     * @tc.level 0
-     */
-    it('context_getAbilityInfo_test_0200', 0, async (done: Function) => {
+    /*
+    *@tc.number     : Context_GetAbilityInfo_Test_0200
+    *@tc.name       : Context_GetAbilityInfo_Test_0200
+    *@tc.desc       : Check the return value of getAbilityInfo (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetAbilityInfo_Test_0200', 0, async (done: Function) => {
       try {
         let context = ability_featureAbility.getContext();
         console.info('[context_getAbilityInfo_test_0200] START');
@@ -255,13 +259,15 @@ export default function getHapModuleInfoJsunit() {
       }
     })
 
-    /**
-     * @tc.number: context_getAbilityInfo_test_0400
-     * @tc.name: getAbilityInfo:Query the current attributionability details.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level 0
-     */
-    it('context_getAbilityInfo_test_0400', 0, async (done: Function) => {
+    /*
+    *@tc.number     : Context_GetAbilityInfo_Test_0400
+    *@tc.name       : Context_GetAbilityInfo_Test_0400
+    *@tc.desc       : Check the return value of getAbilityInfo (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetAbilityInfo_Test_0400', 0, async (done: Function) => {
       console.info('[context_getAbilityInfo_test_0400] START');
       let timeOldStamp = await Utils.getNowTime();
       let context = ability_featureAbility.getContext();
