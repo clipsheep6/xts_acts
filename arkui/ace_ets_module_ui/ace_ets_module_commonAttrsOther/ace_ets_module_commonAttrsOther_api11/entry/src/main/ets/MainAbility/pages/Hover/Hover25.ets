@@ -28,7 +28,7 @@ struct HoverExample25 {
           .position({ x: 0, y: 0 })
           .hoverEffect(HoverEffect.Highlight)
           .onHover((isHover?: boolean) => {
-            if(isHover){
+            if (isHover) {
               this.isHoverVal25 = 'onhover'
               this.color = Color.Pink
             }

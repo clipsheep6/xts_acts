@@ -13,17 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 export default function AttributeModifierDemoAPI03Jsunit() {
-  describe('AttributeModifierDemoAPI03Jsunit', function () {
-    beforeEach(async function (done) {
+  describe('AttributeModifierDemoAPI03Jsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("AttributeModifierDemoAPI03Jsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/attributeModifier/AttributeModifierDemoAPI03',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/attributeModifier/AttributeModifierDemoAPI03',
       }
       try {
         router.clear();
@@ -31,7 +44,7 @@ export default function AttributeModifierDemoAPI03Jsunit() {
         console.info("get AttributeModifierDemoAPI03Jsunit state pages:" + JSON.stringify(pages));
         if (!("AttributeModifierDemoAPI03" == pages.name)) {
           console.info("get AttributeModifierDemoAPI03Jsunit state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push AttributeModifierDemoAPI03Jsunit success " + JSON.stringify(result));
         }
       } catch (err) {
@@ -40,7 +53,7 @@ export default function AttributeModifierDemoAPI03Jsunit() {
       }
       done();
     });
-    it('AttributeModifierDemoAPI03Jsunit_0100', 0, async function (done) {
+    it('AttributeModifierDemoAPI03Jsunit_0100', 0, async (done: Function) => {
       await CommonFunc.sleep(1000);
       console.info('AttributeModifierDemoAPI03Jsunit_0100 START');
 
@@ -55,11 +68,12 @@ export default function AttributeModifierDemoAPI03Jsunit() {
       await CommonFunc.sleep(1000);
 
       let strcontent = getInspectorByKey('AttributeModifierDemoAPI03Checkbox');
-      let obj = JSON.parse(strcontent);
       await CommonFunc.sleep(1000);
-      console.info('AttributeModifierDemoAPI03Jsunit_0100 component obj is: ' + obj.$attrs);
-      console.info('AttributeModifierDemoAPI03Jsunit_0100 component obj.selectedColor is: ' + obj.$attrs.selectedColor);
-      expect(obj.$attrs.selectedColor).assertEqual("#FF209B08");
+      console.info('AttributeModifierDemoAPI03Jsunit_0100 component obj is: ' + JSON.parse(strcontent).$attrs);
+      console.info('AttributeModifierDemoAPI03Jsunit_0100 component obj.selectedColor is: ' + JSON.parse(strcontent)
+        .$attrs
+        .selectedColor);
+      expect(JSON.parse(strcontent).$attrs.selectedColor).assertEqual("#FF209B08");
       console.info('AttributeModifierDemoAPI03Jsunit_0100 END')
       done();
     });

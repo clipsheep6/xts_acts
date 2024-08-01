@@ -14,13 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/common/Common';
+
 export default function callbackTest() {
-  describe('callbackTest', function () {
-    beforeEach(async function (done) {
+  describe('callbackTest', () => {
+    beforeEach(async (done: Function) => {
       console.info("callbackTest beforeEach start");
-      let options = {
+      let options: router.RouterOptions = {
         url: "MainAbility/pages/callback/callback",
       }
       try {
@@ -40,14 +54,14 @@ export default function callbackTest() {
       done();
     });
     /**
-     * @tc.number    Callback
-     * @tc.name      callbackTest_0100
-     * @tc.desc      api
-     * @tc.level:    Level 2
+     * @tc.number Callback
+     * @tc.name callbackTest_0100
+     * @tc.desc api
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('callbackTest_0100', 0, async function (done) {
+    it('callbackTest_0100', 0, async (done: Function) => {
       console.info('callbackTest_0100 START');
 
       let driver = await Driver.create()
@@ -56,10 +70,9 @@ export default function callbackTest() {
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('callback_age');
-      let obj = JSON.parse(strJson);
-      console.info("[callbackTest_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[callbackTest_0100] title: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual('age: 30');
+      console.info("[callbackTest_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[callbackTest_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('age: 30');
       console.info('[callbackTest_0100] END');
       done();
     });
