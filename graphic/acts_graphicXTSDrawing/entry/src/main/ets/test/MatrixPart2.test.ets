@@ -55,9 +55,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.postTranslate(100, 100);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' postTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -65,9 +65,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.postTranslate(100.1, 100.1);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' postTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -75,9 +75,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.postTranslate(-100, 100);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' postTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -85,9 +85,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.postTranslate(100, -150);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' postTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -95,9 +95,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.postTranslate(Number.MAX_VALUE, Number.MAX_VALUE);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' postTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -115,36 +115,36 @@ export default function drawingTsMatrixTestPart2() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postTranslate(null, 100,);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' postTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.postTranslate(100, null);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' postTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.postTranslate(undefined, 100,);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' postTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.postTranslate(100, undefined);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' postTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -162,27 +162,27 @@ export default function drawingTsMatrixTestPart2() {
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.postTranslate(90, 100, 100);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' postTranslate successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.postTranslate(90);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' postTranslate successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.postTranslate('s', 100);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' postTranslate successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     // })
@@ -202,9 +202,9 @@ export default function drawingTsMatrixTestPart2() {
         for (let i = 0; i < loop_times; i++) {
           matrix.postTranslate(Math.random() * Number.MAX_VALUE, Math.random() * Number.MAX_VALUE);
         }
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' postTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` postTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -223,9 +223,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preRotate(90, 100, 100);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -233,9 +233,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preRotate(90.1, 100.1, 100.1);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -243,9 +243,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preRotate(-90, 100, 100);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -253,9 +253,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preRotate(90, -100, 100);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -263,9 +263,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preRotate(90, 100, -100);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -273,9 +273,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preRotate(361, Number.MAX_VALUE, Number.MAX_VALUE);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -293,54 +293,54 @@ export default function drawingTsMatrixTestPart2() {
       try {
         let matrix = new drawing.Matrix();
         matrix.preRotate(null, 100, 100);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preRotate(90, null, 100);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preRotate(90, 100, null);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preRotate(undefined, 100, 100);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preRotate(90, undefined, 100);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preRotate(90, 100, undefined);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -358,27 +358,27 @@ export default function drawingTsMatrixTestPart2() {
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.preRotate(90, 100, 100, 100);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' preRotate successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.preRotate(90, 100);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' preRotate successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.preRotate('s', 100,100);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' preRotate successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     eexpect(e.code).assertEqual(401);
     //   }
     // })
@@ -398,9 +398,9 @@ export default function drawingTsMatrixTestPart2() {
         for (let i = 0; i < loop_times; i++) {
           matrix.preRotate(Math.random() * Number.MAX_VALUE, Math.random() * Number.MAX_VALUE, Math.random() * Number.MAX_VALUE);
         }
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preRotate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -419,9 +419,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preScale(100, 100, 150, 150);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -429,9 +429,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preScale(0.2, 0.2, 0.5, 0.5);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -439,9 +439,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preScale(-100, -100, 150, 150);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -449,9 +449,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preScale(100, 100, -150, -150);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -459,9 +459,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preScale(Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -479,81 +479,81 @@ export default function drawingTsMatrixTestPart2() {
       try {
         let matrix = new drawing.Matrix();
         matrix.preScale(null, 100, 150, 150);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preScale(100, null, 150, 150);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preScale(100, 100, null, 150);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preScale(100, 100, 150, null);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preScale(undefined, 100, 150, 150);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preScale(100, undefined, 150, 150);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preScale(100, undefined, 150, 150);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preScale(100, 100, undefined, 150);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preScale(100, 100, 150, undefined);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -571,27 +571,27 @@ export default function drawingTsMatrixTestPart2() {
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.preScale(90, 100, 100, 100, 100);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' preScale successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.preScale(90, 100, 100);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' preScale successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.preScale('s', 100,100,200);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' preScale successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     // })
@@ -612,9 +612,9 @@ export default function drawingTsMatrixTestPart2() {
           matrix.preScale(Math.random() * Number.MAX_VALUE, Math.random() * Number.MAX_VALUE,
             Math.random() * Number.MAX_VALUE, Math.random() * Number.MAX_VALUE);
         }
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preScale successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -634,9 +634,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preTranslate(100, 100);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -644,9 +644,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preTranslate(100.1, 100.1);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -654,9 +654,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preTranslate(-100, 100);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -664,9 +664,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preTranslate(100, -150);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
 
@@ -674,9 +674,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         matrix.preTranslate(Number.MAX_VALUE, Number.MAX_VALUE);
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -695,36 +695,36 @@ export default function drawingTsMatrixTestPart2() {
       try {
         let matrix = new drawing.Matrix();
         matrix.preTranslate(null, 100,);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preTranslate(100, null);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preTranslate(undefined, 100,);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.preTranslate(100, undefined);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -743,27 +743,27 @@ export default function drawingTsMatrixTestPart2() {
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.preTranslate(90, 100, 100);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' preTranslate successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.preTranslate(90);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' preTranslate successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.preTranslate('s', 100);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' preTranslate successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     // })
@@ -784,9 +784,9 @@ export default function drawingTsMatrixTestPart2() {
         for (let i = 0; i < loop_times; i++) {
           matrix.preTranslate(Math.random() * Number.MAX_VALUE, Math.random() * Number.MAX_VALUE);
         }
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' preTranslate successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` preTranslate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -809,9 +809,9 @@ export default function drawingTsMatrixTestPart2() {
         matrix.getAll();
         matrix.reset();
         matrix.getAll();
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' reset successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` reset errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -830,9 +830,9 @@ export default function drawingTsMatrixTestPart2() {
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.reset(90);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' reset successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` reset errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     // })
@@ -856,9 +856,9 @@ export default function drawingTsMatrixTestPart2() {
           matrix.reset();
           matrix.getAll();
         }
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' reset successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` reset errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -873,16 +873,39 @@ export default function drawingTsMatrixTestPart2() {
      */
     it('testMatrixMapPointsNormal', DEFAULT, () => {
       const msg = 'testMatrixMapPointsNormal';
+      let matrix = new drawing.Matrix();
+
       try {
-        let matrix = new drawing.Matrix();
         let src: Array<common2D.Point> = [{x:10,y:10},{x:20.1,y:20.1},{x:30,y:30}];
-        let dst: Array<common2D.Point> = [{x:20.1,y:20.1},{x:30,y:30}];
+        let dst: Array<common2D.Point> =matrix.mapPoints(src);
         matrix.mapPoints(src);
-        matrix.mapPoints(dst);
-        matrix.mapPoints([{x:10,y:10}]);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' mapPoints successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` mapPoints1 errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect().assertFail()
+      }
+
+      try {
+        let dst = matrix.mapPoints([]);
+        console.info(msg + ' mapPoints successed');
+      } catch (e) {
+        console.info(msg + ` mapPoints2 errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let dst = matrix.mapPoints( [{x:-10,y:-10},{x:20.1,y:20.1},{x:30,y:30.1}]);
+        console.info(msg + ' mapPoints successed');
+      } catch (e) {
+        console.info(msg + ` mapPoints3 errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect().assertFail()
+      }
+
+      try {
+        matrix.mapPoints([{x:10,y:10}]);
+        console.info(msg + ' mapPoints successed');
+      } catch (e) {
+        console.info(msg + ` mapPoints4 errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -900,18 +923,18 @@ export default function drawingTsMatrixTestPart2() {
       try {
         let matrix = new drawing.Matrix();
         matrix.mapPoints(null);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' mapPoints successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` mapPoints errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.mapPoints(undefined);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' mapPoints successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` mapPoints errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -930,26 +953,26 @@ export default function drawingTsMatrixTestPart2() {
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.mapPoints([{100,100}], [{100,100}]);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' mapPoints successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` mapPoints errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.mapPoints();
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' mapPoints successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` mapPoints errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.mapPoints('S');
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' mapPoints successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` mapPoints errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     // })
@@ -971,9 +994,9 @@ export default function drawingTsMatrixTestPart2() {
         for (let i = 0; i < loop_times; i++) {
           matrix.mapPoints(src);
         }
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' mapPoints successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` mapPoints errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -1003,9 +1026,9 @@ export default function drawingTsMatrixTestPart2() {
           { left: -100.1, top: -100.1, right: 200.1, bottom: 200.1})
         matrix.mapRect( { left: 200.1, top: 200.1, right: 300.1, bottom: 400.1},
           { left: 100.1, top: 100.1, right: -200.1, bottom: -200.1})
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' mapRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` mapRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -1023,36 +1046,36 @@ export default function drawingTsMatrixTestPart2() {
       try {
         let matrix = new drawing.Matrix();
         matrix.mapRect( null,  { left: 100, top: 100, right: 200, bottom: 200});
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' mapRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` mapRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.mapRect( { left: 200, top: 200, right: 300, bottom: 400},  null);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' mapRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` mapRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.mapRect( undefined,  { left: 100, top: 100, right: 200, bottom: 200});
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' mapRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` mapRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
       try {
         let matrix = new drawing.Matrix();
         matrix.mapRect( { left: 200, top: 200, right: 300, bottom: 400},  undefined);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' mapRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` mapRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -1073,27 +1096,27 @@ export default function drawingTsMatrixTestPart2() {
     //     matrix.mapRect( { left: 200.1, top: 200.1, right: 300.1, bottom: 400.1},
     //       { left: 100.1, top: 100.1, right: 200.1, bottom: 200.1},
     //       { left: 100.1, top: 100.1, right: 200.1, bottom: 200.1});
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' mapRect successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` mapRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.mapRect( { left: 200.1, top: 200.1, right: 300.1, bottom: 400.1});
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' mapRect successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` mapRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.mapRect('a',  { left: 100.1, top: 100.1, right: 200.1, bottom: 200.1});
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' mapRect successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` mapRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     eexpect(e.code).assertEqual(401);
     //   }
     // })
@@ -1117,9 +1140,9 @@ export default function drawingTsMatrixTestPart2() {
             { left: Math.random() * Number.MAX_VALUE, top: Math.random() * Number.MAX_VALUE,
               right: Math.random() * Number.MAX_VALUE, bottom: Math.random() * Number.MAX_VALUE});
         }
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' mapRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` mapRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -1153,9 +1176,9 @@ export default function drawingTsMatrixTestPart2() {
         matrix.setRectToRect(dst, src,drawing.ScaleToFit.START_SCALE_TO_FIT );
         matrix.setRectToRect(dst, src,drawing.ScaleToFit.CENTER_SCALE_TO_FIT );
         matrix.setRectToRect(dst, src,drawing.ScaleToFit.END_SCALE_TO_FIT );
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setRectToRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -1174,9 +1197,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         let stf: drawing.ScaleToFit = drawing.ScaleToFit.FILL_SCALE_TO_FIT ;
         matrix.setRectToRect( null,  { left: 100, top: 100, right: 200, bottom: 200}, stf)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setRectToRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -1184,9 +1207,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         let stf: drawing.ScaleToFit = drawing.ScaleToFit.FILL_SCALE_TO_FIT ;
         matrix.setRectToRect( { left: 200, top: 200, right: 300, bottom: 400},  null,stf)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setRectToRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -1194,9 +1217,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         let stf: drawing.ScaleToFit = drawing.ScaleToFit.FILL_SCALE_TO_FIT ;
         matrix.setRectToRect( { left: 200, top: 200, right: 300, bottom: 400},  { left: 200, top: 200, right: 300, bottom: 400},null)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setRectToRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -1204,9 +1227,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         let stf: drawing.ScaleToFit = drawing.ScaleToFit.FILL_SCALE_TO_FIT ;
         matrix.setRectToRect( undefined,  { left: 100, top: 100, right: 200, bottom: 200},stf)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setRectToRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -1214,9 +1237,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         let stf: drawing.ScaleToFit = drawing.ScaleToFit.FILL_SCALE_TO_FIT ;
         matrix.setRectToRect( { left: 200, top: 200, right: 300, bottom: 400},  undefined,stf)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setRectToRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -1224,9 +1247,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         let stf: drawing.ScaleToFit = drawing.ScaleToFit.FILL_SCALE_TO_FIT ;
         matrix.setRectToRect( { left: 200, top: 200, right: 300, bottom: 400},  { left: 200, top: 200, right: 300, bottom: 400},stf)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setRectToRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -1245,26 +1268,26 @@ export default function drawingTsMatrixTestPart2() {
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.setRectToRect( { left: 200.1, top: 200.1, right: 300.1, bottom: 400.1},  { left: 100.1, top: 100.1, right: 200.1, bottom: 200.1},  drawing.ScaleToFit.FILL_SCALE_TO_FIT , drawing.ScaleToFit.FILL_SCALE_TO_FIT )
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' setRectToRect successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.setRectToRect( { left: 200.1, top: 200.1, right: 300.1, bottom: 400.1},{ left: 100.1, top: 100.1, right: 200.1, bottom: 200.1})
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' setRectToRect successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
     //   try {
     //     let matrix = new drawing.Matrix();
     //     matrix.setRectToRect('a',  { left: 100.1, top: 100.1, right: 200.1, bottom: 200.1},  drawing.ScaleToFit.FILL_SCALE_TO_FIT , drawing.ScaleToFit.FILL_SCALE_TO_FIT )
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' setRectToRect successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
@@ -1283,16 +1306,16 @@ export default function drawingTsMatrixTestPart2() {
       const msg = 'testMatrixSetRectToRectMultipleCalls';
       try {
         let matrix = new drawing.Matrix();
-        const randomEnum = Math.floor(Math.random() * (getEnumCount(drawing.BlurType)));
+        const randomEnum = Math.floor(Math.random() * (getEnumCount(drawing.ScaleToFit)));
         for (let i = 0; i < loop_times; i++) {
           matrix.setRectToRect( { left: Math.random() * Number.MAX_VALUE, top: Math.random() * Number.MAX_VALUE,
             right: Math.random() * Number.MAX_VALUE, bottom: Math.random() * Number.MAX_VALUE},
             { left: Math.random() * Number.MAX_VALUE, top: Math.random() * Number.MAX_VALUE,
               right: Math.random() * Number.MAX_VALUE, bottom: Math.random() * Number.MAX_VALUE},randomEnum );
         }
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setRectToRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -1313,9 +1336,9 @@ export default function drawingTsMatrixTestPart2() {
         let dst: common2D.Rect = { left: 100, top: 20, right: 130, bottom: 60 };
         let src: common2D.Rect = { left: 100, top: 80, right: 130, bottom: 120 };
         matrix.setRectToRect(dst, src, 10);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setRectToRect successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setRectToRect errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -1330,23 +1353,45 @@ export default function drawingTsMatrixTestPart2() {
      */
     it('testMatrixSetPolyToPolyNormal', DEFAULT, () => {
       const msg = 'testMatrixSetPolyToPolyNormal';
+      let matrix = new drawing.Matrix();
+
       try {
-        let matrix = new drawing.Matrix();
-        let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
-        let dstPoints: Array<common2D.Point> = [ {x: 20, y: 200}, {x: 60, y: 200} ];
-        matrix.setPolyToPoly(srcPoints, dstPoints, 2);
-        srcPoints = []
-        dstPoints = []
-        matrix.setPolyToPoly(srcPoints, dstPoints, 0)
-        srcPoints = [{x: 200, y: 20}, {x: 200, y: 60}, {x: 200.1, y: 40.1}, {x: -300, y: -60}]
-        dstPoints = [{x: 201, y: 21}, {x: 201, y: 61}, {x: 200.2, y: 40.2}, {x: -301, y: -61}]
-        matrix.setPolyToPoly(srcPoints, dstPoints, 4)
-        // srcPoints = [{x: 200, y: 20}, {x: 200, y: 60},{x: 200.1, y: 40.1}, {x: -300, y: -60}, {x: 400.1, y: 200.1}]
-        // dstPoints = [{x: 201, y: 21}, {x: 201, y: 61},{x: 200.2, y: 40.2}, {x: -301, y: -61}, {x: 400.2, y: 200.2}]
-        // matrix.setPolyToPoly(srcPoints, dstPoints, 5)
-        console.info(msg + 'moveTo successed');
+        let srcPoints: Array<common2D.Point> = [{x: 200, y: 20}, {x: 200, y: 60}];
+        let dstPoints: Array<common2D.Point> = [{x: 200, y: 90}, {x: 100, y: 60}];
+        matrix.setPolyToPoly(srcPoints, dstPoints, 2)
+        console.info(msg + ' setPolyToPoly successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect().assertFail()
+      }
+
+      try {
+        let srcPoints: Array<common2D.Point> = []
+        let dstPoints: Array<common2D.Point> = []
+        matrix.setPolyToPoly(srcPoints, dstPoints, 0)
+        console.info(msg + ' setPolyToPoly successed');
+      } catch (e) {
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect().assertFail()
+      }
+
+      try {
+        let srcPoints: Array<common2D.Point> = [{x: 200, y: 20}, {x: 200, y: 60},{x: 200.1, y: 40.1}, {x: -300, y: -60}]
+        let dstPoints: Array<common2D.Point> = [{x: -200, y: -20}, {x: 200, y: 60},{x: 200.1, y: 40.1}, {x: -300, y: -60}]
+        matrix.setPolyToPoly(srcPoints, dstPoints, 4)
+        console.info(msg + ' setPolyToPoly successed');
+      } catch (e) {
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect().assertFail()
+      }
+
+      try {
+        let srcPoints: Array<common2D.Point> = [{x: 200, y: 20}]
+        let dstPoints: Array<common2D.Point> = [{x: 200, y: 20}]
+        matrix.setPolyToPoly(srcPoints, dstPoints, 1)
+        console.info(msg + ' setPolyToPoly successed');
+      } catch (e) {
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -1365,9 +1410,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         let dstPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
         matrix.setPolyToPoly(null, dstPoints, 2)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setPolyToPoly successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -1375,9 +1420,9 @@ export default function drawingTsMatrixTestPart2() {
         let matrix = new drawing.Matrix();
         let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
         matrix.setPolyToPoly(srcPoints, null, 2)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setPolyToPoly successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -1386,9 +1431,9 @@ export default function drawingTsMatrixTestPart2() {
         let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
         let dstPoints: Array<common2D.Point> = [{x: 20, y: 200}, {x: 20, y: 200}];
         matrix.setPolyToPoly(srcPoints, dstPoints, null)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setPolyToPoly successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -1397,9 +1442,9 @@ export default function drawingTsMatrixTestPart2() {
         let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
         let dstPoints: Array<common2D.Point> = [{x: 20, y: 200}, {x: 20, y: 200}];
         matrix.setPolyToPoly(undefined, dstPoints, 2)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setPolyToPoly successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -1408,9 +1453,9 @@ export default function drawingTsMatrixTestPart2() {
         let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
         let dstPoints: Array<common2D.Point> = [{x: 20, y: 200}, {x: 60, y: 200}];
         matrix.setPolyToPoly(srcPoints, undefined, 2)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setPolyToPoly successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
 
@@ -1419,9 +1464,9 @@ export default function drawingTsMatrixTestPart2() {
         let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
         let dstPoints: Array<common2D.Point> = [{x: 20, y: 200}, {x: 60, y: 200}];
         matrix.setPolyToPoly(srcPoints, dstPoints, undefined)
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setPolyToPoly successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
@@ -1442,9 +1487,9 @@ export default function drawingTsMatrixTestPart2() {
     //     let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
     //     let dstPoints: Array<common2D.Point> = [];
     //     matrix.setPolyToPoly(srcPoints, dstPoints, 2, 2)
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' setPolyToPoly successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //   try {
@@ -1452,9 +1497,9 @@ export default function drawingTsMatrixTestPart2() {
     //     let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
     //     let dstPoints: Array<common2D.Point> = [];
     //     matrix.setPolyToPoly(srcPoints, dstPoints);
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' setPolyToPoly successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     //
@@ -1463,9 +1508,9 @@ export default function drawingTsMatrixTestPart2() {
     //     let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
     //     let dstPoints: Array<common2D.Point> = [];
     //     matrix.setPolyToPoly(’s', dstPoints, 2)
-    //     console.info(msg + 'moveTo successed');
+    //     console.info(msg + ' setPolyToPoly successed');
     //   } catch (e) {
-    //     console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+    //     console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
     //     expect(e.code).assertEqual(401);
     //   }
     // })
@@ -1484,13 +1529,13 @@ export default function drawingTsMatrixTestPart2() {
       try {
         let matrix = new drawing.Matrix();
         let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
-        let dstPoints: Array<common2D.Point> = [{x: 20, y: 200}, {x: 60, y: 200}];
+        let dstPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
         for (let i = 0; i < loop_times; i++) {
           matrix.setPolyToPoly(srcPoints, dstPoints, 2);
         }
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setPolyToPoly successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
       }
     })
@@ -1511,9 +1556,9 @@ export default function drawingTsMatrixTestPart2() {
         let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60} ];
         let dstPoints: Array<common2D.Point> = [{x: 20, y: 20}, {x: 20, y: 600}];
         matrix.setPolyToPoly(srcPoints, dstPoints, -1);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setPolyToPoly successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
       try {
@@ -1521,9 +1566,9 @@ export default function drawingTsMatrixTestPart2() {
         let srcPoints: Array<common2D.Point> = [ {x: 200, y: 20}, {x: 200, y: 60}, {x: 210, y: 70}, {x: 220, y: 80} ];
         let dstPoints: Array<common2D.Point> = [{x: 200, y: 20}, {x: 200, y: 60}, {x: 210, y: 70}, {x: 220, y: 80}];
         matrix.setPolyToPoly(srcPoints, dstPoints, 5);
-        console.info(msg + 'moveTo successed');
+        console.info(msg + ' setPolyToPoly successed');
       } catch (e) {
-        console.info(msg + `moveTo errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        console.info(msg + ` setPolyToPoly errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect(e.code).assertEqual(401);
       }
     })
