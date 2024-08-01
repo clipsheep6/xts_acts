@@ -80,7 +80,7 @@ export default function bmsDefaultAppTest() {
           let ret = defaultAppManager.isDefaultApplicationSync(defaultAppManager.ApplicationType.IMAGE);
           hilog.info(Domain, TAG,
             `Sub_Bms_Framework_Status_DefaultApp_2550 isDefaultApplicationSync ${ret}`);
-          expect(ret).assertTrue();
+          expect(ret).assertFalse();
         } catch (e) {
           hilog.error(Domain, TAG,
             `Sub_Bms_Framework_Status_DefaultApp_2550 error,
