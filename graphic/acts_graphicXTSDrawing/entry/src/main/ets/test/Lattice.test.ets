@@ -125,32 +125,40 @@ export default function latticeTest() {
           alpha : 0,
           red : 0,
           green : 0,
-          blue : 0,
+          blue : 128,
         }
         drawing.Lattice.createImageLattice([ 200, 400 ], [ 200, 400 ], 2, 2, {
           left : 200, top : 400, right : 200, bottom : 400
-        }, [ drawing.RectType.FIXEDCOLOR ], [ color ]);
+        }, [ drawing.RectType.FIXEDCOLOR, drawing.RectType.FIXEDCOLOR, drawing.RectType.FIXEDCOLOR,
+          drawing.RectType.FIXEDCOLOR, drawing.RectType.FIXEDCOLOR, drawing.RectType.FIXEDCOLOR,
+          drawing.RectType.FIXEDCOLOR, drawing.RectType.FIXEDCOLOR, drawing.RectType.FIXEDCOLOR ],
+          [ color, color, color, color, color, color, color, color, color ]);
         console.info(msg + ' createImageLattice successed');
       } catch( e ) {
         console.info(msg + ` createImageLattice9 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
+        expect().assertFail();
       }
 
       try {
         drawing.Lattice.createImageLattice([ 200, 400 ], [ 200, 400 ], 2, 2, null,
-          [ drawing.RectType.DEFAULT, drawing.RectType.TRANSPARENT ], null);
+          [ drawing.RectType.DEFAULT, drawing.RectType.TRANSPARENT, drawing.RectType.DEFAULT, drawing.RectType.TRANSPARENT,
+            drawing.RectType.DEFAULT, drawing.RectType.TRANSPARENT, drawing.RectType.DEFAULT, drawing.RectType.TRANSPARENT,
+            drawing.RectType.DEFAULT ], null);
         console.info(msg + ' createImageLattice successed');
       } catch( e ) {
         console.info(msg + ` createImageLattice10 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
+        expect().assertFail();
       }
 
       try {
-        drawing.Lattice.createImageLattice([ 200, 400 ], [ 200, 400 ], 2, 2, null, [ drawing.RectType.DEFAULT ], null);
+        drawing.Lattice.createImageLattice([ 200, 400 ], [ 200, 400 ], 2, 2, null, [
+          drawing.RectType.DEFAULT, drawing.RectType.DEFAULT, drawing.RectType.DEFAULT,
+          drawing.RectType.DEFAULT, drawing.RectType.DEFAULT, drawing.RectType.DEFAULT,
+          drawing.RectType.DEFAULT, drawing.RectType.DEFAULT, drawing.RectType.DEFAULT ], null);
         console.info(msg + ' createImageLattice successed');
       } catch( e ) {
         console.info(msg + ` createImageLattice11 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
+        expect().assertFail();
       }
 
       try {

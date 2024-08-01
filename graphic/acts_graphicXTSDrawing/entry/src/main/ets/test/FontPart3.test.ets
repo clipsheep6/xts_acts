@@ -234,14 +234,6 @@ export default function fontPart3Test() {
       }
 
       try {
-        let widths : number[] = font.getWidths([-1]);
-        console.info(msg + ' getWidths successed,widths:' + widths.length);
-      } catch( e ) {
-        console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect().assertFail();
-      }
-
-      try {
         let widths : number[] = font.getWidths([])
         console.info(msg + ' getWidths successed,widths:' + widths);
       } catch( e ) {

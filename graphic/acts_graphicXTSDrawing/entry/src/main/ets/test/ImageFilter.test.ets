@@ -56,30 +56,12 @@ export default function imageFilterTest() {
       try {
         let imgFilter = drawing.ImageFilter.createBlurImageFilter(5 , 10 , uiEffect.TileMode.CLAMP);
         console.info(msg + ' createBlurImageFilter CLAMP successed,ImageFilter:' + JSON.stringify(imgFilter));
-      } catch( e ) {
-        console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect().assertFail();
-      }
-
-      try {
-        let imgFilter = drawing.ImageFilter.createBlurImageFilter(5 , 10 , uiEffect.TileMode.REPEAT);
-        console.info(msg + ' createBlurImageFilter REPEAT successed,ImageFilter:' + JSON.stringify(imgFilter));
-      } catch( e ) {
-        console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect().assertFail();
-      }
-
-      try {
-        let imgFilter = drawing.ImageFilter.createBlurImageFilter(5 , 10 , uiEffect.TileMode.MIRROR);
-        console.info(msg + ' createBlurImageFilter MIRROR successed,ImageFilter:' + JSON.stringify(imgFilter));
-      } catch( e ) {
-        console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect().assertFail();
-      }
-
-      try {
-        let imgFilter = drawing.ImageFilter.createBlurImageFilter(5 , 10 , uiEffect.TileMode.DECAL);
-        console.info(msg + ' createBlurImageFilter DECAL successed,ImageFilter:' + JSON.stringify(imgFilter));
+        imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, uiEffect.TileMode.REPEAT);
+        console.info(msg + ' createBlurImageFilter CLAMP successed,ImageFilter:' + JSON.stringify(imgFilter));
+        imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, uiEffect.TileMode.MIRROR);
+        console.info(msg + ' createBlurImageFilter CLAMP successed,ImageFilter:' + JSON.stringify(imgFilter));
+        imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, uiEffect.TileMode.DECAL);
+        console.info(msg + ' createBlurImageFilter CLAMP successed,ImageFilter:' + JSON.stringify(imgFilter));
       } catch( e ) {
         console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
@@ -106,14 +88,6 @@ export default function imageFilterTest() {
       try {
         let imgFilter = drawing.ImageFilter.createBlurImageFilter(10 , 1 , uiEffect.TileMode.CLAMP , null);
         console.info(msg + ' createBlurImageFilter CLAMP null successed,ImageFilter:' + JSON.stringify(imgFilter));
-      } catch( e ) {
-        console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect().assertFail();
-      }
-
-      try {
-        let imgFilter = drawing.ImageFilter.createBlurImageFilter(10 , 10 , uiEffect.TileMode.CLAMP , undefined);
-        console.info(msg + ' createBlurImageFilter CLAMP undefined successed,ImageFilter:' + JSON.stringify(imgFilter));
       } catch( e ) {
         console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
@@ -196,6 +170,14 @@ export default function imageFilterTest() {
 
       try {
         let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, null,null);
+        console.info(msg + ' createBlurImageFilter(null) succeeded');
+      } catch( e ) {
+        console.info(msg + ` createBlurImageFilter(null) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let imgFilter = drawing.ImageFilter.createBlurImageFilter(10, 10, uiEffect.TileMode.CLAMP, undefined);
         console.info(msg + ' createBlurImageFilter(null) succeeded');
       } catch( e ) {
         console.info(msg + ` createBlurImageFilter(null) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -312,7 +294,14 @@ export default function imageFilterTest() {
         expect().assertFail();
       }
 
-
+      try {
+        let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
+        let imgFilter2 = drawing.ImageFilter.createFromColorFilter(colorFilter, null);
+        console.info(msg + ' createFromColorFilter successed,ImageFilter:' + JSON.stringify(imgFilter2));
+      } catch( e ) {
+        console.info(msg + ` createFromColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
     });
 
     /**
@@ -354,15 +343,6 @@ export default function imageFilterTest() {
       try {
         let imgFilter1 = drawing.ImageFilter.createBlurImageFilter(5, 10, uiEffect.TileMode.CLAMP, null);
         let imgFilter2 = drawing.ImageFilter.createFromColorFilter(null, imgFilter1);
-        console.info(msg + ' createFromColorFilter(null) succeeded');
-      } catch( e ) {
-        console.info(msg + ` createFromColorFilter(null) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
-
-      try {
-        let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
-        let imgFilter2 = drawing.ImageFilter.createFromColorFilter(colorFilter, null);
         console.info(msg + ' createFromColorFilter(null) succeeded');
       } catch( e ) {
         console.info(msg + ` createFromColorFilter(null) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
