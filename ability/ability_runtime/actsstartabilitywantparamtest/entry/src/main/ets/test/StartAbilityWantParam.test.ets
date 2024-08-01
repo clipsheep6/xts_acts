@@ -457,7 +457,7 @@ export default function startAbilityWantParamTest() {
     /**
      * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_0200
      * @tc.name      : The type is FD and the value is the correct image index value in the parameters carried by want
-     * @tc.desc      : test startAbility want parameters："keyFd":{"type":"FD", "value": fd}
+     * @tc.desc      : test startAbility want parameters："keyFd":{"type":"FD1", "value": fd}
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -471,7 +471,7 @@ export default function startAbilityWantParamTest() {
         fd = file.fd;
         let parameter = {
           "keyFd": {
-            "type": "FD",
+            "type": "FD1",
             "value": fd
           }
         }
