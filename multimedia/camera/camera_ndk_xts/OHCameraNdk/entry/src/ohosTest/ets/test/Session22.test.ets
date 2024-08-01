@@ -24,7 +24,6 @@ import MediaUtils from './MediaUtils';
 import media from '@ohos.multimedia.media';
 import { BusinessError } from '@ohos.base';
 
-
 const TAG = "CAMERA_LOGTAG_JS";
 const CAMERA_OK = 0;
 const CAMERA_ERROR_7400101 = 7400101; //参数错误
@@ -367,6 +366,22 @@ function sessionStop() {
   }
 }
 
+function getPreviewOutputActiveProfile() {
+  let ret = cameras.oHPreviewOutputGetActiveProfile(0);
+  if (ret != 0) {
+    console.info(TAG + "getPreviewOutputActiveProfile FAILED");
+    expect().assertFail();
+  }
+}
+
+function getPhotoOutputActiveProfile() {
+  let ret = cameras.oHPhotoOutputGetActiveProfile(0);
+  if (ret != 0) {
+    console.info(TAG + "getPhotoOutputActiveProfile FAILED");
+    expect().assertFail();
+  }
+}
+
 export default function SessionTest22() {
   describe('SessionTest2', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -538,7 +553,6 @@ export default function SessionTest22() {
       console.log(TAG+"testOHCaptureSessionUnregisterCallback0300:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
-
     /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionGetExposureBias0100
      * @tc.name       : testOHCaptureSessionGetExposureBias0100
@@ -2297,7 +2311,6 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionRegisterCallbackOn0100', 0, () => {
-
       let ret = cameras.oHCaptureSessionRegisterCallbackOn(0);
       console.log(TAG+"testOHCaptureSessionRegisterCallbackOn0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -2311,7 +2324,6 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionRegisterCallbackOn0200', 0, () => {
-
       let ret = cameras.oHCaptureSessionRegisterCallbackOn(1);
       console.log(TAG+"testOHCaptureSessionRegisterCallbackOn0200:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
@@ -2325,7 +2337,6 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionRegisterCallbackOn0300', 0, () => {
-
       let ret = cameras.oHCaptureSessionRegisterCallbackOn(2);
       console.log(TAG+"testOHCaptureSessionRegisterCallbackOn0300:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -2339,7 +2350,6 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionRegisterCallbackOn0400', 0, () => {
-
       let ret = cameras.oHCaptureSessionRegisterCallbackOn(3);
       console.log(TAG+"testOHCaptureSessionRegisterCallbackOn0400:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -2353,7 +2363,6 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionUnregisterCallbackOff0100', 0, () => {
-
       let ret = cameras.oHCaptureSessionUnregisterCallbackOff(0);
       console.log(TAG+"testOHCaptureSessionUnregisterCallbackOff0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -2367,7 +2376,6 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionUnregisterCallbackOff0200', 0, () => {
-
       let ret = cameras.oHCaptureSessionUnregisterCallbackOff(1);
       console.log(TAG+"testOHCaptureSessionUnregisterCallbackOff0200:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
@@ -2381,7 +2389,6 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionUnregisterCallbackOff0300', 0, () => {
-
       let ret = cameras.oHCaptureSessionUnregisterCallbackOff(2);
       console.log(TAG+"testOHCaptureSessionUnregisterCallbackOff0300:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -2395,7 +2402,6 @@ export default function SessionTest22() {
      * @tc.level      : Level 3
      */
     it('testOHCaptureSessionUnregisterCallbackOff0400', 0, () => {
-
       let ret = cameras.oHCaptureSessionUnregisterCallbackOff(3);
       console.log(TAG+"testOHCaptureSessionUnregisterCallbackOff0400:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -2601,6 +2607,181 @@ export default function SessionTest22() {
       let ret = cameras.oHCaptureSessionPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
         Camera_PreconfigRatio.EXCEPTION_ENUMERATION_VALUE, 0);
       console.log(TAG+"testOHCaptureSessionPreconfigWithRatio0400:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputGetActiveProfile0100
+     * @tc.name       : testOHPreviewOutputGetActiveProfile0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPreviewOutputGetActiveProfile0100', 0, () => {
+
+      let ret = cameras.oHPreviewOutputGetActiveProfile(0);
+      console.log(TAG+"testOHPreviewOutputGetActiveProfile0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputGetActiveProfile0200
+     * @tc.name       : testOHPreviewOutputGetActiveProfile0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPreviewOutputGetActiveProfile0200', 0, () => {
+
+      let ret = cameras.oHPreviewOutputGetActiveProfile(1);
+      console.log(TAG+"testOHPreviewOutputGetActiveProfile0200:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputGetActiveProfile0300
+     * @tc.name       : testOHPreviewOutputGetActiveProfile0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPreviewOutputGetActiveProfile0300', 0, () => {
+
+      let ret = cameras.oHPreviewOutputGetActiveProfile(2);
+      console.log(TAG+"testOHPreviewOutputGetActiveProfile0300:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputDeleteProfile0100
+     * @tc.name       : testOHPreviewOutputDeleteProfile0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPreviewOutputDeleteProfile0100', 0, () => {
+      getPreviewOutputActiveProfile();
+      let ret = cameras.oHPreviewOutputDeleteProfile(0);
+      console.log(TAG+"testOHPreviewOutputDeleteProfile0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputDeleteProfile0200
+     * @tc.name       : testOHPreviewOutputDeleteProfile0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPreviewOutputDeleteProfile0200', 0, () => {
+      let ret = cameras.oHPreviewOutputDeleteProfile(1);
+      console.log(TAG+"testOHPreviewOutputDeleteProfile0200:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputGetActiveProfile0100
+     * @tc.name       : testOHPhotoOutputGetActiveProfile0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputGetActiveProfile0100', 0, () => {
+      getCameraManagerInstance();
+      createCaptureSession();
+      getSupportedCamerasInstance();
+      getSupportedCameraOutputCapability();
+      getSupportedSceneModes();
+      setSceneMode(0);
+      setSessionMode();
+      createPreviewOutput();
+      createCameraInput();
+      startSession();
+      sessionStop();
+      sessionBeginConfig();
+      createPhotoOutput();
+      let ret = cameras.oHPhotoOutputGetActiveProfile(0);
+      console.log(TAG+"testOHPhotoOutputGetActiveProfile0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputGetActiveProfile0200
+     * @tc.name       : testOHPhotoOutputGetActiveProfile0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputGetActiveProfile0200', 0, () => {
+      getCameraManagerInstance();
+      createCaptureSession();
+      getSupportedCamerasInstance();
+      getSupportedCameraOutputCapability();
+      getSupportedSceneModes();
+      setSceneMode(0);
+      setSessionMode();
+      createPreviewOutput();
+      createCameraInput();
+      startSession();
+      sessionStop();
+      sessionBeginConfig();
+      createPhotoOutput();
+      let ret = cameras.oHPhotoOutputGetActiveProfile(1);
+      console.log(TAG+"testOHPhotoOutputGetActiveProfile0200:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputGetActiveProfile0300
+     * @tc.name       : testOHPhotoOutputGetActiveProfile0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputGetActiveProfile0300', 0, () => {
+      getCameraManagerInstance();
+      createCaptureSession();
+      getSupportedCamerasInstance();
+      getSupportedCameraOutputCapability();
+      getSupportedSceneModes();
+      setSceneMode(0);
+      setSessionMode();
+      createPreviewOutput();
+      createCameraInput();
+      startSession();
+      sessionStop();
+      sessionBeginConfig();
+      createPhotoOutput();
+      let ret = cameras.oHPhotoOutputGetActiveProfile(2);
+      console.log(TAG+"testOHPhotoOutputGetActiveProfile0300:"+ret);
+      expect(ret).assertEqual(CAMERA_ERROR_7400101);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputDeleteProfile0100
+     * @tc.name       : testOHPhotoOutputDeleteProfile0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputDeleteProfile0100', 0, () => {
+      getPhotoOutputActiveProfile();
+      let ret = cameras.oHPhotoOutputDeleteProfile(0);
+      console.log(TAG+"testOHPhotoOutputDeleteProfile0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputDeleteProfile0200
+     * @tc.name       : testOHPhotoOutputDeleteProfile0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputDeleteProfile0200', 0, () => {
+      getPhotoOutputActiveProfile();
+      let ret = cameras.oHPhotoOutputDeleteProfile(1);
+      console.log(TAG+"testOHPhotoOutputDeleteProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
   })

@@ -97,74 +97,6 @@ function createCameraInput() {
   }
 }
 
-function startSession() {
-  let begin = cameras.oHCaptureSessionBeginConfig(0);
-  if (begin != 0) {
-    console.info(TAG + "beginConfig FAILED");
-    expect().assertFail();
-  }
-
-  let canAddInput = cameras.oHCaptureSessionCanAddInput(0);
-  if (canAddInput != 0) {
-    console.info(TAG + "CanAddInput FAILED");
-    expect().assertFail();
-  }
-
-  let addInput = cameras.oHCaptureSessionAddInput(0);
-  if (addInput != 0) {
-    console.info(TAG + "addInput FAILED");
-    expect().assertFail();
-  }
-
-  let canAddPreviewOutput = cameras.oHCaptureSessionCanAddPreviewOutput(0);
-  if (canAddPreviewOutput != 0) {
-    console.info(TAG + "CanAddPreviewOutput FAILED");
-    expect().assertFail();
-  }
-
-  let addPreviewOutput = cameras.oHCaptureSessionAddPreviewOutput(0);
-  if (addPreviewOutput != 0) {
-    console.info(TAG + "AddPreviewOutput FAILED");
-    expect().assertFail();
-  }
-
-  let commitConfig = cameras.oHCaptureSessionCommitConfig(0);
-  if (commitConfig != 0) {
-    console.info(TAG + "commitConfig FAILED");
-    expect().assertFail();
-  }
-
-  let start = cameras.oHCaptureSessionStart(0);
-  if (start != 0) {
-    console.info(TAG + "start FAILED");
-    expect().assertFail();
-  }
-}
-
-function sessionStop() {
-  let ret = cameras.oHCaptureSessionStop(0);
-  if (ret != 0) {
-    console.info(TAG + "sessionStop FAILED");
-    expect().assertFail();
-  }
-}
-
-function createPreviewOutput() {
-  let ret = cameras.oHCameraManagerCreatePreviewOutput(0);
-  if (ret != 0) {
-    console.info(TAG + "createPreviewOutput FAILED");
-    expect().assertFail();
-  }
-}
-
-function createPhotoOutput() {
-  let mPhotoOutput = cameras.oHCameraManagerCreatePhotoOutput(mPhotoSurface, 0);
-  if (mPhotoOutput != 0) {
-    console.info(TAG + "mPhotoOutput FAILED");
-    expect().assertFail();
-  }
-}
-
 function getSupportedCameraOutputCapabilityInstance() {
   let ret = cameras.oHGetSupportedCameraOutputCapability(0);
   if (ret != 0) {
@@ -184,14 +116,6 @@ function getSupportedCameraOutputCapabilityInstance() {
   let mPhotoOutput = cameras.oHCameraManagerCreatePhotoOutput(mPhotoSurface, 0);
   if (mPhotoOutput != 0) {
     console.info(TAG + "mPhotoOutput FAILED");
-    expect().assertFail();
-  }
-}
-
-function getSupportedCameraOutputCapability() {
-  let ret = cameras.oHGetSupportedCameraOutputCapability(0);
-  if (ret != 0) {
-    console.info(TAG + "getSupportedCameraOutputCapability FAILED");
     expect().assertFail();
   }
 }
@@ -294,76 +218,6 @@ export default function PhotoTest() {
       expect(ret).assertEqual(CAMERA_OK);
     })
     /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputGetActiveProfile0100
-     * @tc.name       : testOHPreviewOutputGetActiveProfile0100
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPreviewOutputGetActiveProfile0100', 0, () => {
-
-      let ret = cameras.oHPreviewOutputGetActiveProfile(0);
-      console.log(TAG+"testOHPreviewOutputGetActiveProfile0100:"+ret);
-      expect(ret).assertEqual(CAMERA_OK);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputGetActiveProfile0200
-     * @tc.name       : testOHPreviewOutputGetActiveProfile0200
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPreviewOutputGetActiveProfile0200', 0, () => {
-
-      let ret = cameras.oHPreviewOutputGetActiveProfile(1);
-      console.log(TAG+"testOHPreviewOutputGetActiveProfile0200:"+ret);
-      expect(ret).assertEqual(CAMERA_ERROR_7400101);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputGetActiveProfile0300
-     * @tc.name       : testOHPreviewOutputGetActiveProfile0300
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPreviewOutputGetActiveProfile0300', 0, () => {
-
-      let ret = cameras.oHPreviewOutputGetActiveProfile(2);
-      console.log(TAG+"testOHPreviewOutputGetActiveProfile0300:"+ret);
-      expect(ret).assertEqual(CAMERA_ERROR_7400101);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputDeleteProfile0100
-     * @tc.name       : testOHPreviewOutputDeleteProfile0100
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPreviewOutputDeleteProfile0100', 0, () => {
-
-      let ret = cameras.oHPreviewOutputDeleteProfile(0);
-      console.log(TAG+"testOHPreviewOutputDeleteProfile0100:"+ret);
-      expect(ret).assertEqual(CAMERA_OK);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputDeleteProfile0200
-     * @tc.name       : testOHPreviewOutputDeleteProfile0200
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPreviewOutputDeleteProfile0200', 0, () => {
-
-      let ret = cameras.oHPreviewOutputDeleteProfile(1);
-      console.log(TAG+"testOHPreviewOutputDeleteProfile0200:"+ret);
-      expect(ret).assertEqual(CAMERA_ERROR_7400101);
-    })
-    /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputStart0200
      * @tc.name       : testOHPreviewOutputStart0200
      * @tc.size       : MediumTest
@@ -405,7 +259,6 @@ export default function PhotoTest() {
       console.log(TAG+"testOHPreviewOutputStop0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
-    
     /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputRegisterCallback0100
      * @tc.name       : testOHPhotoOutputRegisterCallback0100
@@ -557,84 +410,6 @@ export default function PhotoTest() {
 
       let ret = cameras.oHPhotoOutputIsMirrorSupported(2);
       console.log(TAG+"testOHPhotoOutputIsMirrorSupported0300:"+ret);
-      expect(ret).assertEqual(CAMERA_ERROR_7400101);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputGetActiveProfile0100
-     * @tc.name       : testOHPhotoOutputGetActiveProfile0100
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPhotoOutputGetActiveProfile0100', 0, () => {
-      let ret = cameras.oHPhotoOutputGetActiveProfile(0);
-      console.log(TAG+"testOHPhotoOutputGetActiveProfile0100:"+ret);
-      expect(ret).assertEqual(CAMERA_OK);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputGetActiveProfile0200
-     * @tc.name       : testOHPhotoOutputGetActiveProfile0200
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPhotoOutputGetActiveProfile0200', 0, () => {
-      let ret = cameras.oHPhotoOutputGetActiveProfile(1);
-      console.log(TAG+"testOHPhotoOutputGetActiveProfile0200:"+ret);
-      expect(ret).assertEqual(CAMERA_ERROR_7400101);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputGetActiveProfile0300
-     * @tc.name       : testOHPhotoOutputGetActiveProfile0300
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPhotoOutputGetActiveProfile0300', 0, () => {
-      let ret = cameras.oHPhotoOutputGetActiveProfile(2);
-      console.log(TAG+"testOHPhotoOutputGetActiveProfile0300:"+ret);
-      expect(ret).assertEqual(CAMERA_ERROR_7400101);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputGetActiveProfile0400
-     * @tc.name       : testOHPhotoOutputGetActiveProfile0400
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPhotoOutputGetActiveProfile0400', 0, () => {
-      let ret = cameras.oHPhotoOutputGetActiveProfile(3);
-      console.log(TAG+"testOHPhotoOutputGetActiveProfile0400:"+ret);
-      expect(ret).assertEqual(CAMERA_ERROR_7400101);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputDeleteProfile0100
-     * @tc.name       : testOHPhotoOutputDeleteProfile0100
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPhotoOutputDeleteProfile0100', 0, () => {
-      let ret = cameras.oHPhotoOutputDeleteProfile(0);
-      console.log(TAG+"testOHPhotoOutputDeleteProfile0100:"+ret);
-      expect(ret).assertEqual(CAMERA_OK);
-    })
-    /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputDeleteProfile0200
-     * @tc.name       : testOHPhotoOutputDeleteProfile0200
-     * @tc.size       : MediumTest
-     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
-     * @tc.type       : Function
-     * @tc.level      : Level 3
-     */
-    it('testOHPhotoOutputDeleteProfile0200', 0, () => {
-      let ret = cameras.oHPhotoOutputDeleteProfile(1);
-      console.log(TAG+"testOHPhotoOutputDeleteProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_ERROR_7400101);
     })
     /**

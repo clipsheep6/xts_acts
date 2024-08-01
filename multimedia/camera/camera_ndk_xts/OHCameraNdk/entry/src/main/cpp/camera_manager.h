@@ -39,24 +39,8 @@ typedef enum CameraCallbackCode {
     SESSION_ON_FOCUS_STATE_CHANGE = 14,
     SESSION_ON_ERROR = 15,
     CAMERA_MANAGER_STATUS = 16,
-    TORCH_STATUS_CHANGE = 17,
-    SESSION_SMOOTH_ZOOM_INFO_AVAILABLES = 18,
-    PHOTO_OUTPUT_CAPTURE_END = 19,
-    PHOTO_OUTPUT_CAPTURE_START_WITH_INFO = 20,
-    PHOTO_OUTPUT_FRAME_SHUTTER_END = 21,
-    PHOTO_OUTPUT_CAPTURE_READY = 22,
-    PHOTO_OUTPUT_ESTIMATED_CAPTURE_DURATION = 23,
     NO_RECEIVED = 10086,
 } CameraCallbackCode;
-typedef enum UseCallbackCode {
-    CALL_BACK_0 = 0, // 回调参数0
-    CALL_BACK_1 = 1, // 回调参数1
-    CALL_BACK_2 = 2, // 回调参数2
-    CALL_BACK_3 = 3, // 回调参数3
-    CALL_BACK_4 = 4, // 回调参数4
-    CALL_BACK_5 = 5, // 回调参数5
-    CALL_BACK_6 = 6, // 回调参数6
-} UseCallbackCode;
 typedef enum UseCaseCode {
     PARAMETER_OK = 0,     // 参数正常
     PARAMETER1_ERROR = 1, // 参数1异常
@@ -81,7 +65,6 @@ public:
     float maxZoom_;
     float zoom_;
     bool isVideoSupported_;
-    bool canPreconfig_;      // 是否支持预配置。
     bool isAddInput_;       // 能否添加输入
     Camera_FlashMode flashMode_;
     Camera_ExposureMode exposureMode_; // 获取当前曝光模式。
@@ -97,10 +80,11 @@ public:
     Camera_OutputCapability *cameraOutputCapability_;  // 特定相机和特定模式支持的输出功能
     // callback
     static CameraCallbackCode cameraCallbackCode_; // 回调码
+    bool canPreconfig_;      // 是否支持预配置。
+
 
     Camera_ErrorCode GetSupportedCameras(int useCaseCode);          // 获取支持相机的描述
     Camera_ErrorCode CreatePreviewOutput(int useCaseCode);          // 创建预览输出实例
-    Camera_ErrorCode CreatePreviewOutputUsedInPreconfig(int useCaseCode);          // 创建预配置中使用的预览输出实例
     Camera_ErrorCode GetSupportedOutputCapability(int useCaseCode); // 获取特定相机和特定模式支持的输出功能
     Camera_ErrorCode CameraDeleteCameraManager(int useCaseCode);                          // 删除CameraManager实例
     Camera_ErrorCode CameraManagerDeleteSupportedCameras(int useCaseCode);                // 删除支持的相机。
@@ -114,16 +98,12 @@ public:
     Camera_ErrorCode CreateCameraInputWithPositionAndType(Camera_Position position, Camera_Type type,
                                                           int useCaseCode); // 创建具有位置和类型的相机输入实例。
     Camera_ErrorCode CreatePhotoOutput(char *photoSurfaceId, int useCaseCode);    // 创建一个拍照输出实例。
-    Camera_ErrorCode CreatePhotoOutputUsedInPreconfig(char *photoSurfaceId, int useCaseCode);    // 创建预配置中使用的照片输出实例。
     Camera_ErrorCode CreateVideoOutput(char *videoId, int useCaseCode);           // 创建一个录像输出实例。
-    Camera_ErrorCode CreateVideoOutputUsedInPreconfig(char *videoId, int useCaseCode);           // 创建预配置中使用的视频输出实例。
     Camera_ErrorCode AddVideoOutput(int useCaseCode);                             // 添加录像输出。
     Camera_ErrorCode VideoOutputStart(int useCaseCode);                           // 开始录像输出。
     Camera_ErrorCode VideoOutputStop(int useCaseCode);                            // 停止录像输出。
     Camera_ErrorCode SessionAddInput(int useCaseCode);                            // 添加相机输入。。
     Camera_ErrorCode VideoOutputRelease(int useCaseCode);                         // 释放录像输出。。
-    Camera_ErrorCode VideoOutputGetActiveProfile(int useCaseCode);                // 获取活动视频输出配置文件。
-    Camera_ErrorCode VideoOutputDeleteProfile(int useCaseCode);                   // 删除视频配置文件实例。
     Camera_ErrorCode SessionRemoveVideoOutput(int useCaseCode);                   // 删除录像输出。。
     Camera_ErrorCode SessionRemoveInput(int useCaseCode);                         // 删除相机输入。。
     Camera_ErrorCode SessionAddPreviewOutput(int useCaseCode);                    // 添加预览输出。。
@@ -146,10 +126,6 @@ public:
                                                               int useCaseCode); // 检查是否支持指定的录像防抖模式
     Camera_ErrorCode SessionIsFocusModeSupported(uint32_t mode, int useCaseCode); // 检查是否支持指定的聚焦模式
     Camera_ErrorCode SessionSetVideoStabilizationMode(uint32_t mode, int useCaseCode); // 设置录像防抖模式
-    Camera_ErrorCode SessionCanPreconfig(uint32_t mode, int useCaseCode);              // 检查是否支持预配置
-    Camera_ErrorCode SessionCanPreconfigWithRatio(uint32_t mode, uint32_t mode2, int useCaseCode);   // 检查是否支持带比率的预配置类型
-    Camera_ErrorCode SessionPreconfig(uint32_t mode, int useCaseCode); // 设置预配置类型
-    Camera_ErrorCode SessionPreconfigWithRatio(uint32_t mode, uint32_t mode2, int useCaseCode); // 使用比率设置预配置类型
     Camera_ErrorCode SessionHasFlash(int useCaseCode);                                 // 检测是否有闪关灯
     Camera_ErrorCode SessionGetFlashMode(int useCaseCode);                             // 获取当前闪光灯模式
     Camera_ErrorCode SessionGetFocusMode(int useCaseCode);                             // 获取当前聚焦模式
@@ -166,11 +142,7 @@ public:
     Camera_ErrorCode PreviewOutputStart(int useCaseCode);                                      // 开始预览输出
     Camera_ErrorCode PreviewOutputStop(int useCaseCode);                                       // 停止预览输出
     Camera_ErrorCode PreviewOutputRelease(int useCaseCode);                                    // 停止预览输出
-    Camera_ErrorCode PreviewOutputGetActiveProfile(int useCaseCode);                           // 获取活动预览输出配置文件
-    Camera_ErrorCode PreviewOutputDeleteProfile(int useCaseCode);                              // 删除预览配置文件实例
     Camera_ErrorCode IsMirrorSupported(int useCaseCode);  // 检查是否支持镜像拍照
-    Camera_ErrorCode PhotoOutputGetActiveProfile(int useCaseCode);  // 获取活动照片输出配置文件
-    Camera_ErrorCode PhotoOutputDeleteProfile(int useCaseCode); // 删除照片配置文件实例
     Camera_ErrorCode PhotoOutputCapture(int useCaseCode); // 拍摄照片
     Camera_ErrorCode PhotoOutputRelease(int useCaseCode); // 释放拍照输出
     Camera_ErrorCode TakePictureWithPhotoSettings(Camera_PhotoCaptureSetting photoSetting,
@@ -218,6 +190,21 @@ public:
     Camera_ErrorCode AddSecureOutput(int useCaseCode);                                 // 将一个预览输出添加为安全输出
     Camera_ErrorCode OpenSecureCamera(int useCaseCode);                                // 打开安全输入
 
+    Camera_ErrorCode CreatePreviewOutputUsedInPreconfig(int useCaseCode);          // 创建预配置中使用的预览输出实例
+    Camera_ErrorCode CreatePhotoOutputUsedInPreconfig(char *photoSurfaceId, int useCaseCode);    // 创建预配置中使用的照片输出实例。
+    Camera_ErrorCode CreateVideoOutputUsedInPreconfig(char *videoId, int useCaseCode);           // 创建预配置中使用的视频输出实例。
+    Camera_ErrorCode VideoOutputGetActiveProfile(int useCaseCode);                // 获取活动视频输出配置文件。
+    Camera_ErrorCode VideoOutputDeleteProfile(int useCaseCode);                   // 删除视频配置文件实例。
+    Camera_ErrorCode SessionCanPreconfig(uint32_t mode, int useCaseCode);              // 检查是否支持预配置
+    Camera_ErrorCode SessionCanPreconfigWithRatio(uint32_t mode, uint32_t mode2, int useCaseCode);   // 检查是否支持带比率的预配置类型
+    Camera_ErrorCode SessionPreconfig(uint32_t mode, int useCaseCode); // 设置预配置类型
+    Camera_ErrorCode SessionPreconfigWithRatio(uint32_t mode, uint32_t mode2, int useCaseCode); // 使用比率设置预配置类型
+    Camera_ErrorCode PreviewOutputGetActiveProfile(int useCaseCode);                           // 获取活动预览输出配置文件
+    Camera_ErrorCode PreviewOutputDeleteProfile(int useCaseCode);                              // 删除预览配置文件实例
+    Camera_ErrorCode PhotoOutputGetActiveProfile(int useCaseCode);  // 获取活动照片输出配置文件
+    Camera_ErrorCode PhotoOutputDeleteProfile(int useCaseCode); // 删除照片配置文件实例
+
+
     // 非测试接口， 辅助测试
     Camera_ErrorCode SetSceneMode(int useCaseCode);                             // 设置sceneMode_的值
     Camera_ErrorCode GetCameraFromCameras(Camera_Device* cameras,
@@ -225,23 +212,24 @@ public:
 
 private:
     Camera_Manager *cameraManager_; // CameraManager实例。
-    Camera_CaptureSession *captureSession_; // 拍照会话实例
+    Camera_CaptureSession *captureSession_;
     uint32_t size_; // 记录支持的Camera_Device列表的大小。
     uint32_t sceneModesSize_; // 记录支持的Camera_SceneMode列表大小。
-    const Camera_Profile *profile_;  // 相机配置信息
-    Camera_Profile *cameraProfile_;
-    const Camera_VideoProfile *vProfile_;  // 录像配置信息
-    Camera_VideoProfile *videoActiveProfile_;
+    const Camera_Profile *profile_;
+    const Camera_VideoProfile *vProfile_;
     Camera_PreviewOutput *previewOutput_; // 预览输出实例
-    Camera_PhotoOutput *photoOutput_;     // 拍照输出实例
-    Camera_VideoOutput *videoOutput_;     // 录像输出实例
+    Camera_PhotoOutput *photoOutput_;
+    Camera_VideoOutput *videoOutput_;
     const Camera_MetadataObjectType *metaDataObjectType_; // 用于创建Camera_MetadataOutput
     Camera_MetadataOutput *metadataOutput_;
-    Camera_Input *cameraInput_; // 相机输入实例
+    Camera_Input *cameraInput_;
     bool *isCameraMuted_;    // 确定相机是否静音。
     char *previewSurfaceId_; // 用于创建Camera_PreviewOutput。
     Camera_ErrorCode ret_;   // 错误码
     float step_;             // 每个级别之间的曝光补偿阶梯
+    Camera_Profile *cameraProfile_;
+    Camera_VideoProfile *videoActiveProfile_;
+
 
     volatile bool valid_; // CameraManager实例是否存在。
 };

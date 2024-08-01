@@ -201,22 +201,6 @@ static napi_value OHCameraManagerCreatePreviewOutput(napi_env env, napi_callback
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCameraManagerCreatePreviewOutputUsedInPreconfig(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t index;
-    napi_get_value_int32(env, args[0], &index);
-
-    Camera_ErrorCode code = ndkCamera->CreatePreviewOutputUsedInPreconfig(index);
-
-    napi_create_int32(env, code, &result);
-    return result;
-}
 static napi_value OHCameraManagerCreateCameraInput(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -349,28 +333,6 @@ static napi_value OHCameraManagerCreatePhotoOutput(napi_env env, napi_callback_i
     napi_get_value_int32(env, args[1], &index);
     LOG("创建一个拍照输出实例. %{public}s====%{public}d", surfaceId, index);
     Camera_ErrorCode ret = ndkCamera->CreatePhotoOutput(surfaceId, index);
-    napi_create_int32(env, ret, &result);
-    return result;
-}
-static napi_value OHCameraManagerCreatePhotoOutputUsedInPreconfig(napi_env env, napi_callback_info info)
-{
-    napi_value result;
-
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
-    size_t typeLen = 0;
-    char *surfaceId = nullptr;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    napi_get_value_string_utf8(env, args[0], nullptr, 0, &typeLen);
-    surfaceId = new char[typeLen + 1];
-    napi_get_value_string_utf8(env, args[0], surfaceId, typeLen + 1, &typeLen);
-
-    int32_t index;
-    napi_get_value_int32(env, args[1], &index);
-    LOG("创建一个拍照输出实例. %{public}s====%{public}d", surfaceId, index);
-    Camera_ErrorCode ret = ndkCamera->CreatePhotoOutputUsedInPreconfig(surfaceId, index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -1081,80 +1043,6 @@ static napi_value OHCaptureSessionSetVideoStabilizationMode(napi_env env, napi_c
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHCaptureSessionCanPreconfig(napi_env env, napi_callback_info info)
-{
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t mode;
-    napi_get_value_int32(env, args[0], &mode);
-    int32_t index;
-    napi_get_value_int32(env, args[1], &index);
-
-    Camera_ErrorCode code = ndkCamera->SessionCanPreconfig(mode, index);
-    napi_create_int32(env, code, &result);
-    return result;
-}
-static napi_value OHCaptureSessionCanPreconfigWithRatio(napi_env env, napi_callback_info info)
-{
-    size_t argc = 3;
-    napi_value args[3] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t preconfigTypeValue;
-    napi_get_value_int32(env, args[0], &preconfigTypeValue);
-    int32_t preconfigRatioValue;
-    napi_get_value_int32(env, args[1], &preconfigRatioValue);
-    int32_t index;
-    napi_get_value_int32(env, args[2], &index);
-
-    Camera_ErrorCode code = ndkCamera->SessionCanPreconfigWithRatio(preconfigTypeValue, preconfigRatioValue, index);
-    napi_create_int32(env, code, &result);
-    return result;
-}
-
-static napi_value OHCaptureSessionPreconfig(napi_env env, napi_callback_info info)
-{
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t mode;
-    napi_get_value_int32(env, args[0], &mode);
-    int32_t index;
-    napi_get_value_int32(env, args[1], &index);
-
-    Camera_ErrorCode code = ndkCamera->SessionPreconfig(mode, index);
-    napi_create_int32(env, code, &result);
-    return result;
-}
-static napi_value OHCaptureSessionPreconfigWithRatio(napi_env env, napi_callback_info info)
-{
-    size_t argc = 3;
-    napi_value args[3] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t preconfigTypeValue;
-    napi_get_value_int32(env, args[0], &preconfigTypeValue);
-    int32_t preconfigRatioValue;
-    napi_get_value_int32(env, args[1], &preconfigRatioValue);
-    int32_t index;
-    napi_get_value_int32(env, args[2], &index);
-
-    Camera_ErrorCode code = ndkCamera->SessionPreconfigWithRatio(preconfigTypeValue, preconfigRatioValue, index);
-    napi_create_int32(env, code, &result);
-    return result;
-}
-
 static napi_value OHCaptureSessionRemovePreviewOutput(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -1221,26 +1109,6 @@ static napi_value OHCameraManagerCreateVideoOutput(napi_env env, napi_callback_i
     napi_get_value_int32(env, args[1], &index);
     
     Camera_ErrorCode ret = ndkCamera->CreateVideoOutput(videoId, index);
-    napi_create_int32(env, ret, &result);
-    return result;
-}
-static napi_value OHCameraManagerCreateVideoOutputUsedInPreconfig(napi_env env, napi_callback_info info)
-{
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
-    napi_value result;
-
-    size_t videoIdLen = 0;
-    char *videoId = nullptr;
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    napi_get_value_string_utf8(env, args[0], nullptr, 0, &videoIdLen);
-    videoId = new char[videoIdLen + 1];
-    napi_get_value_string_utf8(env, args[0], videoId, videoIdLen + 1, &videoIdLen);
-
-    int32_t index;
-    napi_get_value_int32(env, args[1], &index);
-
-    Camera_ErrorCode ret = ndkCamera->CreateVideoOutputUsedInPreconfig(videoId, index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -1340,38 +1208,6 @@ static napi_value OHVideoOutputRelease(napi_env env, napi_callback_info info)
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHVideoOutputGetActiveProfile(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t index;
-    napi_get_value_int32(env, args[0], &index);
-
-    Camera_ErrorCode code = ndkCamera->VideoOutputGetActiveProfile(index);
-
-    napi_create_int32(env, code, &result);
-    return result;
-}
-static napi_value OHVideoOutputDeleteProfile(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t index;
-    napi_get_value_int32(env, args[0], &index);
-
-    Camera_ErrorCode code = ndkCamera->VideoOutputDeleteProfile(index);
-
-    napi_create_int32(env, code, &result);
-    return result;
-}
 static napi_value OHCameraManagerUnregisterCallback(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -1436,38 +1272,6 @@ static napi_value OHPreviewOutputRelease(napi_env env, napi_callback_info info)
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value OHPreviewOutputGetActiveProfile(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t index;
-    napi_get_value_int32(env, args[0], &index);
-
-    Camera_ErrorCode code = ndkCamera->PreviewOutputGetActiveProfile(index);
-
-    napi_create_int32(env, code, &result);
-    return result;
-}
-static napi_value OHPreviewOutputDeleteProfile(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t index;
-    napi_get_value_int32(env, args[0], &index);
-
-    Camera_ErrorCode code = ndkCamera->PreviewOutputDeleteProfile(index);
-
-    napi_create_int32(env, code, &result);
-    return result;
-}
 static napi_value OHPhotoOutputRegisterCallback(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -1512,38 +1316,6 @@ static napi_value OHPhotoOutputIsMirrorSupported(napi_env env, napi_callback_inf
     napi_get_value_int32(env, args[0], &index);
 
     Camera_ErrorCode code = ndkCamera->IsMirrorSupported(index);
-
-    napi_create_int32(env, code, &result);
-    return result;
-}
-static napi_value OHPhotoOutputGetActiveProfile(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t index;
-    napi_get_value_int32(env, args[0], &index);
-
-    Camera_ErrorCode code = ndkCamera->PhotoOutputGetActiveProfile(index);
-
-    napi_create_int32(env, code, &result);
-    return result;
-}
-static napi_value OHPhotoOutputDeleteProfile(napi_env env, napi_callback_info info)
-{
-    size_t argc = 1;
-    napi_value args[1] = {nullptr};
-    napi_value result;
-
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    int32_t index;
-    napi_get_value_int32(env, args[0], &index);
-
-    Camera_ErrorCode code = ndkCamera->PhotoOutputDeleteProfile(index);
 
     napi_create_int32(env, code, &result);
     return result;
@@ -1821,7 +1593,233 @@ static napi_value OHCameraManagerSetSceneMode(napi_env env, napi_callback_info i
     napi_create_int32(env, code, &result);
     return result;
 }
+static napi_value OHCameraManagerCreatePreviewOutputUsedInPreconfig(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_value result;
 
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t index;
+    napi_get_value_int32(env, args[0], &index);
+
+    Camera_ErrorCode code = ndkCamera->CreatePreviewOutputUsedInPreconfig(index);
+
+    napi_create_int32(env, code, &result);
+    return result;
+}
+static napi_value OHCameraManagerCreatePhotoOutputUsedInPreconfig(napi_env env, napi_callback_info info)
+{
+    napi_value result;
+
+    size_t argc = 2;
+    napi_value args[2] = {nullptr};
+    size_t typeLen = 0;
+    char *surfaceId = nullptr;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    napi_get_value_string_utf8(env, args[0], nullptr, 0, &typeLen);
+    surfaceId = new char[typeLen + 1];
+    napi_get_value_string_utf8(env, args[0], surfaceId, typeLen + 1, &typeLen);
+
+    int32_t index;
+    napi_get_value_int32(env, args[1], &index);
+    LOG("创建一个拍照输出实例. %{public}s====%{public}d", surfaceId, index);
+    Camera_ErrorCode ret = ndkCamera->CreatePhotoOutputUsedInPreconfig(surfaceId, index);
+    napi_create_int32(env, ret, &result);
+    return result;
+}
+static napi_value OHCaptureSessionCanPreconfig(napi_env env, napi_callback_info info)
+{
+    size_t argc = 2;
+    napi_value args[2] = {nullptr};
+    napi_value result;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t mode;
+    napi_get_value_int32(env, args[0], &mode);
+    int32_t index;
+    napi_get_value_int32(env, args[1], &index);
+
+    Camera_ErrorCode code = ndkCamera->SessionCanPreconfig(mode, index);
+    napi_create_int32(env, code, &result);
+    return result;
+}
+static napi_value OHCaptureSessionCanPreconfigWithRatio(napi_env env, napi_callback_info info)
+{
+    size_t argc = 3;
+    napi_value args[3] = {nullptr};
+    napi_value result;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t preconfigTypeValue;
+    napi_get_value_int32(env, args[0], &preconfigTypeValue);
+    int32_t preconfigRatioValue;
+    napi_get_value_int32(env, args[1], &preconfigRatioValue);
+    int32_t index;
+    napi_get_value_int32(env, args[2], &index);
+
+    Camera_ErrorCode code = ndkCamera->SessionCanPreconfigWithRatio(preconfigTypeValue, preconfigRatioValue, index);
+    napi_create_int32(env, code, &result);
+    return result;
+}
+
+static napi_value OHCaptureSessionPreconfig(napi_env env, napi_callback_info info)
+{
+    size_t argc = 2;
+    napi_value args[2] = {nullptr};
+    napi_value result;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t mode;
+    napi_get_value_int32(env, args[0], &mode);
+    int32_t index;
+    napi_get_value_int32(env, args[1], &index);
+
+    Camera_ErrorCode code = ndkCamera->SessionPreconfig(mode, index);
+    napi_create_int32(env, code, &result);
+    return result;
+}
+static napi_value OHCaptureSessionPreconfigWithRatio(napi_env env, napi_callback_info info)
+{
+    size_t argc = 3;
+    napi_value args[3] = {nullptr};
+    napi_value result;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t preconfigTypeValue;
+    napi_get_value_int32(env, args[0], &preconfigTypeValue);
+    int32_t preconfigRatioValue;
+    napi_get_value_int32(env, args[1], &preconfigRatioValue);
+    int32_t index;
+    napi_get_value_int32(env, args[2], &index);
+
+    Camera_ErrorCode code = ndkCamera->SessionPreconfigWithRatio(preconfigTypeValue, preconfigRatioValue, index);
+    napi_create_int32(env, code, &result);
+    return result;
+}
+static napi_value OHCameraManagerCreateVideoOutputUsedInPreconfig(napi_env env, napi_callback_info info)
+{
+    size_t argc = 2;
+    napi_value args[2] = {nullptr};
+    napi_value result;
+
+    size_t videoIdLen = 0;
+    char *videoId = nullptr;
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    napi_get_value_string_utf8(env, args[0], nullptr, 0, &videoIdLen);
+    videoId = new char[videoIdLen + 1];
+    napi_get_value_string_utf8(env, args[0], videoId, videoIdLen + 1, &videoIdLen);
+
+    int32_t index;
+    napi_get_value_int32(env, args[1], &index);
+
+    Camera_ErrorCode ret = ndkCamera->CreateVideoOutputUsedInPreconfig(videoId, index);
+    napi_create_int32(env, ret, &result);
+    return result;
+}
+static napi_value OHVideoOutputGetActiveProfile(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_value result;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t index;
+    napi_get_value_int32(env, args[0], &index);
+
+    Camera_ErrorCode code = ndkCamera->VideoOutputGetActiveProfile(index);
+
+    napi_create_int32(env, code, &result);
+    return result;
+}
+static napi_value OHVideoOutputDeleteProfile(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_value result;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t index;
+    napi_get_value_int32(env, args[0], &index);
+
+    Camera_ErrorCode code = ndkCamera->VideoOutputDeleteProfile(index);
+
+    napi_create_int32(env, code, &result);
+    return result;
+}
+static napi_value OHPreviewOutputGetActiveProfile(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_value result;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t index;
+    napi_get_value_int32(env, args[0], &index);
+
+    Camera_ErrorCode code = ndkCamera->PreviewOutputGetActiveProfile(index);
+
+    napi_create_int32(env, code, &result);
+    return result;
+}
+static napi_value OHPreviewOutputDeleteProfile(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_value result;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t index;
+    napi_get_value_int32(env, args[0], &index);
+
+    Camera_ErrorCode code = ndkCamera->PreviewOutputDeleteProfile(index);
+
+    napi_create_int32(env, code, &result);
+    return result;
+}
+static napi_value OHPhotoOutputGetActiveProfile(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_value result;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t index;
+    napi_get_value_int32(env, args[0], &index);
+
+    Camera_ErrorCode code = ndkCamera->PhotoOutputGetActiveProfile(index);
+
+    napi_create_int32(env, code, &result);
+    return result;
+}
+static napi_value OHPhotoOutputDeleteProfile(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
+    napi_value result;
+
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+
+    int32_t index;
+    napi_get_value_int32(env, args[0], &index);
+
+    Camera_ErrorCode code = ndkCamera->PhotoOutputDeleteProfile(index);
+
+    napi_create_int32(env, code, &result);
+    return result;
+}
 EXTERN_C_START
 napi_property_descriptor desc1[] = {
     {"initCamera", nullptr, InitCamera, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1839,8 +1837,6 @@ napi_property_descriptor desc1[] = {
      nullptr, napi_default, nullptr},
     {"oHCameraManagerCreatePreviewOutput", nullptr, OHCameraManagerCreatePreviewOutput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"oHCameraManagerCreatePreviewOutputUsedInPreconfig", nullptr, OHCameraManagerCreatePreviewOutputUsedInPreconfig,
-     nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHCameraManagerCreateCameraInput", nullptr, OHCameraManagerCreateCameraInput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHCreateCameraInputWithPositionAndType", nullptr, OHCreateCameraInputWithPositionAndType, nullptr, nullptr,
@@ -1853,8 +1849,6 @@ napi_property_descriptor desc1[] = {
      napi_default, nullptr},
     {"oHCameraManagerCreatePhotoOutput", nullptr, OHCameraManagerCreatePhotoOutput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"oHCameraManagerCreatePhotoOutputUsedInPreconfig", nullptr, OHCameraManagerCreatePhotoOutputUsedInPreconfig,
-     nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHCameraManagerCreateMetadataOutput", nullptr, OHCameraManagerCreateMetadataOutput, nullptr, nullptr,
      nullptr, napi_default, nullptr},
     {"oHCameraInputOpen", nullptr, OHCameraInputOpen, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1938,19 +1932,10 @@ napi_property_descriptor desc3[] = {
      nullptr, nullptr, napi_default, nullptr},
     {"oHCaptureSessionRemovePhotoOutput", nullptr, OHCaptureSessionRemovePhotoOutput, nullptr, nullptr,
      nullptr, napi_default, nullptr},
-    {"oHCaptureSessionCanPreconfig", nullptr, OHCaptureSessionCanPreconfig, nullptr, nullptr, nullptr, napi_default,
-     nullptr},
-    {"oHCaptureSessionCanPreconfigWithRatio", nullptr, OHCaptureSessionCanPreconfigWithRatio, nullptr, nullptr, nullptr,
-     napi_default, nullptr},
-    {"oHCaptureSessionPreconfig", nullptr, OHCaptureSessionPreconfig, nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"oHCaptureSessionPreconfigWithRatio", nullptr, OHCaptureSessionPreconfigWithRatio, nullptr, nullptr, nullptr,
-     napi_default, nullptr},
     {"oHCaptureSessionAddVideoOutput", nullptr, OHCaptureSessionAddVideoOutput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHCameraManagerCreateVideoOutput", nullptr, OHCameraManagerCreateVideoOutput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"oHCameraManagerCreateVideoOutputUsedInPreconfig", nullptr, OHCameraManagerCreateVideoOutputUsedInPreconfig,
-     nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHVideoOutputRegisterCallback", nullptr, OHVideoOutputRegisterCallback, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHVideoOutputUnregisterCallback", nullptr, OHVideoOutputUnregisterCallback, nullptr, nullptr, nullptr,
@@ -1960,10 +1945,6 @@ napi_property_descriptor desc3[] = {
     {"oHCaptureSessionRemoveVideoOutput", nullptr, OHCaptureSessionRemoveVideoOutput, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHVideoOutputRelease", nullptr, OHVideoOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"oHVideoOutputGetActiveProfile", nullptr, OHVideoOutputGetActiveProfile, nullptr, nullptr, nullptr, napi_default,
-     nullptr},
-    {"oHVideoOutputDeleteProfile", nullptr, OHVideoOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
-     nullptr},
     {"oHCameraManagerUnRegisterCallback", nullptr, OHCameraManagerUnregisterCallback, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHPreviewOutputStart", nullptr, OHPreviewOutputStart, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1971,18 +1952,10 @@ napi_property_descriptor desc3[] = {
     {"oHPreviewOutputRelease", nullptr, OHPreviewOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHPhotoOutputRegisterCallback", nullptr, OHPhotoOutputRegisterCallback, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"oHPreviewOutputGetActiveProfile", nullptr, OHPreviewOutputGetActiveProfile, nullptr, nullptr, nullptr,
-     napi_default, nullptr},
-    {"oHPreviewOutputDeleteProfile", nullptr, OHPreviewOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
-     nullptr},
     {"oHPhotoOutputUnregisterCallback", nullptr, OHPhotoOutputUnregisterCallback, nullptr, nullptr, nullptr,
      napi_default, nullptr},
     {"oHPhotoOutputIsMirrorSupported", nullptr, OHPhotoOutputIsMirrorSupported, nullptr, nullptr, nullptr,
      napi_default, nullptr},
-    {"oHPhotoOutputGetActiveProfile", nullptr, OHPhotoOutputGetActiveProfile, nullptr, nullptr, nullptr, napi_default,
-     nullptr},
-    {"oHPhotoOutputDeleteProfile", nullptr, OHPhotoOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
-     nullptr},
     {"oHPhotoOutputCapture", nullptr, OHPhotoOutputCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
     {"oHPhotoOutputCaptureWithCaptureSetting", nullptr, OHPhotoOutputCaptureWithCaptureSetting, nullptr, nullptr,
      nullptr, napi_default, nullptr},
@@ -2017,12 +1990,39 @@ napi_property_descriptor desc4[] = {
     {"oHCameraManagerSetSceneMode", nullptr, OHCameraManagerSetSceneMode, nullptr, nullptr,
      nullptr, napi_default, nullptr},
 };
+napi_property_descriptor desc5[] = {
+    {"oHCameraManagerCreatePreviewOutputUsedInPreconfig", nullptr, OHCameraManagerCreatePreviewOutputUsedInPreconfig,
+     nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"oHCameraManagerCreatePhotoOutputUsedInPreconfig", nullptr, OHCameraManagerCreatePhotoOutputUsedInPreconfig,
+     nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"oHCaptureSessionCanPreconfig", nullptr, OHCaptureSessionCanPreconfig, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
+    {"oHCaptureSessionCanPreconfigWithRatio", nullptr, OHCaptureSessionCanPreconfigWithRatio, nullptr, nullptr, nullptr,
+     napi_default, nullptr},
+    {"oHCaptureSessionPreconfig", nullptr, OHCaptureSessionPreconfig, nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"oHCaptureSessionPreconfigWithRatio", nullptr, OHCaptureSessionPreconfigWithRatio, nullptr, nullptr, nullptr,
+     napi_default, nullptr},
+    {"oHCameraManagerCreateVideoOutputUsedInPreconfig", nullptr, OHCameraManagerCreateVideoOutputUsedInPreconfig,
+     nullptr, nullptr, nullptr, napi_default, nullptr},
+    {"oHVideoOutputGetActiveProfile", nullptr, OHVideoOutputGetActiveProfile, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
+    {"oHVideoOutputDeleteProfile", nullptr, OHVideoOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
+    {"oHPreviewOutputGetActiveProfile", nullptr, OHPreviewOutputGetActiveProfile, nullptr, nullptr, nullptr,
+     napi_default, nullptr},
+    {"oHPreviewOutputDeleteProfile", nullptr, OHPreviewOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
+    {"oHPhotoOutputGetActiveProfile", nullptr, OHPhotoOutputGetActiveProfile, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
+    {"oHPhotoOutputDeleteProfile", nullptr, OHPhotoOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
+     nullptr},
+};
 
 static napi_value Init(napi_env env, napi_value exports)
 {
     size_t mergedLength = sizeof(desc1) / sizeof(desc1[0]) +
         sizeof(desc2) / sizeof(desc2[0]) + sizeof(desc3) / sizeof(desc3[0]) +
-        sizeof(desc4) / sizeof(desc4[0]);
+        sizeof(desc4) / sizeof(desc4[0]) + sizeof(desc5) / sizeof(desc5[0]);
     napi_property_descriptor mergedArray[mergedLength];
     for (size_t i = 0; i < sizeof(desc1) / sizeof(desc1[0]); ++i) {
         mergedArray[i] = desc1[i];
@@ -2036,6 +2036,10 @@ static napi_value Init(napi_env env, napi_value exports)
     for (size_t i = 0; i < sizeof(desc4) / sizeof(desc4[0]); ++i) {
         mergedArray[sizeof(desc1) / sizeof(desc1[0]) + sizeof(desc2) / sizeof(desc2[0]) +
         sizeof(desc3) / sizeof(desc3[0]) + i] = desc4[i];
+    }
+    for (size_t i = 0; i < sizeof(desc5) / sizeof(desc5[0]); ++i) {
+        mergedArray[sizeof(desc1) / sizeof(desc1[0]) + sizeof(desc2) / sizeof(desc2[0]) +
+        sizeof(desc3) / sizeof(desc3[0]) + sizeof(desc4) / sizeof(desc4[0]) + i] = desc5[i];
     }
     napi_define_properties(env, exports, mergedLength, mergedArray);
     return exports;
