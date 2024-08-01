@@ -24,8 +24,22 @@
         "exported": true,
         "skills": [
           {
+            "entities": [
+              "entity.system.home"
+            ],
             "actions": [
+              "action.system.home",
               "ohos.want.action.viewData"
+            ],
+            "uris": [
+              {
+                "type": "image/*",
+                "scheme": 'file'
+              },
+              {
+                "type": "application/vnd.ms-excel",
+                "scheme": 'file'
+              }
             ]
           }
         ]

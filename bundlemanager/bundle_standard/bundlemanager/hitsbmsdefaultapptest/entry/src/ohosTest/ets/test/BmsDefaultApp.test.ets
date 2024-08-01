@@ -31,11 +31,13 @@ function sleep(time: number): Promise<void> {
 export default function bmsDefaultAppTest() {
   let currentApp: bundleManager.ElementName = {
     bundleName: 'com.hits.bms.defaultapptest',
-    abilityName: "EntryAbility"
+    abilityName: "EntryAbility",
+    moduleName: 'entry',
   };
   let defaultApp: bundleManager.ElementName = {
     bundleName: 'com.hits.defaultapp',
-    abilityName: "EntryAbility"
+    abilityName: 'EntryAbility',
+    moduleName: 'entry',
   };
   describe('bmsDefaultApp', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -72,6 +74,8 @@ export default function bmsDefaultAppTest() {
             `Sub_Bms_Framework_Status_DefaultApp_2550 start`);
 
           defaultAppManager.setDefaultApplicationSync(defaultAppManager.ApplicationType.EXCEL, currentApp);
+          hilog.info(Domain, TAG,
+            `Sub_Bms_Framework_Status_DefaultApp_2550 setDefaultApplicationSync`);
           sleep(500);
           let ret = defaultAppManager.isDefaultApplicationSync(defaultAppManager.ApplicationType.IMAGE);
           hilog.info(Domain, TAG,
@@ -156,6 +160,8 @@ export default function bmsDefaultAppTest() {
             `Sub_Bms_Framework_Status_DefaultApp_3700 start`);
 
           defaultAppManager.setDefaultApplicationSync(defaultAppManager.ApplicationType.IMAGE, defaultApp);
+          hilog.info(Domain, TAG,
+            `Sub_Bms_Framework_Status_DefaultApp_2550 setDefaultApplicationSync`);
           sleep(500);
           defaultAppManager.resetDefaultApplicationSync(defaultAppManager.ApplicationType.IMAGE);
         } catch (e) {
