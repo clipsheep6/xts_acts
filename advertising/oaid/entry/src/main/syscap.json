@@ -1,0 +1,11 @@
+{
+    "devices": {
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Advertising.OAID"
+                ]
+            }
+        ]
+    }
+}

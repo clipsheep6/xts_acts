@@ -1,0 +1,12 @@
+{
+    "devices": {
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.DistributedDataManager.KVStore.Core",
+                    "SystemCapability.DistributedDataManager.KVStore.DistributedKVStore"
+                ]
+            }
+        ]
+    }
+}

@@ -24,10 +24,7 @@
       }
     ],
     "mainElement": "EntryAbility",
-    "deviceTypes": [
-      "default",
-      "tablet"
-    ],
+    "deviceTypes": [],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",

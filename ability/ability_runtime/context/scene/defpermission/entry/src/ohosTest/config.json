@@ -12,21 +12,15 @@
     "package": "com.example.defpermission",
     "name": ".entry_test",
     "mainAbility": ".TestAbility",
-    "deviceType": [
-      "default",
-      "tablet",
-      "2in1"
-    ],
+    "deviceType": [],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry_test",
       "moduleType": "feature",
       "installationFree": false
     },
-    "defPermissions": [
-    ],
-    "reqPermissions": [
-    ],
+    "defPermissions": [],
+    "reqPermissions": [],
     "abilities": [
       {
         "skills": [

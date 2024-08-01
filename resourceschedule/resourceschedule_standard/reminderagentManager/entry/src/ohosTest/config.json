@@ -7,8 +7,8 @@
       "name": "1.0.0"
     },
     "apiVersion": {
-        "compatible": 4,
-        "target": 5
+      "compatible": 4,
+      "target": 5
     }
   },
   "deviceConfig": {},
@@ -16,11 +16,7 @@
     "package": "ohos.acts.resourceschedule.reminderagentMgr.js.function",
     "name": ".entry_test",
     "mainAbility": ".TestAbility",
-    "deviceType": [
-      "default",
-      "tablet",
-      "2in1"
-    ],
+    "deviceType": [],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry_test",
@@ -29,14 +25,14 @@
     },
     "reqPermissions": [
       {
-          "name": "ohos.permission.PUBLISH_AGENT_REMINDER",
-          "reason": "SYSTEM_GRANT",
-          "usedScene": {
-              "ability": [
-                  ".FormAbility"
-              ],
-              "when": "inuse"
-          }
+        "name": "ohos.permission.PUBLISH_AGENT_REMINDER",
+        "reason": "SYSTEM_GRANT",
+        "usedScene": {
+          "ability": [
+            ".FormAbility"
+          ],
+          "when": "inuse"
+        }
       }
     ],
     "abilities": [

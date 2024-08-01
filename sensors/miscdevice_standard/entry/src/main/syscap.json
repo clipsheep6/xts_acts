@@ -1,0 +1,12 @@
+{
+    "devices": {
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Sensors.MiscDevice",
+                    "SystemCapability.Sensors.MiscDevice.Lite"
+                ]
+            }
+        ]
+    }
+}

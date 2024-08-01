@@ -12,11 +12,7 @@
     "package": "com.example.myapplication101",
     "name": ".entry_test",
     "mainAbility": ".TestAbility",
-    "deviceType": [
-      "default",
-      "tablet",
-      "2in1"
-    ],
+    "deviceType": [],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry_test",
@@ -38,25 +34,25 @@
       {
         "reason": "reason_manage_face",
         "usedScene": {
-            "ability": [
-                "com.myface.Ability",
-                "com.myface.AbilityBackground"
-            ],
-            "when": "always"
+          "ability": [
+            "com.myface.Ability",
+            "com.myface.AbilityBackground"
+          ],
+          "when": "always"
         },
         "name": "ohos.permission.MANAGE_FACE"
-    },
-    {
+      },
+      {
         "reason": "reason_access_biometric",
         "usedScene": {
-            "ability": [
-                "com.mybiometric.Ability",
-                "com.mybiometric.AbilityBackground"
-            ],
-            "when": "always"
+          "ability": [
+            "com.mybiometric.Ability",
+            "com.mybiometric.AbilityBackground"
+          ],
+          "when": "always"
         },
         "name": "ohos.permission.ACCESS_BIOMETRIC"
-    }
+      }
     ],
     "abilities": [
       {

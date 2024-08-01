@@ -12,11 +12,7 @@
     "package": "ohos.acts.sensors.sensor.function",
     "name": ".entry_test",
     "mainAbility": ".TestAbility",
-    "deviceType": [
-      "default",
-      "tablet",
-      "2in1"
-    ],
+    "deviceType": [],
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry_test",
@@ -25,24 +21,24 @@
     },
     "reqPermissions": [
       {
-          "name": "ohos.permission.ACCELEROMETER",
-          "reason": "need use ohos.permission.ACCELEROMETER"
+        "name": "ohos.permission.ACCELEROMETER",
+        "reason": "need use ohos.permission.ACCELEROMETER"
       },
       {
-          "name": "ohos.permission.GYROSCOPE",
-          "reason": "need use ohos.permission.GYROSCOPE"
+        "name": "ohos.permission.GYROSCOPE",
+        "reason": "need use ohos.permission.GYROSCOPE"
       },
       {
-          "name": "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",
-          "reason": "need use ohos.permission.GRANT_SENSITIVE_PERMISSIONS"
+        "name": "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",
+        "reason": "need use ohos.permission.GRANT_SENSITIVE_PERMISSIONS"
       },
       {
-          "name": "ohos.permission.REVOKE_SENSITIVE_PERMISSIONS",
-          "reason": "need use ohos.permission.REVOKE_SENSITIVE_PERMISSIONS"
-      },			
+        "name": "ohos.permission.REVOKE_SENSITIVE_PERMISSIONS",
+        "reason": "need use ohos.permission.REVOKE_SENSITIVE_PERMISSIONS"
+      },
       {
-          "name": "ohos.permission.ACTIVITY_MOTION",
-          "reason": "need use ohos.permission.ACTIVITY_MOTION"
+        "name": "ohos.permission.ACTIVITY_MOTION",
+        "reason": "need use ohos.permission.ACTIVITY_MOTION"
       }
     ],
     "abilities": [
