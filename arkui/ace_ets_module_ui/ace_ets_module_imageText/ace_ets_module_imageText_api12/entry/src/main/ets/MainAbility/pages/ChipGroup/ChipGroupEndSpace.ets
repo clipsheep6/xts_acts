@@ -76,12 +76,6 @@ struct ChipGroupEndSpace {
           })
           .id('undefined')
 
-        Button('null')
-          .onClick(() => {
-            this.chipGroupItemSize = { endSpace: null}
-          })
-          .id('null')
-
       }.height('10%')
 
       // sys_resource

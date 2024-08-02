@@ -127,18 +127,6 @@ struct ChipGroupItemStyleExample {
           })
           .id('h_undefined')
 
-        Button('h null')
-          .onClick(() => {
-            this._size = { width: 100, height: null }
-          })
-          .id('h_null')
-
-        Button('w null')
-          .onClick(() => {
-            this._size = { width: null, height: 100 }
-          })
-          .id('w_null')
-
       }.height('10%')
     }.width('100%')
     .height('100%')

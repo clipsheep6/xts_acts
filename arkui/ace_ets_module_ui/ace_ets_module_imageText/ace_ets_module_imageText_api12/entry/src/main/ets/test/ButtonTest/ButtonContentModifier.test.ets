@@ -14,12 +14,12 @@
  */
 import router from '@ohos.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import CommonFunc from '../../MainAbility/utils/Common';
+import CommonFunc from '../../MainAbility/common/Common';
 import Utils from '../../MainAbility/common/Utils';
 import { Component, Driver, ON , DisplayRotation} from '@ohos.UiTest';
 
 export default function ButtonContentModifier() {
-  async function routerPush(target) {
+  const routerPush = async (target:string) => {
     let options:router.RouterOptions = {
       url: `MainAbility/pages/Button/ButtonContentModifier/${target}`,
     }

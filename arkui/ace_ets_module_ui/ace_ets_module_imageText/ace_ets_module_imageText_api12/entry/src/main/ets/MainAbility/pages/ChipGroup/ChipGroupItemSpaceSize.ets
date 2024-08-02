@@ -72,12 +72,6 @@ struct ChipGroupItemSpaceSize {
             this.chipGroupItemSize = { itemSpace: undefined}
           })
           .id('undefined')
-
-        Button('null')
-          .onClick(() => {
-            this.chipGroupItemSize = { itemSpace: null}
-          })
-          .id('null')
       }.height('10%')
 
     }.width('100%')

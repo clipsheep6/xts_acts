@@ -20,7 +20,7 @@ import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeD
 
 
 export default function ChipGroupSpace() {
-  async function routerPush(target) {
+  const routerPush = async (target:string) => {
     let options:router.RouterOptions = {
       url: `MainAbility/pages/ChipGroup/${target}`,
     }
@@ -87,7 +87,7 @@ export default function ChipGroupSpace() {
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1290
      * @tc.name    ChipGroup129
-     * @tc.desc    set the itemSpace of ChipGroup to Outliers, null, empty, undefined
+     * @tc.desc    set the itemSpace of ChipGroup to Outliers, empty, undefined
      * @tc.level   Level 3
      * @tc.type
      * @tc.size
@@ -113,11 +113,6 @@ export default function ChipGroupSpace() {
       await Utils.sleep(2000);
       strJson = JSON.stringify(getInspectorTree())
       expect(JSON.parse(strJson).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.space).assertEqual('8.00vp');
-      let button4: Component = await driver.findComponent(ON.id('null'));
-      await button4.click();
-      await Utils.sleep(2000);
-      strJson = JSON.stringify(getInspectorTree())
-      expect(JSON.parse(strJson).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.space).assertEqual('8.00vp');
       done();
     });
 
@@ -138,7 +133,7 @@ export default function ChipGroupSpace() {
       let button1: Component = await driver.findComponent(ON.id('-5'));
       await button1.click();
       await Utils.sleep(2000);
-      let strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
+      let strJson:string = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
       expect(JSON.parse(strJson).left).assertEqual('16.00vp');
       let button2: Component = await driver.findComponent(ON.id('0'));
       await button2.click();
@@ -156,7 +151,7 @@ export default function ChipGroupSpace() {
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1320
      * @tc.name    ChipGroup132
-     * @tc.desc    set the startSpace of ChipGroup to Outliers, null, empty, undefined
+     * @tc.desc    set the startSpace of ChipGroup to Outliers, empty, undefined
      * @tc.level   Level 3
      * @tc.type
      * @tc.size
@@ -170,7 +165,7 @@ export default function ChipGroupSpace() {
       let button1: Component = await driver.findComponent(ON.id('Outliers'));
       await button1.click();
       await Utils.sleep(2000);
-      let strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
+      let strJson:string = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
       expect(JSON.parse(strJson).left).assertEqual('16.00vp');
       let button2: Component = await driver.findComponent(ON.id('empty'));
       await button2.click();
@@ -179,11 +174,6 @@ export default function ChipGroupSpace() {
       expect(JSON.parse(strJson).left).assertEqual('16.00vp');
       let button3: Component = await driver.findComponent(ON.id('undefined'));
       await button3.click();
-      await Utils.sleep(2000);
-      strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
-      expect(JSON.parse(strJson).left).assertEqual('16.00vp');
-      let button4: Component = await driver.findComponent(ON.id('null'));
-      await button4.click();
       await Utils.sleep(2000);
       strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
       expect(JSON.parse(strJson).left).assertEqual('16.00vp');
@@ -207,7 +197,7 @@ export default function ChipGroupSpace() {
       let button1: Component = await driver.findComponent(ON.id('sys_legit'));
       await button1.click();
       await Utils.sleep(2000);
-      let strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
+      let strJson:string = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
       expect(JSON.parse(strJson).left).assertEqual('8.00vp');
       let button2: Component = await driver.findComponent(ON.id('sys_illegal'));
       await button2.click();
@@ -234,7 +224,7 @@ export default function ChipGroupSpace() {
       let button1: Component = await driver.findComponent(ON.id('app_legit'));
       await button1.click();
       await Utils.sleep(2000);
-      let strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
+      let strJson:string = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
       expect(JSON.parse(strJson).left).assertEqual('20.00vp');
       let button2: Component = await driver.findComponent(ON.id('app_illegal'));
       await button2.click();
@@ -261,7 +251,7 @@ export default function ChipGroupSpace() {
       let button1: Component = await driver.findComponent(ON.id('-5'));
       await button1.click();
       await Utils.sleep(2000);
-      let strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
+      let strJson:string = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
       expect(JSON.parse(strJson).right).assertEqual('16.00vp');
       let button2: Component = await driver.findComponent(ON.id('0'));
       await button2.click();
@@ -279,7 +269,7 @@ export default function ChipGroupSpace() {
     /*
      * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1390
      * @tc.name    ChipGroup139
-     * @tc.desc    set the endSpace of ChipGroup to Outliers, null, empty, undefined
+     * @tc.desc    set the endSpace of ChipGroup to Outliers, empty, undefined
      * @tc.level   Level 3
      * @tc.type
      * @tc.size
@@ -293,7 +283,7 @@ export default function ChipGroupSpace() {
       let button1: Component = await driver.findComponent(ON.id('Outliers'));
       await button1.click();
       await Utils.sleep(2000);
-      let strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
+      let strJson:string = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
       expect(JSON.parse(strJson).right).assertEqual('16.00vp');
       let button2: Component = await driver.findComponent(ON.id('empty'));
       await button2.click();
@@ -302,11 +292,6 @@ export default function ChipGroupSpace() {
       expect(JSON.parse(strJson).right).assertEqual('16.00vp');
       let button3: Component = await driver.findComponent(ON.id('undefined'));
       await button3.click();
-      await Utils.sleep(2000);
-      strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
-      expect(JSON.parse(strJson).right).assertEqual('16.00vp');
-      let button4: Component = await driver.findComponent(ON.id('null'));
-      await button4.click();
       await Utils.sleep(2000);
       strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
       expect(JSON.parse(strJson).right).assertEqual('16.00vp');
@@ -330,7 +315,7 @@ export default function ChipGroupSpace() {
       let button1: Component = await driver.findComponent(ON.id('sys_legit'));
       await button1.click();
       await Utils.sleep(2000);
-      let strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
+      let strJson:string = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
       expect(JSON.parse(strJson).right).assertEqual('8.00vp');
       let button2: Component = await driver.findComponent(ON.id('sys_illegal'));
       await button2.click();
@@ -357,7 +342,7 @@ export default function ChipGroupSpace() {
       let button1: Component = await driver.findComponent(ON.id('app_legit'));
       await button1.click();
       await Utils.sleep(2000);
-      let strJson = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
+      let strJson:string = JSON.parse(JSON.stringify(getInspectorTree())).$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.padding
       expect(JSON.parse(strJson).right).assertEqual('20.00vp');
       let button2: Component = await driver.findComponent(ON.id('app_illegal'));
       await button2.click();

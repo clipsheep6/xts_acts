@@ -15,11 +15,11 @@
 
 import router from '@ohos.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import CommonFunc from '../../MainAbility/utils/Common';
+import CommonFunc from '../../MainAbility/common/Common';
 import Utils from '../../MainAbility/common/Utils'
 
 export default function textAdvance() {
-  async function routerPush(target) {
+  const routerPush = async (target:string) => {
     let options:router.RouterOptions = {
       url: `MainAbility/pages/text/TextAdvance/${target}`,
     }
@@ -62,7 +62,7 @@ export default function textAdvance() {
       await Utils.sleep(2000);
       let strJson1 = getInspectorByKey('text1');
       let strJson2 = getInspectorByKey('text2');
-      let obj1= JSON.parse(strJson1);
+      let obj1: ESObject = JSON.parse(strJson1);
       let prio:number =JSON.parse(strJson1).$attrs.displayPriority;
       console.info('[text10]text1 priority is '+prio);
       expect(JSON.parse(strJson2).$attrs.displayPriority).assertEqual(prio);
@@ -101,8 +101,8 @@ export default function textAdvance() {
       console.info('SUB_ACE_UI_ATTRIBUTES_POSITION_ASPECTRATIO_INTERFACE_0060 START');
       await Utils.sleep(2000);
       let strJson = getInspectorByKey('text4');
-      let width = JSON.parse(strJson).$attrs.size.width;
-      let height = JSON.parse(strJson).$attrs.size.height;
+      let width:string = JSON.parse(strJson).$attrs.size.width;
+      let height:string = JSON.parse(strJson).$attrs.size.height;
       console.info('[text60]height is '+height+'width is '+width);
       expect(parseFloat(width)/parseFloat(height)).assertEqual(4);
       done();

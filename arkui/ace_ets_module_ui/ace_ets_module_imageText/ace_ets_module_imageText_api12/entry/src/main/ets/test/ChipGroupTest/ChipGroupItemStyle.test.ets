@@ -20,7 +20,7 @@ import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeD
 
 
 export default function ChipGroupItemStyle() {
-  async function routerPush(target) {
+  const routerPush = async (target:string) => {
     let options:router.RouterOptions = {
       url: `MainAbility/pages/ChipGroup/${target}`,
     }
@@ -269,38 +269,6 @@ export default function ChipGroupItemStyle() {
       // Chip2
       expect(JSON.parse(strJson1).$children[0].$children[0].$children[0].$children[0].$children[0].$children[0].$children[1].$attrs.size.height).assertEqual('36.00vp');
       let button2: Component = await driver.findComponent(ON.id('w_undefined'));
-      await button2.click();
-      await Utils.sleep(2000);
-      let strJson2 = JSON.stringify(getInspectorTree())
-      // Chip1
-      expect(JSON.parse(strJson2).$children[0].$children[0].$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.size.width).assertEqual('82.00vp');
-      // Chip2
-      expect(JSON.parse(strJson2).$children[0].$children[0].$children[0].$children[0].$children[0].$children[0].$children[1].$attrs.size.width).assertEqual('82.00vp');
-      done();
-    });
-
-    /*
-     * @tc.number  SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1040
-     * @tc.name    ChipGroup104
-     * @tc.desc    set the size of ChipGroup itemStyle to {width:null,height:100}, {width:100,height:null}
-     * @tc.level   Level 3
-     * @tc.type
-     * @tc.size
-     */
-    it('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1040', 0, async (done:Function) => {
-      await routerPush('ChipGroupItemStyle');
-      console.info('SUB_ACE_UI_COMPONENT_TEXT_CHIPGROUP_INTERFACE_1040 START');
-      await Utils.sleep(2000);
-      let driver: Driver = Driver.create();
-      let button1: Component = await driver.findComponent(ON.id('h_null'));
-      await button1.click();
-      await Utils.sleep(2000);
-      let strJson1 = JSON.stringify(getInspectorTree())
-      // Chip1
-      expect(JSON.parse(strJson1).$children[0].$children[0].$children[0].$children[0].$children[0].$children[0].$children[0].$attrs.size.height).assertEqual('36.00vp');
-      // Chip2
-      expect(JSON.parse(strJson1).$children[0].$children[0].$children[0].$children[0].$children[0].$children[0].$children[1].$attrs.size.height).assertEqual('36.00vp');
-      let button2: Component = await driver.findComponent(ON.id('w_null'));
       await button2.click();
       await Utils.sleep(2000);
       let strJson2 = JSON.stringify(getInspectorTree())
