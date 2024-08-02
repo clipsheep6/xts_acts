@@ -105,9 +105,10 @@ describe('btManagerDiscoveryTest', function() {
     })
     /**
      * @tc.number SUB_COMMUNICATION_BTMANAGER_DISCOVERY_0100
-     * @tc.name TEST bluetoothDeviceFind on&off 
+     * @tc.name startBluetoothDiscovery
      * @tc.desc TEST bluetoothDeviceFind
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BTMANAGER_DISCOVERY_0100', 0, async function (done) {
