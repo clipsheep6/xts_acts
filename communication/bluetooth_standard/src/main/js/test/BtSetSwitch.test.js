@@ -109,9 +109,10 @@ describe('btSwitchTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SWITCH_0300
-     * @tc.name testEnableBluetooth
+     * @tc.name enableBluetooth
      * @tc.desc Test EnableBluetooth api by promise.
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 3
      */
     it('SUB_COMMUNICATION_BLUETOOTH_SWITCH_0300', 0, async function (done) {
@@ -137,9 +138,10 @@ describe('btSwitchTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SWITCH_0100
-     * @tc.name testEnableBluetooth and getState
+     * @tc.name enableBluetooth
      * @tc.desc Test EnableBluetooth api by promise.
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTH_SWITCH_0100', 0, async function (done) {
@@ -165,9 +167,10 @@ describe('btSwitchTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SwitchOff_0444
-     * @tc.name testEnableBluetooth and getState
+     * @tc.name BluetoothState
      * @tc.desc Test EnableBluetooth api by promise.
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTH_SwitchOff_0444', 0, async function (done) {
