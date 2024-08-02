@@ -106,7 +106,7 @@ describe('btManagerPairTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BTMANAGER_PAIR_0100
-     * @tc.name Test pinRequired and setDevicePairing true
+     * @tc.name on
      * @tc.desc Test pinRequired off api
      * @tc.size MEDIUM
      * @ since 8
