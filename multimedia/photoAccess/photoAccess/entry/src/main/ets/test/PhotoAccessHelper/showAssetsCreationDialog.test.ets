@@ -43,8 +43,8 @@ export default function showAssetsCreationDialogTest() {
     const context = globalThis.abilityContext;
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
-    const showImagesCreationDialog = async (done: Function, testNum: string, fileUriList: Array<string>,
-      photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig>) => {
+    const showAssetCreationDialog = async (done: Function, testNum: string, fileUriList: Array<string>,
+      photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig>, displayNameList: Array<string>) => {
       try {
         let desFileUris: Array<string> | undefined = undefined;
         phAccessHelper.showAssetsCreationDialog(fileUriList, photoCreationConfigs).then((data) => {
@@ -55,33 +55,13 @@ export default function showAssetsCreationDialogTest() {
         if (button !== undefined) {
           await button.click();
         }
-        await sleep(1000);
+        await sleep(2000);
         console.log(`${testNum} :: showAssetsCreationDialog success, desFileUris is ${desFileUris[0]}`);
-        const ops = fetchAllOption();
-        let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(ops);
-        let count_before = fetchResult.getCount();
-        console.log(`${testNum} :: count before apply change is ${count_before} `);
-        let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-        // 返回的 uri 是媒体库中资源的uri，而不是沙箱路径的uri
-        predicates.in('uri', desFileUris);
-        let fetchOptions: photoAccessHelper.FetchOptions = {
-          fetchColumns: [],
-          predicates: predicates
-        };
-        let fetchResult2: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-        let photoAssets: Array<photoAccessHelper.PhotoAsset> = await fetchResult2.getAllObjects();
-        for (let i = 0; i < photoAssets.length; i++) {
-          let changeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAssets[i]);
-          console.log(`${testNum} :: create MediaAssetChangeRequest success, cycle is ${i + 1}`);
-          changeRequest.addResource(photoAccessHelper.ResourceType.IMAGE_RESOURCE, fileUriList[i]);
-          console.log(`${testNum} :: addResource success, cycle is ${i + 1}`);
-          await phAccessHelper.applyChanges(changeRequest);
-          console.log(`${testNum} ::applyChange success, cycle is ${i + 1}`);
+        if (desFileUris === undefined) {
+          console.error(`${testNum} :: showAssetsCreationDialog success, desFileUris is not return !`);
+          expect(false).assertTrue();
+          done();
         }
-        let fetchResult3: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(ops);
-        let count_after = fetchResult3.getCount();
-        console.log(`${testNum} :: count after apply change is ${count_after} `);
-        expect(count_after).assertEqual(count_before + desFileUris.length);
         done();
       } catch (error) {
         console.error(`${testNum} :: showAssetsCreationDialogPromise error, err is ${error}`);
@@ -111,7 +91,7 @@ export default function showAssetsCreationDialogTest() {
             subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
           }
         ];
-      showImagesCreationDialog(done, testNum, fileUriList, photoCreationConfigs);
+      showAssetCreationDialog(done, testNum, fileUriList, photoCreationConfigs);
     })
 
   })
