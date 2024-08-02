@@ -106,9 +106,10 @@ describe('btScanModeTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0100
-     * @tc.name TEST scanmode
+     * @tc.name getBluetoothScanMode
      * @tc.desc TEST scanmode api by promise.
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 2
      */
     it('SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0100', 0, async function (done) {
@@ -141,9 +142,10 @@ describe('btScanModeTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0200
-     * @tc.name TEST scanmode
+     * @tc.name getBluetoothScanMode
      * @tc.desc TEST scanmode api by promise.
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 2
      */
     it('SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0200', 0, async function (done) {
@@ -176,7 +178,8 @@ describe('btScanModeTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0300
-     * @tc.name TEST scanmode
+     * @tc.name getBluetoothScanMode
+     * @tc.size LargeTest
      * @tc.desc TEST scanmode api by promise.
      * @tc.type Function
      * @tc.level Level 3
@@ -210,9 +213,10 @@ describe('btScanModeTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0400
-     * @tc.name TEST scanmode
+     * @tc.name getBluetoothScanMode
      * @tc.desc TEST scanmode api by promise.
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 1
      */
     it('SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0400', 0, async function (done) {
@@ -244,9 +248,10 @@ describe('btScanModeTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0500
-     * @tc.name TEST scanmode
+     * @tc.name getBluetoothScanMode
      * @tc.desc TEST scanmode api by promise.
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 3
      */
     it('SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0500', 0, async function (done) {
@@ -278,9 +283,10 @@ describe('btScanModeTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0600
-     * @tc.name TEST scanmode
+     * @tc.name getBluetoothScanMode
      * @tc.desc TEST scanmode api by promise.
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 1
      */
     it('SUB_COMMUNICATION_BLUETOOTH_ScanMode_0600', 0, async function (done) {
@@ -312,7 +318,8 @@ describe('btScanModeTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0700
-     * @tc.name TEST scanmode
+     * @tc.name getBluetoothScanMode
+     * @tc.size LargeTest
      * @tc.desc TEST scanmode api by promise.
      * @tc.type Function
      * @tc.level Level 2
@@ -346,7 +353,8 @@ describe('btScanModeTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0800
-     * @tc.name TEST scanmode
+     * @tc.name getBluetoothScanMode
+     * @tc.size LargeTest
      * @tc.desc TEST scanmode api by promise.
      * @tc.type Function
      * @tc.level Level 1
@@ -380,7 +388,8 @@ describe('btScanModeTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SCANMODE_0900
-     * @tc.name TEST scanmode
+     * @tc.name getBluetoothScanMode
+     * @tc.size LargeTest
      * @tc.desc TEST scanmode api by promise.
      * @tc.type Function
      * @tc.level Level 3
@@ -414,7 +423,8 @@ describe('btScanModeTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_SCANMODE_1000
-     * @tc.name TEST scanmode
+     * @tc.name getBluetoothScanMode
+     * @tc.size LargeTest
      * @tc.desc TEST scanmode api by promise.
      * @tc.type Function
      * @tc.level Level 4
