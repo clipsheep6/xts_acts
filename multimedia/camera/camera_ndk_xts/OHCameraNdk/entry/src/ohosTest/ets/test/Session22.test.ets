@@ -37,7 +37,7 @@ let videoRecorder: media.AVRecorder;
 // 配置参数以实际硬件设备支持的范围为准
 let videoConfig: media.AVRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
-  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
+  videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES,
   profile : {
     audioBitrate : 48000,
     audioChannels : 2,
@@ -69,8 +69,6 @@ async function getVideoSurfaceId() {
   console.info(TAG + 'createAVRecorder videoRecorder : ' + JSON.stringify(videoRecorder));
   videoConfig.url = `fd://${await mediaUtil.createAndGetUriVideoNew(Camera_MediaType.VIDEO, mContext)}`;
   console.info(TAG + 'getVideoSurfaceID videoConfig.url : ' + JSON.stringify(videoConfig.url));
-  videoConfig.videoSourceType = media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_ES;
-  console.info(TAG + 'getVideoSurfaceID videoConfig.videoSourceType : ' + videoConfig.videoSourceType);
   try {
     await videoRecorder.prepare(videoConfig);
     console.info(TAG + 'getVideoSurfaceID  videoRecorder.prepare');

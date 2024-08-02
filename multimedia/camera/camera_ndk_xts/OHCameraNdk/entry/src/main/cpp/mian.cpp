@@ -1661,7 +1661,7 @@ static napi_value OHCaptureSessionCanPreconfigWithRatio(napi_env env, napi_callb
     int32_t preconfigRatioValue;
     napi_get_value_int32(env, args[1], &preconfigRatioValue);
     int32_t index;
-    napi_get_value_int32(env, args[2], &index);
+    napi_get_value_int32(env, args[NUMBER_2], &index);
 
     Camera_ErrorCode code = ndkCamera->SessionCanPreconfigWithRatio(preconfigTypeValue, preconfigRatioValue, index);
     napi_create_int32(env, code, &result);
@@ -1698,7 +1698,7 @@ static napi_value OHCaptureSessionPreconfigWithRatio(napi_env env, napi_callback
     int32_t preconfigRatioValue;
     napi_get_value_int32(env, args[1], &preconfigRatioValue);
     int32_t index;
-    napi_get_value_int32(env, args[2], &index);
+    napi_get_value_int32(env, args[NUMBER_2], &index);
 
     Camera_ErrorCode code = ndkCamera->SessionPreconfigWithRatio(preconfigTypeValue, preconfigRatioValue, index);
     napi_create_int32(env, code, &result);

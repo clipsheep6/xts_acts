@@ -204,7 +204,6 @@ public:
     Camera_ErrorCode PhotoOutputGetActiveProfile(int useCaseCode);  // 获取活动照片输出配置文件
     Camera_ErrorCode PhotoOutputDeleteProfile(int useCaseCode); // 删除照片配置文件实例
 
-
     // 非测试接口， 辅助测试
     Camera_ErrorCode SetSceneMode(int useCaseCode);                             // 设置sceneMode_的值
     Camera_ErrorCode GetCameraFromCameras(Camera_Device* cameras,
@@ -229,8 +228,6 @@ private:
     float step_;             // 每个级别之间的曝光补偿阶梯
     Camera_Profile *cameraProfile_;
     Camera_VideoProfile *videoActiveProfile_;
-
-
     volatile bool valid_; // CameraManager实例是否存在。
 };
 

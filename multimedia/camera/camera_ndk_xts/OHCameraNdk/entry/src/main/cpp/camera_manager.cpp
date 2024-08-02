@@ -56,7 +56,7 @@ NDKCamera::NDKCamera(char *str, int index)
     : cameras_(nullptr), cameraOutputCapability_(nullptr), captureSession_(nullptr), size_(0), profile_(nullptr),
       previewOutput_(nullptr), photoOutput_(nullptr), videoOutput_(nullptr), metaDataObjectType_(nullptr),
       metadataOutput_(nullptr), cameraInput_(nullptr), isCameraMuted_(nullptr), previewSurfaceId_(str),
-	  sceneModes_(nullptr), sceneModesSize_(0), camera_(nullptr), sceneMode_(NORMAL_PHOTO), secureSeqId_(0),
+      sceneModes_(nullptr), sceneModesSize_(0), camera_(nullptr), sceneMode_(NORMAL_PHOTO), secureSeqId_(0),
       isAddInput_(false), videoActiveProfile_(nullptr), cameraProfile_(nullptr), canPreconfig_(false), 
       ret_(CAMERA_OK) {
     valid_ = false;
@@ -1399,7 +1399,8 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutputUsedInPreconfig(int useCaseCode)
     return ret_;
 }
 
-Camera_ErrorCode NDKCamera::CreatePhotoOutputUsedInPreconfig(char *photoSurfaceId, int useCaseCode) {
+Camera_ErrorCode NDKCamera::CreatePhotoOutputUsedInPreconfig(char *photoSurfaceId, int useCaseCode)
+{
     profile_ = cameraOutputCapability_->photoProfiles[0];
 
     if (useCaseCode == PARAMETER_OK) {
@@ -1415,7 +1416,8 @@ Camera_ErrorCode NDKCamera::CreatePhotoOutputUsedInPreconfig(char *photoSurfaceI
     return ret_;
 }
 
-Camera_ErrorCode NDKCamera::SessionCanPreconfig(uint32_t mode, int useCaseCode) {
+Camera_ErrorCode NDKCamera::SessionCanPreconfig(uint32_t mode, int useCaseCode)
+{
     Camera_PreconfigType preconfigType = static_cast<Camera_PreconfigType>(mode);
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_CaptureSession_CanPreconfig(captureSession_, preconfigType, &canPreconfig_);
@@ -1427,7 +1429,8 @@ Camera_ErrorCode NDKCamera::SessionCanPreconfig(uint32_t mode, int useCaseCode) 
     return ret_;
 }
 
-Camera_ErrorCode NDKCamera::SessionCanPreconfigWithRatio(uint32_t mode, uint32_t mode2, int useCaseCode) {
+Camera_ErrorCode NDKCamera::SessionCanPreconfigWithRatio(uint32_t mode, uint32_t mode2, int useCaseCode)
+{
     Camera_PreconfigType preconfigType = static_cast<Camera_PreconfigType>(mode);
     Camera_PreconfigRatio preconfigRatio = static_cast<Camera_PreconfigRatio>(mode2);
     if (useCaseCode == PARAMETER_OK) {
@@ -1440,7 +1443,8 @@ Camera_ErrorCode NDKCamera::SessionCanPreconfigWithRatio(uint32_t mode, uint32_t
     return ret_;
 }
 
-Camera_ErrorCode NDKCamera::SessionPreconfig(uint32_t mode, int useCaseCode) {
+Camera_ErrorCode NDKCamera::SessionPreconfig(uint32_t mode, int useCaseCode)
+{
     Camera_PreconfigType preconfigType = static_cast<Camera_PreconfigType>(mode);
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_CaptureSession_Preconfig(captureSession_, preconfigType);
@@ -1450,7 +1454,8 @@ Camera_ErrorCode NDKCamera::SessionPreconfig(uint32_t mode, int useCaseCode) {
     return ret_;
 }
 
-Camera_ErrorCode NDKCamera::SessionPreconfigWithRatio(uint32_t mode, uint32_t mode2, int useCaseCode) {
+Camera_ErrorCode NDKCamera::SessionPreconfigWithRatio(uint32_t mode, uint32_t mode2, int useCaseCode)
+{
     Camera_PreconfigType preconfigType = static_cast<Camera_PreconfigType>(mode);
     Camera_PreconfigRatio preconfigRatio = static_cast<Camera_PreconfigRatio>(mode2);
     if (useCaseCode == PARAMETER_OK) {
@@ -1461,7 +1466,8 @@ Camera_ErrorCode NDKCamera::SessionPreconfigWithRatio(uint32_t mode, uint32_t mo
     return ret_;
 }
 
-Camera_ErrorCode NDKCamera::CreateVideoOutputUsedInPreconfig(char *videoId, int useCaseCode) {
+Camera_ErrorCode NDKCamera::CreateVideoOutputUsedInPreconfig(char *videoId, int useCaseCode)
+{
     vProfile_ = cameraOutputCapability_->videoProfiles[0];
 
     if (useCaseCode == PARAMETER_OK) {
@@ -1476,7 +1482,8 @@ Camera_ErrorCode NDKCamera::CreateVideoOutputUsedInPreconfig(char *videoId, int 
     return ret_;
 }
 
-Camera_ErrorCode NDKCamera::VideoOutputGetActiveProfile(int useCaseCode) {
+Camera_ErrorCode NDKCamera::VideoOutputGetActiveProfile(int useCaseCode)
+{
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_VideoOutput_GetActiveProfile(videoOutput_, &videoActiveProfile_);
     } else if (useCaseCode == PARAMETER2_ERROR) {
@@ -1486,7 +1493,8 @@ Camera_ErrorCode NDKCamera::VideoOutputGetActiveProfile(int useCaseCode) {
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::VideoOutputDeleteProfile(int useCaseCode) {
+Camera_ErrorCode NDKCamera::VideoOutputDeleteProfile(int useCaseCode)
+{
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_VideoOutput_DeleteProfile(videoActiveProfile_);
     } else {
@@ -1495,7 +1503,8 @@ Camera_ErrorCode NDKCamera::VideoOutputDeleteProfile(int useCaseCode) {
     return ret_;
 }
 
-Camera_ErrorCode NDKCamera::PreviewOutputGetActiveProfile(int useCaseCode) {
+Camera_ErrorCode NDKCamera::PreviewOutputGetActiveProfile(int useCaseCode)
+{
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_PreviewOutput_GetActiveProfile(previewOutput_, &cameraProfile_);
     } else if (useCaseCode == PARAMETER2_ERROR) {
@@ -1505,7 +1514,8 @@ Camera_ErrorCode NDKCamera::PreviewOutputGetActiveProfile(int useCaseCode) {
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::PreviewOutputDeleteProfile(int useCaseCode) {
+Camera_ErrorCode NDKCamera::PreviewOutputDeleteProfile(int useCaseCode)
+{
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_PreviewOutput_DeleteProfile(cameraProfile_);
     } else {
@@ -1514,7 +1524,8 @@ Camera_ErrorCode NDKCamera::PreviewOutputDeleteProfile(int useCaseCode) {
     return ret_;
 }
 
-Camera_ErrorCode NDKCamera::PhotoOutputGetActiveProfile(int useCaseCode) {
+Camera_ErrorCode NDKCamera::PhotoOutputGetActiveProfile(int useCaseCode)
+{
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_PhotoOutput_GetActiveProfile(photoOutput_, &cameraProfile_);
     } else if (useCaseCode == PARAMETER2_ERROR) {
@@ -1524,7 +1535,8 @@ Camera_ErrorCode NDKCamera::PhotoOutputGetActiveProfile(int useCaseCode) {
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::PhotoOutputDeleteProfile(int useCaseCode) {
+Camera_ErrorCode NDKCamera::PhotoOutputDeleteProfile(int useCaseCode)
+{
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_PhotoOutput_DeleteProfile(cameraProfile_);
     } else {
