@@ -147,9 +147,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0100
-     * @tc.name start/stopAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0100', 0, async function (done) {
@@ -212,9 +213,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0200
-     * @tc.name test start/stopAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0200', 0, async function (done) {
@@ -260,9 +262,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0300
-     * @tc.name test start/stopAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0300', 0, async function (done) {
@@ -293,9 +296,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0400
-     * @tc.name test start/stopAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0400', 0, async function (done) {
@@ -326,9 +330,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0500
-     * @tc.name test start/stopAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0500', 0, async function (done) {
@@ -359,9 +364,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0700
-     * @tc.name test start/stopAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0700', 0, async function (done) {
@@ -392,9 +398,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0900
-     * @tc.name test start/stopAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_0900', 0, async function (done) {
@@ -424,9 +431,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1000
-     * @tc.name test start/stopAdvertising enable/disableAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1000', 0, async (done) => {
@@ -487,9 +495,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1100
-     * @tc.name test start/stopAdvertising enable/disableAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1100', 0, async (done) => {
@@ -551,9 +560,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1200
-     * @tc.name test start/stopAdvertising enable/disableAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1200', 0, async (done) => {
@@ -592,9 +602,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1300
-     * @tc.name test start/stopAdvertising enable/disableAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1300', 0, async (done) => {
@@ -639,9 +650,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1400
-     * @tc.name test start/stopAdvertising enable/disableAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1400', 0, async (done) => {
@@ -700,9 +712,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1500
-     * @tc.name test start/stopAdvertising enable/disableAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1500', 0, async (done) => {
@@ -744,9 +757,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1600
-     * @tc.name test start/stopAdvertising enable/disableAdvertising callback/promise
+     * @tc.name startAdvertising
      * @tc.desc Test bluetoothBle api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1600', 0, async (done) => {
@@ -775,9 +789,10 @@ export default function bluetoothAdvertisingTest() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1700
-     * @tc.name test AdvertisingState
+     * @tc.name AdvertisingState
      * @tc.desc Test AdvertisingState constant api11
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTHBLE_ADVERTISING_1700', 0, async (done) => {
