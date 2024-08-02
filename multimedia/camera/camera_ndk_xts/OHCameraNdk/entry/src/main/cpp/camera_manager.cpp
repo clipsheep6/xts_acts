@@ -57,7 +57,7 @@ NDKCamera::NDKCamera(char *str, int index)
       previewOutput_(nullptr), photoOutput_(nullptr), videoOutput_(nullptr), metaDataObjectType_(nullptr),
       metadataOutput_(nullptr), cameraInput_(nullptr), isCameraMuted_(nullptr), previewSurfaceId_(str),
       sceneModes_(nullptr), sceneModesSize_(0), camera_(nullptr), sceneMode_(NORMAL_PHOTO), secureSeqId_(0),
-      isAddInput_(false), videoActiveProfile_(nullptr), cameraProfile_(nullptr), canPreconfig_(false), 
+      isAddInput_(false), videoActiveProfile_(nullptr), cameraProfile_(nullptr), canPreconfig_(false),
       ret_(CAMERA_OK) {
     valid_ = false;
     // 创建CameraManager实例。
@@ -502,7 +502,7 @@ CaptureSession_Callbacks *NDKCamera::GetCaptureSessionRegister(int useCaseCode)
     static CaptureSession_Callbacks captureSessionCallbacks;
     if (useCaseCode == PARAMETER_OK) {
         captureSessionCallbacks = {.onFocusStateChange = CaptureSessionOnFocusStateChange,
-                                   .onError = CaptureSessionOnError};   
+                                   .onError = CaptureSessionOnError};
     } else if (useCaseCode == PARAMETER1_ERROR) {
         captureSessionCallbacks = {.onFocusStateChange = nullptr,
                                    .onError = nullptr};

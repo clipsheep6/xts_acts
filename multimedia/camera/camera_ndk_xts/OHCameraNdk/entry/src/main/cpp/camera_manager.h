@@ -82,7 +82,6 @@ public:
     static CameraCallbackCode cameraCallbackCode_; // 回调码
     bool canPreconfig_;      // 是否支持预配置。
 
-
     Camera_ErrorCode GetSupportedCameras(int useCaseCode);          // 获取支持相机的描述
     Camera_ErrorCode CreatePreviewOutput(int useCaseCode);          // 创建预览输出实例
     Camera_ErrorCode GetSupportedOutputCapability(int useCaseCode); // 获取特定相机和特定模式支持的输出功能
