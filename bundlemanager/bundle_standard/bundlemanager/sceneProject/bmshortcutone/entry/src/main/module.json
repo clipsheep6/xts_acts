@@ -17,7 +17,7 @@
         "pages": "$profile:main_pages",
         "abilities": [
             {
-                "name": "com.acts.bundle.stage.MainAbility",
+                "name": "com.hits.shortcutone.MainAbility",
                 "srcEntrance": "./ets/MainAbility/MainAbility.ts",
                 "description": "$string:phone_entry_main",
                 "icon": "$media:icon",
