@@ -106,9 +106,10 @@ describe('btPairTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_PAIR_0100
-     * @tc.name Test pairDevice of use invailded address
+     * @tc.name pairDevice
      * @tc.desc Test pairDevice api
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 2
      */
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0100', 0, async function (done) {
@@ -124,9 +125,10 @@ describe('btPairTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_PAIR_0200
-     * @tc.name testStartpair
+     * @tc.name pairDevice
      * @tc.desc Test pairDevice of use vailded address.
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 0
      */
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0200', 0, async function (done) {
@@ -145,9 +147,10 @@ describe('btPairTest', function() {
   
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_PAIR_0300
-     * @tc.name test getRemoteDeviceName
+     * @tc.name getRemoteDeviceName
      * @tc.desc Test get RemoteDeviceName
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 3
      */
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0300', 0, async function (done) {
@@ -159,9 +162,10 @@ describe('btPairTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_PAIR_0400
-     * @tc.name test getRemoteDeviceClass
+     * @tc.name getRemoteDeviceClass
      * @tc.desc Test get RemoteDeviceClass
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 1
      */
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0400', 0, async function (done) {
@@ -232,9 +236,10 @@ describe('btPairTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_PAIR_0500
-     * @tc.name test get RemoteDeviceName
+     * @tc.name getRemoteDeviceName
      * @tc.desc Test getRemoteDeviceName api 
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 3
      */
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0500', 0, async function (done) {
@@ -246,9 +251,10 @@ describe('btPairTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_PAIR_0600
-     * @tc.name test get PairedDevices
+     * @tc.name getPairedDevices
      * @tc.desc Test getPairedDevices api
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 3
      */
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0600', 0, async function (done) {
@@ -260,9 +266,10 @@ describe('btPairTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_PAIR_0700
-     * @tc.name Test pinRequired and setDevicePairing false
+     * @tc.name setDevicePairingConfirmation
      * @tc.desc Test pinRequired ON api
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 3
      */
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0700', 0, async function (done) {
@@ -285,9 +292,10 @@ describe('btPairTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_PAIR_0800
-     * @tc.name Test pinRequired and setDevicePairing true
+     * @tc.name setDevicePairingConfirmation
      * @tc.desc Test pinRequired off api
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 3
      */
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0800', 0, async function (done) {
@@ -310,9 +318,10 @@ describe('btPairTest', function() {
 
     /**
      * @tc.number SUB_COMMUNICATION_BLUETOOTH_PAIR_0900
-     * @tc.name Test On pair StateChange
+     * @tc.name pairDevice
      * @tc.desc Test bondStateChange ON api
      * @tc.type Function
+     * @tc.size LargeTest
      * @tc.level Level 3
      */
     it('SUB_COMMUNICATION_BLUETOOTH_PAIR_0900', 0, async function (done) {
