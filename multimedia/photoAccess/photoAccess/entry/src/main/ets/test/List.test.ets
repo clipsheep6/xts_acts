@@ -69,6 +69,7 @@ import requestImageNativeTest from './MediaAssetManager/requestImageNative'
 import requestCancelNativeTest from './MediaAssetManager/requestCancelNative'
 import requestVideoTest from './MediaAssetManager/requestVideo'
 import groupAlbumsTest from './PhotoAccessHelper/groupAlbums'
+import showAssetsCreationDialogTest from './PhotoAccessHelper/showAssetsCreationDialog.test'
 import handleCameraPhotoTest from './MediaAssetChangeRequest/handleCameraPhoto.test'
 
 export default function testsuite () {
@@ -129,5 +130,6 @@ export default function testsuite () {
   requestCancelNativeTest()
   requestVideoTest()
   groupAlbumsTest()
+  showAssetsCreationDialogTest()
   handleCameraPhotoTest()
 }
