@@ -73,7 +73,7 @@ export default function imagePixelMapFramework() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it("testCreatePixelMapFromSurface_receiver", 0, async function (done) {
+        it("createPixelMap_From_Surface_receiver", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
             if (receiver == undefined) {
                 expect(false).assertTrue();
@@ -145,7 +145,7 @@ export default function imagePixelMapFramework() {
          * @tc.type      : Functional
          * @tc.level     : Level 0
          */
-        it("testCreatePixelMapFromSurfaceSync_receiver", 0, async function (done) {
+        it("createPixelMap_From_SurfaceSync_receiver", 0, async function (done) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, FORMATJPEG, CAPACITY);
             if (receiver == undefined) {
                 expect(false).assertTrue();
