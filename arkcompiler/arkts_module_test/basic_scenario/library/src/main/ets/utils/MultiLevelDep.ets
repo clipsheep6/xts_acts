@@ -13,18 +13,8 @@
  * limitations under the License.
  */
  
-{
-  "name": "entry",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
-  "main": "",
-  "author": "",
-  "license": "",
-  "dependencies": {
-    "library": "file:../library",
-    "library2": "file:../library2",
-    "library3": "file:../library3",
-    "har": "file:../har"
-  }
-}
+import { getModuleDescription } from 'library2'
 
+export function getDescFromLibrary2(): string {
+  return getModuleDescription();
+}

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 {
   "name": "library2",
   "version": "1.0.0",
@@ -22,5 +22,6 @@
   "license": "Apache-2.0",
   "packageType": "InterfaceHar",
   "dependencies": {
+    "liblibrary2.so": "file:./src/main/cpp/types/liblibrary2"
   }
 }

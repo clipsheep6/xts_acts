@@ -12,19 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-{
-  "name": "entry",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
-  "main": "",
-  "author": "",
-  "license": "",
-  "dependencies": {
-    "library": "file:../library",
-    "library2": "file:../library2",
-    "library3": "file:../library3",
-    "har": "file:../har"
-  }
-}
 
+import { getModuleDescription } from 'library';
+
+export function getDecoratorDesc() {
+  return '<From har>' + getModuleDescription();
+}

@@ -22,5 +22,7 @@
   "license": "Apache-2.0",
   "packageType": "InterfaceHar",
   "dependencies": {
+    "library2": "file:../library2",
+    "liblibrary.so": "file:./src/main/cpp/types/liblibrary"
   }
 }
