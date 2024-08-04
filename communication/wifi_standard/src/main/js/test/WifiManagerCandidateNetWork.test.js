@@ -101,13 +101,25 @@ export default function actsWifiManagerCandidateNetWorkTest() {
             await wifiMg.addCandidateConfig(wifiDeviceConfig)
                 .then(netWorkId => {
                     console.info("[wifi_test]add OPEN CandidateConfig promise : " + JSON.stringify(netWorkId));
-                    expect(true).assertEqual(netWorkId = -1);
+                    expect(true).assertEqual(netWorkId != -1);
                 }).catch((error) => {
                     console.error('[wifi_test]add OPEN CandidateConfig promise failed -> ' + JSON.stringify(error));
-                    expect(true).assertEqual( (JSON.stringify(error)) !=null);
+                    expect().assertFail();
                 });
-            let getconfig = wifiMg.getCandidateConfigs();
-            console.info("[wifi_test]wifi get OPEN CandidateConfigs result : " + JSON.stringify(getconfig));
+            let getCandidateResult = wifiMg.getCandidateConfigs();
+            console.info("[wifi_test]wifi get OPEN CandidateConfigs result : " + JSON.stringify(getCandidateResult));
+            var networkId = getCandidateResult[0].netId;
+            console.info("[wifi_test]wifi get networkId result : " + JSON.stringify(networkId));
+            await wifiMg.removeCandidateConfig(networkId)
+                .then(ret => {
+                    let getCandidate = wifiMg.getCandidateConfigs();
+                    console.info("[wifi_test]wifi get CandidateConfigs result : " + JSON.stringify(getCandidate));
+                    console.info("[wifi_test]wifi  getconfig.length result : " + JSON.stringify(getCandidate.length));
+                    expect(true).assertEqual(getCandidate.length == 0);
+                }).catch((error) => {
+                    console.error('[wifi_test]remove CandidateConfig promise failed ?' + JSON.stringify(error));
+                    expect().assertFail();
+                });
             let wifiDeviceConfig1 = {
                 "ssid": "TEST_WEP",
                 "bssid": "22:9b:e6:48:1f:5c",
@@ -123,7 +135,8 @@ export default function actsWifiManagerCandidateNetWorkTest() {
                     console.error('[wifi_test]add WEP CandidateConfig promise failed -> ' + JSON.stringify(error));
                     expect(true).assertEqual( (JSON.stringify(error)) !=null);
                 });
-            console.info("[wifi_test]wifi get WEP CandidateConfigs result : " + JSON.stringify(getconfig));
+            let getCandidateResults = wifiMg.getCandidateConfigs();
+            console.info("[wifi_test]wifi get WEP CandidateConfigs result : " + JSON.stringify(getCandidateResults));
 
             let WIFI_SEC_TYPE_INVALID = wifiMg.WifiSecurityType.WIFI_SEC_TYPE_INVALID;
             console.info("[wifi_test]WIFI_SEC_TYPE_INVALID : " + JSON.stringify(WIFI_SEC_TYPE_INVALID));
