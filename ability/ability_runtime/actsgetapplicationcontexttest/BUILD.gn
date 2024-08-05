@@ -17,8 +17,8 @@ group("actsgetapplicationcontexttest") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "actsgetappcontexthap1:ActsGetAppContextHap1",
-      "actsgetappcontexttest1:ActsGetAppContextTest1",
+      "actsgetappcontexthap:ActsGetAppContextHap1",
+      "actsgetappcontexttest:ActsGetAppContextTest1",
     ]
   }
 }
