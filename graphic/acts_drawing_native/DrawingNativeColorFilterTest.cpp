@@ -207,9 +207,7 @@ HWTEST_F(DrawingNativeColorFilterTest, testColorFilterCreateComposeNormal, TestS
 HWTEST_F(DrawingNativeColorFilterTest, testColorFilterCreateComposeNULL, TestSize.Level3) {
     // 1. Pass an empty value as the first parameter to OH_Drawing_ColorFilterCreateBlendMode
     OH_Drawing_ColorFilter *colorFilter = OH_Drawing_ColorFilterCreateBlendMode(0, BLEND_MODE_CLEAR);
-    // 2. Pass an empty value as the second parameter to OH_Drawing_ColorFilterCreateBlendMode
-    OH_Drawing_ColorFilter *colorFilter = OH_Drawing_ColorFilterCreateBlendMode(0x000000FF, 0);
-    // 3. Free memory
+    // 2. Free memory
     OH_Drawing_ColorFilterDestroy(colorFilter);
 }
 
