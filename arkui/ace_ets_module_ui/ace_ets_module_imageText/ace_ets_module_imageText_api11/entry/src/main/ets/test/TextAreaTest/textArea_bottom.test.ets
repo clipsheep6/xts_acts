@@ -63,7 +63,7 @@ export default function textArea_bottom() {
 
         let driver = await Driver.create();
         await CommonFunc.sleep(500);
-        await driver.mouseScroll({x:360, y:800}, true, 30, 2072)
+        await driver.mouseScroll({x:360, y:400}, true, 30, 2072)
         await CommonFunc.sleep(1000);
 
         console.log('assert  click before position')
