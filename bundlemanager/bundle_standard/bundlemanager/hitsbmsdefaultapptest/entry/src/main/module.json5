@@ -61,7 +61,7 @@
     ],
     "requestPermissions": [
       {
-        "name": "ohos.permission.GET_RUNNING_INFO"
+        "name": "ohos.permission.SET_DEFAULT_APPLICATION"
       }
     ]
   }

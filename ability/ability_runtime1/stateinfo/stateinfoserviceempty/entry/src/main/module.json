@@ -18,7 +18,8 @@
         "srcEntrance": "./ets/serviceability/ServiceAbility.ets",
         "label": "$string:ServiceAbility_label",
         "description": "$string:ServiceAbility_desc",
-        "type": "service"
+        "type": "service",
+        "exported": true
       }
     ]
   }

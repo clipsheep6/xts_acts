@@ -22,6 +22,7 @@ group("hits_ability_runtime_stateinfo") {
       "stateInfobackability:hits_stateinfo_backability",
       "stateInfostartability:hits_stateinfo_startability",
       "stateinfoappempty:hits_stateinfo_app_empty",
+      "stateinfoappkillself:hits_stateinfo_app_killself",
       "stateinfogetforgroundapps:hits_stateinfo_getforgrdapps",
       "stateinfoserviceempty:hits_stateinfo_service_empty",
     ]
