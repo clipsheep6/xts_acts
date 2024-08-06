@@ -20,6 +20,7 @@
 #include "native_image/native_image.h"
 #include "native_window/external_window.h"
 #include "GLES3/gl32.h"
+#include <thread>
 #include <typeinfo>
 #include <fcntl.h>
 #include <string>
@@ -216,7 +217,7 @@ static napi_value OhAvPlayerPrepare(napi_env env, napi_callback_info info)
     napi_value result = nullptr;
     
     OH_AVErrCode avErrCode = OH_AVPlayer_Prepare(mainPlayer);
-    sleep(g_gPlaytime);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     napi_create_int32(env, avErrCode, &result);
     return result; // 返回0
 }
@@ -240,7 +241,7 @@ static napi_value OhAvPlayerPlay(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode errCode = OH_AVPlayer_Play(mainPlayer);
-    sleep(g_lPlaytime);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     napi_create_int32(env, errCode, &result);
     return result;
 }
@@ -278,7 +279,7 @@ static napi_value OhAvPlayerPause(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode errCode = OH_AVPlayer_Pause(mainPlayer);
-    sleep(g_gPlaytime);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     napi_create_int32(env, errCode, &result);
     return result;
 }
@@ -382,7 +383,7 @@ static napi_value OhAvPlayerRelease(napi_env env, napi_callback_info info)
     temmpPlayer = mainPlayer;
     mainPlayer = nullptr;
     OH_AVErrCode errCode = OH_AVPlayer_Release(temmpPlayer);
-    sleep(g_gPlaytime);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     napi_create_int32(env, errCode, &result);
     return result;
 }
@@ -403,7 +404,7 @@ static napi_value OhAvPlayerReset(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode avErrCode = OH_AVPlayer_Reset(mainPlayer); // 将播放器恢复到初始状态
-    sleep(g_gPlaytime);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     napi_create_int32(env, avErrCode, &result);
     return result;
 }
@@ -559,7 +560,7 @@ static napi_value OhAvPlayerStop(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode oH_AVErrCode = OH_AVPlayer_Stop(mainPlayer);
-    sleep(g_gPlaytime);
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     napi_create_int32(env, oH_AVErrCode, &result);
     return result;
 }
