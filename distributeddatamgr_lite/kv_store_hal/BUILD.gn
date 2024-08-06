@@ -26,7 +26,9 @@ hctest_suite("ActsKvStoreTest") {
     "//commonlibrary/utils_lite/include",
     "//base/iothardware/peripheral/interfaces/inner_api",
   ]
-  cflags = [ "-Wno-error" ]
+  if (board_toolchain_type != "iccarm") {
+    cflags = [ "-Wno-error" ]
+  }
   defines =
       [ "DATA_PATH=\"${config_ohos_xts_acts_utils_lite_kv_store_data_path}\"" ]
 }
