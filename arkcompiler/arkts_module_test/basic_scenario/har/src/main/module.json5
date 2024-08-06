@@ -14,17 +14,13 @@
  */
  
 {
-  "name": "entry",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
-  "main": "",
-  "author": "",
-  "license": "",
-  "dependencies": {
-    "library": "file:../library",
-    "library2": "file:../library2",
-    "library3": "file:../library3",
-    "har": "file:../har"
+  "module": {
+    "name": "har",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1"
+    ]
   }
 }
-

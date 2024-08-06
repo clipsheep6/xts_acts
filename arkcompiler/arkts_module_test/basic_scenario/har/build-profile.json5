@@ -14,17 +14,30 @@
  */
  
 {
-  "name": "entry",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
-  "main": "",
-  "author": "",
-  "license": "",
-  "dependencies": {
-    "library": "file:../library",
-    "library2": "file:../library2",
-    "library3": "file:../library3",
-    "har": "file:../har"
-  }
+  "apiType": "stageMode",
+  "buildOption": {
+  },
+  "buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": true,
+            "files": [
+              "./obfuscation-rules.txt"
+            ]
+          },
+          "consumerFiles": [
+            "./consumer-rules.txt"
+          ]
+        }
+      },
+    },
+  ],
+  "targets": [
+    {
+      "name": "default"
+    }
+  ]
 }
-

@@ -1,3 +1,4 @@
+
 /**
  * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,18 +14,19 @@
  * limitations under the License.
  */
  
-{
-  "name": "entry",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
-  "main": "",
-  "author": "",
-  "license": "",
-  "dependencies": {
-    "library": "file:../library",
-    "library2": "file:../library2",
-    "library3": "file:../library3",
-    "har": "file:../har"
+@Component
+export struct MainPage {
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
   }
 }
-
