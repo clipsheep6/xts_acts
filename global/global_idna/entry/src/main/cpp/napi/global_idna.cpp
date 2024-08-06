@@ -17,166 +17,155 @@
 #include <unicode/uidna.h>
 
 
-static napi_value testUidna_openUTS46(napi_env env, napi_callback_info info){
+
+static napi_value testUidna_openUTS46(napi_env env, napi_callback_info) {
     UErrorCode errorCode = U_ZERO_ERROR;
-    UIDNA*uts461 = uidna_openUTS46(UIDNA_USE_STD3_RULES|UIDNA_NONTRANSITIONAL_TO_UNICODE,&errorCode);
+    UIDNA *uts461 = uidna_openUTS46(UIDNA_USE_STD3_RULES | UIDNA_NONTRANSITIONAL_TO_UNICODE, &errorCode);
     bool flagA = (uts461 != NULL);
     bool flag = (flagA & U_SUCCESS(errorCode));
     napi_value result = nullptr;
-    napi_get_boolean(env,flag,&result);
+    napi_get_boolean(env, flag, &result);
     return result;
 }
 
-
-static napi_value testUidna_close(napi_env env, napi_callback_info info){
+static napi_value testUidna_close(napi_env env, napi_callback_info) {
     UErrorCode errorCode = U_ZERO_ERROR;
-    UIDNA*uts461 = uidna_openUTS46(UIDNA_USE_STD3_RULES|UIDNA_NONTRANSITIONAL_TO_UNICODE,&errorCode);
+    UIDNA *uts461 = uidna_openUTS46(UIDNA_USE_STD3_RULES | UIDNA_NONTRANSITIONAL_TO_UNICODE, &errorCode);
     uidna_close(uts461);
     bool flag = (uts461 != NULL);
     napi_value result = nullptr;
-    napi_get_boolean(env,flag,&result);
+    napi_get_boolean(env, flag, &result);
     return result;
 }
 
-static napi_value testUidna_labelToASCII(napi_env env, napi_callback_info info){
+static napi_value testUidna_labelToASCII(napi_env env, napi_callback_info) {
     UErrorCode errorCode = U_ZERO_ERROR;
-    UIDNA*uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES|UIDNA_NONTRANSITIONAL_TO_UNICODE,&errorCode);
-    static const UChar fA_sharps16[] = {0x66,0x41,0xdf,0};
+    UIDNA *uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES | UIDNA_NONTRANSITIONAL_TO_UNICODE, &errorCode);
+    static const UChar fA_sharps16[] = {0x66, 0x41, 0xdf, 0};
     UChar dest16[10];
     UIDNAInfo info1 = UIDNA_INFO_INITIALIZER;
-    int32_t data1 = uidna_labelToASCII(uts46,fA_sharps16,-1,dest16,10,&info1,&errorCode);
-    bool flagA = (uts46!= NULL);
+    uidna_labelToASCII(uts46, fA_sharps16, -1, dest16 , 10, &info1, &errorCode);
+    bool flagA = (uts46 != NULL);
     bool flag = (flagA & U_SUCCESS(errorCode));
     napi_value result = nullptr;
-    napi_get_boolean(env,flag,&result);
+    napi_get_boolean(env, flag, &result);
     return result;
 }
 
-
-static napi_value testUidna_labelToUnicode(napi_env env, napi_callback_info info){
+static napi_value testUidna_labelToUnicode(napi_env env, napi_callback_info) {
     UErrorCode errorCode = U_ZERO_ERROR;
     UErrorCode errorCode1 = U_ZERO_ERROR;
-    UIDNA*uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES|UIDNA_NONTRANSITIONAL_TO_UNICODE,&errorCode);
-    static const UChar fA_sharps8[] = {0x66,0x41,(char)0xc3,(char)0x9f,0};
+    UIDNA *uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES | UIDNA_NONTRANSITIONAL_TO_UNICODE, &errorCode);
+    static const UChar sharps[] = {0x66, 0x41, (char)0xc3, (char)0x9f, 0};
     UIDNAInfo plnfo = UIDNA_INFO_INITIALIZER;
 
-    int32_t data1 = uidna_labelToUnicode(uts46,fA_sharps8,-1,NULL,-1,&plnfo,&errorCode1);
-    bool flagA = (data1 == 0 );
+    int32_t data1 = uidna_labelToUnicode(uts46, sharps, -1, NULL, -1, &plnfo, &errorCode1);
+    bool flagA = (data1 == 0);
     bool flag = (flagA & U_SUCCESS(errorCode));
     napi_value result = nullptr;
-    napi_get_boolean(env,flag,&result);
+    napi_get_boolean(env, flag, &result);
     return result;
 }
 
-static napi_value testUidna_nameToASCII(napi_env env, napi_callback_info info){
+static napi_value testUidna_nameToASCII(napi_env env, napi_callback_info) {
     UErrorCode errorCode = U_ZERO_ERROR;
     UErrorCode errorCode1 = U_ZERO_ERROR;
-    UIDNA*uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES|UIDNA_NONTRANSITIONAL_TO_UNICODE,&errorCode);
-    static const UChar fA_sharps8[] = {0x66,0x41,(char)0xc3,(char)0x9f,0};
+    UIDNA *uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES | UIDNA_NONTRANSITIONAL_TO_UNICODE, &errorCode);
     UChar dest16[10];
     UIDNAInfo plnfo = UIDNA_INFO_INITIALIZER;
 
-    int32_t data1 = uidna_nameToASCII(uts46,NULL,-1,dest16,0,&plnfo,&errorCode1);
-    bool flagA = (data1 == 0 );
+    int32_t data1 = uidna_nameToASCII(uts46, NULL, -1, dest16, 0, &plnfo, &errorCode1);
+    bool flagA = (data1 == 0);
     bool flag = (flagA & U_SUCCESS(errorCode));
     napi_value result = nullptr;
-    napi_get_boolean(env,flag,&result);
+    napi_get_boolean(env, flag, &result);
     return result;
 }
 
-
-
-static napi_value testUidna_nameToUnicode(napi_env env, napi_callback_info info){
+static napi_value testUidna_nameToUnicode(napi_env env, napi_callback_info) {
     UErrorCode errorCode = U_ZERO_ERROR;
     UErrorCode errorCode1 = U_ZERO_ERROR;
-    UIDNA*uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES|UIDNA_NONTRANSITIONAL_TO_UNICODE,&errorCode);
-    static const UChar fA_sharps16[] = {0x66,0x41,0xdf,0};
-    int32_t length =-1;
+    UIDNA *uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES | UIDNA_NONTRANSITIONAL_TO_UNICODE, &errorCode);
+    static const UChar fA_sharps16[] = {0x66, 0x41, 0xdf, 0};
+    int32_t length = -1;
     UChar dest16[10];
     UIDNAInfo plnfo = UIDNA_INFO_INITIALIZER;
-    int32_t capacity =3;
-    
-    int32_t data1 = uidna_nameToUnicode(uts46,fA_sharps16,length,dest16,capacity,&plnfo,&errorCode1);
-    bool flagA = (data1 != NULL );
+    int32_t capacity = 3;
+
+    int32_t data1 = uidna_nameToUnicode(uts46, fA_sharps16, length, dest16, capacity, &plnfo, &errorCode1);
+    bool flagA = (data1 > 0);
     bool flag = (flagA & U_SUCCESS(errorCode));
     napi_value result = nullptr;
-    napi_get_boolean(env,flag,&result);
+    napi_get_boolean(env, flag, &result);
     return result;
 }
 
-static napi_value testUidna_labelToASCLL_UTF8(napi_env env, napi_callback_info info){
+static napi_value testUidna_labelToASCLL_UTF8(napi_env env, napi_callback_info) {
     UErrorCode errorCode = U_ZERO_ERROR;
     UErrorCode errorCode1 = U_ZERO_ERROR;
-    UIDNA*uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES|UIDNA_NONTRANSITIONAL_TO_UNICODE,&errorCode);
-    const char fA_sharps8[] = {0x66,0x41,(char)0xc3,(char)0x9f,0};
-    int32_t length =-1;
-    char dest=NULL;
+    UIDNA *uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES | UIDNA_NONTRANSITIONAL_TO_UNICODE, &errorCode);
+    const char sharps[] = {0x66, 0x41, (char)0xc3, (char)0x9f, 0};
+    int32_t length = -1;
+    char dest = '\0';
     UIDNAInfo plnfo = UIDNA_INFO_INITIALIZER;
-    int32_t capacity =0;
-    
-    int32_t data1 = uidna_labelToASCII_UTF8(uts46,fA_sharps8,length,&dest,capacity,&plnfo,&errorCode1);
-    bool flagA = (data1 != NULL );
+    int32_t capacity = 0;
+    int32_t data1 = uidna_labelToASCII_UTF8(uts46, sharps, length, &dest, capacity, &plnfo, &errorCode1);
+    bool flagA = (data1 > 0);
     bool flag = (flagA & U_SUCCESS(errorCode));
     napi_value result = nullptr;
-    napi_get_boolean(env,flag,&result);
+    napi_get_boolean(env, flag, &result);
     return result;
 }
 
-
-static napi_value testUidna_labelToUnicodeUTF8(napi_env env, napi_callback_info info){
+static napi_value testUidna_labelToUnicodeUTF8(napi_env env, napi_callback_info) {
     UErrorCode errorCode = U_ZERO_ERROR;
     UErrorCode errorCode1 = U_ZERO_ERROR;
-    UIDNA*uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES|UIDNA_NONTRANSITIONAL_TO_UNICODE,&errorCode);
-    const char fA_sharps8[] = {0x66,0x41,(char)0xc3,(char)0x9f,0};
-    int32_t length =-1;
-    char dest=NULL;
+    UIDNA *uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES | UIDNA_NONTRANSITIONAL_TO_UNICODE, &errorCode);
+    const char sharps[] = {0x66, 0x41, (char)0xc3, (char)0x9f, 0};
+    int32_t length = -1;
+    char dest = '\0';
     UIDNAInfo plnfo = UIDNA_INFO_INITIALIZER;
-    int32_t capacity =0;
-    
-    int32_t data1 = uidna_labelToUnicodeUTF8(uts46,fA_sharps8,length,&dest,capacity,&plnfo,&errorCode1);
-    bool flagA = (data1 != NULL );
+    int32_t capacity = 0;
+
+    int32_t data1 = uidna_labelToUnicodeUTF8(uts46, sharps, length, &dest, capacity, &plnfo, &errorCode1);
+    bool flagA = (data1 > 0);
     bool flag = (flagA & U_SUCCESS(errorCode));
     napi_value result = nullptr;
-    napi_get_boolean(env,flag,&result);
+    napi_get_boolean(env, flag, &result);
     return result;
 }
 
-
-
-static napi_value testUidna_nameToASCII_UTF8(napi_env env, napi_callback_info info){
+static napi_value testUidna_nameToASCII_UTF8(napi_env env, napi_callback_info) {
     UErrorCode errorCode = U_ZERO_ERROR;
     UErrorCode errorCode1 = U_ZERO_ERROR;
-    UIDNA*uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES|UIDNA_NONTRANSITIONAL_TO_UNICODE,&errorCode);
-    const char fA_sharps8[] = {0x66,0x41,(char)0xc3,(char)0x9f,0};
-    int32_t length =-1;
-    char dest=NULL;
+    UIDNA *uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES | UIDNA_NONTRANSITIONAL_TO_UNICODE, &errorCode);
+    const char sharps[] = {0x66, 0x41, (char)0xc3, (char)0x9f, 0};
+    int32_t length = -1;
+    char dest = '\0';
     UIDNAInfo plnfo = UIDNA_INFO_INITIALIZER;
-    int32_t capacity =0;
-    
-    int32_t data1 = uidna_nameToASCII_UTF8(uts46,fA_sharps8,length,&dest,capacity,&plnfo,&errorCode1);
-    bool flagA = (data1 != NULL );
+    int32_t capacity = 0;
+    int32_t data1 = uidna_nameToASCII_UTF8(uts46, sharps, length, &dest, capacity, &plnfo, &errorCode1);
+    bool flagA = (data1 > 0);
     bool flag = (flagA & U_SUCCESS(errorCode));
     napi_value result = nullptr;
-    napi_get_boolean(env,flag,&result);
+    napi_get_boolean(env, flag, &result);
     return result;
 }
 
-
-static napi_value testUidna_nameToUnicodeUTF8(napi_env env, napi_callback_info info){
+static napi_value testUidna_nameToUnicodeUTF8(napi_env env, napi_callback_info) {
     UErrorCode errorCode = U_ZERO_ERROR;
     UErrorCode errorCode1 = U_ZERO_ERROR;
-    UIDNA*uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES|UIDNA_NONTRANSITIONAL_TO_UNICODE,&errorCode);
-    const char fA_sharps8[] = {0x66,0x41,(char)0xc3,(char)0x9f,0};
-    int32_t length =-1;
-    char dest=NULL;
+    UIDNA *uts46 = uidna_openUTS46(UIDNA_USE_STD3_RULES | UIDNA_NONTRANSITIONAL_TO_UNICODE, &errorCode);
+    const char sharps[] = {0x66, 0x41, (char)0xc3, (char)0x9f, 0};
+    int32_t length = -1;
+    char dest = '\0';
     UIDNAInfo plnfo = UIDNA_INFO_INITIALIZER;
-    int32_t capacity =0;
-    
-    int32_t data1 = uidna_nameToUnicodeUTF8(uts46,fA_sharps8,length,&dest,capacity,&plnfo,&errorCode1);
-    bool flagA = (data1 != NULL );
+    int32_t capacity = 0;
+    int32_t data1 = uidna_nameToUnicodeUTF8(uts46, sharps, length, &dest, capacity, &plnfo, &errorCode1);
+    bool flagA = (data1 > 0);
     bool flag = (flagA & U_SUCCESS(errorCode));
     napi_value result = nullptr;
-    napi_get_boolean(env,flag,&result);
+    napi_get_boolean(env, flag, &result);
     return result;
 }
 
