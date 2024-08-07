@@ -33,7 +33,7 @@ ohos_shared_library("idnandk") {
   sources = [ "./napi/global_idna.cpp" ]
   libs = [ rebase_path(libcxx_ndk_shared_file) ]
 
-  include_dirs = [ "${global_resmgr_path}/interfaces/native/resource/include" ]
+  include_dirs = [ "${global_resmgr_path}" ]
   configs = [ ":config" ]
 
   testonly = true

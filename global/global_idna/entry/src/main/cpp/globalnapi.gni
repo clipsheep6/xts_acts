@@ -11,4 +11,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-global_resmgr_path = "//base/global/resource_management"
+global_resmgr_path = "//third_party/icu/icu4c/source/common"
