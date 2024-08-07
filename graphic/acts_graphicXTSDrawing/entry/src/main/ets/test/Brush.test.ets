@@ -1138,6 +1138,14 @@ export default function brushTest() {
         console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
+
+      try {
+        brush.setImageFilter(null);
+        console.info(msg + ' setImageFilter(null) succeeded');
+      } catch( e ) {
+        console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
     });
 
     /**
@@ -1151,14 +1159,6 @@ export default function brushTest() {
     it('testBrushSetImageFilterNull' , DEFAULT , () => {
       const msg = 'testBrushSetImageFilterNull';
       const brush = new drawing.Brush();
-
-      try {
-        brush.setImageFilter(null);
-        console.info(msg + ' setImageFilter(null) succeeded');
-      } catch( e ) {
-        console.info(msg + ` setImageFilter(null) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
 
       try {
         brush.setImageFilter(undefined);
@@ -1177,35 +1177,35 @@ export default function brushTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testBrushSetImageFilterMismatch' , DEFAULT , () => {
-    //   const msg = 'testBrushSetImageFilterMismatch';
-    //   const brush = new drawing.Brush();
-    //   const imgFilter = new drawing.ImageFilter();
-    //
-    //   try {
-    //     brush.setImageFilter(imgFilter , imgFilter);
-    //     console.info(msg + ' setImageFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     brush.setImageFilter();
-    //     console.info(msg + ' setImageFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     brush.setImageFilter('s');
-    //     console.info(msg + ' setImageFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testBrushSetImageFilterMismatch' , DEFAULT , () => {
+      const msg = 'testBrushSetImageFilterMismatch';
+      const brush = new drawing.Brush();
+      const imgFilter = new drawing.ImageFilter();
+
+      try {
+        brush.setImageFilter(imgFilter , imgFilter);
+        console.info(msg + ' setImageFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        brush.setImageFilter();
+        console.info(msg + ' setImageFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        brush.setImageFilter('s');
+        console.info(msg + ' setImageFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_BRUSH_0903
@@ -1261,18 +1261,18 @@ export default function brushTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testBrushGetColorFilterMismatch' , DEFAULT , () => {
-    //   const msg = 'testBrushGetColorFilterMismatch';
-    //   const brush = new drawing.Brush();
-    //
-    //   try {
-    //     brush.getColorFilter('s');
-    //     console.info(msg + ' getColorFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testBrushGetColorFilterMismatch' , DEFAULT , () => {
+      const msg = 'testBrushGetColorFilterMismatch';
+      const brush = new drawing.Brush();
+
+      try {
+        brush.getColorFilter('s');
+        console.info(msg + ' getColorFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` getColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_BRUSH_1002
@@ -1374,26 +1374,26 @@ export default function brushTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testBrushConstructorMismatch' , DEFAULT , () => {
-    //   const msg = 'testBrushConstructorMismatch';
-    //   const brush = new drawing.Brush();
-    //
-    //   try {
-    //     new drawing.Brush(brush , brush);
-    //     console.info(msg + ' drawing.Brush() succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` drawing.Brush() errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     new drawing.Brush('s');
-    //     console.info(msg + ' drawing.Brush() succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` drawing.Brush() errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testBrushConstructorMismatch' , DEFAULT , () => {
+      const msg = 'testBrushConstructorMismatch';
+      const brush = new drawing.Brush();
+
+      try {
+        new drawing.Brush(brush , brush);
+        console.info(msg + ' drawing.Brush() succeeded');
+      } catch( e ) {
+        console.info(msg + ` drawing.Brush() errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        new drawing.Brush('s');
+        console.info(msg + ' drawing.Brush() succeeded');
+      } catch( e ) {
+        console.info(msg + ` drawing.Brush() errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_BRUSH_1103
@@ -1466,18 +1466,18 @@ export default function brushTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testBrushGetAlphaMismatch' , DEFAULT , () => {
-    //   const msg = 'testBrushGetAlphaMismatch';
-    //   const brush = new drawing.Brush();
-    //
-    //   try {
-    //     brush.getAlpha('s');
-    //     console.info(msg + ' getAlpha succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getAlpha errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testBrushGetAlphaMismatch' , DEFAULT , () => {
+      const msg = 'testBrushGetAlphaMismatch';
+      const brush = new drawing.Brush();
+
+      try {
+        brush.getAlpha('s');
+        console.info(msg + ' getAlpha succeeded');
+      } catch( e ) {
+        console.info(msg + ` getAlpha errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_BRUSH_1202
@@ -1551,18 +1551,18 @@ export default function brushTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testBrushIsAntiAliasMismatch' , DEFAULT , () => {
-    //   const msg = 'testBrushIsAntiAliasMismatch';
-    //   const brush = new drawing.Brush();
-    //
-    //   try {
-    //     brush.isAntiAlias('s');
-    //     console.info(msg + ' isAntiAlias succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` isAntiAlias errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testBrushIsAntiAliasMismatch' , DEFAULT , () => {
+      const msg = 'testBrushIsAntiAliasMismatch';
+      const brush = new drawing.Brush();
+
+      try {
+        brush.isAntiAlias('s');
+        console.info(msg + ' isAntiAlias succeeded');
+      } catch( e ) {
+        console.info(msg + ` isAntiAlias errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_BRUSH_1302
@@ -1601,31 +1601,36 @@ export default function brushTest() {
 
       try {
         let colorGet = brush.getColor();
-        console.info(msg + ' getColor successed');
+        expect(colorGet != null).assertTrue();
+        console.info(msg + ' getColor successed,colorGet:'+ JSON.stringify(colorGet));
       } catch( e ) {
-        console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` getColor1 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
       try {
-        brush.setColor({
+        const colors: common2D.Color = {
           alpha : 0 , red : 0 , green : 0 , blue : 0
-        });
+        }
+        brush.setColor(colors);
         let colorGet = brush.getColor();
-        console.info(msg + ' getColor successed');
+        expect(JSON.stringify(colorGet) == JSON.stringify(colors)).assertTrue();
+        console.info(msg + ' getColor2 successed,colorGet:'+ JSON.stringify(colorGet));
       } catch( e ) {
-        console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` getColor2 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
       try {
-        brush.setColor({
+        const colors: common2D.Color = {
           alpha : 255 , red : 255 , green : 255 , blue : 255
-        });
+        }
+        brush.setColor(colors);
         let colorGet = brush.getColor();
-        console.info(msg + ' getColor successed');
+        expect(JSON.stringify(colorGet) == JSON.stringify(colors)).assertTrue();
+        console.info(msg + ' getColor3 successed,colorGet:'+ JSON.stringify(colorGet));
       } catch( e ) {
-        console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` getColor3 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
     });
@@ -1638,18 +1643,18 @@ export default function brushTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testBrushGetColorMismatch' , DEFAULT , () => {
-    //   const msg = 'testBrushGetColorMismatch';
-    //   const brush = new drawing.Brush();
-    //
-    //   try {
-    //     brush.getColor('s');
-    //     console.info(msg + ' getColor succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testBrushGetColorMismatch' , DEFAULT , () => {
+      const msg = 'testBrushGetColorMismatch';
+      const brush = new drawing.Brush();
+
+      try {
+        brush.getColor('s');
+        console.info(msg + ' getColor succeeded');
+      } catch( e ) {
+        console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_BRUSH_1402
@@ -1666,6 +1671,7 @@ export default function brushTest() {
       for ( let i = 0 ; i < 20 ; i ++ ) {
         try {
           let colorGet = brush.getColor();
+          expect(colorGet != null).assertTrue();
           console.info(msg + ' getColor successed');
         } catch( e ) {
           console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -1733,27 +1739,27 @@ export default function brushTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testBrushSetShaderEffectMismatch' , DEFAULT , () => {
-    //   const msg = 'testBrushSetShaderEffectMismatch';
-    //   const brush = new drawing.Brush();
-    //   const shaderEffect = new drawing.ShaderEffect();
-    //
-    //   try {
-    //     brush.setShaderEffect(shaderEffect , shaderEffect);
-    //     console.info(msg + ' setShaderEffect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setShaderEffect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     brush.setShaderEffect('s');
-    //     console.info(msg + ' setShaderEffect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setShaderEffect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testBrushSetShaderEffectMismatch' , DEFAULT , () => {
+      const msg = 'testBrushSetShaderEffectMismatch';
+      const brush = new drawing.Brush();
+      const shaderEffect = new drawing.ShaderEffect();
+
+      try {
+        brush.setShaderEffect(shaderEffect , shaderEffect);
+        console.info(msg + ' setShaderEffect succeeded');
+      } catch( e ) {
+        console.info(msg + ` setShaderEffect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        brush.setShaderEffect('s');
+        console.info(msg + ' setShaderEffect succeeded');
+      } catch( e ) {
+        console.info(msg + ` setShaderEffect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_BRUSH_1503
@@ -1817,18 +1823,18 @@ export default function brushTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testBrushResetMismatch' , DEFAULT , () => {
-    //   const msg = 'testBrushResetMismatch';
-    //   const brush = new drawing.Brush();
-    //
-    //   try {
-    //     brush.reset('s');
-    //     console.info(msg + ' reset succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` reset errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testBrushResetMismatch' , DEFAULT , () => {
+      const msg = 'testBrushResetMismatch';
+      const brush = new drawing.Brush();
+
+      try {
+        brush.reset('s');
+        console.info(msg + ' reset succeeded');
+      } catch( e ) {
+        console.info(msg + ` reset errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_BRUSH_1602
