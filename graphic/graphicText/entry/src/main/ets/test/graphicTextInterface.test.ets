@@ -134,6 +134,10 @@ export default function graphicTextInterface(context, windowStage, abilityStorag
         decorationStyle : text.TextDecorationStyle.SOLID,
         decorationThicknessScale : 20
       };
+      let textTab: text.TextTab = {
+        alignment: text.TextAlign.LEFT,
+        location: 200,
+      }
       let textStyle : text.TextStyle = {
         decoration: decoration,
         color: {
@@ -258,6 +262,27 @@ export default function graphicTextInterface(context, windowStage, abilityStorag
         };
       } catch (err) {
         console.info(msg + 'test PositionWithAffinity error ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_008
+     * @tc.name      : testTextTab
+     * @tc.desc      : To test interface TextTab.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testTextTab', 8, async function () {
+      let msg = "testTextTab"
+      console.info(msg + 'begin');
+      try {
+        let textTab: text.TextTab = {
+          alignment: text.TextAlign.LEFT,
+          location: 200,
+        }
+      } catch (err) {
+        console.info(msg + 'test TextTab error ' + JSON.stringify(err));
         expect().assertFail();
       }
     })
