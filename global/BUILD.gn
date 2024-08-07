@@ -30,7 +30,6 @@ group("global") {
     deps = [
       "i18n:i18n_test_hap",
       "icu:icu_test_hap",
-      "icu:icundk",
       "resmgr:resmgr_test_hap",
     ]
   }

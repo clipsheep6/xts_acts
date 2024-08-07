@@ -41,6 +41,7 @@ ohos_shared_library("idnandk") {
   external_deps = [
     "ace_engine:ace_ndk",
     "hilog:libhilog",
+    "icu:icundk",
     "napi:ace_napi",
   ]
 
