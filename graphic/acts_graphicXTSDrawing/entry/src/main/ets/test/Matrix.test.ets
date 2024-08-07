@@ -67,16 +67,16 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixConstructorMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixConstructorMismatch';
-    //   try {
-    //     let matrix = new drawing.Matrix('s');
-    //     console.info(msg + ' Matrix successed');
-    //   } catch (e) {
-    //     console.info(msg + ` Matrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // })
+    it('testMatrixConstructorMismatch', DEFAULT, () => {
+      const msg = 'testMatrixConstructorMismatch';
+      try {
+        let matrix = new drawing.Matrix('s');
+        console.info(msg + ' Matrix successed');
+      } catch (e) {
+        console.info(msg + ` Matrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_0103
@@ -112,8 +112,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setRotation(90, 100, 100);
-        matrix.getAll();
-        console.info(msg + ' getAll successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' getAll successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` getAll errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -122,8 +124,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setRotation(90.1, 100.1, 100.1);
-        matrix.getAll();
-        console.info(msg + ' getAll successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' getAll successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` getAll errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -132,8 +136,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setRotation(-90, 100, 100);
-        matrix.getAll();
-        console.info(msg + ' getAll successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' getAll successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` getAll errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -142,8 +148,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setRotation(90, -100, 100);
-        matrix.getAll();
-        console.info(msg + ' getAll successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' getAll successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` getAll errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -152,9 +160,11 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setRotation(90, 100, -100);
-        matrix.getAll();
+        let widths : number[] = matrix.getAll();
         matrix.setRotation(90.1, 100.1, 100.1);
-        console.info(msg + ' getAll successed');
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' getAll successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` getAll errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -163,8 +173,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setRotation(361, Number.MAX_VALUE, Number.MAX_VALUE);
-        matrix.getAll();
-        console.info(msg + ' getAll successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' getAll successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` getAll errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -244,35 +256,35 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixSetRotationMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixSetRotationMismatch';
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setRotation(90, 100, 100, 100);
-    //     console.info(msg + ' setRotation successed');
-    //   } catch (e) {
-    //     console.info(msg + ` setRotation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setRotation(90, 100);
-    //     console.info(msg + ' setRotation successed');
-    //   } catch (e) {
-    //     console.info(msg + ` setRotation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setRotation('s', 100,100);
-    //     console.info(msg + ' setRotation successed');
-    //   } catch (e) {
-    //     console.info(msg + ` setRotation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // })
+    it('testMatrixSetRotationMismatch', DEFAULT, () => {
+      const msg = 'testMatrixSetRotationMismatch';
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setRotation(90, 100, 100, 100);
+        console.info(msg + ' setRotation successed');
+      } catch (e) {
+        console.info(msg + ` setRotation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setRotation(90, 100);
+        console.info(msg + ' setRotation successed');
+      } catch (e) {
+        console.info(msg + ` setRotation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setRotation('s', 100,100);
+        console.info(msg + ' setRotation successed');
+      } catch (e) {
+        console.info(msg + ` setRotation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_0203
@@ -309,8 +321,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setScale(100, 100, 150, 150);
-        matrix.getAll();
-        console.info(msg + ' setScale successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' setScale successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -319,8 +333,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setScale(0.2, 0.2, 0.5, 0.5);
-        matrix.getAll();
-        console.info(msg + ' setScale successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' setScale successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -329,8 +345,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setScale(-100, -100, 150, 150);
-        matrix.getAll();
-        console.info(msg + ' setScale successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' setScale successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -339,8 +357,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setScale(100, 100, -150, -150);
-        matrix.getAll();
-        console.info(msg + ' setScale successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' setScale successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -349,8 +369,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setScale(Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
-        matrix.getAll();
-        console.info(msg + ' setScale successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' setScale successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -448,35 +470,35 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixSetScaleMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixSetScaleMismatch';
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setScale(90, 100, 100, 100, 100);
-    //     console.info(msg + ' setScale successed');
-    //   } catch (e) {
-    //     console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setScale(90, 100, 100);
-    //     console.info(msg + ' setScale successed');
-    //   } catch (e) {
-    //     console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setScale('s', 100,100,200);
-    //     console.info(msg + ' setScale successed');
-    //   } catch (e) {
-    //     console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // })
+    it('testMatrixSetScaleMismatch', DEFAULT, () => {
+      const msg = 'testMatrixSetScaleMismatch';
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setScale(90, 100, 100, 100, 100);
+        console.info(msg + ' setScale successed');
+      } catch (e) {
+        console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setScale(90, 100, 100);
+        console.info(msg + ' setScale successed');
+      } catch (e) {
+        console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setScale('s', 100,100,200);
+        console.info(msg + ' setScale successed');
+      } catch (e) {
+        console.info(msg + ` setScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_0303
@@ -513,8 +535,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setTranslation(100, 100);
-        matrix.getAll();
-        console.info(msg + ' setTranslation successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' setTranslation successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -523,8 +547,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setTranslation(100.1, 100.1);
-        matrix.getAll();
-        console.info(msg + ' setTranslation successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' setTranslation successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -533,8 +559,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setTranslation(-100, 100);
-        matrix.getAll();
-        console.info(msg + ' setTranslation successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' setTranslation successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -543,8 +571,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setTranslation(100, -150);
-        matrix.getAll();
-        console.info(msg + ' setTranslation successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' setTranslation successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -553,8 +583,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.setTranslation(Number.MAX_VALUE, Number.MAX_VALUE);
-        matrix.getAll();
-        console.info(msg + ' setTranslation successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' setTranslation successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -616,36 +648,36 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixSetTranslationMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixSetTranslationMismatch';
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setTranslation(90, 100, 100);
-    //     console.info(msg + ' setTranslation successed');
-    //   } catch (e) {
-    //     console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setTranslation(90);
-    //     console.info(msg + ' setTranslation successed');
-    //   } catch (e) {
-    //     console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setTranslation('s', 100);
-    //     console.info(msg + ' setTranslation successed');
-    //   } catch (e) {
-    //     console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    // })
+    it('testMatrixSetTranslationMismatch', DEFAULT, () => {
+      const msg = 'testMatrixSetTranslationMismatch';
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setTranslation(90, 100, 100);
+        console.info(msg + ' setTranslation successed');
+      } catch (e) {
+        console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setTranslation(90);
+        console.info(msg + ' setTranslation successed');
+      } catch (e) {
+        console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setTranslation('s', 100);
+        console.info(msg + ' setTranslation successed');
+      } catch (e) {
+        console.info(msg + ` setTranslation errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_0403
@@ -682,8 +714,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         // matrix.getValue(0);
-        matrix.getAll();
-        console.info(msg + ' SetAndGetMatrix successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' SetAndGetMatrix successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -693,8 +727,10 @@ export default function drawingTsMatrixTest() {
         let matrix = new drawing.Matrix();
         matrix.setMatrix([1, 2, 3, 4, 5, 6, 7, 8, 9]);
         matrix.getValue(0);
-        matrix.getAll();
-        console.info(msg + ' SetAndGetMatrix successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' SetAndGetMatrix successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -704,8 +740,10 @@ export default function drawingTsMatrixTest() {
         let matrix = new drawing.Matrix();
         matrix.setMatrix([1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1,8.1, 9.1]);
         matrix.getValue(0);
-        matrix.getAll();
-        console.info(msg + ' SetAndGetMatrix successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' SetAndGetMatrix successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -715,8 +753,10 @@ export default function drawingTsMatrixTest() {
         let matrix = new drawing.Matrix();
         matrix.setMatrix([0,-1, 2.1, 2.1, 42.1, 2.1, 2.,1 -2.1, 10]);
         matrix.getValue(0);
-        matrix.getAll();
-        console.info(msg + ' SetAndGetMatrix successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' SetAndGetMatrix successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -727,8 +767,10 @@ export default function drawingTsMatrixTest() {
         matrix.setMatrix([Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE,
           Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE]);
         matrix.getValue(0);
-        matrix.getAll();
-        console.info(msg + ' SetAndGetMatrix successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' SetAndGetMatrix successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -799,62 +841,62 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixSetAndGetMatrixMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixSetAndGetMatrixMismatch';
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.getValue('s');
-    //     console.info(msg + ' SetAndGetMatrix successed');
-    //   } catch (e) {
-    //     console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.getValue(1,1);
-    //     console.info(msg + ' SetAndGetMatrix successed');
-    //   } catch (e) {
-    //     console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.getValue();
-    //     console.info(msg + ' SetAndGetMatrix successed');
-    //   } catch (e) {
-    //     console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setMatrix('s');
-    //     console.info(msg + ' SetAndGetMatrix successed');
-    //   } catch (e) {
-    //     console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setMatrix(1,1);
-    //     console.info(msg + ' SetAndGetMatrix successed');
-    //   } catch (e) {
-    //     console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setMatrix();
-    //     console.info(msg + ' SetAndGetMatrix successed');
-    //   } catch (e) {
-    //     console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // })
+    it('testMatrixSetAndGetMatrixMismatch', DEFAULT, () => {
+      const msg = 'testMatrixSetAndGetMatrixMismatch';
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.getValue('s');
+        console.info(msg + ' SetAndGetMatrix successed');
+      } catch (e) {
+        console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.getValue(1,1);
+        console.info(msg + ' SetAndGetMatrix successed');
+      } catch (e) {
+        console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.getValue();
+        console.info(msg + ' SetAndGetMatrix successed');
+      } catch (e) {
+        console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setMatrix('s');
+        console.info(msg + ' SetAndGetMatrix successed');
+      } catch (e) {
+        console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setMatrix(1,1);
+        console.info(msg + ' SetAndGetMatrix successed');
+      } catch (e) {
+        console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setMatrix();
+        console.info(msg + ' SetAndGetMatrix successed');
+      } catch (e) {
+        console.info(msg + ` SetAndGetMatrix errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_0503
@@ -1019,35 +1061,35 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixPreConcatMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixPreConcatMismatch';
-    //   try {
-    //     let matrix1 = new drawing.Matrix();
-    //     matrix1.preConcat(matrix,matrix)
-    //     console.info(msg + ' preConcat successed');
-    //   } catch (e) {
-    //     console.info(msg + ` preConcat errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix1 = new drawing.Matrix();
-    //     matrix1.preConcat();
-    //     console.info(msg + ' preConcat successed');
-    //   } catch (e) {
-    //     console.info(msg + ` preConcat errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix1 = new drawing.Matrix();
-    //     matrix1.preConcat('s');
-    //     console.info(msg + ' preConcat successed');
-    //   } catch (e) {
-    //     console.info(msg + ` preConcat errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // })
+    it('testMatrixPreConcatMismatch', DEFAULT, () => {
+      const msg = 'testMatrixPreConcatMismatch';
+      try {
+        let matrix1 = new drawing.Matrix();
+        matrix1.preConcat(matrix,matrix)
+        console.info(msg + ' preConcat successed');
+      } catch (e) {
+        console.info(msg + ` preConcat errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix1 = new drawing.Matrix();
+        matrix1.preConcat();
+        console.info(msg + ' preConcat successed');
+      } catch (e) {
+        console.info(msg + ` preConcat errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix1 = new drawing.Matrix();
+        matrix1.preConcat('s');
+        console.info(msg + ' preConcat successed');
+      } catch (e) {
+        console.info(msg + ` preConcat errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_0603
@@ -1143,35 +1185,35 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixIsEqualMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixIsEqualMismatch';
-    //   try {
-    //     let matrix1 = new drawing.Matrix();
-    //     let matrix = new drawing.Matrix();
-    //     matrix1.isEqual(matrix,matrix);
-    //     console.info(msg + ' isEqual successed');
-    //   } catch (e) {
-    //     console.info(msg + ` isEqual errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //   try {
-    //     let matrix1 = new drawing.Matrix();
-    //     matrix1.isEqual();
-    //     console.info(msg + ' isEqual successed');
-    //   } catch (e) {
-    //     console.info(msg + ` isEqual errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix1 = new drawing.Matrix();
-    //     matrix1.isEqual('s');
-    //     console.info(msg + ' isEqual successed');
-    //   } catch (e) {
-    //     console.info(msg + ` isEqual errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // })
+    it('testMatrixIsEqualMismatch', DEFAULT, () => {
+      const msg = 'testMatrixIsEqualMismatch';
+      try {
+        let matrix1 = new drawing.Matrix();
+        let matrix = new drawing.Matrix();
+        matrix1.isEqual(matrix,matrix);
+        console.info(msg + ' isEqual successed');
+      } catch (e) {
+        console.info(msg + ` isEqual errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+      try {
+        let matrix1 = new drawing.Matrix();
+        matrix1.isEqual();
+        console.info(msg + ' isEqual successed');
+      } catch (e) {
+        console.info(msg + ` isEqual errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix1 = new drawing.Matrix();
+        matrix1.isEqual('s');
+        console.info(msg + ' isEqual successed');
+      } catch (e) {
+        console.info(msg + ` isEqual errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_0703
@@ -1279,36 +1321,36 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixInvertMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixInvertMismatch';
-    //   try {
-    //     let matrix1 = new drawing.Matrix();
-    //     let matrix = new drawing.Matrix();
-    //     matrix1.invert(matrix,matrix);
-    //     console.info(msg + ' invert successed');
-    //   } catch (e) {
-    //     console.info(msg + ` invert errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix1 = new drawing.Matrix();
-    //     matrix1.invert();
-    //     console.info(msg + ' invert successed');
-    //   } catch (e) {
-    //     console.info(msg + ` invert errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix1 = new drawing.Matrix();
-    //     matrix1.invert('s');
-    //     console.info(msg + ' invert successed');
-    //   } catch (e) {
-    //     console.info(msg + ` invert errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // })
+    it('testMatrixInvertMismatch', DEFAULT, () => {
+      const msg = 'testMatrixInvertMismatch';
+      try {
+        let matrix1 = new drawing.Matrix();
+        let matrix = new drawing.Matrix();
+        matrix1.invert(matrix,matrix);
+        console.info(msg + ' invert successed');
+      } catch (e) {
+        console.info(msg + ` invert errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix1 = new drawing.Matrix();
+        matrix1.invert();
+        console.info(msg + ' invert successed');
+      } catch (e) {
+        console.info(msg + ` invert errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix1 = new drawing.Matrix();
+        matrix1.invert('s');
+        console.info(msg + ' invert successed');
+      } catch (e) {
+        console.info(msg + ` invert errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_0803
@@ -1346,7 +1388,6 @@ export default function drawingTsMatrixTest() {
       }
     })
 
-    //test
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_0900
      * @tc.name      : testMatrixIsIdentityNormal
@@ -1385,20 +1426,20 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixIsIdentityMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixIsIdentityMismatch';
-    //   try {
-    //     let matrix1 = new drawing.Matrix();
-    //     matrix1.setMatrix([2, 1, 3, 1, 2, 1, 3, 1, 2]);
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setMatrix([-2, 1, 3, 1, 0, -1, 3, -1, 2]);
-    //     matrix1.isIdentity(matrix);
-    //     console.info(msg + ' isIdentity successed');
-    //   } catch (e) {
-    //     console.info(msg + ` isIdentity errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // })
+    it('testMatrixIsIdentityMismatch', DEFAULT, () => {
+      const msg = 'testMatrixIsIdentityMismatch';
+      try {
+        let matrix1 = new drawing.Matrix();
+        matrix1.setMatrix([2, 1, 3, 1, 2, 1, 3, 1, 2]);
+        let matrix = new drawing.Matrix();
+        matrix.setMatrix([-2, 1, 3, 1, 0, -1, 3, -1, 2]);
+        matrix1.isIdentity(matrix);
+        console.info(msg + ' isIdentity successed');
+      } catch (e) {
+        console.info(msg + ` isIdentity errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_0902
@@ -1435,8 +1476,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postRotate(90, 100, 100);
-        matrix.getAll();
-        console.info(msg + ' postRotate successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postRotate successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1445,8 +1488,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postRotate(90.1, 100.1, 100.1);
-        matrix.getAll();
-        console.info(msg + ' postRotate successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postRotate successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1455,8 +1500,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postRotate(-90, 100, 100);
-        matrix.getAll();
-        console.info(msg + ' postRotate successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postRotate successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1465,8 +1512,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postRotate(90, -100, 100);
-        matrix.getAll();
-        console.info(msg + ' postRotate successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postRotate successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1475,8 +1524,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postRotate(90, 100, -100);
-        matrix.getAll();
-        console.info(msg + ' postRotate successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postRotate successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1485,8 +1536,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postRotate(361, Number.MAX_VALUE, Number.MAX_VALUE);
-        matrix.getAll();
-        console.info(msg + ' postRotate successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postRotate successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1566,35 +1619,35 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixPostRotateMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixPostRotateMismatch';
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.postRotate(90, 100, 100, 100);
-    //     console.info(msg + ' postRotate successed');
-    //   } catch (e) {
-    //     console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.postRotate(90, 100);
-    //     console.info(msg + ' postRotate successed');
-    //   } catch (e) {
-    //     console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.postRotate('s', 100,100);
-    //     console.info(msg + ' postRotate successed');
-    //   } catch (e) {
-    //     console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // })
+    it('testMatrixPostRotateMismatch', DEFAULT, () => {
+      const msg = 'testMatrixPostRotateMismatch';
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.postRotate(90, 100, 100, 100);
+        console.info(msg + ' postRotate successed');
+      } catch (e) {
+        console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.postRotate(90, 100);
+        console.info(msg + ' postRotate successed');
+      } catch (e) {
+        console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.postRotate('s', 100,100);
+        console.info(msg + ' postRotate successed');
+      } catch (e) {
+        console.info(msg + ` postRotate errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_1003
@@ -1632,8 +1685,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postScale(100, 100, 150, 150);
-        matrix.getAll();
-        console.info(msg + ' postScale successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postScale successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1642,8 +1697,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postScale(0.2, 0.2, 0.5, 0.5);
-        matrix.getAll();
-        console.info(msg + ' postScale successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postScale successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1652,8 +1709,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postScale(-100, -100, 150, 150);
-        matrix.getAll();
-        console.info(msg + ' postScale successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postScale successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1662,8 +1721,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postScale(100, 100, -150, -150);
-        matrix.getAll();
-        console.info(msg + ' postScale successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postScale successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1672,8 +1733,10 @@ export default function drawingTsMatrixTest() {
       try {
         let matrix = new drawing.Matrix();
         matrix.postScale(Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE);
-        matrix.getAll();
-        console.info(msg + ' postScale successed');
+        let widths : number[] = matrix.getAll();
+        expect(widths.length == 9).assertTrue();
+        expect(matrix != null).assertTrue();
+        console.info(msg + ' postScale successed,width:'+ widths.length + JSON.stringify(matrix));
       } catch (e) {
         console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
         expect().assertFail()
@@ -1771,35 +1834,35 @@ export default function drawingTsMatrixTest() {
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    // it('testMatrixPostScaleMismatch', DEFAULT, () => {
-    //   const msg = 'testMatrixPostScaleMismatch';
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.postScale(90, 100, 100, 100, 100);
-    //     console.info(msg + ' postScale successed');
-    //   } catch (e) {
-    //     console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.postScale(90, 100, 100);
-    //     console.info(msg + ' postScale successed');
-    //   } catch (e) {
-    //     console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.postScale('s', 100,100,200);
-    //     console.info(msg + ' postScale successed');
-    //   } catch (e) {
-    //     console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // })
+    it('testMatrixPostScaleMismatch', DEFAULT, () => {
+      const msg = 'testMatrixPostScaleMismatch';
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.postScale(90, 100, 100, 100, 100);
+        console.info(msg + ' postScale successed');
+      } catch (e) {
+        console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.postScale(90, 100, 100);
+        console.info(msg + ' postScale successed');
+      } catch (e) {
+        console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.postScale('s', 100,100,200);
+        console.info(msg + ' postScale successed');
+      } catch (e) {
+        console.info(msg + ` postScale errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401);
+      }
+    })
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_MATRIX_1103
