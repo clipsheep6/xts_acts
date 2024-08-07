@@ -31,6 +31,7 @@ group("global") {
       "i18n:i18n_test_hap",
       "icu:icu_test_hap",
       "resmgr:resmgr_test_hap",
+      "icu:icundk",
     ]
   }
 }
