@@ -52,11 +52,20 @@ export default function penPart2Test() {
       const msg = 'testPenSetImageFilterNormal';
       const pen = new drawing.Pen();
       let imgFilter = new drawing.ImageFilter();
+
       try {
         pen.setImageFilter(imgFilter);
         console.info(msg + ' setImageFilter successed');
       } catch( e ) {
         console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        pen.setImageFilter(null);
+        console.info(msg + ' setImageFilter(null) succeeded');
+      } catch( e ) {
+        console.info(msg + ` setImageFilter(null) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
     });
@@ -72,14 +81,6 @@ export default function penPart2Test() {
     it('testPenSetImageFilterNull', DEFAULT, () => {
       const msg = 'testPenSetImageFilterNull';
       const pen = new drawing.Pen();
-
-      try {
-        pen.setImageFilter(null);
-        console.info(msg + ' setImageFilter(null) succeeded');
-      } catch( e ) {
-        console.info(msg + ` setImageFilter(null) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-        expect(e.code).assertEqual(401);
-      }
 
       try {
         pen.setImageFilter(undefined);
@@ -98,35 +99,35 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenSetImageFilterMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenSetImageFilterMismatch';
-    //   const pen = new drawing.Pen();
-    //   let imgFilter = new drawing.ImageFilter();
-    //
-    //   try {
-    //     pen.setImageFilter(imgFilter , imgFilter);
-    //     console.info(msg + ' setImageFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     pen.setImageFilter();
-    //     console.info(msg + ' setImageFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     pen.setImageFilter('s');
-    //     console.info(msg + ' setImageFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenSetImageFilterMismatch' , DEFAULT , () => {
+      const msg = 'testPenSetImageFilterMismatch';
+      const pen = new drawing.Pen();
+      let imgFilter = new drawing.ImageFilter();
+
+      try {
+        pen.setImageFilter(imgFilter , imgFilter);
+        console.info(msg + ' setImageFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        pen.setImageFilter();
+        console.info(msg + ' setImageFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        pen.setImageFilter('s');
+        console.info(msg + ' setImageFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` setImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_1403
@@ -181,18 +182,18 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenGetColorFilterMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenGetColorFilterMismatch';
-    //   const pen = new drawing.Pen();
-    //
-    //   try {
-    //     pen.getColorFilter('s');
-    //     console.info(msg + ' getColorFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenGetColorFilterMismatch' , DEFAULT , () => {
+      const msg = 'testPenGetColorFilterMismatch';
+      const pen = new drawing.Pen();
+
+      try {
+        pen.getColorFilter('s');
+        console.info(msg + ' getColorFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` getColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_1502
@@ -305,36 +306,36 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenGetFillPathMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenGetFillPathMismatch';
-    //   const pen = new drawing.Pen();
-    //   let pathSrc: drawing.Path = new drawing.Path();
-    //   let pathDst: drawing.Path = new drawing.Path();
-    //
-    //   try {
-    //     pen.getFillPath(pathSrc, pathDst, pathDst);
-    //     console.info(msg + ' getFillPath succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getFillPath errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     pen.getFillPath(pathSrc);
-    //     console.info(msg + ' getFillPath succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getFillPath errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     pen.getFillPath('s', pathDst);
-    //     console.info(msg + ' getFillPath succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getFillPath errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenGetFillPathMismatch' , DEFAULT , () => {
+      const msg = 'testPenGetFillPathMismatch';
+      const pen = new drawing.Pen();
+      let pathSrc: drawing.Path = new drawing.Path();
+      let pathDst: drawing.Path = new drawing.Path();
+
+      try {
+        pen.getFillPath(pathSrc, pathDst, pathDst);
+        console.info(msg + ' getFillPath succeeded');
+      } catch( e ) {
+        console.info(msg + ` getFillPath errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        pen.getFillPath(pathSrc);
+        console.info(msg + ' getFillPath succeeded');
+      } catch( e ) {
+        console.info(msg + ` getFillPath errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        pen.getFillPath('s', pathDst);
+        console.info(msg + ' getFillPath succeeded');
+      } catch( e ) {
+        console.info(msg + ` getFillPath errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_1603
@@ -439,26 +440,26 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenConstructorMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenConstructorMismatch';
-    //   const pen = new drawing.Pen();
-    //
-    //   try {
-    //     new drawing.Pen(pen, pen);
-    //     console.info(msg + ' drawing.Pen(pen, pen) succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` drawing.Pen(pen, pen) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     new drawing.Pen('s');
-    //     console.info(msg + ' drawing.Pen() succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` drawing.Pen() errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenConstructorMismatch' , DEFAULT , () => {
+      const msg = 'testPenConstructorMismatch';
+      const pen = new drawing.Pen();
+
+      try {
+        new drawing.Pen(pen, pen);
+        console.info(msg + ' drawing.Pen(pen, pen) succeeded');
+      } catch( e ) {
+        console.info(msg + ` drawing.Pen(pen, pen) errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        new drawing.Pen('s');
+        console.info(msg + ' drawing.Pen() succeeded');
+      } catch( e ) {
+        console.info(msg + ` drawing.Pen() errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_1703
@@ -496,6 +497,7 @@ export default function penPart2Test() {
       const pen = new drawing.Pen();
       try {
         let alpha = pen.getAlpha();
+        expect(alpha == 255).assertTrue();
         console.info(msg + ' pen.getAlpha() successed,alpha:' + alpha);
       } catch( e ) {
         console.info(msg + ` pen.getAlpha() errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -505,6 +507,7 @@ export default function penPart2Test() {
       try {
         pen.setAlpha(128);
         let alpha = pen.getAlpha();
+        expect(alpha == 128).assertTrue();
         console.info(msg + ' pen.getAlpha() successed,alpha:' + alpha);
       } catch( e ) {
         console.info(msg + ` pen.getAlpha() errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -514,6 +517,7 @@ export default function penPart2Test() {
       try {
         pen.setAlpha(255.1);
         let alpha = pen.getAlpha();
+        expect(alpha == 255).assertTrue();
         console.info(msg + ' pen.getAlpha() successed,alpha:' + alpha);
       } catch( e ) {
         console.info(msg + ` pen.getAlpha() errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -529,18 +533,18 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenGetAlphaMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenGetAlphaMismatch';
-    //   const pen = new drawing.Pen();
-    //
-    //   try {
-    //     pen.getAlpha('s');
-    //     console.info(msg + ' pen.getAlpha succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` pen.getAlpha errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenGetAlphaMismatch' , DEFAULT , () => {
+      const msg = 'testPenGetAlphaMismatch';
+      const pen = new drawing.Pen();
+
+      try {
+        pen.getAlpha('s');
+        console.info(msg + ' pen.getAlpha succeeded');
+      } catch( e ) {
+        console.info(msg + ` pen.getAlpha errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_1802
@@ -579,6 +583,7 @@ export default function penPart2Test() {
 
       try {
         let isAntiAlias = pen.isAntiAlias();
+        expect(isAntiAlias == true || isAntiAlias == false).assertTrue();
         console.info(msg + ' isAntiAlias successed,isAntiAlias:' + isAntiAlias);
       } catch( e ) {
         console.info(msg + ` isAntiAlias errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -614,18 +619,18 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenIsAntiAliasMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenIsAntiAliasMismatch';
-    //   const pen = new drawing.Pen();
-    //
-    //   try {
-    //     pen.isAntiAlias('s');
-    //     console.info(msg + ' isAntiAlias succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` isAntiAlias errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenIsAntiAliasMismatch' , DEFAULT , () => {
+      const msg = 'testPenIsAntiAliasMismatch';
+      const pen = new drawing.Pen();
+
+      try {
+        pen.isAntiAlias('s');
+        console.info(msg + ' isAntiAlias succeeded');
+      } catch( e ) {
+        console.info(msg + ` isAntiAlias errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_1902
@@ -663,6 +668,7 @@ export default function penPart2Test() {
       const pen = new drawing.Pen();
       try {
         let colorGet = pen.getColor();
+        expect(colorGet != null).assertTrue();
         console.info(msg + ' getColor successed,colorGet:' + JSON.stringify(colorGet));
       } catch( e ) {
         console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -670,22 +676,26 @@ export default function penPart2Test() {
       }
 
       try {
-        pen.setColor({
+        const colors : common2D.Color ={
           alpha : 0, red : 0, green : 0, blue : 0
-        });
+        }
+        pen.setColor(colors);
         let colorGet = pen.getColor();
-        console.info(msg + ' getColor successed,colorGet:' + JSON.stringify(colorGet));
+        expect(JSON.stringify(colorGet) == JSON.stringify(colors)).assertTrue();
+        console.info(msg + ' getColor2 successed,colorGet:'+ JSON.stringify(colorGet));
       } catch( e ) {
-        console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` getColor2 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
       try {
-        pen.setColor({
+        const colors : common2D.Color ={
           alpha : 255, red : 255, green : 255, blue : 255
-        });
+        }
+        pen.setColor(colors);
         let colorGet = pen.getColor();
-        console.info(msg + ' getColor successed,colorGet:' + JSON.stringify(colorGet));
+        expect(JSON.stringify(colorGet) == JSON.stringify(colors)).assertTrue();
+        console.info(msg + ' getColor2 successed,colorGet:'+ JSON.stringify(colorGet));
       } catch( e ) {
         console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
@@ -700,18 +710,18 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenGetColorMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenGetColorMismatch';
-    //   const pen = new drawing.Pen();
-    //
-    //   try {
-    //     pen.getColor('s');
-    //     console.info(msg + ' getColor succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenGetColorMismatch' , DEFAULT , () => {
+      const msg = 'testPenGetColorMismatch';
+      const pen = new drawing.Pen();
+
+      try {
+        pen.getColor('s');
+        console.info(msg + ' getColor succeeded');
+      } catch( e ) {
+        console.info(msg + ` getColor errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_2002
@@ -750,6 +760,7 @@ export default function penPart2Test() {
 
       try {
         let width = pen.getWidth();
+        expect(width == 0).assertTrue();
         console.info(msg + ' getWidth successed,width:' + width);
       } catch( e ) {
         console.info(msg + ` getWidth errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -759,6 +770,7 @@ export default function penPart2Test() {
       try {
         pen.setStrokeWidth(30);
         let width = pen.getWidth();
+        expect(width == 30).assertTrue();
         console.info(msg + ' getWidth successed,width:' + width);
       } catch( e ) {
         console.info(msg + ` getWidth errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -768,6 +780,7 @@ export default function penPart2Test() {
       try {
         pen.setStrokeWidth(50.1);
         let width = pen.getWidth();
+        expect(Math.floor(width) == 50).assertTrue();
         console.info(msg + ' getWidth successed,width:' + width);
       } catch( e ) {
         console.info(msg + ` getWidth errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -783,18 +796,18 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenGetWidthMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenGetWidthMismatch';
-    //   const pen = new drawing.Pen();
-    //
-    //   try {
-    //     pen.getWidth('s');
-    //     console.info(msg + ' getWidth succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getWidth errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenGetWidthMismatch' , DEFAULT , () => {
+      const msg = 'testPenGetWidthMismatch';
+      const pen = new drawing.Pen();
+
+      try {
+        pen.getWidth('s');
+        console.info(msg + ' getWidth succeeded');
+      } catch( e ) {
+        console.info(msg + ` getWidth errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_2102
@@ -833,9 +846,10 @@ export default function penPart2Test() {
 
       try {
         let miter = pen.getMiterLimit();
-        console.info(msg + ' getMiterLimit successed,miter:' + miter);
+        expect(miter != null).assertTrue();
+        console.info(msg + ' getMiterLimit1 successed,miter:' + miter);
       } catch( e ) {
-        console.info(msg + ` getMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` getMiterLimit1 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
@@ -843,18 +857,19 @@ export default function penPart2Test() {
         pen.setMiterLimit(5);
         let miter = pen.getMiterLimit();
         expect(miter == 5).assertTrue();
-        console.info(msg + ' getMiterLimit successed,miter:' + miter);
+        console.info(msg + ' getMiterLimit2 successed,miter:' + miter);
       } catch( e ) {
-        console.info(msg + ` getMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` getMiterLimit2 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
       try {
         pen.setMiterLimit(20.1);
         let miter = pen.getMiterLimit();
-        console.info(msg + ' getMiterLimit successed,miter:' + miter);
+        expect(Math.floor(miter) == 20).assertTrue();
+        console.info(msg + ' getMiterLimit3 successed,miter:' + miter);
       } catch( e ) {
-        console.info(msg + ` getMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` getMiterLimit3 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
@@ -862,19 +877,19 @@ export default function penPart2Test() {
         pen.setMiterLimit(0);
         let miter = pen.getMiterLimit();
         expect(miter == 0).assertTrue();
-        console.info(msg + ' getMiterLimit successed,miter:' + miter);
+        console.info(msg + ' getMiterLimit4 successed,miter:' + miter);
       } catch( e ) {
-        console.info(msg + ` getMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` getMiterLimit4 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
       try {
-        pen.setMiterLimit(- 1);
+        pen.setMiterLimit(-1);
         let miter = pen.getMiterLimit();
-        expect(miter == - 1).assertTrue();
-        console.info(msg + ' getMiterLimit successed,miter:' + miter);
+        expect(miter == -1).assertTrue();
+        console.info(msg + ' getMiterLimit5 successed,miter:' + miter);
       } catch( e ) {
-        console.info(msg + ` getMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` getMiterLimit5 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
     });
@@ -916,42 +931,42 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenSetGetMiterLimitMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenSetGetMiterLimitMismatch';
-    //   const pen = new drawing.Pen();
-    //
-    //   try {
-    //     pen.setMiterLimit(5,5);
-    //     console.info(msg + ' setMiterLimit succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     pen.setMiterLimit();
-    //     console.info(msg + ' setMiterLimit succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     pen.setMiterLimit('s');
-    //     console.info(msg + ' setMiterLimit succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     pen.getMiterLimit('s');
-    //     console.info(msg + ' getMiterLimit succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenSetGetMiterLimitMismatch' , DEFAULT , () => {
+      const msg = 'testPenSetGetMiterLimitMismatch';
+      const pen = new drawing.Pen();
+
+      try {
+        pen.setMiterLimit(5,5);
+        console.info(msg + ' setMiterLimit succeeded');
+      } catch( e ) {
+        console.info(msg + ` setMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        pen.setMiterLimit();
+        console.info(msg + ' setMiterLimit succeeded');
+      } catch( e ) {
+        console.info(msg + ` setMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        pen.setMiterLimit('s');
+        console.info(msg + ' setMiterLimit succeeded');
+      } catch( e ) {
+        console.info(msg + ` setMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        pen.getMiterLimit('s');
+        console.info(msg + ' getMiterLimit succeeded');
+      } catch( e ) {
+        console.info(msg + ` getMiterLimit errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_2203
@@ -1058,27 +1073,27 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenSetShaderEffectMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenSetShaderEffectMismatch';
-    //   const pen = new drawing.Pen();
-    //   const shaderEffect = new drawing.ShaderEffect();
-    //
-    //   try {
-    //     pen.setShaderEffect(shaderEffect, shaderEffect);
-    //     console.info(msg + ' setShaderEffect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setShaderEffect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     pen.setShaderEffect('s');
-    //     console.info(msg + ' setShaderEffect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setShaderEffect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenSetShaderEffectMismatch' , DEFAULT , () => {
+      const msg = 'testPenSetShaderEffectMismatch';
+      const pen = new drawing.Pen();
+      const shaderEffect = new drawing.ShaderEffect();
+
+      try {
+        pen.setShaderEffect(shaderEffect, shaderEffect);
+        console.info(msg + ' setShaderEffect succeeded');
+      } catch( e ) {
+        console.info(msg + ` setShaderEffect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        pen.setShaderEffect('s');
+        console.info(msg + ' setShaderEffect succeeded');
+      } catch( e ) {
+        console.info(msg + ` setShaderEffect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_2303
@@ -1148,18 +1163,18 @@ export default function penPart2Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testPenResetMismatch' , DEFAULT , () => {
-    //   const msg = 'testPenResetMismatch';
-    //   const pen = new drawing.Pen();
-    //
-    //   try {
-    //     pen.reset('s');
-    //     console.info(msg + ' reset succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` reset errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testPenResetMismatch' , DEFAULT , () => {
+      const msg = 'testPenResetMismatch';
+      const pen = new drawing.Pen();
+
+      try {
+        pen.reset('s');
+        console.info(msg + ' reset succeeded');
+      } catch( e ) {
+        console.info(msg + ` reset errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_PEN_2402
@@ -1185,4 +1200,3 @@ export default function penPart2Test() {
     });
   });
 }
-

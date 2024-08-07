@@ -61,8 +61,8 @@ export default function testsuite() {
   drawingTsPath3Test();
   drawingTsCanvasTest();
   drawingTsCanvasPart2Test();
-  drawingTsCanvasPart3Test(); 
-  drawingTsCanvasPart4Test(); 
+  drawingTsCanvasPart3Test();
+  drawingTsCanvasPart4Test();
   drawingTsRegionTest();
   roundRectTest();
   shadowEffectTest();

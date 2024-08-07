@@ -140,145 +140,145 @@ export default function roundRectTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testRoundRectConstructorNull', DEFAULT, () => {
-    //   const msg = 'testRoundRectConstructorNull';
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect(null, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect(undefined, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : 100, right : 500, bottom : 300
-    //     }, null, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : 100, right : 500, bottom : 300
-    //     }, 50, null);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : 100, right : 500, bottom : 300
-    //     }, undefined, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : 100, right : 500, bottom : 300
-    //     }, 50, undefined);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : null, top : 100, right : 500, bottom : 300
-    //     }, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : null, right : 500, bottom : 300
-    //     }, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : 100, right : null, bottom : 300
-    //     }, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : 100, right : 500, bottom : null
-    //     }, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : undefined, top : 100, right : 500, bottom : 300
-    //     }, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : undefined, right : 500, bottom : 300
-    //     }, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : 100, right : undefined, bottom : 300
-    //     }, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : 100, right : 500, bottom : undefined
-    //     }, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testRoundRectConstructorNull', DEFAULT, () => {
+      const msg = 'testRoundRectConstructorNull';
+
+      try {
+        let roundRect = new drawing.RoundRect(null, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect(undefined, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : 100, right : 500, bottom : 300
+        }, null, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : 100, right : 500, bottom : 300
+        }, 50, null);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : 100, right : 500, bottom : 300
+        }, undefined, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : 100, right : 500, bottom : 300
+        }, 50, undefined);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : null, top : 100, right : 500, bottom : 300
+        }, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : null, right : 500, bottom : 300
+        }, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : 100, right : null, bottom : 300
+        }, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : 100, right : 500, bottom : null
+        }, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : undefined, top : 100, right : 500, bottom : 300
+        }, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : undefined, right : 500, bottom : 300
+        }, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : 100, right : undefined, bottom : 300
+        }, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : 100, right : 500, bottom : undefined
+        }, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_ROUNDRECT_0102
@@ -288,37 +288,37 @@ export default function roundRectTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testRoundRectConstructorMismatch', DEFAULT, () => {
-    //   const msg = 'testRoundRectConstructorMismatch';
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : 100, right : 500, bottom : 300
-    //     }, 50, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect({
-    //       left : 100, top : 100, right : 500, bottom : 300
-    //     }, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let roundRect = new drawing.RoundRect(‘s’, 50, 50);
-    //     console.info(msg + ' RoundRect succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testRoundRectConstructorMismatch', DEFAULT, () => {
+      const msg = 'testRoundRectConstructorMismatch';
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : 100, right : 500, bottom : 300
+        }, 50, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect({
+          left : 100, top : 100, right : 500, bottom : 300
+        }, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let roundRect = new drawing.RoundRect(‘s’, 50, 50);
+        console.info(msg + ' RoundRect succeeded');
+      } catch( e ) {
+        console.info(msg + ` RoundRect errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_ROUNDRECT_0103
@@ -361,10 +361,18 @@ export default function roundRectTest() {
 
       try {
         roundRect_.setCorner(drawing.CornerPos.BOTTOM_RIGHT_POS, 150, 150);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        let point1 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
+        expect(point1.x == 0 && point1.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded, point1：' + JSON.stringify(point1));
+        let point2 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
+        expect(point2.x == 150 && point2.y == 150).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point2：' + JSON.stringify(point2));
+        let point3 = roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
+        expect(point3.x == 0 && point3.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point33：' + JSON.stringify(point3));
+        let point4 = roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        expect(point4.x == 0 && point4.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point4：' + JSON.stringify(point4));
         console.info(msg + ' setAndGetCorner succeeded');
       } catch( e ) {
         console.info(msg + ` setAndGetCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -373,10 +381,18 @@ export default function roundRectTest() {
 
       try {
         roundRect_.setCorner(drawing.CornerPos.BOTTOM_RIGHT_POS, 100.1, 100.1);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        let point1 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
+        expect(point1.x == 0 && point1.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded, point1：' + JSON.stringify(point1));
+        let point2 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
+        expect(Math.floor(point2.x) == 100 && Math.floor(point2.y) == 100).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point2：' + JSON.stringify(point2));
+        let point3 = roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
+        expect(point3.x == 0 && point3.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point33：' + JSON.stringify(point3));
+        let point4 = roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        expect(point4.x == 0 && point4.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point4：' + JSON.stringify(point4));
         console.info(msg + ' setAndGetCorner succeeded');
       } catch( e ) {
         console.info(msg + ` setAndGetCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -385,10 +401,18 @@ export default function roundRectTest() {
 
       try {
         roundRect_.setCorner(drawing.CornerPos.BOTTOM_RIGHT_POS, 0, 100.1);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        let point1 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
+        expect(point1.x == 0 && point1.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded, point1：' + JSON.stringify(point1));
+        let point2 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
+        expect(point2.x == 0 && Math.floor(point2.y) == 100).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point2：' + JSON.stringify(point2));
+        let point3 = roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
+        expect(point3.x == 0 && point3.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point33：' + JSON.stringify(point3));
+        let point4 = roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        expect(point4.x == 0 && point4.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point4：' + JSON.stringify(point4));
         console.info(msg + ' setAndGetCorner succeeded');
       } catch( e ) {
         console.info(msg + ` setAndGetCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -397,10 +421,18 @@ export default function roundRectTest() {
 
       try {
         roundRect_.setCorner(drawing.CornerPos.BOTTOM_RIGHT_POS, 100, 0);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        let point1 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
+        expect(point1.x == 0 && point1.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded, point1：' + JSON.stringify(point1));
+        let point2 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
+        expect(point2.x == 100 && point2.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point2：' + JSON.stringify(point2));
+        let point3 = roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
+        expect(point3.x == 0 && point3.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point33：' + JSON.stringify(point3));
+        let point4 = roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        expect(point4.x == 0 && point4.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point4：' + JSON.stringify(point4));
         console.info(msg + ' setAndGetCorner succeeded');
       } catch( e ) {
         console.info(msg + ` setAndGetCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -409,10 +441,18 @@ export default function roundRectTest() {
 
       try {
         roundRect_.setCorner(drawing.CornerPos.BOTTOM_RIGHT_POS, -1, 100.1);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        let point1 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
+        expect(point1.x == 0 && point1.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded, point1：' + JSON.stringify(point1));
+        let point2 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
+        expect(point2.x == -1 && Math.floor(point2.y) == 100).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point2：' + JSON.stringify(point2));
+        let point3 = roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
+        expect(point3.x == 0 && point3.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point33：' + JSON.stringify(point3));
+        let point4 = roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        expect(point4.x == 0 && point4.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point4：' + JSON.stringify(point4));
         console.info(msg + ' setAndGetCorner succeeded');
       } catch( e ) {
         console.info(msg + ` setAndGetCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -421,10 +461,18 @@ export default function roundRectTest() {
 
       try {
         roundRect_.setCorner(drawing.CornerPos.BOTTOM_RIGHT_POS, 100, -1);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
-        roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        let point1 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
+        expect(point1.x == 0 && point1.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded, point1：' + JSON.stringify(point1));
+        let point2 = roundRect_.getCorner(drawing.CornerPos.BOTTOM_RIGHT_POS);
+        expect(point2.x == 100 && Math.floor(point2.y) == -1).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point2：' + JSON.stringify(point2));
+        let point3 = roundRect_.getCorner(drawing.CornerPos.TOP_LEFT_POS);
+        expect(point3.x == 0 && point3.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point33：' + JSON.stringify(point3));
+        let point4 = roundRect_.getCorner(drawing.CornerPos.TOP_RIGHT_POS);
+        expect(point4.x == 0 && point4.y == 0).assertTrue();
+        console.info(msg + ' setAndGetCorner succeeded，point4：' + JSON.stringify(point4));
         console.info(msg + ' setAndGetCorner succeeded');
       } catch( e ) {
         console.info(msg + ` setAndGetCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -519,60 +567,60 @@ export default function roundRectTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testRoundRectSetAndGetCornerMismatch', DEFAULT, () => {
-    //   const msg = 'testRoundRectSetAndGetCornerMismatch';
-    //   const roundRect_ = new drawing.RoundRect({
-    //     left : 0, top : 0, right : 0, bottom : 0
-    //   }, 0, 0);
-    //
-    //   try {
-    //     roundRect_.setCorner(drawing.CornerPos.BOTTOM_RIGHT_POS, 150, 150, 150);
-    //     console.info(msg + ' setCorner succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     roundRect_.setCorner(drawing.CornerPos.BOTTOM_RIGHT_POS, 150);
-    //     console.info(msg + ' setCorner succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     roundRect_.setCorner('s', 150, 150);
-    //     console.info(msg + ' setCorner succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS, drawing.CornerPos.BOTTOM_LEFT_POS);
-    //     console.info(msg + ' setCorner succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     roundRect_.getCorner();
-    //     console.info(msg + ' setCorner succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     roundRect_.getCorner(‘s’);
-    //     console.info(msg + ' setCorner succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testRoundRectSetAndGetCornerMismatch', DEFAULT, () => {
+      const msg = 'testRoundRectSetAndGetCornerMismatch';
+      const roundRect_ = new drawing.RoundRect({
+        left : 0, top : 0, right : 0, bottom : 0
+      }, 0, 0);
+
+      try {
+        roundRect_.setCorner(drawing.CornerPos.BOTTOM_RIGHT_POS, 150, 150, 150);
+        console.info(msg + ' setCorner succeeded');
+      } catch( e ) {
+        console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        roundRect_.setCorner(drawing.CornerPos.BOTTOM_RIGHT_POS, 150);
+        console.info(msg + ' setCorner succeeded');
+      } catch( e ) {
+        console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        roundRect_.setCorner('s', 150, 150);
+        console.info(msg + ' setCorner succeeded');
+      } catch( e ) {
+        console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        roundRect_.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS, drawing.CornerPos.BOTTOM_LEFT_POS);
+        console.info(msg + ' setCorner succeeded');
+      } catch( e ) {
+        console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        roundRect_.getCorner();
+        console.info(msg + ' setCorner succeeded');
+      } catch( e ) {
+        console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        roundRect_.getCorner(‘s’);
+        console.info(msg + ' setCorner succeeded');
+      } catch( e ) {
+        console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_ROUNDRECT_0203
@@ -631,29 +679,29 @@ export default function roundRectTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testRoundRectSetAndGetCornerAbnormal', DEFAULT, () => {
-    //   const msg = 'testRoundRectSetAndGetCornerAbnormal';
-    //   const roundRect_ = new drawing.RoundRect({
-    //     left : 0, top : 0, right : 0, bottom : 0
-    //   }, 0, 0);
-    //
-    //   try {
-    //     roundRect_.setCorner(10, 150, 150);
-    //     console.info(msg + ' setCorner succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     roundRect_.getCorner(10);
-    //     console.info(msg + ' setCorner succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    // });
+    it('testRoundRectSetAndGetCornerAbnormal', DEFAULT, () => {
+      const msg = 'testRoundRectSetAndGetCornerAbnormal';
+      const roundRect_ = new drawing.RoundRect({
+        left : 0, top : 0, right : 0, bottom : 0
+      }, 0, 0);
+
+      try {
+        roundRect_.setCorner(10, 150, 150);
+        console.info(msg + ' setCorner succeeded');
+      } catch( e ) {
+        console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        roundRect_.getCorner(10);
+        console.info(msg + ' setCorner succeeded');
+      } catch( e ) {
+        console.info(msg + ` setCorner errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_ROUNDRECT_0300
@@ -757,36 +805,36 @@ export default function roundRectTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testRoundRectOffsetMismatch', DEFAULT, () => {
-    //   const msg = 'testRoundRectOffsetMismatch';
-    //   const roundRect_ = new drawing.RoundRect({
-    //     left : 0, top : 0, right : 0, bottom : 0
-    //   }, 0, 0);
-    //
-    //   try {
-    //     roundRect_.offset(100, 100, 100);
-    //     console.info(msg + ' offset succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` offset errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     roundRect_.offset(100);
-    //     console.info(msg + ' offset succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` offset errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     roundRect_.offset('s', 100);
-    //     console.info(msg + ' offset succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` offset errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testRoundRectOffsetMismatch', DEFAULT, () => {
+      const msg = 'testRoundRectOffsetMismatch';
+      const roundRect_ = new drawing.RoundRect({
+        left : 0, top : 0, right : 0, bottom : 0
+      }, 0, 0);
+
+      try {
+        roundRect_.offset(100, 100, 100);
+        console.info(msg + ' offset succeeded');
+      } catch( e ) {
+        console.info(msg + ` offset errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        roundRect_.offset(100);
+        console.info(msg + ' offset succeeded');
+      } catch( e ) {
+        console.info(msg + ` offset errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        roundRect_.offset('s', 100);
+        console.info(msg + ' offset succeeded');
+      } catch( e ) {
+        console.info(msg + ` offset errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_ROUNDRECT_0303

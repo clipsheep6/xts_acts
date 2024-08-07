@@ -134,33 +134,33 @@ export default function shadowEffectTest() {
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    // it('testShaderEffectCreateColorShaderMismatch', DEFAULT, () => {
-    //   const msg = 'testShaderEffectCreateColorShaderMismatch';
-    //
-    //   try {
-    //     drawing.ShaderEffect.createColorShader(0x00000000, 0x00000000);
-    //     console.info(msg + ' createColorShader successed');
-    //   } catch( e ) {
-    //     console.info(msg + ` createColorShader errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     drawing.ShaderEffect.createColorShader();
-    //     console.info(msg + ' createColorShader successed');
-    //   } catch( e ) {
-    //     console.info(msg + ` createColorShader errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     drawing.ShaderEffect.createColorShader('s');
-    //     console.info(msg + ' createColorShader successed');
-    //   } catch( e ) {
-    //     console.info(msg + ` createColorShader errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testShaderEffectCreateColorShaderMismatch', DEFAULT, () => {
+      const msg = 'testShaderEffectCreateColorShaderMismatch';
+
+      try {
+        drawing.ShaderEffect.createColorShader(0x00000000, 0x00000000);
+        console.info(msg + ' createColorShader successed');
+      } catch( e ) {
+        console.info(msg + ` createColorShader errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        drawing.ShaderEffect.createColorShader();
+        console.info(msg + ' createColorShader successed');
+      } catch( e ) {
+        console.info(msg + ` createColorShader errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        drawing.ShaderEffect.createColorShader('s');
+        console.info(msg + ' createColorShader successed');
+      } catch( e ) {
+        console.info(msg + ` createColorShader errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_SHADEREFFECT_0204
@@ -471,38 +471,38 @@ export default function shadowEffectTest() {
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    // it('testShaderEffectCreateLinearGradientMismatch', DEFAULT, () => {
-    //   const msg = 'testShaderEffectCreateLinearGradientMismatch';
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setMatrix([1, 0, 0, 1])
-    //     let shaderEffect = drawing.ShaderEffect.createLinearGradient({x: 100.1, y: 100.1}, {x: 300.1, y: 300.1},
-    //       [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT,[0.1,0.9], matrix, matrix);
-    //     console.info(msg + ` createLinearGradient create successed,shaderEffect:` + JSON.stringify(shaderEffect));
-    //   } catch( e ) {
-    //     console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let shaderEffect = drawing.ShaderEffect.createLinearGradient({x: 100.1, y: 100.1}, {x: 300.1, y: 300.1}, [0xFF00FF00, 0xFFFF0000]);
-    //     console.info(msg + ` createLinearGradient create successed,shaderEffect:` + JSON.stringify(shaderEffect));
-    //   } catch( e ) {
-    //     console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix = new drawing.Matrix();
-    //     matrix.setMatrix([1, 0, 0, 1])
-    //     let shaderEffect = drawing.ShaderEffect.createLinearGradient('s', {x: 300.1, y: 300.1}, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT,[0.1,0.9], matrix);
-    //     console.info(msg + ` createLinearGradient create successed,shaderEffect:` + JSON.stringify(shaderEffect));
-    //   } catch( e ) {
-    //     console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testShaderEffectCreateLinearGradientMismatch', DEFAULT, () => {
+      const msg = 'testShaderEffectCreateLinearGradientMismatch';
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setMatrix([1, 0, 0, 1])
+        let shaderEffect = drawing.ShaderEffect.createLinearGradient({x: 100.1, y: 100.1}, {x: 300.1, y: 300.1},
+          [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT,[0.1,0.9], matrix, matrix);
+        console.info(msg + ` createLinearGradient create successed,shaderEffect:` + JSON.stringify(shaderEffect));
+      } catch( e ) {
+        console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let shaderEffect = drawing.ShaderEffect.createLinearGradient({x: 100.1, y: 100.1}, {x: 300.1, y: 300.1}, [0xFF00FF00, 0xFFFF0000]);
+        console.info(msg + ` createLinearGradient create successed,shaderEffect:` + JSON.stringify(shaderEffect));
+      } catch( e ) {
+        console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix = new drawing.Matrix();
+        matrix.setMatrix([1, 0, 0, 1])
+        let shaderEffect = drawing.ShaderEffect.createLinearGradient('s', {x: 300.1, y: 300.1}, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT,[0.1,0.9], matrix);
+        console.info(msg + ` createLinearGradient create successed,shaderEffect:` + JSON.stringify(shaderEffect));
+      } catch( e ) {
+        console.info(msg + ` create errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_SHADEREFFECT_0304
@@ -1083,43 +1083,43 @@ export default function shadowEffectTest() {
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    // it('testShaderEffectCreateSweepGradientMismatch', DEFAULT, () => {
-    //   const msg = 'testShaderEffectCreateSweepGradientMismatch';
-    //
-    //   try {
-    //     let matrix_ = new drawing.Matrix();
-    //     matrix_.setMatrix([ 1, 0, 0, 1 ])
-    //     drawing.ShaderEffect.createSweepGradient({
-    //       x : - 100.1, y : - 100.1
-    //     }, [ 0xFF00FF00, 0xFFFF0000 ], drawing.TileMode.REPEAT, 30, 90, 2, matrix_, matrix_);
-    //     console.info(msg + ' createSweepGradient successed');
-    //   } catch( e ) {
-    //     console.info(msg + ` createSweepGradient errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix_ = new drawing.Matrix();
-    //     matrix_.setMatrix([ 1, 0, 0, 1 ])
-    //     drawing.ShaderEffect.createSweepGradient({
-    //       x : - 100.1, y : - 100.1
-    //     }, [ 0xFF00FF00, 0xFFFF0000 ], drawing.TileMode.REPEAT, 30);
-    //     console.info(msg + ' createSweepGradient successed');
-    //   } catch( e ) {
-    //     console.info(msg + ` createSweepGradient errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let matrix_ = new drawing.Matrix();
-    //     matrix_.setMatrix([ 1, 0, 0, 1 ])
-    //     drawing.ShaderEffect.createSweepGradient('s', [ 0xFF00FF00, 0xFFFF0000 ], drawing.TileMode.REPEAT, 30, 90, 2, matrix_);
-    //     console.info(msg + ' createSweepGradient successed');
-    //   } catch( e ) {
-    //     console.info(msg + ` createSweepGradient errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testShaderEffectCreateSweepGradientMismatch', DEFAULT, () => {
+      const msg = 'testShaderEffectCreateSweepGradientMismatch';
+
+      try {
+        let matrix_ = new drawing.Matrix();
+        matrix_.setMatrix([ 1, 0, 0, 1 ])
+        drawing.ShaderEffect.createSweepGradient({
+          x : - 100.1, y : - 100.1
+        }, [ 0xFF00FF00, 0xFFFF0000 ], drawing.TileMode.REPEAT, 30, 90, 2, matrix_, matrix_);
+        console.info(msg + ' createSweepGradient successed');
+      } catch( e ) {
+        console.info(msg + ` createSweepGradient errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix_ = new drawing.Matrix();
+        matrix_.setMatrix([ 1, 0, 0, 1 ])
+        drawing.ShaderEffect.createSweepGradient({
+          x : - 100.1, y : - 100.1
+        }, [ 0xFF00FF00, 0xFFFF0000 ], drawing.TileMode.REPEAT, 30);
+        console.info(msg + ' createSweepGradient successed');
+      } catch( e ) {
+        console.info(msg + ` createSweepGradient errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let matrix_ = new drawing.Matrix();
+        matrix_.setMatrix([ 1, 0, 0, 1 ])
+        drawing.ShaderEffect.createSweepGradient('s', [ 0xFF00FF00, 0xFFFF0000 ], drawing.TileMode.REPEAT, 30, 90, 2, matrix_);
+        console.info(msg + ' createSweepGradient successed');
+      } catch( e ) {
+        console.info(msg + ` createSweepGradient errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_SHADEREFFECT_0504
