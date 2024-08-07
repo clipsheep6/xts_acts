@@ -46,7 +46,7 @@ static napi_value testUidna_labelToASCII(napi_env env, napi_callback_info)
     UChar dest16[10];
     UIDNAInfo info1 = UIDNA_INFO_INITIALIZER;
     int32_t capacity = 10;
-    uidna_labelToASCII(uts46, sharps16, -1, dest16 , capacity, &info1, &errorCode);
+    uidna_labelToASCII(uts46, sharps16, -1, dest16, capacity, &info1, &errorCode);
     bool flagA = (uts46 != NULL);
     bool flag = (flagA & U_SUCCESS(errorCode));
     napi_value result = nullptr;
@@ -194,9 +194,9 @@ static napi_value Init(napi_env env, napi_value exports)
             nullptr, napi_default, nullptr},
         {"testuidna_nameToUnicode", nullptr, testUidna_nameToUnicode, nullptr, nullptr,
             nullptr, napi_default, nullptr},
-        {"testuidna_labelToASCLL_UTF8", nullptr, testUidna_labelToASCLL_UTF8,nullptr,
+        {"testuidna_labelToASCLL_UTF8", nullptr, testUidna_labelToASCLL_UTF8, nullptr,
             nullptr, nullptr, napi_default, nullptr},
-        {"testuidna_labelToUnicodeUTF8", nullptr, testUidna_labelToUnicodeUTF8,nullptr,
+        {"testuidna_labelToUnicodeUTF8", nullptr, testUidna_labelToUnicodeUTF8, nullptr,
             nullptr, nullptr, napi_default, nullptr},
         {"testuidna_nameToASCII_UTF8", nullptr, testUidna_nameToASCII_UTF8, nullptr,
             nullptr, nullptr, napi_default, nullptr},
