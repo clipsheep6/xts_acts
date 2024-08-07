@@ -193,33 +193,33 @@ export default function imageFilterTest() {
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    // it('testImageFilterCreateBlurImageFilterMismatch' , DEFAULT , () => {
-    //   const msg = 'testImageFilterCreateBlurImageFilterMismatch';
-    //
-    //   try {
-    //     let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, uiEffect.TileMode.CLAMP,null,10);
-    //     console.info(msg + ' createBlurImageFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` createBlurImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10);
-    //     console.info(msg + ' createBlurImageFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` createBlurImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let imgFilter = drawing.ImageFilter.createBlurImageFilter('s', 10, uiEffect.TileMode.CLAMP);
-    //     console.info(msg + ' createBlurImageFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` createBlurImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testImageFilterCreateBlurImageFilterMismatch' , DEFAULT , () => {
+      const msg = 'testImageFilterCreateBlurImageFilterMismatch';
+
+      try {
+        let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, uiEffect.TileMode.CLAMP,null,10);
+        console.info(msg + ' createBlurImageFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` createBlurImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10);
+        console.info(msg + ' createBlurImageFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` createBlurImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let imgFilter = drawing.ImageFilter.createBlurImageFilter('s', 10, uiEffect.TileMode.CLAMP);
+        console.info(msg + ' createBlurImageFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` createBlurImageFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_IMAGEFILTER_0104
@@ -376,36 +376,36 @@ export default function imageFilterTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testImageFilterCreateFromColorFilterMismatch' , DEFAULT , () => {
-    //   const msg = 'testImageFilterCreateFromColorFilterMismatch';
-    //
-    //   try {
-    //     let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
-    //     let imgFilter1 = drawing.ImageFilter.createBlurImageFilter(5, 10, uiEffect.TileMode.CLAMP, null);
-    //     let imgFilter2 = drawing.ImageFilter.createFromColorFilter(colorFilter, imgFilter1, imgFilter1);
-    //     console.info(msg + ' createFromColorFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` createFromColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
-    //     let imgFilter2 = drawing.ImageFilter.createFromColorFilter(colorFilter);
-    //     console.info(msg + ' createFromColorFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` createFromColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     let imgFilter1 = drawing.ImageFilter.createBlurImageFilter(5, 10, uiEffect.TileMode.CLAMP, null);
-    //     let imgFilter2 = drawing.ImageFilter.createFromColorFilter('s', imgFilter1);
-    //     console.info(msg + ' createFromColorFilter succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` createFromColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testImageFilterCreateFromColorFilterMismatch' , DEFAULT , () => {
+      const msg = 'testImageFilterCreateFromColorFilterMismatch';
+
+      try {
+        let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
+        let imgFilter1 = drawing.ImageFilter.createBlurImageFilter(5, 10, uiEffect.TileMode.CLAMP, null);
+        let imgFilter2 = drawing.ImageFilter.createFromColorFilter(colorFilter, imgFilter1, imgFilter1);
+        console.info(msg + ' createFromColorFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` createFromColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
+        let imgFilter2 = drawing.ImageFilter.createFromColorFilter(colorFilter);
+        console.info(msg + ' createFromColorFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` createFromColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let imgFilter1 = drawing.ImageFilter.createBlurImageFilter(5, 10, uiEffect.TileMode.CLAMP, null);
+        let imgFilter2 = drawing.ImageFilter.createFromColorFilter('s', imgFilter1);
+        console.info(msg + ' createFromColorFilter succeeded');
+      } catch( e ) {
+        console.info(msg + ` createFromColorFilter errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
   })
 }
