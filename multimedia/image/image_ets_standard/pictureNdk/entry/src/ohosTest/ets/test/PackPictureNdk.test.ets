@@ -1,0 +1,2132 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, afterAll, afterEach, it, expect } from '@ohos/hypium';
+import ndkTest from 'libPictureNdk.so';
+import image from "@ohos.multimedia.image";
+import fs from '@ohos.file.fs';
+import hilog from '@ohos.hilog';
+
+const domain = 0x0000;
+const testTag = 'pictureNdkTest';
+const testFileHeic = 'HDRVividSingleLayer.heic';
+const testFileJpg = 'test.jpg';
+const testFileGainMapHeic = 'HEIFISOMultiChannelBaseColor0512V12.heic';
+const testFileGainMapJpg = 'JPEGISOSingle.jpg';
+const testFileUnrefocusHeic = 'xxxx.heic';
+const testFileUnrefocusJpg = 'AllAuxiliaryPictures_exclude_fragment.jpg';
+const testFileDepthHeic = 'HeicDepthMap.heic';
+const testFileDepthJpg = 'JpegDepthMap.jpg';
+const testFileLinearmapHeic = 'HeicLinearMap.heic';
+const testFileLinearmapJpg = 'JpegLinearMap.jpg';
+const testFileFragmentHeic = 'HeicFragmentMap.heic';
+const testFileFragmentJpg = 'JpegFragmentMap.jpg';
+
+const testFileGainMap = 'GainMap.dat';
+const testFileUnrefocus = 'UnrefocusMap.dat';
+const testFileDepth = 'DepthMap.dat';
+const testFileLinear = 'LinearMap.dat';
+const testFileFragment = 'FragmentMap.dat';
+const testFileGainMapSize: image.Size = { height: 960, width: 720 };
+const testFileUnrefocusSize: image.Size = { height: 4096, width: 3072 };
+const testFileDepthSize: image.Size = { height: 4096, width: 3072 };
+const testFileLinearSize: image.Size = { height: 4096, width: 3072 };
+const testFileFragmentSize: image.Size = { height: 4096, width: 3072 };
+const imageFormatJpeg = 'image/jpeg';
+const imageFormatHeif = 'image/heif';
+const imageLengthKey = 'ImageLength';
+const imageWidthKey = 'ImageWidth';
+const imageLengthValue = '15';
+const imageWidthValue = '20';
+
+const imageFragmentHeightKey = 'FragmentImageHeight';
+const imageFragmentWidthKey = 'FragmentImageWidth';
+const imageFragmentHeightValue = '15';
+const imageFragmentWidthValue = '20';
+
+const GAINMAP = image.AuxiliaryPictureType.GAINMAP;
+const DEPTH_MAP = image.AuxiliaryPictureType.DEPTH_MAP;
+const UNREFOCUS_MAP = image.AuxiliaryPictureType.UNREFOCUS_MAP;
+const LINEAR_MAP = image.AuxiliaryPictureType.LINEAR_MAP;
+const FRAGMENT_MAP = image.AuxiliaryPictureType.FRAGMENT_MAP;
+
+const IMAGE_BAD_PARAMETER = 401
+
+function getFilePath(fileName: string): string {
+  let filePath = AppStorage.get('pathDir') + "/" + fileName;
+  return filePath;
+}
+
+function getCachePath(fileName: string): string {
+  let filePath = AppStorage.get('cacheDir') + "/" + fileName;
+  return filePath;
+}
+
+function compareArray(array1: Array<number>, array2: Array<number>): boolean {
+  if (array1.length != array2.length) {
+    return false;
+  }
+
+  for (let i = 0; i < array1.length; i++) {
+    if (array1[i] != array2[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function compareArrayBuffer(buffer1: ArrayBuffer, buffer2: ArrayBuffer): boolean {
+  if (buffer1.byteLength != buffer2.byteLength) {
+    return false;
+  }
+
+  let view1 = new Uint8Array(buffer1);
+  let view2 = new Uint8Array(buffer2);
+  for (let i = 0; i < view1.length; i++) {
+    if (view1[i] != view2[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function createDefaultExifMetadata(): image.Metadata {
+  let metadata: image.Metadata = ndkTest.MetadataCreate(image.MetadataType.EXIF_METADATA);
+  ndkTest.MetadataSetProperty(imageLengthKey, imageLengthValue);
+  ndkTest.MetadataSetProperty(imageWidthKey, imageWidthValue);
+  return metadata;
+}
+
+function createDefaultFragemntMetadata(): image.Metadata {
+  let metadata: image.Metadata = ndkTest.MetadataCreate(image.MetadataType.FRAGMENT_METADATA);
+  ndkTest.MetadataSetProperty(imageFragmentHeightKey, imageFragmentHeightValue);
+  ndkTest.MetadataSetProperty(imageFragmentWidthKey, imageFragmentWidthValue);
+  return metadata;
+}
+
+function createFillBuffer(size: number, value: number): ArrayBuffer {
+  let buffer = new ArrayBuffer(size);
+  let view = new Uint8Array(buffer);
+  view.fill(value);
+  return buffer;
+}
+
+async function sleep(delay: number): Promise<void> {
+  return new Promise((resolve, _) => {
+    setTimeout(async () => {
+      resolve();
+    }, delay);
+  });
+};
+
+class Logger {
+  testNum: string;
+
+  constructor(testNum: string) {
+    this.testNum = testNum;
+  }
+
+  log(msg: string) {
+    hilog.info(domain, testTag, 'case: %{public}s msg:%{public}s', this.testNum, msg);
+  }
+}
+
+export default function packPictureNdkTest() {
+  describe('packPictureNdkTest', () => {
+    afterEach(() => {
+      try {
+        ndkTest.releaseTestContext();
+      } catch (err) {
+        hilog.error(domain, testTag, `afterAll: Test exception ` + err);
+      }
+    })
+
+    const testCreateAuxiliaryPicture = (type: image.AuxiliaryPictureType) => {
+      let auxSize: image.Size = {height: 15, width: 20};
+      let auxBuffer = createFillBuffer(1200, 128);
+      let auxPicture: image.AuxiliaryPicture =
+        ndkTest.CreateAuxiliaryPicture(auxBuffer, auxSize, type);
+      return auxPicture;
+    }
+
+    const testCreatePictureByPixelMap = (logger: Logger, fileName: string) => {
+      let filePath = getFilePath(fileName);
+      logger.log(`create image source from file: ${filePath}`);
+      ndkTest.createTestImageSource(filePath);
+      ndkTest.createTestPixelmapByImageSource(image.PixelMapFormat.NV21);
+      let result = ndkTest.CreatePictureByPixelmap();
+      logger.log(`create picture by pixelmap: ${result == 0 ? "success" : "failed"}`);
+      expect(result).assertEqual(0);
+    }
+
+    const testCreatePictureByImageSource = (logger: Logger, fileName: string,
+                                            auxTypes?: Array<image.AuxiliaryPictureType>) => {
+      let filePath = getFilePath(fileName);
+      logger.log(`create image source from file: ${filePath}`);
+      ndkTest.createTestImageSource(filePath);
+      ndkTest.CreatePictureDecodingOptions();
+      if (auxTypes != undefined) {
+        expect(ndkTest.SetDesiredAuxiliaryPictures(auxTypes.length, auxTypes)).assertEqual(0);
+      }
+      let result = ndkTest.CreatePictureByImageSource();
+      logger.log(`create picture by ImageSource: ${result == 0 ? "success" : "failed"}`);
+      expect(result).assertEqual(0);
+    }
+
+    const getBuffer = (fileName: string) => {
+      let filePath = getFilePath(fileName);
+      let file = fs.openSync(filePath);
+      const stats = fs.statSync(filePath);
+      const fileSize = stats.size;
+      const bufferRead = new ArrayBuffer(fileSize)
+      fs.readSync(file.fd, bufferRead)
+      return bufferRead
+    }
+
+    const addAuxiliaryPicture = (auxiliaryPicture: image.AuxiliaryPictureType) => {
+      let fileName = '';
+      let auxSize: image.Size = { width: 0, height: 0 };
+      switch (auxiliaryPicture) {
+        case GAINMAP: 
+          fileName = testFileGainMap;
+          auxSize = testFileGainMapSize;
+          break;
+        case UNREFOCUS_MAP: 
+          fileName = testFileUnrefocus;
+          auxSize = testFileUnrefocusSize;
+          break;
+        case DEPTH_MAP: 
+          fileName = testFileDepth;
+          auxSize = testFileDepthSize;
+          break;
+        case LINEAR_MAP: 
+          fileName = testFileLinear;
+          auxSize = testFileLinearSize;
+          break;
+        case FRAGMENT_MAP: 
+          fileName = testFileFragment;
+          auxSize = testFileFragmentSize;
+          break;  
+        default: break;
+      }
+      let auxBuffer = getBuffer(fileName);
+      
+
+      let auxPicture: image.AuxiliaryPicture =
+        ndkTest.CreateAuxiliaryPicture(auxBuffer, auxSize, auxiliaryPicture);
+
+      ndkTest.SetAuxiliaryPicture(auxiliaryPicture, auxPicture);
+    }
+
+    const createPicturePackingOption = (packOpt: image.PackingOption) => {
+      ndkTest.createTestImagePacker();
+      ndkTest.createTestPackingOptions();
+      ndkTest.setDynamicRangeToTestPackingOptions(packOpt.desiredDynamicRange);
+      ndkTest.setMimeTypeToTestPackingOptions(packOpt.format);
+      ndkTest.setNeedsPackPropertiesToTestPackingOptions(packOpt.needsPackProperties);
+    }
+
+    const getWtriteFileName = (file: string, pictureFrom: string, packOpt: image.PackingOption,
+                              auxiliaryPicture?: Array<image.AuxiliaryPictureType>) => {
+      let writeFileName = "pack_" + file.substring(0, file.indexOf(".")) + "_" + pictureFrom + "_";
+      if (packOpt.desiredDynamicRange == 0) {
+        writeFileName = writeFileName + "DynamicRange_Auto_";
+      } else {
+        writeFileName = writeFileName + "DynamicRange_Sdr_";
+      }
+      if (packOpt.needsPackProperties) {
+        writeFileName = writeFileName + "NeedPackPropertyies_True_";
+      } else {
+        writeFileName = writeFileName + "NeedPackPropertyies_False_";
+      }
+      if (auxiliaryPicture) {
+        for (let i = 0; i < auxiliaryPicture.length; i++) {
+          writeFileName = writeFileName + auxiliaryPicture[i] + "_";
+        }
+      }
+      writeFileName = writeFileName + file.slice(file.indexOf("."));
+      return writeFileName;
+    }
+
+    const testPackPicture = (logger: Logger, done: Function, fileName: string, type: string, packOpt: image.PackingOption,
+      interfaceName: string, auxTypes?: Array<image.AuxiliaryPictureType>) => {
+      logger.log('begin');
+      try {
+        if (type == "PictureFromPixelMap") {
+          testCreatePictureByPixelMap(logger, fileName);
+          if (auxTypes) {
+            for (let i = 0; i < auxTypes.length; i++) {
+              addAuxiliaryPicture(auxTypes[i])
+            }
+          }
+        } else {
+          testCreatePictureByImageSource(logger, fileName, auxTypes);
+        }
+        if (auxTypes) {
+          for (let i = 0; i < auxTypes.length; i++) {
+            expect(ndkTest.GetAuxiliaryPicture(auxTypes[i]) != undefined).assertTrue();
+          }
+        }
+        createPicturePackingOption(packOpt);
+        if (interfaceName == "PackToDataFromPicture") {
+          let size: image.Size = ndkTest.GetImageSourceInfoSize();
+          logger.log(`GetImageSourceInfoSize: { width: ${size.width}, height: ${size.height} }`);
+          let buffer = new ArrayBuffer(size.width * size.height * 4);
+          expect(ndkTest.PackToDataFromPicture(buffer)).assertEqual(0);
+        } else {
+          let writeFileName = getWtriteFileName(fileName, type, packOpt, auxTypes);
+          let writeFile = getCachePath(writeFileName);
+          logger.log(`write image filePath ` + writeFile);
+          let file = fs.openSync(writeFile, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+          expect(ndkTest.PackToFileFromPicture(file.fd)).assertEqual(0);
+          fs.closeSync(file.fd);
+        }
+        done();
+      } catch (error) {
+        logger.log(`Test exception: ${JSON.stringify(error)}`);
+        expect().assertFail();
+        done();
+      }
+    }
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0100
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture");
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0200
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture");
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0300
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture");
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0400
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture");
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0500
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture");
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0600
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture");
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0700
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture");
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0800
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_JPEG_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture");
+    })
+
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0100
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture");
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0200
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture");
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0300
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture");
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0400
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture");
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0500
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture");
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0600
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture");
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0700
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture");
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0800
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with only mainPicture
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKMAINPICTURE_HEIF_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture");
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0100
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileGainMapJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [GAINMAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0200
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileGainMapJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [GAINMAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0300
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileGainMapJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [GAINMAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0400
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileGainMapJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [GAINMAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0500
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileGainMapJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [GAINMAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0600
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileGainMapJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [GAINMAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0700
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileGainMapJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [GAINMAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0800
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_JPEG_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileGainMapJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [GAINMAP]);
+    })
+    
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0100
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileGainMapHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [GAINMAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0200
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileGainMapHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [GAINMAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0300
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileGainMapHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [GAINMAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0400
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileGainMapHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [GAINMAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0500
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileGainMapHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [GAINMAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0600
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileGainMapHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [GAINMAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0700
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileGainMapHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [GAINMAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0800
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with GAINMAP
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKGAINMAP_HEIF_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileGainMapHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [GAINMAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0100
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileUnrefocusJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [UNREFOCUS_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0200
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileUnrefocusJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [UNREFOCUS_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0300
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileUnrefocusJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [UNREFOCUS_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0400
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileUnrefocusJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [UNREFOCUS_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0500
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileUnrefocusJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [UNREFOCUS_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0600
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileUnrefocusJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [UNREFOCUS_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0700
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileUnrefocusJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [UNREFOCUS_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0800
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_JPEG_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileUnrefocusJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [UNREFOCUS_MAP]);
+    })
+    
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0100
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileUnrefocusHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [UNREFOCUS_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0200
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileUnrefocusHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [UNREFOCUS_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0300
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileUnrefocusHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [UNREFOCUS_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0400
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileUnrefocusHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [UNREFOCUS_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0500
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileUnrefocusHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [UNREFOCUS_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0600
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileUnrefocusHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [UNREFOCUS_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0700
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileUnrefocusHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [UNREFOCUS_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0800
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with UNREFOCUS
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKUNREFOCUS_HEIF_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileUnrefocusHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [UNREFOCUS_MAP]);
+    })
+
+
+
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0100
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileDepthJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [DEPTH_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0200
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileDepthJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [DEPTH_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0300
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileDepthJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [DEPTH_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0400
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileDepthJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [DEPTH_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0500
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileDepthJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [DEPTH_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0600
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileDepthJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [DEPTH_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0700
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileDepthJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [DEPTH_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0800
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_JPEG_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileDepthJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [DEPTH_MAP]);
+    })
+    
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0100
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileDepthHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [DEPTH_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0200
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileDepthHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [DEPTH_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0300
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileDepthHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [DEPTH_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0400
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileDepthHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [DEPTH_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0500
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileDepthHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [DEPTH_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0600
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileDepthHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [DEPTH_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0700
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileDepthHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [DEPTH_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0800
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with DEPTH
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKDEPTH_HEIF_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileDepthHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [DEPTH_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0100
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileLinearmapJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [LINEAR_MAP]);
+    })    
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0200
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileLinearmapJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [LINEAR_MAP]);
+    })    
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0300
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileLinearmapJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [LINEAR_MAP]);
+    })    
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0400
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileLinearmapJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [LINEAR_MAP]);
+    })    
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0500
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileLinearmapJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [LINEAR_MAP]);
+    })    
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0600
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileLinearmapJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [LINEAR_MAP]);
+    })    
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0700
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileLinearmapJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [LINEAR_MAP]);
+    })    
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0800
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_JPEG_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileLinearmapJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [LINEAR_MAP]);
+    })    
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0100
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileLinearmapHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [LINEAR_MAP]);
+    })    
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0200
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileLinearmapHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [LINEAR_MAP]);
+    })    
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0300
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileLinearmapHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [LINEAR_MAP]);
+    })    
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0400
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileLinearmapHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [LINEAR_MAP]);
+    })    
+
+     /*
+         * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0500
+         * @tc.name      : testPackToDataFromPicture for HEIF
+         * @tc.desc      : Test pack data to ArrayBuffer from picture with LINEAR
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level 1
+         */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileLinearmapHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [LINEAR_MAP]);
+    })    
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0600
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileLinearmapHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [LINEAR_MAP]);
+    })    
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0700
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileLinearmapHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [LINEAR_MAP]);
+    })    
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0800
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with LINEAR
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKLINEAR_HEIF_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileLinearmapHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [LINEAR_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0100
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileFragmentJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [FRAGMENT_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0200
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileFragmentJpg, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [FRAGMENT_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0300
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileFragmentJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [FRAGMENT_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0400
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileFragmentJpg, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [FRAGMENT_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0500
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileFragmentJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [FRAGMENT_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0600
+     * @tc.name      : testPackToDataFromPicture for JPEG
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileFragmentJpg, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [FRAGMENT_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0700
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileFragmentJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [FRAGMENT_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0800
+     * @tc.name      : testPackToFileFromPicture for JPEG
+     * @tc.desc      : Test pack data to file from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_JPEG_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatJpeg,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileFragmentJpg, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [FRAGMENT_MAP]);
+    })
+
+            /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0100
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0100', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0100");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileFragmentHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [FRAGMENT_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0200
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0200', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0200");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileFragmentHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [FRAGMENT_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0300
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0300', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0300");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileFragmentHeic, "PictureFromPixelMap", packOpt, "PackToDataFromPicture", [FRAGMENT_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0400
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0400', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0400");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileFragmentHeic, "PictureFromPixelMap", packOpt, "PackToFileFromPicture", [FRAGMENT_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0500
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0500', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0500");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileFragmentHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [FRAGMENT_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0600
+     * @tc.name      : testPackToDataFromPicture for HEIF
+     * @tc.desc      : Test pack data to ArrayBuffer from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0600', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0600");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileFragmentHeic, "PictureFromImageSource", packOpt, "PackToDataFromPicture", [FRAGMENT_MAP]);
+    })
+
+    /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0700
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+    it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0700', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0700");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 0,
+        needsPackProperties: true
+      }
+      testPackPicture(mlg, done, testFileFragmentHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [FRAGMENT_MAP]);
+    })
+
+     /*
+     * @tc.number    : SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0800
+     * @tc.name      : testPackToFileFromPicture for HEIF
+     * @tc.desc      : Test pack data to file from picture with FRAGMENT
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 1
+     */
+     it('SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0800', 0, async (done: Function) => {
+      let mlg = new Logger("SUB_MULTIMEDIA_PICTURE_NDK_PACKFRAGMENT_HEIF_0800");
+      let packOpt: image.PackingOption = {
+        format: imageFormatHeif,
+        quality: 100,
+        desiredDynamicRange: 1,
+        needsPackProperties: false
+      }
+      testPackPicture(mlg, done, testFileFragmentHeic, "PictureFromImageSource", packOpt, "PackToFileFromPicture", [FRAGMENT_MAP]);
+    })
+  })
+}
