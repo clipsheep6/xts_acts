@@ -33,16 +33,6 @@ const CURRENT_BUNDLE_NAME = 'com.hits.stateinfo.isterminating';
 function sleep(time: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, time))
 }
-
-function endSubscriber(done: Function, subscriber: commonEvent.CommonEventSubscriber): void {
-  try {
-    commonEvent.unsubscribe(subscriber);
-  } catch (error) {
-  }
-  sleep(800);
-  done();
-}
-
 export default function getForegroundApplicationsTest() {
   let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 
@@ -54,22 +44,6 @@ export default function getForegroundApplicationsTest() {
   let appGegForgrdAppsWant: Want = {
     bundleName: 'com.hits.stateinfo.getforgroundapps',
     abilityName: 'EntryAbility'
-  }
-  let app2Want: Want = {
-    bundleName: 'com.hits.stateinfo.appb',
-    abilityName: 'EntryAbility'
-  }
-  let app3Want: Want = {
-    bundleName: 'com.hits.stateinfo.appc',
-    abilityName: 'EntryAbility'
-  }
-  let testOnApplicationStateAbilityWant: Want = {
-    bundleName: 'com.hits.stateinfo.isterminating',
-    abilityName: 'TestOnApplicationStateAbility'
-  }
-  let testAbility2Want: Want = {
-    bundleName: 'com.hits.stateinfo.isterminating',
-    abilityName: 'TestAbility2'
   }
   let flag: boolean = false;
 
@@ -112,9 +86,10 @@ export default function getForegroundApplicationsTest() {
               appManager.getForegroundApplications(
                 (error: BusinessError, appStateDataArray: Array<appManager.AppStateData>) => {
                   if (error) {
-                    hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0300 error,
-                  error code is: ${error.code}, error message is: ${error.message}`);
+                    hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0300,
+                  getForegroundApplications error code is: ${error.code}, error message is: ${error.message}`);
                     reject(error)
+                    return;
                   }
                   let result = false;
                   for (let index = 0; index < appStateDataArray.length; index++) {
@@ -131,26 +106,32 @@ export default function getForegroundApplicationsTest() {
           let result = await functionGetForegroundApplications();
           expect(result).assertTrue();
           //订阅辅助app结果
+          let dataCode: number | undefined = APP_GET_APPLICATION_STATE_FAIL;
           subscriber = await commonEvent.createSubscriber(hits_StateInfo_Register);
           let subscribeCallBack = (err: base.BusinessError, data: commonEvent.CommonEventData) => {
-            hilog.error(Domain, TAG,
+            hilog.info(Domain, TAG,
               `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0300
               subscribeCallBack data:${JSON.stringify(data)} `);
             flag = true;
-            expect(data.code).assertEqual(APP_GET_APPLICATION_STATE_SUCCESS);
-            endSubscriber(done, subscriber);
+            dataCode = data.code;
           }
           commonEvent.subscribe(subscriber, subscribeCallBack);
           await sleep(1000);
           //启动辅助app
           await abilityDelegator.startAbility(appGegForgrdAppsWant);
+          await sleep(CASE_TIME_OUT);
           //倒计时结束公共事件等待结果
-          setTimeout(() => {
-            if (!flag) {
-              expect().assertFail();
-              endSubscriber(done, subscriber);
-            }
-          }, CASE_TIME_OUT)
+          if (!flag) {
+            expect().assertFail();
+          }else{
+            expect(dataCode).assertEqual(APP_GET_APPLICATION_STATE_SUCCESS)
+          }
+          try {
+            commonEvent.unsubscribe(subscriber);
+          } catch (error) {
+          }
+          sleep(800);
+          done();
         } catch (e) {
           hilog.error(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0300 error,

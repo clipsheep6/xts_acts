@@ -50,6 +50,9 @@
     "requestPermissions": [
       {
         "name": "ohos.permission.RUNNING_STATE_OBSERVER"
+      },
+      {
+        "name": "ohos.permission.GET_RUNNING_INFO"
       }
     ]
   }

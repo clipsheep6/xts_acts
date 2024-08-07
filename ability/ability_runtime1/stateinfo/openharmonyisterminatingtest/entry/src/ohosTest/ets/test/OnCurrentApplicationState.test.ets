@@ -46,7 +46,7 @@ let appStateEmpty: appManager.ApplicationStateObserver = {
   }
 }
 
-export default function onApplicationState() {
+export default function onCurrentApplicationState() {
   let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
   let testOnApplicationStateAbilityWant: Want = {
     bundleName: 'com.hits.stateinfo.isterminating',
@@ -60,6 +60,10 @@ export default function onApplicationState() {
     bundleName: 'com.hits.stateinfo.isterminating',
     abilityName: 'TestAbility3'
   }
+  let testAbility4Want: Want = {
+    bundleName: 'com.hits.stateinfo.isterminating',
+    abilityName: 'TestAbility4'
+  }
   let appEmptyWant: Want = {
     bundleName: 'com.hits.stateinfo.empty',
     abilityName: 'EntryAbility'
@@ -69,7 +73,7 @@ export default function onApplicationState() {
     abilityName: 'TestAbility'
   }
   let applicationStateNumber = -1;
-  describe('onApplicationState', () => {
+  describe('onCurrentApplicationState', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
@@ -82,18 +86,19 @@ export default function onApplicationState() {
       // This API supports only one parameter: preset action function.
       applicationStateNumber = -1;
     })
-    afterEach(() => {
+    afterEach(async () => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
-      // This API supports only one parameter: clear action function.
-    })
-    afterAll(() => {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
       try {
         appManager.off('applicationState', applicationStateNumber);
       } catch (e) {
       }
+      await sleep(1000);
+    })
+    afterAll(() => {
+      // Presets a clear action, which is performed after all test cases of the test suite end.
+      // This API supports only one parameter: clear action function.
     })
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0100
@@ -289,6 +294,10 @@ export default function onApplicationState() {
           await sleep(1000);
           // 未收到回调
           expect(hasCallback).assertFalse();
+          try {
+            await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
+          } catch (error) {
+          }
         } catch (e) {
           hilog.error(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0500 error,
@@ -318,11 +327,11 @@ export default function onApplicationState() {
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
             onForegroundApplicationChanged2App = getAppStateData(appStateData,
-              onForegroundApplicationChanged2App, 2, testOnApplicationStateAbilityWant.bundleName);
+              onForegroundApplicationChanged2App, 2, testAbility2Want.bundleName);
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
             onAbilityStateChanged2App = getAbilityStateData(abilityStateData,
-              onAbilityStateChanged2App, 2, testOnApplicationStateAbilityWant);
+              onAbilityStateChanged2App, 2, testAbility2Want);
 
             onAbilityStateChangedCurrentApp = getAbilityStateData(abilityStateData,
               onAbilityStateChangedCurrentApp, 4, currentWant);
@@ -335,22 +344,17 @@ export default function onApplicationState() {
           }
         }
         try {
-          applicationStateNumber = appManager.on('applicationState', appState);
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
-        try {
           hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600 start ${applicationStateNumber}`);
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600 start`);
+          await abilityDelegator.startAbility(currentWant);
+          await sleep(1000);
+          applicationStateNumber = appManager.on('applicationState', appState);
           // 注册监听成功
           await sleep(1000);
           expect(applicationStateNumber).assertLarger(-1);
-          await sleep(1000);
           //启动第二个Ability
-          await abilityDelegator.startAbility(testOnApplicationStateAbilityWant);
+          await abilityDelegator.startAbility(testAbility2Want);
           await sleep(1000);
-          // 再次注册监听失败
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0600
             onAbilityStateChanged2App ${onAbilityStateChanged2App}
@@ -421,15 +425,12 @@ export default function onApplicationState() {
           }
         }
         try {
-          applicationStateNumber = appManager.on('applicationState', appState);
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
-        try {
           hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800 start ${applicationStateNumber}`);
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800 start`);
+          await abilityDelegator.startAbility(currentWant);
+          await sleep(1000);
           // 注册监听成功
+          applicationStateNumber = appManager.on('applicationState', appState);
           expect(applicationStateNumber).assertLarger(-1);
           await sleep(1000);
           // 第2、3步
@@ -504,14 +505,14 @@ export default function onApplicationState() {
         done();
       });
     /**
-     * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
-     * @tc.name: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
+     * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_2900
+     * @tc.name: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_2900
      * @tc.desc: test on applicationState
      * @tc.size: LargeTest
      * @tc.type: Function
      * @tc.level: Level0
      */
-    it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800",
+    it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_2900",
       TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
 
         let OnAbilityStateChangedTestAbility2State2 = false;
@@ -536,7 +537,7 @@ export default function onApplicationState() {
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
             if(!onForegroundApplicationChangedTestAbility2State2){
               onForegroundApplicationChangedTestAbility2State2 = getAppStateData(appStateData,
-                onForegroundApplicationChangedTestAbility2State2, 2, testAbility2Want.bundleName);
+                onForegroundApplicationChangedTestAbility2State2, 2, testAbility4Want.bundleName);
             }else{
               onForegroundApplicationChangedCurrentState2 = getAppStateData(appStateData,
                 onForegroundApplicationChangedCurrentState2, 2, currentWant.bundleName);
@@ -547,11 +548,11 @@ export default function onApplicationState() {
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
             OnAbilityStateChangedTestAbility2State2 = getAbilityStateData(abilityStateData,
-              OnAbilityStateChangedTestAbility2State2, 2, testAbility2Want);
+              OnAbilityStateChangedTestAbility2State2, 2, testAbility4Want);
             OnAbilityStateChangedTestAbility2State4 = getAbilityStateData(abilityStateData,
-              OnAbilityStateChangedTestAbility2State4, 4, testAbility2Want);
+              OnAbilityStateChangedTestAbility2State4, 4, testAbility4Want);
             OnAbilityStateChangedTestAbility2State5 = getAbilityStateData(abilityStateData,
-              OnAbilityStateChangedTestAbility2State5, 5, testAbility2Want);
+              OnAbilityStateChangedTestAbility2State5, 5, testAbility4Want);
             OnAbilityStateChangedCurrentState4 = getAbilityStateData(abilityStateData,
               OnAbilityStateChangedCurrentState4, 4, currentWant);
             OnAbilityStateChangedCurrentState2 = getAbilityStateData(abilityStateData,
@@ -568,8 +569,11 @@ export default function onApplicationState() {
             hasCallback = true;
           }
         }
+        hilog.info(Domain, TAG,
+          `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_2900 start`);
         try {
           for (let i = 0; i < 100; i++) {
+            applicationStateNumber = -1;
             OnAbilityStateChangedTestAbility2State2 = false;
             OnAbilityStateChangedTestAbility2State4 = false;
             OnAbilityStateChangedTestAbility2State5 = false;
@@ -579,23 +583,20 @@ export default function onApplicationState() {
             onForegroundApplicationChangedTestAbility2State2 = false;
             onForegroundApplicationChangedCurrentState4 = false;
             onForegroundApplicationChangedCurrentState2 = false;
-
+            await abilityDelegator.startAbility(currentWant);
+            await sleep(200);
             applicationStateNumber = appManager.on('applicationState', appState);
             hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800 start ${applicationStateNumber}`);
+              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_2900 start ${i}`);
             // 注册监听成功
             expect(applicationStateNumber).assertLarger(-1);
-            await sleep(1000);
+            await sleep(200);
             // 第2、3步
-            await abilityDelegator.startAbility(testAbility2Want);
+            await abilityDelegator.startAbility(testAbility4Want);
             await sleep(1000);
-            let mTestAbility2Context: common.UIAbilityContext | undefined =
-              AppStorage.get<common.UIAbilityContext>('TestAbility2Context');
-            mTestAbility2Context!.terminateSelf();
-            await sleep(2000);
             // 判断结果
             hilog.info(Domain, TAG,
-              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800
+              `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_2900
             OnAbilityStateChangedTestAbility2State2 ${OnAbilityStateChangedTestAbility2State2}
             OnAbilityStateChangedTestAbility2State4 ${OnAbilityStateChangedTestAbility2State4}
             OnAbilityStateChangedTestAbility2State5 ${OnAbilityStateChangedTestAbility2State5}
@@ -614,19 +615,18 @@ export default function onApplicationState() {
             expect(onForegroundApplicationChangedTestAbility2State2).assertTrue();
             expect(onForegroundApplicationChangedCurrentState4).assertTrue();
             expect(onForegroundApplicationChangedCurrentState2).assertTrue();
-            await sleep(3000);
 
             hasCallback = false;
             appManager.off('applicationState', applicationStateNumber);
-            await sleep(1000);
+            await sleep(200);
             // 第2、3步
-            await abilityDelegator.startAbility(testAbility2Want);
-            await sleep(1000);
+            await abilityDelegator.startAbility(testAbility4Want);
+            await sleep(100);
             expect(hasCallback).assertFalse();
           }
         } catch (e) {
           hilog.error(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0800 error,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_2900 error,
            error code is: ${e.code}, error message is: ${e.message}`);
           expect().assertFail();
         }

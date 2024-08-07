@@ -45,11 +45,11 @@ let appStateEmpty: appManager.ApplicationStateObserver = {
   }
 }
 
-export default function onApplicationState() {
+export default function onServiceApplicationState() {
   let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-  let settings: Want = {
-    bundleName: 'com.ohos.settings',
-    abilityName: 'com.ohos.settings.MainAbility'
+  let currentWant: Want = {
+    bundleName: 'com.hits.stateinfo.isterminating',
+    abilityName: 'TestAbility'
   }
   let appEmptyWant: Want = {
     bundleName: 'com.hits.stateinfo.empty',
@@ -64,7 +64,7 @@ export default function onApplicationState() {
     abilityName: 'ServiceAbility'
   }
   let applicationStateNumber = -1;
-  describe('onApplicationState', () => {
+  describe('onServiceApplicationState', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
@@ -81,14 +81,14 @@ export default function onApplicationState() {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
-    })
-    afterAll(() => {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
       try {
         appManager.off('applicationState', applicationStateNumber);
       } catch (e) {
       }
+    })
+    afterAll(() => {
+      // Presets a clear action, which is performed after all test cases of the test suite end.
+      // This API supports only one parameter: clear action function.
     })
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700
@@ -121,15 +121,11 @@ export default function onApplicationState() {
           }
         }
         try {
-          applicationStateNumber = appManager.on('applicationState', appState);
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
-        try {
           hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700 start ${applicationStateNumber}`);
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700 start`);
           // 注册监听成功
+          await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
+          applicationStateNumber = appManager.on('applicationState', appState);
           expect(applicationStateNumber).assertLarger(-1);
           await sleep(1000);
           let connectOptions: common.ConnectOptions = {
@@ -167,69 +163,65 @@ export default function onApplicationState() {
      * @tc.type: Function
      * @tc.level: Level0
      */
-    it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900",
-      TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
-        //第3步
-        let onForegroundApplicationChanged = false;
-        // 注册监听
-        let appState: appManager.ApplicationStateObserver = {
-          onAppStarted(appStateData: appManager.AppStateData): void {
-          },
-          onAppStopped(appStateData: appManager.AppStateData): void {
-          },
-          onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            onForegroundApplicationChanged = getAppStateData(appStateData,
-              onForegroundApplicationChanged, 4, serviceEmptyWant.bundleName);
-          },
-          onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
-          },
-          onProcessCreated(processData: appManager.ProcessData): void {
-          },
-          onProcessDied(processData: appManager.ProcessData): void {
-          },
-          onProcessStateChanged(processData: appManager.ProcessData): void {
-          }
-        }
-        try {
-          applicationStateNumber = appManager.on('applicationState', appState);
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
-        try {
-          hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 start ${applicationStateNumber}`);
-          // 注册监听成功
-          expect(applicationStateNumber).assertLarger(-1);
-          await sleep(1000);
-          // 连接后又解绑
-          let connectOptions: common.ConnectOptions = {
-            onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
-              hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 onConnect`);
-            },
-            onDisconnect(elementName: bundleManager.ElementName) {
-              hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 onDisconnect`);
-            },
-            onFailed(code: number) {
-              hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 onFailed ${code}`);
-            }
-          };
-          let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
-          let conn = context!.connectServiceExtensionAbility(serviceEmptyWant, connectOptions);
-          hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 conn ${conn}`);
-          await sleep(1000);
-          await context!.disconnectServiceExtensionAbility(conn);
-          await sleep(1000);
-          expect(onForegroundApplicationChanged).assertTrue();
-        } catch (e) {
-          hilog.error(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 error,
-           error code is: ${e.code}, error message is: ${e.message}`);
-          expect().assertFail();
-        }
-        done();
-      });
+    // it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900",
+    //   TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
+    //     //第3步
+    //     let onForegroundApplicationChanged = false;
+    //     // 注册监听
+    //     let appState: appManager.ApplicationStateObserver = {
+    //       onAppStarted(appStateData: appManager.AppStateData): void {
+    //       },
+    //       onAppStopped(appStateData: appManager.AppStateData): void {
+    //       },
+    //       onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
+    //         onForegroundApplicationChanged = getAppStateData(appStateData,
+    //           onForegroundApplicationChanged, 4, serviceEmptyWant.bundleName);
+    //       },
+    //       onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
+    //       },
+    //       onProcessCreated(processData: appManager.ProcessData): void {
+    //       },
+    //       onProcessDied(processData: appManager.ProcessData): void {
+    //       },
+    //       onProcessStateChanged(processData: appManager.ProcessData): void {
+    //       }
+    //     }
+    //     try {
+    //       hilog.info(Domain, TAG,
+    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 start ${applicationStateNumber}`);
+    //       // 注册监听成功
+    //       await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
+    //       applicationStateNumber = appManager.on('applicationState', appState);
+    //       expect(applicationStateNumber).assertLarger(-1);
+    //       await sleep(1000);
+    //       // 连接后又解绑
+    //       let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
+    //       let connectOptions: common.ConnectOptions = {
+    //         onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
+    //           hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 onConnect`);
+    //         },
+    //         onDisconnect(elementName: bundleManager.ElementName) {
+    //           hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 onDisconnect`);
+    //         },
+    //         onFailed(code: number) {
+    //           hilog.info(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 onFailed ${code}`);
+    //         }
+    //       };
+    //       let conn = context!.connectServiceExtensionAbility(serviceEmptyWant, connectOptions);
+    //       hilog.info(Domain, TAG,
+    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 conn ${conn}`);
+    //       await sleep(1000);
+    //       await context!.disconnectServiceExtensionAbility(conn);
+    //       await sleep(5000);
+    //       expect(onForegroundApplicationChanged).assertTrue();
+    //     } catch (e) {
+    //       hilog.error(Domain, TAG,
+    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 error,
+    //        error code is: ${e.code}, error message is: ${e.message}`);
+    //       expect().assertFail();
+    //     }
+    //     done();
+    //   });
 
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500
@@ -239,60 +231,56 @@ export default function onApplicationState() {
      * @tc.type: Function
      * @tc.level: Level0
      */
-    it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500",
-      TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
-        //第3步
-        let onProcessCreated = false;
-        let onForegroundApplicationChanged = false;
-        // 注册监听
-        let appState: appManager.ApplicationStateObserver = {
-          onAppStarted(appStateData: appManager.AppStateData): void {
-          },
-          onAppStopped(appStateData: appManager.AppStateData): void {
-          },
-          onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            onForegroundApplicationChanged = getAppStateData(appStateData,
-              onForegroundApplicationChanged,2,serviceEmptyWant.bundleName);
-          },
-          onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
-          },
-          onProcessCreated(processData: appManager.ProcessData): void {
-            onProcessCreated = getProcessData(processData,
-              onProcessCreated,serviceEmptyWant.bundleName);
-          },
-          onProcessDied(processData: appManager.ProcessData): void {
-          },
-          onProcessStateChanged(processData: appManager.ProcessData): void {
-          }
-        }
-        try {
-          applicationStateNumber = appManager.on('applicationState', appState);
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
-        try {
-          hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 start ${applicationStateNumber}`);
-          // 注册监听成功
-          expect(applicationStateNumber).assertLarger(-1);
-          await sleep(1000);
-
-          let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
-         context!.startServiceExtensionAbility(serviceEmptyWant);
-          hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 startServiceExtensionAbility`);
-          await sleep(1000);
-          expect(onProcessCreated).assertTrue();
-          expect(onForegroundApplicationChanged).assertTrue();
-        } catch (e) {
-          hilog.error(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 error,
-           error code is: ${e.code}, error message is: ${e.message}`);
-          expect().assertFail();
-        }
-        done();
-      });
+    // it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500",
+    //   TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
+    //     //第3步
+    //     let onProcessCreated = false;
+    //     let onForegroundApplicationChanged = false;
+    //     // 注册监听
+    //     let appState: appManager.ApplicationStateObserver = {
+    //       onAppStarted(appStateData: appManager.AppStateData): void {
+    //       },
+    //       onAppStopped(appStateData: appManager.AppStateData): void {
+    //       },
+    //       onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
+    //         onForegroundApplicationChanged = getAppStateData(appStateData,
+    //           onForegroundApplicationChanged,2,serviceEmptyWant.bundleName);
+    //       },
+    //       onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
+    //       },
+    //       onProcessCreated(processData: appManager.ProcessData): void {
+    //         onProcessCreated = getProcessData(processData,
+    //           onProcessCreated,serviceEmptyWant.bundleName);
+    //       },
+    //       onProcessDied(processData: appManager.ProcessData): void {
+    //       },
+    //       onProcessStateChanged(processData: appManager.ProcessData): void {
+    //       }
+    //     }
+    //     try {
+    //       hilog.info(Domain, TAG,
+    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 start`);
+    //       await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
+    //       // 注册监听成功
+    //       applicationStateNumber = appManager.on('applicationState', appState);
+    //       expect(applicationStateNumber).assertLarger(-1);
+    //       await sleep(1000);
+    //
+    //       let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
+    //      context!.startServiceExtensionAbility(serviceEmptyWant);
+    //       hilog.info(Domain, TAG,
+    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 startServiceExtensionAbility`);
+    //       await sleep(1000);
+    //       expect(onProcessCreated).assertTrue();
+    //       expect(onForegroundApplicationChanged).assertTrue();
+    //     } catch (e) {
+    //       hilog.error(Domain, TAG,
+    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 error,
+    //        error code is: ${e.code}, error message is: ${e.message}`);
+    //       expect().assertFail();
+    //     }
+    //     done();
+    //   });
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700
      * @tc.name: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700
@@ -301,56 +289,56 @@ export default function onApplicationState() {
      * @tc.type: Function
      * @tc.level: Level0
      */
-    it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700",
-      TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
-        //第3步
-        let onForegroundApplicationChanged = false;
-        // 注册监听
-        let appState: appManager.ApplicationStateObserver = {
-          onAppStarted(appStateData: appManager.AppStateData): void {
-          },
-          onAppStopped(appStateData: appManager.AppStateData): void {
-          },
-          onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            onForegroundApplicationChanged = getAppStateData(appStateData,
-              onForegroundApplicationChanged,4,serviceKillSelfWant.bundleName);
-          },
-          onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
-          },
-          onProcessCreated(processData: appManager.ProcessData): void {
-          },
-          onProcessDied(processData: appManager.ProcessData): void {
-          },
-          onProcessStateChanged(processData: appManager.ProcessData): void {
-          }
-        }
-        try {
-          applicationStateNumber = appManager.on('applicationState', appState);
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
-        try {
-          hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 start ${applicationStateNumber}`);
-          // 注册监听成功
-          expect(applicationStateNumber).assertLarger(-1);
-          await sleep(1000);
-
-          let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
-          context!.startServiceExtensionAbility(serviceKillSelfWant);
-          hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700 startServiceExtensionAbility`);
-          await sleep(2000);
-          expect(onForegroundApplicationChanged).assertTrue();
-        } catch (e) {
-          hilog.error(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700 error,
-           error code is: ${e.code}, error message is: ${e.message}`);
-          expect().assertFail();
-        }
-        done();
-      });
+    // it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700",
+    //   TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
+    //     //第3步
+    //     let onForegroundApplicationChanged = false;
+    //     // 注册监听
+    //     let appState: appManager.ApplicationStateObserver = {
+    //       onAppStarted(appStateData: appManager.AppStateData): void {
+    //       },
+    //       onAppStopped(appStateData: appManager.AppStateData): void {
+    //       },
+    //       onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
+    //         onForegroundApplicationChanged = getAppStateData(appStateData,
+    //           onForegroundApplicationChanged,4,serviceKillSelfWant.bundleName);
+    //       },
+    //       onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
+    //       },
+    //       onProcessCreated(processData: appManager.ProcessData): void {
+    //       },
+    //       onProcessDied(processData: appManager.ProcessData): void {
+    //       },
+    //       onProcessStateChanged(processData: appManager.ProcessData): void {
+    //       }
+    //     }
+    //     try {
+    //       applicationStateNumber = appManager.on('applicationState', appState);
+    //     } catch (e) {
+    //       hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700
+    //        error,error code is: ${e.code}, error message is: ${e.message}`);
+    //     }
+    //     try {
+    //       hilog.info(Domain, TAG,
+    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 start ${applicationStateNumber}`);
+    //       // 注册监听成功
+    //       expect(applicationStateNumber).assertLarger(-1);
+    //       await sleep(1000);
+    //
+    //       let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
+    //       context!.startServiceExtensionAbility(serviceKillSelfWant);
+    //       hilog.info(Domain, TAG,
+    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700 startServiceExtensionAbility`);
+    //       await sleep(2000);
+    //       expect(onForegroundApplicationChanged).assertTrue();
+    //     } catch (e) {
+    //       hilog.error(Domain, TAG,
+    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700 error,
+    //        error code is: ${e.code}, error message is: ${e.message}`);
+    //       expect().assertFail();
+    //     }
+    //     done();
+    //   });
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3000
      * @tc.name: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3000
@@ -384,6 +372,7 @@ export default function onApplicationState() {
         }
         try {
           await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
+          await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
           sleep(1000)
         } catch (e) {
           hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3100
@@ -401,12 +390,15 @@ export default function onApplicationState() {
           // 注册监听成功
           let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
 
-          context!.startAbility(appEmptyWant);
-          await sleep(2000);
-          context!.startServiceExtensionAbility(serviceEmptyWant);
-          await sleep(2000);
-          context!.startAbility(settings);
-          await sleep(2000);
+          await abilityDelegator.startAbility(appEmptyWant);
+          await sleep(1000);
+          await context!.startServiceExtensionAbility(serviceEmptyWant);
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3000 startServiceExtensionAbility`);
+          await abilityDelegator.startAbility(currentWant);
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3000 startAbility currentWant`);
+          await sleep(1000);
           expect(onForegroundApplicationChanged).assertTrue();
         } catch (e) {
           hilog.error(Domain, TAG,

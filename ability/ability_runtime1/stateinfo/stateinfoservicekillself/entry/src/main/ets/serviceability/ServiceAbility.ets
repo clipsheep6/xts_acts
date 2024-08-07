@@ -25,7 +25,9 @@ export default class ServiceAbility extends ServiceExtensionAbility {
   }
 
   async work() {
-    await this.context.terminateSelf();
+    setTimeout(async ()=>{
+      await this.context.terminateSelf();
+    },2000)
   }
 
   onDisconnect(want: Want): void | Promise<void> {

@@ -18,6 +18,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestT
 import { abilityManager, bundleManager, common, Want } from '@kit.AbilityKit';
 import { rpc } from '@kit.IPCKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 const TAG: string = 'GetExtensionRunningInfosTest';
 const Domain: number = 0x0000;
@@ -27,6 +28,7 @@ function sleep(time: number): Promise<void> {
 }
 
 export default function runningInfoConnServiceExt() {
+  let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
   let context: common.UIAbilityContext | undefined = undefined;
   let serviceEmptyWant: Want = {
     bundleName: 'com.acts.stateinfoservice.empty',
@@ -41,11 +43,14 @@ export default function runningInfoConnServiceExt() {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
     })
-    beforeEach(() => {
+    beforeEach(async () => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
       try {
+        // 停止server1
+        await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
+
         context = AppStorage.get<common.UIAbilityContext>('abilityContext');
         let connectOptions: common.ConnectOptions = {
           onConnect(elementName: bundleManager.ElementName, remote: rpc.IRemoteObject) {
@@ -62,7 +67,7 @@ export default function runningInfoConnServiceExt() {
         // 连接server1
         connection = context!.connectServiceExtensionAbility(serviceEmptyWant, connectOptions);
         hilog.info(Domain, TAG, `beforeEach connection ${connection}`);
-        sleep(500);
+        await sleep(1500);
       } catch (error) {
         hilog.error(Domain, TAG, `beforeEach error,error code is: ${error.code}, error message is: ${error.message}`);
       }
@@ -91,7 +96,7 @@ export default function runningInfoConnServiceExt() {
           expect(ready).assertTrue();
           // 断开server1
           await context!.disconnectServiceExtensionAbility(connection);
-          await sleep(500);
+          await sleep(5500);
           // 获取RunningInfos
           let functionCheckRunningInfos = async () => {
             return new Promise<boolean>((resolve, reject) => {
@@ -140,7 +145,7 @@ export default function runningInfoConnServiceExt() {
           expect(ready).assertTrue();
           // 断开server1
           await context!.disconnectServiceExtensionAbility(connection);
-          await sleep(500);
+          await sleep(5500);
           // 获取RunningInfos
           let runningInfos = await abilityManager.getExtensionRunningInfos(upperLimit);
           let hasService1 = false;

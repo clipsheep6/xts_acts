@@ -149,7 +149,8 @@ export default function onApplicationState() {
 
         try {
           await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
-          sleep(1000)
+          await abilityDelegator.startAbility(currentWant);
+          sleep(1000);
         } catch (e) {
           hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
            error,error code is: ${e.code}, error message is: ${e.message}`);
@@ -276,8 +277,6 @@ export default function onApplicationState() {
           expect(step3OnAbilityStateChangedBackAbility).assertTrue();
           expect(step3OnAbilityStateChangedStartAbility).assertTrue();
           expect(step3OnForegroundApplicationChangedBackAbility).assertTrue();
-          //backAbility 10s 后start 第二个辅助应用Ability，自动执行第四部
-          await sleep(12000);
           // 判断结果
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1100
@@ -367,15 +366,12 @@ export default function onApplicationState() {
           }
         }
         try {
-          applicationStateNumber = appManager.on('applicationState', appState);
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1200
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
-        try {
           hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1200 start ${applicationStateNumber}`);
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1200 start`);
+          await abilityDelegator.startAbility(currentWant);
+          await sleep(1000);
           // 注册监听成功
+          applicationStateNumber = appManager.on('applicationState', appState);
           expect(applicationStateNumber).assertLarger(-1);
           await sleep(1000);
           // 第2、3步
@@ -495,15 +491,12 @@ export default function onApplicationState() {
           }
         }
         try {
-          applicationStateNumber = appManager.on('applicationState', appState);
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
-        try {
           hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400 start ${applicationStateNumber}`);
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400 start`);
+          await abilityDelegator.startAbility(currentWant);
+          await sleep(1000);
           // 注册监听成功
+          applicationStateNumber = appManager.on('applicationState', appState);
           expect(applicationStateNumber).assertLarger(-1);
           await sleep(1000);
           // 第2步
@@ -529,11 +522,11 @@ export default function onApplicationState() {
           // 判断结果
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400
-            step3onAbilityStateChangedCurrent ${step3onProcessCreated}
-            step3onForegroundApplicationChangedCurrent ${step3onAbilityStateChanged}
-            step3onAbilityStateChangedState4 ${step3onForegroundApplicationChanged}
-            step3onAbilityStateChangedState5 ${step3onAbilityStateChangedStep2}
-            step3onForegroundApplicationChanged ${step3onForegroundApplicationChangedStep2}
+            step3onProcessCreated ${step3onProcessCreated}
+            step3onAbilityStateChanged ${step3onAbilityStateChanged}
+            step3onForegroundApplicationChanged ${step3onForegroundApplicationChanged}
+            step3onAbilityStateChangedStep2 ${step3onAbilityStateChangedStep2}
+            step3onForegroundApplicationChangedStep2 ${step3onForegroundApplicationChangedStep2}
             `);
           expect(step3onProcessCreated).assertFalse();
           expect(step3onAbilityStateChanged).assertTrue();
@@ -626,15 +619,12 @@ export default function onApplicationState() {
           }
         }
         try {
-          applicationStateNumber = appManager.on('applicationState', appState);
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
-        try {
           hilog.info(Domain, TAG,
-            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600 start ${applicationStateNumber}`);
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600 start`);
+          await abilityDelegator.startAbility(currentWant);
+          await sleep(1000);
           // 注册监听成功
+          applicationStateNumber = appManager.on('applicationState', appState);
           expect(applicationStateNumber).assertLarger(-1);
           await sleep(1000);
           // 第2步
@@ -704,7 +694,7 @@ export default function onApplicationState() {
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
             onAbilityStateChanged = getAbilityStateData(abilityStateData,
-              onAbilityStateChanged,4,appEmptyWant)
+              onAbilityStateChanged,5,appEmptyWant)
           },
           onProcessCreated(processData: appManager.ProcessData): void {
           },
@@ -737,6 +727,11 @@ export default function onApplicationState() {
           await sleep(2000);
           await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
           await sleep(2000);
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3100
+            onProcessDied ${onProcessDied}
+            onAbilityStateChanged ${onAbilityStateChanged}
+            `);
           expect(onProcessDied).assertTrue();
           expect(onAbilityStateChanged).assertTrue();
         } catch (e) {

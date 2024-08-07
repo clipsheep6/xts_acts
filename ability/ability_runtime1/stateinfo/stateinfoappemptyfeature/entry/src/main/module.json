@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "entry",
+    "name": "feature",
     "type": "feature",
     "description": "$string:module_desc",
     "mainElement": "FeatureAbility",

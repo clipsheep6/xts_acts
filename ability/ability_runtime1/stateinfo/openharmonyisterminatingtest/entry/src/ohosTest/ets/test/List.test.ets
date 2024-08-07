@@ -13,9 +13,13 @@
  * limitations under the License.
  */
 import onApplicationState from './OnApplicationState.test';
+import onCurrentApplicationState from './OnCurrentApplicationState.test';
+import onServiceApplicationState from './OnServiceApplicationState.test';
 import getForegroundApplicationsTest from './GetForegroundApplications.test';
 
 export default function testsuite() {
   onApplicationState();
+  onCurrentApplicationState();
+  onServiceApplicationState();
   getForegroundApplicationsTest();
 }
