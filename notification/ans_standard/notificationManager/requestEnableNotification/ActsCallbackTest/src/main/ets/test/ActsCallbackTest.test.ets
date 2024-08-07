@@ -14,18 +14,16 @@
 */
 
 import notificationManager from '@ohos.notificationManager';
-
+import { BusinessError } from '@ohos.base';
 import { Driver, ON } from '@ohos.UiTest';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium';
-import { logGenerator, succeedGenerator, exitGenerator, sleep, exitSpecialGenerator } from '../common/utils';
-
 import common from '@ohos.app.ability.common';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it } from '@ohos/hypium';
+let context = getContext(this) as common.UIAbilityContext;
+
 
 export default function ActsCallbackTest() {
   describe('SUB_ACTS_CALLBACK_TEST', () => {
     const TAG = 'SUB_ACTS_CALLBACK_TEST ===>';
-    let log = logGenerator(TAG);
-    log('SUB_ACTS_CALLBACK_TEST START');
 
     /*
      * @tc.number    : Sub_Notification_Ans_NotificationManager_RequestEnableNotification_Callback_Test_0100
@@ -33,32 +31,30 @@ export default function ActsCallbackTest() {
      * @tc.desc      : requestEnableNotification allowed button is clicked
      */
     it('Sub_Notification_Ans_NotificationManager_RequestEnableNotification_Callback_Test_0100', 0,
-      async (done: () => void) => {
-        let fn = async (resolve: () => void, reject: (arg1: Error) => void): Promise<void> => {
-          let succeed = succeedGenerator(TAG, resolve, done);
-          let exit = exitGenerator(TAG, reject);
-          let ctx: common.UIAbilityContext = AppStorage.get('ctx');
-          notificationManager.requestEnableNotification(ctx, (err) => {
-            if (err) {
-              exit(`requestEnableNotification err: JSON.stringify(err)`);
-              return;
-            };
-            succeed(`requestEnableNotification succeeded`);
-          });
-          await sleep(1500);
-          let driver = Driver.create();
-          await sleep(1500)
-          let button = await driver.findComponent(ON.text('允许'));
-          log(`button is ${JSON.stringify(button)}`);
-          if (button !== null) {
-            await sleep(1500);
-            await button.click();
-          } else {
-            exit('null button');
-          }
-        };
-        return new Promise<void>((resolve, reject) => { fn(resolve, reject); });
+      async (done: Function) => {
+      let requestEnableNotificationCallback = (err: BusinessError): void => {
+        if (err) {
+            console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+            expect(false).assertEqual(true)
+            done()
+        } else {
+            console.info("requestEnableNotification success");
+        }
+      };
+      notificationManager.requestEnableNotification(context, requestEnableNotificationCallback);
+
+      let driver = Driver.create();
+      await sleep(1500)
+      let button = await driver.findComponent(ON.text('允许'));
+
+      if (button !== null) {
+        await sleep(1500);
+        await button.click();
+      } else {
+        console.info('null button');
+        expect(false).assertEqual(true)
+        done()
       }
-    );
+    });
   });
 };
