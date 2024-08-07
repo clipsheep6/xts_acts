@@ -25,5 +25,7 @@ hctest_suite("ActsLwipTest") {
   if (enable_ohos_test_xts_acts_use_thirdparty_lwip) {
     deps = [ "//kernel/liteos_m:kernel" ]
   }
-  cflags = [ "-Wno-error" ]
+  if (board_toolchain_type != "iccarm") {
+    cflags = [ "-Wno-error" ]
+  }
 }
