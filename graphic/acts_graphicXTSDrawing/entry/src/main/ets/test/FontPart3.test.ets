@@ -56,54 +56,54 @@ export default function fontPart3Test() {
       try {
         let glyphs : number[] = font.textToGlyphs('奇8龍@Fly#龘2023!*你好');
         expect(glyphs.length == 17).assertTrue();
-        console.info(msg + ' textToGlyphs successed,glyphs:' + glyphs.length);
+        console.info(msg + ' textToGlyphs1 successed,glyphs:' + glyphs.length);
       } catch( e ) {
-        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` textToGlyphs1 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
       try {
         let glyphs : number[] = font.textToGlyphs('奇8龍@Fly#龘2023!*你好',17);
         expect(glyphs.length == 17).assertTrue();
-        console.info(msg + ' textToGlyphs successed,glyphs:' + glyphs.length);
+        console.info(msg + ' textToGlyphs2 successed,glyphs:' + glyphs.length);
       } catch( e ) {
-        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` textToGlyphs2 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
       try {
         let glyphs : number[] = font.textToGlyphs('奇8龍@Fly#龘2023!*你好',15);
         expect(glyphs.length == 15).assertTrue();
-        console.info(msg + ' textToGlyphs successed,glyphs:' + glyphs.length);
+        console.info(msg + ' textToGlyphs3 successed,glyphs:' + glyphs.length);
       } catch( e ) {
-        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` textToGlyphs3 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
       try {
         let glyphs : number[] = font.textToGlyphs('奇8龍@Fly#龘2023!*你好',20);
         expect(glyphs.length == 20).assertTrue();
-        console.info(msg + ' textToGlyphs successed,glyphs:' + glyphs.length);
+        console.info(msg + ' textToGlyphs4 successed,glyphs:' + glyphs.length);
       } catch( e ) {
-        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` textToGlyphs4 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
       try {
         let glyphs : number[] = font.textToGlyphs("", 0);
-        console.info(msg + ' textToGlyphs successed,glyphs:' + glyphs);
+        console.info(msg + ' textToGlyphs5 successed,glyphs:' + glyphs);
       } catch( e ) {
-        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        console.info(msg + ` textToGlyphs5 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
         expect().assertFail();
       }
 
-      // try {
-      //   let glyphs : number[] = font.textToGlyphs("", -1);
-      //   console.info(msg + ' textToGlyphs successed,glyphs:' + glyphs);
-      // } catch( e ) {
-      //   console.info(msg + ` textToGlyphs5 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-      //   expect().assertFail();
-      // }
+      try {
+        let glyphs : number[] = font.textToGlyphs("", -1);
+        console.info(msg + ' textToGlyphs6 successed,glyphs:' + glyphs);
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs6 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
     });
 
     /**
@@ -159,34 +159,34 @@ export default function fontPart3Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testFontTextToGlyphsMismatch' , DEFAULT , () => {
-    //   const msg = 'testFontTextToGlyphsMismatch';
-    //   let font = new drawing.Font();
-    //
-    //   try {
-    //     font.textToGlyphs('奇8龍@Fly#龘2023!*你好', 2, 2);
-    //     console.info(msg + ' textToGlyphs succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     font.textToGlyphs(text);
-    //     console.info(msg + ' textToGlyphs succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     font.textToGlyphs(111);
-    //     console.info(msg + ' textToGlyphs succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testFontTextToGlyphsMismatch' , DEFAULT , () => {
+      const msg = 'testFontTextToGlyphsMismatch';
+      let font = new drawing.Font();
+
+      try {
+        font.textToGlyphs('奇8龍@Fly#龘2023!*你好', 2, 2);
+        console.info(msg + ' textToGlyphs succeeded');
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.textToGlyphs(text);
+        console.info(msg + ' textToGlyphs succeeded');
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.textToGlyphs(111);
+        console.info(msg + ' textToGlyphs succeeded');
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2003
@@ -227,6 +227,7 @@ export default function fontPart3Test() {
 
       try {
         let widths : number[] = font.getWidths([0]);
+        expect(widths.length == 1).assertTrue();
         console.info(msg + ' getWidths successed,widths:' + widths.length);
       } catch( e ) {
         console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -234,7 +235,8 @@ export default function fontPart3Test() {
       }
 
       try {
-        let widths : number[] = font.getWidths([])
+        let widths : number[] = font.getWidths([]);
+        expect(widths == undefined).assertTrue();
         console.info(msg + ' getWidths successed,widths:' + widths);
       } catch( e ) {
         console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
@@ -280,34 +282,34 @@ export default function fontPart3Test() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    // it('testFontGetWidthsMismatch' , DEFAULT , () => {
-    //   const msg = 'testFontGetWidthsMismatch';
-    //   let font = new drawing.Font();
-    //
-    //   try {
-    //     font.getWidths(0,1);
-    //     console.info(msg + ' getWidths succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     font.getWidths();
-    //     console.info(msg + ' getWidths succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    //
-    //   try {
-    //     font.textToGlyphs('s');
-    //     console.info(msg + ' getWidths succeeded');
-    //   } catch( e ) {
-    //     console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
-    //     expect(e.code).assertEqual(401);
-    //   }
-    // });
+    it('testFontGetWidthsMismatch' , DEFAULT , () => {
+      const msg = 'testFontGetWidthsMismatch';
+      let font = new drawing.Font();
+
+      try {
+        font.getWidths(0,1);
+        console.info(msg + ' getWidths succeeded');
+      } catch( e ) {
+        console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.getWidths();
+        console.info(msg + ' getWidths succeeded');
+      } catch( e ) {
+        console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.textToGlyphs('s');
+        console.info(msg + ' getWidths succeeded');
+      } catch( e ) {
+        console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
 
     /**
      * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2103
