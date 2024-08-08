@@ -60,6 +60,34 @@
           ]
         }
       ]
+    },
+    {
+      "name": "library2",
+      "srcPath": "./library2",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "library3",
+      "srcPath": "./library3",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "har",
+      "srcPath": "./har"
     }
   ]
 }

@@ -142,6 +142,7 @@ import SliderMinDistance from './SliderTest/SliderMinDistance.test'
 import SliderStyle from './SliderTest/SliderStyle.test'
 import ChipGroupItemStyle from './ChipGroupTest/ChipGroupItemStyle.test'
 import ChipGroupSpace from './ChipGroupTest/ChipGroupSpace.test'
+import RichEditorApi13 from './RichEditor/RichEditorApi13.test'
 
 export default function testsuite() {
   APIContentTypeTest();
@@ -149,6 +150,7 @@ export default function testsuite() {
   TextInputAddApi();
   TextInputEvent()
   TextInputEvent2()
+  RichEditorApi13()
   SearchEvent()
   SearchEvent2()
   onSelectionChange1();
