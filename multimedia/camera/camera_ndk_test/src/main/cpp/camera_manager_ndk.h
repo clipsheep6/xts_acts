@@ -213,7 +213,6 @@ public:
 
     // Get callback, 测试不同监听依次为空
     CaptureSession_Callbacks* GetCaptureSessionRegister(int useCaseCode); // 获取拍照会话的回调函数
-    
 
     Camera_ErrorCode GetSupportedSceneModes(int useCaseCode);                          // 获取相机设备支持的相机模式列表
     Camera_ErrorCode DeleteSceneModes(int useCaseCode);                                // 删除相机设备支持的相机模式列表
@@ -229,7 +228,7 @@ public:
 
     Camera_ErrorCode CreatePreviewOutputUsedInPreconfig(int useCaseCode);          // 创建预配置中使用的预览输出实例
     Camera_ErrorCode CreatePhotoOutputUsedInPreconfig(char *photoSurfaceId, int useCaseCode); // 创建预配置中使用的照片输出实例。
-    Camera_ErrorCode CreateVideoOutputUsedInPreconfig(char *videoId, int useCaseCode);        // 创建预配置中使用的视频输出实例。   
+    Camera_ErrorCode CreateVideoOutputUsedInPreconfig(char *videoId, int useCaseCode);        // 创建预配置中使用的视频输出实例。
     Camera_ErrorCode VideoOutputGetActiveProfile(int useCaseCode);                // 获取活动视频输出配置文件。
     Camera_ErrorCode VideoOutputDeleteProfile(int useCaseCode);                   // 删除视频配置文件实例。
     Camera_ErrorCode SessionCanPreconfig(uint32_t mode, int useCaseCode);         // 检查是否支持预配置

@@ -1371,11 +1371,11 @@ Camera_ErrorCode NDKCamera::CaptureSessionUnregisterCallbackOff(int useCaseCode)
 
 Camera_ErrorCode NDKCamera::GetCameraFromCameras(Camera_Device* cameras, Camera_Device** camera)
 {
-    size_t camera_index = 0;
+    size_t cameraIndex = 0;
     if (cameras != nullptr) {
         LOG("读取支持的相机设备列表成功");
-        if (camera_index < this->size_) {
-            *camera = &cameras[camera_index];
+        if (cameraIndex < this->size_) {
+            *camera = &cameras[cameraIndex];
             ret_ = CAMERA_OK;
             LOG("从支持的相机设备列表获取某相机设备成功. %d", ret_);
         } else {
@@ -1429,29 +1429,29 @@ Camera_ErrorCode NDKCamera::GetSupportedSceneModes(int useCaseCode)
     } else {
         ret_ = OH_CameraManager_GetSupportedSceneModes(nullptr, &sceneModes_, &sceneModesSize_);
     }
-    if (ret_ == CAMERA_OK && sceneModesSize_ >= 2) {
-        bool isNORMAL_PHOTO = false;
-        bool isNORMAL_VIDEO = false;
-        bool isSECURE_PHOTO = false;
+    if (ret_ == CAMERA_OK && sceneModesSize_ > 1) {
+        bool isNormalPhoto = false;
+        bool isNormalVideo = false;
+        bool isSecurePhoto = false;
         for (decltype(sceneModesSize_) index = 0; index < sceneModesSize_; index++) {
-            switch(sceneModes_[index]) {
+            switch (sceneModes_[index]) {
                 case NORMAL_PHOTO:
-                    isNORMAL_PHOTO = true;
+                    isNormalPhoto = true;
                     LOG("支持NORMAL_PHOTO");
                     break;
                 case NORMAL_VIDEO:
-                    isNORMAL_VIDEO = true;
+                    isNormalVideo = true;
                     LOG("支持NORMAL_VIDEO");
                     break;
                 case SECURE_PHOTO:
-                    isSECURE_PHOTO = true;
+                    isSecurePhoto = true;
                     LOG("支持NSECURE_PHOTO");
                     break;
                 default: break;
             }
         }
-        if (isNORMAL_PHOTO == true && isNORMAL_VIDEO == true) {
-            if (isSECURE_PHOTO) {
+        if (isNormalPhoto == true && isNormalVideo == true) {
+            if (isSecurePhoto) {
                 LOG("获取相机设备支持的模式成功,支持NORMAL_PHOTO,NORMAL_VIDEO,支持NSECURE_PHOTO. %d", ret_);
             } else {
                 LOG("获取相机设备支持的模式成功,支持NORMAL_PHOTO,NORMAL_VIDEO. %d", ret_);
