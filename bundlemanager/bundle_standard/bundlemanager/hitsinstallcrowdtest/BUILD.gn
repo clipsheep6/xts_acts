@@ -18,11 +18,6 @@ ohos_js_app_suite("HitsInstallCrowdTest") {
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "HitsInstallCrowdTest"
-
-  # 部件名称，真实数据，需要子系统对应
   part_name = "bundle_framework"
-
-  # 子系统名称，真实数据，需要部件对应
   subsystem_name = "bundlemanager"
 }
-
