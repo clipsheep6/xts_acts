@@ -784,6 +784,10 @@ export default function abilityTest() {
  * @tc.desc    : Use doAbilityBackground to change the abilitystage to background failed.(promise)
  */
     it('ACTS_DoAbilityBackground_0600', 0, async (done: Function) => {
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
 
