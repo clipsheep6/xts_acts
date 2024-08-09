@@ -273,6 +273,28 @@ export default function relationalStorePredicatesTest() {
       console.info(TAG + "************* testEqualTo0007 end   *************");
     })
 
+	/**
+     * @tc.name testEqualTo0008
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0080
+     * @tc.desc predicates equalTo normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testEqualTo0008', 0, async function (done) {
+      console.info(TAG + "************* testEqualTo0008 start *************");
+      {
+        let predicates = await new data_Rdb.RdbPredicates("AllDataType");
+        predicates.equalTo("floatValue", -0.123);
+        let result = await rdbStore.query(predicates);
+        expect(true).assertEqual(result.goToFirstRow());
+        expect(1).assertEqual(result.getLong(0))
+        result.close();
+      }
+      done();
+      console.info(TAG + "************* testEqualTo0008 end   *************");
+    })
+	
     /**
      * @tc.name testEqualTo0009
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_EqualTo_0090
