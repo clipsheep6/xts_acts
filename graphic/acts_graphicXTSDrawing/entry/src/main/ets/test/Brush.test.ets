@@ -1118,5 +1118,15 @@ export default function brushTest() {
       }
     });
 
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_BRUSH_0900
+     * @tc.name      : testBrushSetImageFilterNormal
+     * @tc.desc      : Test for testBrushSetImageFilterNormal.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('testBrushSetImageFilterNormal' , DEFAULT , () => {
+    });
   });
 }
