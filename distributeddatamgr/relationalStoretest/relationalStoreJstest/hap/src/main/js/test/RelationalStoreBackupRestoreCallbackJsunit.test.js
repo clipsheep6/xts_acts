@@ -445,13 +445,13 @@ export default function relationalStoreBackupRestoreCallbackTest() {
                             done();
                         } else {
                             console.error(TAG, `Failed, code is ${err.code},message is ${err.message} `);
-                            expect(err !== null).assertFail();
+                            expect(err.code).assertEqual(14800010);
                             done();
                         }
                     })
                 } catch (errInfo) {
                     console.info(`[ttt] restore error, code is ${errInfo.code},message is ${errInfo.message}`)
-                    expect(errInfo.code).assertEqual('401');
+                    expect(errInfo.code).assertFail();
                     done();
                 }
             })
