@@ -274,25 +274,49 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
-     * @tc.name testEqualTo0008
-     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0080
+     * @tc.name testEqualTo0009
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_EqualTo_0090
      * @tc.desc predicates equalTo normal test
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 2
      */
-    it('testEqualTo0008', 0, async function (done) {
-      console.info(TAG + "************* testEqualTo0008 start *************");
-      {
-        let predicates = await new data_Rdb.RdbPredicates("AllDataType");
-        predicates.equalTo("floatValue", -0.123);
-        let result = await rdbStore.query(predicates);
-        expect(true).assertEqual(result.goToFirstRow());
-        expect(1).assertEqual(result.getLong(0))
-        result.close();
+    it('testEqualTo0009', 0, async function (done) {
+      console.info(TAG + "************* testEqualTo0009 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.equalTo("integerValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testEqualTo0009 predicates.equalTo failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
       }
-      done();
-      console.info(TAG + "************* testEqualTo0008 end   *************");
+      console.info(TAG + "************* testEqualTo0009 end   *************");
+    })
+
+    /**
+     * @tc.name testEqualTo0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_EqualTo_0100
+     * @tc.desc predicates equalTo normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testEqualTo0010', 0, async function (done) {
+      console.info(TAG + "************* testEqualTo0010 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.equalTo("", null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testEqualTo0010 predicates.equalTo failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testEqualTo0010 end   *************");
     })
 
     /**
@@ -465,6 +489,52 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testNotEqualTo0009
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_NotEqualTo_0090
+     * @tc.desc predicates notEqualTo normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testNotEqualTo0009', 0, async function (done) {
+      console.info(TAG + "************* testNotEqualTo0009 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.notEqualTo("floatValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testNotEqualTo0009 predicates.notEqualTo failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testNotEqualTo0009 end   *************");
+    })
+
+    /**
+     * @tc.name testNotEqualTo0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_NotEqualTo_0100
+     * @tc.desc predicates notEqualTo normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testNotEqualTo0010', 0, async function (done) {
+      console.info(TAG + "************* testNotEqualTo0010 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.notEqualTo("", null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testNotEqualTo0010 predicates.notEqualTo failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testNotEqualTo0009 end   *************");
+    })
+
+    /**
      * @tc.name testIsNull0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0170
      * @tc.desc predicates isNull normal test
@@ -541,6 +611,75 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testIsNull0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_isNull_0050
+     * @tc.desc predicates isNull normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIsNull0005', 0, async function (done) {
+      console.info(TAG + "************* testIsNull0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.isNull(null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIsNull0005 predicates.isNull failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIsNull0005 end   *************");
+    })
+
+    /**
+     * @tc.name testIsNull0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_isNull_0060
+     * @tc.desc predicates isNull normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIsNull0006', 0, async function (done) {
+      console.info(TAG + "************* testIsNull0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.isNull(undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIsNull0006 predicates.isNull failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIsNull0006 end   *************");
+    })
+
+    /**
+     * @tc.name testIsNull0007
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_isNull_0070
+     * @tc.desc predicates isNull normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIsNull0007', 0, async function (done) {
+      console.info(TAG + "************* testIsNull0007 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.isNull("");
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIsNull0007 predicates.isNull failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIsNull0007 end   *************");
+    })
+
+    /**
      * @tc.name testIsNotNull0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0210
      * @tc.desc predicates isNotNull normal test
@@ -614,6 +753,75 @@ export default function relationalStorePredicatesTest() {
       result.close();
       done();
       console.info(TAG + "************* testIsNotNull0004 end *************");
+    })
+
+    /**
+     * @tc.name testIsNotNull0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_isNotNull_0050
+     * @tc.desc predicates isNotNull normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIsNotNull0005', 0, async function (done) {
+      console.info(TAG + "************* testIsNotNull0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.isNotNull(null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIsNotNull0005 predicates.isNotNull failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIsNotNull0005 end   *************");
+    })
+
+    /**
+     * @tc.name testIsNotNull0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_isNotNull_0060
+     * @tc.desc predicates isNotNull normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIsNotNull0006', 0, async function (done) {
+      console.info(TAG + "************* testIsNotNull0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.isNotNull(undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIsNotNull0006 predicates.isNotNull failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIsNotNull0006 end   *************");
+    })
+
+    /**
+     * @tc.name testIsNotNull0007
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_isNotNull_0070
+     * @tc.desc predicates isNotNull normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIsNotNull0007', 0, async function (done) {
+      console.info(TAG + "************* testIsNotNull0007 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.isNotNull(null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIsNotNull0007 predicates.isNotNull failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIsNotNull0007 end   *************");
     })
 
     /**
@@ -785,6 +993,52 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testGreaterThan0009
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_greaterThan_0090
+     * @tc.desc predicates greaterThan normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testGreaterThan0009', 0, async function (done) {
+      console.info(TAG + "************* testGreaterThan0009 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.greaterThan("integerValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testGreaterThan0009 predicates.greaterThan failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testGreaterThan0009 end   *************");
+    })
+
+    /**
+     * @tc.name testGreaterThan0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_greaterThan_0100
+     * @tc.desc predicates greaterThan normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testGreaterThan0010', 0, async function (done) {
+      console.info(TAG + "************* testGreaterThan0010 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.greaterThan("", -999);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testGreaterThan0010 predicates.greaterThan failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testGreaterThan0010 end   *************");
+    })
+
+    /**
      * @tc.name testGreaterThanOrEqualTo0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0330
      * @tc.desc predicates greaterThanOrEqualTo normal test
@@ -866,6 +1120,52 @@ export default function relationalStorePredicatesTest() {
       }
       done();
       console.info(TAG + "************* testGreaterThanOrEqualTo0004 end *************");
+    })
+
+    /**
+     * @tc.name testGreaterThanOrEqualTo0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_greaterThanOrEqualTo_0050
+     * @tc.desc predicates greaterThanOrEqualTo normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testGreaterThanOrEqualTo0005', 0, async function (done) {
+      console.info(TAG + "************* testGreaterThanOrEqualTo0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.greaterThanOrEqualTo("longValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testGreaterThanOrEqualTo0005 predicates.greaterThanOrEqualTo failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testGreaterThanOrEqualTo0005 end   *************");
+    })
+
+    /**
+     * @tc.name testGreaterThanOrEqualTo0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_greaterThanOrEqualTo_0060
+     * @tc.desc predicates greaterThanOrEqualTo normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testGreaterThanOrEqualTo0006', 0, async function (done) {
+      console.info(TAG + "************* testGreaterThanOrEqualTo0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.greaterThanOrEqualTo("", 1);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testGreaterThanOrEqualTo0006 predicates.greaterThanOrEqualTo failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testGreaterThanOrEqualTo0006 end   *************");
     })
 
     /**
@@ -1037,6 +1337,52 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testLessThan0009
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_lessThan_0090
+     * @tc.desc predicates lessThan normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testLessThan0009', 0, async function (done) {
+      console.info(TAG + "************* testLessThan0009 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.lessThan("longValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testLessThan0009 predicates.lessThan failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testLessThan0009 end   *************");
+    })
+
+    /**
+     * @tc.name testLessThan0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_lessThan_0100
+     * @tc.desc predicates lessThan normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testLessThan0010', 0, async function (done) {
+      console.info(TAG + "************* testLessThan0010 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.lessThan("", -9223372036854775808);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testLessThan0010 predicates.lessThan failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testLessThan0010 end   *************");
+    })
+
+    /**
      * @tc.name testLessThanOrEqualTo0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0450
      * @tc.desc predicates lessThanOrEqualTo normal test
@@ -1118,6 +1464,52 @@ export default function relationalStorePredicatesTest() {
       }
       done();
       console.info(TAG + "************* testLessThanOrEqualTo0004 end *************");
+    })
+
+    /**
+     * @tc.name testLessThanOrEqualTo0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_lessThanOrEqualTo_0050
+     * @tc.desc predicates lessThanOrEqualTo normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testLessThanOrEqualTo0005', 0, async function (done) {
+      console.info(TAG + "************* testLessThanOrEqualTo0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("longValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testLessThanOrEqualTo0005 predicates.lessThanOrEqualTo failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testLessThanOrEqualTo0005 end   *************");
+    })
+
+    /**
+     * @tc.name testLessThanOrEqualTo0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_lessThanOrEqualTo_0060
+     * @tc.desc predicates lessThanOrEqualTo normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testLessThanOrEqualTo0006', 0, async function (done) {
+      console.info(TAG + "************* testLessThanOrEqualTo0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("", 1);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testLessThanOrEqualTo0006 predicates.lessThanOrEqualTo failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testLessThanOrEqualTo0006 end   *************");
     })
 
     /**
@@ -1289,6 +1681,52 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testBetween0009
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_between_0090
+     * @tc.desc predicates between normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testBetween0009', 0, async function (done) {
+      console.info(TAG + "************* testBetween0009 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.between("longValue", undefined, undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testBetween0009 predicates.between failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testBetween0009 end   *************");
+    })
+
+    /**
+     * @tc.name testBetween0010
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_between_0100
+     * @tc.desc predicates between normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testBetween0010', 0, async function (done) {
+      console.info(TAG + "************* testBetween0010 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.between("", null, null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testBetween0010 predicates.between failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testBetween0010 end   *************");
+    })
+
+    /**
      * @tc.name testNotBetween0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0570
      * @tc.desc test string value with notBetween.
@@ -1370,6 +1808,52 @@ export default function relationalStorePredicatesTest() {
       }
       done();
       console.info(TAG + "************* testNotBetween0004 end *************");
+    })
+
+    /**
+     * @tc.name testNotBetween0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_notBetween_0050
+     * @tc.desc predicates notBetween normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testNotBetween0005', 0, async function (done) {
+      console.info(TAG + "************* testNotBetween0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.notBetween("longValue", undefined, undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testNotBetween0005 predicates.notBetween failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testNotBetween0005 end   *************");
+    })
+
+    /**
+     * @tc.name testNotBetween0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_notBetween_0060
+     * @tc.desc predicates notBetween normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testNotBetween0006', 0, async function (done) {
+      console.info(TAG + "************* testNotBetween0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.notBetween("", null, null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testNotBetween0006 predicates.notBetween failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testNotBetween0006 end   *************");
     })
 
     /**
@@ -1499,6 +1983,75 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testGlob0007
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_glob_0070
+     * @tc.desc predicates glob normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testGlob0007', 0, async function (done) {
+      console.info(TAG + "************* testGlob0007 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.glob("stringValue", null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testGlob0007 predicates.glob failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testGlob0007 end   *************");
+    })
+
+    /**
+     * @tc.name testGlob0008
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_glob_0080
+     * @tc.desc predicates glob normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testGlob0008', 0, async function (done) {
+      console.info(TAG + "************* testGlob0008 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.glob("stringValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testGlob0008 predicates.glob failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testGlob0008 end   *************");
+    })
+
+    /**
+     * @tc.name testGlob0009
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_glob_0090
+     * @tc.desc predicates glob normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testGlob0009', 0, async function (done) {
+      console.info(TAG + "************* testGlob0009 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.glob("", "?BCDEFGHIJKLM?");
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testGlob0009 predicates.glob failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testGlob0009 end   *************");
+    })
+
+    /**
      * @tc.name testContains0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0670
      * @tc.desc predicates contains normal test
@@ -1572,6 +2125,75 @@ export default function relationalStorePredicatesTest() {
       result.close();
       done();
       console.info(TAG + "************* testContains0004 end *************");
+    })
+
+    /**
+     * @tc.name testContains0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_contains_0050
+     * @tc.desc predicates contains normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testContains0005', 0, async function (done) {
+      console.info(TAG + "************* testContains0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.contains("characterValue", null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testContains0005 predicates.contains failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testContains0005 end   *************");
+    })
+
+    /**
+     * @tc.name testContains0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_contains_0060
+     * @tc.desc predicates contains normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testContains0006', 0, async function (done) {
+      console.info(TAG + "************* testContains0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.contains("characterValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testContains0006 predicates.contains failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testContains0006 end   *************");
+    })
+
+    /**
+     * @tc.name testContains0007
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_contains_0070
+     * @tc.desc predicates contains normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testContains0007', 0, async function (done) {
+      console.info(TAG + "************* testContains0007 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.contains("", "#");
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testContains0007 predicates.contains failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testContains0007 end   *************");
     })
 
     /**
@@ -1651,6 +2273,75 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testBeginsWith0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_beginsWith_0050
+     * @tc.desc predicates beginsWith normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testBeginsWith0005', 0, async function (done) {
+      console.info(TAG + "************* testBeginsWith0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.beginsWith("characterValue", null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testBeginsWith0005 predicates.beginsWith failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testBeginsWith0005 end   *************");
+    })
+
+    /**
+     * @tc.name testBeginsWith0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_beginsWith_0060
+     * @tc.desc predicates beginsWith normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testBeginsWith0006', 0, async function (done) {
+      console.info(TAG + "************* testBeginsWith0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.beginsWith("characterValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testBeginsWith0006 predicates.beginsWith failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testBeginsWith0006 end   *************");
+    })
+
+    /**
+     * @tc.name testBeginsWith0007
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_beginsWith_0070
+     * @tc.desc predicates beginsWith normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testBeginsWith0007', 0, async function (done) {
+      console.info(TAG + "************* testBeginsWith0007 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.beginsWith("", "#");
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testBeginsWith0007 predicates.beginsWith failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testBeginsWith0007 end   *************");
+    })
+
+    /**
      * @tc.name testEndsWith0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0750
      * @tc.desc predicates endsWith normal test
@@ -1727,6 +2418,75 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testEndsWith0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_endsWith_0050
+     * @tc.desc predicates endsWith normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testEndsWith0005', 0, async function (done) {
+      console.info(TAG + "************* testEndsWith0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.endsWith("characterValue", null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testEndsWith0005 predicates.endsWith failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testEndsWith0005 end   *************");
+    })
+
+    /**
+     * @tc.name testEndsWith0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_endsWith_0060
+     * @tc.desc predicates endsWith normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testEndsWith0006', 0, async function (done) {
+      console.info(TAG + "************* testEndsWith0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.endsWith("characterValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testEndsWith0006 predicates.endsWith failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testEndsWith0006 end   *************");
+    })
+
+    /**
+     * @tc.name testEndsWith0007
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_endsWith_0070
+     * @tc.desc predicates endsWith normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testEndsWith0007', 0, async function (done) {
+      console.info(TAG + "************* testEndsWith0007 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.endsWith("", "#");
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testEndsWith0007 predicates.endsWith failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testEndsWith0007 end   *************");
+    })
+
+    /**
      * @tc.name testLike0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0790
      * @tc.desc predicates like normal test
@@ -1800,6 +2560,75 @@ export default function relationalStorePredicatesTest() {
       result.close();
       done();
       console.info(TAG + "************* testLike0004 end *************");
+    })
+
+    /**
+     * @tc.name testLike0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_like_0050
+     * @tc.desc predicates like normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testLike0005', 0, async function (done) {
+      console.info(TAG + "************* testLike0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("characterValue", null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testLike0005 predicates.like failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testLike0005 end   *************");
+    })
+
+    /**
+     * @tc.name testLike0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_like_0060
+     * @tc.desc predicates like normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testLike0006', 0, async function (done) {
+      console.info(TAG + "************* testLike0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("characterValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testLike0006 predicates.like failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testLike0006 end   *************");
+    })
+
+    /**
+     * @tc.name testLike0007
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_like_0070
+     * @tc.desc predicates like normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testLike0007', 0, async function (done) {
+      console.info(TAG + "************* testLike0007 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("", "#");
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testLike0007 predicates.like failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testLike0007 end   *************");
     })
 
     /**
@@ -2099,6 +2928,52 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testOrder0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_order_0050
+     * @tc.desc predicates like normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testOrder0005', 0, async function (done) {
+      console.info(TAG + "************* testOrder0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.equalTo("stringValue", "ABCDEFGHIJKLMN").orderByAsc("").distinct();
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testOrder0005 predicates.order failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testOrder0005 end   *************");
+    })
+
+    /**
+     * @tc.name testOrder0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_order_0050
+     * @tc.desc predicates like normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testOrder0006', 0, async function (done) {
+      console.info(TAG + "************* testOrder0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.equalTo("stringValue", "ABCDEFGHIJKLMN").orderByDesc("").distinct();
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testOrder0006 predicates.order failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testOrder0006 end   *************");
+    })
+
+    /**
      * @tc.name testLimit0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_0960
      * @tc.desc predicates limit normal test
@@ -2207,6 +3082,52 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testLimit0007
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_limitAs_0070
+     * @tc.desc predicates limitAs normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testLimit0007', 0, async function (done) {
+      console.info(TAG + "************* testLimit0007 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testLimit0007 predicates.limitAs failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testLimit0007 end   *************");
+    })
+
+    /**
+     * @tc.name testLimit0008
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_limitAs_0080
+     * @tc.desc predicates limitAs normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testLimit0008', 0, async function (done) {
+      console.info(TAG + "************* testLimit0008 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testLimit0008 predicates.limitAs failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testLimit0008 end   *************");
+    })
+
+    /**
      * @tc.name testOffset0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_1020
      * @tc.desc predicates offset normal test
@@ -2276,6 +3197,52 @@ export default function relationalStorePredicatesTest() {
       expect(3).assertEqual(result.rowCount);
       result.close();
       console.info(TAG + "************* testOffset0004 end *************");
+    })
+
+    /**
+     * @tc.name testOffset0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_offset_0050
+     * @tc.desc predicates offset normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testOffset0005', 0, async function (done) {
+      console.info(TAG + "************* testOffset0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3).offsetAs(null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testOffset0005 predicates.limitAs failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testOffset0005 end   *************");
+    })
+
+    /**
+     * @tc.name testOffset0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_offset_0060
+     * @tc.desc predicates offset normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testOffset0006', 0, async function (done) {
+      console.info(TAG + "************* testOffset0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3).offsetAs(undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testOffset0006 predicates.limitAs failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testOffset0006 end   *************");
     })
 
     /**
@@ -2355,6 +3322,76 @@ export default function relationalStorePredicatesTest() {
     })
 
     /**
+     * @tc.name testIn0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_in_0050
+     * @tc.desc predicates in normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIn0005', 0, async function (done) {
+      console.info(TAG + "************* testIn0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.in("doubleValue", null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIn0005 predicates.in failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIn0005 end   *************");
+    })
+
+    /**
+     * @tc.name testIn0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_in_0060
+     * @tc.desc predicates in normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIn0006', 0, async function (done) {
+      console.info(TAG + "************* testIn0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.in("doubleValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIn0006 predicates.in failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIn0006 end   *************");
+    })
+
+    /**
+     * @tc.name testIn0007
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_in_0070
+     * @tc.desc predicates in normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIn0007', 0, async function (done) {
+      console.info(TAG + "************* testIn0007 start *************");
+      try {
+        let values = [Number.MIN_VALUE.toString(), "1.0", DOUBLE_MAX.toString()];
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.in("", values);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIn0007 predicates.in failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIn0007 end   *************");
+    })
+
+    /**
      * @tc.name testNotIn0001
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_1100
      * @tc.desc the common and min value test with notin.
@@ -2409,6 +3446,76 @@ export default function relationalStorePredicatesTest() {
       expect(1).assertEqual(result.rowCount);
       result.close();
       console.info(TAG + "************* testNotIn0003 end *************");
+    })
+
+    /**
+     * @tc.name testNotIn0004
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_NotIn_0040
+     * @tc.desc predicates NotIn normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testNotIn0004', 0, async function (done) {
+      console.info(TAG + "************* testNotIn0004 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.notIn("integerValue", undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testNotIn0004 predicates.notIn failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testNotIn0004 end   *************");
+    })
+
+    /**
+     * @tc.name testNotIn0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_NotIn_0050
+     * @tc.desc predicates NotIn normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testNotIn0005', 0, async function (done) {
+      console.info(TAG + "************* testNotIn0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.notIn("integerValue", null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testNotIn0005 predicates.notIn failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testNotIn0005 end   *************");
+    })
+
+    /**
+     * @tc.name testNotIn0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_NotIn_0060
+     * @tc.desc predicates NotIn normal test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testNotIn0006', 0, async function (done) {
+      console.info(TAG + "************* testNotIn0006 start *************");
+      try {
+        let values = [-2147483648, 2147483647];
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.notIn("", values);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testNotIn0006 predicates.notIn failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testNotIn0006 end   *************");
     })
 
     /**
@@ -2479,6 +3586,52 @@ export default function relationalStorePredicatesTest() {
       expect(-1).assertEqual(result.rowCount);
       result.close();
       console.info(TAG + "************* testGroupBy0002 end *************");
+    })
+
+    /**
+     * @tc.name testGroupBy0003
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_groupBy_0030
+     * @tc.desc predicates groupBy test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testGroupBy0003', 0, async function (done) {
+      console.info(TAG + "************* testGroupBy0003 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("stringValue", "ABCDEFGHIJKLMN").groupBy(undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testGroupBy0003 predicates.groupBy failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testGroupBy0003 end   *************");
+    })
+
+    /**
+     * @tc.name testGroupBy0004
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_groupBy_0040
+     * @tc.desc predicates groupBy test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testGroupBy0004', 0, async function (done) {
+      console.info(TAG + "************* testGroupBy0004 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("stringValue", "ABCDEFGHIJKLMN").groupBy(null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testGroupBy0004 predicates.groupBy failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testGroupBy0004 end   *************");
     })
 
     /**
@@ -2573,7 +3726,74 @@ export default function relationalStorePredicatesTest() {
       console.info(TAG + "************* testIndexedBy0004 end *************");
     })
 
-    console.info(TAG + "*************Unit Test End*************");
+    /**
+     * @tc.name testIndexedBy0005
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_indexedBy_0050
+     * @tc.desc predicates indexedBy test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIndexedBy0005', 0, async function (done) {
+      console.info(TAG + "************* testIndexedBy0005 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy("");
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIndexedBy0005 predicates.indexedBy failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIndexedBy0005 end   *************");
+    })
+
+    /**
+     * @tc.name testIndexedBy0006
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_indexedBy_0060
+     * @tc.desc predicates indexedBy test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIndexedBy0006', 0, async function (done) {
+      console.info(TAG + "************* testIndexedBy0006 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy(undefined);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIndexedBy0006 predicates.indexedBy failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIndexedBy0006 end   *************");
+    })
+
+    /**
+     * @tc.name testIndexedBy0007
+     * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_indexedBy_0070
+     * @tc.desc predicates indexedBy test
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('testIndexedBy0007', 0, async function (done) {
+      console.info(TAG + "************* testIndexedBy0007 start *************");
+      try {
+        let predicates = new data_Rdb.RdbPredicates("AllDataType");
+        predicates.like("stringValue", "ABCDEFGHIJKLMN").indexedBy(null);
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.error(TAG, `testIndexedBy0007 predicates.indexedBy failed: err code=${err.code}, message=${err.message}`);
+        expect("401").assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testIndexedBy0007 end   *************");
+    })
 
     /**
      * @tc.number SUB_DistributedData_RelationalStore_SDK_PredicatesEtsAPITest_NotLike_0001
@@ -3018,7 +4238,7 @@ export default function relationalStorePredicatesTest() {
       try {
         let predicates = new data_Rdb.RdbPredicates("AllDataType");
         predicates.notLike("characterValue", undefined);
-        expect(null).assertEqual();
+        expect(null).assertFail();
         done();
       } catch (err) {
         console.error(TAG, `testNotLike0013 predicates.notLike failed: err code=${err.code}, message=${err.message}`);
@@ -3042,7 +4262,7 @@ export default function relationalStorePredicatesTest() {
       try {
         let predicates = new data_Rdb.RdbPredicates("AllDataType");
         predicates.notLike("", "#");
-        expect(null).assertEqual();
+        expect(null).assertFail();
         done();
       } catch (err) {
         console.error(TAG, `predicates.notLike failed: err code=${err.code}, message=${err.message}`);
