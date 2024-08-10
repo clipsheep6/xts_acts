@@ -17,14 +17,16 @@ import HasCard1PublicTest from './TelephonyCallHasCard1Public.test';
 import HasCard2PublicTest from './TelephonyCallHasCard2Public.test';
 import HasCard2PublicNeedCardTest from './TelephonyCallHasCard3Public.test';
 import EmptyTest from './Empty.test'
-import sim from '@ohos.telephony.sim';
+import telephoneCall  from "./telephoneCall.test";
 
+import sim from '@ohos.telephony.sim';
 export default function testsuite() {
   if (canIUse("SystemCapability.Telephony.CallManager")){
     if(sim.hasSimCardSync(0)){
       HasCard2PublicNeedCardTest();
       HasCard1PublicTest();
       HasCard2PublicTest();
+      telephoneCall()
     } else {
       HasCard1PublicTest();
       HasCard2PublicTest();
