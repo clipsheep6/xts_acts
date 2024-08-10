@@ -132,6 +132,7 @@ function createCameraInput() {
     console.log(TAG + "createCameraInput FAILED");
     expect().assertFail();
   }
+  cameraObj.cameraInputOpen();
 }
 
 function getSupportedSceneModes() {

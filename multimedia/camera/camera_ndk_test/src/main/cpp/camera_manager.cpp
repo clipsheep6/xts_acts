@@ -1446,10 +1446,10 @@ Camera_ErrorCode NDKCamera::GetSupportedSceneModes(int useCaseCode)
         for (decltype(sceneModesSize_) index = 0; index < sceneModesSize_; index++) {
             switch (sceneModes_[index]) {
                 case NORMAL_PHOTO:
-                    isNormalPhoto = true;                   
+                    isNormalPhoto = true;
                     break;
                 case NORMAL_VIDEO:
-                    isNormalVideo = true;                   
+                    isNormalVideo = true;
                     break;
                 case SECURE_PHOTO:
                     isSecurePhoto = true;
