@@ -1,8 +1,0 @@
-{
-  "src": [
-    "MainAbility/pages/index/Index",
-    "MainAbility/pages/layoutWeight/LayoutWeightPage",
-    "MainAbility/pages/layoutWeight/LayoutWeightPageFlex",
-    "MainAbility/pages/layoutWeight/LayoutWeightPageRow"
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "src": [
-    "MainAbility/pages/WebViewPrefetchResource",
-    "MainAbility/pages/precompileJavaScriptTest",
-    "MainAbility/pages/injectOfflineResourcesTest",
-    "MainAbility/pages/clearPrefetchedResourceTest"
-  ]
-}
-
