@@ -1,0 +1,38 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "com.example.myapplication",
+        "module-name": "entry_test",
+        "shell-timeout": "300000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "AVScreenCaptureRecorderTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/com.example.myapplication/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/com.example.myapplication/haps/entry_test/files/*",
+                "mkdir -p /data/app/el2/100/base/com.example.myapplication/haps/entry_test/cache/",
+                "chmod -R 777 /data/app/el2/100/base/com.example.myapplication/haps/entry_test/cache/*",
+                "chmod -R 777 /data/app/el2/100/base/com.example.myapplication/haps/entry_test/*",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/AVScreenCaptureRecorder/test.mp4 ->/data/app/el2/100/base/com.example.myapplication/haps/entry_test/files"
+            ]
+        }
+    ]
+}
