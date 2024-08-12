@@ -18,6 +18,7 @@ import HasCard2PublicTest from './TelephonyCallHasCard2Public.test';
 import HasCard2PublicNeedCardTest from './TelephonyCallHasCard3Public.test';
 import EmptyTest from './Empty.test'
 import sim from '@ohos.telephony.sim';
+import telephoneCall  from "./telephoneCall.test";
 
 export default function testsuite() {
   if (canIUse("SystemCapability.Telephony.CallManager")){
@@ -25,6 +26,7 @@ export default function testsuite() {
       HasCard2PublicNeedCardTest();
       HasCard1PublicTest();
       HasCard2PublicTest();
+      telephoneCall()
     } else {
       HasCard1PublicTest();
       HasCard2PublicTest();
