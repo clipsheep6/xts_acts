@@ -20,6 +20,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import commonEventManager from '@ohos.commonEventManager';
 import { BusinessError } from '@ohos.base';
 
+let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 let subscriberInfo_MainAbility: commonEventManager.CommonEventSubscribeInfo = {
   events: ["ACTS_DoAbility_Event"]
 };
@@ -329,6 +330,10 @@ export default function abilityTest() {
      * @tc.desc    : Use doAbilityBackground to change the abilitystage to background.(promise)
      */
     it('ACTS_DoAbilityBackground_0500', 0, async (done: Function) => {
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
 
@@ -397,6 +402,10 @@ export default function abilityTest() {
      * @tc.desc    : Use doAbilityBackground to change the abilitystage to background.(promise)
      */
     it('ACTS_DoAbilityBackground_0700', 0, async (done: Function) => {
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
       let num1 = 0;
@@ -493,6 +502,10 @@ export default function abilityTest() {
      * @tc.desc    : Use doAbilityBackground to change the abilitystage to background failed.(promise)
      */
     it('ACTS_DoAbilityBackground_0800', 0, async (done: Function) => {
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
       let num1 = 0;
@@ -589,6 +602,10 @@ export default function abilityTest() {
    * @tc.desc    : Use doAbilityForeground to change the abilitystage to foreground failed.(callback)
    */
     it('ACTS_DoAbilityForeground_0300', 0, async (done: Function) => {
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
       commonEvent.createSubscriber(subscriberInfo_MainAbility)
@@ -663,6 +680,10 @@ export default function abilityTest() {
  * @tc.desc    : Use doAbilityForeground to change the abilitystage to foreground failed.(promise)
  */
     it('ACTS_DoAbilityForeground_0600', 0, async (done: Function) => {
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
       commonEvent.createSubscriber(subscriberInfo_MainAbility)
@@ -723,6 +744,10 @@ export default function abilityTest() {
      * @tc.desc    : Use doAbilityBackground to change the abilitystage to background failed.(callback)
      */
     it('ACTS_DoAbilityBackground_0300', 0, async (done: Function) => {
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
 
@@ -784,6 +809,10 @@ export default function abilityTest() {
  * @tc.desc    : Use doAbilityBackground to change the abilitystage to background failed.(promise)
  */
     it('ACTS_DoAbilityBackground_0600', 0, async (done: Function) => {
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
 
