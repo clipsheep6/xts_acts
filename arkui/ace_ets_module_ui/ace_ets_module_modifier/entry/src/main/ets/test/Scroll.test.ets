@@ -198,7 +198,7 @@ export default function scrollOnScrollBeginJsunit() {
       let strJson = getInspectorByKey('ScrollKey1');
       let obj = JSON.parse(strJson);
       console.info("[testScroll0010] obj is: " + JSON.stringify(obj.$attrs));
-      expect(obj.$attrs.enablePaging).assertEqual(undefined);
+      expect(obj.$attrs.enablePaging).assertEqual(false);
       console.info('testScroll0010 END');
       done();
     });
