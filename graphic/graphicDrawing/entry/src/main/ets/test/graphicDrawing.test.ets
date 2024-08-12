@@ -3958,6 +3958,40 @@ export default function graphicDrawing(context, windowStage, abilityStorage) {
         expect().assertFail();
       }
     })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_3170
+     * @tc.name      : testFont_CreatePathForGlyph_Normal_Parameter
+     * @tc.desc      : createPathForGlyph
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFont_CreatePathForGlyph_Normal_Parameter', 0, async function () {
+      let msg = "testFont_CreatePathForGlyph_Normal_Parameter"
+      console.info(msg + 'begin');
+      let font = new drawing.Font();
+      try {
+        font.setSize(100);
+      } catch (err) {
+        console.info(msg + 'setSize error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+
+      try {
+        let path = font.createPathForGlyph(0);
+      } catch (err) {
+        console.info(msg + 'setSize error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+
+      try {
+        let num = font.getSize();
+        expect(num).assertEqual(50)
+      } catch (err) {
+        console.info(msg + 'getSize error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
   })
 }
 
