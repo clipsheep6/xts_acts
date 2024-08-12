@@ -25,6 +25,8 @@ import TCPSocketConnectionTest from './TCPSocketConnection.test';
 import SocketGetLocalAddressTest from './SocketGetLocalAddress.test';
 import TlsSkipRemoteValidationTest from './TlsSkipRemoteValidation.test';
 import TLSSocketUpgradeTest from './TLSSocketUpgrade.test';
+import TLSSockets from './TLSSockets.test';
+import tlsSocketConnectionTests from './TlsSocketConnections.test';
 
 export default function testsuite() {
   TLSSocketServerTest();
@@ -38,4 +40,6 @@ export default function testsuite() {
   SocketGetLocalAddressTest();
   TlsSkipRemoteValidationTest();
   TLSSocketUpgradeTest();
+  TLSSockets();
+  tlsSocketConnectionTests();
 }
