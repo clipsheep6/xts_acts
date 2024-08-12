@@ -127,6 +127,10 @@
     "MainAbility/pages/ChipGroup/ChipGroupItemStyle",
     "MainAbility/pages/ChipGroup/ChipGroupEndSpace",
     "MainAbility/pages/ChipGroup/ChipGroupItemSpaceSize",
-    "MainAbility/pages/ChipGroup/ChipGroupStartSpace"
+    "MainAbility/pages/ChipGroup/ChipGroupStartSpace",
+    "MainAbility/pages/RichEditor/RichEditorAddApi",
+    "MainAbility/pages/StyledString/StyledStringKeyTest1",
+    "MainAbility/pages/Text/editMeunOptions",
+    "MainAbility/pages/RichEditor/onDidIMEInput"
   ]
 }

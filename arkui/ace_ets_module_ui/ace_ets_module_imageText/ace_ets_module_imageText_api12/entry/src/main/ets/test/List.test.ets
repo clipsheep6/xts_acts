@@ -143,6 +143,7 @@ import SliderStyle from './SliderTest/SliderStyle.test'
 import ChipGroupItemStyle from './ChipGroupTest/ChipGroupItemStyle.test'
 import ChipGroupSpace from './ChipGroupTest/ChipGroupSpace.test'
 import RichEditorApi13 from './RichEditor/RichEditorApi13.test'
+import onDidIMEInputTest from './RichEditor/onDidIMEInput.test';
 
 export default function testsuite() {
   APIContentTypeTest();
@@ -269,4 +270,5 @@ export default function testsuite() {
   SliderStyle();
   ChipGroupItemStyle();
   ChipGroupSpace();
+  onDidIMEInputTest();
 }
