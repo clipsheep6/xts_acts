@@ -54,6 +54,10 @@ export default class TestAbility1 extends UIAbility {
       AppStorage.setOrCreate<number>('test1OnApplicationStateResult', -123);
       hilog.error(0x0000, 'testTag', 'Failed to on applicationState. Cause: %{public}s', JSON.stringify(error));
     }
+    try {
+      appManager.off('applicationState', this.applicationStateNumber);
+    } catch (error) {
+    }
   }
 
 

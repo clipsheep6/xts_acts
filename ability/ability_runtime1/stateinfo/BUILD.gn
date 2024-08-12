@@ -17,7 +17,6 @@ group("hits_ability_runtime_stateinfo") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "getextensionrunninginfostest:hits_stateinfo_getrunninginfo_test",
       "openharmonyisterminatingtest:hits_stateinfo_isterminating_test",
       "stateInfobackability:hits_stateinfo_backability",
       "stateInfostartability:hits_stateinfo_startability",

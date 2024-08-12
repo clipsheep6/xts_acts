@@ -80,6 +80,11 @@ export default function getForegroundApplicationsTest() {
         try {
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0300 start`);
+
+
+          await abilityDelegator.executeShellCommand(`aa force-stop ${appGegForgrdAppsWant.bundleName}`);
+          await sleep(1000);
+
           // 获取RunningInfos
           let functionGetForegroundApplications = async () => {
             return new Promise<boolean>((resolve, reject) => {
@@ -130,7 +135,7 @@ export default function getForegroundApplicationsTest() {
             commonEvent.unsubscribe(subscriber);
           } catch (error) {
           }
-          sleep(800);
+          await sleep(800);
           done();
         } catch (e) {
           hilog.error(Domain, TAG,

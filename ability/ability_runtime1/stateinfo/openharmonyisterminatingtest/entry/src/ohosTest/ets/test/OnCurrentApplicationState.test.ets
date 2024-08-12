@@ -85,6 +85,10 @@ export default function onCurrentApplicationState() {
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
       applicationStateNumber = -1;
+      try {
+        appManager.off('applicationState', 0);
+      } catch (e) {
+      }
     })
     afterEach(async () => {
       // Presets a clear action, which is performed after each unit test case ends.
@@ -99,6 +103,10 @@ export default function onCurrentApplicationState() {
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
+      try {
+        appManager.off('applicationState', applicationStateNumber);
+      } catch (e) {
+      }
     })
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0100
@@ -636,7 +644,7 @@ export default function onCurrentApplicationState() {
 }
 
 function getAppStateData(data: appManager.AppStateData, result: boolean, eqState: number, bundleName?: string) {
-  hilog.info(Domain, TAG, `on applicationState AppStateData ${JSON.stringify(data)}`);
+  hilog.debug(Domain, TAG, `on applicationState AppStateData ${JSON.stringify(data)}`);
   if (result) {
     return true;
   }
@@ -650,7 +658,7 @@ function getAppStateData(data: appManager.AppStateData, result: boolean, eqState
 }
 
 function getAbilityStateData(data: appManager.AbilityStateData, result: boolean, eqState: number, want: Want) {
-  hilog.info(Domain, TAG, `on applicationState AbilityStateData ${JSON.stringify(data)}`);
+  hilog.debug(Domain, TAG, `on applicationState AbilityStateData ${JSON.stringify(data)}`);
   if (result) {
     return true;
   }
@@ -664,7 +672,7 @@ function getAbilityStateData(data: appManager.AbilityStateData, result: boolean,
 }
 
 function getProcessData(data: appManager.ProcessData, result: boolean, eqState: number, bundleName?: string) {
-  hilog.info(Domain, TAG, `on applicationState ProcessData ${JSON.stringify(data)}`);
+  hilog.debug(Domain, TAG, `on applicationState ProcessData ${JSON.stringify(data)}`);
   if (result) {
     return true;
   }
