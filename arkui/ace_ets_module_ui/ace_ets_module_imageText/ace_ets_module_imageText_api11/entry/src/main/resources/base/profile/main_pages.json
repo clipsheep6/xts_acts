@@ -147,6 +147,7 @@
         "MainAbility/pages/Search/search_top",
         "MainAbility/pages/Search/search_center",
         "MainAbility/pages/Search/search_bottom",
+        "MainAbility/pages/Search/search_gesture",
         "MainAbility/pages/Search/SearchPage",
         "MainAbility/pages/TextArea/textAreaUI",
         "MainAbility/pages/TextArea/textAreaBC1",
