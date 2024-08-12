@@ -19,7 +19,7 @@
     "type": "feature",
     "description": "$string:module_test_desc",
     "mainElement": "TestAbility",
-    "deviceTypes": ["default", "tablet", "2in1", "wearable"],
+    "deviceTypes": ["default", "tablet", "2in1"],
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:test_pages",
@@ -72,7 +72,17 @@
       },
       {
         "name": "ohos.permission.GRANT_SENSITIVE_PERMISSIONS"
-      }
+      },
+      {
+        "name": 'ohos.permission.WRITE_CONTACTS',
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryFromAbility"
+          ],
+          "when": "inuse"
+        },
+      },
     ]
   }
 }
