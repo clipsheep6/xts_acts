@@ -41,6 +41,7 @@ group("graphic") {
       "graphicvulkannapitest:ActsGraphicVulkanTest",
       "nativebuffer:ActsNativeBufferTest",
       "nativedrawing:ActsNativeDrawingTest",
+      "nativewindow:ActsNativeWindowTest",
       "nativeimage:ActsNativeImageTest",
       "nativevsync:ActsNativeVsyncTest",
       "webGL:webGL_hap_test",
