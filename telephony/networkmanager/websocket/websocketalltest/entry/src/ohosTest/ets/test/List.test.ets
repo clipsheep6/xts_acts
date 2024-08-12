@@ -17,8 +17,10 @@
 
 import WebSocketApiTest from './WebSocketApi.test';
 import WebSocketCreateTest from './WebSocketCreate.test';
+import WebSocketTest from './websocket.test';
 
 export default function testsuite() {
   WebSocketApiTest();
   WebSocketCreateTest();
+  WebSocketTest();
 }
