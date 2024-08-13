@@ -19,6 +19,7 @@ import fs from '@ohos.file.fs';
 import featureAbility from '@ohos.ability.featureAbility'
 import { Camera_MediaType } from './Constants';
 
+
 export default class MediaUtils {
   private static instance: MediaUtils = new MediaUtils();
 

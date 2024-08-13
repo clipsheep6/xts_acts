@@ -95,7 +95,18 @@ public:
     uint64_t secureSeqId_;                             // 安全输出的序列标识
     bool canPreconfig_;      // 是否支持预配置。
     uint32_t sceneModesSize_; // 记录支持的Camera_SceneMode列表大小。
-    
+    bool isTorchSupported_;
+    Camera_TorchMode torchMode_;
+    uint32_t frameRatesSize_;
+    uint32_t videoFrameRatesSize_;
+    uint32_t colorSpacesSize_;
+    OH_NativeBuffer_ColorSpace* colorSpace_;
+    OH_NativeBuffer_ColorSpace activeColorSpace_;
+    Camera_FrameRateRange* frameRateRange_;
+    Camera_FrameRateRange activeFrameRateRange_;
+    Camera_FrameRateRange* videoFrameRateRange_;
+    Camera_FrameRateRange videoActiveFrameRateRange_;
+
     //callback
     static CameraCallbackCode cameraCallbackCode_;
 
@@ -240,6 +251,38 @@ public:
     Camera_ErrorCode PreviewOutputDeleteProfile(int useCaseCode);                               // 删除预览配置文件实例
     Camera_ErrorCode PhotoOutputGetActiveProfile(int useCaseCode);                              // 获取活动照片输出配置文件
     Camera_ErrorCode PhotoOutputDeleteProfile(int useCaseCode);                                 // 删除照片配置文件实例
+
+    Camera_ErrorCode IsTorchSupported(int useCaseCode);
+    Camera_ErrorCode IsTorchSupportedByTorchMode(int useCaseCode);
+    Camera_ErrorCode SetTorchMode(int useCaseCode);
+    Camera_ErrorCode GetExposureValue(int useCaseCode);
+    Camera_ErrorCode GetFocalLength(int useCaseCode);
+    Camera_ErrorCode SetSmoothZoom(int useCaseCode);
+    Camera_ErrorCode GetSupportedColorSpaces(int useCaseCode);
+    Camera_ErrorCode DeleteColorSpaces(int useCaseCode);
+    Camera_ErrorCode GetActiveColorSpace(int useCaseCode);
+    Camera_ErrorCode SetColorSpace(int useCaseCode);
+    Camera_ErrorCode GetSupportedFrameRates(int useCaseCode);
+    Camera_ErrorCode DeleteFrameRates(int useCaseCode);
+    Camera_ErrorCode SetFrameRate(int useCaseCode);
+    Camera_ErrorCode GetActiveFrameRate(int useCaseCode);
+    Camera_ErrorCode VideoOutputGetSupportedFrameRates(int useCaseCode);
+    Camera_ErrorCode VideoOutputSetFrameRate(int useCaseCode);
+    Camera_ErrorCode VideoOutputGetActiveFrameRate(int useCaseCode);
+    Camera_ErrorCode CameraManagerRegisterTorchStatusCallback(int useCaseCode);
+    Camera_ErrorCode CameraManagerUnregisterTorchStatusCallback(int useCaseCode);
+    Camera_ErrorCode CaptureSessionRegisterSmoothZoomInfoCallback(int useCaseCode);
+    Camera_ErrorCode CaptureSessionUnregisterSmoothZoomInfoCallback(int useCaseCode);
+    Camera_ErrorCode PhotoOutputRegisterCaptureStartWithInfoCallback(int useCaseCode);
+    Camera_ErrorCode PhotoOutputUnregisterCaptureStartWithInfoCallback(int useCaseCode);
+    Camera_ErrorCode PhotoOutputRegisterCaptureEndCallback(int useCaseCode);
+    Camera_ErrorCode PhotoOutputUnregisterCaptureEndCallback(int useCaseCode);
+    Camera_ErrorCode PhotoOutputRegisterFrameShutterEndCallback(int useCaseCode);
+    Camera_ErrorCode PhotoOutputUnregisterFrameShutterEndCallback(int useCaseCode);
+    Camera_ErrorCode PhotoOutputRegisterCaptureReadyCallback(int useCaseCode);
+    Camera_ErrorCode PhotoOutputUnregisterCaptureReadyCallback(int useCaseCode);
+    Camera_ErrorCode PhotoOutputRegisterEstimatedCaptureDurationCallback(int useCaseCode);
+    Camera_ErrorCode PhotoOutputUnregisterEstimatedCaptureDurationCallback(int useCaseCode);
 
     // 非测试接口， 辅助测试
     Camera_ErrorCode SetSceneMode(int useCaseCode);                // 设置sceneMode_的值
