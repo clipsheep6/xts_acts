@@ -251,7 +251,11 @@ export default function TLSSocketConnectionsTest() {
             })
             client.send('Hello,client!', (err: BusinessError) => {
               if (err) {
+<<<<<<< HEAD
                 expectFail()
+=======
+                expectTrue(false)
+>>>>>>> cc03c1dccff726f8ec8e742051816c68c74c4cea
                 done()
               } else {
                 expectTrue(true)
@@ -272,7 +276,11 @@ export default function TLSSocketConnectionsTest() {
       } catch (err) {
         console.info(`${caseName} err: ${JSON.stringify(err)}`);
         console.info(`${caseName} test end`);
+<<<<<<< HEAD
         expectFail()
+=======
+        expectTrue(false)
+>>>>>>> cc03c1dccff726f8ec8e742051816c68c74c4cea
         done();
       }
     });
