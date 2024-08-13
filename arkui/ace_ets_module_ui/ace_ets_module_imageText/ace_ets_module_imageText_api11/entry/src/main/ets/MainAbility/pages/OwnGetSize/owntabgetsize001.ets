@@ -28,27 +28,27 @@ struct owntab {
           Column()
             .width('100%')
             .height('100%')
-            .backgroundColor("#aabbcc")
+            .backgroundColor('#aabbcc')
         }
-        .tabBar("1")
+        .tabBar('1')
 
         TabContent() {
           Column()
             .width('100%')
             .height('100%')
-            .backgroundColor("#bbccaa")
+            .backgroundColor('#bbccaa')
         }
-        .tabBar("2")
+        .tabBar('2')
       }
       .width(240)
       .height(140)
-      .id("tab0010")
+      .id('tab0010')
       .padding(10)
       Row(){
         Button('获取属性')
           .id('tabbutton')
           .onClick(()=>{
-            let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("tab0010");
+            let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById('tab0010');
             this.text='{width:'+modePosition.size.width/1.5+',height:'+ modePosition.size.height/1.5+'}'
           }).width(50).height(20)
       }

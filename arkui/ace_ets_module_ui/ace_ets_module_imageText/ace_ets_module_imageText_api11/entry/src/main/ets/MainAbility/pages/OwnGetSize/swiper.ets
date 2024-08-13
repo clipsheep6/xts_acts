@@ -22,16 +22,16 @@ struct Swiper001 {
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        Text("0")
+        Text('0')
           .backgroundColor(Color.Gray)
           .textAlign(TextAlign.Center)
           .fontSize(30)
-        Text("1")
+        Text('1')
           .backgroundColor(Color.Green)
           .textAlign(TextAlign.Center)
           .fontSize(30)
 
-        Text("2")
+        Text('2')
           .backgroundColor(Color.Blue)
           .textAlign(TextAlign.Center)
           .fontSize(30)
@@ -43,13 +43,13 @@ struct Swiper001 {
       .interval(1500)
       .duration(1000)
       .loop(false)
-      .id("swiper001")
+      .id('swiper001')
 
       Row(){
         Button('获取属性')
           .id('swiperbutton')
           .onClick(()=>{
-            let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("swiper001");
+            let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById('swiper001');
             this.text='{width:'+modePosition.size.width/1.5+',height:'+ modePosition.size.height/1.5+'}'
           }).width(50).height(20)
       }

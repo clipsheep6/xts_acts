@@ -44,7 +44,7 @@ struct WaterFlowDemo {
         LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
-              Text("N" + item).fontSize(12).height('16')
+              Text('N' + item).fontSize(12).height('16')
             }
           }
           .width('100%')
@@ -67,7 +67,7 @@ struct WaterFlowDemo {
         Button('获取属性')
           .id('waterflowbutton')
           .onClick(()=>{
-            let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("waterflow001");
+            let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById('waterflow001');
             this.text='{width:'+modePosition.size.width/1.5+',height:'+ modePosition.size.height/1.5+'}'
           }).width(50).height(20)
       }

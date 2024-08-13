@@ -33,12 +33,12 @@ struct owntextinput {
         .onChange((value: string) => {
           this.text = value
         })
-        .id("textinput001")
+        .id('textinput001')
       Row(){
         Button('获取属性')
           .id('textinputbutton')
           .onClick(()=>{
-            let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("textinput001");
+            let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById('textinput001');
             this.text='{width:'+modePosition.size.width/1.5+',height:'+ modePosition.size.height/1.5+'}'
           }).width(50).height(20)
       }

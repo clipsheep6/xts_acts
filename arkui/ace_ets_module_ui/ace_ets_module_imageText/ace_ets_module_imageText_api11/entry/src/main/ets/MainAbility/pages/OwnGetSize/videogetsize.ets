@@ -16,7 +16,7 @@ import componentUtils from '@ohos.arkui.componentUtils';
 @Entry
 @Component
 struct VideoCreateComponent001 {
-  @State videoSrc: Resource = $rawfile("video2.mp4")
+  @State videoSrc: Resource = $rawfile('video2.mp4')
   @State isAutoPlay: boolean = false
   @State showControls: boolean = true
   @State text:string='0'
@@ -36,7 +36,7 @@ struct VideoCreateComponent001 {
         Button('获取属性')
           .id('videobutton')
           .onClick(()=>{
-            let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("video001");
+            let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById('video001');
             this.text='{width:'+modePosition.size.width/1.5+',height:'+ modePosition.size.height/1.5+'}'
           }).width(50).height(20)
       }

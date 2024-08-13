@@ -31,12 +31,12 @@ struct owntextarea {
         .fontSize(16)
         .fontColor('#182431')
         .backgroundColor('#FFFFFF')
-        .id("textarea001")
+        .id('textarea001')
       Row() {
         Button('获取属性')
           .id('textareabutton')
           .onClick(() => {
-            let modePosition: componentUtils.ComponentInfo = componentUtils.getRectangleById("textarea001");
+            let modePosition: componentUtils.ComponentInfo = componentUtils.getRectangleById('textarea001');
             this.text = '{width:' + modePosition.size.width / 1.5 + ',height:' + modePosition.size.height / 1.5 + '}'
           }).width(50).height(20)
       }

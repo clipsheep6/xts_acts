@@ -23,7 +23,7 @@ struct tabcontent001 {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Tabs({ controller: this.controller }) {
         TabContent() {
-          Text("首页")
+          Text('首页')
             .width('100%')
             .height('100%')
             .fontSize(50)
@@ -33,7 +33,7 @@ struct tabcontent001 {
         }.tabBar('首页')
 
         TabContent() {
-          Text("消息")
+          Text('消息')
             .width('100%')
             .height('100%')
             .fontSize(50)
@@ -43,7 +43,7 @@ struct tabcontent001 {
         }.tabBar('消息')
 
         TabContent() {
-          Text("我的")
+          Text('我的')
             .width('100%')
             .height('100%')
             .fontSize(50)
@@ -54,7 +54,7 @@ struct tabcontent001 {
       }
       .width(230)
       .height(140)
-      .id("tabcontent001")
+      .id('tabcontent001')
       .scrollable(false)
       .barHeight(0)
       .animationDuration(0)
@@ -63,7 +63,7 @@ struct tabcontent001 {
         Button('获取属性')
           .id('tabcontentrbutton')
           .onClick(() => {
-            let modePosition: componentUtils.ComponentInfo = componentUtils.getRectangleById("tabcontent001");
+            let modePosition: componentUtils.ComponentInfo = componentUtils.getRectangleById('tabcontent001');
             this.text = '{width:' + modePosition.size.width / 1.5 + ',height:' + modePosition.size.height / 1.5 + '}'
           }).width(50).height(20)
       }
