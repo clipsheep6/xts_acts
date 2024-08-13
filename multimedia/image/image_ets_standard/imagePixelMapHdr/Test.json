@@ -1,0 +1,37 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.image.imagePixelMapHdr",
+        "module-name": "entry",
+        "shell-timeout": "300000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImagePixelMapTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelMapHdr/haps/entry/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelMapHdr/haps/entry/files/*",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelMapHdr/haps/entry/cache/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelMapHdr/haps/entry/cache/*",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelMapHdr/haps/entry/*"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelMapHdr/haps/entry/files"
+            ]
+        }
+    ]
+}
