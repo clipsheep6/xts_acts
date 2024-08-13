@@ -75,7 +75,7 @@ export default function SliderInteractionMode() {
       let value = await text.getText();
       expect(value).assertEqual('40');
       // click
-      await driver.click(rect.left+(rect.right-rect.left)*3/5-7,rect.top+(rect.bottom-rect.top)/2);
+      await driver.click(rect.left+(rect.right-rect.left)*3/5-vp2px(7),rect.top+(rect.bottom-rect.top)/2);
       value = await text.getText();
       expect(value).assertEqual('60');
       done();
@@ -106,7 +106,7 @@ export default function SliderInteractionMode() {
       let value = await text.getText();
       expect(value).assertEqual('40');
       //click
-      await driver.click(rect.left+(rect.right-rect.left)*3/5-7,rect.top+(rect.bottom-rect.top)/2);
+      await driver.click(rect.left+(rect.right-rect.left)*3/5-vp2px(7),rect.top+(rect.bottom-rect.top)/2);
       value = await text.getText();
       expect(value).assertEqual('40');
       done();
