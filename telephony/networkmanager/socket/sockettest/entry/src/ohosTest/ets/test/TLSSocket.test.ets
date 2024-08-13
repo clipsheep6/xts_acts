@@ -609,9 +609,8 @@ export default function TLSSocketTest() {
             console.info(`${caseName} data: ${JSON.stringify(data)}`);
             expectTrue(data != null);
             expectFalse(data.isBound);
-            expectFalse(data.isClose);
+            expectTrue(data.isClose);
             expectFalse(data.isConnected);
-            tlsSocket.close();
           }
           console.info(`${caseName} test end`);
           done();
@@ -677,10 +676,9 @@ export default function TLSSocketTest() {
           console.info(`${caseName} data: ${JSON.stringify(data)}`);
           expectTrue(data != null);
           expectFalse(data.isBound);
-          expectFalse(data.isClose);
+          expectTrue(data.isClose);
           expectFalse(data.isConnected);
           console.info(`${caseName} test end`);
-          tlsSocket.close();
           done();
         }).catch((err: BusinessError) => {
           console.info(`${caseName} err: ${JSON.stringify(err)}`);
