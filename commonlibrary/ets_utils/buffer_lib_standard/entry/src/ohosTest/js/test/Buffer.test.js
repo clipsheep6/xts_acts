@@ -5359,4 +5359,78 @@ describe('BufferTest', function () {
     expect(len).assertEqual(2);
     expect(buf.toString()).assertEqual('abcdefghab');
   });
+    /**
+   * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_BUFFER_31200
+   * @tc.name: testfrom0270
+   * @tc.desc: Create a new buffer containing a newline character string. Creating using base64 encoding
+   * @tc.size: MediumTest
+   * @tc.type: Function
+   * @tc.level: Level 2
+   */
+     it("testfrom0270", 0, function () {
+      let ab = new ArrayBuffer(100);
+      let buf = buffer.from(ab, 1.2, 1.2);
+      let res = buf.toString('hex');
+      expect(res).assertEqual('00');
+  });
+
+  /**
+   * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_BUFFER_31300
+   * @tc.name: testfrom0271
+   * @tc.desc: Create a new buffer containing a newline character string. Creating using base64 encoding
+   * @tc.size: MediumTest
+   * @tc.type: Function
+   * @tc.level: Level 2
+   */
+  it("testfrom0271", 0, function () {
+      let ab = new ArrayBuffer(100);
+      let buf = buffer.from(ab, 1, 1.2);
+      let res = buf.toString('hex');
+      expect(res).assertEqual('00');
+  });
+
+  /**
+   * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_BUFFER_31400
+   * @tc.name: testfrom0272
+   * @tc.desc: Create a new buffer containing a newline character string. Creating using base64 encoding
+   * @tc.size: MediumTest
+   * @tc.type: Function
+   * @tc.level: Level 2
+   */
+     it("testfrom0272", 0, function () {
+      let ab = new ArrayBuffer(100);
+      let buf = buffer.from(ab, 1.2, 1);
+      let res = buf.toString('hex');
+      expect(res).assertEqual('00');
+  });
+
+  /**
+   * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_BUFFER_31500
+   * @tc.name: testfrom0273
+   * @tc.desc: Create a new buffer containing a newline character string. Creating using base64 encoding
+   * @tc.size: MediumTest
+   * @tc.type: Function
+   * @tc.level: Level 2
+   */
+  it("testfrom0273", 0, function () {
+      let ab = new ArrayBuffer(100);
+      let buf = buffer.from(ab, 9.9, 9.9);
+      let res = buf.toString('hex');
+      expect(res).assertEqual('000000000000000000');
+  });
+
+  /**
+   * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_BUFFER_31600
+   * @tc.name: testfrom0274
+   * @tc.desc: Create a new buffer containing a newline character string. Creating using base64 encoding
+   * @tc.size: MediumTest
+   * @tc.type: Function
+   * @tc.level: Level 2
+   */
+   it("testfrom0274", 0, function () {
+    let ab = new ArrayBuffer(100);
+    let buf = buffer.from(ab, 2.9, 2.9);
+    let res = buf.toString('hex');
+    expect(res).assertEqual('0000');
+  });
 })}
