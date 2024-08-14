@@ -298,6 +298,19 @@ export default function nativeWindowTest() {
       expect(result).assertEqual(0);
       done();
     });
+    /**
+     * @tc.number     : SUB_BASIC_GRAPHICS_SPECIAL_API_C_NATIVE_WINDOW_0407
+     * @tc.name       : testNativeWindowNativeWindowRequestAbortBufferErrorCode
+     * @tc.desc       : testNativeWindowNativeWindowRequestAbortBufferErrorCode
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testNativeWindowNativeWindowRequestAbortBufferErrorCode', 3, async (done: Function) => {
+      let result: number = nativeWindow.testNativeWindowNativeWindowRequestAbortBufferErrorCode();
+      expect(result).assertEqual(0);
+      done();
+    });
 
 
 
@@ -431,6 +444,20 @@ export default function nativeWindowTest() {
     });
 
     /**
+     * @tc.number     : SUB_BASIC_GRAPHICS_SPECIAL_API_C_NATIVE_WINDOW_1703
+     * @tc.name       : testNativeWindowNativeWindowFlushBufferErrorCode
+     * @tc.desc       : testNativeWindowNativeWindowFlushBufferErrorCode
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testNativeWindowNativeWindowFlushBufferErrorCode', 3, async (done: Function) => {
+      let result: number = nativeWindow.testNativeWindowNativeWindowFlushBufferErrorCode();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
      * @tc.number     : SUB_BASIC_GRAPHICS_SPECIAL_API_C_NATIVE_WINDOW_0600
      * @tc.name       : testNativeWindowGetLastFlushedBufferV2Nullptr
      * @tc.desc       : testNativeWindowGetLastFlushedBufferV2Nullptr
@@ -485,6 +512,20 @@ export default function nativeWindowTest() {
      */
     it('testNativeWindowGetLastFlushedBufferNormal', 0, async (done: Function) => {
       let result: number = nativeWindow.testNativeWindowGetLastFlushedBufferNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.number     : SUB_BASIC_GRAPHICS_SPECIAL_API_C_NATIVE_WINDOW_0604
+     * @tc.name       : testNativeWindowGetLastFlushedBufferV2ErrorCode
+     * @tc.desc       : testNativeWindowGetLastFlushedBufferV2ErrorCode
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
+     */
+    it('testNativeWindowGetLastFlushedBufferV2ErrorCode', 0, async (done: Function) => {
+      let result: number = nativeWindow.testNativeWindowGetLastFlushedBufferV2ErrorCode();
       expect(result).assertEqual(0);
       done();
     });
@@ -641,6 +682,21 @@ export default function nativeWindowTest() {
 
 
     /**
+     * @tc.number     : SUB_BASIC_GRAPHICS_SPECIAL_API_C_NATIVE_WINDOW_0807
+     * @tc.name       : testNativeWindowNativeWindowAttachBufferErrorCode
+     * @tc.desc       : testNativeWindowNativeWindowAttachBufferErrorCode
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testNativeWindowNativeWindowAttachBufferErrorCode', 2, async (done: Function) => {
+      let result: number = nativeWindow.testNativeWindowNativeWindowAttachBufferErrorCode();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+
+    /**
      * @tc.number     : SUB_BASIC_GRAPHICS_SPECIAL_API_C_NATIVE_WINDOW_0802
      * @tc.name       : testNativeWindowNativeWindowAttachBufferNormal
      * @tc.desc       : testNativeWindowNativeWindowAttachBufferNormal
@@ -656,10 +712,25 @@ export default function nativeWindowTest() {
 
 
     /**
+     * @tc.number     : SUB_BASIC_GRAPHICS_SPECIAL_API_C_NATIVE_WINDOW_0807
+     * @tc.name       : testNativeWindowNativeWindowDetachBufferErrorCode
+     * @tc.desc       : testNativeWindowNativeWindowDetachBufferErrorCode
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 2
+     */
+    it('testNativeWindowNativeWindowDetachBufferErrorCode', 2, async (done: Function) => {
+      let result: number = nativeWindow.testNativeWindowNativeWindowDetachBufferErrorCode();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+
+    /**
      * @tc.number     : SUB_BASIC_GRAPHICS_SPECIAL_API_C_NATIVE_WINDOW_0804
      * @tc.name       : testNativeWindowNativeWindowAtDetachDifferentBufferNormal
      * @tc.desc       : testNativeWindowNativeWindowAtDetachDifferentBufferNormal
-     * @tc.size       : testNativeWindowNativeWindowAtDetachDifferentBufferNormal
+     * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */

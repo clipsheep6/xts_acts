@@ -79,6 +79,8 @@ static napi_value Init(napi_env env, napi_value exports) {
          testNativeWindowNativeWindowRequestBufferFenceFdAbnormal, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"testNativeWindowNativeWindowRequestAbortBufferMax", nullptr,
          testNativeWindowNativeWindowRequestAbortBufferMax, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testNativeWindowNativeWindowRequestAbortBufferErrorCode", nullptr,
+         testNativeWindowNativeWindowRequestAbortBufferErrorCode, nullptr, nullptr, nullptr, napi_default, nullptr},
 
         {"testNativeWindowWriteToParcelErrptr", nullptr, testNativeWindowWriteToParcelErrptr, nullptr, nullptr, nullptr,
          napi_default, nullptr},
@@ -107,6 +109,10 @@ static napi_value Init(napi_env env, napi_value exports) {
          nullptr, nullptr, napi_default, nullptr},
         {"testNativeWindowGetLastFlushedBufferNormal", nullptr, testNativeWindowGetLastFlushedBufferNormal, nullptr,
          nullptr, nullptr, napi_default, nullptr},
+        {"testNativeWindowGetLastFlushedBufferV2ErrorCode", nullptr, testNativeWindowGetLastFlushedBufferV2ErrorCode, nullptr,
+         nullptr, nullptr, napi_default, nullptr},
+    
+    
         {"testNativeWindowSetBufferHold", nullptr, testNativeWindowSetBufferHold, nullptr, nullptr, nullptr,
          napi_default, nullptr},
         {"testNativeWindowGetNativeObjectMagicNullptr", nullptr, testNativeWindowGetNativeObjectMagicNullptr, nullptr,
@@ -127,8 +133,14 @@ static napi_value Init(napi_env env, napi_value exports) {
          nullptr, nullptr, nullptr, napi_default, nullptr},
         {"testNativeWindowNativeWindowDetachBufferNormal", nullptr, testNativeWindowNativeWindowDetachBufferNormal,
          nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testNativeWindowNativeWindowAttachBufferErrorCode", nullptr, testNativeWindowNativeWindowAttachBufferErrorCode,
+         nullptr, nullptr, nullptr, napi_default, nullptr},
+    
         {"testNativeWindowNativeWindowAttachBufferNormal", nullptr, testNativeWindowNativeWindowAttachBufferNormal,
          nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testNativeWindowNativeWindowDetachBufferErrorCode", nullptr, testNativeWindowNativeWindowDetachBufferErrorCode,
+         nullptr, nullptr, nullptr, napi_default, nullptr},
+    
         {"testNativeWindowNativeWindowAtDetachDifferentBufferNormal", nullptr,
          testNativeWindowNativeWindowAtDetachDifferentBufferNormal, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"testNativeWindowNativeWindowAtDetachDifferentBufferAbnormal", nullptr,

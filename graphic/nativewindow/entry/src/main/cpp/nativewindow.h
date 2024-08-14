@@ -32,6 +32,7 @@ napi_value testNativeWindowNativeWindowRequestAbortBufferAbnormal(napi_env env, 
 napi_value testNativeWindowNativeWindowRequestBufferFenceFdNormal(napi_env env, napi_callback_info info);
 napi_value testNativeWindowNativeWindowRequestBufferFenceFdAbnormal(napi_env env, napi_callback_info info);
 napi_value testNativeWindowNativeWindowRequestAbortBufferMax(napi_env env, napi_callback_info info);
+napi_value testNativeWindowNativeWindowRequestAbortBufferErrorCode(napi_env env, napi_callback_info info);
 
 napi_value testNativeWindowWriteToParcelErrptr(napi_env env, napi_callback_info info);
 napi_value testNativeWindowReadFromParcelErrptr(napi_env env, napi_callback_info info);
@@ -43,10 +44,14 @@ napi_value testNativeWindowWRParcelDifferent(napi_env env, napi_callback_info in
 napi_value testNativeWindowNativeWindowFlushBufferNullptr(napi_env env, napi_callback_info info);
 napi_value testNativeWindowNativeWindowFlushBufferNormal(napi_env env, napi_callback_info info);
 napi_value testNativeWindowNativeWindowFlushBufferAbnormal(napi_env env, napi_callback_info info);
+napi_value testNativeWindowNativeWindowFlushBufferErrorCode(napi_env env, napi_callback_info info);
+
 napi_value testNativeWindowGetLastFlushedBufferV2Nullptr(napi_env env, napi_callback_info info);
 napi_value testNativeWindowGetLastFlushedBufferNullptr(napi_env env, napi_callback_info info);
 napi_value testNativeWindowGetLastFlushedBufferV2Normal(napi_env env, napi_callback_info info);
 napi_value testNativeWindowGetLastFlushedBufferNormal(napi_env env, napi_callback_info info);
+napi_value testNativeWindowGetLastFlushedBufferV2ErrorCode(napi_env env, napi_callback_info info);
+
 napi_value testNativeWindowSetBufferHold(napi_env env, napi_callback_info info);
 napi_value testNativeWindowGetNativeObjectMagicNullptr(napi_env env, napi_callback_info info);
 napi_value testNativeWindowGetNativeObjectMagicNormal(napi_env env, napi_callback_info info);
@@ -57,7 +62,11 @@ napi_value testNativeWindowNativeObjectUnreferenceNormal(napi_env env, napi_call
 napi_value testNativeWindowNativeWindowAttachBufferNullptr(napi_env env, napi_callback_info info);
 napi_value testNativeWindowNativeWindowDetachBufferNullptr(napi_env env, napi_callback_info info);
 napi_value testNativeWindowNativeWindowDetachBufferNormal(napi_env env, napi_callback_info info);
+napi_value testNativeWindowNativeWindowAttachBufferErrorCode(napi_env env, napi_callback_info info);
+
 napi_value testNativeWindowNativeWindowAttachBufferNormal(napi_env env, napi_callback_info info);
+napi_value testNativeWindowNativeWindowDetachBufferErrorCode(napi_env env, napi_callback_info info);
+
 napi_value testNativeWindowNativeWindowAtDetachDifferentBufferNormal(napi_env env, napi_callback_info info);
 napi_value testNativeWindowNativeWindowAtDetachDifferentBufferAbnormal(napi_env env, napi_callback_info info);
 napi_value testNativeWindowNativeWindowHandleOptNullptr(napi_env env, napi_callback_info info);
