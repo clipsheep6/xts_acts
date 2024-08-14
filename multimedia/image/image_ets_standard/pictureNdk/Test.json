@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.image.pictureNdk",
+        "module-name": "entry_test",
+        "shell-timeout": "300000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsPictureNdkTest.hap",
+                "ActsPictureNdkMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.pictureNdk/haps/entry_test/files/",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.pictureNdk/haps/entry_test/cache/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.pictureNdk/haps/entry_test/cache/*",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.pictureNdk/haps/entry_test/*"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/hdr.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.pictureNdk/haps/entry_test/files",
+                "./resource/image/hdr.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.pictureNdk/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.pictureNdk/haps/entry_test/files/*"
+            ]
+        }
+    ]
+}
+
