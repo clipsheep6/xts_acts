@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/MeasureSize/measureSize",
+        "MainAbility/pages/MeasureSize/APIsetDragEventStrictReportingEnabled",
+        "MainAbility/pages/MeasureSize/APIgetFrameNodeByUniqueId",
+        "MainAbility/pages/PageInfo/PageInfo1"
+    ]
+}
