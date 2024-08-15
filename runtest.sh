@@ -185,3 +185,4 @@ fi
 mkdir -p $OUT_DIR/$BUILD_VARIANT/suites/acts/resource/tools
 run_test
 exit 0
+
