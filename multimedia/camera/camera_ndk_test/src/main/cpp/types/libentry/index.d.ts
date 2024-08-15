@@ -243,3 +243,64 @@ export const oHPreviewOutputGetActiveProfile: (index:number) => number;
 export const oHPreviewOutputDeleteProfile: (index:number) => number;
 export const oHPhotoOutputGetActiveProfile: (index:number) => number;
 export const oHPhotoOutputDeleteProfile: (index:number) => number;
+export const oHCameraManagerIsTorchSupported: (index:number) => number;
+
+export const oHCameraManagerIsTorchSupportedByTorchMode: (index:number) => number;
+
+export const oHCameraManagerSetTorchMode: (index:number) => number;
+
+export const oHCaptureSessionGetExposureValue: (index:number) => number;
+
+export const oHCaptureSessionGetFocalLength: (index:number) => number;
+
+export const oHCaptureSessionSetSmoothZoom: (index:number) => number;
+
+export const oHCaptureSessionGetSupportedColorSpaces: (index:number) => number;
+
+export const oHCaptureSessionDeleteColorSpaces: (index:number) => number;
+
+export const oHCaptureSessionGetActiveColorSpace: (index:number) => number;
+
+export const oHCaptureSessionSetActiveColorSpace: (index:number) => number;
+
+export const oHPreviewOutputGetSupportedFrameRates: (index:number) => number;
+
+export const oHPreviewOutputSetFrameRate: (index:number) => number;
+
+export const oHPreviewOutputGetActiveFrameRate: (index:number) => number;
+
+export const oHPreviewOutputDeleteFrameRates: (index:number) => number;
+
+export const oHVideoOutputGetSupportedFrameRates: (index:number) => number;
+
+export const oHVideoOutputSetFrameRate: (index:number) => number;
+
+export const oHVideoOutputGetActiveFrameRate: (index:number) => number;
+
+export const oHCameraManagerRegisterTorchStatusCallback: (index:number) => number;
+
+export const oHCameraManagerUnregisterTorchStatusCallback: (index:number) => number;
+
+export const oHCaptureSessionRegisterSmoothZoomInfoCallback: (index:number) => number;
+
+export const oHCaptureSessionUnregisterSmoothZoomInfoCallback: (index:number) => number;
+
+export const oHPhotoOutputRegisterCaptureStartWithInfoCallback: (index:number) => number;
+
+export const oHPhotoOutputUnregisterCaptureStartWithInfoCallback: (index:number) => number;
+
+export const oHPhotoOutputRegisterCaptureEndCallback: (index:number) => number;
+
+export const oHPhotoOutputUnregisterCaptureEndCallback: (index:number) => number;
+
+export const oHPhotoOutputRegisterFrameShutterEndCallback: (index:number) => number;
+
+export const oHPhotoOutputUnregisterFrameShutterEndCallback: (index:number) => number;
+
+export const oHPhotoOutputRegisterCaptureReadyCallback: (index:number) => number;
+
+export const oHPhotoOutputUnregisterCaptureReadyCallback: (index:number) => number;
+
+export const oHPhotoOutputRegisterEstimatedCaptureDurationCallback: (index:number) => number;
+
+export const oHPhotoOutputUnregisterEstimatedCaptureDurationCallback: (index:number) => number;
