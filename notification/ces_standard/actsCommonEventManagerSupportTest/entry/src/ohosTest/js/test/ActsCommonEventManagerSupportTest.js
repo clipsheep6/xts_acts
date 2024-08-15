@@ -478,8 +478,8 @@ export default function ActsCommonEventManagerSupportTest() {
      * @tc.desc      : SECOND_MOUNTED common event
      */
     it('SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2600', 0, async  function () {
-       console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2600 START`)
-       expect(commonEventManager.Support.COMMON_EVENT_SECOND_MOUNTED ).assertEqual('usual.event.SECOND_MOUNTED')
-       console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2600 END`)
-     })
+      console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2600 START`)
+      expect(commonEventManager.Support.COMMON_EVENT_SECOND_MOUNTED ).assertEqual('usual.event.SECOND_MOUNTED')
+      console.info(`${TAG} SUB_NOTIFICATION_CES_MANAGER_SUPPORT_ENUM_TEST_2600 END`)
+    })
 }
