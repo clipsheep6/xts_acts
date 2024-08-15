@@ -72,7 +72,17 @@
       },
       {
         "name": "ohos.permission.GRANT_SENSITIVE_PERMISSIONS"
-      }
+      },
+      {
+        "name": 'ohos.permission.WRITE_CONTACTS',
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "EntryFromAbility"
+          ],
+          "when": "inuse"
+        },
+      },
     ]
   }
 }
