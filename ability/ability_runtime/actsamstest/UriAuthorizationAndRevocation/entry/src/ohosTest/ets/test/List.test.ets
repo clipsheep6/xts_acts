@@ -1,5 +1,5 @@
-import UriAuthorizationAndRevocationTest from './UriAuthorizationAndRevocation.test';
+import uriAuthorizationAndRevocationTest from './UriAuthorizationAndRevocation.test';
 
 export default function testsuite() {
-  UriAuthorizationAndRevocationTest();
+  uriAuthorizationAndRevocationTest();
 }

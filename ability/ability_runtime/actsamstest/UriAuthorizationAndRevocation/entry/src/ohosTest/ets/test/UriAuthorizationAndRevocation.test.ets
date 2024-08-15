@@ -10,7 +10,7 @@ const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 let pathDir = delegator.getAppContext().filesDir;
 let uri: string = "";
 
-export default function UriAuthorizationAndRevocationTest() {
+export default function uriAuthorizationAndRevocationTest() {
   describe('UriAuthorizationAndRevocationTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async () => {
