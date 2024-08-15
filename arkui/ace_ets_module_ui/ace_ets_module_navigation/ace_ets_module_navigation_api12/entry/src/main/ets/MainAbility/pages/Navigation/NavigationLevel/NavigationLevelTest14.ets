@@ -62,9 +62,9 @@ struct NavigationLevelTest14 {
         Column({space:10}) {
           Text(this.message).id('NavigationLevelTest14_text1')
 
-          Button('disableAnimation:false')
+          Button('disableAnimation:true')
             .onClick(() => {
-              this.pageInfos.disableAnimation(false)
+              this.pageInfos.disableAnimation(true)
             })
             .id('NavigationLevelTest14_btn1')
 
