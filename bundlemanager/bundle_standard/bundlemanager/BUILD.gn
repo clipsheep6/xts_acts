@@ -32,6 +32,8 @@ group("bundlemanager") {
       "actsbundlemanagertest:ActsBundleManagerTest",
       "actsbundlenativeninthapitest:ActsBundleNativeNinthApiTest",
       "actsbundlenativetest:ActsBundleNativeTest",
+      "actscreatedesktopshortcutbybaretexttest:ActsCreateDesktopShortcutByBareTextTest",
+      "actscreatedesktopshortcuttest:ActsCreateDesktopShortcutTest",
       "sceneProject/bmsaccesstokenfive:bmsAccessTokenTest5",
       "sceneProject/bmsaccesstokenfour:bmsAccessTokenTest4",
       "sceneProject/bmsaccesstokenone:bmsAccessTokenTest1",
