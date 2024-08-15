@@ -1,6 +1,10 @@
 {
     "src": [
         "MainAbility/pages/index/index",
-        "MainAbility/pages/videoCallback"
+        "MainAbility/pages/videoCallback",
+        "MainAbility/pages/ownvideo/VideoInterface001",
+        "MainAbility/pages/ownvideo/VideoInterface002",
+        "MainAbility/pages/ownvideo/VideoInterface003",
+        "MainAbility/pages/ownvideo/VideoInterface009"
     ]
 }

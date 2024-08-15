@@ -14,7 +14,8 @@
  */
 
 import videoCallbackJsunit from './videoCallbackJsunit.test';
-
+import VideoInterface001 from './ownvideotest/VideoInterface001.test';
 export default function testsuite() {
   videoCallbackJsunit();
+  VideoInterface001();
 }
