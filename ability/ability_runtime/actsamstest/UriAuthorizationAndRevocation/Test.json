@@ -4,7 +4,7 @@
         "type": "OHJSUnitTest",
         "test-timeout": "180000",
         "shell-timeout": "180000",
-        "bundle-name": "com.example.myapplication",
+        "bundle-name": "com.hits.uriauthorizationandrevocation",
         "module-name": "entry_test"
     },
     "kits": [
@@ -14,7 +14,8 @@
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
-        },{
+        },
+        {
             "type": "ShellKit",
             "run-command": [
                 "power-shell wakeup",
