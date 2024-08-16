@@ -55,7 +55,10 @@ typedef enum CameraCallbackCode {
     Session_OnError = 15,
     CameraManager_Status = 16,
     NoReceived = 10086,
+    PHOTO_ON_PHOTO_AVAILABLE = 17,
+    PHOTO_ON_PHOTO_ASSET_AVAILABLE = 18,
 } CameraCallbackCode;
+
 typedef enum UseCaseCode {
     PARAMETER_OK = 0,     // 参数正常
     PARAMETER1_ERROR = 1, // 参数1异常
@@ -63,6 +66,7 @@ typedef enum UseCaseCode {
     PARAMETER3_ERROR = 3, // 参数3异常
     PARAMETER4_ERROR = 4, // 参数4异常
 } UseCaseCode;
+
 class NDKCamera {
 public:
     ~NDKCamera(void);
@@ -95,6 +99,11 @@ public:
     uint64_t secureSeqId_;                             // 安全输出的序列标识
     bool canPreconfig_;      // 是否支持预配置。
     uint32_t sceneModesSize_; // 记录支持的Camera_SceneMode列表大小。
+    bool isMovingPhotoSupported_;      // 是否支持动态照片拍摄
+    inline static bool isCalledPhotoAvailable_ = false;        // PhotoAvailable是否被回调
+    inline static bool isCalledPhotoAssetAvailable_ = false;   // PhotoAssetAvailable是否被回调
+    inline static OH_PhotoNative *photoNative_ = nullptr;               // 全质量图实例指针
+    OH_ImageNative *mainImage_;                  // 全质量图Image实例
     
     //callback
     static CameraCallbackCode cameraCallbackCode_;
@@ -245,6 +254,20 @@ public:
     Camera_ErrorCode SetSceneMode(int useCaseCode);                // 设置sceneMode_的值
     Camera_ErrorCode GetCameraFromCameras(Camera_Device* cameras,
         Camera_Device** camera);                                   // 从支持的相机设备列表中获取一个相机设备
+
+    Camera_ErrorCode RegisterPhotoAvailableCallback(int useCaseCode);        // 注册监听全质量图上报
+    Camera_ErrorCode UnregisterPhotoAvailableCallback(int useCaseCode);      // 注销监听全质量图上报
+    Camera_ErrorCode RegisterPhotoAssetAvailableCallback(int useCaseCode);   // 注册监听Photo Asset上报
+    Camera_ErrorCode UnregisterPhotoAssetAvailableCallback(int useCaseCode); // 注销监听Photo Asset上报
+    Camera_ErrorCode IsMovingPhotoSupported(int useCaseCode);                // 查询是否支持动态照片拍摄
+    Camera_ErrorCode EnableMovingPhoto(int useCaseCode);                     // 使能动态照片拍照
+    Camera_ErrorCode GetMainImage(int useCaseCode);                          // 获取全质量图Image
+    Camera_ErrorCode PhotoNativeRelease(int useCaseCode);                    // 释放全质量图实例
+    Camera_ErrorCode CreatePhotoOutputWithoutSurface(int useCaseCode);       // 不指定surfaceId创建拍照输出实例
+
+    Camera_ErrorCode Capture(void);                                          // 拍照
+    static void PhotoOutputOnPhotoAvailable(Camera_PhotoOutput* photoOutput, OH_PhotoNative* photo);
+    static void PhotoOutputOnPhotoAssetAvailable(Camera_PhotoOutput* photoOutput, OH_MediaAsset* photoAsset);
 
 private:
     NDKCamera(const NDKCamera&) = delete;
