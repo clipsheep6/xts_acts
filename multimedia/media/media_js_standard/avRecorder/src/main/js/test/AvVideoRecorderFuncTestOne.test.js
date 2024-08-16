@@ -283,7 +283,7 @@ export default function avVideoRecorderTestOne() {
             let cameras = cameraManager.getSupportedCameras();
             let cameraDevice = cameras[0];
             console.info('initCamera cameraDevice:'+ JSON.stringify(cameraDevice));
-            if (cameraDevice != null || cameraDevice == undefined) {
+            if (cameraDevice != null || cameraDevice != undefined) {
                 console.info('initCamera 006');
                 let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
                 console.info('initCamera 007');
