@@ -220,6 +220,8 @@ import textSpanFontTest from './textTest/textSpanFont.test';
 import search_gesture from './SearchTest/search_gesture.test';
 import text_drag from './textTest/text_drag.test';
 import textAreaOnCaretAndKeyboardTest from './TextAreaTest/textAreaOnCaretAndKeyboard.test';
+import ImageAdvancedTest from './imageTest/ImageAdvancedTest.test.ets'
+import ImageAnimatorAdvancedTest from './ImageAnimator/imageAnimatorAdvancedTest.test.ets'
 
 export default function testsuite() {
   ToggleJsunit();
@@ -430,4 +432,6 @@ export default function testsuite() {
   search_gesture();
   text_drag();
   textAreaOnCaretAndKeyboardTest();
+  ImageAdvancedTest()
+  ImageAnimatorAdvancedTest()
 }
