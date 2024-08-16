@@ -22,12 +22,14 @@ import composeListItemOperateItemRadio from './composeListItem/composeListItemOp
 import composeListItemOperateItemSubIcon from './composeListItem/composeListItemOperateItemSubIcon.test.ets';
 import composeListItemOperateItemSwitch from './composeListItem/composeListItemOperateItemSwitch.test.ets';
 import composeListItemPageTest from './composeListItem/composeListItemPageTest.test.ets';
+import composeTitleBarTest from './composeTitleBar/composeTitleBarTest.test.ets';
 import exceptionPromptTest from './exceptionPrompt/exceptionPromptTest.test.ets';
 import exceptionPromptTestTwo from './exceptionPrompt/exceptionPromptTestTwo.test.ets';
 import filterTest from './filter/filterTest.test.ets';
 import filterTestTwo from './filter/filterTestTwo.test.ets';
 import gridObjectSortComponentTest from './gridObjectSortComponent/gridObjectSortComponentTest.test.ets';
 import progressButtonTest from './progressButton/progressButtonTest.test.ets';
+import splitLayoutTest from './splitLayout/splitLayoutTest.test.ets';
 import selectTitleBarTest from './selectTitleBar/selectTitleBarTest.test.ets';
 import swipeRefresherPageTest from './swipeRefresher/swipeRefresherPageTest.test.ets';
 import tabTitleBarPageTest from './tabTitleBar/tabTitleBarPageTest.test.ets';
@@ -49,12 +51,24 @@ import chipDirectionTest from './chip/chipDirection.test';
 import counterDirectionTest from './counter/counterDirection.test';
 import popupDirectionTest from './popup/popupDirectionTest.test';
 import segmentButtonDirectionTest from './segmenButton/segmentbuttonDirection.test';
+import composeTitleBarTest from './composeTitleBar/composeTitleBar.test';
+
+import FileButtonContinueToReceiveTest from './downloadFileButton/FileButtonContinueToReceiveTest.test.ets';
+import FileButtonDownloadTest from './downloadFileButton/FileButtonDownloadTest.test.ets';
+import FileButtonDownloadAndShareTest from './downloadFileButton/FileButtonDownloadAndShareTest.test.ets';
+import FileButtonDownloadFileTest from './downloadFileButton/FileButtonDownloadFileTest.test.ets';
+import FileButtonReceiveTest from './downloadFileButton/FileButtonReceiveTest.test.ets';
+import FileButtonSaveTest from './downloadFileButton/FileButtonSaveTest.test.ets';
+import FileButtonSaveFileTest from './downloadFileButton/FileButtonSaveFileTest.test.ets';
+import FileButtonSaveImageTest from './downloadFileButton/FileButtonSaveImageTest.test.ets';
+
 
 export default function testsuite() {
   chipDirectionTest();
   counterDirectionTest();
   popupDirectionTest();
   segmentButtonDirectionTest();
+  composeTitleBarTest();
   composeListItemIconType();
   composeListItemOperateItemArrow();
   composeListItemOperateItemButton();
@@ -70,6 +84,7 @@ export default function testsuite() {
   filterTestTwo();
   gridObjectSortComponentTest();
   progressButtonTest();
+  splitLayoutTest();
   selectTitleBarTest();
   swipeRefresherPageTest();
   tabTitleBarPageTest();
@@ -87,4 +102,14 @@ export default function testsuite() {
   subHeaderButton();
   subHeaderIconGroup();
   subHeaderTextArrow();
+  composeTitleBarTest();
+
+  FileButtonContinueToReceiveTest();
+  FileButtonDownloadTest();
+  FileButtonDownloadAndShareTest();
+  FileButtonDownloadFileTest();
+  FileButtonReceiveTest();
+  FileButtonSaveTest();
+  FileButtonSaveFileTest();
+  FileButtonSaveImageTest();
 }

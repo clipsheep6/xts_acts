@@ -210,6 +210,9 @@
         "MainAbility/pages/text/TextAdvance/text40",
         "MainAbility/pages/text/TextAdvance/text50",
         "MainAbility/pages/ImageAnimator/imageAnimator2",
-        "MainAbility/pages/Progress/loadingProgress2"
+        "MainAbility/pages/Progress/loadingProgress2",
+        "MainAbility/pages/Search/SearchGesture",
+        "MainAbility/pages/text/TextDrag",
+        "MainAbility/pages/TextArea/textAreaOnCaretAndKeyboard"
     ]
 }
