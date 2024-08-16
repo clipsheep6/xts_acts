@@ -27,7 +27,7 @@ struct Index {
   build() {
     Column() {
       Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Text("Get Context")
+        Text('Get Context')
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
       }
