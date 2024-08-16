@@ -21,7 +21,7 @@ export default function PolyLine002Test() {
   describe('PolyLine002Test', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/polyline/polyline002',
       }
       try {

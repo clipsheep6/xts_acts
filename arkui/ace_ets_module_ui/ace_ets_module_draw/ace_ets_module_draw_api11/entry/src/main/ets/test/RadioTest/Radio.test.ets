@@ -21,7 +21,7 @@ export default function RadioTest() {
   describe('RadioTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/Radio/Radio',
       }
       try {

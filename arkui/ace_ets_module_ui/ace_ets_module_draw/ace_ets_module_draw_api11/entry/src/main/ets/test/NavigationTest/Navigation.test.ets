@@ -21,7 +21,7 @@ export default function NavigationTest() {
   describe('NavigationTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/Navigation/Navigation',
       }
       try {

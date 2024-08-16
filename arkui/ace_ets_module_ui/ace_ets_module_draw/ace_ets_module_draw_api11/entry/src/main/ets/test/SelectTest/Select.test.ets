@@ -21,7 +21,7 @@ export default function SelectTest() {
   describe('SelectTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/Select/Select',
       }
       try {

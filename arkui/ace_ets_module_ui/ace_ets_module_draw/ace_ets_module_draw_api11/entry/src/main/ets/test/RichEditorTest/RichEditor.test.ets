@@ -21,7 +21,7 @@ export default function RichEditorTest() {
   describe('RichEditorTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/RichEditor/RichEditor',
       }
       try {

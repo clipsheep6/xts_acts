@@ -21,7 +21,7 @@ export default function Shape002Test() {
   describe('Shape002Test', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/Shape/shape002',
       }
       try {

@@ -21,7 +21,7 @@ export default function StepperTest() {
   describe('StepperTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/Stepper/Stepper',
       }
       try {

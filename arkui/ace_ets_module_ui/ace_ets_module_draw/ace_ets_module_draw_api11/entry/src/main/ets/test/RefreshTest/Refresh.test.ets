@@ -21,7 +21,7 @@ export default function RefreshTest() {
   describe('RefreshTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/Refresh/Refresh',
       }
       try {

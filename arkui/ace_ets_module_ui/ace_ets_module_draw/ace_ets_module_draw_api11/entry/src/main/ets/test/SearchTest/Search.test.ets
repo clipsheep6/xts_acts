@@ -21,7 +21,7 @@ export default function SearchTest() {
   describe('SearchTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/Search/Search',
       }
       try {

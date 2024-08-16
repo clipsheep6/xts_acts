@@ -21,7 +21,7 @@ export default function SliderTest() {
   describe('SliderTest', () => {
     beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/Slider/Slider',
       }
       try {
