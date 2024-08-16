@@ -28,7 +28,12 @@ CameraCallbackCode NDKCamera::cameraCallbackCode_ = NoReceived;
 NDKCamera::NDKCamera(char* str)
     : cameras_(nullptr), cameraOutputCapability_(nullptr),
       isAddInput_(false), camera_(nullptr), sceneModes_(nullptr), sceneMode_(NORMAL_PHOTO),
-      secureSeqId_(0), canPreconfig_(false), sceneModesSize_(0),
+      secureSeqId_(0), canPreconfig_(false), sceneModesSize_(0), isTorchSupported_(false),
+      isTorchSupportedByTorchMode_(false), torchMode_(ON), frameRatesSize_(0), videoFrameRatesSize_(0),
+      colorSpacesSize_(0), colorSpace_(nullptr), activeColorSpace_(OH_COLORSPACE_NONE),
+      setcolorSpace_(OH_COLORSPACE_NONE),
+      frameRateRange_(nullptr), activeFrameRateRange_({0, 0}), videoFrameRateRange_(0),
+      videoActiveFrameRateRange_({0, 0}),
       captureSession_(nullptr), size_(0),
       profile_(nullptr), previewOutput_(nullptr), photoOutput_(nullptr), videoOutput_(nullptr),
       metaDataObjectType_(nullptr), metadataOutput_(nullptr), cameraInput_(nullptr),
@@ -1446,10 +1451,10 @@ Camera_ErrorCode NDKCamera::GetSupportedSceneModes(int useCaseCode)
         for (decltype(sceneModesSize_) index = 0; index < sceneModesSize_; index++) {
             switch (sceneModes_[index]) {
                 case NORMAL_PHOTO:
-                    isNormalPhoto = true;                   
+                    isNormalPhoto = true;
                     break;
                 case NORMAL_VIDEO:
-                    isNormalVideo = true;                   
+                    isNormalVideo = true;
                     break;
                 case SECURE_PHOTO:
                     isSecurePhoto = true;
@@ -1836,6 +1841,548 @@ Camera_ErrorCode NDKCamera::PhotoOutputDeleteProfile(int useCaseCode)
         ret_ = OH_PhotoOutput_DeleteProfile(cameraProfile_);
     } else {
         ret_ = OH_PhotoOutput_DeleteProfile(nullptr);
+    }
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::IsTorchSupported(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CameraManager_IsTorchSupported(cameraManager_, &isTorchSupported_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CameraManager_IsTorchSupported(nullptr, &isTorchSupported_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CameraManager_IsTorchSupported(cameraManager_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CameraManager_IsTorchSupported failed.");
+    }
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::TorchMode(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        torchMode_ = OFF;
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        torchMode_ = ON;
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        torchMode_ = AUTO;
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CameraManager_IsTorchSupported failed.");
+    }
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::IsTorchSupportedByTorchMode(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CameraManager_IsTorchSupportedByTorchMode(cameraManager_, torchMode_, &isTorchSupportedByTorchMode_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CameraManager_IsTorchSupportedByTorchMode(nullptr, torchMode_, &isTorchSupportedByTorchMode_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CameraManager_IsTorchSupportedByTorchMode(cameraManager_, static_cast<Camera_TorchMode>(-1),
+            &isTorchSupported_);
+    } else if (useCaseCode == PARAMETER3_ERROR) {
+        ret_ = OH_CameraManager_IsTorchSupportedByTorchMode(cameraManager_, torchMode_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CameraManager_IsTorchSupportedByTorchMode failed.");
+    }
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::SetTorchMode(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CameraManager_SetTorchMode(cameraManager_, torchMode_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CameraManager_SetTorchMode(nullptr, torchMode_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CameraManager_SetTorchMode(cameraManager_, static_cast<Camera_TorchMode>(-1));
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CameraManager_SetTorchMode failed.");
+    }
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::GetExposureValue(int useCaseCode)
+{
+    float exposureValue;
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CaptureSession_GetExposureValue(captureSession_, &exposureValue);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CaptureSession_GetExposureValue(nullptr, &exposureValue);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CaptureSession_GetExposureValue(captureSession_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CaptureSession_GetExposureValue failed.");
+    }
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::GetFocalLength(int useCaseCode)
+{
+    float focalLength = 0;
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CaptureSession_GetFocalLength(captureSession_, &focalLength);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CaptureSession_GetFocalLength(nullptr, &focalLength);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CaptureSession_GetFocalLength(captureSession_, nullptr);
+    }
+    if (focalLength == 0 || ret_ != CAMERA_OK) {
+        LOG("OH_CaptureSession_GetFocalLength failed.");
+    }
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::SetSmoothZoom(int useCaseCode)
+{
+    float targetZoom = 1.5;
+    Camera_SmoothZoomMode smoothZoomMode = NORMAL;
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CaptureSession_SetSmoothZoom(captureSession_, targetZoom, smoothZoomMode);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CaptureSession_SetSmoothZoom(nullptr, targetZoom, smoothZoomMode);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CaptureSession_SetSmoothZoom failed.");
+    }
+    return ret_;
+}
+
+Camera_ErrorCode NDKCamera::GetSupportedColorSpaces(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CaptureSession_GetSupportedColorSpaces(captureSession_, &colorSpace_, &colorSpacesSize_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CaptureSession_GetSupportedColorSpaces(nullptr, &colorSpace_, &colorSpacesSize_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CaptureSession_GetSupportedColorSpaces(captureSession_, nullptr, &colorSpacesSize_);
+    } else if (useCaseCode == PARAMETER3_ERROR) {
+        ret_ = OH_CaptureSession_GetSupportedColorSpaces(captureSession_, &colorSpace_, nullptr);
+    }
+    if (colorSpace_ == nullptr || colorSpacesSize_ == 0 || ret_ != CAMERA_OK) {
+        LOG("OH_CaptureSession_GetSupportedColorSpaces failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::DeleteColorSpaces(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CaptureSession_DeleteColorSpaces(captureSession_, colorSpace_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CaptureSession_DeleteColorSpaces(nullptr, colorSpace_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CaptureSession_DeleteColorSpaces(captureSession_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CaptureSession_DeleteColorSpaces failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::GetActiveColorSpace(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CaptureSession_GetActiveColorSpace(captureSession_, &activeColorSpace_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CaptureSession_GetActiveColorSpace(nullptr, &activeColorSpace_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CaptureSession_GetActiveColorSpace(captureSession_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CaptureSession_GetActiveColorSpace failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::ColorSpace(void)
+{
+    OH_NativeBuffer_ColorSpace oHNativeBufferColorSpace[15] =
+        {OH_NativeBuffer_ColorSpace::OH_COLORSPACE_NONE,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_P3_FULL,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_SRGB_FULL,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_BT709_FULL,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_BT2020_HLG_FULL,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_BT2020_PQ_FULL,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_P3_HLG_FULL,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_P3_PQ_FULL,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_P3_LIMIT,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_SRGB_LIMIT,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_BT709_LIMIT,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_BT2020_HLG_LIMIT,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_BT2020_PQ_LIMIT,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_P3_HLG_LIMIT,
+         OH_NativeBuffer_ColorSpace::OH_COLORSPACE_P3_PQ_LIMIT};
+    int len = sizeof(oHNativeBufferColorSpace)/sizeof(oHNativeBufferColorSpace[0]);
+    int sum = 0;
+    ret_ = OH_CaptureSession_GetSupportedColorSpaces(captureSession_, &colorSpace_, &colorSpacesSize_);
+    for (uint32_t i = 0; i < colorSpacesSize_; i++) {
+        for (int j = 0; j < len; j++) {
+            if (colorSpace_[i] == oHNativeBufferColorSpace[j]) {
+            sum++;
+            }
+        }
+        if (sum == 0) {
+           setcolorSpace_ = colorSpace_[i];
+        }
+    }
+    return CAMERA_OK;
+}
+Camera_ErrorCode NDKCamera::SetColorSpace(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CaptureSession_SetActiveColorSpace(captureSession_, activeColorSpace_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CaptureSession_SetActiveColorSpace(nullptr, activeColorSpace_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CaptureSession_SetActiveColorSpace(captureSession_, static_cast<OH_NativeBuffer_ColorSpace>(-1));
+    } else if (useCaseCode == PARAMETER3_ERROR) {
+        ColorSpace();
+        ret_ = OH_CaptureSession_SetActiveColorSpace(captureSession_, setcolorSpace_);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CaptureSession_SetActiveColorSpace failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::GetSupportedFrameRates(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PreviewOutput_GetSupportedFrameRates(previewOutput_, &frameRateRange_, &frameRatesSize_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PreviewOutput_GetSupportedFrameRates(nullptr, &frameRateRange_, &frameRatesSize_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PreviewOutput_GetSupportedFrameRates(previewOutput_, nullptr, &frameRatesSize_);
+    } else if (useCaseCode == PARAMETER3_ERROR) {
+        ret_ = OH_PreviewOutput_GetSupportedFrameRates(previewOutput_, &frameRateRange_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PreviewOutput_GetSupportedFrameRates failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::DeleteFrameRates(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PreviewOutput_DeleteFrameRates(previewOutput_, frameRateRange_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PreviewOutput_DeleteFrameRates(nullptr, frameRateRange_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PreviewOutput_DeleteFrameRates(previewOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PreviewOutput_DeleteFrameRates failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::SetFrameRate(int useCaseCode)
+{
+    int32_t minFps = activeFrameRateRange_.min;
+    int32_t maxFps = activeFrameRateRange_.max;
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PreviewOutput_SetFrameRate(previewOutput_, minFps, maxFps);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PreviewOutput_SetFrameRate(nullptr, minFps, maxFps);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PreviewOutput_SetFrameRate(previewOutput_, minFps - 1, maxFps + 5);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PreviewOutput_DeleteFrameRates failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::GetActiveFrameRate(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PreviewOutput_GetActiveFrameRate(previewOutput_, &activeFrameRateRange_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PreviewOutput_GetActiveFrameRate(nullptr, &activeFrameRateRange_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PreviewOutput_GetActiveFrameRate(previewOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PreviewOutput_GetActiveFrameRate failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::VideoOutputGetSupportedFrameRates(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_VideoOutput_GetSupportedFrameRates(videoOutput_, &videoFrameRateRange_, &videoFrameRatesSize_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_VideoOutput_GetSupportedFrameRates(nullptr, &videoFrameRateRange_, &videoFrameRatesSize_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_VideoOutput_GetSupportedFrameRates(videoOutput_, nullptr, &videoFrameRatesSize_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_VideoOutput_GetSupportedFrameRates(videoOutput_, &videoFrameRateRange_, nullptr);
+    }
+    if (videoFrameRatesSize_ == 0 || ret_ != CAMERA_OK) {
+        LOG("OH_VideoOutput_GetSupportedFrameRates failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::VideoOutputGetActiveFrameRate(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_VideoOutput_GetActiveFrameRate(videoOutput_, &videoActiveFrameRateRange_);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_VideoOutput_GetActiveFrameRate(nullptr, &videoActiveFrameRateRange_);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_VideoOutput_GetActiveFrameRate(videoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_VideoOutput_GetActiveFrameRate failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::VideoOutputSetFrameRate(int useCaseCode)
+{
+    uint32_t minFps = videoActiveFrameRateRange_.min;
+    uint32_t maxFps = videoActiveFrameRateRange_.max;
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_VideoOutput_SetFrameRate(videoOutput_, minFps, maxFps);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_VideoOutput_SetFrameRate(nullptr, minFps, maxFps);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_VideoOutput_SetFrameRate(videoOutput_, minFps - 1, maxFps + 5);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_VideoOutput_SetFrameRate failed.");
+    }
+    return ret_;
+}
+void CameraManagerTorchStatusCallback(Camera_Manager *cameraManager, Camera_TorchStatusInfo *status)
+{
+    LOG("CameraManagerTorchStatusCallback");
+}
+Camera_ErrorCode NDKCamera::CameraManagerRegisterTorchStatusCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CameraManager_RegisterTorchStatusCallback(cameraManager_, CameraManagerTorchStatusCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CameraManager_RegisterTorchStatusCallback(nullptr, CameraManagerTorchStatusCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CameraManager_RegisterTorchStatusCallback(cameraManager_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CameraManager_RegisterTorchStatusCallback failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::CameraManagerUnregisterTorchStatusCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CameraManager_UnregisterTorchStatusCallback(cameraManager_, CameraManagerTorchStatusCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CameraManager_UnregisterTorchStatusCallback(nullptr, CameraManagerTorchStatusCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CameraManager_UnregisterTorchStatusCallback(cameraManager_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CameraManager_UnregisterTorchStatusCallback failed.");
+    }
+    return ret_;
+}
+void CaptureSessionSmoothZoomInfoCallback(Camera_CaptureSession *session, Camera_SmoothZoomInfo *smoothZoomInfo)
+{
+    LOG("CaptureSessionSmoothZoomInfoCallback");
+}
+Camera_ErrorCode NDKCamera::CaptureSessionRegisterSmoothZoomInfoCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CaptureSession_RegisterSmoothZoomInfoCallback(captureSession_, CaptureSessionSmoothZoomInfoCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CaptureSession_RegisterSmoothZoomInfoCallback(nullptr, CaptureSessionSmoothZoomInfoCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CaptureSession_RegisterSmoothZoomInfoCallback(captureSession_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CaptureSession_RegisterSmoothZoomInfoCallback failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::CaptureSessionUnregisterSmoothZoomInfoCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_CaptureSession_UnregisterSmoothZoomInfoCallback(captureSession_,
+            CaptureSessionSmoothZoomInfoCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_CaptureSession_UnregisterSmoothZoomInfoCallback(nullptr, CaptureSessionSmoothZoomInfoCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_CaptureSession_UnregisterSmoothZoomInfoCallback(captureSession_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_CaptureSession_UnregisterSmoothZoomInfoCallback failed.");
+    }
+    return ret_;
+}
+void PhotoOutputCaptureStartWithInfoCallback(Camera_PhotoOutput* photoOutput, Camera_CaptureStartInfo* Info)
+{
+    LOG("PhotoOutputCaptureStartWithInfoCallback");
+}
+Camera_ErrorCode NDKCamera::PhotoOutputRegisterCaptureStartWithInfoCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PhotoOutput_RegisterCaptureStartWithInfoCallback(photoOutput_,
+            PhotoOutputCaptureStartWithInfoCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PhotoOutput_RegisterCaptureStartWithInfoCallback(nullptr, PhotoOutputCaptureStartWithInfoCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PhotoOutput_RegisterCaptureStartWithInfoCallback(photoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PhotoOutput_RegisterCaptureStartWithInfoCallback failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::PhotoOutputUnregisterCaptureStartWithInfoCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback(photoOutput_,
+            PhotoOutputCaptureStartWithInfoCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback(nullptr, PhotoOutputCaptureStartWithInfoCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback(photoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PhotoOutput_UnregisterCaptureStartWithInfoCallback failed.");
+    }
+    return ret_;
+}
+void PhotoOutputCaptureEndCallback(Camera_PhotoOutput* photoOutput, int32_t frameCount)
+{
+    LOG("PhotoOutputCaptureEndCallback");
+}
+Camera_ErrorCode NDKCamera::PhotoOutputRegisterCaptureEndCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PhotoOutput_RegisterCaptureEndCallback(photoOutput_, PhotoOutputCaptureEndCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PhotoOutput_RegisterCaptureEndCallback(nullptr, PhotoOutputCaptureEndCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PhotoOutput_RegisterCaptureEndCallback(photoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PhotoOutput_RegisterCaptureEndCallback failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::PhotoOutputUnregisterCaptureEndCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PhotoOutput_UnregisterCaptureEndCallback(photoOutput_, PhotoOutputCaptureEndCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PhotoOutput_UnregisterCaptureEndCallback(nullptr, PhotoOutputCaptureEndCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PhotoOutput_UnregisterCaptureEndCallback(photoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("CaptureSessionUnregisterSmoothZoomInfoCallback failed.");
+    }
+    return ret_;
+}
+void PhotoOutputFrameShutterEndCallback(Camera_PhotoOutput* photoOutput, Camera_FrameShutterInfo* Info)
+{
+    LOG("PhotoOutputFrameShutterEndCallback");
+}
+Camera_ErrorCode NDKCamera::PhotoOutputRegisterFrameShutterEndCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PhotoOutput_RegisterFrameShutterEndCallback(photoOutput_, PhotoOutputFrameShutterEndCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PhotoOutput_RegisterFrameShutterEndCallback(nullptr, PhotoOutputFrameShutterEndCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PhotoOutput_RegisterFrameShutterEndCallback(photoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PhotoOutput_RegisterFrameShutterEndCallback failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::PhotoOutputUnregisterFrameShutterEndCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PhotoOutput_UnregisterFrameShutterEndCallback(photoOutput_, PhotoOutputFrameShutterEndCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PhotoOutput_UnregisterFrameShutterEndCallback(nullptr, PhotoOutputFrameShutterEndCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PhotoOutput_UnregisterFrameShutterEndCallback(photoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PhotoOutput_UnregisterFrameShutterEndCallback failed.");
+    }
+    return ret_;
+}
+void PhotoOutputCaptureReadyCallback(Camera_PhotoOutput* photoOutput)
+{
+    LOG("PhotoOutputCaptureReadyCallback");
+}
+Camera_ErrorCode NDKCamera::PhotoOutputRegisterCaptureReadyCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PhotoOutput_RegisterCaptureReadyCallback(photoOutput_, PhotoOutputCaptureReadyCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PhotoOutput_RegisterCaptureReadyCallback(nullptr, PhotoOutputCaptureReadyCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PhotoOutput_RegisterCaptureReadyCallback(photoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PhotoOutput_RegisterCaptureReadyCallback failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::PhotoOutputUnregisterCaptureReadyCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PhotoOutput_UnregisterCaptureReadyCallback(photoOutput_, PhotoOutputCaptureReadyCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PhotoOutput_UnregisterCaptureReadyCallback(nullptr, PhotoOutputCaptureReadyCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PhotoOutput_UnregisterCaptureReadyCallback(photoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PhotoOutput_UnregisterCaptureReadyCallback failed.");
+    }
+    return ret_;
+}
+void PhotoOutputEstimatedCaptureDurationCallback(Camera_PhotoOutput* photoOutput, int64_t duration)
+{
+    LOG("PhotoOutputEstimatedCaptureDurationCallback");
+}
+Camera_ErrorCode NDKCamera::PhotoOutputRegisterEstimatedCaptureDurationCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback(photoOutput_,
+            PhotoOutputEstimatedCaptureDurationCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback(nullptr,
+            PhotoOutputEstimatedCaptureDurationCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback(photoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PhotoOutput_RegisterEstimatedCaptureDurationCallback failed.");
+    }
+    return ret_;
+}
+Camera_ErrorCode NDKCamera::PhotoOutputUnregisterEstimatedCaptureDurationCallback(int useCaseCode)
+{
+    if (useCaseCode == PARAMETER_OK) {
+        ret_ = OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback(photoOutput_,
+            PhotoOutputEstimatedCaptureDurationCallback);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback(nullptr,
+            PhotoOutputEstimatedCaptureDurationCallback);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback(photoOutput_, nullptr);
+    }
+    if (ret_ != CAMERA_OK) {
+        LOG("OH_PhotoOutput_UnregisterEstimatedCaptureDurationCallback failed.");
     }
     return ret_;
 }
