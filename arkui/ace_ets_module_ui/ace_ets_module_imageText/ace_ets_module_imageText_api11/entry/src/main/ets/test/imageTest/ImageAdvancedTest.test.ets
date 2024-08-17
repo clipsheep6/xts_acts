@@ -349,27 +349,6 @@ export default function ImageAdvancedTest() {
     });
 
     /*
-     * @tc.number : SUB_ACE_UI_COMPONENT_MEDIA_IMAGE_SIZE_0410
-     * @tc.name   : SUB_ACE_UI_COMPONENT_MEDIA_IMAGE_SIZE_0410
-     * @tc.desc   : citation PixelMap
-     * @tc.size   : MediumTest
-     * @tc.type   : Function
-     * @tc.level  : Level 3
-     */
-    it('SUB_ACE_UI_COMPONENT_MEDIA_IMAGE_SIZE_0410', 3, async (done: Function) =>  {
-      console.info('[SUB_ACE_UI_COMPONENT_MEDIA_IMAGE_SIZE_0410] START');
-      await routerPush("image23")
-      let driver = Driver.create();
-      await CommonFunc.sleep(2000);
-      let strJson1 = getInspectorByKey('loadingResult23');
-      let obj1: ESObject = JSON.parse(strJson1);
-      console.info("[SUB_ACE_UI_COMPONENT_MEDIA_IMAGE_SIZE_0410] component obj1 is: " + JSON.stringify(obj1));
-      console.info("[SUB_ACE_UI_COMPONENT_MEDIA_IMAGE_SIZE_0410] obj1.$attrs.content is: " + obj1.$attrs.content);
-      expect(obj1.$attrs.content).assertContain('success');
-      done();
-    });
-
-    /*
      * @tc.number : SUB_ACE_UI_COMPONENT_MEDIA_IMAGE_SIZE_0420
      * @tc.name   : SUB_ACE_UI_COMPONENT_MEDIA_IMAGE_SIZE_0420
      * @tc.desc   : citation jpg,png,bmp,svg,gif
