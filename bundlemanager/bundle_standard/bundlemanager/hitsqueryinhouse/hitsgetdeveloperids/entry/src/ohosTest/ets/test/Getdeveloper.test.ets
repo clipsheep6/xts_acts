@@ -106,8 +106,8 @@ export default function getdeveloper() {
       installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
         data.install(['/data/storage/el2/base/files/HitsBmEnterpriseTest.hap'], (err: BusinessError) => {
           if (err) {
-            console.error('install HitsCrowdTestingTest failed:' + err.message);
-            if (err.code === NO_PERMISSION_ERROR_CODE) {
+            console.error('install Enterprise failed:' + err.message);
+            if (err.code === 201) {
               expect(false).assertTrue()
               done()
             }
@@ -116,20 +116,23 @@ export default function getdeveloper() {
           }
         });
       }).catch((error: BusinessError) => {
-        console.error('install HitsCrowdTestingTest getBundleInstaller failed. Cause: ' + error.message);
+        console.error('install Enterprise getBundleInstaller failed. Cause: ' + error.message);
         done()
       });
       try {
         let appDistributionType = bundleManager.AppDistributionType.ENTERPRISE;
         let data = bundleManager.getDeveloperIds(appDistributionType);
         hilog.info(0x0000, 'testTag', 'getDeveloperIdsOfEnterprise successfully. Data: %{public}s', JSON.stringify(data));
-        expect(true).assertFail()
-        done()
+        if(data){
+          expect(true).assertTrue()
+          done()
+        }
       } catch (err) {
         let message = (err as BusinessError).message;
         let code = (err as BusinessError).code;
         hilog.error(0x0000, 'testTag', 'getDeveloperIdsOfEnterprisegetDeveloperIdsOfEnterprise failed: %{public}s', message);
-        expect(code).assertEqual(401)
+        expect(false).assertTrue()
+        done()
       }
     })
 
