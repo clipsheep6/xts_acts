@@ -66,6 +66,9 @@ export default function imagePackerExifTest() {
         name: "test_exif_v2", mimeType: "image/png", fileSuffix: "png"
       },
       {
+        name: "test_exif_v2", mimeType: "image/heif", fileSuffix: "heic"
+      },
+      {
         name: "test_exif_empty", mimeType: "image/jpeg", fileSuffix: "jpg"
       },
       {
@@ -75,6 +78,9 @@ export default function imagePackerExifTest() {
         name: "test_exif_empty", mimeType: "image/png", fileSuffix: "png"
       },
       {
+        name: "test_exif_empty", mimeType: "image/heif", fileSuffix: "heic"
+      },
+      {
         name: "test_exif_v3", mimeType: "image/jpeg", fileSuffix: "jpg"
       },
       {
@@ -82,6 +88,9 @@ export default function imagePackerExifTest() {
       },
       {
         name: "test_exif_v3", mimeType: "image/png", fileSuffix: "png"
+      },
+      {
+        name: "test_exif_v3", mimeType: "image/heif", fileSuffix: "heic"
       }
     ]
 
