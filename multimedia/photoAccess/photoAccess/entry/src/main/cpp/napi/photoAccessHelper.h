@@ -72,7 +72,6 @@ public:
 
     MediaLibrary_ErrorCode MediaAccessHelperApplyChanges(int useCaseCode);
 
-
 private:
     OH_MediaAsset* mediaAsset_; // mediaAsset实例。
     OH_MediaAssetChangeRequest* changeRequest_;

@@ -14,8 +14,7 @@
 import("//build/config/ohos/config.gni")
 import("//build/ohos.gni")
 import("//foundation/arkui/napi/napi.gni")
-import(
-    "//foundation/multimedia/media_library/media_library.gni")
+import("//foundation/multimedia/media_library/media_library.gni")
 
 MEDIA_ROOT_DIR = "//foundation/multimedia/media_library/"
 config("config") {
