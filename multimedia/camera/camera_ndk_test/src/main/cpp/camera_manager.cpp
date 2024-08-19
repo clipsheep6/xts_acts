@@ -1889,11 +1889,13 @@ Camera_ErrorCode NDKCamera::RegisterPhotoAssetAvailableCallback(int useCaseCode)
 {
     NDKCamera::isCalledPhotoAssetAvailable_ = false;
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(photoOutput_, NDKCamera::PhotoOutputOnPhotoAssetAvailable);
+        ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(photoOutput_,
+            NDKCamera::PhotoOutputOnPhotoAssetAvailable);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(photoOutput_, nullptr);
     } else {
-        ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(nullptr, NDKCamera::PhotoOutputOnPhotoAssetAvailable);
+        ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(nullptr,
+            NDKCamera::PhotoOutputOnPhotoAssetAvailable);
     }
     if (ret_ != CAMERA_OK) {
         LOG("OH_PhotoOutput_RegisterPhotoAssetAvailableCallback failed. %d", ret_);
@@ -1904,11 +1906,13 @@ Camera_ErrorCode NDKCamera::UnregisterPhotoAssetAvailableCallback(int useCaseCod
 {
     NDKCamera::isCalledPhotoAssetAvailable_ = false;
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(photoOutput_, NDKCamera::PhotoOutputOnPhotoAssetAvailable);
+        ret_ = OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(photoOutput_,
+            NDKCamera::PhotoOutputOnPhotoAssetAvailable);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(photoOutput_, nullptr);
     } else {
-        ret_ = OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(nullptr, NDKCamera::PhotoOutputOnPhotoAssetAvailable);
+        ret_ = OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(nullptr,
+            NDKCamera::PhotoOutputOnPhotoAssetAvailable);
     }
     if (ret_ != CAMERA_OK) {
         LOG("OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback failed. %d", ret_);

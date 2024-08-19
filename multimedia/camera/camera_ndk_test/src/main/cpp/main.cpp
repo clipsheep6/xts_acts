@@ -1615,11 +1615,11 @@ static napi_value IsCalledPhotoOutputRegisterCallback(napi_env env, napi_callbac
     napi_value jsValue = nullptr;
 
     bool result = ndkCamera_->isCalledPhotoAvailable_;
-    napi_get_boolean(env, result, &jsValue); 
+    napi_get_boolean(env, result, &jsValue);
     napi_set_named_property(env, isCalledPhotoOutput, "isCalledPhotoAvailable", jsValue);
     
     result = ndkCamera_->isCalledPhotoAssetAvailable_;
-    napi_get_boolean(env, result, &jsValue); 
+    napi_get_boolean(env, result, &jsValue);
     napi_set_named_property(env, isCalledPhotoOutput, "isCalledPhotoAssetAvailable", jsValue);
 
     return isCalledPhotoOutput;

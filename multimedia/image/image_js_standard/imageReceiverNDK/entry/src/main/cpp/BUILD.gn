@@ -99,7 +99,7 @@ ohos_shared_library("ImageReceiverNativeTest") {
     "$drivers_path/peripheral/display/interfaces/include",
     "$multimedia_camera_framework_path/interfaces/kits/native/include/camera",
     "$graphic_surface_root/interfaces/inner_api/surface",
-    "${multimedia_media_library_path}/interfaces",
+    "${multimedia_media_library_path}/interfaces/kits/c",
   ]
   configs = [ ":config" ]
 

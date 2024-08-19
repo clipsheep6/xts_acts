@@ -47,7 +47,7 @@ ohos_shared_library("entry") {
     "$MEDIA_ROOT_DIR/interfaces/kits/native/include/camera",
     "${multimedia_image_framework_path}/interfaces/kits/native/include",
     "${multimedia_image_framework_path}/interfaces/kits/native/include/image",
-    "${multimedia_media_library_path}/interfaces",
+    "${multimedia_media_library_path}/interfaces/kits/c",
   ]
   external_deps = [
     "graphic_surface:surface",
