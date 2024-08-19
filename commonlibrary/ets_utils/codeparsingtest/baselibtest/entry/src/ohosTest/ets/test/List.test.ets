@@ -14,8 +14,14 @@
  */
 import bufferTest from './buffer/buffer.test'
 import processTest from './process/process.test'
+import uriTest from './uri/Uri.test';
+import urlTest from './url/Url.test';
+import utilTest from './util/Util.test';
 
 export default function testsuite() {
   bufferTest()
   processTest()
+  uriTest();
+  urlTest()
+  utilTest();
 }
