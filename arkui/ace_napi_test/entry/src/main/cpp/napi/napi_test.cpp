@@ -3572,8 +3572,10 @@ static napi_value CoerceToNativeBindingObject(napi_env env, napi_callback_info i
     napi_create_object(env, &object);
     napi_value hint = nullptr;
     napi_create_object(env, &hint);
+    napi_value object1 = nullptr;
+    napi_create_object(env, &object1);
     napi_status status = napi_coerce_to_native_binding_object(env, object,
-        TestDetachCallback, TestAttachCallback, reinterpret_cast<void*>(object), reinterpret_cast<void*>(hint));
+        TestDetachCallback, TestAttachCallback, reinterpret_cast<void*>(object1), reinterpret_cast<void*>(hint));
     NAPI_ASSERT(env, status == napi_ok, "napi_coerce_to_native_binding_object fail");
 
     napi_value undefined = nullptr;
