@@ -29,12 +29,14 @@ import TabsAp1 from './TabsTest/TabsAp1.test'
 import ScrollApi1 from './ScrollTest/ScrollApi1.test'
 import scrollXOffsetJsunit from './ScrollTest/scrollXOffsetJsunit.test';
 import SwiperApi from './SwiperTest/SwiperApi.test';
+import SwiperDirection from './SwiperTest/SwiperDirection.test';
 import tabsAnimationMode from './TabsTest/tabsAnimationMode.test'
 import tabsAnimationDuration from './TabsTest/tabsAnimationDuration.test'
 import setTest from './ListTest/childrenMainSizeTest/setTest.test'
 import getTest from './ListTest/childrenMainSizeTest/getTest.test'
 import alphabetEnableJsunit from './AlphabetIndexerTest/alphabetEnableJsunit.test';
 import alphabetBorderRadiusTest from './AlphabetIndexerTest/alphabetBorderRadius.test';
+import AlphabetIndexerDirection from './AlphabetIndexerTest/AlphabetIndexerDirection.test';
 import swiperCountJsunit from './SwiperTest/swiperCountJsunit.test';
 import waterFlowLayoutMode from './WaterFlowTest/waterFlowLayoutMode.test';
 import ListAddApi from './ListTest/ListAddApi.test';
@@ -114,4 +116,6 @@ export default function testsuite() {
   SwiperAutoPlay_2()
   SwiperDisplayCount()
   SwiperLoopFalse()
+  AlphabetIndexerDirection();
+  SwiperDirection();
 }
