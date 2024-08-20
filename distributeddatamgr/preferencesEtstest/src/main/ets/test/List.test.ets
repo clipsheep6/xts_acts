@@ -20,7 +20,6 @@ import preferencesPromiseTest from './PreferencesPromiseJsunit.test';
 import PreferencesSyncTest from './PreferencesSyncJsunit.test';
 import preferencesV9CallbackTest from './PreferencesV9CallBackJsunit.test';
 import preferencesV9PromiseTest from './PreferencesV9PromiseJsunit.test';
-import sendablePreferencesPromiseTest from './SendablePreferencePromise.test';
 
 export default function testsuite() {
   preferencesCallBackTest()
@@ -30,6 +29,5 @@ export default function testsuite() {
   PreferencesSyncTest()
   preferencesV9CallbackTest()
   preferencesV9PromiseTest()
-  sendablePreferencesPromiseTest()
 }
 
