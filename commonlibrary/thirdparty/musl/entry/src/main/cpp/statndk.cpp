@@ -333,7 +333,7 @@ static napi_value MkNodAt(napi_env env, napi_callback_info info)
     }
     struct stat newFifo = {PARAM_0};
     errno = 0;
-    if(mk_ret == 0 || mk_errno == EEXIST) {
+    if (mk_ret == 0 || mk_errno == EEXIST) {
         ret = stat(path, &newFifo);
         if (ret != 0) {
             OH_LOG_INFO(LOG_APP, "MUSL stat ret %{public}d errno : %{public}d", ret, errno);
