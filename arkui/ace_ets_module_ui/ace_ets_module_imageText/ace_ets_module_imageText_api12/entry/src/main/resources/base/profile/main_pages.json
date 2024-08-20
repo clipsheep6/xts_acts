@@ -2,6 +2,7 @@
   "src": [
   "MainAbility/pages/index/index",
   "MainAbility/pages/Image/APIClipMaskShape",
+    "MainAbility/pages/Image/ImageResizable",
   "MainAbility/pages/TextInput/APIContentType",
   "MainAbility/pages/TextInput/APIUnderlineColor",
     "MainAbility/pages/RelativeContainer/RelativeContainerApi1",

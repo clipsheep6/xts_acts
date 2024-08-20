@@ -137,8 +137,10 @@ import RichEditorAddApi from './RichEditor/RichEditorAddApi.test'
 import editMeunOptionsTest from './Text/editMeunOptions.test'
 import RichEditorApi13 from './RichEditor/RichEditorApi13.test'
 import onDidIMEInputTest from './RichEditor/onDidIMEInput.test';
+import ImageResizable from './ImageTest/ImageResizable.test'
 
 export default function testsuite() {
+  ImageResizable();
   APIContentTypeTest();
   APIUnderlineColorTest();
   TextInputAddApi();
