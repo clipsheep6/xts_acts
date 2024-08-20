@@ -14,9 +14,10 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { collections, taskpool } from '@kit.ArkTS';
+import taskpool from '@ohos.taskpool';
+import collections from '@arkts.collections';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { relationalStore } from '@kit.ArkData';
+import relationalStore from '@ohos.data.relationalStore';
 import sendableRelationalStore from '@ohos.data.sendableRelationalStore'
 
 const TAG = "[RELATIONAL_STORE_JSKITS_TEST]";

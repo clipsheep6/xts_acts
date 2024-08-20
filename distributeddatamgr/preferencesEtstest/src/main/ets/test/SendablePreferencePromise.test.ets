@@ -14,10 +14,12 @@
  */
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
 import sendablePreferences from '@ohos.data.sendablePreferences';
-import { collections,lang } from '@kit.ArkTS';
+import lang from '@arkts.lang';
+import collections from '@arkts.collections';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
 
 const options:sendablePreferences.Options= {name:'test_preferences'}
 const KEY_NUMBER :string = 'key_test_int';
