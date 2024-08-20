@@ -22,6 +22,7 @@ import window from '@ohos.window';
 export default class MainAbility extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log("[Demo] MainAbility onCreate");
+    AppStorage.SetOrCreate<common.AbilityStageContext>('TestAbilityContext', this.context);
     AppStorage.setOrCreate<common.ApplicationContext>("applicationContext", this.context.getApplicationContext());
   }
 

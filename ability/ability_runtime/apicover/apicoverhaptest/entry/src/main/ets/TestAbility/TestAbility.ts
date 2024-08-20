@@ -21,6 +21,7 @@ import window from '@ohos.window';
 
 export default class TestAbility extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    AppStorage.SetOrCreate<common.AbilityStageContext>('TestAbilityContext', this.context);
     console.log('TestAbility onCreate');
   }
 
