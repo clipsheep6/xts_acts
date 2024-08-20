@@ -22,7 +22,7 @@ export default function SliderTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/Slider/Slider',
+        url: 'MainAbility/pages/Slider/Slider',
       }
       try {
         router.clear();

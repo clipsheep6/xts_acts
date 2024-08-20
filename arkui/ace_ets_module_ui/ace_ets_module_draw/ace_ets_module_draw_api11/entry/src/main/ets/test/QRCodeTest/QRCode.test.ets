@@ -22,7 +22,7 @@ export default function QRCodeTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/QRCode/QRCode',
+        url: 'MainAbility/pages/QRCode/QRCode',
       }
       try {
         router.clear();

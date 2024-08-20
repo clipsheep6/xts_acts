@@ -22,7 +22,7 @@ export default function Rect002Test() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/Rect/rect002',
+        url: 'MainAbility/pages/Rect/rect002',
       }
       try {
         router.clear();

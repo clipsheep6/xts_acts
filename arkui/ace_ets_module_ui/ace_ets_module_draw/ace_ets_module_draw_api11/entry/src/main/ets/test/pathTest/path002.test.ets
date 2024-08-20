@@ -22,7 +22,7 @@ export default function Path002Test() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/path/path002',
+        url: 'MainAbility/pages/path/path002',
       }
       try {
         router.clear();

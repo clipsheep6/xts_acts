@@ -22,7 +22,7 @@ export default function SideBarContainerTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/SideBarContainer/SideBarContainer',
+        url: 'MainAbility/pages/SideBarContainer/SideBarContainer',
       }
       try {
         router.clear();

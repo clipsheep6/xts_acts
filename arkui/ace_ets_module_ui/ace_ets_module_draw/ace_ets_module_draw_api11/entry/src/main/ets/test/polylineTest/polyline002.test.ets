@@ -22,7 +22,7 @@ export default function PolyLine002Test() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/polyline/polyline002',
+        url: 'MainAbility/pages/polyline/polyline002',
       }
       try {
         router.clear();

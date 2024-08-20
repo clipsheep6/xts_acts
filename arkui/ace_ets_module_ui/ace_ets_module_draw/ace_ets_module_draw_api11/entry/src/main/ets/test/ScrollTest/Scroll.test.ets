@@ -22,7 +22,7 @@ export default function ScrollTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/Scroll/Scroll',
+        url: 'MainAbility/pages/Scroll/Scroll',
       }
       try {
         router.clear();

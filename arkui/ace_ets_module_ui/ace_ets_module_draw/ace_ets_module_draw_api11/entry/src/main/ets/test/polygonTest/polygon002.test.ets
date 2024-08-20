@@ -22,7 +22,7 @@ export default function Polygon002Test() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/polygon/polygon002',
+        url: 'MainAbility/pages/polygon/polygon002',
       }
       try {
         router.clear();

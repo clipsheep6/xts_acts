@@ -22,7 +22,7 @@ export default function Shape002Test() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/Shape/shape002',
+        url: 'MainAbility/pages/Shape/shape002',
       }
       try {
         router.clear();

@@ -22,7 +22,7 @@ export default function NavRouterTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/NavRouter/NavRouter',
+        url: 'MainAbility/pages/NavRouter/NavRouter',
       }
       try {
         router.clear();

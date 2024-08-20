@@ -22,7 +22,7 @@ export default function StackTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/Stack/Stack',
+        url: 'MainAbility/pages/Stack/Stack',
       }
       try {
         router.clear();

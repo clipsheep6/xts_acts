@@ -22,7 +22,7 @@ export default function SearchTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/Search/Search',
+        url: 'MainAbility/pages/Search/Search',
       }
       try {
         router.clear();

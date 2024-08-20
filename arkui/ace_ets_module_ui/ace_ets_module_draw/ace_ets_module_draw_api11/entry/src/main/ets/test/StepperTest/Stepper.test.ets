@@ -22,7 +22,7 @@ export default function StepperTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/Stepper/Stepper',
+        url: 'MainAbility/pages/Stepper/Stepper',
       }
       try {
         router.clear();

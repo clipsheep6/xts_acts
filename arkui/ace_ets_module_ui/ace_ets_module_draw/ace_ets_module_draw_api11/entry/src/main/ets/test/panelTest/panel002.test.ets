@@ -22,7 +22,7 @@ export default function Panel002Test() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/panel/panel002',
+        url: 'MainAbility/pages/panel/panel002',
       }
       try {
         router.clear();

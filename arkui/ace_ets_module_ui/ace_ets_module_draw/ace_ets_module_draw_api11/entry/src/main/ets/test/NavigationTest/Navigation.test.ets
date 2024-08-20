@@ -22,7 +22,7 @@ export default function NavigationTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/Navigation/Navigation',
+        url: 'MainAbility/pages/Navigation/Navigation',
       }
       try {
         router.clear();

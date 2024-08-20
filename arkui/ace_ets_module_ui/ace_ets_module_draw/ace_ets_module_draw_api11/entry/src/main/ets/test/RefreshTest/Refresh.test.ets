@@ -22,7 +22,7 @@ export default function RefreshTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/Refresh/Refresh',
+        url: 'MainAbility/pages/Refresh/Refresh',
       }
       try {
         router.clear();

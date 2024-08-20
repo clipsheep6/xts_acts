@@ -22,7 +22,7 @@ export default function SpanTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/Span/Span',
+        url: 'MainAbility/pages/Span/Span',
       }
       try {
         router.clear();

@@ -22,7 +22,7 @@ export default function RichTextTest() {
     beforeAll(async () => {
       console.info("flex beforeEach start");
       let options:router.RouterOptions = {
-        uri: 'MainAbility/pages/RichText/RichText',
+        url: 'MainAbility/pages/RichText/RichText',
       }
       try {
         router.clear();
