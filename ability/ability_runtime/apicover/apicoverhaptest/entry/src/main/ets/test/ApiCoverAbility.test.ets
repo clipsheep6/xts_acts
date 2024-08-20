@@ -42,7 +42,9 @@ let CROSS_USER_DENY = 201;
 let array: string[] = new Array();
 let TAG = '';
 let createModuleContext: ESObject;
-
+let ACTS_CallFunction = {
+  events: ['killprocess']
+};
 function sleep(time: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, time));
 }
@@ -1244,5 +1246,43 @@ export default function ApiCoverTest() {
       console.log(`${tag}, test end`);
       done();
     });
+
+    /*
+     * @tc.number : Acts_SingleInstanceCallFunction_0100
+     * @tc.name   : Call killAllProcesses.
+     * @tc.desc   : successfully killAllProcesses
+     * @tc.size   : LargeTest
+     * @tc.type   : Function
+     * @tc.level  : 3
+     */
+    it('Acts_SingleInstanceCallFunction_0100', 0, async (done: Function) => {
+      let tag = `Acts_SingleInstanceCallFunction_0100`;
+      let subscriber;
+          let testAbilityContext : common.UIAbilityContext = AppStorage.Get<common.UIAbilityContext>('TestAbilityContext') as common.UIAbilityContext;
+          function subscribeCallBack(err, data): void {
+            console.debug('====>Acts_SingleInstanceCallFunction_0100 subscribeCallBack data:' + JSON.stringify(data));
+            if (data.parameters.event === 'killprocess1') {
+              commonEvent.unsubscribe(subscriber, unSubscribeCallback);
+            }
+          };
+          function unSubscribeCallback(): void {
+            console.debug('====>Acts_SingleInstanceCallFunction_0100 unSubscribeCallback');
+          }
+          commonEvent.createSubscriber(ACTS_CallFunction).then(async (data) => {
+            console.debug('====>Acts_SingleInstanceCallFunction_0100 Create Subscribe');
+            subscriber = data;
+            commonEvent.subscribe(subscriber, subscribeCallBack);
+            testAbilityContext.startAbility(
+              {
+                bundleName: 'ohos.acts.aafwk.test.stagesupplement',
+                abilityName: 'MainAbility',
+                action: 'Acts_SingleInstanceCallFunction_0100'
+              }, (err) => {
+              console.debug('====>Acts_SingleInstanceCallFunction_0100 startAbility err:' + JSON.stringify(err));
+            })
+          })
+          done();
+    });
+
   })
 }

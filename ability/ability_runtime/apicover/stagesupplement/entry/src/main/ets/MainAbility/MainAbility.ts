@@ -27,13 +27,18 @@ let lastRequestWant;
 export default class MainAbility extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.info(printLog1 + "onCreate");
-
     launchWant = this.launchWant
     lastRequestWant = this.lastRequestWant
     commonEvent.publish(listPush1 + "onCreate", (err) => {
       console.info(printLog1 + listPush1 + "onCreate");
     });
-
+    if (want.action === 'Acts_SingleInstanceCallFunction_0100') {
+      this.context.getApplicationContext().killAllProcesses().then(data => {
+        console.log('killAllProcesses success',JSON.stringify(data));
+      }).catch(err => {
+        console.log('killAllProcesses fail',JSON.stringify(err.code));
+      });
+    };
     setTimeout(() => {
       this.context.terminateSelf()
         .then((data) => {
@@ -50,6 +55,14 @@ export default class MainAbility extends Ability {
 
     commonEvent.publish(listPush1 + "onDestroy", (err) => {
       console.info(printLog1 + listPush1 + "onDestroy");
+    });
+    let commonEventData = {
+      parameters: {
+        event : 'killprocess1'
+      }
+    };
+    commonEvent.publish('killprocess', commonEventData, (err) => {
+      console.log('====>Acts_SingleInstanceCallFunction_0100 publish err:' + JSON.stringify(err));
     });
   }
 
