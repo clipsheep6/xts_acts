@@ -327,7 +327,7 @@ static napi_value MkNodAt(napi_env env, napi_callback_info info)
     int mk_errno = errno;
     if (ret != 0) {
         OH_LOG_INFO(LOG_APP, "MUSL mknodat ret %{public}d errno : %{public}d", ret, errno);
-        if (ret == -1 && (errno == EACCES || errno == EPERM) ){
+        if (ret == -1 && (errno == EACCES || errno == EPERM) ) {
             ret = 0;
         }
     }
