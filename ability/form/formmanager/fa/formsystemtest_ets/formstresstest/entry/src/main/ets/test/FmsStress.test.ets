@@ -112,7 +112,12 @@ export default function test() {
                 console.info(`${tcNumber} onAcquiredCallback data: ${JSON.stringify(data)}, error: ${JSON.stringify(err)}`);
                 console.info(`${tcNumber} onAcquiredCallback formId: ${formId}`);
 
-                expect(err.code).assertEqual(0);
+                if (err && err.code!== undefined) {
+                        expect(err.code).assertEqual(0);
+                    } else {
+                        console.error(`${tcNumber} Error object is not in expected format.`);
+                        expect().assertFail();
+                    }
                 commonEvent.unsubscribe(onAcquiredEventSubscriber, () => unsubscribeOnAcquiredCallback(tcNumber));
 
                 setTimeout(() => {
@@ -156,77 +161,87 @@ export default function test() {
          * @tc.desc: releaseForm method working well.
          */
         it(`FMS_stressTest_0200`, 0, async (done) => {
-            const tcNumber = `FMS_stressTest_0200`;
+        const tcNumber = `FMS_stressTest_0200`;
+        let timeoutFlag = false;
+        const timeoutHandler = setTimeout(() => {
+            timeoutFlag = true;
+            console.error(`${tcNumber} Test timed out.`);
+            expect().assertFail();
+            done();
+        }, /* 设置一个合理的超时时间，比如 10000（10 秒） */);
 
-            subscribeDeletedEvent(tcNumber, 1, done);
+        subscribeDeletedEvent(tcNumber, 1, done);
 
-            commonEvent.subscribe(onAcquiredEventSubscriber, async (err, data) => {
-                const kind = data.parameters.kind;
-                const formId = data.parameters.formId;
-                console.info(`${tcNumber} onAcquiredCallback data: ${JSON.stringify(data)}, error: ${JSON.stringify(err)}`);
-                console.info(`${tcNumber} onAcquiredCallback formId: ${formId}`);
+        commonEvent.subscribe(onAcquiredEventSubscriber, async (err, data) => {
+            if (timeoutFlag) return;
+            const kind = data.parameters.kind;
+            const formId = data.parameters.formId;
+            console.info(`${tcNumber} onAcquiredCallback data: ${JSON.stringify(data)}, error: ${JSON.stringify(err)}`);
+            console.info(`${tcNumber} onAcquiredCallback formId: ${formId}`);
 
-                expect(err.code).assertEqual(0);
-                if (`release` == kind) {
-                    try {
-                        const res = await featureAbility.startAbility({
-                            want: {
-                                bundleName: `com.ohos.st.formsystemhostk`,
-                                abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
-                                parameters: {
-                                    formId: `0`,
-                                    name: `Form_Js001`,
-                                    bundle: `com.acts.form.formsystemtestservicef.hmservice`,
-                                    ability: `FormAbility`,
-                                    moduleName: `entry`,
-                                    isCreate: true
-                                }
-                            }
-                        });
-                        console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
-                    } catch (error) {
-                        console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
-                        console.info(`${tcNumber} should not reach here`);
-                        expect().assertFail();
-                        done()
-                    }
-                } else {
-                    commonEvent.unsubscribe(onAcquiredEventSubscriber, () => unsubscribeOnAcquiredCallback(tcNumber));
-                    setTimeout(() => {
-                        commonEvent.publish(formOnDeleteEvent, {
+            expect(err.code).assertEqual(0);
+            if (`release` == kind) {
+                try {
+                    const res = await featureAbility.startAbility({
+                        want: {
+                            bundleName: `com.ohos.st.formsystemhostk`,
+                            abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
                             parameters: {
-                                formIds: [].concat(formId)
+                                formId: `0`,
+                                name: `Form_Js001`,
+                                bundle: `com.acts.form.formsystemtestservicef.hmservice`,
+                                ability: `FormAbility`,
+                                moduleName: `entry`,
+                                isCreate: true
                             }
-                        }, () => publishOnDeleteCallback(tcNumber));
-                    }, 500);
-                    console.info(`${tcNumber} onAcquiredCallback end`);
-                    done()
+                        }
+                    });
+                    console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
+                } catch (error) {
+                    console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
+                    console.info(`${tcNumber} should not reach here`);
+                    expect().assertFail();
+                    done();
+                }
+            } else {
+                commonEvent.unsubscribe(onAcquiredEventSubscriber, () => unsubscribeOnAcquiredCallback(tcNumber));
+                setTimeout(() => {
+                    commonEvent.publish(formOnDeleteEvent, {
+                        parameters: {
+                            formIds: [].concat(formId)
+                        }
+                    }, () => publishOnDeleteCallback(tcNumber));
+                }, 500);
+                console.info(`${tcNumber} onAcquiredCallback end`);
+                done();
+            }
+        });
+
+        try {
+            const res = await featureAbility.startAbility({
+                want: {
+                    bundleName: `com.ohos.st.formsystemhostk`,
+                    abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
+                    parameters: {
+                        formId: `0`,
+                        name: `Form_Js001`,
+                        bundle: `com.acts.form.formsystemtestservicef.hmservice`,
+                        ability: `FormAbility`,
+                        moduleName: `entry`,
+                        releaseForm: true,
+                        isCreate: true,
+                        temporary: true
+                    }
                 }
             });
-
-            try {
-                const res = await featureAbility.startAbility({
-                    want: {
-                        bundleName: `com.ohos.st.formsystemhostk`,
-                        abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
-                        parameters: {
-                            formId: `0`,
-                            name: `Form_Js001`,
-                            bundle: `com.acts.form.formsystemtestservicef.hmservice`,
-                            ability: `FormAbility`,
-                            moduleName: `entry`,
-                            releaseForm: true,
-                            isCreate: true,
-                            temporary: true
-                        }
-                    }
-                });
-                console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
-            } catch (error) {
-                console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
-                console.info(`${tcNumber} should not reach here`);
-                expect().assertFail();
-                done()
+            console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
+            clearTimeout(timeoutHandler);
+        } catch (error) {
+            console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
+            console.info(`${tcNumber} should not reach here`);
+            expect().assertFail();
+            clearTimeout(timeoutHandler);
+            done();
             }
         });
 
@@ -236,75 +251,85 @@ export default function test() {
          * @tc.desc: castTempForm method working well.
          */
         it(`FMS_stressTest_0300`, 0, async (done) => {
-            const tcNumber = `FMS_stressTest_0300`;
+        const tcNumber = `FMS_stressTest_0300`;
+        let timeoutFlag = false;
+        const timeoutHandler = setTimeout(() => {
+            timeoutFlag = true;
+            console.error(`${tcNumber} Test timed out.`);
+            expect().assertFail();
+            done();
+        }, /* 设置一个合理的超时时间，比如 10000（10 秒） */);
 
-            subscribeDeletedEvent(tcNumber, 1, done);
+        subscribeDeletedEvent(tcNumber, 1, done);
 
-            commonEvent.subscribe(onAcquiredEventSubscriber, async (err, data) => {
-                const kind = data.parameters.kind;
-                const formId = data.parameters.formId;
-                console.info(`${tcNumber} onAcquiredCallback data: ${JSON.stringify(data)}, error: ${JSON.stringify(err)}`);
-                console.info(`${tcNumber} onAcquiredCallback formId: ${formId}`);
+        commonEvent.subscribe(onAcquiredEventSubscriber, async (err, data) => {
+            if (timeoutFlag) return;
+            const kind = data.parameters.kind;
+            const formId = data.parameters.formId;
+            console.info(`${tcNumber} onAcquiredCallback data: ${JSON.stringify(data)}, error: ${JSON.stringify(err)}`);
+            console.info(`${tcNumber} onAcquiredCallback formId: ${formId}`);
 
-                expect(err.code).assertEqual(0);
-                if (`castTempForm` == kind) {
-                    try {
-                        const res = await featureAbility.startAbility({
-                            want: {
-                                bundleName: `com.ohos.st.formsystemhostk`,
-                                abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
-                                parameters: {
-                                    formId: formId,
-                                    name: `Form_Js001`,
-                                    bundle: `com.acts.form.formsystemtestservicef.hmservice`,
-                                    ability: `FormAbility`,
-                                    moduleName: `entry`
-                                }
-                            }
-                        });
-                        console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
-                    } catch (error) {
-                        console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
-                        console.info(`${tcNumber} should not reach here`);
-                        expect().assertFail();
-                        done()
-                    }
-                    commonEvent.unsubscribe(onAcquiredEventSubscriber, () => unsubscribeOnAcquiredCallback(tcNumber));
-                    setTimeout(() => {
-                        commonEvent.publish(formOnDeleteEvent, {
+            expect(err.code).assertEqual(0);
+            if (`castTempForm` == kind) {
+                try {
+                    const res = await featureAbility.startAbility({
+                        want: {
+                            bundleName: `com.ohos.st.formsystemhostk`,
+                            abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
                             parameters: {
-                                formIds: [].concat(formId)
+                                formId: formId,
+                                name: `Form_Js001`,
+                                bundle: `com.acts.form.formsystemtestservicef.hmservice`,
+                                ability: `FormAbility`,
+                                moduleName: `entry`
                             }
-                        }, () => publishOnDeleteCallback(tcNumber));
-                    }, 500);
-                    console.info(`${tcNumber} onAcquiredCallback end`);
-                    done()
+                        }
+                    });
+                    console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
+                } catch (error) {
+                    console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
+                    console.info(`${tcNumber} should not reach here`);
+                    expect().assertFail();
+                    done();
+                }
+                commonEvent.unsubscribe(onAcquiredEventSubscriber, () => unsubscribeOnAcquiredCallback(tcNumber));
+                setTimeout(() => {
+                    commonEvent.publish(formOnDeleteEvent, {
+                        parameters: {
+                            formIds: [].concat(formId)
+                        }
+                    }, () => publishOnDeleteCallback(tcNumber));
+                }, 500);
+                console.info(`${tcNumber} onAcquiredCallback end`);
+                done();
+            }
+        });
+
+        try {
+            const res = await featureAbility.startAbility({
+                want: {
+                    bundleName: `com.ohos.st.formsystemhostk`,
+                    abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
+                    parameters: {
+                        formId: `0`,
+                        name: `Form_Js001`,
+                        bundle: `com.acts.form.formsystemtestservicef.hmservice`,
+                        ability: `FormAbility`,
+                        moduleName: `entry`,
+                        castTempForm: true,
+                        isCreate: true,
+                        temporary: true
+                    }
                 }
             });
-
-            try {
-                const res = await featureAbility.startAbility({
-                    want: {
-                        bundleName: `com.ohos.st.formsystemhostk`,
-                        abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
-                        parameters: {
-                            formId: `0`,
-                            name: `Form_Js001`,
-                            bundle: `com.acts.form.formsystemtestservicef.hmservice`,
-                            ability: `FormAbility`,
-                            moduleName: `entry`,
-                            castTempForm: true,
-                            isCreate: true,
-                            temporary: true
-                        }
-                    }
-                });
-                console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
-            } catch (error) {
-                console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
-                console.info(`${tcNumber} should not reach here`);
-                expect().assertFail();
-                done()
+            console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
+            clearTimeout(timeoutHandler);
+        } catch (error) {
+            console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
+            console.info(`${tcNumber} should not reach here`);
+            expect().assertFail();
+            clearTimeout(timeoutHandler);
+            done();
             }
         });
 
@@ -314,53 +339,63 @@ export default function test() {
          * @tc.desc: requestForm method working well.
          */
         it(`FMS_stressTest_0700`, 0, async (done) => {
-            const tcNumber = `FMS_stressTest_0700`;
+        const tcNumber = `FMS_stressTest_0700`;
+        let timeoutFlag = false;
+        const timeoutHandler = setTimeout(() => {
+            timeoutFlag = true;
+            console.error(`${tcNumber} Test timed out.`);
+            expect().assertFail();
+            done();
+        }, /* 设置一个合理的超时时间，比如 10000（10 秒） */);
 
-            subscribeDeletedEvent(tcNumber, 1, done);
+        subscribeDeletedEvent(tcNumber, 1, done);
 
-            commonEvent.subscribe(onAcquiredEventSubscriber, async (err, data) => {
-                const kind = data.parameters.kind;
-                const formId = data.parameters.formId;
-                console.info(`${tcNumber} onAcquiredCallback data: ${JSON.stringify(data)}, error: ${JSON.stringify(err)}`);
-                console.info(`${tcNumber} onAcquiredCallback formId: ${formId}`);
+        commonEvent.subscribe(onAcquiredEventSubscriber, async (err, data) => {
+            if (timeoutFlag) return;
+            const kind = data.parameters.kind;
+            const formId = data.parameters.formId;
+            console.info(`${tcNumber} onAcquiredCallback data: ${JSON.stringify(data)}, error: ${JSON.stringify(err)}`);
+            console.info(`${tcNumber} onAcquiredCallback formId: ${formId}`);
 
-                if (`request` == kind) {
-                    expect(err.code).assertEqual(0);
-                    commonEvent.unsubscribe(onAcquiredEventSubscriber, () => unsubscribeOnAcquiredCallback(tcNumber));
-                    setTimeout(() => {
-                        commonEvent.publish(formOnDeleteEvent, {
-                            parameters: {
-                                formIds: [].concat(formId)
-                            }
-                        }, () => publishOnDeleteCallback(tcNumber));
-                    }, 500);
-                    console.info(`${tcNumber} onAcquiredCallback end`);
-                    done()
+            if (`request` == kind) {
+                expect(err.code).assertEqual(0);
+                commonEvent.unsubscribe(onAcquiredEventSubscriber, () => unsubscribeOnAcquiredCallback(tcNumber));
+                setTimeout(() => {
+                    commonEvent.publish(formOnDeleteEvent, {
+                        parameters: {
+                            formIds: [].concat(formId)
+                        }
+                    }, () => publishOnDeleteCallback(tcNumber));
+                }, 500);
+                console.info(`${tcNumber} onAcquiredCallback end`);
+                done();
+            }
+        });
+
+        try {
+            const res = await featureAbility.startAbility({
+                want: {
+                    bundleName: `com.ohos.st.formsystemhostk`,
+                    abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
+                    parameters: {
+                        formId: `0`,
+                        name: `Form_Js001`,
+                        bundle: `com.acts.form.formsystemtestservicef.hmservice`,
+                        ability: `FormAbility`,
+                        moduleName: `entry`,
+                        requestForm: true,
+                        isCreate: true
+                    }
                 }
             });
-
-            try {
-                const res = await featureAbility.startAbility({
-                    want: {
-                        bundleName: `com.ohos.st.formsystemhostk`,
-                        abilityName: `com.ohos.st.formsystemhostk.MainAbility`,
-                        parameters: {
-                            formId: `0`,
-                            name: `Form_Js001`,
-                            bundle: `com.acts.form.formsystemtestservicef.hmservice`,
-                            ability: `FormAbility`,
-                            moduleName: `entry`,
-                            requestForm: true,
-                            isCreate: true
-                        }
-                    }
-                });
-                console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
-            } catch (error) {
-                console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
-                console.info(`${tcNumber} should not reach here`);
-                expect().assertFail();
-                done()
+            console.info(`${tcNumber} featureAbility.startAbility res: ${JSON.stringify(res)}`);
+            clearTimeout(timeoutHandler);
+        } catch (error) {
+            console.info(`${tcNumber} error: ${JSON.stringify(error)}`);
+            console.info(`${tcNumber} should not reach here`);
+            expect().assertFail();
+            clearTimeout(timeoutHandler);
+            done();
             }
         });
 
