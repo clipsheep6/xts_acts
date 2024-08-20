@@ -464,6 +464,63 @@ export default function AVPlayerMultiTrackTest() {
         })
 
         /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_MULTI_AUDIOTRACK_0700
+            * @tc.name      : 008.test selectTrack、seek and setSpeed
+            * @tc.desc      : Local multi-audioTrack video playback control test
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_MULTI_AUDIOTRACK_0800', 0, async function (done) {
+            let eosCnt = 0;
+            async function preparedOperation() {
+                await getAudioTracks();
+                await getCurrentAudioTrack();
+                await changeAudioTrack();
+                avPlayer.selectTrack(selectedTrack);
+                console.info('case selectedTrack is: ' + selectedTrack);
+                avPlayer.seek(avPlayer.duration / 3);
+                avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_0_125_X);
+                avPlayer.deselectTrack(selectedTrack);
+                await getCurrentAudioTrack();
+                await changeAudioTrack();
+                avPlayer.selectTrack(selectedTrack);
+                console.info('case selectedTrack is: ' + selectedTrack);
+                avPlayer.loop = true;
+            }
+
+            async function playedOperation() {
+                await getCurrentAudioTrack();
+                expect(currentTrack).assertEqual(selectedTrack);
+                await mediaTestBase.msleepAsync(2000);
+                avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_3_00_X);
+                avPlayer.seek(0);
+            }
+
+            async function stoppedOperation() {
+                await resetAndCallbackOff();
+                done();
+            }
+
+            async function extraOperation() {
+                eosCnt += 1;
+                console.info(`case endOfStream called, eosCnt is ${eosCnt}`);
+                await getCurrentAudioTrack();
+                expect(currentTrack).assertEqual(selectedTrack);
+                avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_0_25_X);
+                avPlayer.seek(avPlayer.duration * 2 / 3);
+                if (eosCnt == LOOPCNT) {
+                    avPlayer.loop = false;
+                    await avPlayer.stop().then(() => {
+                        console.info('case stop avplayer success');
+                    }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                }  
+            }
+
+            await testChangeTrack(avFd, preparedOperation, playedOperation, stoppedOperation, extraOperation);
+        })
+
+        /* *
             * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_MULTI_AUDIOTRACK_ABNORMAL_INPUT_0100
             * @tc.name      : 008.test selectTrack/deselectTrack/getCurrentTrack invalid input
             * @tc.desc      : test change audio track after re-prepared
