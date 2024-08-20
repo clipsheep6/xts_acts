@@ -81,7 +81,9 @@ export default function ActsAceWebviewEnableBackForwardCache() {
     it('testWebviewEnableBackForwardCache', 0, async (done: Function) => {
       emitKey = "emitWebviewEnableBackForwardCache"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebviewEnableBackForwardCache", "success", 24084, done);
+      Utils.registerBaseEvent("testWebviewEnableBackForwardCache", "success", 24084, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webviewEnableBackForwardCacheButton', 10, '');
     })
 
@@ -96,7 +98,9 @@ export default function ActsAceWebviewEnableBackForwardCache() {
     it('testWebviewBFCacheNativeEmbed', 0, async (done: Function) => {
       emitKey = "emitWebviewBFCacheNativeEmbed"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebviewBFCacheNativeEmbed", "success", 24085, done);
+      Utils.registerBaseEvent("testWebviewBFCacheNativeEmbed", "success", 24085, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webviewEnableBackForwardCacheButton', 10, '');
     })
 
@@ -111,7 +115,9 @@ export default function ActsAceWebviewEnableBackForwardCache() {
     it('testWebviewBFCacheMediaTakeOver', 0, async (done: Function) => {
       emitKey = "emitWebviewBFCacheMediaTakeOver"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebviewBFCacheMediaTakeOver", "success", 24086, done);
+      Utils.registerBaseEvent("testWebviewBFCacheMediaTakeOver", "success", 24086, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webviewEnableBackForwardCacheButton', 10, '');
     })
   })

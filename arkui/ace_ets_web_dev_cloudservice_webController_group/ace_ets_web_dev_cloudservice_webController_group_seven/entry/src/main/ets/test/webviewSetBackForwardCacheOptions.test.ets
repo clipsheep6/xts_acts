@@ -81,7 +81,9 @@ export default function ActsAceWebviewSetBackForwardCacheOptions() {
     it('testWebviewSetBackForwardCacheOptions', 0, async (done: Function) => {
       emitKey = "emitWebviewSetBackForwardCacheOptions"
       Utils.emitEvent(emitKey, 10);
-      Utils.registerEvent("testWebviewSetBackForwardCacheOptions", "success", 24087, done);
+      Utils.registerBaseEvent("testWebviewSetBackForwardCacheOptions", "success", 24087, done, (backData: events_emitter.EventData, expected: Object) => {
+        expect(backData?.data?.ACTION).assertEqual(expected);
+      });
       sendEventByKey('webviewSetBackForwardCacheOptionsButton', 10, '');
     })
 
