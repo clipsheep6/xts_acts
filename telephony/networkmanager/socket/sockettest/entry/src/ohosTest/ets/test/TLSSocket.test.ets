@@ -49,7 +49,8 @@ let connOpt: socket.TLSConnectOptions = {
     protocols: [socket.Protocol.TLSv12],
     useRemoteCipherPrefer: true,
     signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
+    cipherSuite: "AES256-SHA256"，
+    isBidirectionalAuthentication：false
   },
   ALPNProtocols: ["spdy/1", "http/1.1"]
 };
@@ -64,7 +65,8 @@ let tlsConnectOptions: socket.TLSConnectOptions = {
     protocols: [socket.Protocol.TLSv12],
     useRemoteCipherPrefer: true,
     signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
-    cipherSuite: "AES256-SHA256"
+    cipherSuite: "AES256-SHA256"，
+    isBidirectionalAuthentication：false
   },
   ALPNProtocols: ["spdy/1", "http/1.1"]
 };
