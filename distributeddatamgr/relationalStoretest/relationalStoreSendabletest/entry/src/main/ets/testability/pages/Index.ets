@@ -13,9 +13,20 @@
  * limitations under the License.
  */
 
-import { hapTasks } from '@ohos/hvigor-ohos-plugin';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'ConcurrencyBase tests';
 
-export default {
-    system: hapTasks,  /* Built-in plugin of Hvigor. It cannot be modified. */
-    plugins:[]         /* Custom plugin to extend the functionality of Hvigor. */
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
