@@ -29,7 +29,7 @@ group("distributeddatamgr") {
       "preferencesjstest/hap:preferences_js_test",
       "relationalStoretest:relationalStoretest",
       "relationalstoredatagroupidtest:ActsRelationalstoreDataGroupIdTest",
-	 "preferencesSendabletest:preferencesSendable_ets_test",
+	"preferencesSendabletest:preferencesSendable_ets_test",
     ]
   } else {
     deps = [
