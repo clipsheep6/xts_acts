@@ -14,21 +14,6 @@
  */
 import { ComponentContent } from '@ohos.arkui.node';
 
-@Builder
-function customRefreshingContent() {
-  Stack() {
-    Row() {
-      LoadingProgress().height(32)
-      Text('refreshStatus').fontSize(16).margin({left:20})
-    }
-    .alignItems(VerticalAlign.Center)
-  }
-  .align(Alignment.Center)
-  .clip(true)
-  .constraintSize({minHeight:32})
-  .width('100%')
-}
-
 @Entry
 @Component
 struct RefreshingContent {
@@ -37,13 +22,6 @@ struct RefreshingContent {
   @State refreshStatus: RefreshStatus = RefreshStatus.Inactive
   private contentNode?: ComponentContent<Object> = undefined
   @State testText :string = ''
-
-  aboutToAppear():void {
-    let uiContext = this.getUIContext();
-    this.contentNode = new ComponentContent(
-      uiContext,
-      wrapBuilder(customRefreshingContent))
-  }
 
   build() {
     Column() {
@@ -70,8 +48,6 @@ struct RefreshingContent {
       .pullToRefresh(true)
       .onStateChange((refreshStatus: RefreshStatus) => {
         this.refreshStatus = refreshStatus
-        this.contentNode?.update()
-        console.info('Refresh onStatueChange state is ' + refreshStatus)
       })
       .onRefreshing(() => {
         setTimeout(() => {
