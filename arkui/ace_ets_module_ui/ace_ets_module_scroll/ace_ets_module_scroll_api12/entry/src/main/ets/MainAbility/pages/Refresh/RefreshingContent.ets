@@ -15,7 +15,7 @@
 import { ComponentContent } from '@ohos.arkui.node';
 
 class Params {
-  refreshStatus: RefreshStatus = RefreshStatus.Inactive
+  private refreshStatus: RefreshStatus = RefreshStatus.Inactive
 
   constructor(refreshStatus: RefreshStatus) {
     this.refreshStatus = refreshStatus;
@@ -48,7 +48,10 @@ struct RefreshingContent {
 
   aboutToAppear():void {
     let uiContext = this.getUIContext();
-    this.contentNode = new ComponentContent(uiContext, wrapBuilder(customRefreshingContent), new Params(this.refreshStatus))
+    this.contentNode = new ComponentContent(
+        uiContext, 
+        wrapBuilder(customRefreshingContent), 
+        new Params(this.refreshStatus))
   }
 
   build() {
