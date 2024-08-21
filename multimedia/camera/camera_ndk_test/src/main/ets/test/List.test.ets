@@ -32,9 +32,6 @@ import SecureCameraTest from './SecureCamera.test';
 let voice = call.hasVoiceCapability()
 
 export default function testsuite() {
-    SecureCameraTest();
-    CameraManagerTest();
-    SessionTest();
     if (voice){
           CameraSessionExposureTest();
           CameraSessionBaseTest();
@@ -49,4 +46,7 @@ export default function testsuite() {
           CameraFunctionTest();
           CameraInputTest();
     }
+    SessionTest();
+    SecureCameraTest();
+    CameraManagerTest();
 }

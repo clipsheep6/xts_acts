@@ -22,8 +22,7 @@ import account from '@ohos.account.osAccount';
 
 const TAG = "CAMERA_LOGTAG_JS ";
 const CAMERA_OK = 0;
-const CAMERA_ERROR_7400101 = 7400101; //参数错误
-const CAMERA_INVALID_ARGUMENT = 7400101; // 参数错误
+const CAMERA_INVALID_ARGUMENT = 7400101;
 let receiver: image.ImageReceiver;
 let mPhotoSurface: string;
 
