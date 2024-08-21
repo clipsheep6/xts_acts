@@ -220,6 +220,7 @@ import textSpanFontTest from './textTest/textSpanFont.test';
 import search_gesture from './SearchTest/search_gesture.test';
 import text_drag from './textTest/text_drag.test';
 import textAreaOnCaretAndKeyboardTest from './TextAreaTest/textAreaOnCaretAndKeyboard.test';
+import textAdvance from './textTest/TextAdvance.test'
 
 export default function testsuite() {
   ToggleJsunit();
@@ -357,7 +358,7 @@ export default function testsuite() {
   textAreaUxTest();
   search_caret();
   search_maxLength();
-  search_maxLength2();  
+  search_maxLength2();
   search_top();
   search_center();
   search_bottom();
@@ -430,4 +431,5 @@ export default function testsuite() {
   search_gesture();
   text_drag();
   textAreaOnCaretAndKeyboardTest();
+  textAdvance();
 }

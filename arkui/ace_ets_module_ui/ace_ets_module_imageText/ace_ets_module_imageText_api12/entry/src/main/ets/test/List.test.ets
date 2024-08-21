@@ -135,6 +135,13 @@ import TextAddApi1 from './Text/TextAddApi1.test'
 import StyledStringKeyTest1 from './StyledString/StyledStringKeyTest1.test'
 import RichEditorAddApi from './RichEditor/RichEditorAddApi.test'
 import editMeunOptionsTest from './Text/editMeunOptions.test'
+import ButtonContentModifier from './ButtonTest/ButtonContentModifier.test'
+import ToggleAttrs from './ToggleTest/ToggleAttrs.test'
+import SliderInteractionMode from './SliderTest/SliderInteractionMode.test'
+import SliderMinDistance from './SliderTest/SliderMinDistance.test'
+import SliderStyle from './SliderTest/SliderStyle.test'
+import ChipGroupItemStyle from './ChipGroupTest/ChipGroupItemStyle.test'
+import ChipGroupSpace from './ChipGroupTest/ChipGroupSpace.test'
 import RichEditorApi13 from './RichEditor/RichEditorApi13.test'
 import onDidIMEInputTest from './RichEditor/onDidIMEInput.test';
 
@@ -255,5 +262,13 @@ export default function testsuite() {
   StyledStringKeyTest1();
   RichEditorAddApi();
   editMeunOptionsTest();
+
+  ButtonContentModifier();
+  ToggleAttrs();
+  SliderInteractionMode();
+  SliderMinDistance();
+  SliderStyle();
+  ChipGroupItemStyle();
+  ChipGroupSpace();
   onDidIMEInputTest();
 }
