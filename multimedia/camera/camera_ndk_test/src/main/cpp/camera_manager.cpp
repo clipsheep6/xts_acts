@@ -1446,10 +1446,10 @@ Camera_ErrorCode NDKCamera::GetSupportedSceneModes(int useCaseCode)
         for (decltype(sceneModesSize_) index = 0; index < sceneModesSize_; index++) {
             switch (sceneModes_[index]) {
                 case NORMAL_PHOTO:
-                    isNormalPhoto = true;                   
+                    isNormalPhoto = true;
                     break;
                 case NORMAL_VIDEO:
-                    isNormalVideo = true;                   
+                    isNormalVideo = true;
                     break;
                 case SECURE_PHOTO:
                     isSecurePhoto = true;
@@ -1477,9 +1477,9 @@ Camera_ErrorCode NDKCamera::DeleteSceneModes(int useCaseCode)
         ret_ = OH_CameraManager_DeleteSceneModes(nullptr, sceneModes_);
     }
     if (sceneModes_ != nullptr || ret_ != CAMERA_OK) {
-        LOG("ndkXTS OH_CameraManager_DeleteSceneModes successful.%d", ret_);
-    } else {
         LOG("ndkXTS OH_CameraManager_DeleteSceneModes failed.%d", ret_);
+    } else {
+        LOG("ndkXTS OH_CameraManager_DeleteSceneModes successful.%d", ret_);
     }
     return ret_;
 }
