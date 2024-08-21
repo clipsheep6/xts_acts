@@ -18,6 +18,15 @@ import connection from "@ohos.net.connection";
 import socket from '@ohos.net.socket';
 import ethernet from '@ohos.net.ethernet';
 
+function Test(httpRequest :http.HttpRequest,tcpSocket:socket.TCPSocket,udpSocket:socket.UDPSocket,done:Function){
+  expect(httpRequest  != null).assertTrue();
+  expect(tcpSocket != null).assertTrue();
+  expect(udpSocket != null).assertTrue();
+  httpRequest.destroy();
+  tcpSocket.close();
+  udpSocket.close();
+  done();
+}
 export default function httpJsunit() {
   describe("httpJsunitTest", function () {
 
@@ -270,27 +279,17 @@ export default function httpJsunit() {
      * @tc.size: SmallTest
      */
     it('SUB_Telephony_Connection_Request_Socket_0100', 0, async function (done) {
-        try{
-            let caseName = 'SUB_Telephony_Connection_Request_Socket_0100';
-            type HttpRequest = http.HttpRequest;
-            type HttpProxy = connection.HttpProxy;
-            type TCPSocket = socket.TCPSocket;
-            type UDPSocket = socket.UDPSocket;
-            Test(http.createHttp(),socket.constructTCPSocketInstance(),socket.constructUDPSocketInstance());
-
-            function Test(httpRequest :HttpRequest,tcpSocket:TCPSocket,udpSocket:UDPSocket){
-                expect(httpRequest  != null).assertTrue();
-                expect(tcpSocket != null).assertTrue();
-                expect(udpSocket != null).assertTrue();
-                httpRequest.destroy();
-                tcpSocket.close();
-                udpSocket.close();
-                done();
-            }
-        } catch (error) {
-            console.info("SUB_Telephony_Connection_Request_Socket_0100  catch " + error);
-            done();
-        }
+      try{
+        let caseName = 'SUB_Telephony_Connection_Request_Socket_0100';
+        type HttpRequest = http.HttpRequest;
+        type HttpProxy = connection.HttpProxy;
+        type TCPSocket = socket.TCPSocket;
+        type UDPSocket = socket.UDPSocket;
+        Test(http.createHttp(),socket.constructTCPSocketInstance(),socket.constructUDPSocketInstance(),done);
+      } catch (error) {
+        console.info("SUB_Telephony_Connection_Request_Socket_0100  catch " + error);
+        done();
+      }
      }); 
 	 
 	 		
