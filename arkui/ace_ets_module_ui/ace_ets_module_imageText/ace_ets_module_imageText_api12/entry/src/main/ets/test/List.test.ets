@@ -140,7 +140,6 @@ import onDidIMEInputTest from './RichEditor/onDidIMEInput.test';
 import ImageResizable from './ImageTest/ImageResizable.test'
 
 export default function testsuite() {
-  ImageResizable();
   APIContentTypeTest();
   APIUnderlineColorTest();
   TextInputAddApi();
@@ -258,4 +257,5 @@ export default function testsuite() {
   RichEditorAddApi();
   editMeunOptionsTest();
   onDidIMEInputTest();
+  ImageResizable();
 }
