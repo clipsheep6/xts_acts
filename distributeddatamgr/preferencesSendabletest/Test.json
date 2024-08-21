@@ -11,7 +11,7 @@
     "kits": [
         {
             "test-file-name": [
-                "ActsPreferencesStoreSendableTest.hap"
+                "ActsPreferencesSendableTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
