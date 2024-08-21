@@ -490,7 +490,7 @@ export default function AVPlayerAudioEffectModeTest() {
             * @tc.type      : performance test
             * @tc.level     : Level3
         */
-        it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_AUDIOEFFECTMODE_APITIME_0100', 0, async function (done) {
+        it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_GET_MAX_AMPLITUDE_0100', 0, async function (done) {
             let audioEffectMode = [EFFECT_DEFAULT, EFFECT_NONE];
             await media.createAVPlayer().then((video) => {
                 if (typeof(video) != 'undefined') {
