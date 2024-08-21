@@ -15,10 +15,11 @@
 
 import { describe, expect, it, beforeEach, afterEach } from '@ohos/hypium';
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 export default function httpRequestJsunit() {
-  describe("HttpRequestJsunitTest", function () {
-    afterEach(async function () {
+  describe("HttpRequestJsunitTest", () => {
+    afterEach(async () => {
       console.log('Test afterEach start');
       let httpRequest = http.createHttp();
       httpRequest.off('headerReceive');
@@ -33,18 +34,18 @@ export default function httpRequestJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_Telephony_http_HttpRequest_request_0100", 0, async function (done) {
-      var casename = "SUB_Telephony_http_HttpRequest_request_0100"
+    it("SUB_Telephony_http_HttpRequest_request_0100", 0, async (done: Function) => {
+      let casename = "SUB_Telephony_http_HttpRequest_request_0100"
       console.log("-----------------------HttpRequest_request Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
@@ -67,11 +68,11 @@ export default function httpRequestJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_Telephony_http_HttpRequest_request_0200", 0, async function (done) {
-      var casename = "SUB_Telephony_http_HttpRequest_request_0200"
+    it("SUB_Telephony_http_HttpRequest_request_0200", 0, async (done: Function) => {
+      let casename = "SUB_Telephony_http_HttpRequest_request_0200"
       console.log("-----------------------HttpRequest_request_01 Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
@@ -94,25 +95,25 @@ export default function httpRequestJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_Telephony_http_HttpRequest_request_0300", 0, async function (done) {
-      var casename = "SUB_Telephony_http_HttpRequest_request_0300"
+    it("SUB_Telephony_http_HttpRequest_request_0300", 0, async (done: Function) => {
+      let casename = "SUB_Telephony_http_HttpRequest_request_0300"
       console.log("-----------------------HttpRequest_request_02 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         };
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpRequest_request_02 Test end-----------------------");
           done();
-        }).catch(error => {
+        }).catch((error: BusinessError) => {
           console.info('HttpRequest_request_0300 asyncCallback error : ' + JSON.stringify(error));
           expect(false).assertTrue();
           done();
@@ -132,18 +133,18 @@ export default function httpRequestJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_Telephony_http_HttpRequest_destroy_0100", 0, async function (done) {
-      var casename = "SUB_Telephony_http_HttpRequest_destroy_0100"
+    it("SUB_Telephony_http_HttpRequest_destroy_0100", 0, async (done: Function) => {
+      let casename = "SUB_Telephony_http_HttpRequest_destroy_0100"
       console.log("-----------------------HttpRequest_destroy Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           try {
@@ -171,11 +172,11 @@ export default function httpRequestJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_Telephony_http_HttpRequest_on_headerReceive_0100", 0, async function (done) {
-      var casename = "SUB_Telephony_http_HttpRequest_on_headerReceive_0100"
+    it("SUB_Telephony_http_HttpRequest_on_headerReceive_0100", 0, async (done: Function) => {
+      let casename = "SUB_Telephony_http_HttpRequest_on_headerReceive_0100"
       console.log("-----------------------HttpRequest_on_headerReceive Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.on('headerReceive', (data) => {
           console.log(casename + " data: " + JSON.stringify(data));
           expect(true).assertTrue();
@@ -201,12 +202,12 @@ export default function httpRequestJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_Telephony_http_HttpRequest_off_headerReceive_0100", 0, async function (done) {
-      var casename = "SUB_Telephony_http_HttpRequest_off_headerReceive_0100"
+    it("SUB_Telephony_http_HttpRequest_off_headerReceive_0100", 0, async (done: Function) => {
+      let casename = "SUB_Telephony_http_HttpRequest_off_headerReceive_0100"
       console.log("-----------------------HttpRequest_off_headerReceive Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
-        let callbackdata1 = (data) => {
+        let httpRequest = http.createHttp();
+        let callbackdata1 = (data: Object) => {
         console.log(casename + " data: " + JSON.stringify(data));
         expect(false).assertTrue();
         httpRequest.destroy();
@@ -237,11 +238,11 @@ export default function httpRequestJsunit() {
      * @tc.size: SmallTest
      */
 
-    it("SUB_Telephony_http_HttpRequest_on_headersReceive_0100", 0, function (done) {
-      var casename = "SUB_Telephony_http_HttpRequest_on_headersReceive_0100"
+    it("SUB_Telephony_http_HttpRequest_on_headersReceive_0100", 0, async (done: Function) => {
+      let casename = "SUB_Telephony_http_HttpRequest_on_headersReceive_0100"
       console.log("-----------------------HttpRequest_on_headersReceive Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.on("headersReceive", (data) => {
           console.log(casename + " data: " + JSON.stringify(data));
           expect(true).assertTrue();
@@ -266,11 +267,11 @@ export default function httpRequestJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_Telephony_http_HttpRequest_off_headersReceive_0100", 0, function (done) {
-      var casename = "SUB_Telephony_http_HttpRequest_off_headersReceive_0100"
+    it("SUB_Telephony_http_HttpRequest_off_headersReceive_0100", 0, async (done: Function) => {
+      let casename = "SUB_Telephony_http_HttpRequest_off_headersReceive_0100"
       console.log("-----------------------HttpRequest_off_headersReceive Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.off("headersReceive", (data) => {
           console.log(casename + " data: " + JSON.stringify(data));
           expect(false).assertTrue();
@@ -297,10 +298,10 @@ export default function httpRequestJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_Telephony_http_HttpRequest_off_headersReceive_0200", 0, function (done) {
+    it("SUB_Telephony_http_HttpRequest_off_headersReceive_0200", 0, async (done: Function) => {
       console.log("-----------------------HttpRequest_off_headersReceive Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.off('headersReceive');
         expect(true).assertTrue();
         httpRequest.destroy();
@@ -321,11 +322,11 @@ export default function httpRequestJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_Telephony_http_HttpRequest_once_headersReceive_0100", 0, function (done) {
-      var casename = "SUB_Telephony_http_HttpRequest_once_headersReceive_0100"
+    it("SUB_Telephony_http_HttpRequest_once_headersReceive_0100", 0, async (done: Function) => {
+      let casename = "SUB_Telephony_http_HttpRequest_once_headersReceive_0100"
       console.log("-----------------------HttpRequest_once_headersReceive Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.once('headersReceive', (data) => {
           console.log(casename + " data: " + JSON.stringify(data));
           expect(true).assertTrue();
