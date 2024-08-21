@@ -8853,6 +8853,23 @@ static napi_value testOpenInspectorWithName(napi_env env1, napi_callback_info in
     return result11;
 }
 
+extern void RunTestsWithPrefix(const char*);
+
+static napi_value testWasmSuite(napi_env env1, napi_callback_info info) {
+  RunTestsWithPrefix("Wasm_");
+  napi_value result11;
+  NAPI_CALL(env1, napi_get_boolean(env1, true, &result11));
+  return result11;
+}
+
+static napi_value testArrayBufferSuite(napi_env env1, napi_callback_info info) {
+  RunTestsWithPrefix("ArrayBuffer");
+  napi_value result11;
+  NAPI_CALL(env1, napi_get_boolean(env1, true, &result11));
+  return result11;
+}
+
+
 static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CreateStringUtf8},
     {.data = nullptr, .callback = GetValueStringUtf8},

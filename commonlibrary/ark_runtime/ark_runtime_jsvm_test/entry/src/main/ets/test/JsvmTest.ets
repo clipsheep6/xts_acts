@@ -6529,6 +6529,36 @@ instanceOf(obj, Person);
         expect(rst).assertEqual(true);
       done();
     });
+
+    /**
+     * @tc.number    SUB_ACE_BASIC_ETS_JSVM_0481
+     * @tc.name      JsvmTest0481
+     * @tc.desc      Test the functions of all the wasm interfaces.
+     * @tc.size      MediumTest
+     * @tc.type      Function
+     * @tc.level     Level 2
+     */
+    it('JsvmTest0481', 0, async function (done) {
+        let rst = napitest.testWasmSuite();
+        console.info('JsvmTest0481 testWasmSuite result is:' + JSON.stringify(rst));
+        expect(rst).assertEqual(true);
+      done();
+    });
+
+    /**
+     * @tc.number    SUB_ACE_BASIC_ETS_JSVM_0482
+     * @tc.name      JsvmTest0482
+     * @tc.desc      Test the functions of all the arrayBuffer interfaces
+     * @tc.size      MediumTest
+     * @tc.type      Function
+     * @tc.level     Level 2
+     */
+    it('JsvmTest0482', 0, async function (done) {
+        let rst = napitest.testArrayBufferSuite();
+        console.info('JsvmTest0482 testArrayBufferSuite result is:' + JSON.stringify(rst));
+        expect(rst).assertEqual(true);
+      done();
+    });
   });
 }
 
