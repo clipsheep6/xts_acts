@@ -15,7 +15,7 @@
 import { ComponentContent } from '@ohos.arkui.node';
 
 class Params {
-  private refreshStatus: RefreshStatus = RefreshStatus.Inactive
+    refreshStatus: RefreshStatus = RefreshStatus.Inactive
 
   constructor(refreshStatus: RefreshStatus) {
     this.refreshStatus = refreshStatus;
