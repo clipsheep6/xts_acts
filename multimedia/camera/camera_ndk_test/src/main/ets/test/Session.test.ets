@@ -132,6 +132,7 @@ function createCameraInput() {
     console.log(TAG + "createCameraInput FAILED");
     expect().assertFail();
   }
+  cameraObj.cameraInputOpen();
 }
 
 function getSupportedSceneModes() {
@@ -1187,7 +1188,7 @@ export default function SessionTest() {
       }
     })
     /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionCanPreconfigWithRatio0100
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio0100
      * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio0100
      * @tc.size       : MediumTest
      * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
@@ -1199,17 +1200,211 @@ export default function SessionTest() {
       getSupportedCamerasInstance();
       createCaptureSession();
       let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
-        Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
-      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0100 canPreconfig:"+ret.canPreconfig);
-      if (!ret.canPreconfig) {
-        expect(ret.canPreconfig).assertEqual(false);
-      } else {
-        console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0100:"+ret);
-        expect(ret).assertEqual(CAMERA_OK);
-      }
+          Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0100 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0100:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
     })
     /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionCanPreconfigWithRatio1300
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio0200
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio0200', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_1080P,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0200 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0200:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio0300
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio0300', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_4K,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0300 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0300:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio0400
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio0400
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio0400', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_HIGH_QUALITY,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0400 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0400:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio0500
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio0500
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio0500', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_4, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0500 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0500:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio0600
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio0600
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio0600', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_1080P,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_4, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0600 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0600:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio0700
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio0700
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio0700', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_4K,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_4, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0700 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0700:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio0800
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio0800
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio0800', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_HIGH_QUALITY,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_4, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0800 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0800:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio0900
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio0900
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio0900', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_16, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0900 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio0900:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio1000
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio1000
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio1000', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_1080P,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_16, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1000 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1000:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio1100
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio1100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio1100', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_4K,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_16, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1100 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1100:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio1200
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio1200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio1200', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_HIGH_QUALITY,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_16, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1200 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1200:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio1300
      * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio1300
      * @tc.size       : MediumTest
      * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
@@ -1221,16 +1416,13 @@ export default function SessionTest() {
       getSupportedCamerasInstance();
       createCaptureSession();
       let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
-        Camera_PreconfigRatio.PRECONFIG_RATIO_1, 1);
-      if (!ret.canPreconfig) {
-        expect(ret.canPreconfig).assertEqual(false);
-      } else {
-        console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1300:"+ret);
-        expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
-      }
+          Camera_PreconfigRatio.PRECONFIG_RATIO_1, 1);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1300 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1300:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
     /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionCanPreconfigWithRatio1400
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio1400
      * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio1400
      * @tc.size       : MediumTest
      * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
@@ -1242,16 +1434,13 @@ export default function SessionTest() {
       getSupportedCamerasInstance();
       createCaptureSession();
       let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.EXCEPTION_ENUMERATION_VALUE,
-        Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
-      if (!ret.canPreconfig) {
-        expect(ret.canPreconfig).assertEqual(false);
-      } else {
-        console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1400:"+ret);
-        expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
-      }
+          Camera_PreconfigRatio.PRECONFIG_RATIO_1, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1400 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1400:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
     /**
-     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionCanPreconfigWithRatio1500
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio1500
      * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio1500
      * @tc.size       : MediumTest
      * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
@@ -1263,13 +1452,28 @@ export default function SessionTest() {
       getSupportedCamerasInstance();
       createCaptureSession();
       let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
-        Camera_PreconfigRatio.EXCEPTION_ENUMERATION_VALUE, 0);
-      if (!ret.canPreconfig) {
-        expect(ret.canPreconfig).assertEqual(false);
-      } else {
-        console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1500:"+ret);
-        expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
-      }
+          Camera_PreconfigRatio.EXCEPTION_ENUMERATION_VALUE, 0);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1500 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1500:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCaptureSessionCanPreconfigWithRatio1600
+     * @tc.name       : testOHCaptureSessionCanPreconfigWithRatio1600
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionCanPreconfigWithRatio1600', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      let ret = cameraObj.oHCaptureSessionCanPreconfigWithRatio(Camera_PreconfigType.PRECONFIG_720P,
+          Camera_PreconfigRatio.PRECONFIG_RATIO_1, 2);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1600 canPreconfig: " + ret.canPreconfig);
+      console.log(TAG+"testOHCaptureSessionCanPreconfigWithRatio1600:" + ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
     /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionPreconfig0100
