@@ -464,7 +464,7 @@ export default function AVPlayerMultiTrackTest() {
         })
 
         /* *
-            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_MULTI_AUDIOTRACK_0700
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_MULTI_AUDIOTRACK_0800
             * @tc.name      : 008.test selectTrack、seek and setSpeed
             * @tc.desc      : Local multi-audioTrack video playback control test
             * @tc.size      : MediumTest
