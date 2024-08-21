@@ -9,7 +9,6 @@
         "MainAbility/pages/Refresh/refreshOffset",
         "MainAbility/pages/Refresh/refreshOffsetChange",
         "MainAbility/pages/Refresh/refreshResource",
-        "MainAbility/pages/Refresh/RefreshingContent",
         "MainAbility/pages/Refresh/refreshLevel1",
         "MainAbility/pages/List/listVisible",
         "MainAbility/pages/Scroll/scrollOffset",
@@ -55,6 +54,7 @@
         "MainAbility/pages/Swiper/SwiperAttribute/SwiperAutoPlay_1",
         "MainAbility/pages/Swiper/SwiperAttribute/SwiperAutoPlay_2",
         "MainAbility/pages/Swiper/SwiperAttribute/SwiperDisplayCount",
-        "MainAbility/pages/Swiper/SwiperAttribute/SwiperLoopFalse"
+        "MainAbility/pages/Swiper/SwiperAttribute/SwiperLoopFalse",
+        "MainAbility/pages/Refresh/RefreshingContent"
     ]
 }
