@@ -15,8 +15,8 @@
 import { NavPushPathHelper } from '@kit.ArkUI'
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class TmpClass{
-  count:number = 10
+class TmpClass {
+  count: number = 10
 }
 
 class ParamWithOp {
@@ -47,12 +47,12 @@ export struct PageOne {
           .width('80%')
           .height(35)
           .margin(10)
-          .onClick(()=>{
-            this.helper.pushPath('hsptest2', {name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
+          .onClick(() => {
+            this.helper.pushPath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}).catch((error: BusinessError)=>{
+            }}).catch((error: BusinessError) => {
               console.error(`[pushPath]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.log('[pushPath]success.');
             });
           })
@@ -61,12 +61,12 @@ export struct PageOne {
           .width('80%')
           .height(35)
           .margin(10)
-          .onClick(()=>{
-            this.helper.pushPath('hsptest2', {name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
+          .onClick(() => {
+            this.helper.pushPath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushPath with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}, {launchMode:0, animated:true}).catch((error: BusinessError)=>{
+            }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[pushPath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.log('[pushPath with NavigationOptions]success.');
             });
           })
@@ -77,11 +77,11 @@ export struct PageOne {
           .margin(10)
           .onClick(() => {
             let tmp = new TmpClass()
-            this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, (popInfo)=>{
+            this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, (popInfo) => {
               this.message = '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }).catch((error: BusinessError)=>{
+            }).catch((error: BusinessError) => {
               console.error(`[pushPathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.log('[pushPathByName]success.');
             });
           })
@@ -93,9 +93,9 @@ export struct PageOne {
           .onClick(() => {
             let tmp = new TmpClass()
             this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, true)
-            .catch((error: BusinessError)=>{
+            .catch((error: BusinessError) => {
               console.error(`[pushPathByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.log('[pushPathByNameWithoutOnPop]success.');
             });
           })
@@ -104,13 +104,13 @@ export struct PageOne {
           .width('80%')
           .height(35)
           .margin(10)
-          .onClick(()=>{
+          .onClick(() => {
             let tmp = new TmpClass()
-            this.helper.pushDestination('hsptest2', {name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
+            this.helper.pushDestination('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}).catch((error: BusinessError)=>{
+            }}).catch((error: BusinessError) => {
               console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.error('[pushDestination]success.');
             });
           })
@@ -119,13 +119,13 @@ export struct PageOne {
           .width('80%')
           .height(35)
           .margin(10)
-          .onClick(()=>{
+          .onClick(() => {
             let tmp = new TmpClass()
-            this.helper.pushDestination('hsptest2', {name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
+            this.helper.pushDestination('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushDestination with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}, {launchMode:0, animated:true}).catch((error: BusinessError)=>{
+            }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[pushDestination with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.error('[pushDestination with NavigationOptions]success.');
             });
           })
@@ -134,13 +134,13 @@ export struct PageOne {
           .width('80%')
           .height(35)
           .margin(10)
-          .onClick(()=>{
+          .onClick(() => {
             let tmp = new TmpClass()
-            this.helper.pushDestinationByName('hsptest2','pageTwo', tmp, (popInfo)=>{
+            this.helper.pushDestinationByName('hsptest2','pageTwo', tmp, (popInfo) => {
               this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }).catch((error: BusinessError)=>{
+            }).catch((error: BusinessError) => {
               console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.error('[pushDestinationByName]success.');
             });
           })
@@ -152,9 +152,9 @@ export struct PageOne {
           .onClick(() => {
             let tmp = new TmpClass()
             this.helper.pushDestinationByName('hsptest2','pageTwo', tmp, true)
-              .catch((error: BusinessError)=>{
+              .catch((error: BusinessError) => {
                 console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
-              }).then(()=>{
+              }).then(() => {
               console.error('[pushDestinationByNameWithoutOnPop]success.');
             });
           })
@@ -163,12 +163,12 @@ export struct PageOne {
           .width('80%')
           .height(35)
           .margin(10)
-          .onClick(()=>{
-            this.helper.replacePath('hsptest2', {name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
+          .onClick(() => {
+            this.helper.replacePath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[replacePath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}).catch((error: BusinessError)=>{
+            }}).catch((error: BusinessError) => {
               console.error(`[replacePath]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.log('[replacePath]success.');
             });
           })
@@ -177,12 +177,12 @@ export struct PageOne {
           .width('80%')
           .height(35)
           .margin(10)
-          .onClick(()=>{
-            this.helper.replacePath('hsptest2', {name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
+          .onClick(() => {
+            this.helper.replacePath('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[replacePath with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}, {launchMode:0, animated:true}).catch((error: BusinessError)=>{
+            }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
               console.error(`[replacePath with NavigationOptions]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.log('[replacePath with NavigationOptions]success.');
             });
           })
@@ -194,9 +194,9 @@ export struct PageOne {
           .onClick(() => {
             let tmp = new TmpClass()
             this.helper.replacePathByName('hsptest2', 'pageTwo', tmp)
-              .catch((error: BusinessError)=>{
+              .catch((error: BusinessError) => {
               console.error(`[replacePathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.log('[replacePathByName]success.');
             });
           })
@@ -204,7 +204,7 @@ export struct PageOne {
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      this.pageInfo.pop({number: 1}) // 弹出路由栈栈顶元素。
+      this.pageInfo.pop({ number: 1 }) // 弹出路由栈栈顶元素。
       return true
     }).onReady((context: NavDestinationContext) => {
       this.pageInfo = context.pathStack;
