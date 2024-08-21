@@ -21,7 +21,6 @@ import refreshOffsetJsunit from './RefreshTest/refreshOffsetJsunit.test';
 import refreshOffsetChangeJsunit from './RefreshTest/refreshOffsetChangeJsunit.test';
 import refreshResourceTest from './RefreshTest/refreshResource.test';
 import refreshStringTest from './RefreshTest/refreshString.test';
-import RefreshingContent from './RefreshTest/RefreshingContent.test';
 import listVisibleJsunit from './ListTest/listVisibleJsunit.test';
 import scrollOffsetJsunit from './ScrollTest/scrollOffsetJsunit.test';
 import swiperCustomJsunit from './SwiperTest/swiperCustomJsunit.test';
@@ -67,9 +66,9 @@ import SwiperAutoPlay_1 from './SwiperTest/SwiperAttributeTest/SwiperAutoPlay_1.
 import SwiperAutoPlay_2 from './SwiperTest/SwiperAttributeTest/SwiperAutoPlay_2.test';
 import SwiperDisplayCount from './SwiperTest/SwiperAttributeTest/SwiperDisplayCount.test';
 import SwiperLoopFalse from './SwiperTest/SwiperAttributeTest/SwiperLoopFalse.test';
+import RefreshingContent from './RefreshTest/RefreshingContent.test';
 
 export default function testsuite() {
-  RefreshingContent();
   ListScrollTest1()
   PopupAlphaTest()
   ListMainChildrenTest()
@@ -124,4 +123,5 @@ export default function testsuite() {
   SwiperAutoPlay_2()
   SwiperDisplayCount()
   SwiperLoopFalse()
+  RefreshingContent();
 }
