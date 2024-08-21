@@ -724,7 +724,7 @@ export default function AVPlayerNdkTest() {
     });
 
     /* *
-        * @tc.number    : SUB_MULTIMEIDA_AVPLAYER_NDK_SETPLAYBACKSPEED_0300
+        * @tc.number    : SUB_MULTIMEIDA_AVPLAYER_SETPLAYBACKSPEED_0300
         * @tc.name      : testOhAvPlayerSetPlaybackSpeed003
         * @tc.desc      : test AvPlayerSetPlaybackSpeedNormalThree
         * @tc.size      : MediumTest
@@ -738,7 +738,7 @@ export default function AVPlayerNdkTest() {
     });
 
     /* *
-        * @tc.number    : SUB_MULTIMEIDA_AVPLAYER_NDK_SETPLAYBACKSPEED_0400
+        * @tc.number    : SUB_MULTIMEIDA_AVPLAYER_SETPLAYBACKSPEED_0400
         * @tc.name      : testOhAvPlayerSetPlaybackSpeed004
         * @tc.desc      : test AvPlayerGetPlaybackSpeedAbnormalThree
         * @tc.size      : MediumTest
@@ -780,7 +780,7 @@ export default function AVPlayerNdkTest() {
     });
 
     /* *
-        * @tc.number    : SUB_MULTIMEIDA_AVPLAYER_NDK_GETPLAYBACKSPEED_0300
+        * @tc.number    : SUB_MULTIMEIDA_AVPLAYER_GETPLAYBACKSPEED_0300
         * @tc.name      : testOhAvPlayerGetPlaybackSpeed003
         * @tc.desc      : test AvPlayerGetPlaybackSpeedNormalThree
         * @tc.size      : MediumTest
@@ -794,7 +794,7 @@ export default function AVPlayerNdkTest() {
     });
 
     /* *
-        * @tc.number    : SUB_MULTIMEIDA_AVPLAYER_NDK_GETPLAYBACKSPEED_0400
+        * @tc.number    : SUB_MULTIMEIDA_AVPLAYER_GETPLAYBACKSPEED_0400
         * @tc.name      : testOhAvPlayerGetPlaybackSpeed004
         * @tc.desc      : test AvPlayerGetPlaybackSpeedAbnormalThree
         * @tc.size      : MediumTest
