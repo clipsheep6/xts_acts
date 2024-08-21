@@ -21,8 +21,13 @@ config("config") {
   cflags = [
     "-Wall",
     "-Werror",
+    "-Wno-unused-function",
     "-g3",
     "-Wunused-variable",
+    "-DOHOS_JSVM_HAP",
+    "-DOHOS_JSVM_XTS",
+    "-DTEST_WASM",
+    "-DTEST_ARRAY_BUFFER_BACKING_STORE",
   ]
 }
 
@@ -30,14 +35,26 @@ config("public_config") {
 }
 
 ohos_shared_library("jsvmtest") {
-  sources = [ "./napi/napi_test.cpp" ]
+  sources = [
+    "./napi/napi_test.cpp",
+    "./jsvmtest/jsvmtest.cpp",
+    "./jsvmtest/unittests/test_wasm.cpp",
+    "./jsvmtest/unittests/test_array_buffer_backing_store.cpp",
+  ]
+  include_dirs = [
+    ".",
+    "jsvmtest",
+    "wasm",
+  ]
   libs = [ rebase_path(libcxx_ndk_shared_file) ]
   configs = [ ":config" ]
 
   # add for third-party depend checking failed
   testonly = true
 
-  deps = [ "//third_party/bounds_checking_function:libsec_static" ]
+  deps = [
+    "//third_party/bounds_checking_function:libsec_static",
+  ]
   external_deps = [
     "hilog:hilog_ndk",
     "napi:ace_napi",
