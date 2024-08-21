@@ -36,7 +36,7 @@ struct ImageResizable {
           lattice:drawing.Lattice.createImageLattice(this.xDivs, this.yDivs, 3, 3)
         })
         .onAccessibilityHover(()=>{
-          console.log('onAccessibilityHover:'+)
+          console.log('onAccessibilityHover')
         })
         .width(200)
         .height(200)
