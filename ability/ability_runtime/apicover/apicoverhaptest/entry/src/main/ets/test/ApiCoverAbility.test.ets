@@ -1244,5 +1244,46 @@ export default function ApiCoverTest() {
       console.log(`${tag}, test end`);
       done();
     });
+
+     /*
+     * @tc.number : Acts_SingleInstanceCallFunction_0100
+     * @tc.name   : Call killAllProcesses.
+     * @tc.desc   : successfully killAllProcesses
+     * @tc.size   : LargeTest
+     * @tc.type   : Function
+     * @tc.level  : 3
+     */
+     it('Acts_SingleInstanceCallFunction_0100', 0, async (done: Function) => {
+      let tag = `Acts_SingleInstanceCallFunction_0100`;
+      console.log(`${tag}, test begin`);
+      let testAbilityContext : common.UIAbilityContext = AppStorage.Get<common.UIAbilityContext>('TestAbilityContext') as common.UIAbilityContext;
+      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
+        {
+          bundleName: 'ohos.acts.aafwk.test.stagesupplement',
+          abilityName: 'MainAbility',
+          action: 'Acts_SingleInstanceCallFunction_0100'
+        }, (err) => {
+        console.debug('====>Acts_SingleInstanceCallFunction_0100 startAbility err:' + JSON.stringify(err));
+      })
+      sleep(1500);
+      await appManagerNew.getRunningProcessInformation().then((data : Array<appManagerNew.ProcessInformation>) => {
+        console.log(`The running process information is: ${JSON.stringify(data)}`);
+        data.forEach(item =>{
+          if (item.bundleNames[0].includes("ohos.acts.aafwk.test.stagesupplement")) {
+            console.log(`${tag}, getRunningProcessInformation include  stagesupplement app`);
+            expect().assertFail;
+            done();
+          }else{
+            console.log(`${tag}, getRunningProcessInformation no include  stagesupplement app`);
+            expect(true).assertTrue();
+            done();
+          }
+        })
+      }).catch((error: BusinessError) => {
+        console.error(`error: ${JSON.stringify(error)}`);
+      });
+      console.log(`${tag}, test end`);
+    });
+
   })
 }
