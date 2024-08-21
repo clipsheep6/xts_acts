@@ -4,6 +4,9 @@
         "MainAbility/pages/Canvas/APICanvasSize",
         "MainAbility/pages/Canvas/CanvasApiTest/RestoreLayer",
         "MainAbility/pages/Canvas/CanvasApiTest/SaveLayer",
-        "MainAbility/pages/DrawModifier/DrawModifier"
+        "MainAbility/pages/DrawModifier/DrawModifier",
+		"MainAbility/pages/Polygon/Polygon",
+        "MainAbility/pages/Polyline/Polyline",
+        "MainAbility/pages/Rect/Rect"
     ]
 }
