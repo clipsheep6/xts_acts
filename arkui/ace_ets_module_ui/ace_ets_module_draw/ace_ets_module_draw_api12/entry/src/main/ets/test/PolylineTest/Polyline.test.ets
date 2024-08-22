@@ -60,7 +60,7 @@ export default function PolylineTest() {
       let obj: ESObject = JSON.parse(strJson);
       console.info("Polyline_001 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.width).assertEqual(100);
+      expect(obj.$attrs.width).assertEqual('100.00vp');
       console.info('Polyline_001 END');
       done();
     });
@@ -73,15 +73,15 @@ export default function PolylineTest() {
      * @tc.type :
      * @tc.size :
      */
-    it('Polygon_002', 0, async (done: Function) => {
-      console.info('Polygon_002 START');
+    it('Polyline_002', 0, async (done: Function) => {
+      console.info('Polyline_002 START');
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('Polygon_2');
+      let strJson = getInspectorByKey('Polyline_2');
       await CommonFunc.sleep(200);
       let obj: ESObject = JSON.parse(strJson);
-      console.info("Polygon_002 component obj is: " + JSON.stringify(obj));
+      console.info("Polyline_002 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.height).assertEqual(100);
+      expect(obj.$attrs.height).assertEqual('100.00vp');
       console.info('Polyline_002 END');
       done();
     });
