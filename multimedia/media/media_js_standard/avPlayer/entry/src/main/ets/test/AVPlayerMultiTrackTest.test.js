@@ -37,10 +37,10 @@ export default function AVPlayerMultiTrackTest() {
 
         beforeAll(async function() {
             console.info('beforeAll case');
-            await mediaTestBase.getStageFileDescriptor(VIDEO_SOURCE).then((res) => {
+            await mediaTestBase.getStageFd(VIDEO_SOURCE).then((res) => {
                 avFd = res;
             });
-            await mediaTestBase.getStageFileDescriptor(VIDEO_NOAUDIO).then((res) => {
+            await mediaTestBase.getStageFd(VIDEO_NOAUDIO).then((res) => {
                 videoFd = res;
             });
         })
@@ -62,8 +62,8 @@ export default function AVPlayerMultiTrackTest() {
 
         afterAll(async function() {
             console.info('afterAll case');
-            await mediaTestBase.closeFileDescriptor(VIDEO_SOURCE);
-            await mediaTestBase.closeFileDescriptor(VIDEO_NOAUDIO);
+            await mediaTestBase.closeStageFd(VIDEO_SOURCE);
+            await mediaTestBase.closeStageFd(VIDEO_NOAUDIO);
         })
 
         function printFailureCallback(error) {
