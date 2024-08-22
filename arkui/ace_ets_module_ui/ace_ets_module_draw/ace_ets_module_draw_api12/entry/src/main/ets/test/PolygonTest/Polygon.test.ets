@@ -60,7 +60,7 @@ export default function PolygonTest() {
       let obj: ESObject = JSON.parse(strJson);
       console.info("Polygon_001 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.width).assertEqual(100);
+      expect(obj.$attrs.width).assertEqual('100.00vp');
       console.info('Polygon_001 END');
       done();
     });
@@ -81,7 +81,7 @@ export default function PolygonTest() {
       let obj: ESObject = JSON.parse(strJson);
       console.info("Polygon_002 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.height).assertEqual('100');
+      expect(obj.$attrs.height).assertEqual('100.00vp');
       console.info('Polygon_002 END');
       done();
     });
