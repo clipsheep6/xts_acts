@@ -1,0 +1,28 @@
+{
+  "module": {
+    "name": "entry_test",
+    "type": "feature",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "requestPermissions": [
+      {"name":  "ohos.permission.MANAGE_DISPOSED_APP_STATUS"},
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "$string:permission_reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when":"always"
+        }
+      }
+    ]
+  }
+}
