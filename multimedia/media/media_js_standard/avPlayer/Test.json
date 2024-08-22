@@ -90,8 +90,7 @@
                 "./resource/media/AVPlayer/amrwb_19.85k_16000.amr -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
                 "./resource/media/AVPlayer/amrwb_23.05k_16000.amr -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
                 "./resource/media/AVPlayer/amrwb_23.85k_16000.amr -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
-                "./resource/media/AVPlayer/NONOamrwb_15850.amr -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
-                "./resource/media/AVPlayer/H264_AAC_AAC_multiAudio.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/"
+                "./resource/media/AVPlayer/NONOamrwb_15850.amr -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/"
             ]
         },
         {
