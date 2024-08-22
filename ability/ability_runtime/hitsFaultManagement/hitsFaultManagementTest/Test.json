@@ -1,25 +1,35 @@
 {
-    "description": "Configuration for hjunit demo Tests",
-    "driver": {
-        "type": "OHJSUnitTest",
-        "test-timeout": "180000",
-        "shell-timeout": "180000",
-        "bundle-name": "com.hits.faultmanager",
-        "module-name": "entry_test"
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "180000",
+    "shell-timeout": "180000",
+    "bundle-name": "com.hits.faultmanager",
+    "module-name": "entry_test"
+  },
+  "kits": [
+    {
+      "test-file-name": ["hitsFaultManagementTest.hap"],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
     },
-    "kits": [
-        {
-            "test-file-name": [
-                "hitsFaultManagementTest.hap"
-            ],
-            "type": "AppInstallKit",
-            "cleanup-apps": true
-        },{
-            "type": "ShellKit",
-            "run-command": [
-                "power-shell wakeup",
-                "power-shell setmode 602"
-            ]
-        }
-    ]
+    {
+      "type": "ShellKit",
+      "run-command": ["power-shell wakeup", "power-shell setmode 602"]
+    },
+    {
+      "type": "PushKit",
+      "push": [
+        "hitsFaultManagementWingman1.hap->/data/app/el2/100/base/com.hits.faultmanager/files/",
+        "hitsFaultManagementWingman2.hap->/data/app/el2/100/base/com.hits.faultmanager/files/"
+      ]
+    },
+    {
+      "type": "ShellKit",
+      "teardown-command": [
+        "bm uninstall -n com.hits.FaultManagementWingman1",
+        "bm uninstall -n com.hits.FaultManagementWingman2"
+      ]
+    }
+  ]
 }
