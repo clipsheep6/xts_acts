@@ -60,7 +60,7 @@ export default function PolylineTest() {
       let obj: ESObject = JSON.parse(strJson);
       console.info("Polyline_001 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(string(obj.$attrs.width)).assertEqual('100.00vp');
+      expect(String(obj.$attrs.width)).assertEqual('100.00vp');
       console.info('Polyline_001 END');
       done();
     });
@@ -81,7 +81,7 @@ export default function PolylineTest() {
       let obj: ESObject = JSON.parse(strJson);
       console.info("Polyline_002 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(string(obj.$attrs.height)).assertEqual('100.00vp');
+      expect(String(obj.$attrs.height)).assertEqual('100.00vp');
       console.info('Polyline_002 END');
       done();
     });
