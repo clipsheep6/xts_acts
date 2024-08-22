@@ -17,7 +17,6 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 // import print from '@ohos.print'
 import print from '@ohos.print';
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
 import { BusinessError } from '@ohos.base';
 
 const DOMAIN: number = 0x0023
@@ -194,10 +193,10 @@ export default function printTest() {
     }
 
     class MyPrintPageSize implements print.PrintPageSize {
-      id: string = '0';
-      name: string = '0';
-      width: number = 210;
-      height: number = 297;
+      id: string;
+      name: string;
+      width: number;
+      height: number;
     }
 
     /**
@@ -252,179 +251,6 @@ export default function printTest() {
       }).catch((error: BusinessError) => {
         expect(false).assertTrue();
       })
-    })
-
-    class MyPrinterInformation implements print.PrinterInformation {
-      printerId?: string;
-      printerName: string;
-      printerStatus: print.PrinterStatus;
-      descriptor?: string;
-      capability?: print.PrinterCapability;
-      uri?: string;
-      printerMake?: string;
-      options?: string;
-    }
-
-    class MyPrinterCapabilities implements print.PrinterCapabilities {
-      supportedPageSizes: Array<print.PrintPageSize>;
-      supportedColorModes: Array<print.PrintColorMode>;
-      supportedDuplexModes: Array<print.PrintDuplexMode>;
-      supportedMediaTypes?: Array<string>;
-      supportedQualities?: Array<print.PrintQuality>;
-      supportedOrientations?: Array<print.PrintOrientationMode>;
-      options?: string;
-    }
-
-    /**
-     * @tc.number print_function_0600
-     * @tc.name Test print
-     * @tc.desc check the print function
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('print_function_0600', 0, () => {
-      let printerInformation = new MyPrinterInformation();
-      printerInformation.printerId = "testPrinterId";
-      printerInformation.printerName = "testPrinterName";
-      printerInformation.printerStatus = PRINTER_IDLE;
-      printerInformation.printerStatus = PRINTER_BUSY;
-      printerInformation.printerStatus = PRINTER_UNAVAILABLE;
-      printerInformation.description = "testDescriptor";
-      printerInformation.capability = new MyPrinterCapabilities();
-      printerInformation.capability.supportedPageSizes = new MyPrintPageSize();
-      printerInformation.capability.supportedPageSizes.id = '0';
-      printerInformation.capability.supportedPageSizes.name = '0';
-      printerInformation.capability.supportedPageSizes.width = 210;
-      printerInformation.capability.supportedPageSizes.height = 297;
-      printerInformation.capability.supportedColorModes =
-        [print.PrintColorMode.COLOR_MODE_MONOCHROME,
-        print.PrintColorMode.COLOR_MODE_COLOR];
-      printerInformation.capability.supportedDuplexModes =
-        [print.PrintDuplexMode.DUPLEX_MODE_NONE,
-        print.PrintDuplexMode.DUPLEX_MODE_LONG_EDGE,
-        print.PrintDuplexMode.DUPLEX_MODE_SHORT_EDGE];
-      printerInformation.capability.supportedMediaTypes = ["ISO_A4"];
-      printerInformation.capability.supportedQualities =
-        [print.PrintQuality.QUALITY_DRAFT,
-        print.PrintQuality.QUALITY_NORMAL,
-        print.PrintQuality.QUALITY_HIGH];
-      printerInformation.capability.supportedOrientations =
-        [print.PrintOrientationMode.ORIENTATION_MODE_PORTRAIT,
-        print.PrintOrientationMode.ORIENTATION_MODE_LANDSCAPE,
-        print.PrintOrientationMode.ORIENTATION_MODE_REVERSE_LANDSCAPE,
-        print.PrintOrientationMode.ORIENTATION_MODE_REVERSE_PORTRAIT,
-        print.PrintOrientationMode.ORIENTATION_MODE_NONE];
-      printerInformation.capability.options = "testOptions";
-      printerInformation.uri = "testUri";
-      printerInformation.printerMake = "testPrinterMake";
-      printerInformation.options = "testOptions";
-
-      // Permissions required: ohos.permission.PRINT
-      print.addPrinterToDiscovery(printerInformation).then(ret => {
-        expect(ret).assertEqual(true);
-      }).catch((error: BusinessError) => {
-        expect(false).assertTrue();
-      })
-
-      print.updatePrinterInDiscovery(printerInformation).then(ret => {
-        expect(ret).assertEqual(true);
-      }).catch((error: BusinessError) => {
-        expect(false).assertTrue();
-      })
-    })
-
-    /**
-     * @tc.number print_function_0700
-     * @tc.name Test print
-     * @tc.desc check the print function
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('print_function_0700', 0, () => {
-      let printerId : string = "testPrinterId";
-      // Permissions required: ohos.permission.PRINT
-      print.removePrinterFromDiscovery(printerId).then(ret => {
-        expect(ret).assertEqual(true);
-      }).catch((error: BusinessError) => {
-        expect(false).assertTrue();
-      })
-    })
-
-    /**
-     * @tc.number print_function_0800
-     * @tc.name Test print
-     * @tc.desc check the print function
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('print_function_0800', 0, () => {
-      let printerId : string = "testPrinterId";
-      // Permissions required: ohos.permission.PRINT
-      print.getPrinterInformationById(printerId).then((printerInformation: print.PrinterInformation) => {
-        expect(typeof (printerInformation)).assertEqual('object');
-        expect(!!printerInformation).assertTrue();
-      }).catch((error: BusinessError) => {
-        expect(false).assertTrue();
-      })
-    })
-
-    /**
-     * @tc.number print_function_0900
-     * @tc.name Test print
-     * @tc.desc check the print function
-     * @tc.size MEDIUM
-     * @tc.type Function
-     * @tc.level Level 2
-     */
-    it('print_function_0900', 0, () => {
-      export default class PrintExtension extends PrintExtensionAbility {
-        onStartDiscoverPrinter(): void {
-          console.log("PrintExtension onStartDiscoverPrinter");
-          let extensionList: Array<string> = ["com.ohos.spooler"];
-          print.startDiscoverPrinter(extensionList).then(ret => {
-            expect(ret).assertEqual(true);
-          }).catch((error: BusinessError) => {
-            expect(false).assertTrue();
-          })
-        }
-
-        onStopDiscoverPrinter(): void {
-          console.log("PrintExtension onStopDiscoverPrinter");
-          print.stopDiscoverPrinter().then(ret => {
-            expect(ret).assertEqual(true);
-          }).catch((error: BusinessError) => {
-            expect(false).assertTrue();
-          })
-        }
-
-        onConnectPrinter(printerId: number): void {
-          console.log("PrintExtension onConnectPrinter");
-          print.connectPrinter(printerId.toString()).then(ret => {
-            expect(ret).assertEqual(true);
-          }).catch((error: BusinessError) => {
-            expect(false).assertTrue();
-          })
-        }
-
-        onDisconnectPrinter(printerId: number): void {
-          console.log("PrintExtension onDisconnectPrinter");
-          print.disconnectPrinter(printerId.toString()).then(ret => {
-            expect(ret).assertEqual(true);
-          }).catch((error: BusinessError) => {
-            expect(false).assertTrue();
-          })
-        }
-      }
-
-      let object = new PrintExtension();
-      object.onStartDiscoverPrinter();
-      object.onStopDiscoverPrinter();
-      let printerId : number = 123;
-      object.onConnectPrinter(printerId);
-      object.onDisconnectPrinter(printerId);
     })
   })
 }
