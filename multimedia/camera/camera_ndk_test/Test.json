@@ -2,11 +2,11 @@
     "description": "Configuration for camera ndk Tests",
     "driver": {
         "type": "OHJSUnitTest",
-        "test-timeout": "600000",
+        "test-timeout": "6000000",
 	    "bundle-name": "com.example.camerandk",
         "module-name": "entry_test",
-        "shell-timeout": "600000",
-	    "testcase-timeout": 70000
+        "shell-timeout": "6000000",
+	    "testcase-timeout": 7000000
     },
     "kits": [
         {

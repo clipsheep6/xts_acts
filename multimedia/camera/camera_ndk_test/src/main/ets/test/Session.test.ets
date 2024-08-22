@@ -132,6 +132,7 @@ function createCameraInput() {
     console.log(TAG + "createCameraInput FAILED");
     expect().assertFail();
   }
+  cameraObj.cameraInputOpen();
 }
 
 function getSupportedSceneModes() {
@@ -225,6 +226,14 @@ function createPhotoOutput() {
   let mPhotoOutput = cameraObj.createPhotoOutput(mPhotoSurface);
   if (mPhotoOutput != 0) {
     console.info(TAG + "mPhotoOutput FAILED");
+    expect().assertFail();
+  }
+}
+
+function sessionCommitConfig() {
+  let commitConfig = cameraObj.sessionCommitConfig();
+  if (commitConfig != 0) {
+    console.info(TAG + "commitConfig FAILED");
     expect().assertFail();
   }
 }
@@ -336,6 +345,7 @@ function getPhotoOutputActiveProfile() {
   sessionStop();
   sessionBeginConfig();
   createPhotoOutput();
+  addPhotoOutput();
   let ret = cameraObj.oHPhotoOutputGetActiveProfile(0);
   if (ret != 0) {
     console.info(TAG + "getPhotoOutputActiveProfile FAILED");
@@ -348,12 +358,18 @@ function getVideoOutputGetActiveProfile() {
   createCaptureSession();
   getSupportedCamerasInstance();
   getSupportedCameraOutputCapability();
+  getSupportedSceneModes();
+  setSceneMode(1);
+  setSessionMode();
   createPreviewOutput();
   createCameraInput();
   startSession();
   sessionStop();
   sessionBeginConfig();
+  createPhotoOutput();
+  addPhotoOutput();
   createVideoOutput();
+  addVideoOutput();
   let ret = cameraObj.oHVideoOutputGetActiveProfile(0);
   if (ret != 0) {
     console.info(TAG + "oHVideoOutputGetActiveProfile FAILED");
@@ -417,6 +433,42 @@ function cameraManagerCreateVideoOutputUsedInPreconfig() {
   if (ret != 0) {
     console.info(TAG + "oHCameraManagerCreatePreviewOutputUsedInPreconfig FAILED");
     expect().assertFail();
+  }
+}
+
+function addPhotoOutput() {
+  let canAddPhotoOutput = cameraObj.oHCaptureSessionCanAddPhotoOutput(0);
+  if (canAddPhotoOutput.errorCode != 0) {
+    console.log(TAG + "canAddPhotoOutput FAILED" + canAddPhotoOutput.errorCode);
+    expect().assertFail();
+  }
+  console.info(TAG + "canAddPhotoOutput: " + canAddPhotoOutput.isAddPhotoOutput);
+  if (!canAddPhotoOutput.isAddPhotoOutput) {
+    console.log(TAG + "addPhotoOutput FAILED");
+  } else {
+    let addPhotoOutput = cameraObj.sessionAddPhotoOutput();
+    if (addPhotoOutput != 0) {
+      console.log(TAG + "addPhotoOutput FAILED" + addPhotoOutput);
+      expect().assertFail();
+    }
+  }
+}
+
+function addVideoOutput() {
+  let canAddVideoOutput = cameraObj.oHCaptureSessionCanAddVideoOutput(0);
+  if (canAddVideoOutput.errorCode != 0) {
+    console.log(TAG + "canAddVideoOutput FAILED" + canAddVideoOutput.errorCode);
+    expect().assertFail();
+  }
+  console.info(TAG + "canAddVideoOutput: " + canAddVideoOutput.isAddVideoOutput);
+  if (!canAddVideoOutput.isAddVideoOutput) {
+    console.log(TAG + "addVideoOutput FAILED");
+  } else {
+    let addVideoOutput = cameraObj.sessionAddVideoOutput();
+    if (addVideoOutput != 0) {
+      console.log(TAG + "addVideoOutput FAILED" + addVideoOutput);
+      expect().assertFail();
+    }
   }
 }
 
@@ -539,6 +591,132 @@ export default function SessionTest() {
       getSupportedCamerasInstance();
       let ret = cameraObj.oHCaptureSessionUnregisterCallback(3);
       console.log(TAG+"testOHCaptureSessionUnregisterCallback0300:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRegisterSmoothZoomInfoCallback0100
+     * @tc.name       : testOHCaptureSessionRegisterSmoothZoomInfoCallback0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionRegisterSmoothZoomInfoCallback0100', 0, () => {
+      getCameraManagerInstance();
+      createCaptureSession();
+      getSupportedCamerasInstance();
+      getSupportedCameraOutputCapability();
+      createPreviewOutput();
+      createCameraInput();
+      startSession();
+      let ret = cameraObj.oHCaptureSessionRegisterSmoothZoomInfoCallback(0);
+      console.log(TAG+"testOHCaptureSessionRegisterSmoothZoomInfoCallback0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRegisterSmoothZoomInfoCallback0200
+     * @tc.name       : testOHCaptureSessionRegisterSmoothZoomInfoCallback0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionRegisterSmoothZoomInfoCallback0200', 0, () => {
+      getCameraManagerInstance();
+      createCaptureSession();
+      getSupportedCamerasInstance();
+      getSupportedCameraOutputCapability();
+      createPreviewOutput();
+      createCameraInput();
+      startSession();
+      let ret = cameraObj.oHCaptureSessionRegisterSmoothZoomInfoCallback(1);
+      console.log(TAG+"testOHCaptureSessionRegisterSmoothZoomInfoCallback0200:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRegisterSmoothZoomInfoCallback0300
+     * @tc.name       : testOHCaptureSessionRegisterSmoothZoomInfoCallback0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionRegisterSmoothZoomInfoCallback0300', 0, () => {
+      getCameraManagerInstance();
+      createCaptureSession();
+      getSupportedCamerasInstance();
+      getSupportedCameraOutputCapability();
+      createPreviewOutput();
+      createCameraInput();
+      startSession();
+      let ret = cameraObj.oHCaptureSessionRegisterSmoothZoomInfoCallback(2);
+      console.log(TAG+"testOHCaptureSessionRegisterSmoothZoomInfoCallback0300:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionUnregisterSmoothZoomInfoCallback0100
+     * @tc.name       : testOHCaptureSessionUnregisterSmoothZoomInfoCallback0100
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionUnregisterSmoothZoomInfoCallback0100', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      getSupportedCameraOutputCapability();
+      createPreviewOutput();
+      createCameraInput();
+      startSession();
+      createPhotoOutput();
+      cameraObj.oHCaptureSessionRegisterSmoothZoomInfoCallback(0);
+      let ret = cameraObj.oHCaptureSessionUnregisterSmoothZoomInfoCallback(0);
+      console.log(TAG+"testOHCaptureSessionUnregisterSmoothZoomInfoCallback0100:"+ret);
+      expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionUnregisterSmoothZoomInfoCallback0200
+     * @tc.name       : testOHCaptureSessionUnregisterSmoothZoomInfoCallback0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionUnregisterSmoothZoomInfoCallback0200', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      getSupportedCameraOutputCapability();
+      createPreviewOutput();
+      createCameraInput();
+      startSession();
+      createPhotoOutput();
+      cameraObj.oHCaptureSessionRegisterSmoothZoomInfoCallback(0);
+      let ret = cameraObj.oHCaptureSessionUnregisterSmoothZoomInfoCallback(1);
+      console.log(TAG+"testOHCaptureSessionUnregisterSmoothZoomInfoCallback0200:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionUnregisterSmoothZoomInfoCallback0300
+     * @tc.name       : testOHCaptureSessionUnregisterSmoothZoomInfoCallback0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCaptureSessionUnregisterSmoothZoomInfoCallback0300', 0, () => {
+      getCameraManagerInstance();
+      getSupportedCamerasInstance();
+      createCaptureSession();
+      getSupportedCameraOutputCapability();
+      createPreviewOutput();
+      createCameraInput();
+      startSession();
+      createPhotoOutput();
+      cameraObj.oHCaptureSessionRegisterSmoothZoomInfoCallback(0);
+      let ret = cameraObj.oHCaptureSessionUnregisterSmoothZoomInfoCallback(2);
+      console.log(TAG+"testOHCaptureSessionUnregisterSmoothZoomInfoCallback0300:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
     /**
@@ -1426,6 +1604,7 @@ export default function SessionTest() {
         expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
       }
     })
+
     /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePreviewOutputUsedInPreconfig0100
      * @tc.name       : testOHCameraManagerCreatePreviewOutputUsedInPreconfig0100
@@ -1679,6 +1858,7 @@ export default function SessionTest() {
       console.log(TAG+"testOHPreviewOutputDeleteProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
+
     /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputGetActiveProfile0100
      * @tc.name       : testOHPhotoOutputGetActiveProfile0100
@@ -1698,6 +1878,7 @@ export default function SessionTest() {
       sessionStop();
       sessionBeginConfig();
       createPhotoOutput();
+      addPhotoOutput();
       let ret = cameraObj.oHPhotoOutputGetActiveProfile(0);
       console.log(TAG+"testOHPhotoOutputGetActiveProfile0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -1721,6 +1902,7 @@ export default function SessionTest() {
       sessionStop();
       sessionBeginConfig();
       createPhotoOutput();
+      addPhotoOutput();
       let ret = cameraObj.oHPhotoOutputGetActiveProfile(1);
       console.log(TAG+"testOHPhotoOutputGetActiveProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
@@ -1744,6 +1926,7 @@ export default function SessionTest() {
       sessionStop();
       sessionBeginConfig();
       createPhotoOutput();
+      addPhotoOutput();
       let ret = cameraObj.oHPhotoOutputGetActiveProfile(2);
       console.log(TAG+"testOHPhotoOutputGetActiveProfile0300:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
@@ -1790,12 +1973,18 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
+      getSupportedSceneModes();
+      setSceneMode(1);
+      setSessionMode();
       createPreviewOutput();
       createCameraInput();
       startSession();
       sessionStop();
       sessionBeginConfig();
+      createPhotoOutput();
+      addPhotoOutput();
       createVideoOutput();
+      addVideoOutput();
       let ret = cameraObj.oHVideoOutputGetActiveProfile(0);
       console.log(TAG+"testOHVideoOutputGetActiveProfile0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -1813,12 +2002,18 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
+      getSupportedSceneModes();
+      setSceneMode(1);
+      setSessionMode();
       createPreviewOutput();
       createCameraInput();
       startSession();
       sessionStop();
       sessionBeginConfig();
+      createPhotoOutput();
+      addPhotoOutput();
       createVideoOutput();
+      addVideoOutput();
       let ret = cameraObj.oHVideoOutputGetActiveProfile(1);
       console.log(TAG+"testOHVideoOutputGetActiveProfile0200:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
@@ -1836,12 +2031,18 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
+      getSupportedSceneModes();
+      setSceneMode(1);
+      setSessionMode();
       createPreviewOutput();
       createCameraInput();
       startSession();
       sessionStop();
       sessionBeginConfig();
+      createPhotoOutput();
+      addPhotoOutput();
       createVideoOutput();
+      addVideoOutput();
       let ret = cameraObj.oHVideoOutputGetActiveProfile(2);
       console.log(TAG+"testOHVideoOutputGetActiveProfile0300:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
