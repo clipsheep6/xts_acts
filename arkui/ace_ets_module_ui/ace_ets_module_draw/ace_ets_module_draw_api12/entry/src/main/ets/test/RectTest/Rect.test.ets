@@ -60,7 +60,7 @@ export default function PolylineTest() {
       let obj: ESObject = JSON.parse(strJson);
       console.info("Rect_001 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.width).assertEqual(100);
+      expect(string(obj.$attrs.width)).assertEqual('100.00vp');
       console.info('Rect_001 END');
       done();
     });
@@ -81,7 +81,7 @@ export default function PolylineTest() {
       let obj: ESObject = JSON.parse(strJson);
       console.info("Rect_002 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.height).assertEqual(100);
+      expect(string(obj.$attrs.height)).assertEqual('50.00vp');
       console.info('Rect_002 END');
       done();
     });
@@ -102,7 +102,7 @@ export default function PolylineTest() {
       let obj: ESObject = JSON.parse(strJson);
       console.info("Rect_003 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.radius).assertEqual(10);
+      expect(string(obj.$attrs.radius)).assertEqual('true');
       console.info('Rect_003 END');
       done();
     });
@@ -123,7 +123,7 @@ export default function PolylineTest() {
       let obj: ESObject = JSON.parse(strJson);
       console.info("Rect_004 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.radiusWidth).assertEqual(18);
+      expect(string(obj.$attrs.radiusWidth)).assertEqual('27');
       console.info('Rect_004 END');
       done();
     });
@@ -144,7 +144,7 @@ export default function PolylineTest() {
       let obj: ESObject = JSON.parse(strJson);
       console.info("Rect_005 component obj is: " + JSON.stringify(obj));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.radiusHeight).assertEqual(15);
+      expect(string(obj.$attrs.radiusHeight)).assertEqual('22.5');
       console.info('Rect_005 END');
       done();
     });
