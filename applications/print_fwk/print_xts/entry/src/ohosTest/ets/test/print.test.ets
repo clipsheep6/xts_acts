@@ -255,11 +255,11 @@ export default function printTest() {
     })
 
     class MyPrinterInformation implements print.PrinterInformation {
-      printerId?: string;
+      printerId: string;
       printerName: string;
       printerStatus: print.PrinterStatus;
       descriptor?: string;
-      capability?: print.PrinterCapability;
+      capability?: print.PrinterCapabilities;
       uri?: string;
       printerMake?: string;
       options?: string;
