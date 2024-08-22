@@ -16,11 +16,12 @@ import { NavPushPathHelper } from '@kit.ArkUI'
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class TmpClass {
-  count: number = 10
+  public count: number = 10
 }
 
 class ParamWithOp {
-  operation: number = 1
+  public operation: number = 1
+  public count: number = 10
 }
 
 @Builder
