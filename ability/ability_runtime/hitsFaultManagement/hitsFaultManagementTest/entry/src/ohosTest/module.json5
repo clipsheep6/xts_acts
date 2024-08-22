@@ -18,7 +18,7 @@
         "reason": "$string:permission_reason",
         "usedScene": {
           "abilities": [
-            "EntryAbility"
+            "TestAbility"
           ],
           "when":"always"
         }
