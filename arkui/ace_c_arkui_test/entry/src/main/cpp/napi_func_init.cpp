@@ -493,6 +493,14 @@
 #include "pointerevent/pointer_event_test.cpp"
 #include "native/native.cpp"
 #include "Dialog/DialogDismissEvent.cpp"
+#include "drag/drag_getDragEvent.cpp"
+#include "drag/drag_getDataTypes.cpp"
+#include "drag/drag_setDragEventStrictReport.cpp"
+#include "drag/drag_allowDropDataTypes.cpp"
+#include "drag/drag_setNodeDragPreview.cpp"
+#include "drag/drag_dragPreviewOption.cpp"
+#include "drag/drag_dragAction.cpp"
+#include "drag/drag_setGetUdmfData.cpp"
 
 namespace ArkUICapiTest {
 EXTERN_C_START
@@ -4733,6 +4741,67 @@ static napi_value Init(napi_env env, napi_value exports)
         {"DialogModelTest_001", nullptr, DialogModelTest_001, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"DialogModelTest_002", nullptr, DialogModelTest_002, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"DialogModelTest_003", nullptr, DialogModelTest_003, nullptr, nullptr, nullptr, napi_default, nullptr},
+
+        {"drag_getDragEvent_001", nullptr, drag_getDragEvent_001, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_getDataTypes_001", nullptr, drag_getDataTypes_001, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_setDragEventStrictReportWidthNode_001", nullptr, drag_setDragEventStrictReportWidthNode_001, nullptr,
+         nullptr, nullptr, napi_default, nullptr},
+        {"drag_setDragEventStrictReportWidthNode_002", nullptr, drag_setDragEventStrictReportWidthNode_002, nullptr,
+         nullptr, nullptr, napi_default, nullptr},
+        {"drag_setDragEventStrictReportWidthContext_003", nullptr, drag_setDragEventStrictReportWidthContext_003,
+         nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_setDragEventStrictReportWidthContext_004", nullptr, drag_setDragEventStrictReportWidthContext_004,
+         nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_setNodeAllowedDropDataTypes_001", nullptr, drag_setNodeAllowedDropDataTypes_001, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drag_disallowNodeAnyDropDataTypes_002", nullptr, drag_disallowNodeAnyDropDataTypes_002, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drag_allowNodeAllDropDataTypes_003", nullptr, drag_allowNodeAllDropDataTypes_003, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drag_setNodeDraggable_004", nullptr, drag_setNodeDraggable_004, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drag_SetNodeDragPreview_001", nullptr, drag_SetNodeDragPreview_001, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drag_DragPreviewOption_Dispose_001", nullptr, drag_DragPreviewOption_Dispose_001, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drag_DragPreviewOption_SetScaleMode_002", nullptr, drag_DragPreviewOption_SetScaleMode_002, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drag_DragPreviewOption_SetDefaultShadowEnabled_003", nullptr,
+         drag_DragPreviewOption_SetDefaultShadowEnabled_003, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_DragPreviewOption_SetDefaultRadiusEnabled_004", nullptr,
+         drag_DragPreviewOption_SetDefaultRadiusEnabled_004, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_DragPreviewOption_SetNumberBadgeEnabled_005", nullptr,
+         drag_DragPreviewOption_SetNumberBadgeEnabled_005, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_DragPreviewOption_SetBadgeNumber_006", nullptr, drag_DragPreviewOption_SetBadgeNumber_006,
+         nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled_007", nullptr,
+         drag_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled_007, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drag_DragPreviewOption_SetNodeDragPreviewOption_008", nullptr,
+         drag_DragPreviewOption_SetNodeDragPreviewOption_008, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_DragAction_Dispose_001", nullptr, drag_DragAction_Dispose_001, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"drag_DragAction_SetPointerId_002", nullptr, drag_DragAction_SetPointerId_002, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"drag_DragAction_SetPixelMaps_003", nullptr, drag_DragAction_SetPixelMaps_003, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"drag_DragAction_SetTouchPointX_004", nullptr, drag_DragAction_SetTouchPointX_004, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"drag_DragAction_SetTouchPointY_005", nullptr, drag_DragAction_SetTouchPointY_005, nullptr, nullptr, nullptr,
+         napi_default, nullptr},
+        {"drag_DragAction_SetDragPreviewOption_006", nullptr, drag_DragAction_SetDragPreviewOption_006, nullptr,
+         nullptr, nullptr, napi_default, nullptr},
+        {"drag_DragAction_RegisterStatusListener_007", nullptr, drag_DragAction_RegisterStatusListener_007, nullptr,
+         nullptr, nullptr, napi_default, nullptr},
+        {"drag_DragAction_UnregisterStatusListener_008", nullptr, drag_DragAction_UnregisterStatusListener_008, nullptr,
+         nullptr, nullptr, napi_default, nullptr},
+        {"drag_DragAction_StartDrag_009", nullptr, drag_DragAction_StartDrag_009, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drag_DragAction_DragAndDropInfo_0010", nullptr, drag_DragAction_DragAndDropInfo_0010, nullptr, nullptr,
+         nullptr, napi_default, nullptr},
+        {"drag_setGetUdmfData_001", nullptr, drag_setGetUdmfData_001, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_setGetUdmfData_002", nullptr, drag_setGetUdmfData_002, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"drag_setGetUdmfData_003", nullptr, drag_setGetUdmfData_003, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
