@@ -1,4 +1,4 @@
-# Copyright (C) 2022 Huawei Device Co., Ltd.
+# Copyright (c) 2024 Huawei Device Co., Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -11,13 +11,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/ohos_var.gni")
-group("time") {
+import("//test/xts/tools/build/suite.gni")
+
+ohos_app_assist_suite("demo_ndk_main") {
   testonly = true
-  deps = [
-    "dateTimeTest:ActsDateTimeAPITest",
-    "ndkTest:ActsTimeServiceNdkTest",
-    "timeTest:ActsTimeAPITest",
-    "timeauthorityTest:ActsTimeAuthorityAPITest",
-  ]
+  certificate_profile = "./signature/ActsDateTimeAPITest.p7b"
+  hap_name = "ActsTimeAPITest"
+
+  part_name = "time_service"
+
+  subsystem_name = "time"
+}
+
+ohos_js_app_suite("ActsTimeServiceNdkTest") {
+  test_hap = true
+  testonly = true
+  certificate_profile = "./signature/ActsDateTimeAPITest.p7b"
+  hap_name = "ActsTimeAPIFAETSTest"
+
+  part_name = "time_service"
+
+  subsystem_name = "time"
+  deps = [ ":demo_ndk_main" ]
 }
