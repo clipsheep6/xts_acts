@@ -295,8 +295,8 @@ export default function printTest() {
       let pageSize : print.PrintPageSize = {
           id : '0',
           name : '0',
-          width : '210',
-          height : '297'
+          width : 210,
+          height : 297
       };
       printerInformation.capability.supportedPageSizes = [pageSize];
       printerInformation.capability.supportedColorModes =
