@@ -292,7 +292,12 @@ export default function printTest() {
       printerInformation.printerStatus = print.PrinterStatus.PRINTER_UNAVAILABLE;
       printerInformation.description = "testDescriptor";
       printerInformation.capability = new MyPrinterCapabilities();
-      let pageSize : MyPrintPageSize;
+      let pageSize : print.PrintPageSize = {
+          id : '0',
+          name : '0',
+          width : '210',
+          height : '297'
+      };
       printerInformation.capability.supportedPageSizes = [pageSize];
       printerInformation.capability.supportedColorModes =
         [print.PrintColorMode.COLOR_MODE_MONOCHROME,
