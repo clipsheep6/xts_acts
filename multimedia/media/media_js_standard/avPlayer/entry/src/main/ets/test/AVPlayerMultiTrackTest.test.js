@@ -20,12 +20,13 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 
 export default function AVPlayerMultiTrackTest() {
     describe('AVPlayerMultiTrackTest', function () {
-        const VIDEO_SOURCE = 'H264_AAC_AAC_multiAudio.mp4';
+        const VIDEO_SOURCE = 'mpeg4_1920_1080_aac_flac.mkv';
         const VIDEO_NOAUDIO = 'H264_NONE.mp4';
         const PLAY_TIME = 3000;
         const LOOPCNT = 5;
         const NOAUDIOTRACK = -1;
         let avFd;
+        let audioFd;
         let videoFd;
         let avPlayer;
         let audioTrackList = new Array();
@@ -37,10 +38,10 @@ export default function AVPlayerMultiTrackTest() {
 
         beforeAll(async function() {
             console.info('beforeAll case');
-            await mediaTestBase.getStageFd(VIDEO_SOURCE).then((res) => {
+            await mediaTestBase.getStageFileDescriptor(VIDEO_SOURCE).then((res) => {
                 avFd = res;
             });
-            await mediaTestBase.getStageFd(VIDEO_NOAUDIO).then((res) => {
+            await mediaTestBase.getStageFileDescriptor(VIDEO_NOAUDIO).then((res) => {
                 videoFd = res;
             });
         })
@@ -62,8 +63,8 @@ export default function AVPlayerMultiTrackTest() {
 
         afterAll(async function() {
             console.info('afterAll case');
-            await mediaTestBase.closeStageFd(VIDEO_SOURCE);
-            await mediaTestBase.closeStageFd(VIDEO_NOAUDIO);
+            await mediaTestBase.closeFileDescriptor(VIDEO_SOURCE);
+            await mediaTestBase.closeFileDescriptor(VIDEO_NOAUDIO);
         })
 
         function printFailureCallback(error) {
@@ -160,13 +161,13 @@ export default function AVPlayerMultiTrackTest() {
                 switch (state) {
                     case AV_PLAYER_STATE.INITIALIZED:
                         expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.INITIALIZED);
-                        if (fd != videoFd) {
+                        if (fd != audioFd) {
                             console.info('case is videosrc');
+                            avPlayer.surfaceId = surfaceID;
+                            console.info(`case avPlayer.surfaceId is ${avPlayer.surfaceId}`);
                         } else {
-                            console.info('case is noaudiosrc');
+                            console.info('case is audiosrc');
                         }
-                        avPlayer.surfaceId = surfaceID;
-                        console.info(`case avPlayer.surfaceId is ${avPlayer.surfaceId}`);
                         await avPlayer.prepare().then(() => {
                             console.info('case prepare called');
                         }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
@@ -293,11 +294,9 @@ export default function AVPlayerMultiTrackTest() {
                 await getAudioTracks();
                 await getCurrentAudioTrack();
                 avPlayer.selectTrack(currentTrack);
-                await mediaTestBase.msleepAsync(5000);
                 avPlayer.deselectTrack(currentTrack);
                 await changeAudioTrack();
                 avPlayer.selectTrack(selectedTrack);
-                await mediaTestBase.msleepAsync(5000);
                 avPlayer.deselectTrack(selectedTrack);
             }
 
@@ -388,6 +387,7 @@ export default function AVPlayerMultiTrackTest() {
 
             async function playedOperation() {
                 await getCurrentAudioTrack();
+                expect(currentTrack).assertEqual(selectedTrack);
             }
 
             async function stoppedOperation() {
@@ -421,7 +421,6 @@ export default function AVPlayerMultiTrackTest() {
                 await getCurrentAudioTrack();
                 await changeAudioTrack();
                 avPlayer.selectTrack(selectedTrack);
-                await mediaTestBase.msleepAsync(5000);
                 console.info('case selectedTrack is: ' + selectedTrack);
                 avPlayer.seek(avPlayer.duration / 3);
                 avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_0_75_X);
