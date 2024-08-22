@@ -255,10 +255,10 @@ export default function printTest() {
     })
 
     class MyPrinterInformation implements print.PrinterInformation {
-      printerId: string;
-      printerName: string;
-      printerStatus: print.PrinterStatus;
-      descriptor?: string;
+      printerId: string = '';
+      printerName: string = '';
+      printerStatus: print.PrinterStatus = print.PrinterStatus.PRINTER_UNAVAILABLE;
+      description?: string;
       capability?: print.PrinterCapabilities;
       uri?: string;
       printerMake?: string;
@@ -266,9 +266,9 @@ export default function printTest() {
     }
 
     class MyPrinterCapabilities implements print.PrinterCapabilities {
-      supportedPageSizes: Array<print.PrintPageSize>;
-      supportedColorModes: Array<print.PrintColorMode>;
-      supportedDuplexModes: Array<print.PrintDuplexMode>;
+      supportedPageSizes: Array<print.PrintPageSize> = [];
+      supportedColorModes: Array<print.PrintColorMode> = [];
+      supportedDuplexModes: Array<print.PrintDuplexMode> = [];
       supportedMediaTypes?: Array<string>;
       supportedQualities?: Array<print.PrintQuality>;
       supportedOrientations?: Array<print.PrintOrientationMode>;
@@ -287,16 +287,13 @@ export default function printTest() {
       let printerInformation = new MyPrinterInformation();
       printerInformation.printerId = "testPrinterId";
       printerInformation.printerName = "testPrinterName";
-      printerInformation.printerStatus = PRINTER_IDLE;
-      printerInformation.printerStatus = PRINTER_BUSY;
-      printerInformation.printerStatus = PRINTER_UNAVAILABLE;
+      printerInformation.printerStatus = print.PrinterStatus.PRINTER_IDLE;
+      printerInformation.printerStatus = print.PrinterStatus.PRINTER_BUSY;
+      printerInformation.printerStatus = print.PrinterStatus.PRINTER_UNAVAILABLE;
       printerInformation.description = "testDescriptor";
       printerInformation.capability = new MyPrinterCapabilities();
-      printerInformation.capability.supportedPageSizes = new MyPrintPageSize();
-      printerInformation.capability.supportedPageSizes.id = '0';
-      printerInformation.capability.supportedPageSizes.name = '0';
-      printerInformation.capability.supportedPageSizes.width = 210;
-      printerInformation.capability.supportedPageSizes.height = 297;
+      let pageSize : MyPrintPageSize;
+      printerInformation.capability.supportedPageSizes = [pageSize];
       printerInformation.capability.supportedColorModes =
         [print.PrintColorMode.COLOR_MODE_MONOCHROME,
         print.PrintColorMode.COLOR_MODE_COLOR];
