@@ -60,6 +60,45 @@ static int32_t AudioRendererOnMarkReachedWriteData(OH_AudioRenderer* capturer,
     return 0;
 }
 
+// 自定义写入数据函数
+int32_t MyOnWriteData(
+    OH_AudioRenderer* renderer,
+    void* userData,
+    void* buffer,
+    int32_t length)
+{
+    // 将待播放的数据，按length长度写入buffer
+    return 0;
+}
+// 自定义音频流事件函数
+int32_t MyOnStreamEvent(
+    OH_AudioRenderer* renderer,
+    void* userData,
+    OH_AudioStream_Event event)
+{
+    // 根据event表示的音频流事件信息，更新播放器状态和界面
+    return 0;
+}
+// 自定义音频中断事件函数
+int32_t MyOnInterruptEvent(
+    OH_AudioRenderer* renderer,
+    void* userData,
+    OH_AudioInterrupt_ForceType type,
+    OH_AudioInterrupt_Hint hint)
+{
+    // 根据type和hint表示的音频中断信息，更新播放器状态和界面
+    return 0;
+}
+// 自定义异常回调函数
+int32_t MyOnError(
+    OH_AudioRenderer* renderer,
+    void* userData,
+    OH_AudioStream_Result error)
+{
+    // 根据error表示的音频异常信息，做出相应的处理
+    return 0;
+}
+
 static napi_value CreateAudioStreamBuilder(napi_env env, napi_callback_info info)
 {
     OH_AudioStreamBuilder *builder;
@@ -910,6 +949,9 @@ static napi_value AudioStreamBuilderSetRendererCallback(napi_env env, napi_callb
     OH_AudioStreamBuilder_Create(&builder, type);
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
     OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, NULL);
     OH_AudioStreamBuilder_Destroy(builder);
     napi_value res;
@@ -1469,6 +1511,10 @@ static napi_value AudioRendererSetOnMarkReached_03(napi_env env, napi_callback_i
     OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
+
     OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
     if (result != AUDIOSTREAM_SUCCESS) {
         napi_create_int32(env, TEST_FAIL, &res);
@@ -1550,6 +1596,9 @@ static napi_value AudioRendererSetOnMarkReached_06(napi_env env, napi_callback_i
     OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnMarkReachedWriteData;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
     OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
     if (result != AUDIOSTREAM_SUCCESS) {
         napi_create_int32(env, TEST_FAIL, &res);
@@ -1597,6 +1646,9 @@ static napi_value AudioRendererSetOnMarkReached_07(napi_env env, napi_callback_i
     OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnMarkReachedWriteData;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
     OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
     if (result != AUDIOSTREAM_SUCCESS) {
         napi_create_int32(env, TEST_FAIL, &res);
@@ -1640,6 +1692,9 @@ static napi_value AudioRendererSetOnMarkReached_08(napi_env env, napi_callback_i
     OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
     OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
     if (result != AUDIOSTREAM_SUCCESS) {
         napi_create_int32(env, TEST_FAIL, &res);
@@ -1695,6 +1750,9 @@ static napi_value AudioRendererCancelMark_01(napi_env env, napi_callback_info in
     OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
     OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
     if (result != AUDIOSTREAM_SUCCESS) {
         napi_create_int32(env, TEST_FAIL, &res);
@@ -1805,6 +1863,8 @@ static napi_value AudioRendererSetInterruptMode_01(napi_env env, napi_callback_i
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
     callbacks.OH_AudioRenderer_OnInterruptEvent = AudioRendererInterruptEvent;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
     OH_AudioStreamBuilder_SetRendererCallback(builder1, callbacks, nullptr);
     OH_AudioStreamBuilder_SetFrameSizeInCallback(builder1, g_frameSize);
 
@@ -1885,6 +1945,8 @@ static napi_value AudioRendererSetInterruptMode_02(napi_env env, napi_callback_i
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
     callbacks.OH_AudioRenderer_OnInterruptEvent = AudioRendererInterruptEvent;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
     OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
     OH_AudioStreamBuilder_SetFrameSizeInCallback(builder, g_frameSize);
 
@@ -3672,4 +3734,4 @@ static napi_module g_module = {
 extern "C" __attribute__((constructor)) void MyPixelMapRegisterModule(void)
 {
     napi_module_register(&g_module);
-}
+}   

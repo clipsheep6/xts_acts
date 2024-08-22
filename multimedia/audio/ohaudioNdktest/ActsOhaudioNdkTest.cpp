@@ -35,6 +35,45 @@ static int32_t AudioRendererOnWriteData(OH_AudioRenderer* renderer,
     return 0;
 }
 
+// 自定义写入数据函数
+int32_t MyOnWriteData(
+    OH_AudioRenderer* renderer,
+    void* userData,
+    void* buffer,
+    int32_t length)
+{
+    // 将待播放的数据，按length长度写入buffer
+    return 0;
+}
+// 自定义音频流事件函数
+int32_t MyOnStreamEvent(
+    OH_AudioRenderer* renderer,
+    void* userData,
+    OH_AudioStream_Event event)
+{
+    // 根据event表示的音频流事件信息，更新播放器状态和界面
+    return 0;
+}
+// 自定义音频中断事件函数
+int32_t MyOnInterruptEvent(
+    OH_AudioRenderer* renderer,
+    void* userData,
+    OH_AudioInterrupt_ForceType type,
+    OH_AudioInterrupt_Hint hint)
+{
+    // 根据type和hint表示的音频中断信息，更新播放器状态和界面
+    return 0;
+}
+// 自定义异常回调函数
+int32_t MyOnError(
+    OH_AudioRenderer* renderer,
+    void* userData,
+    OH_AudioStream_Result error)
+{
+    // 根据error表示的音频异常信息，做出相应的处理
+    return 0;
+}
+
 void ActsOhAudioNdkTest::SetUpTestCase(void) { }
 
 void ActsOhAudioNdkTest::TearDownTestCase(void) { }
@@ -69,6 +108,9 @@ HWTEST(ActsOhAudioNdkTest, SUM_MULTIMEDIA_AUDIO_OH_AudioRenderer_GetUnderflowCou
 
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    callbacks.OH_AudioRenderer_OnStreamEvent = MyOnStreamEvent;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = MyOnInterruptEvent;
+    callbacks.OH_AudioRenderer_OnError = MyOnError;
     OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, &writeCallbackMock);
 
     OH_AudioRenderer* audioRenderer;
