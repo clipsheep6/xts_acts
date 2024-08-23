@@ -44,6 +44,10 @@ typedef enum UseCaseCode {
     PARAMETER2_ERROR = 2, // 参数2异常
     PARAMETER3_ERROR = 3, // 参数3异常
     PARAMETER4_ERROR = 4, // 参数4异常
+    PARAMETER5_ERROR = 5, // 参数5异常
+    PARAMETER_ENUM1 = 6, // 测试第一个枚举值
+    PARAMETER_ENUM2 = 7, // 测试第二个枚举值
+
 } UseCaseCode;
 
 class NDKMediaLibrary {
@@ -72,6 +76,7 @@ public:
 
     MediaLibrary_ErrorCode MediaAccessHelperApplyChanges(int useCaseCode);
 
+
 private:
     OH_MediaAsset* mediaAsset_; // mediaAsset实例。
     OH_MediaAssetChangeRequest* changeRequest_;
@@ -92,7 +97,10 @@ private:
     MediaLibrary_RequestOptions requestOptions_;
     OH_MediaLibrary_OnImageDataPrepared callback_;
     MediaLibrary_RequestId requestId_;
+
     MediaLibrary_ErrorCode ret_;
+
+
 };
 
 #endif
