@@ -16,15 +16,15 @@
 #include "photoAccessHelper.h"
 #include <string>
 
-NDKMediaLibrary::NDKMediaLibrary() : ret_(MEDIA_LIBRARY_OK)
-{
+NDKMediaLibrary::NDKMediaLibrary()
+    : ret_(MEDIA_LIBRARY_OK) {
     mediaAsset_ = nullptr;
     manager_ = OH_MediaAssetManager_Create();
     if (manager_ == nullptr) {
         DEBUG_LOG("创建mediaAssetManager实例 失败");
     }
     
-    OH_MediaAssetChangeRequest* changeRequest_ = OH_MediaAssetChangeRequest_Create(mediaAsset_);
+    changeRequest_ = OH_MediaAssetChangeRequest_Create(mediaAsset_);
     if (changeRequest_== nullptr) {
         DEBUG_LOG("创建OH_MediaAssetChangeRequest实例 失败");
     }
@@ -135,7 +135,6 @@ MediaLibrary_ErrorCode NDKMediaLibrary::MediaAssetRelease(int useCaseCode)
     return ret_;
 }
 
-
 MediaLibrary_ErrorCode NDKMediaLibrary::ChangeRequestAddResourceWithBuffer(int useCaseCode)
 {
     uint32_t length = 1024;
@@ -143,6 +142,24 @@ MediaLibrary_ErrorCode NDKMediaLibrary::ChangeRequestAddResourceWithBuffer(int u
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_MediaAssetChangeRequest_AddResourceWithBuffer(changeRequest_,
             MediaLibrary_ResourceType::MEDIA_LIBRARY_IMAGE_RESOURCE, buffer, length);
+    } else if (useCaseCode == PARAMETER1_ERROR) {
+        ret_ = OH_MediaAssetChangeRequest_AddResourceWithBuffer(nullptr,
+            MediaLibrary_ResourceType::MEDIA_LIBRARY_IMAGE_RESOURCE, buffer, length);
+    }else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_MediaAssetChangeRequest_AddResourceWithBuffer(changeRequest_,
+            static_cast<MediaLibrary_ResourceType>(-1), buffer, length);
+    } else if (useCaseCode == PARAMETER3_ERROR) {
+        ret_ = OH_MediaAssetChangeRequest_AddResourceWithBuffer(changeRequest_,
+            MediaLibrary_ResourceType::MEDIA_LIBRARY_IMAGE_RESOURCE, nullptr, length);
+    } else if (useCaseCode == PARAMETER4_ERROR) {
+        ret_ = OH_MediaAssetChangeRequest_AddResourceWithBuffer(changeRequest_,
+            MediaLibrary_ResourceType::MEDIA_LIBRARY_IMAGE_RESOURCE, buffer, 0);
+    } else if (useCaseCode == PARAMETER_ENUM1) {
+        ret_ = OH_MediaAssetChangeRequest_AddResourceWithBuffer(changeRequest_,
+            MediaLibrary_ResourceType::MEDIA_LIBRARY_IMAGE_RESOURCE, buffer, length);
+    } else if (useCaseCode == PARAMETER_ENUM2) {
+        ret_ = OH_MediaAssetChangeRequest_AddResourceWithBuffer(changeRequest_,
+            MediaLibrary_ResourceType::MEDIA_LIBRARY_VIDEO_RESOURCE, buffer, length);
     }
 
     if (ret_== MEDIA_LIBRARY_OK) {
@@ -162,8 +179,11 @@ MediaLibrary_ErrorCode NDKMediaLibrary::ChangeRequestSaveCameraPhoto(int useCase
     } else if (useCaseCode == PARAMETER1_ERROR) {
         ret_ = OH_MediaAssetChangeRequest_SaveCameraPhoto(nullptr,
             MediaLibrary_ImageFileType::MEDIA_LIBRARY_IMAGE_JPEG);
+    } else if (useCaseCode == PARAMETER2_ERROR) {
+        ret_ = OH_MediaAssetChangeRequest_SaveCameraPhoto(changeRequest_,
+            static_cast<MediaLibrary_ImageFileType>(-1));
     }
-requestOptions_.deliveryMode = MediaLibrary_DeliveryMode::MEDIA_LIBRARY_FAST_MODE;
+
     if (ret_== MEDIA_LIBRARY_OK) {
         DEBUG_LOG("ChangeRequestSaveCameraPhoto success");
         ret_ = OH_MediaAccessHelper_ApplyChanges(changeRequest_);
@@ -175,11 +195,9 @@ requestOptions_.deliveryMode = MediaLibrary_DeliveryMode::MEDIA_LIBRARY_FAST_MOD
 MediaLibrary_ErrorCode NDKMediaLibrary::ChangeRequestDiscardCameraPhoto(int useCaseCode)
 {
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_MediaAssetChangeRequest_SaveCameraPhoto(changeRequest_,
-            MediaLibrary_ImageFileType::MEDIA_LIBRARY_IMAGE_JPEG);
+        ret_ = OH_MediaAssetChangeRequest_DiscardCameraPhoto(changeRequest_);
     } else if (useCaseCode == PARAMETER1_ERROR) {
-        ret_ = OH_MediaAssetChangeRequest_SaveCameraPhoto(nullptr,
-            MediaLibrary_ImageFileType::MEDIA_LIBRARY_IMAGE_JPEG);
+        ret_ = OH_MediaAssetChangeRequest_DiscardCameraPhoto(nullptr);
     }
 
     if (ret_== MEDIA_LIBRARY_OK) {
@@ -207,10 +225,23 @@ MediaLibrary_ErrorCode NDKMediaLibrary::ManagerRequestImage(int useCaseCode)
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_MediaAssetManager_RequestImage(manager_, mediaAsset_,
             requestOptions_, &requestId_, callback_);
+    } else if (PARAMETER1_ERROR) {
+        ret_ = OH_MediaAssetManager_RequestImage(nullptr, mediaAsset_,
+            requestOptions_, &requestId_, callback_);
     } else if (PARAMETER2_ERROR) {
         ret_ = OH_MediaAssetManager_RequestImage(manager_, nullptr,
             requestOptions_, &requestId_, callback_);
-    }
+    } else if (PARAMETER3_ERROR) {
+        requestOptions_.deliveryMode = static_cast<MediaLibrary_DeliveryMode>(-1);
+        ret_ = OH_MediaAssetManager_RequestImage(manager_, mediaAsset_,
+            requestOptions_, &requestId_, callback_);
+    } else if (PARAMETER4_ERROR) {
+        ret_ = OH_MediaAssetManager_RequestImage(manager_, mediaAsset_,
+            requestOptions_, nullptr, callback_);
+    } else if (PARAMETER5_ERROR) {
+        ret_ = OH_MediaAssetManager_RequestImage(manager_, mediaAsset_,
+            requestOptions_, &requestId_, nullptr);
+    } 
 
     return ret_;
 }
