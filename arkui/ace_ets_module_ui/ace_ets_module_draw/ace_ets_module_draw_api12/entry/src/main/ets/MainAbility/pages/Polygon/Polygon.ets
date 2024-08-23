@@ -31,9 +31,9 @@ struct PolygonExample {
         .key('Polygon_2')
         .fillOpacity(0.6)
 
-        Polygon({ width: '-100', height: '-100' })
+        Polygon({ width: -100, height: -100 })
         .points([[0, 0], [50, 100], [100, 0]])
-        .fill(Color.Blue)
+        .fill(Color.Green)
         .key('Polygon_3')
     }.width('100%').margin({ top: 10 })
   }
