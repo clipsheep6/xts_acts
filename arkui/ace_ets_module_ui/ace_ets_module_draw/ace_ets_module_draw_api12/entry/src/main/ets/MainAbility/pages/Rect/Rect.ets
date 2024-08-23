@@ -24,9 +24,7 @@ struct RectExample {
         .fill(Color.Pink)
         .key('Rect_1')
 
-      Text('100*50圆角为10').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      // 绘制100 * 50,圆角为10矩形
-      Rect({ width: 100, height: 50,radius:10 })
+      
       Rect()
         .width(100)
         .height(50)
@@ -34,6 +32,10 @@ struct RectExample {
         .radiusHeight(15)
         .stroke(Color.Red)
         .key('Rect_2')
+
+        Rect({ width: '-100', height: '-50',radius:'-10' })
+        .key('Rect_3')
+        .fill(Color.Blue)
     }.width('100%').margin({ top: 10 })
   }
 }
