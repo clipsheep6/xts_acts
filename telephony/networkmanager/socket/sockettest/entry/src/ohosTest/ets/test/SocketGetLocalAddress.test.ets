@@ -32,6 +32,12 @@ let netAddr: socket.NetAddress = {
   family: 1
 }
 
+let multiAddr: socket.NetAddress = {
+  address: '239.255.0.1',
+  port: 8088,
+  family: 1
+}
+
 let client_ca: string =
   "-----BEGIN CERTIFICATE-----\n" +
     "MIIDazCCAlOgAwIBAgIURbEi4CXEaH9XNkI5fYJaET0/TtQwDQYJKoZIhvcNAQEL\n" +
@@ -240,7 +246,7 @@ export default function SocketGetLocalSocketTest() {
       console.info(`${caseName} test start`);
       let multicast: socket.MulticastSocket = socket.constructMulticastSocketInstance();
       try {
-        multicast.bind(bindAddr, (err: BusinessError) => {
+        multicast.bind(multiAddr, (err: BusinessError) => {
           if (err) {
             console.info(`${caseName} err: ${JSON.stringify(err)}`);
             ExpectFail();
