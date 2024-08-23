@@ -74,7 +74,7 @@ export default function PolylineTest() {
      * @tc.size :
      */
     it('Polyline_002', 0, async (done: Function) => {
-      console.info('Polyline_002 START');
+      console.info('Polygon_002 START');
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('Polyline_2');
       await CommonFunc.sleep(200);
@@ -83,6 +83,48 @@ export default function PolylineTest() {
       await CommonFunc.sleep(1000);
       expect(String(obj.$attrs.height)).assertEqual('100.00vp');
       console.info('Polyline_002 END');
+      done();
+    });
+
+    /**
+     * @tc.number
+     * @tc.name      PolylineTest_003
+     * @tc.desc      api
+     * @tc.level:
+     * @tc.type :
+     * @tc.size :
+     */
+    it('Polyline_003', 0, async (done: Function) => {
+      console.info('Polyline_003 START');
+      await CommonFunc.sleep(1000);
+      let strJson = getInspectorByKey('Polyline_3');
+      await CommonFunc.sleep(200);
+      let obj: ESObject = JSON.parse(strJson);
+      console.info("Polyline_003 component obj is: " + JSON.stringify(obj));
+      await CommonFunc.sleep(1000);
+      expect(String(obj.$attrs.height)).assertEqual('0.00vp');
+      console.info('Polyline_003 END');
+      done();
+    });
+
+    /**
+     * @tc.number
+     * @tc.name      PolylineTest_004
+     * @tc.desc      api
+     * @tc.level:
+     * @tc.type :
+     * @tc.size :
+     */
+    it('Polyline_004', 0, async (done: Function) => {
+      console.info('Polyline_004 START');
+      await CommonFunc.sleep(1000);
+      let strJson = getInspectorByKey('Polyline_3');
+      await CommonFunc.sleep(200);
+      let obj: ESObject = JSON.parse(strJson);
+      console.info("Polyline_004 component obj is: " + JSON.stringify(obj));
+      await CommonFunc.sleep(1000);
+      expect(String(obj.$attrs.height)).assertEqual('0.00vp');
+      console.info('Polyline_004 END');
       done();
     });
   })
