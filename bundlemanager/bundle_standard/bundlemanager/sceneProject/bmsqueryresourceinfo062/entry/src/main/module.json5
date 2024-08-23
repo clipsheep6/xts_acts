@@ -1,0 +1,53 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon3",
+        "label": "$string:EntryAbility_label3",
+        "startWindowIcon": "$media:icon3",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "AccessibilityExtAbility",
+        "srcEntry": "./ets/accessibilityextability/AccessibilityExtAbility.ets",
+        "description": "$string:AccessibilityExtAbility_desc",
+        "label": "$string:AccessibilityExtAbility_label",
+        "icon": "$media:app_icon2",
+        "type": "accessibility",
+        "metadata": [
+          {
+            "name": "ohos.accessibleability",
+            "resource": "$profile:accessibilityextability"
+          }
+        ]
+      }
+    ]
+  }
+}
