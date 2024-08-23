@@ -101,6 +101,7 @@ export default function PolylineTest() {
       await CommonFunc.sleep(200);
       let obj: ESObject = JSON.parse(strJson);
       console.info("Rect_003 component obj is: " + JSON.stringify(obj));
+      console.info("Rect_003 radius: " + JS ON.stringify(obj.$attrs.radius));
       await CommonFunc.sleep(1000);
       expect(String(obj.$attrs.radius)).assertEqual('true');
       console.info('Rect_003 END');
@@ -148,6 +149,50 @@ export default function PolylineTest() {
       console.info('Rect_005 END');
       done();
     });
+
+    /**
+     * @tc.number
+     * @tc.name      RectTest_006
+     * @tc.desc      api
+     * @tc.level:
+     * @tc.type :
+     * @tc.size :
+     */
+    it('Rect_006', 0, async (done: Function) => {
+      console.info('Rect_006 START');
+      await CommonFunc.sleep(1000);
+      let strJson = getInspectorByKey('Rect_3');
+      await CommonFunc.sleep(200);
+      let obj: ESObject = JSON.parse(strJson);
+      console.info("Rect_006 component obj is: " + JSON.stringify(obj));
+      await CommonFunc.sleep(1000);
+      expect(String(obj.$attrs.width)).assertEqual('0.00vp');
+      console.info('Rect_006 END');
+      done();
+    });
+
+    /**
+     * @tc.number
+     * @tc.name      RectTest_007
+     * @tc.desc      api
+     * @tc.level:
+     * @tc.type :
+     * @tc.size :
+     */
+    it('Rect_007', 0, async (done: Function) => {
+      console.info('Rect_007 START');
+      await CommonFunc.sleep(1000);
+      let strJson = getInspectorByKey('Rect_3');
+      await CommonFunc.sleep(200);
+      let obj: ESObject = JSON.parse(strJson);
+      console.info("Rect_007 component obj is: " + JSON.stringify(obj));
+      await CommonFunc.sleep(1000);
+      expect(String(obj.$attrs.height)).assertEqual('0.00vp');
+      console.info('Rect_007 END');
+      done();
+    });
+
+
   })
 }
 
