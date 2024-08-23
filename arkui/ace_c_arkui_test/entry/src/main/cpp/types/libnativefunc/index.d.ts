@@ -5324,3 +5324,43 @@ export const native_011: () => number;
 export const native_012: () => number;
 export const native_013: () => number;
 export const native_014: () => number;
+
+export const drag_getDragEvent_001: () => number;
+
+export const drag_getDataTypes_001: () => number;
+
+export const drag_setDragEventStrictReportWidthNode_001: () => number;
+export const drag_setDragEventStrictReportWidthNode_002: () => number;
+export const drag_setDragEventStrictReportWidthContext_003: () => number;
+export const drag_setDragEventStrictReportWidthContext_004: () => number;
+
+export const drag_setNodeAllowedDropDataTypes_001: () => number;
+export const drag_disallowNodeAnyDropDataTypes_002: () => number;
+export const drag_allowNodeAllDropDataTypes_003: () => number;
+export const drag_setNodeDraggable_004: () => number;
+
+export const drag_SetNodeDragPreview_001: () => number;
+
+export const drag_DragPreviewOption_Dispose_001: () => number;
+export const drag_DragPreviewOption_SetScaleMode_002: () => number;
+export const drag_DragPreviewOption_SetDefaultShadowEnabled_003: () => number;
+export const drag_DragPreviewOption_SetDefaultRadiusEnabled_004: () => number;
+export const drag_DragPreviewOption_SetNumberBadgeEnabled_005: () => number;
+export const drag_DragPreviewOption_SetBadgeNumber_006: () => number;
+export const drag_DragPreviewOption_SetDefaultAnimationBeforeLiftingEnabled_007: () => number;
+export const drag_DragPreviewOption_SetNodeDragPreviewOption_008: () => number;
+
+export const drag_DragAction_Dispose_001: () => number;
+export const drag_DragAction_SetPointerId_002: () => number;
+export const drag_DragAction_SetPixelMaps_003: () => number;
+export const drag_DragAction_SetTouchPointX_004: () => number;
+export const drag_DragAction_SetTouchPointY_005: () => number;
+export const drag_DragAction_SetDragPreviewOption_006: () => number;
+export const drag_DragAction_RegisterStatusListener_007: () => number;
+export const drag_DragAction_UnregisterStatusListener_008: () => number;
+export const drag_DragAction_StartDrag_009: () => number;
+export const drag_DragAction_DragAndDropInfo_0010: () => number;
+
+export const drag_setGetUdmfData_001: () => number;
+export const drag_setGetUdmfData_002: () => number;
+export const drag_setGetUdmfData_003: () => number;
