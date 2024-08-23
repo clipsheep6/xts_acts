@@ -68,7 +68,7 @@ struct RichEditor3 {
           })
         }).id("getSelection").margin(20)
         Button("setContent").onClick(() => {
-          this.controller.addTextSpan("测试文字测试文字测试文字测试文字", {
+          this.controller.addTextSpan("测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字", {
             paragraphStyle: {
               textAlign: TextAlign.Start,
               leadingMargin: 32
