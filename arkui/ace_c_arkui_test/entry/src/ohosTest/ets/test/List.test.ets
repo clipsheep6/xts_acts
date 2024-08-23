@@ -563,6 +563,23 @@ import nativeXComponentTest from './nativexcomponent/NativeXComponentTest.test'
 import mouseEventTest from './mouseevent/MouseEventTest.test'
 import pointerEventTest from './pointerevent/PointerEventTest.test'
 import nativeTest from './native/nativeTest.test'
+import DragGetDragEventTest from "./drag/DragGetDragEvent.test"
+import DragEventGetDataTypesTest from "./drag/DragEventGetDataTypes.test"
+import DragEventDisableDefaultDropAnimationTest from "./drag/DragEventDisableDefaultDropAnimation.test"
+import DragGetPreDragStatusTest from "./drag/DragGetPreDragStatus.test"
+import DragEventSetSuggestedDropOperationTest from "./drag/DragEventSetSuggestedDropOperation.test"
+import DragEventSetDragResultTest from "./drag/DragEventSetDragResult.test"
+import DragEventGetDataTypesCountTest from "./drag/DragEventGetDataTypesCount.test"
+import DragEventGetDragResultTest from "./drag/DragEventGetDragResult.test"
+import DragEventGetXYTest from "./drag/DragEventGetXY.test"
+import DragEventGetWidthHeightTest from "./drag/DragEventGetWidthHeight.test"
+import DragEventGetModifierKeyStatesTest from "./drag/DragEventGetModifierKeyStates.test"
+import DragSetDragEventStrictReportTest from "./drag/DragSetDragEventStrictReport.test"
+import DragAllowDropDataTypesTest from "./drag/DragAllowDropDataTypes.test"
+import DragSetNodeDragPreviewTest from "./drag/DragSetNodeDragPreview.test"
+import DragDragPreviewOptionTest from "./drag/DragDragPreviewOption.test"
+import DragDragActionTest from "./drag/DragDragAction.test"
+import DragSetGetUdmfDataTest from "./drag/DragSetGetUdmfData.test"
 
 export default function testsuite() {
   datePickerAccessibilityDescriptionTest()
@@ -1116,5 +1133,21 @@ export default function testsuite() {
   mouseEventTest()
   pointerEventTest()
   nativeTest()
-
+  DragGetDragEventTest()
+  DragEventGetDataTypesTest()
+  DragEventDisableDefaultDropAnimationTest()
+  DragGetPreDragStatusTest()
+  DragEventSetSuggestedDropOperationTest()
+  DragEventSetDragResultTest()
+  DragEventGetDataTypesCountTest()
+  DragEventGetDragResultTest()
+  DragEventGetXYTest()
+  DragEventGetWidthHeightTest()
+  DragEventGetModifierKeyStatesTest()
+  DragSetDragEventStrictReportTest()
+  DragAllowDropDataTypesTest()
+  DragSetNodeDragPreviewTest()
+  DragDragPreviewOptionTest()
+  DragDragActionTest()
+  DragSetGetUdmfDataTest()
 }
