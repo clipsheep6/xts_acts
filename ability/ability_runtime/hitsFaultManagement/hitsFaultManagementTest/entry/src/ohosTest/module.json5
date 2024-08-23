@@ -14,6 +14,9 @@
         "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
       },
       {
+        "name": "ohos.permission.INSTALL_BUNDLE"
+      },
+      {
         "name": "ohos.permission.DISTRIBUTED_DATASYNC",
         "reason": "$string:permission_reason",
         "usedScene": {
