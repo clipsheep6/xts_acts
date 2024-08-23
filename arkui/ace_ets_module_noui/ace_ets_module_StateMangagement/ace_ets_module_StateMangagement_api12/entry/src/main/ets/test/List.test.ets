@@ -58,6 +58,16 @@ import Provider5Test from './ProviderTest/Provider5.test';
 import Provider14Test from './ProviderTest/Provider14.test';
 import Provider15Test from './ProviderTest/Provider15.test';
 import Provider18Test from './ProviderTest/Provider18.test';
+import getTarget1Test from './getTargetTest/getTarget1.test';
+import getTarget2Test from './getTargetTest/getTarget2.test';
+import getTarget3Test from './getTargetTest/getTarget3.test';
+import getTarget4Test from './getTargetTest/getTarget4.test';
+import getTarget5Test from './getTargetTest/getTarget5.test';
+import getTarget6Test from './getTargetTest/getTarget6.test';
+import ComputedTest from './ComputedTest/Computed.test';
+import makeObservedTest from './makeObservedTest/makeObserved.test';
+import ParamTest from './ParamTest/Param.test';
+import twoWayBindTest from './twoWayBindTest/twoWayBind.test';
 export default function testsuite() {
   ExtendTrackTest();
   NestTrackTest();
@@ -105,4 +115,14 @@ export default function testsuite() {
   Provider14Test();
   Provider15Test();
   Provider18Test();
+  getTarget1Test();
+  getTarget2Test();
+  getTarget3Test();
+  getTarget4Test();
+  getTarget5Test();
+  getTarget6Test();
+  ComputedTest();
+  makeObservedTest();
+  ParamTest();
+  twoWayBindTest();
 }
