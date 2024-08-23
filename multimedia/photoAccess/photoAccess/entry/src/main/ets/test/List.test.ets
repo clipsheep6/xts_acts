@@ -39,6 +39,7 @@ import createAssetTest from './PhotoAccessHelper/createAsset'
 import createDeleteRequestTest from './PhotoAccessHelper/createDeleteRequest'
 import getAlbumsTest from './PhotoAccessHelper/getAlbums'
 import getAssetsTest from './PhotoAccessHelper/getAssets'
+import getIndexConstructProgressTest from './PhotoAccessHelper/getIndexConstructProgress'
 import unRegisterChangeTest from './PhotoAccessHelper/unRegisterChange'
 import registerChangeTest from './PhotoAccessHelper/registerChange'
 import releaseTest from './PhotoAccessHelper/release'
@@ -103,6 +104,7 @@ export default function testsuite () {
   createDeleteRequestTest()
   getAlbumsTest()
   getAssetsTest()
+  getIndexConstructProgressTest()
   unRegisterChangeTest()
   registerChangeTest()
   releaseTest()
