@@ -25,8 +25,8 @@ workerPort.onmessage = (e : MessageEvents): void => {
     hilog.info(0x0000, 'testTag', 'context1: %{public}s', JSON.stringify(context1));
     if (context1.applicationInfo.name == 'com.example.getapplicationcontexthap') {
       commonEventManager.publish('0400', (err, data)=>{
-        hilog.info(0x0000, 'testTag', 'customData, publish msg, err=' + JSON.stringify(err));
-        hilog.info(0x0000, 'testTag', 'customData, publish msg, data=' + JSON.stringify(data));
+        hilog.info(0x0000, 'testTag', 'customData, 0400 msg, err=' + JSON.stringify(err));
+        hilog.info(0x0000, 'testTag', 'customData, 0400 msg, data=' + JSON.stringify(data));
       })
     } else {
       hilog.info(0x0000, 'testTag', 'context1.applicationInfo.name = %{public}s', context1.applicationInfo.name);

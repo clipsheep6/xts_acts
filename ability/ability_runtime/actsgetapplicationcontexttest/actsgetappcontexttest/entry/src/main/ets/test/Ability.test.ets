@@ -139,7 +139,7 @@ export default function abilityTest() {
       try {
         console.log(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0300 start!!!')
         await driver.delayMs(500);
-        let name = await driver.findComponent(ON.id('get'));
+        let name = await driver.findComponent(ON.id('get1'));
         console.log(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0300 name = ', name)
         await driver.delayMs(500);
         await name.click();
@@ -162,52 +162,6 @@ export default function abilityTest() {
     })
 
     /**
-     * @tc.number : SUB_Ability_AbilityRuntime_GetApplicationContext_0400
-     * @tc.name   : Call the global function GetApplicationContext in worker.
-     * @tc.desc   : Call the global GetApplicationContext function to obtain applicationInfo and sandbox path.
-     * @tc.type   : Function
-     * @tc.size   : MediumTest
-     * @tc.level  : Level 1
-     */
-    // it('SUB_Ability_AbilityRuntime_GetApplicationContext_0400', 0, async (done: Function) => {
-    //   console.log(TAG, 'StartAbility start');
-    //   let want: Want = {
-    //     bundleName: 'com.example.getapplicationcontexthap',
-    //     abilityName: 'EntryAbility'
-    //   };
-    //   console.log(TAG, 'getAbilityDelegator end');
-    //   await abilityDelegator.startAbility(want).then(() => {
-    //     console.log(TAG, 'StartAbility successfully.');
-    //   }).catch((err: BusinessError) => {
-    //     console.error(TAG, 'StartAbility err: ' + err.code);
-    //   })
-    //   sleep(1000);
-    //   try {
-    //     let driver = Driver.create();
-    //     console.log(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0400 start!!!');
-    //     await driver.delayMs(500);
-    //     let name = await driver.findComponent(ON.id('worker1'));
-    //     await driver.delayMs(500);
-    //     await name.click();
-    //     let subscriber: commonEventManager.CommonEventSubscriber;
-    //     commonEventManager.createSubscriber(ACTS_CallFunction).then(async (data) => {
-    //       console.info(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0400 createSubscriber data');
-    //       subscriber = data;
-    //       commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
-    //         if (data.event == '0400') {
-    //           console.info(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0400 success');
-    //           done();
-    //         }
-    //       });
-    //     });
-    //   } catch (err) {
-    //     console.log('SUB_Ability_AbilityRuntime_GetApplicationContext_0400 error: ', JSON.stringify(err));
-    //     expect().assertFail();
-    //     done();
-    //   }
-    // })
-
-    /**
      * @tc.number : SUB_Ability_AbilityRuntime_GetApplicationContext_0500
      * @tc.name   : Call the global function GetApplicationContext in process.
      * @tc.desc   : Call the global GetApplicationContext function to obtain applicationInfo and sandbox path.
@@ -215,43 +169,43 @@ export default function abilityTest() {
      * @tc.size   : MediumTest
      * @tc.level  : Level 1
      */
-    // it('SUB_Ability_AbilityRuntime_GetApplicationContext_0500', 0, async (done: Function) => {
-    //   console.log(TAG, 'StartAbility start');
-    //   let want: Want = {
-    //     bundleName: 'com.example.getapplicationcontexthap',
-    //     abilityName: 'EntryAbility'
-    //   };
-    //   console.log(TAG, 'getAbilityDelegator end');
-    //   await abilityDelegator.startAbility(want).then(() => {
-    //     console.log(TAG, 'StartAbility successfully.');
-    //   }).catch((err: BusinessError) => {
-    //     console.error(TAG, 'StartAbility err: ' + err.code);
-    //   })
-    //   sleep(1000);
-    //   try {
-    //     let driver = Driver.create();
-    //     console.log(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0500 start!!!');
-    //     await driver.delayMs(500);
-    //     let name = await driver.findComponent(ON.id('process1'));
-    //     await driver.delayMs(500);
-    //     await name.click();
-    //     let subscriber: commonEventManager.CommonEventSubscriber;
-    //     commonEventManager.createSubscriber(ACTS_CallFunction).then(async (data) => {
-    //       console.info(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0500 createSubscriber data');
-    //       subscriber = data;
-    //       commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
-    //         if (data.event == '0500') {
-    //           console.info(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0500 success');
-    //           done();
-    //         }
-    //       });
-    //     });
-    //   } catch (err) {
-    //     console.log('SUB_Ability_AbilityRuntime_GetApplicationContext_0500 error: ', JSON.stringify(err));
-    //     expect().assertFail();
-    //     done();
-    //   }
-    // })
+    it('SUB_Ability_AbilityRuntime_GetApplicationContext_0500', 0, async (done: Function) => {
+      console.log(TAG, 'StartAbility start');
+      let want: Want = {
+        bundleName: 'com.example.getapplicationcontexthap',
+        abilityName: 'EntryAbility'
+      };
+      console.log(TAG, 'getAbilityDelegator end');
+      await abilityDelegator.startAbility(want).then(() => {
+        console.log(TAG, 'StartAbility successfully.');
+      }).catch((err: BusinessError) => {
+        console.error(TAG, 'StartAbility err: ' + err.code);
+      })
+      sleep(1000);
+      try {
+        let driver = Driver.create();
+        console.log(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0500 start!!!');
+        await driver.delayMs(500);
+        let name = await driver.findComponent(ON.id('process1'));
+        await driver.delayMs(500);
+        await name.click();
+        let subscriber: commonEventManager.CommonEventSubscriber;
+        commonEventManager.createSubscriber(ACTS_CallFunction).then(async (data) => {
+          console.info(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0500 createSubscriber data');
+          subscriber = data;
+          commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
+            if (data.event == '0500') {
+              console.info(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0500 success');
+              done();
+            }
+          });
+        });
+      } catch (err) {
+        console.log('SUB_Ability_AbilityRuntime_GetApplicationContext_0500 error: ', JSON.stringify(err));
+        expect().assertFail();
+        done();
+      }
+    })
 
     /**
      * @tc.number : SUB_Ability_AbilityRuntime_GetApplicationContext_0600

@@ -27,8 +27,8 @@ export default class FeatureAbility extends UIAbility {
       let context1 = application.getApplicationContext();
       hilog.info(0x0000, 'testTag', 'context1: %{public}s', JSON.stringify(context1));
       commonEventManager.publish('0900', (err, data)=>{
-        hilog.info(0x0000, 'testTag', 'customData, publish msg, err=' + JSON.stringify(err));
-        hilog.info(0x0000, 'testTag', 'customData, publish msg, data=' + JSON.stringify(data));
+        hilog.info(0x0000, 'testTag', 'customData, 0900 msg, err=' + JSON.stringify(err));
+        hilog.info(0x0000, 'testTag', 'customData, 0900 msg, data=' + JSON.stringify(data));
       })
     } catch (err) {
       hilog.info(0x0000, 'testTag', 'err: %{public}s', JSON.stringify(err));

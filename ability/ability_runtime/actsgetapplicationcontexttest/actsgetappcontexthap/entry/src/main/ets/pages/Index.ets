@@ -12,13 +12,15 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import application from '@ohos.app.ability.application';
+import application from '@ohos.app.ability.Application';
 import commonEventManager from '@ohos.commonEventManager';
 import worker from '@ohos.worker';
 import hilog from '@ohos.hilog';
 import { BusinessError } from '@ohos.base';
 import childProcessManager from '@ohos.app.ability.childProcessManager'
 import { getContextEntry } from '../entryability/EntryAbility';
+import { ChildProcessArgs } from '@ohos.app.ability.ChildProcessArgs';
+import { ChildProcessOptions } from '@ohos.app.ability.ChildProcessOptions';
 
 @Entry
 @Component
@@ -27,13 +29,13 @@ struct Index {
   build() {
     Column() {
       Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-        Text('Get Context')
+        Text("Get Context")
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
       }
       .margin({ top: 10 })
       Button('application get')
-        .id('get')
+        .id('get1')
         .margin(10)
         .width('60%')
         .fontSize(20)
@@ -59,8 +61,8 @@ struct Index {
                 context1.cloudFileDir == context2.cloudFileDir
             ) {
               commonEventManager.publish('0300', (err, data)=>{
-                hilog.info(0x0000, 'testTag', 'customData, 0100 msg, err=' + JSON.stringify(err));
-                hilog.info(0x0000, 'testTag', 'customData, 0100 msg, data=' + JSON.stringify(data));
+                hilog.info(0x0000, 'testTag', 'customData, 0300 msg, err=' + JSON.stringify(err));
+                hilog.info(0x0000, 'testTag', 'customData, 0300 msg, data=' + JSON.stringify(data));
               })
             } else {
               hilog.info(0x0000, 'testTag', 'context1 failed');
@@ -79,13 +81,14 @@ struct Index {
         .type(ButtonType.Capsule)
         .onClick(() => {
           try {
-            let mode: number;
-            try {
-              mode = childProcessManager.StartMode.SELF_FORK;
-            } catch (err) {
-              mode = 0;
-            }
-            childProcessManager.startChildProcess('./ets/process/DemoProcess.ts', mode)
+            let args: ChildProcessArgs = {
+              entryParams: "sendSanToAppSpawn"
+            };
+            let options: ChildProcessOptions = {
+              isolationMode: false
+            };
+            let arkProcessPath = 'entry/./ets/process/DemoProcess.ts';
+            childProcessManager.startArkChildProcess(arkProcessPath, args, options)
               .then((data) => {
                 console.log(`startChildProcess success, pid: ${data}`);
               }, (err: BusinessError) => {
@@ -94,22 +97,6 @@ struct Index {
           } catch (err) {
             console.error(`startChildProcess error, errorCode: ${(err as BusinessError).code}`);
           }
-        })
-
-        Button('worker get')
-        .id('worker1')
-        .margin(10)
-        .width('60%')
-        .fontSize(20)
-        .fontColor(Color.White)
-        .type(ButtonType.Capsule)
-        .onClick(() => {
-          console.log('testTag worker start');
-          let w: worker.ThreadWorker = new worker.ThreadWorker('../Workers/MyWorker.ts');
-          w.onmessage = (): void => {}
-          w.onerror = (): void => {}
-          w.postMessage({'type': 0})
-          w.terminate()
         })
     }
     .height('100%')

@@ -35,7 +35,7 @@ export default class InstanceUIExtAbility extends UIExtensionAbility {
         hilog.info(0x0000, 'testTag', 'Ability onCreate');
         let context1 = application.getApplicationContext();
         hilog.info(0x0000, 'testTag', 'context1: 0800 %{public}s', JSON.stringify(context1));
-        if (context1.applicationInfo.name == "com.example.getapplicationcontexthap" ) {
+        if (context1.applicationInfo.name == 'com.example.getapplicationcontexthap') {
           commonEventManager.publish('0800', (err, data)=>{
             hilog.info(0x0000, 'testTag', 'customData, 0800 msg, err=' + JSON.stringify(err));
             hilog.info(0x0000, 'testTag', 'customData, 0800 msg, data=' + JSON.stringify(data));

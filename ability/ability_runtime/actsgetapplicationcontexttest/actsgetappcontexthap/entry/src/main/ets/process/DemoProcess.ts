@@ -20,7 +20,7 @@ import ChildProcess from '@ohos.app.ability.ChildProcess';
 
 export default class DemoProcess extends ChildProcess {
   onStart() {
-    console.log("testTag DemoProcess OnStart() called");
+    console.log('testTag DemoProcess OnStart() called');
     let context1 = application.getApplicationContext();
     hilog.info(0x0000, 'testTag', 'context1: %{public}s', JSON.stringify(context1));
     commonEventManager.publish('0500', (err, data)=>{

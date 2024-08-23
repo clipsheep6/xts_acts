@@ -43,8 +43,8 @@ export default class StartAbility extends UIAbility {
           context1.cloudFileDir == context2.cloudFileDir
       ) {
         commonEventManager.publish('0200', (err, data)=>{
-          hilog.info(0x0000, 'testTag', 'customData, 0100 msg, err=' + JSON.stringify(err));
-          hilog.info(0x0000, 'testTag', 'customData, 0100 msg, data=' + JSON.stringify(data));
+          hilog.info(0x0000, 'testTag', 'customData, 0200 msg, err=' + JSON.stringify(err));
+          hilog.info(0x0000, 'testTag', 'customData, 0200 msg, data=' + JSON.stringify(data));
         })
       } else {
         hilog.info(0x0000, 'testTag', 'context1 failed');

@@ -52,8 +52,8 @@ export default class HotStartAbility extends UIAbility {
           context1.cloudFileDir == context2.cloudFileDir
       ) {
         commonEventManager.publish('0700', (err, data)=>{
-          hilog.info(0x0000, 'testTag', 'customData, 0100 msg, err=' + JSON.stringify(err));
-          hilog.info(0x0000, 'testTag', 'customData, 0100 msg, data=' + JSON.stringify(data));
+          hilog.info(0x0000, 'testTag', 'customData, 0700 msg, err=' + JSON.stringify(err));
+          hilog.info(0x0000, 'testTag', 'customData, 0700 msg, data=' + JSON.stringify(data));
         })
       } else {
         hilog.info(0x0000, 'testTag', 'context1 failed');
