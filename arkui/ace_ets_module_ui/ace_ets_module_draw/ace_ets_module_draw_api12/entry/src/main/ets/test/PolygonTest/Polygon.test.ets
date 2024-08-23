@@ -85,6 +85,48 @@ export default function PolygonTest() {
       console.info('Polygon_002 END');
       done();
     });
+
+     /**
+     * @tc.number
+     * @tc.name      PolygonTest_003
+     * @tc.desc      Polygon Height
+     * @tc.level:
+     * @tc.type :
+     * @tc.size :
+     */
+    it('Polygon_003', 0, async (done: Function) => {
+      console.info('Polygon_003 START');
+      await CommonFunc.sleep(1000);
+      let strJson = getInspectorByKey('Polygon_3');
+      await CommonFunc.sleep(200);
+      let obj: ESObject = JSON.parse(strJson);
+      console.info("Polygon_003 component obj is: " + JSON.stringify(obj));
+      await CommonFunc.sleep(1000);
+      expect(String(obj.$attrs.width)).assertEqual('0.00vp');
+      console.info('Polygon_003 END');
+      done();
+    });
+
+     /**
+     * @tc.number
+     * @tc.name      PolygonTest_004
+     * @tc.desc      Polygon Height
+     * @tc.level:
+     * @tc.type :
+     * @tc.size :
+     */
+    it('Polygon_004', 0, async (done: Function) => {
+      console.info('Polygon_004 START');
+      await CommonFunc.sleep(1000);
+      let strJson = getInspectorByKey('Polygon_3');
+      await CommonFunc.sleep(200);
+      let obj: ESObject = JSON.parse(strJson);
+      console.info("Polygon_004 component obj is: " + JSON.stringify(obj));
+      await CommonFunc.sleep(1000);
+      expect(String(obj.$attrs.height)).assertEqual('0.00vp');
+      console.info('Polygon_004 END');
+      done();
+    });
   })
 }
 
