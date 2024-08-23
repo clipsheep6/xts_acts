@@ -41,41 +41,41 @@ function sleep(ms: number) {
 
 let context: common.UIAbilityContext | undefined;
 
-async function getPermissions() {
-  try {
-    console.log('TestUIAbilityContext context:' + JSON.stringify(context));
-    console.log('TestUIAbilityContext getPermission beforeAll');
-    let list: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
-    let atManager = abilityAccessCtrl.createAtManager();
-    atManager.requestPermissionsFromUser(context, list, (err, result) => {
-      if (err) {
-        console.log(`TestUIAbilityContext getPermission err ${JSON.stringify(err)}`);
-      } else {
-        console.log(`TestUIAbilityContext getPermission success`);
-      }
-    });
-    await sleep(1500);
-    const driver: Driver = Driver.create();
-    await sleep(1500);
-    const allowBtn: Component = await driver.findComponent(ON.text(' 允许 '));
-    if (allowBtn) {
-      await allowBtn.click();
-    }
-  } catch (error) {
-    console.log("TestUIAbilityContext getPermission catch:" + JSON.stringify(error));
-  }
-}
-
+// async function getPermissions() {
+//   try {
+//     console.log('TestUIAbilityContext context:' + JSON.stringify(context));
+//     console.log('TestUIAbilityContext getPermission beforeAll');
+//     let list: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
+//     let atManager = abilityAccessCtrl.createAtManager();
+//     atManager.requestPermissionsFromUser(context, list, (err, result) => {
+//       if (err) {
+//         console.log(`TestUIAbilityContext getPermission err ${JSON.stringify(err)}`);
+//       } else {
+//         console.log(`TestUIAbilityContext getPermission success`);
+//       }
+//     });
+//     await sleep(1500);
+//     const driver: Driver = Driver.create();
+//     await sleep(1500);
+//     const allowBtn: Component = await driver.findComponent(ON.text(' 允许 '));
+//     if (allowBtn) {
+//       await allowBtn.click();
+//     }
+//   } catch (error) {
+//     console.log("TestUIAbilityContext getPermission catch:" + JSON.stringify(error));
+//   }
+// }
+//
 export default function FaultManagementTest() {
   describe('UriAuthorizationAndRevocationTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async () => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
-      let testAbility = await delegator.getCurrentTopAbility();
-      context = testAbility.context;
-      console.log('TestUIAbilityContext topAbility:' + JSON.stringify(testAbility));
-      await getPermissions();
+      // let testAbility = await delegator.getCurrentTopAbility();
+      // context = testAbility.context;
+      // console.log('TestUIAbilityContext topAbility:' + JSON.stringify(testAbility));
+      // await getPermissions();
       try {
         installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
           data.install(['/data/storage/el2/base/files/hitsFaultManagementWingman1.hap'], (err: BusinessError) => {
