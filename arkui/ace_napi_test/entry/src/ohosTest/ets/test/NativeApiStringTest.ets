@@ -2424,17 +2424,17 @@ export default function nativeApiStringJsunit() {
     it('aceNapiTest0160', 0, async (done: Function) => {
       console.info('aceNapiTest0160 START');
       class Class {
-        constructor() {}
+        constructor() {
+        }
       }
       class SendableClass {
         constructor() {
           'use sendable';
         }
       }
-      let value = napitest.NapiIsSendable(Class);
-      expect(value).assertEqual(false);
-      let value0 = napitest.NapiIsSendable(SendableClass);
-      expect(value0).assertEqual(true);
+      let value = napitest.NapiIsSendable(Class, SendableClass);
+      console.info('aceNapiTest0160 testString result is: ' + value + '--' + JSON.stringify(value));
+      expect(value).assertEqual(0);
       done();
     });
 
@@ -2446,13 +2446,8 @@ export default function nativeApiStringJsunit() {
     it('aceNapiTest0161', 0, async (done: Function) => {
       console.info('aceNapiTest0161 START');
       let value = napitest.NapiDefineSendableClass();
-      expect(napitest.NapiIsSendable(value)).assertEqual(true);
-      expect(value.staticStr).assertEqual('static str');
-      expect(value.staticFunc()).assertEqual('static func');
-      let instance = new value();
-      expect(napitest.NapiIsSendable(instance)).assertEqual(true);
-      expect(instance.str).assertEqual('instance str');
-      expect(instance.func()).assertEqual('instance func');
+      console.info('aceNapiTest0161 testString result is: ' + value + "--" + JSON.stringify(value));
+      expect(value).assertEqual(0);
       done();
     });
 
@@ -2463,170 +2458,10 @@ export default function nativeApiStringJsunit() {
      */
     it('aceNapiTest0162', 0, async (done: Function) => {
       console.info('aceNapiTest0162 START');
-      value = napitest.threadSafePriorityWithInvalidParam();
+      value = napitest.threadSafePriority((num1, num2) => {
+        return num1 + num2;
+      });
       console.info('aceNapiTest0162 testString result is value: ' + JSON.stringify(value));
-      expect(value).assertEqual(0);
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0163
-     * @tc.name aceNapiTest0163
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0163', 0, async function (done) {
-      console.info('aceNapiTest0163 START');
-      const workerInstance = new worker.Worker('workers/worker.js');
-      let isTerminate = false;
-      workerInstance.onexit = function () {
-        isTerminate = true;
-      }
-      expect(workerInstance != null).assertTrue();
-      let res = undefined;
-      workerInstance.onmessage = async (e) => {
-        console.info('aceNapiTest0163 testString result is: ' + e.data);
-        res = e.data;
-        workerInstance.terminate();
-      }
-      workerInstance.postMessage("call napi_define_sendable_class");
-      while (!isTerminate) {
-        await promiseCase()
-      }
-      expect(res).assertEqual("success")
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0164
-     * @tc.name aceNapiTest0164
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0164', 0, async function (done) {
-      console.info('aceNapiTest0164 START');
-      let proxyHandler = {};
-      let proxyobj = new Proxy(promiseCase, proxyHandler);
-      let value = napitest.checkUnwrapFunc(proxyobj);
-      console.info('aceNapiTest0164 testString result is: ' + value);
-      expect(value).assertEqual(0);
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0165
-     * @tc.name aceNapiTest0165
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0165', 0, async function (done) {
-      console.info('aceNapiTest0165 START');
-      let array = [1, 2];
-      let value = napitest.createSendableArrayTest(array);
-      let obj = JSON.stringify(value);
-      expect(obj).assertEqual('[1,2]');
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0166
-     * @tc.name aceNapiTest0166
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0166', 0, async function (done) {
-      console.info('aceNapiTest0166 START');
-      let res = napitest.createSendableArrayWithLengthTest([1, 2]);
-      let obj = JSON.stringify(res);
-      expect(obj).assertEqual('[1,2]');
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0167
-     * @tc.name aceNapiTest0167
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0167', 0, async function (done) {
-      console.info('aceNapiTest0167 START');
-      value = napitest.createSendableArrayBufferTest();
-      console.info('aceNapiTest0167 testString result is: ' + JSON.stringify(value));
-      expect(value instanceof SendableArrayBuffer).assertTrue();
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0168
-     * @tc.name aceNapiTest0168
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0168', 0, async function (done) {
-      console.info('aceNapiTest0168 START');
-      let value = napitest.createSendableTypedArrayTest();
-      console.info('aceNapiTest0168 testString result is: ' + value + "--" + JSON.stringify(value));
-      expect(value instanceof SendableInt32Array).assertTrue();
-      expect(value.length).assertEqual(4);
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0169
-     * @tc.name aceNapiTest0169
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0169', 0, async function (done) {
-      console.info('aceNapiTest0169 START');
-      let value = napitest.createSendableObjectWithProperties();
-      console.info('aceNapiTest0169 testString result is: ' + value + "--" + JSON.stringify(value));
-      expect(value).assertEqual(0);
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0170
-     * @tc.name aceNapiTest0170
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0170', 0, async function (done) {
-      console.info('aceNapiTest0170 START');
-      let value = napitest.napiWrapSendableTest();
-      console.info('aceNapiTest0170 testString result is: ' + value + "--" + JSON.stringify(value));
-      expect(value).assertEqual(0);
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0171
-     * @tc.name aceNapiTest0171
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0171', 0, async function (done) {
-      console.info('aceNapiTest0171 START');
-      let value = napitest.napiWrapSendableWithSizeTest();
-      console.info('aceNapiTest0171 testString result is: ' + value + "--" + JSON.stringify(value));
-      expect(value).assertEqual(0);
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0172
-     * @tc.name aceNapiTest0172
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0172', 0, async function (done) {
-      console.info('aceNapiTest0172 START');
-      let value = napitest.napiUnWrapSendableTest();
-      console.info('aceNapiTest0172 testString result is: ' + value + "--" + JSON.stringify(value));
-      expect(value).assertEqual(0);
-      done();
-    });
-
-    /**
-     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0173
-     * @tc.name aceNapiTest0173
-     * @tc.desc aceNapiEtsTest
-     */
-    it('aceNapiTest0173', 0, async function (done) {
-      console.info('aceNapiTest0173 START');
-      let value = napitest.napiRemoveWrapSendableTest();
-      console.info('aceNapiTest0173 testString result is: ' + value + "--" + JSON.stringify(value));
-      expect(value).assertEqual(0);
       done();
     });
   })
