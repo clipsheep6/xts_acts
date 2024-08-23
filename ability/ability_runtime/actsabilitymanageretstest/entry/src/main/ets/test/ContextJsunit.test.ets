@@ -20,48 +20,16 @@ import backgroundTaskManager from '@ohos.backgroundTaskManager';
 
 export default function ContextJsunit() {
   describe('faContextTest', () => {
-    let TAG1 = "SUB_AA_OpenHarmony == faContextTest: ";
-    let sleepTimeOne = 1000;
-    let id: number;
-    beforeAll(async (done: Function) => {
-      console.log(TAG1 + "beforeAll called");
-      let myReason = 'test FaShowOnLockTest';
-      let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-        console.log(TAG1 + "Request suspension delay will time out.");
-      })
-      id = delayInfo.requestId;
-      console.log(TAG1 + "requestId is : " + id);
-      setTimeout(() => {
-        console.log(TAG1 + "beforeAll end");
-        done();
-      }, sleepTimeOne);
-    })
-
-    afterAll(async (done: Function) => {
-      console.log(TAG1 + "afterAll called");
-      backgroundTaskManager.cancelSuspendDelay(id);
-      setTimeout(() => {
-        console.log(TAG1 + "afterAll end");
-        done();
-      }, sleepTimeOne);
-    })
-    beforeEach(async (done: Function) => {
-      console.info("context before each called");
-      done();
-    })
-
-    afterEach(async () => {
-      await Utils.sleep(2000);
-      console.info("context after each called");
-    })
 
     /*
-     * @tc.number: context_getCacheDir_test_0100
-     * @tc.name: getCacheDir : Obtains the Cache directory on internal storage.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level   0
-     */
-    it("context_getCacheDir_test_0100", 0, async (done: Function) => {
+    *@tc.number     : Context_GetCacheDir_Test_0100
+    *@tc.name       : Context_GetCacheDir_Test_0100
+    *@tc.desc       : Check the return value of getCacheDir (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetCacheDir_Test_0100", 0, async (done: Function) => {
       console.log("------------------start context_getCacheDir_test_0100-------------------");
       try {
         let timeOldStamp = Utils.getNowTime();
@@ -71,25 +39,27 @@ export default function ContextJsunit() {
             let timeNewStamp = Utils.getNowTime();
             Utils.getDurationTime('context_getCacheDir_test_0100', timeOldStamp, timeNewStamp);
             console.log("context_getCacheDir_test_0100: CacheDir is " + data);
+            expect(typeof (data)).assertEqual("string");
+            expect(data).assertEqual("/data/storage/el2/base/haps/entry/cache");
+            console.log("------------------end context_getCacheDir_test_0100-------------------");
+            done();
           })
-        let data1: string = await context.getCacheDir();
-        expect(typeof (data1)).assertEqual("string");
-        expect(data1).assertEqual("/data/storage/el2/base/haps/entry/cache");
-        done();
-        console.log("------------------end context_getCacheDir_test_0100-------------------");
       } catch (error) {
         console.log("logMessage context_getCacheDir_test_0100: error = " + error);
-        expect(error).assertEqual("/data/storage/el2/base/haps/entry/cache");
+        expect().assertFail();
+        done();
       }
     })
 
     /*
-     * @tc.number: context_getCacheDir_test_0200
-     * @tc.name: getCacheDir : Obtains the Cache directory on internal storage.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     * @tc.level   0
-     */
-    it("context_getCacheDir_test_0200", 0, async (done: Function) => {
+    *@tc.number     : Context_GetCacheDir_Test_0200
+    *@tc.name       : Context_GetCacheDir_Test_0200
+    *@tc.desc       : Check the return value of getCacheDir (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetCacheDir_Test_0200", 0, async (done: Function) => {
       console.log("------------------start context_getCacheDir_test_0200-------------------");
       try {
         let timeOldStamp = Utils.getNowTime();
@@ -98,25 +68,27 @@ export default function ContextJsunit() {
           let timeNewStamp = Utils.getNowTime();
           Utils.getDurationTime('context_getCacheDir_test_0200', timeOldStamp, timeNewStamp);
           console.log("context_getCacheDir_test_0200: getCacheDir successful, result = " + data);
+          expect(typeof (data)).assertEqual("string");
+          expect(data).assertEqual("/data/storage/el2/base/haps/entry/cache");
+          console.log("------------------end context_getCacheDir_test_0200-------------------");
+          done();
         })
-        let data1: string = await context.getCacheDir();
-        expect(typeof (data1)).assertEqual("string");
-        expect(data1).assertEqual("/data/storage/el2/base/haps/entry/cache");
-        done();
-        console.log("------------------end context_getCacheDir_test_0200-------------------");
       } catch (error) {
         console.log("logMessage context_getCacheDir_test_0200: error = " + error);
-        expect(error).assertEqual("/data/storage/el2/base/haps/entry/cache");
+        expect().assertFail();
+        done();
       }
     })
 
     /*
-     * @tc.number: context_getFilesDir_test_0100
-     * @tc.name: getFilesDir : Obtains the files directory on internal storage.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level   0
-     */
-    it("context_getFilesDir_test_0100", 0, async (done: Function) => {
+    *@tc.number     : Context_GetFilesDir_Test_0100
+    *@tc.name       : Context_GetFilesDir_Test_0100
+    *@tc.desc       : Check the return value of getFilesDir (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetFilesDir_Test_0100", 0, async (done: Function) => {
       console.log("------------------start context_getFilesDir_test_0100-------------------");
       try {
         let timeOldStamp = await Utils.getNowTime();
@@ -126,25 +98,27 @@ export default function ContextJsunit() {
             let timeNewStamp = Utils.getNowTime();
             Utils.getDurationTime('context_getFilesDir_test_0100', timeOldStamp, timeNewStamp);
             console.log("context_getFilesDir_test_0100：FilesDir is " + data);
+            expect(typeof (data)).assertEqual("string");
+            expect(data).assertEqual("/data/storage/el2/base/haps/entry/files");
+            console.log("------------------end context_getFilesDir_test_0100-------------------");
+            done();
           })
-        let data1: string = await context.getFilesDir();
-        expect(typeof (data1)).assertEqual("string");
-        expect(data1).assertEqual("/data/storage/el2/base/haps/entry/files");
-        done();
-        console.log("------------------end context_getFilesDir_test_0100-------------------");
       } catch (error) {
         console.log("logMessage context_getFilesDir_test_0100: error = " + error);
-        expect(error).assertEqual("/data/storage/el2/base/haps/entry/files");
+        expect().assertFail();
+        done();
       }
     })
 
     /*
-     * @tc.number: context_getFilesDir_test_0200
-     * @tc.name: getFilesDir : Obtains the files directory on internal storage.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     * @tc.level   0
-     */
-    it("context_getFilesDir_test_0200", 0, async (done: Function) => {
+    *@tc.number     : Context_GetFilesDir_Test_0200
+    *@tc.name       : Context_GetFilesDir_Test_0200
+    *@tc.desc       : Check the return value of getFilesDir (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetFilesDir_Test_0200", 0, async (done: Function) => {
       console.log("------------------start context_getFilesDir_test_0200-------------------");
       try {
         let timeOldStamp = await Utils.getNowTime();
@@ -153,26 +127,27 @@ export default function ContextJsunit() {
           let timeNewStamp = Utils.getNowTime();
           Utils.getDurationTime('context_getFilesDir_test_0200', timeOldStamp, timeNewStamp);
           console.log("context_getFilesDir_test_0200: getFilesDir successful, result = " + data);
+          expect(typeof (data)).assertEqual("string");
+          expect(data).assertEqual("/data/storage/el2/base/haps/entry/files");
+          console.log("------------------end context_getFilesDir_test_0200-------------------");
+          done();
         })
-        let data1: string = await context.getFilesDir();
-        expect(typeof (data1)).assertEqual("string");
-        expect(data1).assertEqual("/data/storage/el2/base/haps/entry/files");
-        done();
-        console.log("------------------end context_getFilesDir_test_0200-------------------");
       } catch (error) {
         console.log("logMessage context_getFilesDir_test_0200: error = " + error);
-        expect(error).assertEqual("/data/storage/el2/base/haps/entry/files");
+        expect().assertFail();
+        done();
       }
     })
 
-
     /*
-     * @tc.number: context_getOrCreateDistributedDir_test_0100
-     * @tc.name: getOrCreateDistributedDir : Obtains the directory of Distributed files.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level   0
-     */
-    it("context_getOrCreateDistributedDir_0100", 0, async (done: Function) => {
+    *@tc.number     : Context_GetOrCreateDistributedDir_0100
+    *@tc.name       : Context_GetOrCreateDistributedDir_0100
+    *@tc.desc       : Check the return value of getOrCreateDistributedDir (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetOrCreateDistributedDir_0100", 0, async (done: Function) => {
       console.log("------------------start context_getOrCreateDistributedDir_0100-------------------");
       try {
         let timeOldStamp = Utils.getNowTime();
@@ -181,25 +156,27 @@ export default function ContextJsunit() {
           let timeNewStamp = Utils.getNowTime();
           Utils.getDurationTime('context_getOrCreateDistributedDir_0100', timeOldStamp, timeNewStamp);
           console.log("context_getOrCreateDistributedDir_0100: DistributedDir is " + data);
+          expect(typeof (data)).assertEqual("string");
+          expect(data).assertEqual("/data/storage/el2/distributedfiles");
+          console.log("------------------end context_getOrCreateDistributedDir_0100-------------------");
+          done();
         })
-        let data1: string = await context.getOrCreateDistributedDir();
-        expect(typeof (data1)).assertEqual("string");
-        expect(data1).assertEqual("/data/storage/el2/distributedfiles");
-        done();
-        console.log("------------------end context_getOrCreateDistributedDir_0100-------------------");
       } catch (error) {
         console.log("logMessage context_getOrCreateDistributedDir_0100: error = " + error);
-        expect(error).assertEqual("/data/storage/el2/distributedfiles/entry");
+        expect().assertFail();
+        done();
       }
     })
 
     /*
-     * @tc.number: context_getOrCreateDistributedDir_0200
-     * @tc.name: getOrCreateDistributedDir : Obtains the directory of Distributed files.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     * @tc.level   0
-     */
-    it("context_getOrCreateDistributedDir_0200", 0, async (done: Function) => {
+    *@tc.number     : Context_GetOrCreateDistributedDir_0200
+    *@tc.name       : Context_GetOrCreateDistributedDir_0200
+    *@tc.desc       : Check the return value of getOrCreateDistributedDir (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetOrCreateDistributedDir_0200", 0, async (done: Function) => {
       console.log("------------------start context_getOrCreateDistributedDir_0200-------------------");
       try {
         let timeOldStamp = await Utils.getNowTime();
@@ -208,25 +185,27 @@ export default function ContextJsunit() {
           let timeNewStamp = Utils.getNowTime();
           Utils.getDurationTime('context_getOrCreateDistributedDir_0200', timeOldStamp, timeNewStamp);
           console.log("context_getOrCreateDistributedDir_0200: getOrCreateDistributedDir successful, result = " + data);
+          expect(typeof (data)).assertEqual("string");
+          expect(data).assertEqual("/data/storage/el2/distributedfiles");
+          console.log("------------------end context_getOrCreateDistributedDir_0200-------------------");
+          done();
         })
-        let data1: string = await context.getOrCreateDistributedDir();
-        expect(typeof (data1)).assertEqual("string");
-        expect(data1).assertEqual("/data/storage/el2/distributedfiles");
-        done();
-        console.log("------------------end context_getOrCreateDistributedDir_0200-------------------");
       } catch (error) {
         console.log("logMessage context_getOrCreateDistributedDir_0200: error = " + error);
-        expect(error).assertEqual("/data/storage/el2/distributedfiles/entry");
+        expect().assertFail();
+        done();
       }
     })
 
     /*
-     * @tc.number: context_getAppType_0100
-     * @tc.name: getAppType : Obtains the type of current application.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level   0
-     */
-    it("context_getAppType_0100", 0, async (done: Function) => {
+    *@tc.number     : Context_GetAppType_0100
+    *@tc.name       : Context_GetAppType_0100
+    *@tc.desc       : Check the return value of getAppType (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetAppType_0100", 0, async (done: Function) => {
       console.log("------------------start context_getAppType_0100-------------------");
       try {
         let timeOldStamp = Utils.getNowTime();
@@ -236,25 +215,27 @@ export default function ContextJsunit() {
             let timeNewStamp = Utils.getNowTime();
             Utils.getDurationTime('context_getAppType_0100_0100', timeOldStamp, timeNewStamp);
             console.log("context_getAppType_0100: AppType is " + data);
+            expect(typeof (data)).assertEqual("string");
+            expect(data).assertEqual("system");
+            console.log("------------------end context_getAppType_0100-------------------");
+            done();
           })
-        let data1: string = await context.getAppType();
-        expect(typeof (data1)).assertEqual("string");
-        expect(data1).assertEqual("system");
-        done();
-        console.log("------------------end context_getAppType_0100-------------------");
       } catch (error) {
         console.log("logMessage context_getAppType_0100: error = " + error);
-        expect(error).assertEqual("system");
+        expect().assertFail();
+        done();
       }
     })
 
     /*
-     * @tc.number: context_getAppType_0200
-     * @tc.name: getAppType : Obtains the type of current application.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     * @tc.level   0
-     */
-    it("context_getAppType_0200", 0, async (done: Function) => {
+    *@tc.number     : Context_GetAppType_0200
+    *@tc.name       : Context_GetAppType_0200
+    *@tc.desc       : Check the return value of getAppType (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it("Context_GetAppType_0200", 0, async (done: Function) => {
       console.log("------------------start context_getAppType_0200-------------------");
       try {
         let timeOldStamp = await Utils.getNowTime();
@@ -263,15 +244,15 @@ export default function ContextJsunit() {
           let timeNewStamp = Utils.getNowTime();
           Utils.getDurationTime('context_getAppType_0200_0100', timeOldStamp, timeNewStamp);
           console.log("context_getAppType_0200: getAppType successful, result = " + data);
+          expect(typeof (data)).assertEqual("string");
+          expect(data).assertEqual("system");
+          console.log("------------------end context_getAppType_0200-------------------");
+          done();
         })
-        let data1: string = await context.getAppType();
-        expect(typeof (data1)).assertEqual("string");
-        expect(data1).assertEqual("system");
-        done();
-        console.log("------------------end context_getAppType_0200-------------------");
       } catch (error) {
         console.log("logMessage context_getAppType_0200: error = " + error);
-        expect(error).assertEqual("system");
+        expect().assertFail();
+        done();
       }
     })
   })

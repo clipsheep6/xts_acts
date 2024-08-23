@@ -200,41 +200,16 @@ function checkApplicationInfo(msg: string, info: ESObject) {
 export default function getHapModuleInfoJsunit() {
   describe('getAbilityInfoTest', () => {
 
-    let TAG1 = "SUB_AA_OpenHarmony == getAbilityInfoTest: ";
-    let sleepTimeOne = 1000;
-    let id: number;
-    beforeAll(async (done: Function) => {
-      console.log(TAG1 + "beforeAll called");
-      let myReason = 'test FaShowOnLockTest';
-      let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
-        console.log(TAG1 + "Request suspension delay will time out.");
-      })
-      id = delayInfo.requestId;
-      console.log(TAG1 + "requestId is : " + id);
-      setTimeout(() => {
-        console.log(TAG1 + "beforeAll end");
-        done();
-      }, sleepTimeOne)
-    })
-
-    afterAll(async (done: Function) => {
-      console.log(TAG1 + "afterAll called");
-      backgroundTaskManager.cancelSuspendDelay(id);
-      setTimeout(() => {
-        console.log(TAG1 + "afterAll end");
-        done();
-      }, sleepTimeOne)
-    })
-
-    /**
-     * @tc.number: context_getAbilityInfo_test_0100
-     * @tc.name: getAbilityInfo:Query the current attributionability details.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level 0
-     */
-    it('context_getAbilityInfo_test_0100', 0, async (done: Function) => {
+    /*
+    *@tc.number     : Context_GetAbilityInfo_Test_0100
+    *@tc.name       : Context_GetAbilityInfo_Test_0100
+    *@tc.desc       : Check the return value of getAbilityInfo (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetAbilityInfo_Test_0100', 0, async (done: Function) => {
       console.info('[context_getAbilityInfo_test_0100] START');
-      await Utils.sleep(1000);
       let timeOldStamp = await Utils.getNowTime();
       let context = ability_featureAbility.getContext();
       await context.getAbilityInfo()
@@ -243,53 +218,57 @@ export default function getHapModuleInfoJsunit() {
           Utils.getDurationTime('context_getAbilityInfo_test_0100', timeOldStamp, timeNewStamp);
           console.info('[context_getAbilityInfo_test_0100] data is:' + JSON.stringify(data));
           expect(typeof (data)).assertEqual("object");
+          console.info('--[context_getAbilityInfo_test_0100] check---');
+          checkAbilityInfo('context_getAbilityInfo_test_0100', data);
+          console.info('[context_getAbilityInfo_test_0100] FINISH');
+          done();
         }).catch((error: BusinessError) => {
           console.error('[context_getAbilityInfo_test_0100] failed:' + JSON.stringify(error));
+          expect().assertFail();
+          done();
         })
-      let promise = await context.getAbilityInfo();
-      console.info('--[context_getAbilityInfo_test_0100] check---');
-      checkAbilityInfo('context_getAbilityInfo_test_0100', promise);
-      console.info('[context_getAbilityInfo_test_0100] FINISH');
-      done();
     })
 
-    /**
-     * @tc.number: context_getAbilityInfo_test_0200
-     * @tc.name: getAbilityInfo:Query the current attributionability details.
-     * @tc.desc: Check the return value of the interface (by AsyncCallback)
-     * @tc.level 0
-     */
-    it('context_getAbilityInfo_test_0200', 0, async (done: Function) => {
+    /*
+    *@tc.number     : Context_GetAbilityInfo_Test_0200
+    *@tc.name       : Context_GetAbilityInfo_Test_0200
+    *@tc.desc       : Check the return value of getAbilityInfo (by AsyncCallback)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetAbilityInfo_Test_0200', 0, async (done: Function) => {
       try {
         let context = ability_featureAbility.getContext();
         console.info('[context_getAbilityInfo_test_0200] START');
-        await Utils.sleep(1000);
         let timeOldStamp = await Utils.getNowTime();
         context.getAbilityInfo((error, data) => {
           let timeNewStamp = Utils.getNowTime();
           Utils.getDurationTime('context_getAbilityInfo_test_0200', timeOldStamp, timeNewStamp);
           console.info('[context_getAbilityInfo_test_0200] data is:' + JSON.stringify(data));
           expect(typeof (data)).assertEqual("object");
+          console.info('---[context_getAbilityInfo_test_0200] check---');
+          checkAbilityInfo('context_getAbilityInfo_test_0200', data);
+          console.info('[context_getAbilityInfo_test_0200] FINISH');
+          done();
         })
-        let callback = await context.getAbilityInfo();
-        console.info('---[context_getAbilityInfo_test_0200] check---');
-        checkAbilityInfo('context_getAbilityInfo_test_0200', callback);
-        console.info('[context_getAbilityInfo_test_0200] FINISH');
-        done();
       } catch (error) {
         console.error('[context_getAbilityInfo_test_0200] failed: ' + JSON.stringify(error));
+        expect().assertFail();
+        done();
       }
     })
 
-    /**
-     * @tc.number: context_getAbilityInfo_test_0400
-     * @tc.name: getAbilityInfo:Query the current attributionability details.
-     * @tc.desc: Check the return value of the interface (by promise)
-     * @tc.level 0
-     */
-    it('context_getAbilityInfo_test_0400', 0, async (done: Function) => {
+    /*
+    *@tc.number     : Context_GetAbilityInfo_Test_0400
+    *@tc.name       : Context_GetAbilityInfo_Test_0400
+    *@tc.desc       : Check the return value of getAbilityInfo (by promise)
+    *@tc.size       : MediumTest
+    *@tc.type       : Function
+    *@tc.level      : Level 1
+    */
+    it('Context_GetAbilityInfo_Test_0400', 0, async (done: Function) => {
       console.info('[context_getAbilityInfo_test_0400] START');
-      await Utils.sleep(1000);
       let timeOldStamp = await Utils.getNowTime();
       let context = ability_featureAbility.getContext();
       await context.getAbilityInfo()
@@ -298,14 +277,15 @@ export default function getHapModuleInfoJsunit() {
           Utils.getDurationTime('context_getAbilityInfo_test_0400', timeOldStamp, timeNewStamp);
           console.info('[context_getAbilityInfo_test_0400] data is:' + JSON.stringify(data));
           expect(typeof (data)).assertEqual("object");
+          console.info('--[context_getAbilityInfo_test_0400] check---');
+          checkAbilityInfo('context_getAbilityInfo_test_0400', data);
+          console.info('[context_getAbilityInfo_test_0400] FINISH');
+          done();
         }).catch((error: BusinessError) => {
           console.error('[context_getAbilityInfo_test_0400] failed:' + JSON.stringify(error));
+          expect().assertFail();
+          done();
         })
-      let promise = await context.getAbilityInfo();
-      console.info('--[context_getAbilityInfo_test_0400] check---');
-      checkAbilityInfo('context_getAbilityInfo_test_0400', promise);
-      console.info('[context_getAbilityInfo_test_0400] FINISH');
-      done();
     })
   })
 }
