@@ -62,17 +62,17 @@ export default function AVPlayerSelectTrackTest() {
             console.info('case to getTrackDescription');
             await avPlayer.getTrackDescription().then((arrayList) => {
                 console.info('case getTrackDescription called!!');
-                if (typeof (arrayList) != 'undefined') {
-                    console.info('case arrayList.length is  ' + arrayList.length);
-                    for (let i = 0; i < arrayList.length; i++) {
-                        console.info('case language_code is  ' + arrayList[i]['language_code']);
-                        if (arrayList[i]['track_type'] == 0) {
-                            audioTrackList.push(arrayList[i]['track_index']);
-                        }
-                    }
-                } else {
+                if (typeof (arrayList) == 'undefined') {
                     console.info('case getTrackDescription is failed');
                     expect().assertFail();
+                    return;
+                }
+                console.info('case arrayList.length is  ' + arrayList.length);
+                for (let i = 0; i < arrayList.length; i++) {
+                    console.info('case language_code is  ' + arrayList[i]['language_code']);
+                    if (arrayList[i]['track_type'] == 0) {
+                        audioTrackList.push(arrayList[i]['track_index']);
+                    }
                 }
             })
             console.info('case audioTrackList is: ' + audioTrackList);
@@ -127,6 +127,51 @@ export default function AVPlayerSelectTrackTest() {
             }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
         }
 
+        async function handleState(state, preparedOp, playedOp, stoppedOp) {
+            switch (state) {
+                case AV_PLAYER_STATE.INITIALIZED:
+                    expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.INITIALIZED);
+                    avPlayer.surfaceId = surfaceID;
+                    console.info(`case avPlayer.surfaceId is ${avPlayer.surfaceId}`);
+                    await avPlayer.prepare().then(() => {
+                        console.info('case prepare called');
+                    }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                    break;
+                case AV_PLAYER_STATE.PREPARED:
+                    expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PREPARED);
+                    expect(avPlayer.currentTime).assertEqual(0);
+                    await preparedOp();
+                    console.info('case to play AVPlayer');
+                    await avPlayer.play().then(() => {
+                        console.info('case play AVPlayer success');
+                    }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                    break;
+                case AV_PLAYER_STATE.PLAYING:
+                    expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PLAYING);
+                    await playedOp();
+                    await mediaTestBase.msleepAsync(PLAY_TIME);
+                    if (!avPlayer.loop) {
+                        await avPlayer.stop().then(() => {
+                            console.info('case stop AVPlayer success');
+                        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                    }
+                    break;
+                case AV_PLAYER_STATE.STOPPED:
+                    expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.STOPPED);
+                    await stoppedOp();
+                    break;
+                case AV_PLAYER_STATE.ERROR:
+                    expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.ERROR);
+                    expect().assertFail();
+                    avPlayer.release().then(() => {
+                        console.info('case release AVPlayer success');
+                    }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         async function testChangeTrack(fd, preparedOp, playedOp, stoppedOp, extraOp) {
             console.info(`case media source: ${fd}`)
             await media.createAVPlayer().then((video) => {
@@ -142,48 +187,7 @@ export default function AVPlayerSelectTrackTest() {
 
             avPlayer.on('stateChange', async (state, reason) => {
                 console.info(`case stateChange called, state is ${state}, reason is ${reason}`);
-                switch (state) {
-                    case AV_PLAYER_STATE.INITIALIZED:
-                        expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.INITIALIZED);
-                        avPlayer.surfaceId = surfaceID;
-                        console.info(`case avPlayer.surfaceId is ${avPlayer.surfaceId}`);
-                        await avPlayer.prepare().then(() => {
-                            console.info('case prepare called');
-                        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-                        break;
-                    case AV_PLAYER_STATE.PREPARED:
-                        expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PREPARED);
-                        expect(avPlayer.currentTime).assertEqual(0);
-                        await preparedOp();
-                        console.info('case to play AVPlayer');
-                        await avPlayer.play().then(() => {
-                            console.info('case play AVPlayer success');
-                        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-                        break;
-                    case AV_PLAYER_STATE.PLAYING:
-                        expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PLAYING);
-                        await playedOp();
-                        await mediaTestBase.msleepAsync(PLAY_TIME);
-                        if (!avPlayer.loop) {
-                            await avPlayer.stop().then(() => {
-                                console.info('case stop AVPlayer success');
-                            }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-                        }
-                        break;
-                    case AV_PLAYER_STATE.STOPPED:
-                        expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.STOPPED);
-                        await stoppedOp();
-                        break;
-                    case AV_PLAYER_STATE.ERROR:
-                        expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.ERROR);
-                        expect().assertFail();
-                        avPlayer.release().then(() => {
-                            console.info('case release AVPlayer success');
-                        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-                        break;
-                    default:
-                        break;
-                    }
+                await handleState(state, preparedOp, playedOp, stoppedOp);
             });
             avPlayer.on('trackChange', async (index, isSelection) => {
                 console.info(`case trackChange called, index is ${index}, isSelection is ${isSelection}`);
