@@ -89,7 +89,7 @@ export async function closeFileDescriptor(fileName) {
 
 export async function getStageFd(fileName) {
     let fileDescriptor = undefined;
-    let mgr = globalThis.abilityContext.resourceManager
+    let mgr = globalThis.abilityContext.resourceManager;
     await mgr.getRawFd(fileName).then(value => {
         fileDescriptor = {fd: value.fd, offset: value.offset, length: value.length};
         console.log('case getRawFd success fileName: ' + fileName);
