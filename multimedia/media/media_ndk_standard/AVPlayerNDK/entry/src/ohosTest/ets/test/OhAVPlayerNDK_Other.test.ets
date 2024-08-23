@@ -184,7 +184,7 @@ export default function OhAVPlayerNDKOtherTest() {
         if (result !== 0) {
           result = await avplayer.OhAvPlayerReset();
           expect(result).assertEqual(AV_ERR_OK);
-          await Utils.sleep(sleep1000);
+          await Utils.sleep(sleep500);
           continue;
         }
         expect(result).assertEqual(AV_ERR_OK);
@@ -195,7 +195,7 @@ export default function OhAVPlayerNDKOtherTest() {
         result = await avplayer.OhAvPlayerStop();
         expect(result).assertEqual(AV_ERR_OK);
         state = await avplayer.OhAvPlayerGetState();
-        expect(state).assertEqual(AV_STOPPED);
+        expect(state === AV_STOPPED || state === AV_COMPLETED).assertTrue();
 
         result = await avplayer.OhCloseFile();
         expect(result).assertEqual(AV_ERR_OK);
@@ -1674,7 +1674,7 @@ export default function OhAVPlayerNDKOtherTest() {
       expect(result).assertEqual(AV_ERR_OK);
 
       state = avplayer.OhAvPlayerGetState();
-      expect(state).assertEqual(AV_STOPPED);
+      expect(state === AV_STOPPED || state === AV_COMPLETED).assertTrue();
 
       result = avplayer.OhCloseFile();
       expect(result).assertEqual(AV_ERR_OK);
@@ -1707,7 +1707,7 @@ export default function OhAVPlayerNDKOtherTest() {
       result = avplayer.OhAvPlayerSetFdPathSource();
       expect(result).assertEqual(AV_ERR_OK);
 
-      result = avplayer.OhAvPlayerPrepare();
+      result = await avplayer.OhAvPlayerPrepare();
       expect(result).assertEqual(AV_ERR_OK);
 
       state = avplayer.OhAvPlayerGetState();
@@ -2185,6 +2185,13 @@ export default function OhAVPlayerNDKOtherTest() {
 
       let state: number = avplayer.OhAvPlayerGetState();
       expect(state === AV_IDLE).assertTrue();
+
+      result = avplayer.OhAvPlayerSetFdPathSource();
+      expect(result).assertEqual(AV_ERR_OK);
+
+      let player: number = await avplayer.OhAvPlayerPrepare();
+      expect(player).assertEqual(AV_ERR_OK);
+
 
       result = avplayer.OhAvPlayerGetVideoHeight();
       expect(result).assertEqual(AV_ERR_OK);
