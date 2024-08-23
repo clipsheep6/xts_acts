@@ -11,6 +11,10 @@
     {
       "name": "TestAbility_label",
       "value": "test label"
+    },
+    {
+      "name": "permission_reason",
+      "value": " 需要 "
     }
   ]
 }
