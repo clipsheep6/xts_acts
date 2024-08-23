@@ -1009,25 +1009,25 @@ export default function settingUiJsunit() {
 
     it('settings_get_value_093', 0, async (done: Function) => {
       let str = "settings.tts.default_tts_pitch"
-      expect(str).assertEqual(settings.tts.DEFAULT_TTS_PITCH);
+      expect(str).assertEqual(settings.TTS.DEFAULT_TTS_PITCH);
       done();
     });
 
     it('settings_get_value_094', 0, async (done: Function) => {
       let str = "settings.tts.default_tts_rate"
-      expect(str).assertEqual(settings.tts.DEFAULT_TTS_RATE);
+      expect(str).assertEqual(settings.TTS.DEFAULT_TTS_RATE);
       done();
     });
 
     it('settings_get_value_095', 0, async (done: Function) => {
       let str = "settings.tts.default_tts_synth"
-      expect(str).assertEqual(settings.tts.DEFAULT_TTS_SYNTH);
+      expect(str).assertEqual(settings.TTS.DEFAULT_TTS_SYNTH);
       done();
     });
 
     it('settings_get_value_096', 0, async (done: Function) => {
       let str = "settings.tts.enabled_tts_plugins"
-      expect(str).assertEqual(settings.tts.ENABLED_TTS_PLUGINS);
+      expect(str).assertEqual(settings.TTS.ENABLED_TTS_PLUGINS);
       done();
     });
 
