@@ -36,6 +36,14 @@ struct PolylineExample {
         .strokeWidth(8)
         .key('Polyline_2')
         .points([[20, 0], [0, 100], [100, 90]])
+
+
+        Polyline({ width: -100, height: -100 })
+        .points([[0, 0], [20, 60], [100, 100]])
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .key('Polyline_3')
+        .strokeWidth(3)
     }.width('100%').margin({ top: 10 })
   }
 }
