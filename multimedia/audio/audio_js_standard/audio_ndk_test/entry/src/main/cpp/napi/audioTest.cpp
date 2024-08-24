@@ -1338,6 +1338,7 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   // 3. create audioRenderer1 audioRenderer2
   OH_AudioRenderer* audioRenderer1;
   result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer1);
+  OH_AudioSessionManager *audioSessionManager;
   OH_AudioCommon_Result resultManager = OH_AudioManager_GetAudioSessionManager(&audioSessionManager);
   statusJudgment(resultManager, &res)
   if (res != AUDIOCOMMON_RESULT_SUCCESS) {
