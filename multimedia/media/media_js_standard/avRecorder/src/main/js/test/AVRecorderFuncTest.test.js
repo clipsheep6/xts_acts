@@ -24,8 +24,10 @@ export default function avRecorderTest() {
         const RECORDER_TIME = 3000;
         const FORMAT_M4A = media.ContainerFormatType.CFT_MPEG_4A;
         const FORMAT_MP3 = media.ContainerFormatType.CFT_MP3;
+        const FORMAT_WAV = media.ContainerFormatType.CFT_WAV;
         const ENCORDER_AAC = media.CodecMimeType.AUDIO_AAC;
         const ENCORDER_MP3 = media.CodecMimeType.AUDIO_MP3;
+        const ENCORDER_WAV = media.CodecMimeType.AUDIO_G711MU;
         let fdObject;
         let fdPath;
 
