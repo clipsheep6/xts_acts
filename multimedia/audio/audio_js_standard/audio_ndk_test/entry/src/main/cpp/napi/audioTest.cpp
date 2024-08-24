@@ -62,8 +62,9 @@ static int32_t AudioRendererOnMarkReachedWriteData(OH_AudioRenderer* capturer,
     return 0;
 }
 
-static void statusJudgment(OH_AudioCommon_Result result, napi_value& res)
-{
+static void statusJudgment(OH_AudioCommon_Result result)
+{ 
+  napi_value res;
   switch (result) {
     case AUDIOCOMMON_RESULT_SUCCESS:
       napi_create_int32(env, AUDIOCOMMON_RESULT_SUCCESS, &res);
