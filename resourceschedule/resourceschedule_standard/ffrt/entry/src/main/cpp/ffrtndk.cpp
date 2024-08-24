@@ -828,7 +828,7 @@ static napi_value MutexAbnormalParamTest001(napi_env env, napi_callback_info inf
     if (ret != ffrt_error_inval) {
         result = 1;
     }
-    ret = c
+    ret = ffrt_mutex_init(&mtx, &attr);
     if (ret != ffrt_success) {
         result = 2;
     }
