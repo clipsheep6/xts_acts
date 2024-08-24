@@ -72,6 +72,13 @@ export default function audioNDK() {
       console.info('afterAll case');
     })
 
+
+    it('SUB_MULTIMEDIA_AUDIO_NDK_AudioSessionManagerpass_001', 0, async function (done) {
+        let a = myaudioNdk.AudioSessionManagerpass_01();
+        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_AudioSessionManagerpass_001: ${a}`);
+        expect(a).assertEqual(0)
+        done()
+    })
     /* *
         * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_CREATE_STREAM_BUILDER_0100
         * @tc.name      : create OH_AudioStreamBuilder with AUDIOSTREAM_TYPE_CAPTURER
