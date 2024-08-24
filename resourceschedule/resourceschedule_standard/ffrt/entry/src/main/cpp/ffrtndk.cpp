@@ -764,7 +764,7 @@ static napi_value FfrtYieldC0001(napi_env env, napi_callback_info info)
     return flag;
 }
 
-static napi_value RecursiveMutexAbnormalParamTest001(napi_env, napi_callback_info info)
+static napi_value RecursiveMutexAbnormalParamTest001(napi_env env, napi_callback_info info)
 {
     int result = 0;
     int type = 0;
