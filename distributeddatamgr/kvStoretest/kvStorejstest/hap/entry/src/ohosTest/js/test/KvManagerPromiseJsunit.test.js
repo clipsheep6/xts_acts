@@ -145,7 +145,7 @@ describe('kvManagerPromiseTest', function () {
             autoSync: true,
             kvStoreType: factory.KVStoreType.SINGLE_VERSION,
             schema: '',
-            securityLevel: factory.SecurityLevel.NO_LEVEL,
+            securityLevel: factory.SecurityLevel.S2,
         }
         await kvManager.getKVStore(TEST_STORE_ID, optionsInfo).then((store) => {
             console.info('testKVManagerGetKVStore003 getKVStore success');
