@@ -1382,7 +1382,6 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   OH_AudioRenderer_Release(audioRenderer1);
   OH_AudioStreamBuilder_Destroy(builder);
   OH_AudioStreamBuilder_Destroy(builder2);
-  napi_create_int32(env, result);
 
 
   // 取消监听音频会话停用事件
