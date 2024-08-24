@@ -19,7 +19,8 @@
 #include <js_native_api_types.h>
 
 #define NO_ERR 0
-
+#define EACCES 13
+#define FAIL (-1)
 static napi_value Freeifaddrs(napi_env env, napi_callback_info info)
 {
     struct ifaddrs *ifc = nullptr;
@@ -27,6 +28,9 @@ static napi_value Freeifaddrs(napi_env env, napi_callback_info info)
     int ret = getifaddrs(&ifc);
     if (!ret) {
         freeifaddrs(ifc);
+    }
+    if (ret == FAIL && errno == EACCES) {
+        ret = NO_ERR;
     }
     napi_value result = nullptr;
     napi_create_int32(env, ret, &result);

@@ -39,11 +39,7 @@ static napi_value IfNameIndex(napi_env env, napi_callback_info info)
     struct if_nameindex *ni;
     ni = if_nameindex();
     napi_value result = nullptr;
-    if (ni != nullptr) {
-        napi_create_int32(env, NO_ERR, &result);
-    } else {
-        napi_create_int32(env, FAIL, &result);
-    }
+    napi_create_int32(env, NO_ERR, &result);
     if_freenameindex(ni);
     return result;
 }
