@@ -85,6 +85,11 @@ export default function ffrtTest() {
       var flag = ffrtndk.ffrtYieldC0001();
       expect(flag).assertEqual(0);
     })
+    it('recursiveMutexAbnormalParamTest001',0, function () {
+      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
+      var flag = ffrtndk.recursiveMutexAbnormalParamTest001();
+      expect(flag).assertEqual(0);
+    })
     it('mutexAbnormalParamTest001',0, function () {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       var flag = ffrtndk.mutexAbnormalParamTest001();
