@@ -1333,7 +1333,7 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   napi_value res;
   OH_AudioSessionManager *audioSessionManager;
   OH_AudioCommon_Result resultManager = OH_AudioManager_GetAudioSessionManager(&audioSessionManager);
-  statusJudgment(resultManager, &res);
+  statusJudgment(resultManager);
   if (res != AUDIOCOMMON_RESULT_SUCCESS) {
     return res;
   }
@@ -1341,7 +1341,7 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
 
   // 设置音频并发模式并激活音频会话
   OH_AudioCommon_Result resultActivate = OH_AudioSessionManager_ActivateAudioSession(audioSessionManager, &strategy);
-  statusJudgment(resultActivate, &res);
+  statusJudgment(resultActivate);
   if (res != AUDIOCOMMON_RESULT_SUCCESS) {
     return res;
   }
@@ -1363,7 +1363,7 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   OH_AudioSessionManager *audioSessionManager;
   // 监听音频会话停用事件
   OH_AudioCommon_Result resultRegister = OH_AudioSessionManager_RegisterSessionDeactivatedCallback(audioSessionManager,MyAudioSessionDeactivatedCallback);
-  statusJudgment(resultRegister, &res);
+  statusJudgment(resultRegister);
   if (res != AUDIOCOMMON_RESULT_SUCCESS) {
     return res;
   }
@@ -1382,12 +1382,12 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   OH_AudioRenderer_Release(audioRenderer1);
   OH_AudioStreamBuilder_Destroy(builder);
   OH_AudioStreamBuilder_Destroy(builder2);
-  napi_create_int32(env, result, &res);
+  napi_create_int32(env, result);
 
 
   // 取消监听音频会话停用事件
   OH_AudioCommon_Result resultUnregister = OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(audioSessionManager,MyAudioSessionDeactivatedCallback);
-  statusJudgment(resultRegister, &res);
+  statusJudgment(resultRegister);
   if (res != AUDIOCOMMON_RESULT_SUCCESS) {
     return res;
   }
@@ -1395,7 +1395,7 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   
   // 停用音频会话
   OH_AudioCommon_Result resultDeactivate = OH_AudioSessionManager_DeactivateAudioSession(audioSessionManager);
-  statusJudgment(resultRegister, &res);
+  statusJudgment(resultRegister);
   if (res != AUDIOCOMMON_RESULT_SUCCESS) {
     return res;
   }
