@@ -1315,7 +1315,7 @@ static napi_value AudioRendererSetVolumeWithRamp_05(napi_env env, napi_callback_
     OH_AudioStreamBuilder_Destroy(builder);
     return res;
 }
-tatic napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info info)
+static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info info)
 { 
   // 1. create builder
   OH_AudioStreamBuilder* builder;
@@ -3472,6 +3472,9 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
+
+        {"AudioSessionManagerpass_01", nullptr, AudioSessionManagerpass_01,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"createAudioStreamBuilder", nullptr, CreateAudioStreamBuilder,
             nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCaptureGenerate", nullptr, AudioCaptureGenerate, nullptr, nullptr, nullptr, napi_default, nullptr},
