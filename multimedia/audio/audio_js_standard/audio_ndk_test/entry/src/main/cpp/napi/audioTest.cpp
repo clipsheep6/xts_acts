@@ -1360,7 +1360,6 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   OH_AudioRenderer* audioRenderer2;
   OH_AudioStreamBuilder_GenerateRenderer(builder2, &audioRenderer2);
 
-  OH_AudioSessionManager *audioSessionManager;
   // 监听音频会话停用事件
   OH_AudioCommon_Result resultRegister = OH_AudioSessionManager_RegisterSessionDeactivatedCallback(audioSessionManager,MyAudioSessionDeactivatedCallback);
   statusJudgment(resultRegister);
