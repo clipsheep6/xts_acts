@@ -15,17 +15,6 @@
       ],
       "type": "AppInstallKit",
       "cleanup-apps": true
-    },
-    {
-      "type": "ShellKit",
-      "run-command": [
-        "power-shell wakeup",
-        "power-shell setmode 602",
-        "uinput -T -m 300 2700 280 200"
-      ],
-      "teardown-command": [
-        "uinput -T -m 300 2700 280 200"
-      ]
     }
   ]
 }
