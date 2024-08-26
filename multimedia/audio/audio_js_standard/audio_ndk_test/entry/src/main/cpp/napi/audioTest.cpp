@@ -1349,15 +1349,19 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   // 查询音频会话是否已激活。
   bool isActivated = OH_AudioSessionManager_IsAudioSessionActivated(audioSessionManager);
   // 1. create builder
+  OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
   OH_AudioStream_Usage usage = AUDIOSTREAM_USAGE_MUSIC;
   OH_AudioStreamBuilder* builder;
   OH_AudioStream_Result result = OH_AudioStreamBuilder_Create(&builder, type);
-  // 3. create audioRenderer1 audioRenderer2
+  OH_AudioStreamBuilder_SetRendererInfo(builder, usage);
+  OH_AudioRenderer_Start(audioRenderer1);
   OH_AudioRenderer* audioRenderer1;
   OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer1);
+  // 3. create audioRenderer1 audioRenderer2
+
   OH_AudioStreamBuilder* builder2;
   OH_AudioStreamBuilder_Create(&builder2, type);
-
+  OH_AudioStreamBuilder_SetRendererInfo(builder2, usage);
   OH_AudioRenderer* audioRenderer2;
   OH_AudioStreamBuilder_GenerateRenderer(builder2, &audioRenderer2);
 
@@ -1369,9 +1373,9 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   }
   // 音频会话激活后应用在此处正常执行音频播放、暂停、停止、释放等操作即可。 
   // 4. start
-  result = OH_AudioRenderer_Start(audioRenderer1);
+  OH_AudioRenderer_Start(audioRenderer1);
   sleep(200);
-  result = OH_AudioRenderer_Start(audioRenderer2);
+  OH_AudioRenderer_Start(audioRenderer2);
 
   sleep(200); // 2:sleep 2 seconds
 
