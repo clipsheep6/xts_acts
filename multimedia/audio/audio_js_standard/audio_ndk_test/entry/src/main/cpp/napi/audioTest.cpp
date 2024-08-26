@@ -3483,8 +3483,6 @@ static napi_value Init(napi_env env, napi_value exports)
 
         {"AudioSessionManagerpass_01", nullptr, AudioSessionManagerpass_01,
             nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"StatusJudgment", nullptr, StatusJudgment,
-            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"createAudioStreamBuilder", nullptr, CreateAudioStreamBuilder,
             nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCaptureGenerate", nullptr, AudioCaptureGenerate, nullptr, nullptr, nullptr, napi_default, nullptr},
