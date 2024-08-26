@@ -1350,6 +1350,7 @@ static napi_value AudioRendererSetVolumeWithRamp_05(napi_env env, napi_callback_
 static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info info)
 {
   napi_value res;
+  int32_t result;
   OH_AudioSessionManager *audioSessionManager;
   OH_AudioCommon_Result resultManager = OH_AudioManager_GetAudioSessionManager(&audioSessionManager);
   result=StatusJudgment(resultManager, AUDIOCOMMON_RESULT_SUCCESS);
