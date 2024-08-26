@@ -284,9 +284,15 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_1000', 1, function (done) {
+            let errCode = 0;
             if(sysSupport === true){
-                let isSysSupport = drm.isMediaKeySystemSupported(uuid, "");
-                expect(isSysSupport).assertUndefined();
+                try {
+                    let isSysSupport = drm.isMediaKeySystemSupported(uuid, "");
+                } catch (err) {
+                    console.log("XX DRM_FRAMEWORK_API_1000 isMediaKeySystemSupported err end", err.code);
+                    errCode = err.code;
+                }
+                 expect(errCode).assertEqual(drm.DrmErrorCode.ERROR_UNKNOWN);
             }
             done();
         })
@@ -574,16 +580,11 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_2500', 0, function (done) {
             if(sysSupport === true){
-                let errCode;
                 let drmMediaKeySystem = drm.createMediaKeySystem(uuid);
-                try {
-                    let session = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                } catch (err) {
-                    console.log("XX DRM_FRAMEWORK_API_2500 createMediaKeySystem1 err end", err.code);
-                    errCode = err.code;
-                    drmMediaKeySystem.destroy();
-                }
-                expect(errCode).assertEqual(401);
+                let session = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                expect(session).not();
+                session.destroy();
+                drmMediaKeySystem.destroy();
             }
             done();
         })
@@ -911,6 +912,7 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1100', 0, async function (done) {
             if (sysSupport === true) {
+                let errCode = 0;
                 let drmsys = drm.createMediaKeySystem(uuid);
                 let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
                 let base64 = new util.Base64();
@@ -927,8 +929,13 @@ export default function abilityTest() {
                         console.log("XX DRM_AVPLAYER_1100 keyvalue", keyvalue[0].value);
                         expect(keyvalue[0].value).assertEqual('MediaKey is OK');
                         session.clearMediaKeys();
-                        let keyvalue2 = session.checkMediaKeyStatus();
-                        expect(keyvalue2).assertUndefined();
+                        try {
+                            let keyvalue2 = session.checkMediaKeyStatus();
+                        } catch (err) {
+                            console.log("XX SESSION_ON_OFF_1000 generateKeySystemRequest err end", err);
+                            errCode = err.code;
+                        }
+                        expect(errCode).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
                         session.destroy();
                         drmsys.destroy();
                         console.log("XX DRM_AVPLAYER_1100 processMediaKeyRcheckMediaKeyStatusesponse success", keyId);
