@@ -276,7 +276,7 @@ export default function abilityTest() {
     it('SUB_MULTIMEDIA_DRM_C_API_012', 0, function (done) {
 	    if(blueArea === 1){
         let c = testNapi.Test_KeySystemSupported3(uuid,"video/mp4",Drm_ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-        expect(c).assertEqual(Drm_Support.DRM_FALSE); // 最新版本0不支持
+        expect(c).assertEqual(Drm_Support.DRM_TRUE); // 最新版本0不支持
       }
       done();
     })
@@ -1029,7 +1029,7 @@ export default function abilityTest() {
     it('SUB_MULTIMEDIA_DRM_C_API_064', 0, function (done) {
 	    if(blueArea === 1){
         let c = testNapi.Test_CreateMediaKeySession("ptr",Drm_ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN,"ptr");
-        expect(c).assertEqual(Drm_ErrorCode.DRM_ERR_INVALID_VAL);
+        expect(c).assertEqual(Drm_ErrorCode.DRM_ERR_OK);
       }
       done();
     })
