@@ -25,10 +25,12 @@
 
 CameraCallbackCode NDKCamera::cameraCallbackCode_ = NoReceived;
 
+Camera_Size SecureSize = {640, 680};
+
 NDKCamera::NDKCamera(char* str)
     : cameras_(nullptr), cameraOutputCapability_(nullptr),
       isAddInput_(false), camera_(nullptr), sceneModes_(nullptr), sceneMode_(NORMAL_PHOTO),
-      secureSeqId_(0), canPreconfig_(false), sceneModesSize_(0), isMovingPhotoSupported_(false),
+      secureSeqId_(0), canPreconfig_(false), sceneModesSize_(0), isMovingPhotoSupported_(false), photoNative_(nullptr),
       captureSession_(nullptr), size_(0),
       profile_(nullptr), previewOutput_(nullptr), photoOutput_(nullptr), videoOutput_(nullptr),
       metaDataObjectType_(nullptr), metadataOutput_(nullptr), cameraInput_(nullptr),
@@ -44,7 +46,6 @@ NDKCamera::NDKCamera(char* str)
     CameraManagerRegisterCallback();
     valid_ = true;
 }
-
 
 NDKCamera::~NDKCamera() {
     valid_ = false;
@@ -83,6 +84,55 @@ NDKCamera::~NDKCamera() {
     PreviewOutputRelease();
     PhotoOutputRelease();
     CameraManagerUnRegisterCallback();
+}
+
+Camera_ErrorCode NDKCamera::ReleaseCamera(void)
+{
+    Camera_ErrorCode ret = CAMERA_OK;
+    if (videoOutput_) {
+        VideoOutputRelease();
+    }
+    if (photoOutput_) {
+        PhotoOutputRelease();
+    }
+    if (previewOutput_) {
+        SessionRemovePreviewOutput();
+        PreviewOutputRelease();
+    }
+    if (cameraInput_) {
+        CameraInputClose();
+        SessionRemoveInput();
+        CameraInputRelease();
+    }
+    if (captureSession_) {
+        SessionRelease();
+    }
+    if (cameraManager_) {
+        CameraManagerUnRegisterCallback();
+        LOG("Release OH_CameraManager_DeleteSupportedCameras. enter");
+        ret = OH_CameraManager_DeleteSupportedCameras(cameraManager_, cameras_, size_);
+        if (ret != CAMERA_OK) {
+            LOG("Delete Cameras failed.");
+        } else {
+            LOG("Release OH_CameraManager_DeleteSupportedCameras. ok");
+        }
+
+        ret = OH_CameraManager_DeleteSupportedCameraOutputCapability(cameraManager_, cameraOutputCapability_);
+        if (ret != CAMERA_OK) {
+            LOG("Delete CameraOutputCapability failed.");
+        } else {
+            LOG("Release OH_CameraManager_DeleteSupportedCameraOutputCapability. ok");
+        }
+
+        ret = OH_Camera_DeleteCameraManager(cameraManager_);
+        if (ret != CAMERA_OK) {
+            LOG("Delete CameraManager failed.");
+        } else {
+            LOG("Release OH_Camera_DeleteCameraManager. ok");
+        }
+        cameraManager_ = nullptr;
+    }
+    return ret;
 }
 
 Camera_ErrorCode NDKCamera::CreateSession(void)
@@ -308,7 +358,17 @@ Camera_ErrorCode NDKCamera::GetSupportedOutputCapability(void)
 
 Camera_ErrorCode NDKCamera::CreatePreviewOutput(void)
 {
-    profile_ = cameraOutputCapability_->previewProfiles[0];
+    if (sceneMode_ == SECURE_PHOTO) {
+        for (decltype(cameraOutputCapability_ -> previewProfilesSize) i = 0;
+             i< cameraOutputCapability_ -> previewProfilesSize; i++) {
+            if (cameraOutputCapability_->previewProfiles[i]->size.width == SecureSize.width &&
+                cameraOutputCapability_->previewProfiles[i]->size.height == SecureSize.height) {
+                profile_ = cameraOutputCapability_->previewProfiles[i];
+            }
+        }
+    } else {
+        profile_ = cameraOutputCapability_->previewProfiles[0];
+    }
     if (profile_ == nullptr) {
         LOG("ndkXTS Get previewProfiles failed.");
         return CAMERA_INVALID_ARGUMENT;
@@ -1440,26 +1500,26 @@ Camera_ErrorCode NDKCamera::GetSupportedSceneModes(int useCaseCode)
         ret_ = OH_CameraManager_GetSupportedSceneModes(nullptr, &sceneModes_, &sceneModesSize_);
     }
     if (ret_ == CAMERA_OK && sceneModesSize_ > 1) {
-        bool isNormalPhoto = false;
-        bool isNormalVideo = false;
-        bool isSecurePhoto = false;
+        LOG("ndkXTS OH_CameraManager_GetSupportedSceneModes successful.%d", ret_);
+        isNormalPhoto_ = false;
+        isNormalVideo_ = false;
+        isSecurePhoto_ = false;
         for (decltype(sceneModesSize_) index = 0; index < sceneModesSize_; index++) {
             switch (sceneModes_[index]) {
                 case NORMAL_PHOTO:
-                    isNormalPhoto = true;
+                    isNormalPhoto_ = true;
                     break;
                 case NORMAL_VIDEO:
-                    isNormalVideo = true;
+                    isNormalVideo_ = true;
                     break;
                 case SECURE_PHOTO:
-                    isSecurePhoto = true;
+                    isSecurePhoto_ = true;
                     break;
                 default: break;
             }
         }
-        LOG("ndkXTS OH_CameraManager_GetSupportedSceneModes successful.%d", ret_);
         LOG("isSupported_NORMAL_PHOTO: %d, isSupported_NORMAL_VIDEO: %d, isSupported_NSECURE_PHOTO: %d.",
-            isNormalPhoto, isNormalVideo, isSecurePhoto);
+            isNormalPhoto_, isNormalVideo_, isSecurePhoto_);
     } else {
         ret_ = CAMERA_INVALID_ARGUMENT;
         LOG("ndkXTS OH_CameraManager_GetSupportedSceneModes failed.%d", ret_);
@@ -1477,9 +1537,9 @@ Camera_ErrorCode NDKCamera::DeleteSceneModes(int useCaseCode)
         ret_ = OH_CameraManager_DeleteSceneModes(nullptr, sceneModes_);
     }
     if (sceneModes_ != nullptr || ret_ != CAMERA_OK) {
-        LOG("ndkXTS OH_CameraManager_DeleteSceneModes successful.%d", ret_);
-    } else {
         LOG("ndkXTS OH_CameraManager_DeleteSceneModes failed.%d", ret_);
+    } else {
+        LOG("ndkXTS OH_CameraManager_DeleteSceneModes successful.%d", ret_);
     }
     return ret_;
 }
@@ -1515,13 +1575,7 @@ Camera_ErrorCode NDKCamera::GetSupportedCameraOutputCapabilityWithSceneMode(int 
 
 Camera_ErrorCode NDKCamera::SetSceneMode(int useCaseCode)
 {
-    if (useCaseCode == PARAMETER_OK) {
-        sceneMode_ = NORMAL_PHOTO;
-    } else if (useCaseCode == PARAMETER1_ERROR) {
-        sceneMode_ = NORMAL_VIDEO;
-    } else if (useCaseCode == PARAMETER2_ERROR) {
-        sceneMode_ = SECURE_PHOTO;
-    }
+    sceneMode_ = static_cast<Camera_SceneMode>(useCaseCode);
     return CAMERA_OK;
 }
 
@@ -1678,12 +1732,13 @@ Camera_ErrorCode NDKCamera::OpenSecureCamera(int useCaseCode)
 
 Camera_ErrorCode NDKCamera::CreatePreviewOutputUsedInPreconfig(int useCaseCode)
 {
-    profile_ = cameraOutputCapability_->previewProfiles[0];
-
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_CameraManager_CreatePreviewOutputUsedInPreconfig(cameraManager_, previewSurfaceId_, &previewOutput_);
-    } else if (useCaseCode == PARAMETER3_ERROR) {
+    } else if (useCaseCode == PARAMETER4_ERROR) {
         ret_ = OH_CameraManager_CreatePreviewOutputUsedInPreconfig(cameraManager_, previewSurfaceId_, nullptr);
+    } else if (useCaseCode == PARAMETER3_ERROR) {
+        const char* abnormalSurfaceId = "0";
+        ret_ = OH_CameraManager_CreatePreviewOutputUsedInPreconfig(cameraManager_, abnormalSurfaceId, &previewOutput_);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_CameraManager_CreatePreviewOutputUsedInPreconfig(cameraManager_, nullptr, &previewOutput_);
     } else {
@@ -1695,12 +1750,13 @@ Camera_ErrorCode NDKCamera::CreatePreviewOutputUsedInPreconfig(int useCaseCode)
 
 Camera_ErrorCode NDKCamera::CreatePhotoOutputUsedInPreconfig(char *photoSurfaceId, int useCaseCode)
 {
-    profile_ = cameraOutputCapability_->photoProfiles[0];
-
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_CameraManager_CreatePhotoOutputUsedInPreconfig(cameraManager_, photoSurfaceId, &photoOutput_);
+    } else if (useCaseCode == PARAMETER4_ERROR) {
+        ret_ = OH_CameraManager_CreatePreviewOutputUsedInPreconfig(cameraManager_, photoSurfaceId, nullptr);
     } else if (useCaseCode == PARAMETER3_ERROR) {
-        ret_ = OH_CameraManager_CreatePhotoOutputUsedInPreconfig(cameraManager_, photoSurfaceId, nullptr);
+        const char* abnormalSurfaceId = "0";
+        ret_ = OH_CameraManager_CreatePhotoOutputUsedInPreconfig(cameraManager_, abnormalSurfaceId, &photoOutput_);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_CameraManager_CreatePhotoOutputUsedInPreconfig(cameraManager_, nullptr, &photoOutput_);
     } else {
@@ -1764,8 +1820,11 @@ Camera_ErrorCode NDKCamera::CreateVideoOutputUsedInPreconfig(char *videoId, int 
 {
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_CameraManager_CreateVideoOutputUsedInPreconfig(cameraManager_, videoId, &videoOutput_);
-    } else if (useCaseCode == PARAMETER3_ERROR) {
+    } else if (useCaseCode == PARAMETER4_ERROR) {
         ret_ = OH_CameraManager_CreateVideoOutputUsedInPreconfig(cameraManager_, videoId, nullptr);
+    } else if (useCaseCode == PARAMETER3_ERROR) {
+        const char* abnormalVideoId = "0";
+        ret_ = OH_CameraManager_CreateVideoOutputUsedInPreconfig(cameraManager_, abnormalVideoId, &videoOutput_);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_CameraManager_CreateVideoOutputUsedInPreconfig(cameraManager_, nullptr, &videoOutput_);
     } else {
@@ -1840,85 +1899,78 @@ Camera_ErrorCode NDKCamera::PhotoOutputDeleteProfile(int useCaseCode)
     return ret_;
 }
 
-void NDKCamera::PhotoOutputOnPhotoAvailable(Camera_PhotoOutput* photoOutput, OH_PhotoNative* photo)
+void PhotoOutputOnPhotoAvailable(Camera_PhotoOutput* photoOutput, OH_PhotoNative* photo)
 {
-    // NDKCamera::LogOnPhotoAvailable();
-    NDKCamera::isCalledPhotoAvailable_ = true;
     NDKCamera::cameraCallbackCode_ = PHOTO_ON_PHOTO_AVAILABLE;
-
     LOG("PhotoOutputOnPhotoAvailable is called.");
 }
 
 Camera_ErrorCode NDKCamera::RegisterPhotoAvailableCallback(int useCaseCode)
 {
-    NDKCamera::isCalledPhotoAvailable_ = false;
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_PhotoOutput_RegisterPhotoAvailableCallback(photoOutput_, NDKCamera::PhotoOutputOnPhotoAvailable);
+        ret_ = OH_PhotoOutput_RegisterPhotoAvailableCallback(photoOutput_, PhotoOutputOnPhotoAvailable);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_PhotoOutput_RegisterPhotoAvailableCallback(photoOutput_, nullptr);
     } else {
-        ret_ = OH_PhotoOutput_RegisterPhotoAvailableCallback(nullptr, NDKCamera::PhotoOutputOnPhotoAvailable);
+        ret_ = OH_PhotoOutput_RegisterPhotoAvailableCallback(nullptr, PhotoOutputOnPhotoAvailable);
     }
     if (ret_ != CAMERA_OK) {
         LOG("OH_PhotoOutput_RegisterPhotoAvailableCallback failed. %d", ret_);
     }
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::UnregisterPhotoAvailableCallback(int useCaseCode)
 {
-    NDKCamera::isCalledPhotoAvailable_ = false;
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_PhotoOutput_UnregisterPhotoAvailableCallback(photoOutput_, NDKCamera::PhotoOutputOnPhotoAvailable);
+        ret_ = OH_PhotoOutput_UnregisterPhotoAvailableCallback(photoOutput_, PhotoOutputOnPhotoAvailable);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_PhotoOutput_UnregisterPhotoAvailableCallback(photoOutput_, nullptr);
     } else {
-        ret_ = OH_PhotoOutput_UnregisterPhotoAvailableCallback(nullptr, NDKCamera::PhotoOutputOnPhotoAvailable);
+        ret_ = OH_PhotoOutput_UnregisterPhotoAvailableCallback(nullptr, PhotoOutputOnPhotoAvailable);
     }
     if (ret_ != CAMERA_OK) {
         LOG("OH_PhotoOutput_UnregisterPhotoAvailableCallback failed. %d", ret_);
     }
     return ret_;
 }
-void NDKCamera::PhotoOutputOnPhotoAssetAvailable(Camera_PhotoOutput* photoOutput, OH_MediaAsset* photoAsset)
+
+void PhotoOutputOnPhotoAssetAvailable(Camera_PhotoOutput* photoOutput, OH_MediaAsset* photoAsset)
 {
-    NDKCamera::isCalledPhotoAssetAvailable_ = true;
     NDKCamera::cameraCallbackCode_ = PHOTO_ON_PHOTO_ASSET_AVAILABLE;
     LOG("PhotoOutputOnPhotoAssetAvailable is called.");
 }
+
 Camera_ErrorCode NDKCamera::RegisterPhotoAssetAvailableCallback(int useCaseCode)
 {
-    NDKCamera::isCalledPhotoAssetAvailable_ = false;
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(photoOutput_,
-            NDKCamera::PhotoOutputOnPhotoAssetAvailable);
+        ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(photoOutput_, PhotoOutputOnPhotoAssetAvailable);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(photoOutput_, nullptr);
     } else {
-        ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(nullptr,
-            NDKCamera::PhotoOutputOnPhotoAssetAvailable);
+        ret_ = OH_PhotoOutput_RegisterPhotoAssetAvailableCallback(nullptr, PhotoOutputOnPhotoAssetAvailable);
     }
     if (ret_ != CAMERA_OK) {
         LOG("OH_PhotoOutput_RegisterPhotoAssetAvailableCallback failed. %d", ret_);
     }
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::UnregisterPhotoAssetAvailableCallback(int useCaseCode)
 {
-    NDKCamera::isCalledPhotoAssetAvailable_ = false;
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(photoOutput_,
-            NDKCamera::PhotoOutputOnPhotoAssetAvailable);
+        ret_ = OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(photoOutput_, PhotoOutputOnPhotoAssetAvailable);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(photoOutput_, nullptr);
     } else {
-        ret_ = OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(nullptr,
-            NDKCamera::PhotoOutputOnPhotoAssetAvailable);
+        ret_ = OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback(nullptr, PhotoOutputOnPhotoAssetAvailable);
     }
     if (ret_ != CAMERA_OK) {
         LOG("OH_PhotoOutput_UnregisterPhotoAssetAvailableCallback failed. %d", ret_);
     }
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::IsMovingPhotoSupported(int useCaseCode)
 {
     if (useCaseCode == PARAMETER_OK) {
@@ -1940,6 +1992,7 @@ Camera_ErrorCode NDKCamera::IsMovingPhotoSupported(int useCaseCode)
     }
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::EnableMovingPhoto(int useCaseCode)
 {
     if (useCaseCode == PARAMETER_OK) {
@@ -1954,20 +2007,22 @@ Camera_ErrorCode NDKCamera::EnableMovingPhoto(int useCaseCode)
     }
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::GetMainImage(int useCaseCode)
 {
     if (useCaseCode == PARAMETER_OK) {
-        ret_ = OH_PhotoNative_GetMainImage(photoNative_, mainImage_);
+        ret_ = OH_PhotoNative_GetMainImage(photoNative_, &mainImage_);
     } else if (useCaseCode == PARAMETER2_ERROR) {
         ret_ = OH_PhotoNative_GetMainImage(photoNative_, nullptr);
     } else {
-        ret_ = OH_PhotoNative_GetMainImage(nullptr, mainImage_);
+        ret_ = OH_PhotoNative_GetMainImage(nullptr, &mainImage_);
     }
     if (ret_ != CAMERA_OK) {
         LOG("OH_PhotoNative_GetMainImage failed. %d", ret_);
     }
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::PhotoNativeRelease(int useCaseCode)
 {
     if (useCaseCode == PARAMETER_OK) {
@@ -1980,9 +2035,10 @@ Camera_ErrorCode NDKCamera::PhotoNativeRelease(int useCaseCode)
     }
     return ret_;
 }
+
 Camera_ErrorCode NDKCamera::CreatePhotoOutputWithoutSurface(int useCaseCode)
 {
-    profile_ = cameraOutputCapability_->previewProfiles[0];
+    profile_ = cameraOutputCapability_->photoProfiles[0];
     if (useCaseCode == PARAMETER_OK) {
         ret_ = OH_CameraManager_CreatePhotoOutputWithoutSurface(cameraManager_, profile_, &photoOutput_);
     } else if (useCaseCode == PARAMETER3_ERROR) {
@@ -1995,14 +2051,6 @@ Camera_ErrorCode NDKCamera::CreatePhotoOutputWithoutSurface(int useCaseCode)
     if (ret_ != CAMERA_OK || !photoOutput_) {
         ret_ = CAMERA_INVALID_ARGUMENT;
         LOG("OH_CameraManager_CreatePhotoOutputWithoutSurface failed. %d", ret_);
-    }
-    return ret_;
-}
-Camera_ErrorCode NDKCamera::Capture()
-{
-    ret_ = OH_PhotoOutput_Capture(photoOutput_);
-    if (ret_ != CAMERA_OK) {
-        LOG("OH_PhotoOutput_Capture failed. %d", ret_);
     }
     return ret_;
 }

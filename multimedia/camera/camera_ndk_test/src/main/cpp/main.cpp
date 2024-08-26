@@ -967,6 +967,18 @@ static napi_value OHCameraManagerGetSupportedSceneModes(napi_env env, napi_callb
     napi_create_int32(env, code, &jsValue);
     napi_set_named_property(env, supportedSceneModes, "errorCode", jsValue);
 
+    bool normalPhoto = ndkCamera_->isNormalPhoto_;
+    napi_get_boolean(env, normalPhoto, &jsValue);
+    napi_set_named_property(env, supportedSceneModes, "isNormalPhoto", jsValue);
+
+    bool normalVideo = ndkCamera_->isNormalVideo_;
+    napi_get_boolean(env, normalVideo, &jsValue);
+    napi_set_named_property(env, supportedSceneModes, "isNormalVideo", jsValue);
+
+    bool securePhoto = ndkCamera_->isSecurePhoto_;
+    napi_get_boolean(env, securePhoto, &jsValue);
+    napi_set_named_property(env, supportedSceneModes, "isSecurePhoto", jsValue);
+
     return supportedSceneModes;
 }
 static napi_value OHCameraManagerDeleteSceneModes(napi_env env, napi_callback_info info)
@@ -1138,8 +1150,6 @@ static napi_value OHCameraInputOpenSecureCamera(napi_env env, napi_callback_info
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
-    napi_value result;
-
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     int32_t index;
@@ -1147,8 +1157,18 @@ static napi_value OHCameraInputOpenSecureCamera(napi_env env, napi_callback_info
 
     Camera_ErrorCode code = ndkCamera_->OpenSecureCamera(index);
 
-    napi_create_int32(env, code, &result);
-    return result;
+    napi_value secureCamera = nullptr;
+    napi_create_object(env, &secureCamera);
+    napi_value jsValue = nullptr;
+
+    uint64_t secureSeqId = ndkCamera_->secureSeqId_;
+    napi_create_bigint_uint64(env, secureSeqId, &jsValue);
+    napi_set_named_property(env, secureCamera, "secureSeqId", jsValue);
+
+    napi_create_int32(env, code, &jsValue);
+    napi_set_named_property(env, secureCamera, "errorCode", jsValue);
+
+    return secureCamera;
 }
 static napi_value OHCameraManagerSetSceneMode(napi_env env, napi_callback_info info)
 {
@@ -1595,34 +1615,13 @@ static napi_value OHCameraManagerCreatePhotoOutputWithoutSurface(napi_env env, n
     napi_create_int32(env, code, &result);
     return result;
 }
-static napi_value CallDeconstructFunction(napi_env env, napi_callback_info info)
-{
-    ndkCamera_->~NDKCamera();
-    return 0;
-}
-static napi_value TakePicture(napi_env env, napi_callback_info info)
+static napi_value ReleaseCamera(napi_env env, napi_callback_info info)
 {
     napi_value result;
-    Camera_ErrorCode code = ndkCamera_->Capture();
+    Camera_ErrorCode code = ndkCamera_->ReleaseCamera();
 
     napi_create_int32(env, code, &result);
     return result;
-}
-static napi_value IsCalledPhotoOutputRegisterCallback(napi_env env, napi_callback_info info)
-{
-    napi_value isCalledPhotoOutput = nullptr;
-    napi_create_object(env, &isCalledPhotoOutput);
-    napi_value jsValue = nullptr;
-
-    bool result = ndkCamera_->isCalledPhotoAvailable_;
-    napi_get_boolean(env, result, &jsValue);
-    napi_set_named_property(env, isCalledPhotoOutput, "isCalledPhotoAvailable", jsValue);
-    
-    result = ndkCamera_->isCalledPhotoAssetAvailable_;
-    napi_get_boolean(env, result, &jsValue);
-    napi_set_named_property(env, isCalledPhotoOutput, "isCalledPhotoAssetAvailable", jsValue);
-
-    return isCalledPhotoOutput;
 }
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
@@ -1780,30 +1779,27 @@ static napi_value Init(napi_env env, napi_value exports)
         {"oHPhotoOutputDeleteProfile", nullptr, OHPhotoOutputDeleteProfile, nullptr, nullptr, nullptr, napi_default,
             nullptr},
     };
-napi_property_descriptor desc4[] = {
-    {"oHPhotoOutputRegisterPhotoAvailableCallback", nullptr, OHPhotoOutputRegisterPhotoAvailableCallback,
-        nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"oHPhotoOutputUnregisterPhotoAvailableCallback", nullptr, OHPhotoOutputUnregisterPhotoAvailableCallback,
-        nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"oHPhotoOutputRegisterPhotoAssetAvailableCallback", nullptr, OHPhotoOutputRegisterPhotoAssetAvailableCallback,
-        nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"oHPhotoOutputUnregisterPhotoAssetAvailableCallback", nullptr, OHPhotoOutputUnregisterPhotoAssetAvailableCallback,
-        nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"oHPhotoOutputIsMovingPhotoSupported", nullptr, OHPhotoOutputIsMovingPhotoSupported, nullptr, nullptr, nullptr,
-        napi_default, nullptr},
-    {"oHPhotoOutputEnableMovingPhoto", nullptr, OHPhotoOutputEnableMovingPhoto, nullptr, nullptr, nullptr,
-        napi_default, nullptr},
-    {"oHPhotoNativeGetMainImage", nullptr, OHPhotoNativeGetMainImage, nullptr, nullptr, nullptr, napi_default,
-        nullptr},
-    {"oHPhotoNativeRelease", nullptr, OHPhotoNativeRelease, nullptr, nullptr, nullptr, napi_default,
-        nullptr},
-    {"oHCameraManagerCreatePhotoOutputWithoutSurface", nullptr, OHCameraManagerCreatePhotoOutputWithoutSurface,
-        nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"callDeconstructFunction", nullptr, CallDeconstructFunction, nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"takePicture", nullptr, TakePicture, nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"isCalledPhotoOutputRegisterCallback", nullptr, IsCalledPhotoOutputRegisterCallback, nullptr, nullptr, nullptr,
-        napi_default, nullptr},
-};
+    napi_property_descriptor desc4[] = {
+        {"oHPhotoOutputRegisterPhotoAvailableCallback", nullptr, OHPhotoOutputRegisterPhotoAvailableCallback,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"oHPhotoOutputUnregisterPhotoAvailableCallback", nullptr, OHPhotoOutputUnregisterPhotoAvailableCallback,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"oHPhotoOutputRegisterPhotoAssetAvailableCallback", nullptr, OHPhotoOutputRegisterPhotoAssetAvailableCallback,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"oHPhotoOutputUnregisterPhotoAssetAvailableCallback", nullptr,
+            OHPhotoOutputUnregisterPhotoAssetAvailableCallback, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"oHPhotoOutputIsMovingPhotoSupported", nullptr, OHPhotoOutputIsMovingPhotoSupported, nullptr, nullptr, nullptr,
+            napi_default, nullptr},
+        {"oHPhotoOutputEnableMovingPhoto", nullptr, OHPhotoOutputEnableMovingPhoto, nullptr, nullptr, nullptr,
+            napi_default, nullptr},
+        {"oHPhotoNativeGetMainImage", nullptr, OHPhotoNativeGetMainImage, nullptr, nullptr, nullptr, napi_default,
+            nullptr},
+        {"oHPhotoNativeRelease", nullptr, OHPhotoNativeRelease, nullptr, nullptr, nullptr, napi_default,
+            nullptr},
+        {"oHCameraManagerCreatePhotoOutputWithoutSurface", nullptr, OHCameraManagerCreatePhotoOutputWithoutSurface,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"releaseCamera", nullptr, ReleaseCamera, nullptr, nullptr, nullptr, napi_default, nullptr},
+    };
     size_t mergedLength = sizeof(desc) / sizeof(desc[0]) +
                           sizeof(desc1) / sizeof(desc1[0]) +
                           sizeof(desc2) / sizeof(desc2[0]) +
@@ -1824,7 +1820,7 @@ napi_property_descriptor desc4[] = {
     }
     napi_define_properties(env, exports, mergedLength, mergedArray);
     return exports;
-}
+};
 EXTERN_C_END
 
 static napi_module demoModule = {

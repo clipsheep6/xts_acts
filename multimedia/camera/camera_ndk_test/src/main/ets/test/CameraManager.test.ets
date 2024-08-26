@@ -16,24 +16,22 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import cameraObj from 'libentry.so'
 import image from '@ohos.multimedia.image';
-import { Camera_Position, Camera_Type } from './Constants';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 import account from '@ohos.account.osAccount';
-import { Camera_PreconfigType } from './Constants';
+import { Camera_SceneMode } from './Constants';
 
 const TAG = "CAMERA_LOGTAG_JS ";
 const CAMERA_OK = 0;
-const CAMERA_ERROR_7400101 = 7400101; //参数错误
-const CAMERA_INVALID_ARGUMENT = 7400101; // 参数错误
+const CAMERA_INVALID_ARGUMENT = 7400101;
 let receiver: image.ImageReceiver;
 let mPhotoSurface: string;
 function getCameraManagerInstance() {
-  console.info(TAG + 'mSurfaceId : ' + mPhotoSurface);
+  console.log(TAG + 'mSurfaceId : ' + mPhotoSurface);
   let ret = cameraObj.initCamera(mPhotoSurface);
-  console.info(TAG + 'initCamera : ' + ret);
+  console.log(TAG + 'initCamera : ' + ret);
   if (ret != 0) {
-    console.info(TAG + "getCameraManager FAILED");
+    console.log(TAG + "getCameraManager FAILED");
     expect().assertFail();
   }
 }
@@ -41,7 +39,7 @@ function getCameraManagerInstance() {
 function getSupportedCamerasInstance() {
   let cameraInfo = cameraObj.getSupportedCameras();
   if (isEmpty(cameraInfo)) {
-    console.info(TAG + "getSupportedCamerasInstance FAILED");
+    console.log(TAG + "getSupportedCamerasInstance FAILED");
     expect().assertFail();
   }
 }
@@ -49,25 +47,35 @@ function getSupportedCamerasInstance() {
 function getSupportedSceneModes() {
   let supportedSceneModes = cameraObj.oHCameraManagerGetSupportedSceneModes(0);
   if (supportedSceneModes.errorCode != 0) {
-    console.info(TAG + "getSupportedSceneModes FAILED");
+    console.log(TAG + "getSupportedSceneModes FAILED");
     expect().assertFail();
   }
-  return supportedSceneModes.sceneModesSize;
+  if (supportedSceneModes.isNormalPhoto) {
+    console.log(TAG + "NORMAL_PHOTO is supported.");
+  }
+  if (supportedSceneModes.isNormalVideo) {
+    console.log(TAG + "NORMAL_VIDEO is supported.");
+  }
+  if (supportedSceneModes.isSecurePhoto) {
+    console.log(TAG + "SECURE_PHOTO is supported.");
+  }
+  cameraObj.oHCameraManagerDeleteSceneModes(0);
+  return supportedSceneModes;
 }
 
 function getSupportedCameraOutputCapability() {
   let cameraOutputCapability = cameraObj.getSupportedOutputCapability();
-  console.info(TAG + 'cameraOutputCapability[0] = ' + cameraOutputCapability.previewProfilesSize);
-  console.info(TAG + 'cameraOutputCapability[1] = ' + cameraOutputCapability.photoProfilesSize);
-  console.info(TAG + 'cameraOutputCapability[2] = ' + cameraOutputCapability.videoProfilesSize);
-  console.info(TAG + 'cameraOutputCapability[3] = ' + cameraOutputCapability.metadataProfilesSize);
+  console.log(TAG + 'cameraOutputCapability[0] = ' + cameraOutputCapability.previewProfilesSize);
+  console.log(TAG + 'cameraOutputCapability[1] = ' + cameraOutputCapability.photoProfilesSize);
+  console.log(TAG + 'cameraOutputCapability[2] = ' + cameraOutputCapability.videoProfilesSize);
+  console.log(TAG + 'cameraOutputCapability[3] = ' + cameraOutputCapability.metadataProfilesSize);
   return true;
 }
 
 function getSupportedCameraOutputCapabilityWithSceneMode() {
   let ret = cameraObj.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(0);
   if (ret != 0) {
-    console.info(TAG + "getSupportedCameraOutputCapabilityWithSceneMode FAILED");
+    console.log(TAG + "getSupportedCameraOutputCapabilityWithSceneMode FAILED");
     expect().assertFail();
   }
 }
@@ -75,7 +83,7 @@ function getSupportedCameraOutputCapabilityWithSceneMode() {
 function createPreviewOutputInstance() {
   let ret = cameraObj.createPreviewOutput();
   if (ret != 0) {
-    console.info(TAG + "createPreviewOutputInstance FAILED");
+    console.log(TAG + "createPreviewOutputInstance FAILED");
     expect().assertFail();
   }
 }
@@ -83,15 +91,15 @@ function createPreviewOutputInstance() {
 function setSceneMode(index_sceneMode: number) {
   let ret = cameraObj.oHCameraManagerSetSceneMode(index_sceneMode);
   if (ret != 0) {
-    console.info(TAG + "setSceneMode FAILED");
+    console.log(TAG + "setSceneMode FAILED");
     expect().assertFail();
   }
   if (index_sceneMode == 0) {
-    console.info(TAG + "set sceneMode: NORMAL_PHOTO");
+    console.log(TAG + "set sceneMode: NORMAL_PHOTO");
   } else if (index_sceneMode == 1) {
-    console.info(TAG + "set sceneMode: NORMAL_VIDEO");
+    console.log(TAG + "set sceneMode: NORMAL_VIDEO");
   } else if (index_sceneMode == 2) {
-    console.info(TAG + "set sceneMode: SECURE_PHOTO");
+    console.log(TAG + "set sceneMode: SECURE_PHOTO");
   }
 }
 
@@ -115,31 +123,40 @@ function isEmpty(data: cameraObj.cameraInfo | number) {
 }
 
 async function getPermissions() {
-  console.info('getPermission start');
-  type MyPermissions = "ohos.permission.CAMERA" | "ohos.permission.READ_MEDIA" | "ohos.permission.WRITE_MEDIA";
-  let list: MyPermissions[] = ['ohos.permission.CAMERA', 'ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA'];
+  console.log('getPermission start');
+  type MyPermissions = "ohos.permission.CAMERA" | "ohos.permission.READ_MEDIA" | "ohos.permission.WRITE_MEDIA"|
+      "ohos.permission.MICROPHONE";
+  let list: MyPermissions[] = ['ohos.permission.CAMERA', 'ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA',
+      'ohos.permission.MICROPHONE'];
   try {
     let userId: number = await account.getAccountManager().getOsAccountLocalId();
     let applicationFlags: number = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
-    let applicationInfo: bundleManager.ApplicationInfo = await bundleManager.getApplicationInfoSync('com.example.camerandk', applicationFlags, userId);
+    let applicationInfo: bundleManager.ApplicationInfo =
+        await bundleManager.getApplicationInfoSync('com.example.camerandk', applicationFlags, userId);
     let tokenId: number = applicationInfo.accessTokenId;
     for (let index = 0; index < list.length; index++) {
       await abilityAccessCtrl.createAtManager().grantUserGrantedPermission(tokenId, list[index], 1);
     }
   } catch (err) {
-    console.info(`getPermission error ${JSON.stringify(err)}`);
+    console.log(`getPermission error ${JSON.stringify(err)}`);
   }
-  console.info('getPermission end');
-};
+  console.log('getPermission end');
+}
+
+function releaseCamera() {
+  let ret = cameraObj.releaseCamera();
+  if (ret != 0) {
+    console.log(TAG + "releaseCamera FAILED");
+    expect().assertFail();
+  }
+}
 
 export default function CameraManagerTest() {
   describe('CameraManagerTest', () => {
-    console.info(TAG + '----------CameraManagerTest--------------');
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async () => {
       await getPermissions();
       await getPhotoReceiverSurface();
-
     })
     beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
@@ -147,6 +164,7 @@ export default function CameraManagerTest() {
       // This API supports only one parameter: preset action function.
     })
     afterEach(() => {
+      releaseCamera();
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
@@ -169,6 +187,7 @@ export default function CameraManagerTest() {
       let ret = cameraObj.oHCameraManagerGetSupportedSceneModes(0).errorCode;
       console.log(TAG+"testOHCameraManagerGetSupportedSceneModes0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
+      cameraObj.oHCameraManagerDeleteSceneModes(0);
     })
     /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedSceneModes0200
@@ -226,7 +245,7 @@ export default function CameraManagerTest() {
     it('testOHCameraManagerDeleteSceneModes0100', 0, () => {
       getCameraManagerInstance();
       getSupportedCamerasInstance();
-      getSupportedSceneModes();
+      cameraObj.oHCameraManagerGetSupportedSceneModes(0);
       let ret = cameraObj.oHCameraManagerDeleteSceneModes(0);
       console.log(TAG+"testOHCameraManagerDeleteSceneModes0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -242,10 +261,11 @@ export default function CameraManagerTest() {
     it('testOHCameraManagerDeleteSceneModes0200', 0, () => {
       getCameraManagerInstance();
       getSupportedCamerasInstance();
-      getSupportedSceneModes();
+      cameraObj.oHCameraManagerGetSupportedSceneModes(0);
       let ret = cameraObj.oHCameraManagerDeleteSceneModes(1);
       console.log(TAG+"testOHCameraManagerDeleteSceneModes0200:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+      cameraObj.oHCameraManagerDeleteSceneModes(0);
     })
     /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerDeleteSceneModes0300
@@ -258,10 +278,11 @@ export default function CameraManagerTest() {
     it('testOHCameraManagerDeleteSceneModes0300', 0, () => {
       getCameraManagerInstance();
       getSupportedCamerasInstance();
-      getSupportedSceneModes();
+      cameraObj.oHCameraManagerGetSupportedSceneModes(0);
       let ret = cameraObj.oHCameraManagerDeleteSceneModes(2);
       console.log(TAG+"testOHCameraManagerDeleteSceneModes0300:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+      cameraObj.oHCameraManagerDeleteSceneModes(0);
     })
     /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0100
@@ -275,7 +296,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance();
       getSupportedCamerasInstance();
       getSupportedSceneModes();
-      setSceneMode(0);
+      setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       let ret = cameraObj.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(0);
       console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -292,7 +313,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance();
       getSupportedCamerasInstance();
       getSupportedSceneModes();
-      setSceneMode(1);
+      setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       let ret = cameraObj.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(0);
       console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0200:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
@@ -308,19 +329,18 @@ export default function CameraManagerTest() {
     it('testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0300', 0, () => {
       getCameraManagerInstance();
       getSupportedCamerasInstance();
-      let sceneModesSize = getSupportedSceneModes();
-      console.log(TAG+"getSupportedSceneModesSize is called. sceneModesSize is "+sceneModesSize);
-      if (sceneModesSize == 2) {
+      let supportedSceneModes = getSupportedSceneModes();
+      console.log(TAG+"getSupportedSceneModesSize is called. sceneModesSize is "+supportedSceneModes.sceneModesSize);
+      if (!supportedSceneModes.isSecurePhoto) {
         console.log(TAG+"SECURE_PHOTO is not supported");
-        console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0300 end");
-        expect(true).assertTrue();
-      } else if (sceneModesSize == 3) {
-        console.log(TAG+"SECURE_PHOTO is supported");
-        setSceneMode(2);
+        expect(supportedSceneModes.isSecurePhoto).assertEqual(false);
+      } else {
+        setSceneMode(Camera_SceneMode.SECURE_PHOTO);
         let ret = cameraObj.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(0);
         console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0300:"+ret);
         expect(ret).assertEqual(CAMERA_OK);
       }
+      console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0300 end");
     })
     /**
      * @tc.number     : SUB_MULTIMEIDA_OHCAMERANDK_OHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0400
@@ -334,7 +354,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance();
       getSupportedCamerasInstance();
       getSupportedSceneModes();
-      setSceneMode(0);
+      setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       let ret = cameraObj.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(1);
       console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0400:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
@@ -351,7 +371,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance();
       getSupportedCamerasInstance();
       getSupportedSceneModes();
-      setSceneMode(0);
+      setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       let ret = cameraObj.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(2);
       console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0500:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
@@ -368,7 +388,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance();
       getSupportedCamerasInstance();
       getSupportedSceneModes();
-      setSceneMode(0);
+      setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       let ret = cameraObj.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(3);
       console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0600:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
@@ -385,7 +405,7 @@ export default function CameraManagerTest() {
       getCameraManagerInstance();
       getSupportedCamerasInstance();
       getSupportedSceneModes();
-      setSceneMode(0);
+      setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       let ret = cameraObj.oHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode(4);
       console.log(TAG+"testOHCameraManagerGetSupportedCameraOutputCapabilityWithSceneMode0700:"+ret);
       expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
