@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,6 +15,7 @@
 
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
 import { describe, it, expect, beforeAll } from '@ohos/hypium'
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import sendablePhotoAccessHelper from '@ohos.file.sendablePhotoAccessHelper'
 import {
   sleep,
@@ -23,10 +24,9 @@ import {
   pushCreateAsset,
 } from '../../../../../../../common'
 
-export default function ConvertToPhotoAssetTest () {
-  describe('ConvertToPhotoAssetTest', () => {
+export default function convertToPhotoAssetTest () {
+  describe('convertToPhotoAssetTest', () => {
 
-    const helper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
     let sendablePhAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
     const fileName = 'convertToPhotoAssetTest.jpg';
 

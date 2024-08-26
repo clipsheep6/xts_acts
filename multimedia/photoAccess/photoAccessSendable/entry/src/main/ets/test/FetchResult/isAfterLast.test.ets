@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,47 +14,48 @@
  */
 
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
-import { describe, it, expect } from 'deccjsunit/index'
+import { describe, it, expect, beforeAll } from '@ohos/hypium'
 import sendablePhotoAccessHelper from '@ohos.file.sendablePhotoAccessHelper'
 import {
-  createUserAlbum,
-  genRadomStr,
-  fetchOption,
+  sleep,
+  getPermission,
   fetchAllOption,
-  albumKeys
 } from '../../../../../../../common'
 
-export default function albumGetCountTest () {
-  describe('albumGetCountTest', function () {
-    const helper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
+export default function IsAfterLastTest () {
+  describe('IsAfterLastTest', function () {
+
+    beforeAll(async function () {
+      console.info('beforeAll case');
+      await getPermission();
+      await sleep()
+    });
+
     let sendablePhAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_CALLBACK_ALBUM_GET_COUNT_0000
-     * @tc.name      : album_getCount_callback_000
-     * @tc.desc      : getCount
+     * @tc.number    : SUB_PHOTOACCESS_HELPER_ALBUM_IS_AFTER_LAST_0000
+     * @tc.name      : album_isAfterLast_000
+     * @tc.desc      : isAfterLast
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('album_getCount_callback_000', 0, async function (done) {
-      const testNum = 'album_getCount_callback_000';
+    it('isAfterLast_000', 0, async function (done) {
+			const testNum = 'isAfterLast_000';
       try {
         const fetchOption = fetchAllOption();
-        let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await sendablePhAccessHelper.getAssets(fetchOption);
+        let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await  sendablePhAccessHelper.getAssets(fetchOption);
         if (fetchResult === undefined) {
           expect(false).assertTrue();
           done();
         }
-        let fetchCount = fetchResult.getCount();
-        if (fetchCount === undefined || fetchCount < 0) {
-          expect(false).assertTrue();
-          done();
-        }
+        let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
+        expect(fetchResult.isAfterLast()).assertTrue();
         done();
       } catch (error) {
-        console.info(`${testNum} failed; error: ${error}`);
-        expect(false).assertTrue();
+				console.info(`${testNum} failed; error: ${error}`);
+				expect(false).assertTrue();
         done();
       }
     });

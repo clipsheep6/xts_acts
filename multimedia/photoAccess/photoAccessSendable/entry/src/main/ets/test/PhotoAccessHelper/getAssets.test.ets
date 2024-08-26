@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,13 +14,24 @@
  */
 
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
-import { describe, it, expect } from '@ohos/hypium'
+import { describe, it, expect, beforeAll } from '@ohos/hypium'
 import sendablePhotoAccessHelper from '@ohos.file.sendablePhotoAccessHelper'
-import { photoKeys, fetchOption, } from '../../../../../../../common'
+import {
+  photoKeys,
+  fetchOption,
+  sleep,
+  getPermission
+} from '../../../../../../../common'
 
 export default function getAssetsTest() {
   describe('getAssetsTest', () => {
-    const helper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
+
+    beforeAll(async function () {
+      console.info('beforeAll case');
+      await getPermission();
+      await sleep()
+    });
+
     let sendablePhAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
 
     const getAssetsPromiseTest = async (done: Function, testNum: string, fetchOps: photoAccessHelper.FetchOptions,

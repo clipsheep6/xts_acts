@@ -14,8 +14,7 @@
  */
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
-
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import {
     sleep,
     getPermission,
@@ -27,9 +26,10 @@ export default function provisionResourcesTest() {
     describe('provisionResourcesTest', function () {
         const phAccessHelper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
         let assetCount = 0;
-        
+
         beforeAll(async function () {
             console.info('beforeAll case');
+            console.log(`context ===> ${globalThis.abilityContext}`);
             await getPermission();
             await sleep()
         });
@@ -60,11 +60,11 @@ export default function provisionResourcesTest() {
             } catch(error) {
                 console.info(`${testNum} getAssets count failed, error: ${error}`)
                 return count;
-            } 
+            }
         }
 
         const checkResourceAsset = async function (done, testNum, fileNames) {
-            
+
             try {
                 const count = await getAssetsCount(testNum);
                 assetCount += fileNames.length;
@@ -76,7 +76,7 @@ export default function provisionResourcesTest() {
                 expect(false).assertTrue();
                 done();
             }
-        }        
+        }
 
         /**
          * @tc.number    : SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0100
@@ -89,7 +89,7 @@ export default function provisionResourcesTest() {
         it('sub_media_photoAccess_provision_check_assets_001', 0, async function (done) {
             const testNum = 'SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0100';
             const fileNames = [
-                "01.jpg", "addRemoveAssetsChangeReq01.jpg", "addRemoveAssetsChangeReq02.jpg", "request_image.jpg", 
+                "01.jpg", "addRemoveAssetsChangeReq01.jpg", "addRemoveAssetsChangeReq02.jpg", "request_image.jpg",
                 "albumImageVideoCount01.jpg", "albumImageVideoCount02.jpg","PicturealbumGetAssetsCb01.jpg", "albumGetAssetsPro01.jpg", "request_image_native.jpg",
             ];
             await pushCreateAsset(fileNames);
@@ -107,7 +107,7 @@ export default function provisionResourcesTest() {
         it('sub_media_photoAccess_provision_check_assets_002', 0, async function (done) {
             const testNum = 'SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0200';
             const fileNames = [
-                "addCb01.jpg", "addCb02.jpg", "addCb03.jpg", "addCb04.jpg", 
+                "addCb01.jpg", "addCb02.jpg", "addCb03.jpg", "addCb04.jpg",
                 "addPro01.jpg", "addPro02.jpg", "addPro03.jpg", "addPro04.jpg"
             ];
             await pushCreateAsset(fileNames);
@@ -125,7 +125,7 @@ export default function provisionResourcesTest() {
         it('sub_media_photoAccess_provision_check_assets_003', 0, async function (done) {
             const testNum = 'SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0300';
             const fileNames = [
-                "removeCb01.jpg", "removeCb02.jpg", "removeCb03.jpg", "removeCb04.jpg", 
+                "removeCb01.jpg", "removeCb02.jpg", "removeCb03.jpg", "removeCb04.jpg",
                 "removePro01.jpg", "removePro02.jpg", "removePro03.jpg", "removePro04.jpg"
             ];
             await pushCreateAsset(fileNames);
@@ -143,7 +143,7 @@ export default function provisionResourcesTest() {
         it('sub_media_photoAccess_provision_check_assets_004', 0, async function (done) {
             const testNum = 'SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0400';
             const fileNames = [
-                "off01.jpg", "off02.jpg", "off03.jpg", "off04.jpg", "off10.jpg", "off11.jpg", 
+                "off01.jpg", "off02.jpg", "off03.jpg", "off04.jpg", "off10.jpg", "off11.jpg",
                 "off12.jpg", "off13.jpg", "off14.jpg", "off15.jpg", "offCb01.jpg"
             ];
             await pushCreateAsset(fileNames);
@@ -161,7 +161,7 @@ export default function provisionResourcesTest() {
         it('sub_media_photoAccess_provision_check_assets_005', 0, async function (done) {
             const testNum = 'SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0500';
             const fileNames = [
-                "on01.jpg", "on02.jpg", "on03.jpg", "on04.jpg", "on10.jpg", "on11.jpg", 
+                "on01.jpg", "on02.jpg", "on03.jpg", "on04.jpg", "on10.jpg", "on11.jpg",
                 "on12.jpg", "on13.jpg", "on14.jpg", "on15.jpg", "on16.jpg"
             ];
             await pushCreateAsset(fileNames);
@@ -179,7 +179,7 @@ export default function provisionResourcesTest() {
         it('sub_media_photoAccess_provision_check_assets_006', 0, async function (done) {
             const testNum = 'SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0600';
             const fileNames = [
-                "modifyCb01.jpg", "modifyCb02.jpg", "modifyCb03.jpg", "modifyCb04.jpg", 
+                "modifyCb01.jpg", "modifyCb02.jpg", "modifyCb03.jpg", "modifyCb04.jpg",
                 "modifyCb05.jpg", "modifyCb06.jpg", "modifyCb07.jpg"
             ];
             await pushCreateAsset(fileNames);
@@ -197,7 +197,7 @@ export default function provisionResourcesTest() {
         it('sub_media_photoAccess_provision_check_assets_007', 0, async function (done) {
             const testNum = 'SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0700';
             const fileNames = [
-                "modifyPro01.jpg", "modifyPro02.jpg", "modifyPro03.jpg", "modifyPro04.jpg", 
+                "modifyPro01.jpg", "modifyPro02.jpg", "modifyPro03.jpg", "modifyPro04.jpg",
                 "modifyPro05.jpg", "modifyPro06.jpg", "modifyPro07.jpg"
             ];
             await pushCreateAsset(fileNames);
@@ -238,7 +238,7 @@ export default function provisionResourcesTest() {
             await pushCreateAsset(fileNames);
             await checkResourceAsset(done, testNum, fileNames);
         });
-        
+
         /**
          * @tc.number    : SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_1000
          * @tc.name      : sub_media_photoAccess_provision_check_assets_010
@@ -255,7 +255,7 @@ export default function provisionResourcesTest() {
             await pushCreateAsset(fileNames);
             await checkResourceAsset(done, testNum, fileNames);
         });
-        
+
         /**
          * @tc.number    : SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_1100
          * @tc.name      : sub_media_photoAccess_provision_check_assets_011

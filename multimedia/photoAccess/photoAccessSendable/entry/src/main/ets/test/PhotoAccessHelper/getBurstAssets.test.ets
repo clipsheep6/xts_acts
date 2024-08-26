@@ -31,7 +31,6 @@ export default function getBurstAssetsTest () {
   const imageDisplayName = "getBurstAssetsTest.jpg";
   const videoDisplayName = "getBurstAssetsTest.mp4";
 
-  let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
   let sendablePhAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
 
   describe('getBurstAssetsTest', () => {

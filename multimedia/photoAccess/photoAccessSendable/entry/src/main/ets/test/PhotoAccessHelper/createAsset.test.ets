@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,14 +14,22 @@
  */
 
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
-import { describe, it, expect } from '@ohos/hypium'
+import { describe, it, expect, beforeAll } from '@ohos/hypium'
 import sendablePhotoAccessHelper from '@ohos.file.sendablePhotoAccessHelper'
-import { photoType } from '../../../../../../../common'
+import {
+  sleep,
+  getPermission
+} from '../../../../../../../common';
 
 export default function createAssetTest () {
   describe('createAssetTest', () => {
 
-    const helper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
+    beforeAll(async function () {
+      console.info('beforeAll case');
+      await getPermission();
+      await sleep()
+    });
+
     let sendablePhAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
 
     const createAssetPromise1 = async (done: Function, testNum: string, type: sendablePhotoAccessHelper.PhotoType,

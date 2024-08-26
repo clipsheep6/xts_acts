@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,31 +15,34 @@
 
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
 import sendablePhotoAccessHelper from '@ohos.file.sendablePhotoAccessHelper'
-import { describe, it, expect } from 'deccjsunit/index'
+import { describe, it, expect, beforeAll } from '@ohos/hypium'
 import {
-  albumType,
-  albumSubtype,
-  getAlbumFetchResult,
-  fetchOption,
-  fetchAllOption,
-  albumKeys
+  sleep,
+  getPermission,
+  fetchAllOption
 } from '../../../../../../../common'
 
-export default function albumCloseTest () {
-  describe('albumCloseTest', function () {
-    const helper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
+export default function closeTest () {
+  describe('closeTest', function () {
+
     let sendablePhAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
+
+    beforeAll(async function () {
+      console.info('beforeAll case');
+      await getPermission();
+      await sleep()
+    });
 
     /**
      * @tc.number    : SUB_PHOTOACCESS_HELPER_ALBUM_CLOSE_0000
      * @tc.name      : album_close_000
-     * @tc.desc      : close system album
+     * @tc.desc      : close fetchResult
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('album_close_000', 0, async function (done) {
-      const testNum = 'album_close_000';
+    it('close_fetch_result_000', 0, async function (done) {
+      const testNum = 'close_fetch_result_000';
       try {
         const fetchOption = fetchAllOption();
         let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await sendablePhAccessHelper.getAssets(fetchOption);
@@ -49,6 +52,7 @@ export default function albumCloseTest () {
         }
         fetchResult.close();
         console.info(`${testNum} close success .`);
+        done();
       } catch (error) {
         console.info(`${testNum} failed; error: ${error}`);
         expect(false).assertTrue();
@@ -58,14 +62,14 @@ export default function albumCloseTest () {
 
     /**
      * @tc.number    : SUB_PHOTOACCESS_HELPER_ALBUM_CLOSE_0001
-     * @tc.name      : album_close_001
-     * @tc.desc      : close fetchResult
+     * @tc.name      : close_fetch_result_001
+     * @tc.desc      : close fetchResult, then operate fetchResult
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('album_close_001', 0, async function (done) {
-      const testNum = 'album_close_001';
+    it('close_fetch_result_001', 0, async function (done) {
+      const testNum = 'close_fetch_result_001';
       let flag = false;
       try {
         const fetchOption = fetchAllOption();
@@ -84,7 +88,6 @@ export default function albumCloseTest () {
         done();
       }
     });
-
 
   })
 }

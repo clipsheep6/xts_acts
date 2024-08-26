@@ -13,15 +13,17 @@
  * limitations under the License.
  */
 
+import photoAccessHelper from '@ohos.file.photoAccessHelper'
 import sendablePhotoAccessHelper from '@ohos.file.sendablePhotoAccessHelper'
 import { describe, it, expect, beforeAll } from '@ohos/hypium'
 import {
   sleep,
-  getPermission
-} from '../../../../../../../common';
+  getPermission,
+  fetchAllOption
+} from '../../../../../../common'
 
-export default function releaseTest () {
-  describe('releaseTest', function () {
+export default function getPhotoAccessHelperTest () {
+  describe('getPhotoAccessHelperTest', function () {
 
     beforeAll(async function () {
       console.info('beforeAll case');
@@ -30,22 +32,21 @@ export default function releaseTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_RELEASE_0000
-     * @tc.name      : release_promise_000
-     * @tc.desc      : release photoAccessHelper instance
+     * @tc.number    : SUB_PHOTOACCESS_HELPER_GET_PHOTO_ACCESS_HELPER_0000
+     * @tc.name      : getPhotoAccessHelper_000
+     * @tc.desc      : get a photoAccess instance
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('release_promise_000', 0, async function (done) {
-      const testNum = 'release_promise_000'
+    it('getPhotoAccessHelper_000', 0, async function (done) {
       try {
-        let helper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext)
-        await helper?.release()
+        let sendablePhAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
+        expect(sendablePhAccessHelper !== undefined).assertTrue();
         done();
       } catch (error) {
-        console.error(`${testNum} failed; error: ${error}`);
-        expect(false).assertTrue()
+        console.info(`getPhotoAccessHelper_000 failed, error: ${error}`);
+        expect(false).assertTrue();
         done();
       }
     })

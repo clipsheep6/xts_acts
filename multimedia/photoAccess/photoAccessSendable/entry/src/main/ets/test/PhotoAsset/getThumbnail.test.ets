@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,16 +16,22 @@
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
 import sendablePhotoAccessHelper from '@ohos.file.sendablePhotoAccessHelper'
 import image from '@ohos.multimedia.image';
-import { describe, it, expect } from 'deccjsunit/index'
+import { describe, it, expect, beforeAll } from '@ohos/hypium'
 
 import {
+  sleep,
+  getPermission,
   photoKeys,
-  fetchOption,
-  getFileAsset,
+  fetchOption
 } from '../../../../../../../common'
 
 export default function getThumbnailTest () {
   describe('getThumbnailTest', function () {
+
+    beforeAll(async () => {
+      await getPermission();
+      await sleep();
+    })
 
     let sendablePhAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
 
@@ -158,7 +164,7 @@ export default function getThumbnailTest () {
       const expectSize = { width: 128, height: 256 };
       await getThumbnailPromise2(done, testNum, fetchOps, size, expectSize);
     });
-    
+
     /**
      * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_THUMBNAIL_0800
      * @tc.name      : getThumbnail_promise_008

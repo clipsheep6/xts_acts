@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,31 +14,37 @@
  */
 
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
-import { describe, it, expect } from 'deccjsunit/index'
+import { describe, it, expect, beforeAll } from '@ohos/hypium'
 import sendablePhotoAccessHelper from '@ohos.file.sendablePhotoAccessHelper'
 import {
-  fetchAllOption,
-  albumKeys,
-  sleep
+  sleep,
+  getPermission,
+  fetchAllOption
 } from '../../../../../../../common'
 
-export default function albumGetNextObjectTest () {
-  describe('albumGetNextObjectTest', function () {
-    const helper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
+export default function getFirstObjectTest () {
+  describe('getFirstObjectTest', function () {
+
+    beforeAll(async function () {
+      console.info('beforeAll case');
+      await getPermission();
+      await sleep()
+    });
+
     let sendablePhAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
-   
-    
+
+    //promise
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_ALBUM_GET_NEXT_OBJECT_0100
-     * @tc.name      : album_getNextObject_promise_001
-     * @tc.desc      : getNextObject
+     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_ALBUM_GET_FIRST_OBJECT_0000
+     * @tc.name      : get_first_object_promise_000
+     * @tc.desc      : getFirstObject
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('album_getNextObject_promise_001', 0, async function (done) {
-      const testNum = 'album_getNextObject_promise_001';
-      try {
+    it('get_first_object_promise_000', 0, async function (done) {
+			const testNum = 'get_first_object_promise_000';
+			try {
         const fetchOption = fetchAllOption();
         let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> = await  sendablePhAccessHelper.getAssets(fetchOption);
         if (fetchResult === undefined) {
@@ -46,17 +52,17 @@ export default function albumGetNextObjectTest () {
           done();
         }
         let photoAsset: sendablePhotoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-        let photoAsset2: sendablePhotoAccessHelper.PhotoAsset | undefined = undefined;
-        if (!fetchResult.isAfterLast()) {
-          photoAsset2 = await fetchResult.getNextObject();
+        if (photoAsset === undefined) {
+          expect(false).assertTrue();
+          done();
         }
-        expect(photoAsset2 !== undefined).assertTrue();
         done();
       } catch (error) {
-        console.info(`${testNum} failed; error: ${error}`);
-        expect(false).assertTrue();
+				console.info(`${testNum} failed; error: ${error}`);
+				expect(false).assertTrue();
         done();
       }
     });
+
   })
 }
