@@ -1402,7 +1402,7 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   if (res != AUDIOCOMMON_RESULT_SUCCESS) {
     return res;
   }
-  napi_create_int32(env, AUDIOCOMMON_RESULT_SUCCESS);
+  napi_create_int32(env, AUDIOCOMMON_RESULT_SUCCESS, &res);
   return res;
 }
 static napi_value AudioRendererSetVolumeWithRamp_06(napi_env env, napi_callback_info info)
