@@ -15,6 +15,7 @@
 
 #include <string>
 #include <cstdio>
+#include <cstdint>
 #include "napi/native_api.h"
 #include "native_audiocapturer.h"
 #include "native_audiorenderer.h"
@@ -25,7 +26,7 @@
 #include "native_audio_common.h"
 #include "native_audio_device_base.h"
 #include "native_audio_session_manager.h"
-#include <cstdint>
+
 
 #define LOG(cond, fmt, ...)           \
     if (!(cond)) {                                  \
@@ -62,10 +63,10 @@ static int32_t AudioRendererOnMarkReachedWriteData(OH_AudioRenderer* capturer,
     return 0;
 }
 
-static void statusJudgment(OH_AudioCommon_Result result)
+static void statusJudgment(OH_AudioCommon_Result result, napi_env env, napi_callback_info info)
 { 
   napi_value res;
-  switch (result) {
+  switch(result) {
     case AUDIOCOMMON_RESULT_SUCCESS:
       napi_create_int32(env, AUDIOCOMMON_RESULT_SUCCESS, &res);
       break;
@@ -1397,7 +1398,7 @@ static napi_value AudioSessionManagerpass_01(napi_env env, napi_callback_info in
   if (res != AUDIOCOMMON_RESULT_SUCCESS) {
     return res;
   }
-  napi_create_int32(env, AUDIOCOMMON_RESULT_SUCCESS, &res);
+  napi_create_int32(env, AUDIOCOMMON_RESULT_SUCCESS);
   return res;
 }
 static napi_value AudioRendererSetVolumeWithRamp_06(napi_env env, napi_callback_info info)
