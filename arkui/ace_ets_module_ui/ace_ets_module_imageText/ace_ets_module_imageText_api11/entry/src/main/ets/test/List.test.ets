@@ -224,6 +224,8 @@ import ImageAdvancedTest from './imageTest/ImageAdvancedTest.test.ets'
 import ImageAnimatorAdvancedTest from './ImageAnimator/imageAnimatorAdvancedTest.test.ets'
 
 export default function testsuite() {
+  ImageAdvancedTest()
+  ImageAnimatorAdvancedTest()
   ToggleJsunit();
   stageFontTest();
   stageMediaquery();
@@ -432,6 +434,4 @@ export default function testsuite() {
   search_gesture();
   text_drag();
   textAreaOnCaretAndKeyboardTest();
-  ImageAdvancedTest()
-  ImageAnimatorAdvancedTest()
 }
