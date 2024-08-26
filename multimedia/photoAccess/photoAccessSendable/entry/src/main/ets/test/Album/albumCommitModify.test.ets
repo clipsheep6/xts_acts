@@ -18,6 +18,7 @@ import sendablePhotoAccessHelper from '@ohos.file.sendablePhotoAccessHelper'
 import { describe, it, expect, beforeAll } from '@ohos/hypium'
 import {
   sleep,
+  genRadomStr,
   getPermission,
   albumFetchOption
 } from '../../../../../../../common'
@@ -45,12 +46,15 @@ export default function albumCommitModifyTest () {
     it('album_commitModify_promise_000', 0, async function (done) {
       const testNum = 'album_commitModify_promise_000';
       try {
-        let commonAlbum = await helper.createAlbum(testNum);
-        let newName = Date.now() + commonAlbum.albumName;
-        let albumFetchOptions = albumFetchOption(testNum, 'album_name', testNum);
+        let albumName = testNum + genRadomStr(20);
+        let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(globalThis.abilityContext, albumName);
+        await helper.applyChanges(albumChangeRequest);
+        console.log(`${testNum} :: create album success .`);
+        let newName = Date.now() + genRadomStr(20);
+        let albumFetchOptions = albumFetchOption(testNum, 'album_name', albumName);
         let albumList: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.Album> = await sendablePhAccessHelper.getAlbums(sendablePhotoAccessHelper.AlbumType.USER, sendablePhotoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
         let album: sendablePhotoAccessHelper.Album = await albumList.getFirstObject();
-        console.log(`${testNum} ::sendableAlbum get success, obj is ${album}`);
+        console.log(`${testNum} ::sendableAlbum get success.`);
         album.albumName = newName;
         console.log(`${testNum} :: album new name is ${album.albumName}`);
         await album.commitModify();

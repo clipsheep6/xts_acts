@@ -20,6 +20,7 @@ import {
   sleep,
   genRadomStr,
   fetchOption,
+  albumFetchOption,
   getFileAsset,
   photoKeys,
   getPermission,
@@ -49,19 +50,25 @@ export default function getAlbumAssetsTest () {
     it('addAssets_promise_001', 0, async function (done) {
       const testNum = 'addAssets_promise_001';
       try {
-        let albumName: string = genRadomStr(20);
-        const album = await helper.createAlbum(albumName);
+        // 创建相册
+        let albumName: string = genRadomStr(20) + new Date().getTime();
+        let albumChangeRequest1: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(globalThis.abilityContext, albumName);
+        await helper.applyChanges(albumChangeRequest1);
+        // 获取照片
         const fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, 'addPro01.jpg');
         const asset = await getFileAsset(testNum, fetchOps);
-        await album.addAssets([asset]);
         let ops = albumFetchOption(testNum, 'album_name', albumName);
+        // 查询上面创建的相册
+        let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, ops);
+        let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
+        // 添加一个照片进入相册
+        let albumChangeRequest2: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
+        albumChangeRequest2.addAssets([asset]);
+        await helper.applyChanges(albumChangeRequest2);
+        // sendable 相册
         let fetchResult = await sendablePhAccessHelper.getAlbums(sendablePhotoAccessHelper.AlbumType.USER, sendablePhotoAccessHelper.AlbumSubtype.USER_GENERIC, ops);
-        if (fetchResult === undefined) {
-          expect(false).assertTrue();
-          done();
-        }
         let sendableAlbum: sendablePhotoAccessHelper.Album = await fetchResult.getFirstObject();
-        expect(sendableAlbum.getCount()).assertEqual(1);
+        expect(sendableAlbum.imageCount).assertEqual(1);
         fetchResult.close();
         done();
       } catch (error) {

@@ -46,18 +46,19 @@ export default function convertToPhotoAlbumTest () {
     it('covert_photo_album_promise_000', 0, async (done: Function) => {
       const testNum = 'covert_photo_album_promise_000';
       try {
-        let albumName: string = genRadomStr(20);
-        let album = await helper.createAlbum(albumName);
+        let albumName: string = genRadomStr(20) + testNum;
+        let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(globalThis.abilityContext, albumName);
+        await helper.applyChanges(albumChangeRequest);
         let ops = albumFetchOption(testNum, 'album_name', albumName);
-        let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.Album> = sendablePhAccessHelper.getAlbums(sendablePhotoAccessHelper.AlbumType.USER, sendablePhotoAccessHelper.AlbumSubtype.USER_GENERIC, ops);
+        let fetchResult = await sendablePhAccessHelper.getAlbums(sendablePhotoAccessHelper.AlbumType.USER, sendablePhotoAccessHelper.AlbumSubtype.USER_GENERIC, ops);
         let sendableAlbum: sendablePhotoAccessHelper.Album = await fetchResult.getFirstObject();
-        console.log(`${testNum} ::sendableAlbum get success, obj is ${sendableAlbum}`);
+        console.log(`${testNum} ::sendableAlbum get success`);
         let commonAlbum: photoAccessHelper.Album = sendableAlbum.convertToPhotoAlbum();
         if (commonAlbum === undefined) {
           expect(false).assertTrue()
           done();
         }
-        expect(commonAlbum.getCount() >= 0).assertTrue();
+        expect(commonAlbum.imageCount !== undefined && commonAlbum.imageCount >= 0).assertTrue();
         done();
       } catch(error) {
         console.error(`${testNum} :: convertToSendableAlbum failed, err is ${error}`);
