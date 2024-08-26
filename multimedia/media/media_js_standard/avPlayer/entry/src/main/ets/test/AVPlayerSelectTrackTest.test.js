@@ -27,6 +27,7 @@ export default function AVPlayerSelectTrackTest() {
         let avFd;
         let avPlayer;
         let audioTrackList = new Array();
+        let selectedTrackList = new Array();
         let selectedTrack;
         let currentTrack;
         let defaultTrack;
@@ -89,15 +90,18 @@ export default function AVPlayerSelectTrackTest() {
             }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
         }
 
-        async function getCurrentAudioTrackCall() {
-            await avPlayer.getCurrentTrack(0, (err, index) => {
-                if (err == null) {
-                    console.info(`case current audio track index is ${index}`);
-                    currentTrack = index;
-                } else {
-                    console.error('getCurrentTrack failed and error is ' + err.message);
+        async function getCurrentSelectedTrack() {
+            await avPlayer.getSelectedTracks().then((trackList) => {
+                if (typeof (selectedTrackList) == 'undefined') {
+                    console.info('case getTrackDescription is failed');
+                    expect().assertFail();
+                    return;
                 }
-            });
+                console.info('case trackList.length is  ' + trackList.length);
+                for (let i = 0; i < trackList.length; i++) {
+                    selectedTrackList.push(trackList[i]);
+                }
+            }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
         }
 
         async function changeAudioTrack() {
@@ -213,9 +217,47 @@ export default function AVPlayerSelectTrackTest() {
         it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_SELECTTRACK_FUNC_0100', 0, async function (done) {
             async function preparedOperation() {
                 await getAudioTracks();
-                await getCurrentAudioTrackCall();
+                await getCurrentSelectedTrack();
+                await getCurrentAudioTrack();
+                avPlayer.selectTrack(currentTrack);
+                await mediaTestBase.msleepAsync(2000);
+                avPlayer.deselectTrack(currentTrack);
                 await changeAudioTrack();
-                avPlayer.selectTrack(selectedTrack);
+                avPlayer.selectTrack(selectedTrack, 1);
+                expect(currentTrack!=selectedTrack).assertTrue();
+            }
+
+            async function playedOperation() {
+                await getCurrentAudioTrack();
+                expect(currentTrack).assertEqual(selectedTrack);
+            }
+
+            async function stoppedOperation() {
+                await resetAndCallbackOff();
+                done();
+            }
+
+            await testChangeTrack(avFd, preparedOperation, playedOperation, stoppedOperation, undefined);
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_SELECTTRACK_FUNC_0200
+            * @tc.name      : 001.test change default audio track
+            * @tc.desc      : test change default audio track
+            * @tc.size      : MediumTest
+            * @tc.type      : Function test
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_SELECTTRACK_FUNC_0200', 0, async function (done) {
+            async function preparedOperation() {
+                await getAudioTracks();
+                await getCurrentSelectedTrack();
+                await getCurrentAudioTrack();
+                avPlayer.selectTrack(currentTrack);
+                await mediaTestBase.msleepAsync(2000);
+                avPlayer.deselectTrack(currentTrack);
+                await changeAudioTrack();
+                avPlayer.selectTrack(selectedTrack, 2);
                 expect(currentTrack!=selectedTrack).assertTrue();
             }
 
