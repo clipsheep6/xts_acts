@@ -14,6 +14,7 @@
  */
 
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import sendablePhotoAccessHelper from '@ohos.file.sendablePhotoAccessHelper'
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
@@ -28,6 +29,9 @@ const photoKeys = photoAccessHelper.PhotoKeys;
 const albumKeys = photoAccessHelper.AlbumKeys;
 const albumType = photoAccessHelper.AlbumType;
 const albumSubtype = photoAccessHelper.AlbumSubtype;
+// sendable
+const sendableAlbumType = sendablePhotoAccessHelper.AlbumType;
+const sendableAlbumSubtype = sendablePhotoAccessHelper.AlbumSubtype;
 const DEFAULT_SLEEP_TIME = 10;
 
 const context = globalThis.abilityContext;
@@ -101,6 +105,7 @@ export function photoFetchOption(testNum, key, value) : photoAccessHelper.FetchO
       photoKeys.DATE_MODIFIED_MS,
       photoKeys.DYNAMIC_RANGE_TYPE,
       photoKeys.COVER_POSITION,
+      photoKeys.BURST_KEY,
       'all_exif',
     ],
     predicates: predicates
@@ -232,10 +237,38 @@ export function checkUserAlbum(expect, testNum, album, expectedName, expectedCov
   expect(album.count).assertEqual(0);
 }
 
+export function checkSendableUserAlbum(expect, testNum, album, expectedName, expectedCover) : void {
+  console.info(`${testNum} checkSendableUserAlbum album.albumName: ${album.albumName}, expectedName: ${expectedName}`);
+  expect(album.albumType).assertEqual(sendableAlbumType.USER);
+  expect(album.albumSubtype).assertEqual(sendableAlbumSubtype.USER_GENERIC);
+  expect(album.albumName).assertEqual(expectedName);
+  if (expectedCover === '') {
+    expect(album.coverUri).assertEqual('');
+  } else {
+    expect(album.coverUri).assertEqual(expectedCover);
+  }
+  expect(album.albumUri !== '').assertEqual(true);
+  expect(album.count).assertEqual(0);
+}
+
+
 export function checkSystemAlbum(expect, testNum, album, expectedSubType) : void {
   try {
     console.info(`${testNum} checkSystemAlbum expectedSubType: ${expectedSubType}`);
-    expect(album.albumType).assertEqual(albumType.SYSTEM);
+    expect(album.albumType).assertEqual(sendableAlbumType.SYSTEM);
+    expect(album.albumSubtype).assertEqual(expectedSubType);
+    expect(album.albumName).assertEqual('');
+    expect(album.albumUri !== '').assertEqual(true);
+  } catch (error) {
+    console.error(`Failed to delete all user albums! error: ${error}`);
+    throw error;
+  }
+}
+
+export function checkSendableSystemAlbum(expect, testNum, album, expectedSubType) : void {
+  try {
+    console.info(`${testNum} checkSendableSystemAlbum expectedSubType: ${expectedSubType}`);
+    expect(album.albumType).assertEqual(sendableAlbumType.SYSTEM);
     expect(album.albumSubtype).assertEqual(expectedSubType);
     expect(album.albumName).assertEqual('');
     expect(album.albumUri !== '').assertEqual(true);
