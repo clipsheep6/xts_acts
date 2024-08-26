@@ -24,7 +24,6 @@
 @rem
 
 set DIRNAME=%~dp0
-if "%DIRNAME%" == "" set DIRNAME=.
 set APP_BASE_NAME=%~n0
 set NODE_EXE_PATH=""
 set APP_HOME=.
