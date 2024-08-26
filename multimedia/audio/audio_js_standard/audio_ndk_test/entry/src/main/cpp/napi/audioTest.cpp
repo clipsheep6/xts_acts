@@ -24,7 +24,7 @@
 #include "native_audio_routing_manager.h"
 #include "native_audio_common.h"
 #include "native_audio_device_base.h"
-#include <ohaudio/native_audio_session_manager.h>
+#include "native_audio_session_manager.h"
 #include <cstdint>
 
 #define LOG(cond, fmt, ...)           \
