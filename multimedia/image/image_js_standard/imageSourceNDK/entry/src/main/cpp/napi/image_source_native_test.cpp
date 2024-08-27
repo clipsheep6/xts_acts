@@ -46,6 +46,10 @@ static napi_value Init(napi_env env, napi_value exports)
             "JsModifyImageProperty", nullptr, ImageSourceTest::JsModifyImageProperty,
             nullptr, nullptr, nullptr, napi_static, nullptr
         },
+        {
+            "JsImageSourceGetMimeType", nullptr, ImageSourceTest::JsImageSourceGetMimeType,
+            nullptr, nullptr, nullptr, napi_static, nullptr
+        },
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -66,6 +70,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
 {
     napi_module_register(&demoModule);
 }
+
 
 napi_value ImageSourceTest::JsGetImageProperty(napi_env env, napi_callback_info info)
 {
@@ -149,6 +154,53 @@ std::string ImageSourceTest::getStringFromArgs(napi_env env, napi_value arg)
     std::string strValue = buffer;
     free(buffer);
     return strValue;
+}
+
+static uint32_t getNativeImageSource(napi_env env, napi_callback_info info,
+    napi_value* argValue, size_t &argCount)
+{
+    napi_value thisVar = nullptr;
+    if (argValue == nullptr || argCount == 0) {
+        return -1;
+    }
+    if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok) {
+        return -1;
+    }
+    return 0;
+}
+
+napi_value ImageSourceTest::JsImageSourceGetMimeType(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    napi_value argValue[NUM_1] = {0};
+    size_t argCount = 1;
+    uint32_t num = getNativeImageSource(env, info, argValue, argCount);
+    if (num != 0) {
+        HiviewDFX::HiLog::Error(LABEL, "getNativeImageSource failed");
+        return result;
+    }
+    int32_t fd = 0;
+    napi_get_value_int32(env, argValue[NUM_0], &fd);
+
+    OH_ImageSourceNative *source = nullptr;
+    ImageSourceModuleTest ismt;
+    int32_t ret = ismt.GetImageSource(fd, &source);
+    if (ret != IMAGE_SUCCESS) {
+        HiviewDFX::HiLog::Error(LABEL, "GetImageSource failed");
+        return result;
+    }
+
+    Image_MimeType mimeType;
+    int32_t ret1 = ismt.GetImageSourceMimeType(source, &mimeType);
+    if (ret1 != 0) {
+        HiviewDFX::HiLog::Error(LABEL, "GetImageSourceMimeType failed");
+        napi_create_int32(env, ret1, &result);
+        return result;
+    }
+    std::string name(mimeType.data, mimeType.size);
+    napi_create_string_utf8(env, name.c_str(), NAPI_AUTO_LENGTH, &result);
+    return result;
 }
 
 } // namespace Media

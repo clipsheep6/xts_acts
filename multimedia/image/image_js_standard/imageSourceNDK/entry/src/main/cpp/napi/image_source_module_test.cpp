@@ -118,3 +118,39 @@ Image_ErrorCode ImageSourceModuleTest::ModifyImageProperty(int32_t fd, std::stri
     OH_ImageSourceNative_Release(source);
     return ret;
 }
+
+int32_t ImageSourceModuleTest::GetImageSource(int32_t fd, OH_ImageSourceNative **source)
+{
+    int32_t ret = OH_ImageSourceNative_CreateFromFd(fd, source);
+    if (ret != 0) {
+        IMG_TST_LOGE("OH_ImageSourceNative_CreateFromFd failed: err = %{public}d.", ret);
+        return ret;
+    }
+    return ret;
+}
+
+int32_t ImageSourceModuleTest::GetImageSourceMimeType(OH_ImageSourceNative *source, Image_MimeType *mimetype)
+{
+    OH_ImageSource_Info *info = nullptr;
+    int32_t error = OH_ImageSourceInfo_Create(&info);
+    if (error != 0) {
+        OH_ImageSourceNative_Release(source);
+        return error;
+    }
+    int32_t index = 0;
+    error = OH_ImageSourceNative_GetImageInfo(source, index, info);
+    if (error != 0) {
+        OH_ImageSourceInfo_Release(info);
+        OH_ImageSourceNative_Release(source);
+        return error;
+    }
+    error = OH_ImageSourceInfo_GetMimeType(info, mimetype);
+    if (error != 0) {
+        OH_ImageSourceInfo_Release(info);
+        OH_ImageSourceNative_Release(source);
+        return error;
+    }
+    OH_ImageSourceInfo_Release(info);
+    OH_ImageSourceNative_Release(source);
+    return error;
+}

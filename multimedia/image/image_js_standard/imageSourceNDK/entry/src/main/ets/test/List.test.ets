@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 import ImageSourceNDKTest from './ImageSourceNDKTest';
+import ImageSourceNativeTest from './ImageSourceNativeTest';
 export default function testsuite() {
     ImageSourceNDKTest();
+    ImageSourceNativeTest();
 }

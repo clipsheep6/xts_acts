@@ -21,7 +21,7 @@ import resourceManager from "@ohos.resourceManager";
 import fileio from "@ohos.fileio";
 import ndkTest from 'libImageSourceNDKTest.so';
 import { testJpg } from './testImg';
-import sourceTest from 'libImageSourceTest.so';
+import sourceTest from 'libImageSourceNativeTest.so';
 
 export default function ImageSourceNDKTest() {
     describe('ImageSourceNDKTest', function () {
