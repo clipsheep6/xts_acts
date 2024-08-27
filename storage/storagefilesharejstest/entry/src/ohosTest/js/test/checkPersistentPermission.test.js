@@ -14,9 +14,12 @@
  */
 
 import fileShare from '@ohos.fileshare';
-import fileuri from '@ohos.file.fileuri';
 import fs from '@ohos.file.fs';
 import { describe, it, expect, } from '@ohos/hypium';
+import uriPermissionManager from '@ohos.application.uriPermissionManager';
+import wantConstant from '@ohos.app.ability.wantConstant';
+import fileUri from '@ohos.file.fileuri';
+import featureAbility from '@ohos.ability.featureAbility';
 
 export default function FileSahre_CheckPersistentPermission_test() {
     describe('CheckPersistentPermission_test', function () {
@@ -33,25 +36,28 @@ export default function FileSahre_CheckPersistentPermission_test() {
       */
       it('FileShare_checkPersistentPermission_001', 0, async function (done) {
         try {
-        let fileStr1 = "/data/storage/el2/base/haps/entry/files/FileShare_checkPersistentPermission_001.txt";
-        let uriObject1 = new fileuri.FileUri(fileStr1);
-        let uri1 = uriObject1.toString();
+        let fpath = await featureAbility.getContext().getFilesDir() + '/FileShare_checkPersistentPermission_001.txt';
+        let uri1 = fileUri.getUriFromPath(fpath);
         let fd1 = await fs.open(uri1,fs.OpenMode.CREATE);
         await fs.close(fd1);
         let policyInfo1 = {
             uri: uri1, 
             operationMode: fileShare.OperationMode.READ_MODE,
         };
-        let fileStr2 = "/data/storage/el2/base/haps/entry/files/FileShare_checkPersistentPermission_00101.txt";
-        let uriObject2 = new fileuri.FileUri(fileStr2);
-        let uri2 = uriObject2.toString();
+        let fpath2 = await featureAbility.getContext().getFilesDir() + '/FileShare_checkPersistentPermission_00101.txt';
+        let uri2 = fileUri.getUriFromPath(fpath2);
         let fd2 = await fs.open(uri2,fs.OpenMode.CREATE);
         await fs.close(fd2);
         let policyInfo2 = {
             uri: uri2, 
             operationMode: fileShare.OperationMode.READ_MODE,
         };
+        let flag = wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION |
+                  wantConstant.Flags.FLAG_AUTH_PERSISTABLE_URI_PERMISSION;
+        await uriPermissionManager.grantUriPermission(uri1, flag, 'ohos.acts.storage.fileshare');
+        await uriPermissionManager.grantUriPermission(uri2, flag, 'ohos.acts.storage.fileshare');
         let policies = [policyInfo1, policyInfo2];
+        await fileShare.persistPermission(policies);
         fileShare.checkPersistentPermission(policies).then((data) => {
             let result = data;
             for (let i = 0; i < result.length; i++) {
@@ -94,25 +100,28 @@ export default function FileSahre_CheckPersistentPermission_test() {
       */
       it('FileShare_checkPersistentPermission_002', 0, async function (done) {
         try {
-        let fileStr1 = "/data/storage/el2/base/haps/entry/files/FileShare_checkPersistentPermission_002.txt";
-        let uriObject1 = new fileuri.FileUri(fileStr1);
-        let uri1 = uriObject1.toString();
+        let fpath = await featureAbility.getContext().getFilesDir() + '/FileShare_checkPersistentPermission_002.txt';
+        let uri1 = fileUri.getUriFromPath(fpath);
         let fd1 = await fs.open(uri1,fs.OpenMode.CREATE);
         await fs.close(fd1);
         let policyInfo1 = {
             uri: uri1, 
             operationMode: fileShare.OperationMode.READ_MODE | fileShare.OperationMode.WRITE_MODE,
         };
-        let fileStr2 = "/data/storage/el2/base/haps/entry/files/FileShare_checkPersistentPermission_00201.txt";
-        let uriObject2 = new fileuri.FileUri(fileStr2);
-        let uri2 = uriObject2.toString();
+        let fpath2 = await featureAbility.getContext().getFilesDir() + '/FileShare_checkPersistentPermission_00201.txt';
+        let uri2 = fileUri.getUriFromPath(fpath);
         let fd2 = await fs.open(uri2,fs.OpenMode.CREATE);
         await fs.close(fd2);
         let policyInfo2 = {
             uri: uri2, 
             operationMode: fileShare.OperationMode.READ_MODE | fileShare.OperationMode.WRITE_MODE,
         };
+        let flag = wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION |
+                  wantConstant.Flags.FLAG_AUTH_PERSISTABLE_URI_PERMISSION;
+        await uriPermissionManager.grantUriPermission(uri1, flag, 'ohos.acts.storage.fileshare');
+        await uriPermissionManager.grantUriPermission(uri2, flag, 'ohos.acts.storage.fileshare');
         let policies = [policyInfo1, policyInfo2];
+        await fileShare.persistPermission(policies);
         fileShare.checkPersistentPermission(policies).then((data) => {
             let result = data;
             for (let i = 0; i < result.length; i++) {
@@ -155,25 +164,28 @@ export default function FileSahre_CheckPersistentPermission_test() {
       */
       it('FileShare_checkPersistentPermission_003', 3, async function (done) {
         try {
-        let fileStr1 = "/data/storage/el2/base/haps/entry/files/FileShare_checkPersistentPermission_003.txt";
-        let uriObject1 = new fileuri.FileUri(fileStr1);
-        let uri1 = uriObject1.toString();
+        let fpath = await featureAbility.getContext().getFilesDir() + '/FileShare_checkPersistentPermission_003.txt';
+        let uri1 = fileUri.getUriFromPath(fpath);
         let fd1 = await fs.open(uri1,fs.OpenMode.CREATE);
         await fs.close(fd1);
         let policyInfo1 = {
             uri: uri1, 
             operationMode: fileShare.OperationMode.READ_MODE,
         };
-        let fileStr2 = "/data/storage/el2/base/haps/entry/files/FileShare_checkPersistentPermission_00301.txt";
-        let uriObject2 = new fileuri.FileUri(fileStr2);
-        let uri2 = uriObject2.toString();
+        let fpath2 = await featureAbility.getContext().getFilesDir() + '/FileShare_checkPersistentPermission_00301.txt';
+        let uri2 = fileUri.getUriFromPath(fpath2);
         let fd2 = await fs.open(uri2,fs.OpenMode.CREATE);
         await fs.close(fd2);
         let policyInfo2 = {
             uri: uri2, 
             operationMode: fileShare.OperationMode.READ_MODE,
         };
+        let flag = wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION |
+                  wantConstant.Flags.FLAG_AUTH_PERSISTABLE_URI_PERMISSION;
+        await uriPermissionManager.grantUriPermission(uri1, flag, 'ohos.acts.storage.fileshare');
+        await uriPermissionManager.grantUriPermission(uri2, flag, 'ohos.acts.storage.fileshare');
         let policies = [policyInfo1, policyInfo2];
+        await fileShare.persistPermission(policies);
         fileShare.checkPersistentPermission(policies).then((data) => {
             console.info("FileShare_checkPersistentPermission_003 successfully");
             expect(false).assertTrue();
