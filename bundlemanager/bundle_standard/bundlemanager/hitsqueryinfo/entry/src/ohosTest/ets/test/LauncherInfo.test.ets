@@ -60,10 +60,10 @@ export default function LauncherInfoTest() {
       try {
         let shortcutInfos = await launcherBundleManager.getShortcutInfo(bundleName)
         console.info(TAG + 'getShortcutInfo successfully: ', JSON.stringify(shortcutInfos));
-        let shortcutInfo = shortcutInfos[0].wants[0]
-        let key1Item = shortcutInfo.parameters.find(item => item.key === 'xxx')!
+        let shortcutInfo = shortcutInfos![0].wants![0]
+        let key1Item = shortcutInfo!.parameters!.find(item => item.key === 'xxx')!
         expect(key1Item.value == 'yyy').assertTrue()
-        let key12tem = shortcutInfo!.parameters.find(item => item.key === 'xxx2')!
+        let key12tem = shortcutInfo!.parameters!.find(item => item.key === 'xxx2')!
         expect(key12tem.value == 'yyy2').assertTrue()
         done()
       } catch (err) {
@@ -92,17 +92,17 @@ export default function LauncherInfoTest() {
         await bundleInstaller.install([hapFilePath + 'bmsQueryInfo007.hap'])
         let shortcutInfos = await launcherBundleManager.getShortcutInfo(bundleName)
         console.info(TAG + 'getShortcutInfo successfully: ', JSON.stringify(shortcutInfos));
-        let shortcutInfo = shortcutInfos[0].wants[0]
-        expect(shortcutInfo.parameters.length == 0).assertTrue()
+        let shortcutInfo = shortcutInfos![0].wants![0]
+        expect(shortcutInfo!.parameters!.length == 0).assertTrue()
         await bundleInstaller.install([hapFilePath + 'bmsQueryInfo0072.hap'])
 
         let shortcutInfos2 = await launcherBundleManager.getShortcutInfo(bundleName)
         console.info(TAG + 'getShortcutInfo2 successfully: ', JSON.stringify(shortcutInfos2));
-        let shortcutInfo2 = shortcutInfos2!.find(item => item.moduleName == 'entry')!.wants[0]
+        let shortcutInfo2 = shortcutInfos2!.find(item => item.moduleName == 'entry')!.wants![0]
 
-        let key1Item = shortcutInfo2.parameters.find(item => item.key === 'xxx')!
+        let key1Item = shortcutInfo2!.parameters!.find(item => item.key === 'xxx')!
         expect(key1Item.value == 'yyy').assertTrue()
-        let key12tem = shortcutInfo2!.parameters.find(item => item.key === 'xxx2')!
+        let key12tem = shortcutInfo2!.parameters!.find(item => item.key === 'xxx2')!
         expect(key12tem.value == 'yyy2').assertTrue()
 
         await uninstall(bundleInstaller, bundleName)
@@ -134,18 +134,18 @@ export default function LauncherInfoTest() {
         await bundleInstaller.install([hapFilePath + 'bmsQueryInfo008.hap'])
         let shortcutInfos = await launcherBundleManager.getShortcutInfo(bundleName)
         console.info(TAG + 'getShortcutInfo successfully: ', JSON.stringify(shortcutInfos));
-        let shortcutInfo = shortcutInfos[0].wants[0]
-        expect(shortcutInfo.parameters.length == 0).assertTrue()
+        let shortcutInfo = shortcutInfos![0].wants![0]
+        expect(shortcutInfo!.parameters!.length == 0).assertTrue()
         await bundleInstaller.install([hapFilePath + 'bmsQueryInfo0082.hap'], {
           installFlag: 0x01
         })
 
         let shortcutInfos2 = await launcherBundleManager.getShortcutInfo(bundleName)
         console.info(TAG + 'getShortcutInfo2 successfully: ', JSON.stringify(shortcutInfos2));
-        let shortcutInfo2 = shortcutInfos2[0].wants[0]
-        let key1Item = shortcutInfo2.parameters.find(item => item.key === 'xxx')!
+        let shortcutInfo2 = shortcutInfos2![0].wants![0]
+        let key1Item = shortcutInfo2!.parameters!.find(item => item.key === 'xxx')!
         expect(key1Item.value == 'yyy').assertTrue()
-        let key12tem = shortcutInfo2!.parameters.find(item => item.key === 'xxx2')!
+        let key12tem = shortcutInfo2!.parameters!.find(item => item.key === 'xxx2')!
         expect(key12tem.value == 'yyy2').assertTrue()
 
         await uninstall(bundleInstaller, bundleName)
@@ -177,8 +177,8 @@ export default function LauncherInfoTest() {
         await bundleInstaller.install([hapFilePath + 'bmsQueryInfo0083.hap'])
         let shortcutInfos = await launcherBundleManager.getShortcutInfo(bundleName)
         console.info(TAG + 'getShortcutInfo successfully: ', JSON.stringify(shortcutInfos));
-        let shortcutInfo = shortcutInfos[0].wants[0]
-        let keyItem = shortcutInfo.parameters.find(item => item.key === 'sss')!
+        let shortcutInfo = shortcutInfos![0].wants![0]
+        let keyItem = shortcutInfo!.parameters!.find(item => item.key === 'sss')!
         expect(keyItem.value == 'ddd').assertTrue()
         await bundleInstaller.install([hapFilePath + 'bmsQueryInfo0082.hap'], {
           installFlag: 0x01
@@ -186,11 +186,11 @@ export default function LauncherInfoTest() {
 
         let shortcutInfos2 = await launcherBundleManager.getShortcutInfo(bundleName)
         console.info(TAG + 'getShortcutInfo2 successfully: ', JSON.stringify(shortcutInfos2));
-        let shortcutInfo2 = shortcutInfos2[0].wants[0]
+        let shortcutInfo2 = shortcutInfos2![0].wants![0]
 
-        let key1Item = shortcutInfo2.parameters.find(item => item.key === 'xxx')!
+        let key1Item = shortcutInfo2!.parameters!.find(item => item.key === 'xxx')!
         expect(key1Item.value == 'yyy').assertTrue()
-        let key12tem = shortcutInfo2!.parameters.find(item => item.key === 'xxx2')!
+        let key12tem = shortcutInfo2!.parameters!.find(item => item.key === 'xxx2')!
         expect(key12tem.value == 'yyy2').assertTrue()
 
         await uninstall(bundleInstaller, bundleName)
@@ -244,8 +244,8 @@ export default function LauncherInfoTest() {
       try {
         let shortcutInfos = launcherBundleManager.getShortcutInfoSync(bundleName)
         console.info(TAG + 'getShortcutInfo successfully: ', JSON.stringify(shortcutInfos));
-        let shortcutInfo = shortcutInfos[0].wants[0]
-        let key1Item = shortcutInfo.parameters.find(item => item.key === 'xxx')!
+        let shortcutInfo = shortcutInfos![0].wants![0]
+        let key1Item = shortcutInfo!.parameters!.find(item => item.key === 'xxx')!
         expect(key1Item.value == 'yyy').assertTrue()
         done()
       } catch (err) {
