@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import FaultManagementTest from './FaultManagement.test';
+import faultManagementTest from './FaultManagement.test';
 
 export default function testsuite() {
-  FaultManagementTest();
+  faultManagementTest();
 }

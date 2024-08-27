@@ -66,8 +66,8 @@ let context: common.UIAbilityContext | undefined;
 //   }
 // }
 //
-export default function FaultManagementTest() {
-  describe('UriAuthorizationAndRevocationTest', () => {
+export default function faultManagementTest() {
+  describe('faultManagementTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async () => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
@@ -118,7 +118,7 @@ export default function FaultManagementTest() {
     try {
       delegator.startAbility({
         bundleName: "com.hits.FaultManagementWingman1",
-        abilityName: "EntryAbility"
+        abilityName: "TestAbility"
       })
         .then(async () => {
           console.log("SUB_Ability_AbilityRuntime_FaultManagement_0600 startAbility successfully");
@@ -149,7 +149,7 @@ export default function FaultManagementTest() {
       let wingman1AppId: string;
       let want: Want = {
         bundleName: Wingman2BundleName,
-        abilityName: "EntryAbility"
+        abilityName: "TestAbility"
       }
       bundleManager.getBundleInfo(Wingman1BundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then((data) => {
@@ -161,7 +161,7 @@ export default function FaultManagementTest() {
               console.log("SUB_Ability_AbilityRuntime_FaultManagement_0700 setDisposedStatus successfully ");
               delegator.startAbility({
                 bundleName: Wingman1BundleName,
-                abilityName: "EntryAbility"
+                abilityName: "TestAbility"
               })
                 .then(async () => {
                   console.log("SUB_Ability_AbilityRuntime_FaultManagement_0700 startAbility successfully");
@@ -208,7 +208,7 @@ export default function FaultManagementTest() {
   //   let wantBackground: Want = {
   //     bundleName: Wingman2BundleName,
   //     moduleName: 'entry',
-  //     abilityName: 'EntryAbility',
+  //     abilityName: 'TestAbility',
   //     deviceId: ''
   //   };
   //   context?.startAbilityByCall(wantBackground)
