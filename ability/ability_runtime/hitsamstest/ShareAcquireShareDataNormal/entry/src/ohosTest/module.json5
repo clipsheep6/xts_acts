@@ -41,9 +41,6 @@
       },
     ],
     "requestPermissions": [
-      {
-        "name": "ohos.permission.MANAGE_MISSIONS",
-      }
     ]
   },
 }
