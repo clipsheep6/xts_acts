@@ -67,7 +67,7 @@ let context: common.UIAbilityContext | undefined;
 // }
 //
 export default function faultManagementTest() {
-  describe('faultManagementTest', () => {
+  describe('FaultManagementTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async () => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
