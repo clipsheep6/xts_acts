@@ -20,6 +20,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import fs, { ListFileOptions } from '@ohos.file.fs';
 import fileuri from "@ohos.file.fileuri";
+import sendablePhotoAccessHelper from '@kit.MediaLibraryKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const phAccessHelper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
@@ -210,6 +211,30 @@ export async function getFileAsset(testNum, fetchOps) : Promise<photoAccessHelpe
 
 export function getFileAssetFetchResult() : photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> {
   let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset>;
+  return fetchResult;
+}
+
+export async function getSendableFileAsset(testNum, fetchOps) : Promise<sendablePhotoAccessHelper.PhotoAsset> {
+  let asset: sendablePhotoAccessHelper.PhotoAsset;
+  try {
+    const helper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
+    let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset>;
+    fetchResult = await helper.getAssets(fetchOps);
+    console.info(`${testNum} getSendableFileAsset fetchResult: ${fetchResult.getCount()}`);
+    asset = await fetchResult.getFirstObject();
+    fetchResult.close();
+  } catch (error) {
+    console.error(`${testNum} getSendableFileAsset error: ${error}`);
+    throw error;
+  }
+
+  return new Promise((resolve, reject) => {
+    resolve(asset);
+  });
+}
+
+export function getSendableFileAssetFetchResult() : sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset> {
+  let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.PhotoAsset>;
   return fetchResult;
 }
 
