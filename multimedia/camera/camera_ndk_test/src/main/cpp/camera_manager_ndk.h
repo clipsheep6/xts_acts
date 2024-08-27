@@ -99,10 +99,11 @@ public:
     uint64_t secureSeqId_;
     bool canPreconfig_;
     uint32_t sceneModesSize_;
+    bool isNormalPhoto_;
+    bool isNormalVideo_;
+    bool isSecurePhoto_;
     bool isMovingPhotoSupported_;
-    inline static bool isCalledPhotoAvailable_ = false;
-    inline static bool isCalledPhotoAssetAvailable_ = false;
-    inline static OH_PhotoNative *photoNative_ = nullptr;
+    OH_PhotoNative *photoNative_;
     OH_ImageNative *mainImage_;
     
     //callback
@@ -227,7 +228,6 @@ public:
     Camera_ErrorCode GetSupportedSceneModes(int useCaseCode);
     Camera_ErrorCode DeleteSceneModes(int useCaseCode);
     Camera_ErrorCode GetSupportedCameraOutputCapabilityWithSceneMode(int useCaseCode);
-
     Camera_ErrorCode SetSessionMode(int useCaseCode);
     Camera_ErrorCode CanAddInput(int useCaseCode);
     Camera_ErrorCode CanAddPreviewOutput(int useCaseCode);
@@ -249,10 +249,7 @@ public:
     Camera_ErrorCode PreviewOutputDeleteProfile(int useCaseCode);
     Camera_ErrorCode PhotoOutputGetActiveProfile(int useCaseCode);
     Camera_ErrorCode PhotoOutputDeleteProfile(int useCaseCode);
-
-    Camera_ErrorCode SetSceneMode(int useCaseCode);
-    Camera_ErrorCode GetCameraFromCameras(Camera_Device* cameras, Camera_Device** camera);
-
+    
     Camera_ErrorCode RegisterPhotoAvailableCallback(int useCaseCode);
     Camera_ErrorCode UnregisterPhotoAvailableCallback(int useCaseCode);
     Camera_ErrorCode RegisterPhotoAssetAvailableCallback(int useCaseCode);
@@ -263,9 +260,11 @@ public:
     Camera_ErrorCode PhotoNativeRelease(int useCaseCode);
     Camera_ErrorCode CreatePhotoOutputWithoutSurface(int useCaseCode);
 
-    Camera_ErrorCode Capture(void);
-    static void PhotoOutputOnPhotoAvailable(Camera_PhotoOutput* photoOutput, OH_PhotoNative* photo);
-    static void PhotoOutputOnPhotoAssetAvailable(Camera_PhotoOutput* photoOutput, OH_MediaAsset* photoAsset);
+    // test aid
+    Camera_ErrorCode SetSceneMode(int useCaseCode);
+    Camera_ErrorCode GetCameraFromCameras(Camera_Device* cameras,
+        Camera_Device** camera);
+    Camera_ErrorCode ReleaseCamera(void);
 
 private:
     NDKCamera(const NDKCamera&) = delete;

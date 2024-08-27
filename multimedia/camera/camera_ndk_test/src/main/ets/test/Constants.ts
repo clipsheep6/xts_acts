@@ -102,3 +102,9 @@ export class Camera_MediaType {
   static readonly IMAGE = 0;
   static readonly VIDEO = 1;
 }
+
+export class Camera_SceneMode {
+  static readonly NORMAL_PHOTO = 1;
+  static readonly NORMAL_VIDEO = 2;
+  static readonly SECURE_PHOTO = 12;
+}

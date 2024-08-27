@@ -15,29 +15,29 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import cameraObj from 'libentry.so'
 import image from '@ohos.multimedia.image';
-import { Camera_PreconfigType, Camera_PreconfigRatio } from './Constants';
+import { Camera_PreconfigType, Camera_PreconfigRatio, Camera_SceneMode } from './Constants';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 import account from '@ohos.account.osAccount';
 
 const TAG = "CAMERA_LOGTAG_JS ";
 const CAMERA_OK = 0;
-const CAMERA_INVALID_ARGUMENT = 7400101; // 参数错误
+const CAMERA_INVALID_ARGUMENT = 7400101;
 let receiver: image.ImageReceiver;
 let mPhotoSurface: string;
 
 function setSceneMode(index_sceneMode: number) {
   let ret = cameraObj.oHCameraManagerSetSceneMode(index_sceneMode);
   if (ret != 0) {
-    console.info(TAG + "setSceneMode FAILED");
+    console.log(TAG + "setSceneMode FAILED");
     expect().assertFail();
   }
-  if (index_sceneMode == 0) {
-    console.info(TAG + "set sceneMode: NORMAL_PHOTO");
-  } else if (index_sceneMode == 1) {
-    console.info(TAG + "set sceneMode: NORMAL_VIDEO");
-  } else if (index_sceneMode == 2) {
-    console.info(TAG + "set sceneMode: SECURE_PHOTO");
+  if (index_sceneMode == Camera_SceneMode.NORMAL_PHOTO) {
+    console.log(TAG + "set sceneMode: NORMAL_PHOTO");
+  } else if (index_sceneMode == Camera_SceneMode.NORMAL_VIDEO) {
+    console.log(TAG + "set sceneMode: NORMAL_VIDEO");
+  } else if (index_sceneMode == Camera_SceneMode.SECURE_PHOTO) {
+    console.log(TAG + "set sceneMode: SECURE_PHOTO");
   }
 }
 
@@ -54,29 +54,11 @@ async function getPhotoReceiverSurface() {
 }
 
 function getCameraManagerInstance() {
-  console.info(TAG + 'mSurfaceId : ' + mPhotoSurface);
+  console.log(TAG + 'mSurfaceId : ' + mPhotoSurface);
   let ret = cameraObj.initCamera(mPhotoSurface);
-  console.info(TAG + 'initCamera : ' + ret);
+  console.log(TAG + 'initCamera : ' + ret);
   if (ret != 0) {
-    console.info(TAG + "getCameraManager FAILED");
-    expect().assertFail();
-  }
-}
-
-function releaseAll() {
-  let ret = cameraObj.callDeconstructFunction();
-  console.info(TAG + 'releaseAll: ' + ret);
-  if (ret != 0) {
-    console.info(TAG + "releaseAll FAILED");
-    expect().assertFail();
-  }
-}
-
-function takePicture() {
-  let ret = cameraObj.takePicture();
-  console.info(TAG + 'takePicture: ' + ret);
-  if (ret != 0) {
-    console.info(TAG + "takePicture FAILED");
+    console.log(TAG + "getCameraManager FAILED");
     expect().assertFail();
   }
 }
@@ -103,33 +85,43 @@ function createCameraInput() {
 function getSupportedSceneModes() {
   let supportedSceneModes = cameraObj.oHCameraManagerGetSupportedSceneModes(0);
   if (supportedSceneModes.errorCode != 0) {
-    console.info(TAG + "getSupportedSceneModes FAILED");
+    console.log(TAG + "getSupportedSceneModes FAILED");
     expect().assertFail();
   }
-  return supportedSceneModes.sceneModesSize;
+  if (supportedSceneModes.isNormalPhoto) {
+    console.log(TAG + "NORMAL_PHOTO is supported.");
+  }
+  if (supportedSceneModes.isNormalVideo) {
+    console.log(TAG + "NORMAL_VIDEO is supported.");
+  }
+  if (supportedSceneModes.isSecurePhoto) {
+    console.log(TAG + "SECURE_PHOTO is supported.");
+  }
+  cameraObj.oHCameraManagerDeleteSceneModes(0);
+  return supportedSceneModes;
 }
 
 function getSupportedCamerasInstance() {
   let cameraInfo = cameraObj.getSupportedCameras();
   if (isEmpty(cameraInfo)) {
-    console.info(TAG + "getSupportedCamerasInstance FAILED");
+    console.log(TAG + "getSupportedCamerasInstance FAILED");
     expect().assertFail();
   }
 }
 
 function getSupportedCameraOutputCapability() {
   let cameraOutputCapability = cameraObj.getSupportedOutputCapability();
-  console.info(TAG + 'cameraOutputCapability[0] = ' + cameraOutputCapability.previewProfilesSize);
-  console.info(TAG + 'cameraOutputCapability[1] = ' + cameraOutputCapability.photoProfilesSize);
-  console.info(TAG + 'cameraOutputCapability[2] = ' + cameraOutputCapability.videoProfilesSize);
-  console.info(TAG + 'cameraOutputCapability[3] = ' + cameraOutputCapability.metadataProfilesSize);
+  console.log(TAG + 'cameraOutputCapability[0] = ' + cameraOutputCapability.previewProfilesSize);
+  console.log(TAG + 'cameraOutputCapability[1] = ' + cameraOutputCapability.photoProfilesSize);
+  console.log(TAG + 'cameraOutputCapability[2] = ' + cameraOutputCapability.videoProfilesSize);
+  console.log(TAG + 'cameraOutputCapability[3] = ' + cameraOutputCapability.metadataProfilesSize);
   return true;
 }
 
 function setSessionMode() {
   let ret = cameraObj.oHCaptureSessionSetSessionMode(0);
   if (ret != 0) {
-    console.info(TAG + "setSessionMode FAILED");
+    console.log(TAG + "setSessionMode FAILED");
     expect().assertFail();
   }
 }
@@ -137,29 +129,29 @@ function setSessionMode() {
 function createPreviewOutput() {
   let ret = cameraObj.createPreviewOutput();
   if (ret != 0) {
-    console.info(TAG + "createPreviewOutput FAILED");
+    console.log(TAG + "createPreviewOutput FAILED");
     expect().assertFail();
   }
 }
 
-function startSession() {
+function sessionFlow() {
   let begin = cameraObj.sessionBegin();
   if (begin != 0) {
-    console.info(TAG + "beginConfig FAILED");
+    console.log(TAG + "beginConfig FAILED");
     expect().assertFail();
   }
 
   let canAddInput = cameraObj.oHCaptureSessionCanAddInput(0);
   if (canAddInput.errorCode != 0) {
-    console.info(TAG + "CanAddInput FAILED");
+    console.log(TAG + "canAddInput FAILED");
     expect().assertFail();
   }
-  console.info(TAG + "canAddInput: " + canAddInput.isAddInput);
+  console.log(TAG + "canAddInput: " + canAddInput.isAddInput);
   
   if (canAddInput.isAddInput) {
     let addInput = cameraObj.sessionAddInput();
     if (addInput != 0) {
-      console.info(TAG + "addInput FAILED");
+      console.log(TAG + "addInput FAILED");
       expect().assertFail();
     }
   } else {
@@ -168,35 +160,18 @@ function startSession() {
 
   let canAddPreviewOutput = cameraObj.oHCaptureSessionCanAddPreviewOutput(0);
   if (canAddPreviewOutput.errorCode != 0) {
-    console.info(TAG + "CanAddPreviewOutput FAILED");
+    console.log(TAG + "canAddPreviewOutput FAILED");
     expect().assertFail();
   }
-  console.info(TAG + "canAddPreviewOutput: " + canAddPreviewOutput.isAddPreviewOutput);
+  console.log(TAG + "canAddPreviewOutput: " + canAddPreviewOutput.isAddPreviewOutput);
 
   if (canAddPreviewOutput.isAddPreviewOutput) {
     let addPreviewOutput = cameraObj.sessionAddPreviewOutput();
     if (addPreviewOutput != 0) {
-      console.info(TAG + "AddPreviewOutput FAILED");
+      console.log(TAG + "addPreviewOutput FAILED");
       expect().assertFail();
     }
   } else {
-    expect().assertFail();
-  }
-
-}
-
-function sessionStart() {
-  let start = cameraObj.sessionStart();
-  if (start != 0) {
-    console.info(TAG + "start FAILED");
-    expect().assertFail();
-  }
-}
-
-function sessionCommitConfig() {
-  let commitConfig = cameraObj.sessionCommitConfig();
-  if (commitConfig != 0) {
-    console.info(TAG + "commitConfig FAILED");
     expect().assertFail();
   }
 }
@@ -204,34 +179,29 @@ function sessionCommitConfig() {
 function createPhotoOutput() {
   let mPhotoOutput = cameraObj.createPhotoOutput(mPhotoSurface);
   if (mPhotoOutput != 0) {
-    console.info(TAG + "mPhotoOutput FAILED");
+    console.log(TAG + "createPhotoOutput FAILED");
     expect().assertFail();
   }
 }
+
+function createPhotoOutputUsedInPreconfig(canPreconfig: boolean) {
+  if (canPreconfig) {
+    let ret = cameraObj.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 0);
+    if (ret != 0) {
+      console.log(TAG + "createPhotoOutputUsedInPreconfig FAILED");
+      expect().assertFail();
+    } 
+  } else {
+    createPhotoOutput();
+  }
+}
+
 function createPhotoOutputWithoutSurface() {
-  let mPhotoOutput = cameraObj.oHCameraManagerCreatePhotoOutputWithoutSurface(0);
-  if (mPhotoOutput != 0) {
-    console.info(TAG + "createPhotoOutputWithoutSurface FAILED");
-    expect().assertFail();
-  }
-}
-
-function sessionBeginConfig() {
-  let ret = cameraObj.sessionBegin();
+  let ret = cameraObj.oHCameraManagerCreatePhotoOutputWithoutSurface(0);
   if (ret != 0) {
-    console.info(TAG + "sessionBeginConfig FAILED:" + ret);
+    console.log(TAG + "createPhotoOutputWithoutSurface FAILED");
     expect().assertFail();
   }
-}
-
-function canAddPhotoOutput() {
-  let ret = cameraObj.oHCaptureSessionCanAddPhotoOutput(0);
-  if (ret.errorCode != 0) {
-    console.log(TAG + "canAddPhotoOutput FAILED" + ret.errorCode);
-    expect().assertFail();
-  }
-  console.info(TAG + "canAddPhotoOutput: " + ret.isAddPhotoOutput);
-  return ret;
 }
 
 function addPhotoOutput() {
@@ -240,7 +210,7 @@ function addPhotoOutput() {
     console.log(TAG + "canAddPhotoOutput FAILED" + canAddPhotoOutput.errorCode);
     expect().assertFail();
   }
-  console.info(TAG + "canAddPhotoOutput: " + canAddPhotoOutput.isAddPhotoOutput);
+  console.log(TAG + "canAddPhotoOutput: " + canAddPhotoOutput.isAddPhotoOutput);
   if (!canAddPhotoOutput.isAddPhotoOutput) {
     console.log(TAG + "addPhotoOutput FAILED");
   } else {
@@ -253,22 +223,25 @@ function addPhotoOutput() {
 }
 
 async function getPermissions() {
-  console.info('getPermission start');
-  type MyPermissions = "ohos.permission.CAMERA" | "ohos.permission.READ_MEDIA" | "ohos.permission.WRITE_MEDIA"| "ohos.permission.MICROPHONE";
-  let list: MyPermissions[] = ['ohos.permission.CAMERA', 'ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MICROPHONE'];
+  console.log('getPermission start');
+  type MyPermissions = "ohos.permission.CAMERA" | "ohos.permission.READ_MEDIA" | "ohos.permission.WRITE_MEDIA"|
+      "ohos.permission.MICROPHONE";
+  let list: MyPermissions[] = ['ohos.permission.CAMERA', 'ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA',
+      'ohos.permission.MICROPHONE'];
   try {
     let userId: number = await account.getAccountManager().getOsAccountLocalId();
     let applicationFlags: number = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
-    let applicationInfo: bundleManager.ApplicationInfo = await bundleManager.getApplicationInfoSync('com.example.camerandk', applicationFlags, userId);
+    let applicationInfo: bundleManager.ApplicationInfo =
+        await bundleManager.getApplicationInfoSync('com.example.camerandk', applicationFlags, userId);
     let tokenId: number = applicationInfo.accessTokenId;
     for (let index = 0; index < list.length; index++) {
       await abilityAccessCtrl.createAtManager().grantUserGrantedPermission(tokenId, list[index], 1);
     }
   } catch (err) {
-    console.info(`getPermission error ${JSON.stringify(err)}`);
+    console.log(`getPermission error ${JSON.stringify(err)}`);
   }
-  console.info('getPermission end');
-};
+  console.log('getPermission end');
+}
 
 function isEmpty(data: cameraObj.cameraInfo | number) {
   if (data == null || data == undefined) {
@@ -277,43 +250,35 @@ function isEmpty(data: cameraObj.cameraInfo | number) {
   return false;
 }
 
-function sessionStop() {
-  let ret = cameraObj.sessionStop();
-  if (ret != 0) {
-    console.info(TAG + "sessionStop FAILED");
-    expect().assertFail();
-  }
-}
-
-function captureSessionPreconfig() {
-  getCameraManagerInstance();
-  getSupportedCamerasInstance();
-  createCaptureSession();
-  getSupportedCameraOutputCapability();
-  createCameraInput();
+function preconfig() {
   let ret = cameraObj.oHCaptureSessionCanPreconfig(Camera_PreconfigType.PRECONFIG_720P, 0);
-  if (!ret.canPreconfig) {
-    expect(ret.canPreconfig).assertEqual(false);
-  } else {
-    let ret = cameraObj.oHCaptureSessionPreconfig(Camera_PreconfigType.PRECONFIG_720P, 0);
-    console.log(TAG+"testOHCaptureSessionPreconfig0100:"+ret)
-    expect(ret).assertEqual(CAMERA_OK);
+  if (ret.errorCode != 0) {
+    console.log(TAG + "canPreconfig FAILED");
+    expect().assertFail();
   }
+  console.log(TAG+"canPreconfig: " + ret.canPreconfig);
+  if (ret.canPreconfig) {
+    cameraObj.oHCaptureSessionPreconfig(Camera_PreconfigType.PRECONFIG_720P, 0);
+  }
+  return ret.canPreconfig;
 }
 
-function cameraManagerCreatePhotoOutputUsedInPreconfig() {
-  captureSessionPreconfig()
-  let ret = cameraObj.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, 0);
-  if (ret != 0) {
-    console.info(TAG + "oHCameraManagerCreatePhotoOutputUsedInPreconfig FAILED");
-    expect().assertFail();
+function createPreviewOutputUsedInPreconfig(canPreconfig: boolean) {
+  if (canPreconfig) {
+    let ret = cameraObj.oHCameraManagerCreatePreviewOutputUsedInPreconfig(0);
+    if (ret != 0) {
+      console.log(TAG + "createPreviewOutputUsedInPreconfig FAILED");
+      expect().assertFail();
+    }
+  } else {
+    createPreviewOutput();
   }
 }
 
 function photoOutputRegisterPhotoAvailableCallback() {
   let ret = cameraObj.oHPhotoOutputRegisterPhotoAvailableCallback(0);
   if (ret != 0) {
-    console.info(TAG + "photoOutputRegisterPhotoAvailableCallback FAILED");
+    console.log(TAG + "photoOutputRegisterPhotoAvailableCallback FAILED");
     expect().assertFail();
   }
 }
@@ -321,7 +286,7 @@ function photoOutputRegisterPhotoAvailableCallback() {
 function photoOutputRegisterPhotoAssetAvailableCallback() {
   let ret = cameraObj.oHPhotoOutputRegisterPhotoAssetAvailableCallback(0);
   if (ret != 0) {
-    console.info(TAG + "photoOutputRegisterPhotoAssetAvailableCallback FAILED");
+    console.log(TAG + "photoOutputRegisterPhotoAssetAvailableCallback FAILED");
     expect().assertFail();
   }
 }
@@ -329,20 +294,23 @@ function photoOutputRegisterPhotoAssetAvailableCallback() {
 function isMovingPhotoSupported() {
   let ret = cameraObj.oHPhotoOutputIsMovingPhotoSupported(0);
   if (ret.errorCode != 0) {
-    console.info(TAG + "oHPhotoOutputIsMovingPhotoSupported FAILED");
+    console.log(TAG + "isMovingPhotoSupported FAILED");
     expect().assertFail();
   }
-  console.info(TAG+ "IsMovingPhotoSupported: " + ret.isMovingPhotoSupported);
+  console.log(TAG+ "IsMovingPhotoSupported: " + ret.isMovingPhotoSupported);
   return ret.isMovingPhotoSupported;
 }
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+function releaseCamera() {
+  let ret = cameraObj.releaseCamera();
+  if (ret != 0) {
+    console.log(TAG + "releaseCamera FAILED");
+    expect().assertFail();
+  }
 }
 
 export default function PhotoTest() {
   describe('PhotoTest', () => {
-    console.info(TAG + '----------PhotoTest--------------');
     beforeAll(async () => {
       await getPermissions();
       await getPhotoReceiverSurface();
@@ -353,17 +321,13 @@ export default function PhotoTest() {
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
       getSupportedSceneModes();
-      setSceneMode(0);
+      setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
-      createPreviewOutput();
-      createCameraInput();
-      startSession();
     })
     afterEach(() => {
-      // releaseAll();
+      releaseCamera();
     })
     afterAll(() => {
-      releaseAll();
     })
     /**
      * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHCameraManagerCreatePhotoOutputWithoutSurface0100
@@ -374,9 +338,60 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHCameraManagerCreatePhotoOutputWithoutSurface0100', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
       let ret = cameraObj.oHCameraManagerCreatePhotoOutputWithoutSurface(0);
       console.log(TAG+"testOHCameraManagerCreatePhotoOutputWithoutSurface0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHCameraManagerCreatePhotoOutputWithoutSurface0200
+     * @tc.name       : testOHCameraManagerCreatePhotoOutputWithoutSurface0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePhotoOutputWithoutSurface0200', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      let ret = cameraObj.oHCameraManagerCreatePhotoOutputWithoutSurface(1);
+      console.log(TAG+"testOHCameraManagerCreatePhotoOutputWithoutSurface0200:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHCameraManagerCreatePhotoOutputWithoutSurface0300
+     * @tc.name       : testOHCameraManagerCreatePhotoOutputWithoutSurface0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePhotoOutputWithoutSurface0300', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      let ret = cameraObj.oHCameraManagerCreatePhotoOutputWithoutSurface(2);
+      console.log(TAG+"testOHCameraManagerCreatePhotoOutputWithoutSurface0300:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHCameraManagerCreatePhotoOutputWithoutSurface0400
+     * @tc.name       : testOHCameraManagerCreatePhotoOutputWithoutSurface0400
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHCameraManagerCreatePhotoOutputWithoutSurface0400', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      let ret = cameraObj.oHCameraManagerCreatePhotoOutputWithoutSurface(3);
+      console.log(TAG+"testOHCameraManagerCreatePhotoOutputWithoutSurface0400:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
     /**
      * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputRegisterPhotoAvailableCallback0100
@@ -387,10 +402,47 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputRegisterPhotoAvailableCallback0100', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
       createPhotoOutputWithoutSurface();
       let ret = cameraObj.oHPhotoOutputRegisterPhotoAvailableCallback(0);
       console.log(TAG+"testOHPhotoOutputRegisterPhotoAvailableCallback0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputRegisterPhotoAvailableCallback0200
+     * @tc.name       : testOHPhotoOutputRegisterPhotoAvailableCallback0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputRegisterPhotoAvailableCallback0200', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputWithoutSurface();
+      let ret = cameraObj.oHPhotoOutputRegisterPhotoAvailableCallback(1);
+      console.log(TAG+"testOHPhotoOutputRegisterPhotoAvailableCallback0200:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputRegisterPhotoAvailableCallback0300
+     * @tc.name       : testOHPhotoOutputRegisterPhotoAvailableCallback0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputRegisterPhotoAvailableCallback0300', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputWithoutSurface();
+      let ret = cameraObj.oHPhotoOutputRegisterPhotoAvailableCallback(2);
+      console.log(TAG+"testOHPhotoOutputRegisterPhotoAvailableCallback0300:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
     /**
      * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputUnregisterPhotoAvailableCallback0100
@@ -401,12 +453,50 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputUnregisterPhotoAvailableCallback0100', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
       createPhotoOutputWithoutSurface();
       photoOutputRegisterPhotoAvailableCallback();
       let ret = cameraObj.oHPhotoOutputUnregisterPhotoAvailableCallback(0);
-      console.log(TAG+"oHPhotoOutputUnregisterPhotoAvailableCallback is called, errorCode: "+ret);
+      console.log(TAG+"testOHPhotoOutputUnregisterPhotoAvailableCallback0100: "+ret);
       expect(ret).assertEqual(CAMERA_OK);
-      console.info(TAG+"testOHPhotoOutputUnregisterPhotoAvailableCallback0100 end.");
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputUnregisterPhotoAvailableCallback0200
+     * @tc.name       : testOHPhotoOutputUnregisterPhotoAvailableCallback0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputUnregisterPhotoAvailableCallback0200', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputWithoutSurface();
+      photoOutputRegisterPhotoAvailableCallback();
+      let ret = cameraObj.oHPhotoOutputUnregisterPhotoAvailableCallback(1);
+      console.log(TAG+"testOHPhotoOutputUnregisterPhotoAvailableCallback0200: "+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputUnregisterPhotoAvailableCallback0300
+     * @tc.name       : testOHPhotoOutputUnregisterPhotoAvailableCallback0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputUnregisterPhotoAvailableCallback0300', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputWithoutSurface();
+      photoOutputRegisterPhotoAvailableCallback();
+      let ret = cameraObj.oHPhotoOutputUnregisterPhotoAvailableCallback(2);
+      console.log(TAG+"testOHPhotoOutputUnregisterPhotoAvailableCallback0300: "+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
     /**
      * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputRegisterPhotoAssetAvailableCallback0100
@@ -417,10 +507,47 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputRegisterPhotoAssetAvailableCallback0100', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
       createPhotoOutputWithoutSurface();
       let ret = cameraObj.oHPhotoOutputRegisterPhotoAssetAvailableCallback(0);
       console.log(TAG+"testOHPhotoOutputRegisterPhotoAssetAvailableCallback0100:"+ret);
       expect(ret).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputRegisterPhotoAssetAvailableCallback0200
+     * @tc.name       : testOHPhotoOutputRegisterPhotoAssetAvailableCallback0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputRegisterPhotoAssetAvailableCallback0200', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputWithoutSurface();
+      let ret = cameraObj.oHPhotoOutputRegisterPhotoAssetAvailableCallback(1);
+      console.log(TAG+"testOHPhotoOutputRegisterPhotoAssetAvailableCallback0200:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputRegisterPhotoAssetAvailableCallback0300
+     * @tc.name       : testOHPhotoOutputRegisterPhotoAssetAvailableCallback0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputRegisterPhotoAssetAvailableCallback0300', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputWithoutSurface();
+      let ret = cameraObj.oHPhotoOutputRegisterPhotoAssetAvailableCallback(2);
+      console.log(TAG+"testOHPhotoOutputRegisterPhotoAssetAvailableCallback0300:"+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
     /**
      * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputUnregisterPhotoAssetAvailableCallback0100
@@ -431,12 +558,50 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputUnregisterPhotoAssetAvailableCallback0100', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
       createPhotoOutputWithoutSurface();
       photoOutputRegisterPhotoAssetAvailableCallback();
       let ret = cameraObj.oHPhotoOutputUnregisterPhotoAssetAvailableCallback(0);
-      console.log(TAG+"oHPhotoOutputUnregisterPhotoAssetAvailableCallback is called, errorCode: "+ret);
+      console.log(TAG+"testOHPhotoOutputUnregisterPhotoAssetAvailableCallback0100: "+ret);
       expect(ret).assertEqual(CAMERA_OK);
-      console.info(TAG+"testOHPhotoOutputUnregisterPhotoAssetAvailableCallback0100 end.");
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputUnregisterPhotoAssetAvailableCallback0200
+     * @tc.name       : testOHPhotoOutputUnregisterPhotoAssetAvailableCallback0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputUnregisterPhotoAssetAvailableCallback0200', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputWithoutSurface();
+      photoOutputRegisterPhotoAssetAvailableCallback();
+      let ret = cameraObj.oHPhotoOutputUnregisterPhotoAssetAvailableCallback(1);
+      console.log(TAG+"testOHPhotoOutputUnregisterPhotoAssetAvailableCallback0200: "+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputUnregisterPhotoAssetAvailableCallback0300
+     * @tc.name       : testOHPhotoOutputUnregisterPhotoAssetAvailableCallback0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputUnregisterPhotoAssetAvailableCallback0300', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputWithoutSurface();
+      photoOutputRegisterPhotoAssetAvailableCallback();
+      let ret = cameraObj.oHPhotoOutputUnregisterPhotoAssetAvailableCallback(2);
+      console.log(TAG+"testOHPhotoOutputUnregisterPhotoAssetAvailableCallback0300: "+ret);
+      expect(ret).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
     /**
      * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputIsMovingPhotoSupported0100
@@ -447,12 +612,85 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputIsMovingPhotoSupported0100', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
       createPhotoOutput();
       addPhotoOutput();
       let ret = cameraObj.oHPhotoOutputIsMovingPhotoSupported(0);
+      if (ret.isMovingPhotoSupported) {
+        expect(ret.isMovingPhotoSupported).assertEqual(true);
+      } else {
+        expect(ret.isMovingPhotoSupported).assertEqual(false);
+      }
       console.log(TAG+"isMovingPhotoSupported: "+ret.isMovingPhotoSupported);
       console.log(TAG+"testOHPhotoOutputIsMovingPhotoSupported0100:"+ret.errorCode);
       expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputIsMovingPhotoSupported0200
+     * @tc.name       : testOHPhotoOutputIsMovingPhotoSupported0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputIsMovingPhotoSupported0200', 0, () => {
+      let canPreconfig = preconfig();
+      createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputUsedInPreconfig(canPreconfig);
+      addPhotoOutput();
+      let ret = cameraObj.oHPhotoOutputIsMovingPhotoSupported(0);
+      if (ret.isMovingPhotoSupported) {
+        expect(ret.isMovingPhotoSupported).assertEqual(true);
+      } else {
+        expect(ret.isMovingPhotoSupported).assertEqual(false);
+      }
+      console.log(TAG+"isMovingPhotoSupported: "+ret.isMovingPhotoSupported);
+      console.log(TAG+"testOHPhotoOutputIsMovingPhotoSupported0200:"+ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_OK);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputIsMovingPhotoSupported0300
+     * @tc.name       : testOHPhotoOutputIsMovingPhotoSupported0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputIsMovingPhotoSupported0300', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutput();
+      addPhotoOutput();
+      let ret = cameraObj.oHPhotoOutputIsMovingPhotoSupported(1);
+      expect(ret.isMovingPhotoSupported).assertEqual(false);
+      console.log(TAG+"isMovingPhotoSupported: "+ret.isMovingPhotoSupported);
+      console.log(TAG+"testOHPhotoOutputIsMovingPhotoSupported0300:"+ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_INVALID_ARGUMENT);
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputIsMovingPhotoSupported0400
+     * @tc.name       : testOHPhotoOutputIsMovingPhotoSupported0400
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputIsMovingPhotoSupported0400', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutput();
+      addPhotoOutput();
+      let ret = cameraObj.oHPhotoOutputIsMovingPhotoSupported(2);
+      expect(ret.isMovingPhotoSupported).assertEqual(false);
+      console.log(TAG+"isMovingPhotoSupported: "+ret.isMovingPhotoSupported);
+      console.log(TAG+"testOHPhotoOutputIsMovingPhotoSupported0400:"+ret.errorCode);
+      expect(ret.errorCode).assertEqual(CAMERA_INVALID_ARGUMENT);
     })
     /**
      * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputEnableMovingPhoto0100
@@ -463,21 +701,120 @@ export default function PhotoTest() {
      * @tc.level      : Level 3
      */
     it('testOHPhotoOutputEnableMovingPhoto0100', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
       createPhotoOutput();
       addPhotoOutput();
       if (isMovingPhotoSupported()) {
-        console.info(TAG+ "enabled is true");
         let ret_true = cameraObj.oHPhotoOutputEnableMovingPhoto(1);
-        console.info(TAG+ "EnableMovingPhoto(true): " + ret_true);
+        console.log(TAG+ "testOHPhotoOutputEnableMovingPhoto0100 EnableMovingPhoto(true): " + ret_true);
         expect(ret_true).assertEqual(CAMERA_OK);
-        console.info(TAG+ "enabled is false");
         let ret_false = cameraObj.oHPhotoOutputEnableMovingPhoto(0);
-        console.info(TAG+ "EnableMovingPhoto(false): " + ret_false);
+        console.log(TAG+ "testOHPhotoOutputEnableMovingPhoto0100 EnableMovingPhoto(false): " + ret_false);
         expect(ret_false).assertEqual(CAMERA_OK);
       } else {
-        console.info(TAG+ "MovingPhoto is not supported.");
+        console.log(TAG+ "MovingPhoto is not supported.");
       }
-      console.log(TAG+"testOHPhotoOutputEnableMovingPhoto0100 end");
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputEnableMovingPhoto0200
+     * @tc.name       : testOHPhotoOutputEnableMovingPhoto0200
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputEnableMovingPhoto0200', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutput();
+      addPhotoOutput();
+      if (isMovingPhotoSupported()) {
+        let ret_false = cameraObj.oHPhotoOutputEnableMovingPhoto(0);
+        console.log(TAG+ "testOHPhotoOutputEnableMovingPhoto0200 EnableMovingPhoto(false): " + ret_false);
+        expect(ret_false).assertEqual(CAMERA_OK);
+        let ret_true = cameraObj.oHPhotoOutputEnableMovingPhoto(1);
+        console.log(TAG+ "testOHPhotoOutputEnableMovingPhoto0200 EnableMovingPhoto(true): " + ret_true);
+        expect(ret_true).assertEqual(CAMERA_OK);
+      } else {
+        console.log(TAG+ "MovingPhoto is not supported.");
+      }
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputEnableMovingPhoto0300
+     * @tc.name       : testOHPhotoOutputEnableMovingPhoto0300
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputEnableMovingPhoto0300', 0, () => {
+      let canPreconfig = preconfig();
+      createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputUsedInPreconfig(canPreconfig);
+      addPhotoOutput();
+      if (isMovingPhotoSupported()) {
+        let ret_true = cameraObj.oHPhotoOutputEnableMovingPhoto(1);
+        console.log(TAG+ "testOHPhotoOutputEnableMovingPhoto0300 EnableMovingPhoto(true): " + ret_true);
+        expect(ret_true).assertEqual(CAMERA_OK);
+        let ret_false = cameraObj.oHPhotoOutputEnableMovingPhoto(0);
+        console.log(TAG+ "testOHPhotoOutputEnableMovingPhoto0300 EnableMovingPhoto(false): " + ret_false);
+        expect(ret_false).assertEqual(CAMERA_OK);
+      } else {
+        console.log(TAG+ "MovingPhoto is not supported.");
+      }
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputEnableMovingPhoto0400
+     * @tc.name       : testOHPhotoOutputEnableMovingPhoto0400
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputEnableMovingPhoto0400', 0, () => {
+      let canPreconfig = preconfig();
+      createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutputUsedInPreconfig(canPreconfig);
+      addPhotoOutput();
+      if (isMovingPhotoSupported()) {
+        let ret_false = cameraObj.oHPhotoOutputEnableMovingPhoto(0);
+        console.log(TAG+ "testOHPhotoOutputEnableMovingPhoto0400 EnableMovingPhoto(false): " + ret_false);
+        expect(ret_false).assertEqual(CAMERA_OK);
+        let ret_true = cameraObj.oHPhotoOutputEnableMovingPhoto(1);
+        console.log(TAG+ "testOHPhotoOutputEnableMovingPhoto0400 EnableMovingPhoto(true): " + ret_true);
+        expect(ret_true).assertEqual(CAMERA_OK);
+      } else {
+        console.log(TAG+ "MovingPhoto is not supported.");
+      }
+    })
+    /**
+     * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoOutputEnableMovingPhoto0500
+     * @tc.name       : testOHPhotoOutputEnableMovingPhoto0500
+     * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
+     * @tc.type       : Function
+     * @tc.level      : Level 3
+     */
+    it('testOHPhotoOutputEnableMovingPhoto0500', 0, () => {
+      createPreviewOutput();
+      createCameraInput();
+      sessionFlow();
+      createPhotoOutput();
+      addPhotoOutput();
+      if (isMovingPhotoSupported()) {
+        let ret_true = cameraObj.oHPhotoOutputEnableMovingPhoto(2);
+        console.log(TAG+ "testOHPhotoOutputEnableMovingPhoto0500 EnableMovingPhoto(true): " + ret_true);
+        expect(ret_true).assertEqual(CAMERA_INVALID_ARGUMENT);
+      } else {
+        console.log(TAG+ "MovingPhoto is not supported.");
+      }
     })
     /**
      * @tc.number     : SUB_MULTIMEDIA_OHCAMERANDK_OHPhotoNativeGetMain0100
