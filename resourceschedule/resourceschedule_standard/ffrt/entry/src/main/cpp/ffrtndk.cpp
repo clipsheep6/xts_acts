@@ -764,6 +764,61 @@ static napi_value FfrtYieldC0001(napi_env env, napi_callback_info info)
     return flag;
 }
 
+static napi_value RecursiveMutexAbnormalParamTest001(napi_env env, napi_callback_info info)
+{
+    int result = 0;
+    int type = 0;
+    ffrt_mutexattr_t attr;
+    ffrt_mutex_t mtx;
+    int ret = ffrt_mutexattr_init(NULL);
+    if (ret != ffrt_error_inval) {
+        result = 1;
+    }
+    ret = ffrt_mutexattr_init(&attr);
+    if (ret != ffrt_success) {
+        result = 2;
+    }
+    ret = ffrt_mutexattr_settype(NULL, ffrt_mutex_recursive);
+    if (ret != ffrt_error_inval) {
+        result = 3;
+    }
+    ret = ffrt_mutexattr_settype(&attr, -1);
+    if (ret != ffrt_error_inval) {
+        result = 4;
+    }
+    ret = ffrt_mutexattr_settype(&attr, ffrt_mutex_recursive);
+    if (ret != ffrt_success) {
+        result = 5;
+    }
+    ret = ffrt_mutexattr_gettype(NULL, NULL);
+    if (ret != ffrt_error_inval) {
+        result = 6;
+    }
+    ret = ffrt_mutexattr_gettype(&attr, &type);
+    if (ret != ffrt_success) {
+        result = 7;
+    }
+    ret = ffrt_mutex_init(&mtx, &attr);
+    if (ret != ffrt_success) {
+        result = 8;
+    }
+    ret = ffrt_mutexattr_destroy(NULL);
+    if (ret != ffrt_error_inval) {
+        result = 9;
+    }
+    ret = ffrt_mutexattr_destroy(&attr);
+    if (ret != ffrt_success) {
+        result = 10;
+    }
+    ret = ffrt_mutex_destroy(&mtx);
+    if (ret != ffrt_success) {
+        result = 11;
+    }
+    napi_value flag = nullptr;
+    napi_create_double(env, result, &flag);
+    return flag;
+}
+
 static napi_value MutexAbnormalParamTest001(napi_env env, napi_callback_info info)
 {
     int result = 0;
@@ -3561,6 +3616,7 @@ static napi_value Init(napi_env env, napi_value exports)
             napi_default, nullptr },
         { "delayCTest001", nullptr, DelayCTest001, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "ffrtYieldC0001", nullptr, FfrtYieldC0001, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "recursiveMutexAbnormalParamTest001", nullptr, RecursiveMutexAbnormalParamTest001, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "mutexAbnormalParamTest001", nullptr, MutexAbnormalParamTest001, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "mutexAbnormalParamTest002", nullptr, MutexAbnormalParamTest002, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "mutexTest006", nullptr, MutexTest006, nullptr, nullptr, nullptr, napi_default, nullptr },
