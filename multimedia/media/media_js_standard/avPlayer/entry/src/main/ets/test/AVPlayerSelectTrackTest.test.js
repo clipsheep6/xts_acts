@@ -70,7 +70,8 @@ export default function AVPlayerSelectTrackTest() {
                 }
                 console.info('case arrayList.length is  ' + arrayList.length);
                 for (let i = 0; i < arrayList.length; i++) {
-                    console.info('case language_code is  ' + arrayList[i]['language_code']);
+                    console.info('case track_name is  ' + arrayList[i]['track_name']);
+                    console.info('case hdr_type is  ' + arrayList[i]['hdr_type']);
                     if (arrayList[i]['track_type'] == 0) {
                         audioTrackList.push(arrayList[i]['track_index']);
                     }
