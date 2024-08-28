@@ -87,22 +87,37 @@ export default function onApplicationState() {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
-      applicationStateNumber = -1;
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${featureAbilityWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appStartAbilityWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appBackAbilityWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appKillSelfAbilityWant.bundleName}`);
+      try {
+        applicationStateNumber = -1;
+        await abilityDelegator.startAbility(currentWant);
+      } catch (e) {
+
+      }
       try {
         appManager.off('applicationState', 0);
       } catch (e) {
       }
-      await sleep(2000);
+      await sleep(1000);
     })
     afterEach(async () => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${featureAbilityWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appStartAbilityWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appBackAbilityWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appKillSelfAbilityWant.bundleName}`);
       try {
         appManager.off('applicationState', applicationStateNumber);
       } catch (e) {
       }
-      await sleep(2000);
+      await sleep(1000);
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
@@ -155,15 +170,6 @@ export default function onApplicationState() {
           },
           onProcessStateChanged(processData: appManager.ProcessData): void {
           }
-        }
-
-        try {
-          await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
-          await abilityDelegator.startAbility(currentWant);
-          await sleep(1000);
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0400
-           error,error code is: ${e.code}, error message is: ${e.message}`);
         }
 
         try {
@@ -427,123 +433,109 @@ export default function onApplicationState() {
      * @tc.type: Function
      * @tc.level: Level0
      */
-    // it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400",
-    //   TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
-    //     //第2步
-    //     let step2onProcessCreated = false;
-    //     let step2onAbilityStateChanged = false;
-    //     let step2onForegroundApplicationChanged = false;
-    //     let step2onAbilityStateChangedCurrent = false;
-    //     let step2onForegroundApplicationChangedCurrent = false;
-    //     //第3步
-    //     let step3onProcessCreated = false;
-    //     let step3onAbilityStateChanged = false;
-    //     let step3onForegroundApplicationChanged = false;
-    //     let step3onAbilityStateChangedStep2 = false;
-    //     let step3onForegroundApplicationChangedStep2 = false;
-    //     // 注册监听
-    //     let appState: appManager.ApplicationStateObserver = {
-    //       onAppStarted(appStateData: appManager.AppStateData): void {
-    //       },
-    //       onAppStopped(appStateData: appManager.AppStateData): void {
-    //       },
-    //       onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-    //         console.log('zhanghan','onForegroundApplicationChangeds '+JSON.stringify(appStateData));
-    //         if (!step2onForegroundApplicationChanged) {
-    //           step2onForegroundApplicationChanged = getAppStateData(appStateData,
-    //             step2onForegroundApplicationChanged, 2, appEmptyWant.bundleName);
-    //         } else {
-    //           step3onForegroundApplicationChanged = getAppStateData(appStateData,
-    //             step3onForegroundApplicationChanged, 2, featureAbilityWant.bundleName);
-    //         }
-    //         step3onForegroundApplicationChangedStep2 = getAppStateData(appStateData,
-    //           step3onForegroundApplicationChangedStep2, 4, appEmptyWant.bundleName);
-    //
-    //         step2onForegroundApplicationChangedCurrent = getAppStateData(appStateData,
-    //           step2onForegroundApplicationChangedCurrent, 4, currentWant.bundleName);
-    //
-    //       },
-    //       onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
-    //         step2onAbilityStateChanged = getAbilityStateData(abilityStateData,
-    //           step2onAbilityStateChanged, 2, appEmptyWant);
-    //
-    //         step2onAbilityStateChangedCurrent = getAbilityStateData(abilityStateData,
-    //           step2onAbilityStateChangedCurrent, 4, currentWant);
-    //
-    //         step3onAbilityStateChanged = getAbilityStateData(abilityStateData,
-    //           step3onAbilityStateChanged, 2, featureAbilityWant)
-    //
-    //         step3onAbilityStateChangedStep2 = getAbilityStateData(abilityStateData,
-    //           step3onAbilityStateChangedStep2, 4, appEmptyWant);
-    //
-    //       },
-    //       onProcessCreated(processData: appManager.ProcessData): void {
-    //         if (!step2onProcessCreated) {
-    //           step2onProcessCreated = getProcessData(processData,
-    //             step2onProcessCreated, appEmptyWant.bundleName);
-    //         } else {
-    //           //再次回调
-    //           step3onProcessCreated = getProcessData(processData,
-    //             step3onProcessCreated, featureAbilityWant.bundleName);
-    //         }
-    //       },
-    //       onProcessDied(processData: appManager.ProcessData): void {
-    //
-    //       },
-    //       onProcessStateChanged(processData: appManager.ProcessData): void {
-    //       }
-    //     }
-    //     try {
-    //       hilog.info(Domain, TAG,
-    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400 start`);
-    //       // await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
-    //       await sleep(1000);
-    //       // 注册监听成功
-    //       applicationStateNumber = appManager.on('applicationState', appState);
-    //       expect(applicationStateNumber).assertLarger(-1);
-    //       await sleep(1000);
-    //       // 第2步
-    //       await abilityDelegator.startAbility(appEmptyWant);
-    //       await sleep(1000);
-    //       // 判断结果
-    //       hilog.info(Domain, TAG,
-    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400
-    //         step2onProcessCreated ${step2onProcessCreated}
-    //         step2onAbilityStateChanged ${step2onAbilityStateChanged}
-    //         step2onForegroundApplicationChanged ${step2onForegroundApplicationChanged}
-    //         step2onAbilityStateChangedCurrent ${step2onAbilityStateChangedCurrent}
-    //         step2onForegroundApplicationChangedCurrent ${step2onForegroundApplicationChangedCurrent}
-    //         `);
-    //       expect(step2onProcessCreated).assertTrue();
-    //       expect(step2onAbilityStateChanged).assertTrue();
-    //       expect(step2onForegroundApplicationChanged).assertTrue();
-    //       expect(step2onAbilityStateChangedCurrent).assertTrue();
-    //       expect(step2onForegroundApplicationChangedCurrent).assertTrue();
-    //       // 第3步
-    //       await abilityDelegator.startAbility(featureAbilityWant);
-    //       await sleep(1000);
-    //       // 判断结果
-    //       hilog.info(Domain, TAG,
-    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400
-    //         step3onProcessCreated ${step3onProcessCreated}
-    //         step3onAbilityStateChanged ${step3onAbilityStateChanged}
-    //         step3onForegroundApplicationChanged ${step3onForegroundApplicationChanged}
-    //         step3onAbilityStateChangedStep2 ${step3onAbilityStateChangedStep2}
-    //         step3onForegroundApplicationChangedStep2 ${step3onForegroundApplicationChangedStep2}
-    //         `);
-    //       expect(step3onProcessCreated).assertFalse();
-    //       expect(step3onAbilityStateChanged).assertTrue();
-    //       expect(step3onForegroundApplicationChanged).assertTrue();
-    //       expect(step3onAbilityStateChangedStep2).assertTrue();
-    //       expect(step3onForegroundApplicationChangedStep2).assertTrue();
-    //     } catch (e) {
-    //       hilog.error(Domain, TAG,
-    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400 error,
-    //        error code is: ${e.code}, error message is: ${e.message}`);
-    //       expect().assertFail();
-    //     }
-    //     done();
-    //   });
+    it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400",
+      TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
+        //第2步
+        let step2onProcessCreated = false;
+        let step2onAbilityStateChanged = false;
+        let step2onForegroundApplicationChanged = false;
+        let step2onAbilityStateChangedCurrent = false;
+        let step2onForegroundApplicationChangedCurrent = false;
+        //第3步
+        let step3onProcessCreated = false;
+        let step3onAbilityStateChanged = false;
+        let step3onAbilityStateChangedStep2 = false;
+        // 注册监听
+        let appState: appManager.ApplicationStateObserver = {
+          onAppStarted(appStateData: appManager.AppStateData): void {
+          },
+          onAppStopped(appStateData: appManager.AppStateData): void {
+          },
+          onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
+            console.log('zhanghan', 'onForegroundApplicationChangeds ' + JSON.stringify(appStateData));
+            step2onForegroundApplicationChanged = getAppStateData(appStateData,
+              step2onForegroundApplicationChanged, 2, appEmptyWant.bundleName);
+
+            step2onForegroundApplicationChangedCurrent = getAppStateData(appStateData,
+              step2onForegroundApplicationChangedCurrent, 4, currentWant.bundleName);
+
+          },
+          onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
+            step2onAbilityStateChanged = getAbilityStateData(abilityStateData,
+              step2onAbilityStateChanged, 2, appEmptyWant);
+
+            step2onAbilityStateChangedCurrent = getAbilityStateData(abilityStateData,
+              step2onAbilityStateChangedCurrent, 4, currentWant);
+
+            step3onAbilityStateChanged = getAbilityStateData(abilityStateData,
+              step3onAbilityStateChanged, 2, featureAbilityWant)
+
+            step3onAbilityStateChangedStep2 = getAbilityStateData(abilityStateData,
+              step3onAbilityStateChangedStep2, 4, appEmptyWant);
+
+          },
+          onProcessCreated(processData: appManager.ProcessData): void {
+            if (!step2onProcessCreated) {
+              step2onProcessCreated = getProcessData(processData,
+                step2onProcessCreated, appEmptyWant.bundleName);
+            } else {
+              //再次回调
+              step3onProcessCreated = getProcessData(processData,
+                step3onProcessCreated, featureAbilityWant.bundleName);
+            }
+          },
+          onProcessDied(processData: appManager.ProcessData): void {
+
+          },
+          onProcessStateChanged(processData: appManager.ProcessData): void {
+          }
+        }
+        try {
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400 start`);
+          await sleep(1000);
+          // 注册监听成功
+          applicationStateNumber = appManager.on('applicationState', appState);
+          expect(applicationStateNumber).assertLarger(-1);
+          await sleep(1000);
+          // 第2步
+          await abilityDelegator.startAbility(appEmptyWant);
+          await sleep(1000);
+          // 判断结果
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400
+            step2onProcessCreated ${step2onProcessCreated}
+            step2onAbilityStateChanged ${step2onAbilityStateChanged}
+            step2onForegroundApplicationChanged ${step2onForegroundApplicationChanged}
+            step2onAbilityStateChangedCurrent ${step2onAbilityStateChangedCurrent}
+            step2onForegroundApplicationChangedCurrent ${step2onForegroundApplicationChangedCurrent}
+            `);
+          expect(step2onProcessCreated).assertTrue();
+          expect(step2onAbilityStateChanged).assertTrue();
+          expect(step2onForegroundApplicationChanged).assertTrue();
+          expect(step2onAbilityStateChangedCurrent).assertTrue();
+          expect(step2onForegroundApplicationChangedCurrent).assertTrue();
+          // 第3步
+          await abilityDelegator.startAbility(featureAbilityWant);
+          await sleep(1000);
+          // 判断结果
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400
+            step3onProcessCreated ${step3onProcessCreated}
+            step3onAbilityStateChanged ${step3onAbilityStateChanged}
+            step3onAbilityStateChangedStep2 ${step3onAbilityStateChangedStep2}
+            `);
+          expect(step3onProcessCreated).assertFalse();
+          expect(step3onAbilityStateChanged).assertTrue();
+          expect(step3onAbilityStateChangedStep2).assertTrue();
+        } catch (e) {
+          hilog.error(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400 error,
+           error code is: ${e.code}, error message is: ${e.message}`);
+          expect().assertFail();
+        }
+        done();
+      });
 
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600
@@ -553,125 +545,102 @@ export default function onApplicationState() {
      * @tc.type: Function
      * @tc.level: Level0
      */
-    // it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600",
-    //   TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
-    //     //第2步
-    //     let step2onProcessCreated = false;
-    //     let step2onAbilityStateChanged = false;
-    //     let step2onForegroundApplicationChanged = false;
-    //     let step2onAbilityStateChangedCurrent = false;
-    //     let step2onForegroundApplicationChangedCurrent = false;
-    //     //第3步
-    //     let step3onProcessCreated = false;
-    //     let step3onAbilityStateChanged = false;
-    //     let step3onForegroundApplicationChanged = false;
-    //     let step3onAbilityStateChangedStep2 = false;
-    //     let step3onForegroundApplicationChangedStep2 = false;
-    //     let pid1 = -1;
-    //     // 注册监听
-    //     let appState: appManager.ApplicationStateObserver = {
-    //       onAppStarted(appStateData: appManager.AppStateData): void {
-    //       },
-    //       onAppStopped(appStateData: appManager.AppStateData): void {
-    //       },
-    //       onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-    //         console.log('zhanghan','onForegroundApplicationChangeds '+JSON.stringify(appStateData));
-    //         if (!step2onForegroundApplicationChanged) {
-    //           step2onForegroundApplicationChanged = getAppStateData(appStateData,
-    //             step2onForegroundApplicationChanged, 2, featureAbilityWant.bundleName);
-    //         } else {
-    //           step3onForegroundApplicationChanged = getAppStateData(appStateData,
-    //             step3onForegroundApplicationChanged, 2, featureAbilityWant2.bundleName);
-    //         }
-    //         step3onForegroundApplicationChangedStep2 = getAppStateData(appStateData,
-    //           step3onForegroundApplicationChangedStep2, 4, featureAbilityWant.bundleName);
-    //
-    //         step2onForegroundApplicationChangedCurrent = getAppStateData(appStateData,
-    //           step2onForegroundApplicationChangedCurrent, 4, currentWant.bundleName);
-    //
-    //       },
-    //       onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
-    //         step2onAbilityStateChanged = getAbilityStateData(abilityStateData,
-    //           step2onAbilityStateChanged, 2, featureAbilityWant);
-    //
-    //         step2onAbilityStateChangedCurrent = getAbilityStateData(abilityStateData,
-    //           step2onAbilityStateChangedCurrent, 4, currentWant);
-    //
-    //         step3onAbilityStateChanged = getAbilityStateData(abilityStateData,
-    //           step3onAbilityStateChanged, 2, featureAbilityWant2)
-    //
-    //         step3onAbilityStateChangedStep2 = getAbilityStateData(abilityStateData,
-    //           step3onAbilityStateChangedStep2, 4, featureAbilityWant);
-    //
-    //       },
-    //       onProcessCreated(processData: appManager.ProcessData): void {
-    //         if (pid1 <= 0) {
-    //           pid1 = processData.pid;
-    //           step2onProcessCreated = getProcessData(processData,
-    //             step2onProcessCreated, featureAbilityWant.bundleName);
-    //         } else if (processData.pid != pid1) {
-    //           //再次回调
-    //           step3onProcessCreated = getProcessData(processData,
-    //             step3onProcessCreated, featureAbilityWant2.bundleName);
-    //         }
-    //       },
-    //       onProcessDied(processData: appManager.ProcessData): void {
-    //
-    //       },
-    //       onProcessStateChanged(processData: appManager.ProcessData): void {
-    //       }
-    //     }
-    //     try {
-    //       hilog.info(Domain, TAG,
-    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600 start`);
-    //       await abilityDelegator.startAbility(currentWant);
-    //       await sleep(1000);
-    //       // 注册监听成功
-    //       applicationStateNumber = appManager.on('applicationState', appState);
-    //       expect(applicationStateNumber).assertLarger(-1);
-    //       await sleep(1000);
-    //       // 第2步
-    //       let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
-    //       context!.startAbility(featureAbilityWant);
-    //       await sleep(3000);
-    //       // 判断结果
-    //       hilog.info(Domain, TAG,
-    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600
-    //         step2onProcessCreated ${step2onProcessCreated}
-    //         step2onAbilityStateChanged ${step2onAbilityStateChanged}
-    //         step2onForegroundApplicationChanged ${step2onForegroundApplicationChanged}
-    //         step2onAbilityStateChangedCurrent ${step2onAbilityStateChangedCurrent}
-    //         step2onForegroundApplicationChangedCurrent ${step2onForegroundApplicationChangedCurrent}
-    //         `);
-    //       expect(step2onProcessCreated).assertTrue();
-    //       expect(step2onAbilityStateChanged).assertTrue();
-    //       expect(step2onForegroundApplicationChanged).assertTrue();
-    //       expect(step2onAbilityStateChangedCurrent).assertTrue();
-    //       expect(step2onForegroundApplicationChangedCurrent).assertTrue();
-    //       // 第3步
-    //       context!.startAbility(featureAbilityWant2);
-    //       // 判断结果
-    //       hilog.info(Domain, TAG,
-    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600
-    //         step3onAbilityStateChangedCurrent ${step3onProcessCreated}
-    //         step3onForegroundApplicationChangedCurrent ${step3onAbilityStateChanged}
-    //         step3onAbilityStateChangedState4 ${step3onForegroundApplicationChanged}
-    //         step3onAbilityStateChangedState5 ${step3onAbilityStateChangedStep2}
-    //         step3onForegroundApplicationChanged ${step3onForegroundApplicationChangedStep2}
-    //         `);
-    //       expect(step3onProcessCreated).assertTrue();
-    //       expect(step3onAbilityStateChanged).assertTrue();
-    //       expect(step3onForegroundApplicationChanged).assertTrue();
-    //       expect(step3onAbilityStateChangedStep2).assertTrue();
-    //       expect(step3onForegroundApplicationChangedStep2).assertTrue();
-    //     } catch (e) {
-    //       hilog.error(Domain, TAG,
-    //         `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600 error,
-    //        error code is: ${e.code}, error message is: ${e.message}`);
-    //       expect().assertFail();
-    //     }
-    //     done();
-    //   });
+    it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600",
+      TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
+        //第2步
+        let step2onProcessCreated = false;
+        let step2onAbilityStateChanged = false;
+        let step2onForegroundApplicationChanged = false;
+        let step2onAbilityStateChangedCurrent = false;
+        let step2onForegroundApplicationChangedCurrent = false;
+        //第3步
+        let step3onAbilityStateChanged = false;
+        let step3onAbilityStateChangedStep2 = false;
+        // 注册监听
+        let appState: appManager.ApplicationStateObserver = {
+          onAppStarted(appStateData: appManager.AppStateData): void {
+          },
+          onAppStopped(appStateData: appManager.AppStateData): void {
+          },
+          onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
+            console.log('zhanghan', 'onForegroundApplicationChangeds ' + JSON.stringify(appStateData));
+            step2onForegroundApplicationChanged = getAppStateData(appStateData,
+              step2onForegroundApplicationChanged, 2, featureAbilityWant.bundleName);
+
+            step2onForegroundApplicationChangedCurrent = getAppStateData(appStateData,
+              step2onForegroundApplicationChangedCurrent, 4, currentWant.bundleName);
+
+          },
+          onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
+            step2onAbilityStateChanged = getAbilityStateData(abilityStateData,
+              step2onAbilityStateChanged, 2, featureAbilityWant);
+
+            step2onAbilityStateChangedCurrent = getAbilityStateData(abilityStateData,
+              step2onAbilityStateChangedCurrent, 4, currentWant);
+
+            step3onAbilityStateChanged = getAbilityStateData(abilityStateData,
+              step3onAbilityStateChanged, 2, featureAbilityWant2)
+
+            step3onAbilityStateChangedStep2 = getAbilityStateData(abilityStateData,
+              step3onAbilityStateChangedStep2, 4, featureAbilityWant);
+
+          },
+          onProcessCreated(processData: appManager.ProcessData): void {
+            step2onProcessCreated = getProcessData(processData,
+              step2onProcessCreated, featureAbilityWant.bundleName);
+          },
+          onProcessDied(processData: appManager.ProcessData): void {
+
+          },
+          onProcessStateChanged(processData: appManager.ProcessData): void {
+          }
+        }
+        try {
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600 start`);
+          await abilityDelegator.startAbility(currentWant);
+          await sleep(1000);
+          // 注册监听成功
+          applicationStateNumber = appManager.on('applicationState', appState);
+          expect(applicationStateNumber).assertLarger(-1);
+          await sleep(1000);
+          // 第2步
+          let context: common.UIAbilityContext | undefined = AppStorage.get<common.UIAbilityContext>('abilityContext');
+          context!.startAbility(featureAbilityWant);
+          await sleep(3000);
+          // 判断结果
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600
+            step2onProcessCreated ${step2onProcessCreated}
+            step2onAbilityStateChanged ${step2onAbilityStateChanged}
+            step2onForegroundApplicationChanged ${step2onForegroundApplicationChanged}
+            step2onAbilityStateChangedCurrent ${step2onAbilityStateChangedCurrent}
+            step2onForegroundApplicationChangedCurrent ${step2onForegroundApplicationChangedCurrent}
+            `);
+          expect(step2onProcessCreated).assertTrue();
+          expect(step2onAbilityStateChanged).assertTrue();
+          expect(step2onForegroundApplicationChanged).assertTrue();
+          expect(step2onAbilityStateChangedCurrent).assertTrue();
+          expect(step2onForegroundApplicationChangedCurrent).assertTrue();
+          // 第3步
+          context!.startAbility(featureAbilityWant2);
+          await sleep(1000);
+          // 判断结果
+          hilog.info(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600
+            step3onForegroundApplicationChangedCurrent ${step3onAbilityStateChanged}
+            step3onAbilityStateChangedState5 ${step3onAbilityStateChangedStep2}
+            `);
+          expect(step3onAbilityStateChanged).assertTrue();
+          expect(step3onAbilityStateChangedStep2).assertTrue();
+        } catch (e) {
+          hilog.error(Domain, TAG,
+            `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600 error,
+           error code is: ${e.code}, error message is: ${e.message}`);
+          expect().assertFail();
+        }
+        done();
+      });
 
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3100
@@ -708,13 +677,7 @@ export default function onApplicationState() {
           onProcessStateChanged(processData: appManager.ProcessData): void {
           }
         }
-        try {
-          await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
-          await sleep(1000)
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3100
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
+
         try {
           applicationStateNumber = appManager.on('applicationState', appState);
         } catch (e) {

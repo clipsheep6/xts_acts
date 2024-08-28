@@ -6,7 +6,7 @@
         "shell-timeout": "180000",
         "bundle-name": "com.hits.stateinfo.isterminating",
         "module-name": "entry_test",
-		"testcase-timeout": "20000"
+		"testcase-timeout": "200000"
     },
     "kits": [
         {

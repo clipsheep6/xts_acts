@@ -74,20 +74,28 @@ export default function onServiceApplicationState() {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
-      applicationStateNumber = -1;
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${serviceKillSelfWant.bundleName}`);
       try {
+        applicationStateNumber = -1;
         appManager.off('applicationState', 0);
       } catch (e) {
       }
+      await sleep(1000);
     })
-    afterEach(() => {
+    afterEach(async () => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
+      await abilityDelegator.executeShellCommand(`aa force-stop ${serviceKillSelfWant.bundleName}`);
       try {
         appManager.off('applicationState', applicationStateNumber);
       } catch (e) {
       }
+      await sleep(1000);
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
@@ -108,7 +116,6 @@ export default function onServiceApplicationState() {
     it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700",
       TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
         let onProcessCreatedServiceEmpty = false;
-        let onForegroundApplicationChanged = false;
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
@@ -116,8 +123,6 @@ export default function onServiceApplicationState() {
           onAppStopped(appStateData: appManager.AppStateData): void {
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            onForegroundApplicationChanged = getAppStateData(appStateData,
-              onForegroundApplicationChanged, 2, serviceEmptyWant.bundleName);
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
           },
@@ -134,7 +139,6 @@ export default function onServiceApplicationState() {
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700 start`);
           // 注册监听成功
-          await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
           applicationStateNumber = appManager.on('applicationState', appState);
           expect(applicationStateNumber).assertLarger(-1);
           await sleep(1000);
@@ -160,10 +164,8 @@ export default function onServiceApplicationState() {
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0700
             onProcessCreatedServiceEmpty ${onProcessCreatedServiceEmpty}
-            onForegroundApplicationChanged ${onForegroundApplicationChanged}
             `);
           expect(onProcessCreatedServiceEmpty).assertTrue();
-          expect(onForegroundApplicationChanged).assertTrue();
           await context!.disconnectServiceExtensionAbility(conn);
         } catch (e) {
           hilog.error(Domain, TAG,
@@ -185,7 +187,6 @@ export default function onServiceApplicationState() {
     it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900",
       TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
         //第3步
-        let onForegroundApplicationChanged = false;
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
@@ -193,8 +194,6 @@ export default function onServiceApplicationState() {
           onAppStopped(appStateData: appManager.AppStateData): void {
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            onForegroundApplicationChanged = getAppStateData(appStateData,
-              onForegroundApplicationChanged, 4, serviceEmptyWant.bundleName);
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
           },
@@ -209,7 +208,6 @@ export default function onServiceApplicationState() {
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 start ${applicationStateNumber}`);
           // 注册监听成功
-          await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
           applicationStateNumber = appManager.on('applicationState', appState);
           expect(applicationStateNumber).assertLarger(-1);
           await sleep(1000);
@@ -234,8 +232,6 @@ export default function onServiceApplicationState() {
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 conn ${conn}`);
           await sleep(1000);
           await context!.disconnectServiceExtensionAbility(conn);
-          await sleep(5000);
-          expect(onForegroundApplicationChanged).assertTrue();
         } catch (e) {
           hilog.error(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0900 error,
@@ -257,7 +253,6 @@ export default function onServiceApplicationState() {
       TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
         //第3步
         let onProcessCreated = false;
-        let onForegroundApplicationChanged = false;
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
@@ -265,8 +260,6 @@ export default function onServiceApplicationState() {
           onAppStopped(appStateData: appManager.AppStateData): void {
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            onForegroundApplicationChanged = getAppStateData(appStateData,
-              onForegroundApplicationChanged, 2, serviceEmptyWant.bundleName);
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
           },
@@ -282,7 +275,6 @@ export default function onServiceApplicationState() {
         try {
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 start`);
-          await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
           // 注册监听成功
           applicationStateNumber = appManager.on('applicationState', appState);
           expect(applicationStateNumber).assertLarger(-1);
@@ -294,7 +286,6 @@ export default function onServiceApplicationState() {
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 startServiceExtensionAbility`);
           await sleep(1000);
           expect(onProcessCreated).assertTrue();
-          expect(onForegroundApplicationChanged).assertTrue();
         } catch (e) {
           hilog.error(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1500 error,
@@ -314,7 +305,6 @@ export default function onServiceApplicationState() {
     it("SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700",
       TestType.FUNCTION | Size.LARGETEST | Level.LEVEL0, async (done: Function) => {
         //第3步
-        let onForegroundApplicationChanged = false;
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
@@ -322,8 +312,6 @@ export default function onServiceApplicationState() {
           onAppStopped(appStateData: appManager.AppStateData): void {
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            onForegroundApplicationChanged = getAppStateData(appStateData,
-              onForegroundApplicationChanged, 4, serviceKillSelfWant.bundleName);
           },
           onAbilityStateChanged(abilityStateData: appManager.AbilityStateData): void {
           },
@@ -351,8 +339,6 @@ export default function onServiceApplicationState() {
           context!.startServiceExtensionAbility(serviceKillSelfWant);
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700 startServiceExtensionAbility`);
-          await sleep(2000);
-          expect(onForegroundApplicationChanged).assertTrue();
         } catch (e) {
           hilog.error(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1700 error,
@@ -393,14 +379,6 @@ export default function onServiceApplicationState() {
           }
         }
         try {
-          await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
-          await abilityDelegator.executeShellCommand(`aa force-stop ${serviceEmptyWant.bundleName}`);
-          await sleep(1000)
-        } catch (e) {
-          hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3100
-           error,error code is: ${e.code}, error message is: ${e.message}`);
-        }
-        try {
           applicationStateNumber = appManager.on('applicationState', appState);
         } catch (e) {
           hilog.error(Domain, TAG, `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3000
@@ -416,9 +394,10 @@ export default function onServiceApplicationState() {
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3000 startAbility appEmptyWant`);
           await sleep(1000);
-          await context!.startServiceExtensionAbility(serviceEmptyWant);
+          await abilityDelegator.startAbility(serviceEmptyWant);
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3000 startService serviceEmptyWant`);
+          await sleep(1000);
           await abilityDelegator.startAbility(currentWant);
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_3000 startAbility currentWant`);

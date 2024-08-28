@@ -84,16 +84,19 @@ export default function onCurrentApplicationState() {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
-      applicationStateNumber = -1;
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
       try {
+        applicationStateNumber = -1;
         appManager.off('applicationState', 0);
       } catch (e) {
       }
+      await sleep(1000);
     })
     afterEach(async () => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
       try {
         appManager.off('applicationState', applicationStateNumber);
       } catch (e) {
@@ -302,10 +305,6 @@ export default function onCurrentApplicationState() {
           await sleep(1000);
           // 未收到回调
           expect(hasCallback).assertFalse();
-          try {
-            await abilityDelegator.executeShellCommand(`aa force-stop ${appEmptyWant.bundleName}`);
-          } catch (error) {
-          }
         } catch (e) {
           hilog.error(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0500 error,

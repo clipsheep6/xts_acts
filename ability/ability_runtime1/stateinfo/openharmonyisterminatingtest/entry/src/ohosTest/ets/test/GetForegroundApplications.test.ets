@@ -57,11 +57,15 @@ export default function getForegroundApplicationsTest() {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appGegForgrdAppsWant.bundleName}`);
+      await sleep(1000);
     })
-    afterEach(() => {
+    afterEach(async () => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
+      await abilityDelegator.executeShellCommand(`aa force-stop ${appGegForgrdAppsWant.bundleName}`);
+      await sleep(1000);
     })
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
@@ -80,10 +84,6 @@ export default function getForegroundApplicationsTest() {
         try {
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0300 start`);
-
-          await abilityDelegator.executeShellCommand(`aa force-stop ${appGegForgrdAppsWant.bundleName}`);
-          await sleep(1000);
-
           // 获取RunningInfos
           let functionGetForegroundApplications = async () => {
             return new Promise<boolean>((resolve, reject) => {
