@@ -76,28 +76,6 @@ export default function faultManagementTest() {
       // context = testAbility.context;
       // console.log('TestUIAbilityContext topAbility:' + JSON.stringify(testAbility));
       // await getPermissions();
-      try {
-        installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
-          data.install(['/data/storage/el2/base/files/hitsFaultManagementWingman1.hap'], (err: BusinessError) => {
-            if (err) {
-              console.error('install hitsFaultManagementWingman1 getBundleInstaller failed. Cause: ' +
-              JSON.stringify(err));
-            }
-          });
-          data.install(['/data/storage/el2/base/files/hitsFaultManagementWingman2.hap'], (err: BusinessError) => {
-            if (err) {
-              console.error('install hitsFaultManagementWingman2 getBundleInstaller failed. Cause: ' +
-              JSON.stringify(err));
-            }
-          });
-        }).catch((error: BusinessError) => {
-          console.error('install wingman failed. Cause: ' + JSON.stringify(error));
-          expect().assertFail();
-        });
-      } catch (error) {
-        expect().assertFail()
-        console.error('install wingman catch. Cause: ' + JSON.stringify(error));
-      }
     })
   })
   beforeEach(() => {
@@ -118,7 +96,7 @@ export default function faultManagementTest() {
     try {
       delegator.startAbility({
         bundleName: "com.hits.FaultManagementWingman1",
-        abilityName: "TestAbility"
+        abilityName: "EntryAbility"
       })
         .then(async () => {
           console.log("SUB_Ability_AbilityRuntime_FaultManagement_0600 startAbility successfully");
@@ -149,7 +127,7 @@ export default function faultManagementTest() {
       let wingman1AppId: string;
       let want: Want = {
         bundleName: Wingman2BundleName,
-        abilityName: "TestAbility"
+        abilityName: "EntryAbility"
       }
       bundleManager.getBundleInfo(Wingman1BundleName, bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then((data) => {
@@ -161,7 +139,7 @@ export default function faultManagementTest() {
               console.log("SUB_Ability_AbilityRuntime_FaultManagement_0700 setDisposedStatus successfully ");
               delegator.startAbility({
                 bundleName: Wingman1BundleName,
-                abilityName: "TestAbility"
+                abilityName: "EntryAbility"
               })
                 .then(async () => {
                   console.log("SUB_Ability_AbilityRuntime_FaultManagement_0700 startAbility successfully");
@@ -208,7 +186,7 @@ export default function faultManagementTest() {
   //   let wantBackground: Want = {
   //     bundleName: Wingman2BundleName,
   //     moduleName: 'entry',
-  //     abilityName: 'TestAbility',
+  //     abilityName: 'EntryAbility',
   //     deviceId: ''
   //   };
   //   context?.startAbilityByCall(wantBackground)

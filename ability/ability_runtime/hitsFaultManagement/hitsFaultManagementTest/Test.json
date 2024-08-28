@@ -9,20 +9,17 @@
   },
   "kits": [
     {
-      "test-file-name": ["hitsFaultManagementTest.hap"],
+      "test-file-name": [
+        "hitsFaultManagementTest.hap",
+        "hitsFaultManagementWingman1.hap",
+        "hitsFaultManagementWingman2.hap"
+      ],
       "type": "AppInstallKit",
       "cleanup-apps": true
     },
     {
       "type": "ShellKit",
       "run-command": ["power-shell wakeup", "power-shell setmode 602"]
-    },
-    {
-      "type": "PushKit",
-      "push": [
-        "hitsFaultManagementWingman1.hap->/data/app/el2/100/base/com.hits.faultmanager/files/",
-        "hitsFaultManagementWingman2.hap->/data/app/el2/100/base/com.hits.faultmanager/files/"
-      ]
     },
     {
       "type": "ShellKit",
