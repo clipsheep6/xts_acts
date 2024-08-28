@@ -16,7 +16,7 @@
 import deviceInfo from '@ohos.deviceInfo'
 import media from '@ohos.multimedia.media'
 import camera from '@ohos.multimedia.camera'
-import photoAccessHelper from '@ohos.photoAccessHelper';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import display from '@ohos.display';
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import * as avRecorderTestBase from '../../../../../AVRecorderTestBase.js';

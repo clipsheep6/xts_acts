@@ -14,7 +14,7 @@
  */
 
 import resourceManager from '@ohos.resourceManager';
-import photoAccessHelper from '@ohos.photoAccessHelper';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import {expect} from 'deccjsunit/index'
 import router from '@system.router'
 import fs from '@ohos.file.fs';
