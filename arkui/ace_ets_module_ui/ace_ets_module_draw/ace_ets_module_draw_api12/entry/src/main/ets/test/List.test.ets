@@ -16,9 +16,15 @@ import APICanvasSizeTest from './CanvasTest/APICanvasSizeTest.test';
 import RestoreLayerTest from './CanvasTest/CanvasApiTest/RestoreLayerTest.test';
 import SaveLayerTest from './CanvasTest/CanvasApiTest/SaveLayerTest.test';
 import DrawModifier from './DrawModifier/DrawModifier.test';
+import Polygon from './PolygonTest/Polygon.test';
+import Polyline from './PolylineTest/Polyline.test';
+import Rect from './RectTest/Rect.test';
 export default function testsuite() {
   APICanvasSizeTest();
   RestoreLayerTest();
   SaveLayerTest();
   DrawModifier(); 
+  Polygon();
+  Polyline();
+  Rect();
 }
