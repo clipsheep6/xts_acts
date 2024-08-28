@@ -16,6 +16,7 @@
 import deviceInfo from '@ohos.deviceInfo'
 import media from '@ohos.multimedia.media'
 import camera from '@ohos.multimedia.camera'
+import photoAccessHelper from '@ohos.photoAccessHelper';
 import display from '@ohos.display';
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import * as avRecorderTestBase from '../../../../../AVRecorderTestBase.js';
@@ -226,7 +227,7 @@ export default function avVideoRecorderTestOne() {
         let eventEmitter = new events.EventEmitter();
 
         const CREATE_CALLBACK_EVENT = 'createCallback';
-        const SETONCALLBACK_EVENT = 'setAvRecorderCallback'
+        const SETONCALLBACK_EVENT = 'setAvRecorderCallback';
         const SETPHOTOASSETCALLBACK_EVENT = 'setPhotoAssetCallback';
         const PREPARE_CALLBACK_EVENT = 'prepareCallback';
         const GETINPUTSURFACE_CALLBACK_EVENT = 'getInputSurfaceCallback';
