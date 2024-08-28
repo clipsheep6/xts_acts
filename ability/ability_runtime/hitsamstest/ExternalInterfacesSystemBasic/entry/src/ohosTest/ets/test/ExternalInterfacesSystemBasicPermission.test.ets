@@ -38,32 +38,9 @@ export default function ARPEISystemBasicPermissionTest() {
      * @tc.size:MediumTest
      */
     it('TestAbilityAbilityRuntimePermissionExternalInterfaces5100', 0, async (done: Function) => {
-      try {
-        installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
-          data.install(['/data/storage/el2/base/files/HitsExternalDemoTest.hap'], (err: BusinessError) => {
-            if (err.code) {
-              hilog.error(0x0000, 'appManagerExternalInterfaces', '%{public}s',
-                'TestAbilityAbilityRuntimePermissionExternalInterfaces5100 failed ' + JSON.stringify(err));
-              expect().assertFail();
-              done();
-            } else {
-              hilog.info(0x0000, 'appManagerExternalInterfaces', '%{public}s',
-                'TestAbilityAbilityRuntimePermissionExternalInterfaces5100 succeed');
-              expect(true).assertTrue();
-            }
-          })
-        })
-      } catch (error) {
-        hilog.error(0x0000, 'appManagerExternalInterfaces', '%{public}s',
-          'TestAbilityAbilityRuntimePermissionExternalInterfaces5100 failed ' + JSON.stringify(error));
-        expect().assertFail();
-        done();
-      }
-
       hilog.info(0x0000, 'appManagerExternalInterfaces', '%{public}s',
         'TestAbilityAbilityRuntimePermissionExternalInterfaces5100 begin');
       let want: Want = {
-        deviceId: '',
         bundleName: 'com.hits.external.demo',
         abilityName: 'com.hits.external.demo.MainAbility'
       };
