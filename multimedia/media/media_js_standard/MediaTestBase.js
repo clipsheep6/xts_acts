@@ -14,6 +14,7 @@
  */
 
 import resourceManager from '@ohos.resourceManager';
+import photoAccessHelper from '@ohos.photoAccessHelper';
 import {expect} from 'deccjsunit/index'
 import router from '@system.router'
 import fs from '@ohos.file.fs';
@@ -234,6 +235,20 @@ export async function getFd(pathName) {
     console.info('case getFd number is: ' + fdObject.fdNumber);
     
     return fdObject;
+}
+
+export async function saveVideo(asset) {
+    console.info('case saveVideo start');
+    try {
+        let photoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+        let assetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+        assetChangeRequest.saveCameraPhoto();
+        await photoAccessHelper.applyChanges(assetChangeRequest);
+        console.info('case saveVideo successfully');
+    } catch (error) {
+        console.info(`case error called,errMessage is ${error.message}`);
+    }
+    console.info('case saveVideo end');
 }
 
 export async function closeFd(fdNumber) {
