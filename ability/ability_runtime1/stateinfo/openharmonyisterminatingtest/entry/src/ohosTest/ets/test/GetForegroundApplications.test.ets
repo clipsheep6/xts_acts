@@ -81,7 +81,6 @@ export default function getForegroundApplicationsTest() {
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0300 start`);
 
-
           await abilityDelegator.executeShellCommand(`aa force-stop ${appGegForgrdAppsWant.bundleName}`);
           await sleep(1000);
 

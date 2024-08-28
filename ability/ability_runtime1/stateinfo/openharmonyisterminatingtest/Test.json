@@ -29,18 +29,6 @@
                 "power-shell wakeup",
                 "power-shell setmode 602"
             ]
-        },
-        {
-            "type": "ShellKit",
-            "teardown-command": [
-                "bm uninstall -n com.acts.stateinfoservice.killself",
-                "bm uninstall -n com.acts.stateinfoservice.empty",
-                "bm uninstall -n com.hits.stateinfo.empty",
-                "bm uninstall -n com.hits.stateinfo.getforgroundapps",
-                "bm uninstall -n com.hits.stateinfo.startability",
-                "bm uninstall -n com.hits.stateinfo.backability",
-                "bm uninstall -n com.hits.stateinfo.killself"
-            ]
         }
     ]
 }

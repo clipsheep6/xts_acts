@@ -18,8 +18,8 @@ import onServiceApplicationState from './OnServiceApplicationState.test';
 import getForegroundApplicationsTest from './GetForegroundApplications.test';
 
 export default function testsuite() {
+  // onServiceApplicationState();
+  getForegroundApplicationsTest();
   onApplicationState();
   onCurrentApplicationState();
-  onServiceApplicationState();
-  getForegroundApplicationsTest();
 }
