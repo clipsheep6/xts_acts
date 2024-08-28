@@ -25,7 +25,7 @@ struct imageAnimator08 {
       ImageAnimator()
         .images([
           {
-            src: $r("yyy.jpg")
+            src: $r('yyy.jpg')
           }
         ])
         .fillMode(FillMode.None)
@@ -46,7 +46,7 @@ struct imageAnimator08 {
         .onFinish(() => {
           console.info('imageAnimator08 Finish')
         })
-        .id("imageAnimator08")
+        .id('imageAnimator08')
     }
     .backgroundColor(Color.Black)
   }

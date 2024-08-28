@@ -23,8 +23,8 @@ struct XSlider17 {
 
   build() {
     Column() {
-      Text("Slider value is : " + this.outSetValueOne)
-        .id("XSliderText17")
+      Text('Slider value is : ' + this.outSetValueOne)
+        .id('XSliderText17')
         .fontSize(18)
       XComponent({
         id: 'xcomponent',
@@ -38,8 +38,8 @@ struct XSlider17 {
           max: 100,
           style: SliderStyle.InSet
         })
-          .id("XSlider17")
-          .width("400px")
+          .id('XSlider17')
+          .width('400px')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
             this.outSetValueOne = value

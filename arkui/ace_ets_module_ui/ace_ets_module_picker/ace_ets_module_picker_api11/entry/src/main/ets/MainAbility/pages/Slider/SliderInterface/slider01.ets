@@ -28,8 +28,8 @@ struct Slider01 {
         reverse: true,
         direction: Axis.Vertical,
       })
-        .id("Slider01")
-        .width("400px")
+        .id('Slider01')
+        .width('400px')
         .showTips(true)
         .onChange((value: number, mode: SliderChangeMode) => {
           this.outSetValueOne = value

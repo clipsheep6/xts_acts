@@ -22,7 +22,7 @@ struct Slider21 {
   build() {
     Column() {
       Text(`value is :  ${this.outSetValueOne} mode is : ${this.sliderMode}`)
-        .id("SliderText21")
+        .id('SliderText21')
         .fontSize(18)
       
       Slider({
@@ -31,7 +31,7 @@ struct Slider21 {
         step: 10,
         max: 100
       })
-        .id("Slider21")
+        .id('Slider21')
         .blockStyle({ type: SliderBlockType.IMAGE, image: $r('app.media.icon') })
         .blockSize({ width: 10, height: 20 })
         .width(300)

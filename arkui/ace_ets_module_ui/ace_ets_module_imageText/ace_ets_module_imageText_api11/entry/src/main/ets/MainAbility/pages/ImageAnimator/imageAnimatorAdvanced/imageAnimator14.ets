@@ -47,7 +47,7 @@ struct imageAnimator14 {
         .onFinish(() => {
           console.info('imageAnimator14 Finish')
         })
-        .id("imageAnimator14")
+        .id('imageAnimator14')
     }
     .backgroundColor(Color.Black)
   }

@@ -17,7 +17,7 @@
 @Component
 struct rating02 {
   @State rating: number = 1
-  @State ratingSet:string = "failed rating"
+  @State ratingSet:string = 'failed rating'
 
   build() {
     Column() {
@@ -25,7 +25,7 @@ struct rating02 {
         .fontSize(24)
         .fontColor('rgba(24,36,49,0.60)')
         .margin({ top: 50 })
-        .id("ratingText02")
+        .id('ratingText02')
 
       Rating({ rating: this.rating, indicator: true })
         .stars(8)
@@ -33,13 +33,13 @@ struct rating02 {
         .margin({ top: 24 })
         .onChange((value: number) => {
           this.rating = value
-          this.ratingSet = "success rating"
+          this.ratingSet = 'success rating'
         })
         .onClick(()=>{
-          console.log("rating02 onclick success")
+          console.log('rating02 onclick success')
         })
-        .id("rating02")
-    }.width("100%")
-    .height("100%")
+        .id('rating02')
+    }.width('100%')
+    .height('100%')
   }
 }

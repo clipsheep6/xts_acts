@@ -25,7 +25,7 @@ struct rating07 {
         .fontSize(24)
         .fontColor('rgba(24,36,49,0.60)')
         .margin({ top: 50 })
-        .id("ratingText07")
+        .id('ratingText07')
 
       Rating({ rating: this.rating, indicator: this.indicator })
         .stars(5)
@@ -34,16 +34,16 @@ struct rating07 {
         .onChange((value: number) => {
           this.rating = value
         })
-        .id("rating07")
+        .id('rating07')
 
-      Button("indicator control")
+      Button('indicator control')
         .fontSize(24)
         .margin({ top: 20 })
         .onClick(() => {
           this.indicator = !this.indicator
         })
-        .id("ratingButton07")
-    }.width("100%")
-    .height("100%")
+        .id('ratingButton07')
+    }.width('100%')
+    .height('100%')
   }
 }

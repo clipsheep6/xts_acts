@@ -27,7 +27,7 @@ struct Slider23 {
         step: 10,
         max: 100
       })
-        .id("Slider23")
+        .id('Slider23')
         .width(300)
         .blockSize({ width: 10, height: 30 })
         .trackThickness(60)

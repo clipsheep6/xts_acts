@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -44,11 +44,11 @@ struct image04 {
           .onComplete((event)=>{
             if(event) {
               this.imageLoadingResult = 'loading success'
-              console.log("onComplete:event.loadingStatus " + event.loadingStatus)
-              console.log("onComplete:event.contentWidth " + event.contentWidth)
-              console.log("onComplete:event.contentHeight " + event.contentHeight)
-              console.log("onComplete:event.contentOffsetX " + event.contentOffsetX)
-              console.log("onComplete:event.contentOffsetY " + event.contentOffsetY)
+              console.log('onComplete:event.loadingStatus ' + event.loadingStatus)
+              console.log('onComplete:event.contentWidth ' + event.contentWidth)
+              console.log('onComplete:event.contentHeight ' + event.contentHeight)
+              console.log('onComplete:event.contentOffsetX ' + event.contentOffsetX)
+              console.log('onComplete:event.contentOffsetY ' + event.contentOffsetY)
               this.loadingStatus = event.loadingStatus
               this.contentWidth = event.contentWidth
               this.contentHeight = event.contentHeight

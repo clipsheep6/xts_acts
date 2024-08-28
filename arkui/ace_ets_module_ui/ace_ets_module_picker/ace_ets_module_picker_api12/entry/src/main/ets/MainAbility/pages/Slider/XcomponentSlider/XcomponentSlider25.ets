@@ -46,10 +46,10 @@
         .onChange((value: number, mode: SliderChangeMode) => {
           config.triggerChange(null, null)
         })
-      Text('当前状态：'+ ((config.contentModifier as MySliderStyle25).sliderChangeMode==0?"Begin"
-        :((config.contentModifier as MySliderStyle25).sliderChangeMode==1?"Moving"
-          :((config.contentModifier as MySliderStyle25).sliderChangeMode==2?"End"
-            :((config.contentModifier as MySliderStyle25).sliderChangeMode==3?"Click":"无")))))
+      Text('当前状态：'+ ((config.contentModifier as MySliderStyle25).sliderChangeMode==0?'Begin'
+        :((config.contentModifier as MySliderStyle25).sliderChangeMode==1?'Moving'
+          :((config.contentModifier as MySliderStyle25).sliderChangeMode==2?'End'
+            :((config.contentModifier as MySliderStyle25).sliderChangeMode==3?'Click':'无')))))
         .fontSize(10)
       Text('进度值：'+ config.value)
         .fontSize(10)
@@ -97,7 +97,7 @@ struct XSlider25 {
           max: this.sliderMax,
           step:this.sliderStep,
         })
-          .id("XSlider25")
+          .id('XSlider25')
           .showSteps(true)
           .onChange((value: number, mode: SliderChangeMode) => {
             this.sliderValue = value

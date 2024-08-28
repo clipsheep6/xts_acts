@@ -22,7 +22,7 @@ struct Slider19 {
   build() {
     Column() {
       Text(`value is :  ${this.outSetValueOne} mode is : ${this.sliderMode}`)
-        .id("SliderText19")
+        .id('SliderText19')
         .fontSize(18)
       
       Slider({
@@ -31,7 +31,7 @@ struct Slider19 {
         step: 10,
         max: 100
       })
-        .id("Slider19")
+        .id('Slider19')
         .width(300)
         .showTips(true)
         .onChange((value: number, mode: SliderChangeMode) => {

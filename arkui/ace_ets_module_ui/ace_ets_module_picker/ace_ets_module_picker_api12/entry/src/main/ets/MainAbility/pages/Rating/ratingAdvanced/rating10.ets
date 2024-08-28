@@ -14,7 +14,7 @@
  */
 
 class MyRatingStyle10 implements ContentModifier<RatingConfiguration> {
-  name: string = ""
+  name: string = ''
   style: number = 0
   constructor(value1: string, value2: number) {
     this.name = value1
@@ -134,7 +134,7 @@ class MyRatingStyle10 implements ContentModifier<RatingConfiguration> {
           }
         }).visibility(config.stars >= 5 ? Visibility.Visible : Visibility.Hidden)
     }.height(100)
-    Text("分值：" + config.rating)
+    Text('分值：' + config.rating)
   }
 }
 
@@ -152,14 +152,14 @@ struct rating10 {
       Column() {
         Text(this.ratingClick)
           .fontSize(30)
-          .id("ratingText10")
+          .id('ratingText10')
         Rating({
           rating: 0,
           indicator: this.ratingIndicator
         })
-          .id("rating10")
+          .id('rating10')
           .onClick(() => {
-            this.ratingClick = "can click rating"
+            this.ratingClick = 'can click rating'
           })
           .stepSize(this.ratingStepsize)
           .stars(this.ratingStars)
@@ -170,7 +170,7 @@ struct rating10 {
             console.info('Rating change is'+ value);
             this.rating = value
           })
-          .contentModifier(new MyRatingStyle10("hello", 3))
+          .contentModifier(new MyRatingStyle10('hello', 3))
       }
       .width('100%')
       .height('100%')

@@ -25,13 +25,13 @@ struct imageAnimator05 {
       ImageAnimator()
         .images([
           {
-            src: $r("app.media.icon_gif")
+            src: $r('app.media.icon_gif')
           },
           {
-            src: $r("app.media.H264_AAC")
+            src: $r('app.media.H264_AAC')
           },
           {
-            src: $r("app.media.icon")
+            src: $r('app.media.icon')
           },
         ])
         .fillMode(FillMode.None)
@@ -52,7 +52,7 @@ struct imageAnimator05 {
         .onFinish(() => {
           console.info('imageAnimator05 Finish')
         })
-        .id("imageAnimator05")
+        .id('imageAnimator05')
     }
     .backgroundColor(Color.Black)
   }

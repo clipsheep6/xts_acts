@@ -45,11 +45,11 @@ struct image01 {
           .onComplete((event)=>{
             if(event!=undefined){
               this.imageLoadingResult = 'loading success'
-              console.log("onComplete:event.loadingStatus " + event.loadingStatus )
-              console.log("onComplete:event.contentWidth " + event.contentWidth )
-              console.log("onComplete:event.contentHeight " + event.contentHeight )
-              console.log("onComplete:event.contentOffsetX " + event.contentOffsetX )
-              console.log("onComplete:event.contentOffsetY " + event.contentOffsetY )
+              console.log('onComplete:event.loadingStatus ' + event.loadingStatus )
+              console.log('onComplete:event.contentWidth ' + event.contentWidth )
+              console.log('onComplete:event.contentHeight ' + event.contentHeight )
+              console.log('onComplete:event.contentOffsetX ' + event.contentOffsetX )
+              console.log('onComplete:event.contentOffsetY ' + event.contentOffsetY )
               this.loadingStatus =  event.loadingStatus
               this.contentWidth =  event.contentWidth
               this.contentHeight =  event.contentHeight

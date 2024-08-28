@@ -24,7 +24,7 @@ struct rating02 {
         .fontSize(24)
         .fontColor('rgba(24,36,49,0.60)')
         .margin({ top: 50 })
-        .id("ratingText02")
+        .id('ratingText02')
 
       Rating({ rating: this.rating, indicator: false })
         .stars(0)
@@ -33,8 +33,8 @@ struct rating02 {
         .onChange((value: number) => {
           this.rating = value
         })
-        .id("rating02")
-    }.width("100%")
-    .height("100%")
+        .id('rating02')
+    }.width('100%')
+    .height('100%')
   }
 }

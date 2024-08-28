@@ -28,7 +28,7 @@ struct image14 {
       Text(this.loadingJpgResult)
         .fontSize(12)
         .fontWeight(FontWeight.Bold)
-        .id("loadingJpg14")
+        .id('loadingJpg14')
 
       Image($r('app.media.icon_jpg'))
         .width(50)
@@ -41,7 +41,7 @@ struct image14 {
       Text(this.loadingPngResult)
         .fontSize(12)
         .fontWeight(FontWeight.Bold)
-        .id("loadingPng14")
+        .id('loadingPng14')
 
       Image($r('app.media.icon_png'))
         .width(50)
@@ -54,7 +54,7 @@ struct image14 {
       Text(this.loadingBmpResult)
         .fontSize(12)
         .fontWeight(FontWeight.Bold)
-        .id("loadingBmp14")
+        .id('loadingBmp14')
 
       Image($r('app.media.icon_bmp'))
         .width(50)
@@ -67,7 +67,7 @@ struct image14 {
       Text(this.loadingSvgResult)
         .fontSize(12)
         .fontWeight(FontWeight.Bold)
-        .id("loadingSvg14")
+        .id('loadingSvg14')
 
       Image($r('app.media.icon_svg'))
         .width(50)

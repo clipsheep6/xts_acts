@@ -25,19 +25,19 @@ struct imageAnimator07 {
       ImageAnimator()
         .images([
           {
-            src: $r("app.media.icon_jpg")
+            src: $r('app.media.icon_jpg')
           },
           {
-            src: $r("app.media.icon_png")
+            src: $r('app.media.icon_png')
           },
           {
-            src: $r("app.media.icon_bmp")
+            src: $r('app.media.icon_bmp')
           },
           {
-            src: $r("app.media.icon_svg")
+            src: $r('app.media.icon_svg')
           },
           {
-            src: $r("app.media.icon_gif")
+            src: $r('app.media.icon_gif')
           }
         ])
         .fillMode(FillMode.None)
@@ -58,7 +58,7 @@ struct imageAnimator07 {
         .onFinish(() => {
           console.info('imageAnimator07 Finish')
         })
-        .id("imageAnimator07")
+        .id('imageAnimator07')
     }
     .backgroundColor(Color.Black)
   }

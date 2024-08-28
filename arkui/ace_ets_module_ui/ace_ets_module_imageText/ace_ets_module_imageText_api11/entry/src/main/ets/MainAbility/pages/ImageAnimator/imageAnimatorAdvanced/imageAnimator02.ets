@@ -25,22 +25,22 @@ struct imageAnimator02 {
       ImageAnimator()
         .images([
           {
-            src: "images/test1.jpg"
+            src: 'images/test1.jpg'
           },
           {
-            src: "images/test1.jpg",
-            left:"30px"
+            src: 'images/test1.jpg',
+            left:'30px'
           },
           {
-            src: "images/test1.jpg",
+            src: 'images/test1.jpg',
             left:30
           },
           {
-            src: "images/test1.jpg",
-            top:"30px"
+            src: 'images/test1.jpg',
+            top:'30px'
           },
           {
-            src: "images/test1.jpg",
+            src: 'images/test1.jpg',
             top:30
           },
         ])
@@ -62,7 +62,7 @@ struct imageAnimator02 {
         .onFinish(() => {
           console.info('imageAnimator02 Finish')
         })
-        .id("imageAnimator02")
+        .id('imageAnimator02')
     }
     .backgroundColor(Color.Black)
   }

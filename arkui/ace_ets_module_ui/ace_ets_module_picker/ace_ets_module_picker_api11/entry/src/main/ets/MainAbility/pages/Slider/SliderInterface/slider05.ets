@@ -26,8 +26,8 @@ struct Slider05 {
         step: 10,
         max: 100
       })
-        .id("Slider05")
-        .width("400px")
+        .id('Slider05')
+        .width('400px')
         .onChange((value: number, mode: SliderChangeMode) => {
           this.outSetValueOne = value
           console.info('value:' + value + 'mode:' + mode.toString())

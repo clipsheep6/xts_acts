@@ -29,32 +29,32 @@ struct rating08 {
         .onChange((value: number) => {
           this.rating = value
         })
-        .id("rating08")
+        .id('rating08')
 
-      Button("indicator control")
+      Button('indicator control')
         .fontSize(24)
         .margin({ top: 20 })
         .onClick(() => {
           this.indicator = !this.indicator
         })
-        .id("ratingButton08_1")
+        .id('ratingButton08_1')
 
-      Button("stars control -1")
+      Button('stars control -1')
         .fontSize(24)
         .margin({ top: 20 })
         .onClick(() => {
           this.stars = this.stars - 1
         })
-        .id("ratingButton08_2")
+        .id('ratingButton08_2')
 
-      Button("stars control +1")
+      Button('stars control +1')
         .fontSize(24)
         .margin({ top: 20 })
         .onClick(() => {
           this.stars = this.stars + 1
         })
-        .id("ratingButton08_3")
-    }.width("100%")
-    .height("100%")
+        .id('ratingButton08_3')
+    }.width('100%')
+    .height('100%')
   }
 }

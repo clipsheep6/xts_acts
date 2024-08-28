@@ -33,8 +33,8 @@ struct XSlider03 {
           min: 0,
           max: 100,
         })
-          .id("XSlider03")
-          .width("400px")
+          .id('XSlider03')
+          .width('400px')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
             this.outSetValueOne = value

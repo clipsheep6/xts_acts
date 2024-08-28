@@ -18,7 +18,7 @@
 struct ratingFocus04 {
   @State rating: number = 1
   @State stars: number = 5
-  @State focusResult:string = "Rating is not focusAble"
+  @State focusResult:string = 'Rating is not focusAble'
 
   build() {
     Column() {
@@ -26,7 +26,7 @@ struct ratingFocus04 {
         .fontSize(24)
         .fontColor('rgba(24,36,49,0.60)')
         .margin({ top: 50 })
-        .id("ratingFocusText04")
+        .id('ratingFocusText04')
 
       Rating({ rating: this.rating, indicator: false })
         .stars(this.stars)
@@ -37,10 +37,10 @@ struct ratingFocus04 {
         })
         .focusable(false)
         .onFocus(() => {
-          this.focusResult = "Rating is focusAble"
+          this.focusResult = 'Rating is focusAble'
         })
-        .id("ratingFocus04")
-    }.width("100%")
-    .height("100%")
+        .id('ratingFocus04')
+    }.width('100%')
+    .height('100%')
   }
 }

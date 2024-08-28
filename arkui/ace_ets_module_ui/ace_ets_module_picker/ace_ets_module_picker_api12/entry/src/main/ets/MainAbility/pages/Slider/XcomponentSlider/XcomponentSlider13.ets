@@ -35,8 +35,8 @@ struct XSlider13 {
           max: 100,
           direction: Axis.Horizontal,
         })
-          .id("XSlider13")
-          .width("400px")
+          .id('XSlider13')
+          .width('400px')
           .showTips(true)
           .onChange((value: number, mode: SliderChangeMode) => {
             this.outSetValueOne = value

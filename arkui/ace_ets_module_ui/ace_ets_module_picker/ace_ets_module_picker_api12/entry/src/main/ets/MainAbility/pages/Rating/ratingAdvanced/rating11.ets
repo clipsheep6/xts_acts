@@ -134,7 +134,7 @@ class MyRatingStyle11 implements ContentModifier<RatingConfiguration> {
           }
         }).visibility(config.stars >= 5 ? Visibility.Visible : Visibility.Hidden)
     }.height(100)
-    Text("分值：" + config.rating)
+    Text('分值：' + config.rating)
   }
 }
 
@@ -152,14 +152,14 @@ struct rating11 {
       Column() {
         Text(this.ratingClick)
           .fontSize(30)
-          .id("ratingText11")
+          .id('ratingText11')
         Rating({
           rating: 0,
           indicator: this.ratingIndicator
         })
-          .id("rating11")
+          .id('rating11')
           .onClick(() => {
-            this.ratingClick = "can click rating"
+            this.ratingClick = 'can click rating'
           })
           .stepSize(this.ratingStepsize)
           .stars(this.ratingStars)
@@ -170,7 +170,7 @@ struct rating11 {
             console.info('Rating change is'+ value);
             this.rating = value
           })
-          .contentModifier(new MyRatingStyle11("hello", 3))
+          .contentModifier(new MyRatingStyle11('hello', 3))
       }
       .width('100%')
       .height('100%')

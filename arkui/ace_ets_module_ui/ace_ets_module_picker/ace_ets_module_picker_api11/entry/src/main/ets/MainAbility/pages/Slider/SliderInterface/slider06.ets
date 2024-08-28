@@ -26,8 +26,8 @@ struct Slider06 {
         step: 10,
         max: 100
       })
-        .id("Slider06")
-        .width("400px")
+        .id('Slider06')
+        .width('400px')
         .showTips(false)
         .showTips(false)
         .showTips(true)

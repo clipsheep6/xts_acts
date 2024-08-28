@@ -25,7 +25,7 @@ struct imageAnimator04 {
       ImageAnimator()
         .images([
           {
-            src: "H264_AAC.mp4"
+            src: 'H264_AAC.mp4'
           }
         ])
         .fillMode(FillMode.None)
@@ -46,7 +46,7 @@ struct imageAnimator04 {
         .onFinish(() => {
           console.info('imageAnimator04 Finish')
         })
-        .id("imageAnimator04")
+        .id('imageAnimator04')
     }
     .backgroundColor(Color.Black)
   }

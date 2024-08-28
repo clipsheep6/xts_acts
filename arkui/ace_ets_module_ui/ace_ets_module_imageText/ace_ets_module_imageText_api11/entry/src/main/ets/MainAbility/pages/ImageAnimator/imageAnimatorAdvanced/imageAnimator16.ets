@@ -31,7 +31,7 @@ struct imageAnimator16 {
         .fillMode(FillMode.None)
         .width(400)
         .height(400)
-        .id("imageAnimator16")
+        .id('imageAnimator16')
     }
     .backgroundColor(Color.Black)
   }

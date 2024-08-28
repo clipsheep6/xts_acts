@@ -26,7 +26,7 @@ struct ratingFocus01 {
         .fontSize(24)
         .fontColor('rgba(24,36,49,0.60)')
         .margin({ top: 50 })
-        .id("ratingFocusText01")
+        .id('ratingFocusText01')
 
       Rating({ rating: this.rating, indicator: false })
         .stars(this.stars)
@@ -36,10 +36,10 @@ struct ratingFocus01 {
           this.rating = value
         })
         .onFocus(() => {
-          this.focusResult = "Rating is focusAble"
+          this.focusResult = 'Rating is focusAble'
         })
-        .id("ratingFocus01")
-    }.width("100%")
-    .height("100%")
+        .id('ratingFocus01')
+    }.width('100%')
+    .height('100%')
   }
 }
