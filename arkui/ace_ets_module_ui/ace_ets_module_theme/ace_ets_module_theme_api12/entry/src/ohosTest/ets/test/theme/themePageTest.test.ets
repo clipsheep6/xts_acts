@@ -35,7 +35,7 @@ export default function themePageTest() {
     beforeEach(async (done: Function) => {
       console.info("themePageTest beforeEach start");
       let options: router.RouterOptions = {
-        url: "MainAbility/pages/theme/themePageTest",
+        url: "TestAbility/pages/theme/themePageTest",
       }
       try {
         router.clear();

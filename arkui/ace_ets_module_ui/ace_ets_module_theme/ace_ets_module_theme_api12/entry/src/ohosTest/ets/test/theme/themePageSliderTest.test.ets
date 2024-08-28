@@ -30,25 +30,25 @@ import {
 } from '@ohos.UiTest';
 import Utils from '../Utils';
 
-export default function themePageToggleTest() {
-  describe('themePageToggleTest', () => {
+export default function themePageSliderTest() {
+  describe('themePageSliderTest', () => {
     beforeEach(async (done:Function) =>{
       console.info("themePageTest beforeEach start");
       let options: router.RouterOptions = {
-        url: "MainAbility/pages/theme/themePageMgmtColorsTest",
+        url: "TestAbility/pages/theme/themePageSliderTest",
       }
       try {
         router.clear();
         let pages = router.getState();
-        console.info("get themePageMgmtColorsTest state pages: " + JSON.stringify(pages));
-        if (!("themePageMgmtColorsTest" == pages.name)) {
-          console.info("get themePageTest state pages.name: " + JSON.stringify(pages.name));
+        console.info("get themePageSliderTest state pages: " + JSON.stringify(pages));
+        if (!("themePageSliderTest" == pages.name)) {
+          console.info("get themePageSliderTest state pages.name: " + JSON.stringify(pages.name));
           let result = await router.pushUrl(options)
           await Utils.sleep(2000);
-          console.info("push themePageMgmtColorsTest success: " + JSON.stringify(result));
+          console.info("push themePageSliderTest success: " + JSON.stringify(result));
         }
       } catch (err) {
-        console.error("push themePageMgmtColorsTest page error: " + err);
+        console.error("push themePageSliderTest page error: " + err);
         expect().assertFail();
       }
       done();
@@ -56,25 +56,31 @@ export default function themePageToggleTest() {
 
     /**
      * @tc.number themeColorTest
-     * @tc.name themeInterfaceIsValidTest_0100
+     * @tc.name themeInterfaceSliderIsValidTest_0100
      * @tc.desc theme Test
      * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('themeInterfaceIsValidTest_0100', 0, async (done:Function) =>{
-      console.info('themeInterfaceIsValidTest_0100 START');
+    it('themeInterfaceSliderIsValidTest_0100', 0, async (done:Function) =>{
+      console.info('themeInterfaceSliderIsValidTest_0100 START');
       let driver = await Driver.create()
       await Utils.sleep(1000);
       // click to change the skin
-      let button = await driver.findComponent(ON.id('themeToggleClick'));
+      let button = await driver.findComponent(ON.id('themeSliderClick'));
       await button.click();
       await Utils.sleep(2000);
       // test the color whether change
-      let strJson = getInspectorByKey('toggleBg');
+      let strJson = getInspectorByKey('sliderBg');
       console.info("[themeInterfaceIsValidTest_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       console.info("[themeInterfaceIsValidTest_0100] component JSON.parse(strJson) is: " + JSON.parse(strJson).$attrs.backgroundColor);
+      console.info("[themeInterfaceIsValidTest_0100] component JSON.parse(strJson) is: " + JSON.parse(strJson).$attrs.blockBorderColor);
+      console.info("[themeInterfaceIsValidTest_0100] component JSON.parse(strJson) is: " + JSON.parse(strJson).$attrs.trackColor);
+      console.info("[themeInterfaceIsValidTest_0100] component JSON.parse(strJson) is: " + JSON.parse(strJson).$attrs.selectedColor);
       expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#00000000');
+      expect(JSON.parse(strJson).$attrs.blockBorderColor).assertEqual('#00000000');
+      expect(JSON.parse(strJson).$attrs.trackColor).assertEqual('#1111FF11');
+      expect(JSON.parse(strJson).$attrs.selectedColor).assertEqual('#EEFF00FF');
       console.info('[themeInterfaceIsValidTest_0100] END');
       done();
     });

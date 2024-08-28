@@ -36,7 +36,7 @@ export default function APIFontPrimaryTest() {
     beforeEach(async (done: Function) => {
       console.info("themePageTest beforeEach start");
       let options: router.RouterOptions = {
-        url: "MainAbility/pages/theme/APIFontPrimary",
+        url: "TestAbility/pages/theme/APIFontPrimary",
       }
       try {
         router.clear();
