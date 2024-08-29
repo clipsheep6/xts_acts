@@ -14,8 +14,8 @@
  */
 
 class MyRatingStyle11 implements ContentModifier<RatingConfiguration> {
-  name: string = ""
-  style: number = 0
+  private name: string = ""
+  private style: number = 0
   constructor(value1: string, value2: number) {
     this.name = value1
     this.style = value2
@@ -32,11 +32,11 @@ class MyRatingStyle11 implements ContentModifier<RatingConfiguration> {
         .fill(config.rating >= 0.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize == 0.5) {
               config.triggerChange(undefined);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize == 1) {
               config.triggerChange(undefined);
               return
             }
@@ -53,11 +53,11 @@ class MyRatingStyle11 implements ContentModifier<RatingConfiguration> {
         .fill(config.rating >= 1.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize == 0.5) {
               config.triggerChange(undefined);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize == 1) {
               config.triggerChange(undefined);
               return
             }
@@ -74,11 +74,11 @@ class MyRatingStyle11 implements ContentModifier<RatingConfiguration> {
         .fill(config.rating >= 2.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize == 0.5) {
               config.triggerChange(undefined);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize == 1) {
               config.triggerChange(undefined);
               return
             }
@@ -95,11 +95,11 @@ class MyRatingStyle11 implements ContentModifier<RatingConfiguration> {
         .fill(config.rating >= 3.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize == 0.5) {
               config.triggerChange(undefined);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize == 1) {
               config.triggerChange(undefined);
               return
             }
@@ -116,11 +116,11 @@ class MyRatingStyle11 implements ContentModifier<RatingConfiguration> {
         .fill(config.rating >= 4.4 ? Color.Black : Color.Red)
         .onClick((event: ClickEvent) => {
           if (!config.indicator) {
-            if (config.stepSize = 0.5) {
+            if (config.stepSize == 0.5) {
               config.triggerChange(undefined);
               return
             }
-            if (config.stepSize = 1) {
+            if (config.stepSize == 1) {
               config.triggerChange(undefined);
               return
             }

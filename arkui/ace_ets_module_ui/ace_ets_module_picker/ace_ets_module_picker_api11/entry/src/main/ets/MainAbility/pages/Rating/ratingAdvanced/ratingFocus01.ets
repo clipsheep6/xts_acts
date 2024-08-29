@@ -18,7 +18,7 @@
 struct ratingFocus01 {
   @State rating: number = 1
   @State stars: number = 5
-  @State focusResult:string = "Rating is not focusAble"
+  @State focusResult:string = 'Rating is not focusAble'
 
   build() {
     Column() {
