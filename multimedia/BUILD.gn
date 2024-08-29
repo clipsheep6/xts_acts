@@ -106,6 +106,7 @@ group("multimedia") {
       "media/media_ndk_standard/AVPlayerNDK:OhAVPlayerNDK",
       "media/media_ndk_standard/avPlayerDrmNdk:AVPlayerDrm_NDK_test",
       "photoAccess/photoAccess:photoAccess_js_hap",
+      "photoAccess/photoAccessSendable:photoAccess_sendable_hap",
       "photoAccess/pickerView:TextPickerTest",
     ]
   } else {
