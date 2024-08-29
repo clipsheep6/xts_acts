@@ -9,6 +9,7 @@
         "MainAbility/pages/PanGesture/PanGestureUpdate",
         "MainAbility/pages/PinchGesture/PinchGestureUpdate",
         "MainAbility/pages/RotationGesture/RotationGestureUpdate",
+        "MainAbility/pages/GestureRecognizer/GestureRecognizerIsValid",
         "MainAbility/pages/DragController/APIPreDragStatus",
 	"MainAbility/pages/TapGesture/TapGestureBasicClickMouse",
         "MainAbility/pages/TapGesture/TapGestureBasicDoubleClickMouse",
