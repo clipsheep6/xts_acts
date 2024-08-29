@@ -240,10 +240,10 @@ export async function getFd(pathName) {
 export async function saveVideo(asset) {
     console.info('case saveVideo start');
     try {
-        let photoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(featureAbility.getContext());
         let assetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
         assetChangeRequest.saveCameraPhoto();
-        await photoAccessHelper.applyChanges(assetChangeRequest);
+        await phAccessHelper.applyChanges(assetChangeRequest);
         console.info('case saveVideo successfully');
     } catch (error) {
         console.info(`case error called,errMessage is ${error.message}`);
