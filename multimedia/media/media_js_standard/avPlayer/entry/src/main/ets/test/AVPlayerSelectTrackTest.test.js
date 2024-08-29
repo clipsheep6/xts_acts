@@ -153,8 +153,8 @@ export default function AVPlayerSelectTrackTest() {
                     break;
                 case AV_PLAYER_STATE.PLAYING:
                     expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PLAYING);
-                    await playedOp();
                     await mediaTestBase.msleepAsync(PLAY_TIME);
+                    await playedOp();
                     if (!avPlayer.loop) {
                         await avPlayer.stop().then(() => {
                             console.info('case stop AVPlayer success');
@@ -223,12 +223,13 @@ export default function AVPlayerSelectTrackTest() {
                 avPlayer.selectTrack(currentTrack);
                 await mediaTestBase.msleepAsync(2000);
                 avPlayer.deselectTrack(currentTrack);
-                await changeAudioTrack();
-                avPlayer.selectTrack(selectedTrack, 1);
                 expect(currentTrack!=selectedTrack).assertTrue();
             }
 
             async function playedOperation() {
+                await changeAudioTrack();
+                avPlayer.selectTrack(selectedTrack, 1);
+                await mediaTestBase.msleepAsync(2000);
                 await getCurrentAudioTrack();
                 expect(currentTrack).assertEqual(selectedTrack);
             }
@@ -257,12 +258,13 @@ export default function AVPlayerSelectTrackTest() {
                 avPlayer.selectTrack(currentTrack);
                 await mediaTestBase.msleepAsync(2000);
                 avPlayer.deselectTrack(currentTrack);
-                await changeAudioTrack();
-                avPlayer.selectTrack(selectedTrack, 2);
                 expect(currentTrack!=selectedTrack).assertTrue();
             }
 
             async function playedOperation() {
+                await changeAudioTrack();
+                avPlayer.selectTrack(selectedTrack, 2);
+                await mediaTestBase.msleepAsync(2000);
                 await getCurrentAudioTrack();
                 expect(currentTrack).assertEqual(selectedTrack);
             }
