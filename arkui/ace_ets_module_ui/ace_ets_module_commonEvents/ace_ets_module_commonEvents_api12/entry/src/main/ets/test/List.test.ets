@@ -21,6 +21,7 @@ import ShortcutKeyDPADLEFTTest from './keyboardShortcutTest/ShortcutKeyDPADLEFTT
 import ShortcutKeyDPADRIGHTTest from './keyboardShortcutTest/ShortcutKeyDPADRIGHTTest.test';
 import TapGestureHandlerTest from './GestureHandler/TapGesture.test';
 import PanGestureHandlerTest from './GestureHandler/PanGesture.test';
+import gestureDefine10 from './GestureRecognizer/GestureRecognizerIsValid.test'；
 import SwiperGestureHandlerTest from './GestureHandler/SwiperGesture.test';
 import PinchGestureHandlerTest from './GestureHandler/PinchGesture.test';
 import RotationGestureHandlerTest from './GestureHandler/RotationGesture.test';
@@ -70,6 +71,7 @@ export default function testsuite() {
   ShortcutKeyDPADLEFTTest();
   ShortcutKeyDPADRIGHTTest();
   TapGestureHandlerTest();
+ gestureDefine10();
   PanGestureHandlerTest();
   SwiperGestureHandlerTest();
   PinchGestureHandlerTest();
