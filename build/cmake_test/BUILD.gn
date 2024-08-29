@@ -14,24 +14,9 @@
 import("//build/ohos.gni")
 import("//test/xts/acts/xts_acts_config.gni")
 
-group("acts_group") {
-  testonly = true
-  deps = []
-  if (os_level == "standard") {
-    deps += [ "${xts_acts_path}:xts_acts" ]
-  }
-}
-
-group("acts_lite") {
-  deps = []
-  if (os_level != "standard") {
-    deps += [ "${xts_acts_path}/build_lite:acts" ]
-  }
-}
-
-group("build") {
+group("cmake_test") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "cmake_test:cmake_test" ]
+    deps = [ "ohos_app_demo_test:ohos_app_demo_test" ]
   }
 }
