@@ -67,7 +67,7 @@ group("bundlemanager") {
       "sceneProject/bmsicondoublelayer341:bmsIconDoubleLayer341",
       "sceneProject/bmsicondoublelayer351:bmsIconDoubleLayer351",
       "sceneProject/bmsicondoublelayer361:bmsIconDoubleLayer361",
-      "sceneProject/bmsicondoublelayer401:bmsIconDoubleLayer361",
+      "sceneProject/bmsicondoublelayer401:bmsIconDoubleLayer401",
       "sceneProject/bmsicondoublelayera:bmsIconDoubleLayerA",
       "sceneProject/bmsicondoublelayerb:bmsIconDoubleLayerB",
       "sceneProject/bmsicondoublelayerc:bmsIconDoubleLayerC",

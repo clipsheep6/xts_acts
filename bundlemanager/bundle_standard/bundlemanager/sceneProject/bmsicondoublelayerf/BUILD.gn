@@ -13,10 +13,10 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_app_assist_suite("bmsIconDoubleLayerE") {
+ohos_app_assist_suite("bmsIconDoubleLayerF") {
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "bmsIconDoubleLayerE"
+  hap_name = "bmsIconDoubleLayerF"
 
   # 部件名称，真实数据，需要子系统对应
   part_name = "bundle_framework"
