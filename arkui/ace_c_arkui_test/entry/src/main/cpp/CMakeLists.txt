@@ -90,6 +90,7 @@ add_library(nativerender SHARED
     textinput/textinput_onpaste_test.cpp
     arkApi/arkApi.cpp
     gesture/gesture_test.cpp
+    gestureScroll/gesture_interfaceTest.cpp
     customcomponent/customcomponent_event_test.cpp
     drag/drag_disableDefaultDropAnimation.cpp
     drag/drag_getPreDragStatus.cpp
@@ -100,6 +101,7 @@ add_library(nativerender SHARED
     drag/drag_getXY.cpp
     drag/drag_getWidthHeight.cpp
     drag/drag_getModifierKeyStates.cpp
+    text/text_CustomSpan_test.cpp
 )
 
 add_library(nativefunc SHARED
