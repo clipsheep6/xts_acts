@@ -1342,7 +1342,7 @@ export default function imagePacking() {
          */
         it("SUB_MULTIMEDIA_IMAGE_PACKINGMULTIFRAMES_0100", 0, async function (done) {
             if (!isSupportGifEncode) {
-                console.info("SUB_MULTIMEDIA_IMAGE_PACKINGMULTIFRAMES_0100: This device does not support GIF encoding.")
+                console.info("SUB_MULTIMEDIA_IMAGE_PACKINGMULTIFRAMES_0100: This device does not support GIF encoding. ")
                 expect(true).assertTrue();
                 done();
             } else {

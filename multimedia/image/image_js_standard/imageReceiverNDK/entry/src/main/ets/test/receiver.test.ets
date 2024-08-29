@@ -22,7 +22,6 @@ import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 // @ts-ignore
 import ndkTest from 'libImageReceiverTest.so'
 const TAG = "ImageReceiverTest: ";
-const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 
 export default function ImageReceiverTest() {
     async function getPermission() {
@@ -38,11 +37,7 @@ export default function ImageReceiverTest() {
         console.info(`driver is ${JSON.stringify(driver)}`);
         await sleep(2000);
         console.info(`UiDriver start`);
-        let button;
-        for (let i = 0; i < 3; i++) {
-            button = await driver.findComponent(BY.text('允许'));
-            await sleep(1000);
-        }
+        let button = await driver.findComponent(BY.text('允许'));
         if(button == null) {
             let cmd = "hidumper -s WindowManagerService -a'-a'"
             await delegator.executeShellCommand(cmd);
@@ -95,6 +90,7 @@ export default function ImageReceiverTest() {
         let isSupportCameraVideoProfiles = true;
         let imageArrival = false;
         let context = featureAbility.getContext();
+        const delegator = abilityDelegatorRegistry.getAbilityDelegator();
         function logger(caseName) {
             return {
                 myName: caseName,
