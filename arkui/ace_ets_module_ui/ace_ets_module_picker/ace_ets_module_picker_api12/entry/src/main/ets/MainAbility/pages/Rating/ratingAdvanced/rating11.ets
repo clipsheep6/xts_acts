@@ -14,7 +14,7 @@
  */
 
 class MyRatingStyle11 implements ContentModifier<RatingConfiguration> {
-  private name: string = ""
+  private name: string = ''
   private style: number = 0
   constructor(value1: string, value2: number) {
     this.name = value1

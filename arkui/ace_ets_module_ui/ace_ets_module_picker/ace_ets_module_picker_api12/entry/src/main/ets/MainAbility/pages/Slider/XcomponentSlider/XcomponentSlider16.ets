@@ -23,7 +23,7 @@ struct XSlider16 {
 
   build() {
     Column() {
-      Text("Slider value is : " + this.outSetValueOne)
+      Text('Slider value is : ' + this.outSetValueOne)
         .id('XSliderText16')
         .fontSize(18)
 
