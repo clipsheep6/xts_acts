@@ -178,9 +178,9 @@ export default function MMIInputDeviceTest() {
           inputDevice.getKeyboardType(data.deviceId, (err: Error, type: inputDevice.KeyboardType) => {
             console.info(`${caseName} The keyboard type is: ${JSON.stringify(type)}`);
             if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'add') {
-              isPhysicalKeyboardExist = true;
+              let isPhysicalKeyboardExist = true;
             } else if (type == inputDevice.KeyboardType.ALPHABETIC_KEYBOARD && data.type == 'remove') {
-              isPhysicalKeyboardExist = false;
+              let isPhysicalKeyboardExist = false;
             }
           });
         });

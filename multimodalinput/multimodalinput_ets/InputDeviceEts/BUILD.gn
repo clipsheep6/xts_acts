@@ -13,29 +13,12 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_js_hap_suite("ActsMMIInputDeviceEtsTest") {
-  hap_profile = "entry/src/main/module.json"
-  js_build_mode = "debug"
-  deps = [
-    ":mmiinputdevice_demo_ets_resources",
-    ":mmiinputdevice_demo_ets_test_resources",
-  ]
-  ets2abc = true
+ohos_js_app_suite("ActsMMIInputDeviceEtsTest") {
+  test_hap = true
+  testonly = true
   certificate_profile = "signature/openharmony_sx.p7b"
   hap_name = "ActsMMIInputDeviceEtsTest"
 
   subsystem_name = "multimodalinput"
   part_name = "input"
-}
-ohos_app_scope("mmiinputdevice_app_profile") {
-  app_profile = "AppScope/app.json"
-  sources = [ "AppScope/resources" ]
-}
-ohos_js_assets("mmiinputdevice_demo_ets_resources") {
-  source_dir = "entry/src/main/ets"
-}
-ohos_resources("mmiinputdevice_demo_ets_test_resources") {
-  sources = [ "entry/src/main/resources" ]
-  deps = [ ":mmiinputdevice_app_profile" ]
-  hap_profile = "entry/src/main/module.json"
 }
