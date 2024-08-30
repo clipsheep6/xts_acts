@@ -5336,3 +5336,10 @@ export const gestureTestParaMeter006: () => number;
 export const gestureTestParaMeter007: () => number;
 export const gestureTestParaMeter008: () => number;
 export const gestureTestParaMeter009: () => number;
+
+export const testRegisterSystemColorModeChangeEvent_001: () => number;
+export const testUnregisterSystemColorModeChangeEvent_002: () => number;
+export const testRegisterSystemFontStyleChangeEvent_003: () => number;
+export const testUnregisterSystemFontStyleChangeEvent_004: () => number;
+export const testSystemFontStyleEvent_GetFontSizeScale_005: () => number;
+export const testSystemFontStyleEvent_GetFontWeightScale_006: () => number;
