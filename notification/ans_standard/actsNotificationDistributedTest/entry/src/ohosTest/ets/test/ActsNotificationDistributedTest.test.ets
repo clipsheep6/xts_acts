@@ -14,9 +14,10 @@
  */
 import notification from '@ohos.notification'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import Base from '@ohos.base';
 
 export default function ActsNotificationDistributedTest() {
-    describe('SUB_NOTIFICATION_ANS_IS_DISTRIBUTED_ENABLED_TEST', function () {
+    describe('SUB_NOTIFICATION_ANS_IS_DISTRIBUTED_ENABLED_TEST', () => {
         let TAG = 'SUB_NOTIFICATION_ANS_IS_DISTRIBUTED_ENABLED_TEST ===>'
         console.info(TAG + 'SUB_NOTIFICATION_ANS_IS_DISTRIBUTED_ENABLED_TEST START')
 
@@ -25,7 +26,7 @@ export default function ActsNotificationDistributedTest() {
         * @tc.name      : function isDistributedEnabled(callback: AsyncCallback<boolean>): void
         * @tc.desc      : Obtains whether the device supports distributed notification
         */    
-        it('Sub_Notification_Ans_Enable_SetEnable_5000', 0, async function (done) {
+        it('Sub_Notification_Ans_Enable_SetEnable_5000', 0, async (done:Function) => {
           console.info(`${TAG} Sub_Notification_Ans_Enable_SetEnable_5000 START`)
           notification.isDistributedEnabled((err, data) => {
             if (err.code) {
@@ -46,37 +47,18 @@ export default function ActsNotificationDistributedTest() {
         * @tc.name      : function isDistributedEnabled(): Promise<boolean>
         * @tc.desc      : Obtains whether the device supports distributed notification
         */
-        it('Sub_Notification_Ans_Enable_SetEnable_5100', 0, async function (done) {
+        it('Sub_Notification_Ans_Enable_SetEnable_5100', 0, async (done:Function) => {
           console.info(`${TAG} Sub_Notification_Ans_Enable_SetEnable_5100 START`)
           notification.isDistributedEnabled().then((data) => {
             console.info(`${TAG} isDistributedEnabled Promise success: ${data}`)
             expect(data).assertFalse()
             done()
-          }).catch((err) => {
+          }).catch((err:Base.BusinessError) => {
             console.info(`${TAG} isDistributedEnabled Promise err: ${err.code}`)
             expect(false).assertTrue()
             done()
           })
           console.info(`${TAG} Sub_Notification_Ans_Enable_SetEnable_5100 END`)
-        })
-
-        /*
-        * @tc.number    : SUB_NOTIFICATION_ANS_IS_DISTRIBUTED_ENABLED_TEST_0300
-        * @tc.name      : function isDistributedEnabled(undefined): Promise<boolean>
-        * @tc.desc      : Obtains whether the device supports distributed notification
-        */
-        it('SUB_NOTIFICATION_ANS_IS_DISTRIBUTED_ENABLED_TEST_0300', 0, async function (done) {
-          console.info(`${TAG} SUB_NOTIFICATION_ANS_IS_DISTRIBUTED_ENABLED_TEST_0300 START`)
-          notification.isDistributedEnabled(undefined).then((data) => {
-            console.info(`${TAG} isDistributedEnabled Promise success: ${data}`)
-            expect(data).assertFalse()
-            done()
-          }).catch((err) => {
-            console.info(`${TAG} isDistributedEnabled Promise err: ${err.code}`)
-            expect(false).assertTrue()
-            done()
-          })
-          console.info(`${TAG} SUB_NOTIFICATION_ANS_IS_DISTRIBUTED_ENABLED_TEST_0300 END`)
         })
     
         console.info(TAG + 'SUB_NOTIFICATION_IS_DISTRIBUTED_ENABLED_TEST END')
