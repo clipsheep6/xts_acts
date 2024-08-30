@@ -91,6 +91,7 @@ add_library(nativerender SHARED
     arkApi/arkApi.cpp
     gesture/gesture_test.cpp
     customcomponent/customcomponent_event_test.cpp
+    text/text_CustomSpan_test.cpp
 )
 
 add_library(nativefunc SHARED
