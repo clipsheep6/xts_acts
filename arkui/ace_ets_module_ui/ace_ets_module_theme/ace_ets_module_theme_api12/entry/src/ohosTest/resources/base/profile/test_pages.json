@@ -1,0 +1,10 @@
+{
+  "src": [
+    "TestAbility/pages/index/Index",
+    "TestAbility/pages/theme/themePageTest",
+    "TestAbility/pages/theme/themePageMgmtColorsTest",
+    "TestAbility/pages/theme/themePageSliderTest",
+    "TestAbility/pages/theme/APIFontPrimary",
+    "TestAbility/pages/theme/themePageListTest"
+  ]
+}

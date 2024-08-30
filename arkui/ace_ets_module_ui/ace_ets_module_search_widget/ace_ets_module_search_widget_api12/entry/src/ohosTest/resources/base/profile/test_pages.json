@@ -1,0 +1,8 @@
+{
+  "src": [
+    "testability/pages/index/index",
+    "testability/pages/xts/SearchXts",
+    "testability/pages/xts/TextAreaXts",
+    "testability/pages/xts/TextInputXts"
+  ]
+}
