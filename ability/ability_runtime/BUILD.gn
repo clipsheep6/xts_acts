@@ -46,6 +46,7 @@ group("ability_runtime") {
       "actsjsdataabilitytest:ActsJsDataAbilityTest",
       "actslastexitreason:actslastexitreason",
       "actsmultiplecall:actsmultiplecall",
+      "actsmissionmanager:actsmissionmanager",
       "actsnfcselecttypes:actsnfcselecttypes",
       "actsondestroytest:actsondestroytest",
       "actsopenlinktest:actsopenlinktest",
