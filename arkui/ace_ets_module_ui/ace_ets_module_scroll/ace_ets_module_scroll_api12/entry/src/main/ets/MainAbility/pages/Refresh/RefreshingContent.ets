@@ -22,7 +22,7 @@ struct RefreshingContent {
   private contentNode?: ComponentContent<Object> = undefined
   @State testText :string = ''
   build() {
-    Column(){
+    Column() {
       Text(this.testText).key('RefreshingContent')
       Refresh({ refreshing: $$this.isRefreshing, refreshingContent:this.contentNode}) {
         List() {
