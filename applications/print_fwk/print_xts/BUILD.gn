@@ -10,13 +10,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import("//build/ohos.gni")
 import("//test/xts/tools/build/suite.gni")
 
 ohos_app_assist_suite("print_ndk_main") {
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsPrintNdkMainTest"
+  subsystem_name = "print"
+  part_name = "print_fwk"
+}
+
+ohos_prebuilt_shared_library("libcppsharedso") {
+  source = rebase_path(libcxx_ndk_shared_file)
   subsystem_name = "print"
   part_name = "print_fwk"
 }
@@ -28,5 +34,7 @@ ohos_js_app_suite("print_xts_test") {
   hap_name = "ActsPrintXtsTest"
   subsystem_name = "print"
   part_name = "print_fwk"
-  deps = [ ":print_ndk_main" ]
+  deps = [ ":print_ndk_main",
+           ":libcppsharedso"
+         ]
 }

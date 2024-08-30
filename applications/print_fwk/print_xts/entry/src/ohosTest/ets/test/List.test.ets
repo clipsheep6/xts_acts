@@ -13,12 +13,8 @@
  * limitations under the License.
  */
 
-import printTest from './print.test'
-import oHPrintTest from './ohprint.test'
-import oHScanTest from './ohscan.test'
+import ffrtTest from './Ffrt.test'
 
 export default function testsuite() {
-  printTest();
-  oHPrintTest();
-  oHScanTest();
+  ffrtTest()
 }
