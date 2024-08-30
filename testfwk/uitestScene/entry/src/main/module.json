@@ -15,7 +15,7 @@
 
 {
   "module": {
-    "name": "entry",
+    "name": "uitestScene",
     "type": "entry",
     "description": "$string:module_desc",
     "mainElement": "MainAbility",
