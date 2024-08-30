@@ -56,6 +56,20 @@
         "pages": [
           "pages/index"
         ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
         "name": ".TestAbility",
         "window": {
           "designWidth": 720,

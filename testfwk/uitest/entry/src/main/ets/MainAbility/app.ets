@@ -12,26 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
+import hilog from '@ohos.hilog';
 
-
-class Test  {
+class Test {
   onCreate() {
-    console.info('Application onCreate')
-    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    console.info('start run testcase!!!')
-    abilityDelegatorArguments.parameters['-s timeout'] = String(300000)
-    setTimeout(()=>{
-      Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
-    },3000)
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
   }
   onDestroy() {
-    console.info('Application onDestroy')
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
   }
-
 }
 
 export default new Test()
