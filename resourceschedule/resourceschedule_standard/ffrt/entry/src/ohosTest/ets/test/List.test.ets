@@ -14,7 +14,11 @@
  */
 
 import ffrtTest from './Ffrt.test'
+import ffrtLoopTest from './FfrtLoop.test'
+import ffrtQueueDelayTest from './FfrtQueueDelay.test'
 
 export default function testsuite() {
   ffrtTest()
+  ffrtLoopTest()
+  ffrtQueueDelayTest()
 }

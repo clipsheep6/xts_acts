@@ -471,48 +471,6 @@ export default function ffrtTest() {
     })
 
     /**
-     * @tc.number : SUB_KERNEL_DISPATCH_entry_3200
-     * @tc.name   : queueDelayTest001
-     * @tc.desc   : Test queueDelay api
-     * @tc.size   : MediumTest
-     * @tc.type   : Function
-     * @tc.level  : Level 1
-     */
-    it('queueDelayTest001', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let flag = entry.queueDelayTest001();
-      expect(flag).assertEqual(0);
-    })
-
-    /**
-     * @tc.number : SUB_KERNEL_DISPATCH_entry_3300
-     * @tc.name   : queueDelayTest002
-     * @tc.desc   : Test queueDelay api
-     * @tc.size   : MediumTest
-     * @tc.type   : Function
-     * @tc.level  : Level 1
-     */
-    it('queueDelayTest002', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let flag = entry.queueDelayTest002();
-      expect(flag).assertEqual(0);
-    })
-
-    /**
-     * @tc.number : SUB_KERNEL_DISPATCH_entry_3400
-     * @tc.name   : queueDelayTest005
-     * @tc.desc   : Test queueDelay api
-     * @tc.size   : MediumTest
-     * @tc.type   : Function
-     * @tc.level  : Level 1
-     */
-    it('queueDelayTest005', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let flag = entry.queueDelayTest005();
-      expect(flag).assertEqual(0);
-    })
-
-    /**
      * @tc.number : SUB_KERNEL_DISPATCH_entry_3500
      * @tc.name   : queueDfxTest001
      * @tc.desc   : Test queueDfx api
@@ -569,20 +527,6 @@ export default function ffrtTest() {
     })
 
     /**
-     * @tc.number : SUB_KERNEL_DISPATCH_entry_3900
-     * @tc.name   : queueDfxTest005
-     * @tc.desc   : Test queueDfx api
-     * @tc.size   : MediumTest
-     * @tc.type   : Function
-     * @tc.level  : Level 1
-     */
-    it('queueDfxTest005', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let flag = entry.queueDfxTest005();
-      expect(flag).assertEqual(0);
-    })
-
-    /**
      * @tc.number : SUB_KERNEL_DISPATCH_entry_4000
      * @tc.name   : queueDfxTest006
      * @tc.desc   : Test queueDfx api
@@ -594,20 +538,6 @@ export default function ffrtTest() {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queueDfxTest006();
       expect(flag).assertEqual(0);
-    })
-
-    /**
-     * @tc.number : SUB_KERNEL_DISPATCH_entry_4100
-     * @tc.name   : queueTest001
-     * @tc.desc   : Test queue api
-     * @tc.size   : MediumTest
-     * @tc.type   : Function
-     * @tc.level  : Level 1
-     */
-    it('queueTest001', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let flag = entry.queueTest001();
-      expect(flag).assertEqual(9);
     })
 
     /**
@@ -635,20 +565,6 @@ export default function ffrtTest() {
     it('queueTest003', 0, () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queueTest003();
-      expect(flag).assertEqual(0);
-    })
-
-    /**
-     * @tc.number : SUB_KERNEL_DISPATCH_entry_4400
-     * @tc.name   : queueWaitTest001
-     * @tc.desc   : Test queueWait api
-     * @tc.size   : MediumTest
-     * @tc.type   : Function
-     * @tc.level  : Level 1
-     */
-    it('queueWaitTest001', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let flag = entry.queueWaitTest001();
       expect(flag).assertEqual(0);
     })
 
@@ -1017,20 +933,6 @@ export default function ffrtTest() {
     })
 
     /**
-     * @tc.number : SUB_KERNEL_DISPATCH_entry_7100
-     * @tc.name   : ffrt_timer_start_0002
-     * @tc.desc   : Test ffrt_timer_start api
-     * @tc.size   : MediumTest
-     * @tc.type   : Function
-     * @tc.level  : Level 1
-     */
-    it('ffrt_timer_start_0002', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let flag = entry.ffrt_timer_start_0002();
-      expect(flag).assertEqual(0);
-    })
-
-    /**
      * @tc.number : SUB_KERNEL_DISPATCH_entry_7200
      * @tc.name   : ffrt_timer_cancel_0001
      * @tc.desc   : Test ffrt_timer_cancel api
@@ -1041,34 +943,6 @@ export default function ffrtTest() {
     it('ffrt_timer_cancel_0001', 0, () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_timer_cancel_0001();
-      expect(flag).assertEqual(0);
-    })
-
-    /**
-     * @tc.number : SUB_KERNEL_DISPATCH_entry_7300
-     * @tc.name   : ffrt_loop_0001
-     * @tc.desc   : Test ffrt_loop api
-     * @tc.size   : MediumTest
-     * @tc.type   : Function
-     * @tc.level  : Level 1
-     */
-    it('ffrt_loop_0001', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let flag = entry.ffrt_loop_0001();
-      expect(flag).assertEqual(0);
-    })
-
-    /**
-     * @tc.number : SUB_KERNEL_DISPATCH_entry_7400
-     * @tc.name   : ffrt_loop_0002
-     * @tc.desc   : Test ffrt_loop cases
-     * @tc.size   : MediumTest
-     * @tc.type   : Function
-     * @tc.level  : Level 1
-     */
-    it('ffrt_loop_0002', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let flag = entry.ffrt_loop_0002();
       expect(flag).assertEqual(0);
     })
 
