@@ -18,6 +18,7 @@ import commonEvent from '@ohos.commonEventManager';
 import base from '@ohos.base';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Driver, ON } from '@ohos.UiTest';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 function sleep(time: number): Promise<number> {
   return new Promise((resolve) => setTimeout(resolve, time));
@@ -1695,5 +1696,43 @@ export default function abilityTest() {
         });
       })
     })
+
+    /*
+     * @tc.number : SUB_Ability_AbilityRuntime_WantAgent_StartServiceExtension_2000
+     * @tc.name   : Call getWantAgent
+     * @tc.desc   : The function call OK
+     * @tc.size   : LargeTest
+     * @tc.type   : Function
+     * @tc.level  : 3
+     */
+     it('SUB_Ability_AbilityRuntime_WantAgent_StartServiceExtension_2000', 0, async (done: Function) => {
+      let tag = `SUB_Ability_AbilityRuntime_WantAgent_StartServiceExtension_2000`;
+      console.log(`${tag}, test begin`);
+      let wantAgentInfo: wantAgent.WantAgentInfo = {
+        wants: [
+          {
+            deviceId:'',
+            bundleName: "com.acts.actsshareextensionabilitytest",
+            abilityName: "EntryAbility",
+          }
+        ],
+        actionType: wantAgent.OperationType.START_SERVICE_EXTENSION,
+        requestCode: 0,
+        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+      };
+
+      wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
+        if (err != null) {
+          console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code} ,message: ${err.message}`)
+          expect(false).assertTrue();
+          done();
+        } else {
+          WantAgent = data;
+          console.info(`${TAG} getWantAgent AsyncCallback success: ${JSON.stringify(data)}`)
+          expect(true).assertTrue();
+          done();
+        }
+      })
+    });
   })
 }
