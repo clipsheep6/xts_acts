@@ -495,7 +495,7 @@
 #include "Dialog/DialogDismissEvent.cpp"
 
 #include "gestureScroll/gesture_interfaceParameterTest.cpp"
-
+#include "system/system_ColorFontChange_test.cpp"
 
 namespace ArkUICapiTest {
 EXTERN_C_START
@@ -4740,6 +4740,18 @@ static napi_value Init(napi_env env, napi_value exports)
         {"gestureTestParaMeter007", nullptr, gestureTestParaMeter007, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"gestureTestParaMeter008", nullptr, gestureTestParaMeter008, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"gestureTestParaMeter009", nullptr, gestureTestParaMeter009, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testRegisterSystemColorModeChangeEvent_001", nullptr, testRegisterSystemColorModeChangeEvent_001,
+                nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testUnregisterSystemColorModeChangeEvent_002", nullptr, testUnregisterSystemColorModeChangeEvent_002,
+                nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testRegisterSystemFontStyleChangeEvent_003", nullptr, testRegisterSystemFontStyleChangeEvent_003,
+                nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testUnregisterSystemFontStyleChangeEvent_004", nullptr, testUnregisterSystemFontStyleChangeEvent_004,
+                nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testSystemFontStyleEvent_GetFontSizeScale_005", nullptr, testSystemFontStyleEvent_GetFontSizeScale_005,
+                nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testSystemFontStyleEvent_GetFontWeightScale_006", nullptr, testSystemFontStyleEvent_GetFontWeightScale_006,
+                nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
