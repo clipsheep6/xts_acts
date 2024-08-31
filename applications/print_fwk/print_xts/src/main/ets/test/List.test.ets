@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import ffrtTest from './Ffrt.test'
+import printTest from './print.test'
 
 export default function testsuite() {
-  ffrtTest()
+  printTest();
 }
