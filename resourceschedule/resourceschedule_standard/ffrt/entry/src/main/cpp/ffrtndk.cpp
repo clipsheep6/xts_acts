@@ -1561,8 +1561,8 @@ static napi_value QueueDelayTest001(napi_env env, napi_callback_info info)
     ffrt_task_attr_t task_attr2;
     (void)ffrt_task_attr_init(&task_attr1);
     (void)ffrt_task_attr_init(&task_attr2);
-    ffrt_task_attr_set_delay(&task_attr1, 5000000);
-    ffrt_task_attr_set_delay(&task_attr2, 2000000);
+    ffrt_task_attr_set_delay(&task_attr1, 2000000);
+    ffrt_task_attr_set_delay(&task_attr2, 1000000);
 
     std::function<void()>&& MultipleFunc = [&result]() { MultipleForTest(static_cast<void*>(&result)); };
     ffrt_queue_attr_t queue_attr;
@@ -1585,7 +1585,7 @@ static napi_value QueueDelayTest001(napi_env env, napi_callback_info info)
     if (result != 1) {
         resultEnd = 1;
     }
-    if (t <= 2000 || t >= 3000) {
+    if (t <= 1000 || t >= 2000) {
         resultEnd = 2;
     }
 
@@ -1596,7 +1596,7 @@ static napi_value QueueDelayTest001(napi_env env, napi_callback_info info)
     if (result != 0) {
         resultEnd = 3;
     }
-    if (t <= 5000 || t >= 6000) {
+    if (t <= 2000 || t >= 3000) {
         resultEnd = 4;
     }
     ffrt_task_handle_destroy(handle1);
