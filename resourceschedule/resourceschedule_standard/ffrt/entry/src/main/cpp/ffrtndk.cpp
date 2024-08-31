@@ -14,14 +14,14 @@
  */
 #include "napi/native_api.h"
 #include "hilog/log.h"
-#include "c/task.h"
-#include "c/type_def.h"
-#include "c/condition_variable.h"
-#include "c/mutex.h"
-#include "c/queue.h"
-#include "c/sleep.h"
-#include "c/loop.h"
-#include "c/timer.h"
+#include "ffrt/task.h"
+#include "ffrt/type_def.h"
+#include "ffrt/condition_variable.h"
+#include "ffrt/mutex.h"
+#include "ffrt/queue.h"
+#include "ffrt/sleep.h"
+#include "ffrt/loop.h"
+#include "ffrt/timer.h"
 #include <mutex>
 #include <thread>
 #include <string>
@@ -39,10 +39,13 @@ const int ERR_CODE_4 = 4;
 const int ERR_CODE_5 = 5;
 const int ERR_CODE_6 = 6;
 const uint64_t UNIT_STACK_SIZE = 2 * 1024 * 1024;
-const uint64_t UNIT_TASK_DELAY = 500000;
+const uint64_t UNIT_TASK_DELAY = 200000;
 const uint32_t TASK_SUBMIT_REF = 2;
 const uint32_t TASK_RELEASE_REF = 3;
 const uint32_t TASK_DELAY_TIME = 1000;
+const int MULTIPLE_RADIO = 10;
+const uint64_t PLUS_SLEEP_TIME = 2000000;
+const uint64_t FUNC_SIGNAL_SLEEP = 30000;
 
 void OnePlusForTest(void* arg)
 {
@@ -51,7 +54,7 @@ void OnePlusForTest(void* arg)
 
 void MultipleForTest(void* arg)
 {
-    (*static_cast<int*>(arg)) *= 10;
+    (*static_cast<int*>(arg)) *= MULTIPLE_RADIO;
 }
 
 void SubForTest(void* arg)
@@ -61,7 +64,7 @@ void SubForTest(void* arg)
 
 void OnePlusSleepForTest(void* arg)
 {
-    ffrt_usleep(2000 * 1000);
+    ffrt_usleep(PLUS_SLEEP_TIME);
     (*static_cast<int*>(arg)) += 1;
 }
 
@@ -79,19 +82,19 @@ void FuncWait1(void* arg)
     CvMutex* t = static_cast<CvMutex*>(arg);
     int ret = ffrt_mutex_lock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 1;
+        *t->ret = ERR_CODE_1;
     }
     
     while (*t->a != 1) {
         ret = ffrt_cond_wait(t->cond, t->lock_);
         if (ret != ffrt_success) {
-            *t->ret = 2;
+            *t->ret = ERR_CODE_2;
         }
     }
     *t->b += 1;
     ret = ffrt_mutex_unlock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 3;
+        *t->ret = ERR_CODE_3;
     }
 }
 
@@ -100,19 +103,19 @@ void FuncWait2(void* arg)
     CvMutex* t = static_cast<CvMutex*>(arg);
     int ret = ffrt_mutex_lock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 1;
+        *t->ret = ERR_CODE_1;
     }
     
     while (*t->a != 1) {
         ret = ffrt_cond_wait(t->cond, t->lock_);
         if (ret != ffrt_success) {
-            *t->ret = 2;
+            *t->ret = ERR_CODE_2;
         }
     }
     *t->b += 1;
     ret = ffrt_mutex_unlock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 3;
+        *t->ret = ERR_CODE_3;
     }
 }
 
@@ -121,36 +124,36 @@ void FuncWaitTimeout(void* arg)
     CvMutex* t = static_cast<CvMutex*>(arg);
     int ret = ffrt_mutex_lock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 1;
+        *t->ret = ERR_CODE_1;
     }
     timespec ts;
     clock_gettime(CLOCK_MONOTONIC, &ts);
-    ts.tv_sec += 1;
+    ts.tv_sec += ERR_CODE_2;
     
     ret = ffrt_cond_timedwait(t->cond, t->lock_, &ts);
     *t->ret = ret;
     if (ret == ffrt_success) {
-        *(t->a) *= 10;
+        *(t->a) *= ERR_CODE_3;
     }
     ret = ffrt_mutex_unlock(t->lock_);
 }
 
 void FuncSignal(void* arg)
 {
-    ffrt_usleep(30000);
+    ffrt_usleep(FUNC_SIGNAL_SLEEP);
     CvMutex* t = static_cast<CvMutex*>(arg);
     int ret = ffrt_mutex_lock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 1;
+        *t->ret = ERR_CODE_1;
     }
     *(t->a) = 1;
     ret = ffrt_cond_signal(t->cond);
     if (ret != ffrt_success) {
-        *t->ret = 2;
+        *t->ret = ERR_CODE_2;
     }
     ret = ffrt_mutex_unlock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 3;
+        *t->ret = ERR_CODE_3;
     }
 }
 
@@ -160,39 +163,39 @@ void FuncBroadcast(void* arg)
     CvMutex* t = static_cast<CvMutex*>(arg);
     int ret = ffrt_mutex_lock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 1;
+        *t->ret = ERR_CODE_1;
     }
     *(t->a) = 1;
     ret = ffrt_cond_broadcast(t->cond);
     if (ret != ffrt_success) {
-        *t->ret = 2;
+        *t->ret = ERR_CODE_2;
     }
     ret = ffrt_mutex_unlock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 3;
+        *t->ret = ERR_CODE_3;
     }
 }
 
 void FuncSignalApi(void* arg)
 {
-    ffrt_usleep(30000);
+    ffrt_usleep(FUNC_SIGNAL_SLEEP);
     CvMutex* t = static_cast<CvMutex*>(arg);
     int ret = ffrt_mutex_lock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 1;
+        *t->ret = ERR_CODE_1;
     }
     *(t->a) = 1;
     ret = ffrt_cond_signal(nullptr);
     if (ret != ffrt_error_inval) {
-        *t->ret = 4;
+        *t->ret = ERR_CODE_4;
     }
     ret = ffrt_cond_signal(t->cond);
     if (ret != ffrt_success) {
-        *t->ret = 2;
+        *t->ret = ERR_CODE_2;
     }
     ret = ffrt_mutex_unlock(t->lock_);
     if (ret != ffrt_success) {
-        *t->ret = 3;
+        *t->ret = ERR_CODE_3;
     }
 }
 
@@ -849,6 +852,7 @@ static napi_value MutexAbnormalParamTest001(napi_env env, napi_callback_info inf
     if (ret != ffrt_error_inval) {
         result = 1;
     }
+    ffrt_mutexattr_init(&attr);
     ret = ffrt_mutex_init(&mtx, &attr);
     if (ret != ffrt_success) {
         result = 2;
@@ -1935,7 +1939,7 @@ static napi_value QueueTest002(napi_env env, napi_callback_info info)
     }
     for (int num = 0; num < maxNum; num++) {
         ffrt_queue_wait(task[num][9]);
-        HiLogPrint(LOG_APP, LOG_INFO, 1, "FFRT QUEUE", "result in queue %{public}d is %{public}d", num, result[num]);
+        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "FFRT QUEUE", "result in queue %{public}d is %{public}d", num, result[num]);
         if (result[num] != 10) {
             a = 1;
         }
@@ -1946,7 +1950,7 @@ static napi_value QueueTest002(napi_env env, napi_callback_info info)
         }
     }
     for (int num = 0; num < maxNum; num++) {
-        HiLogPrint(LOG_APP, LOG_INFO, 1, "FFRT QUEUE", "qos in queue task %{public}d is %{public}d", num,
+        OH_LOG_Print(LOG_APP, LOG_INFO, 1, "FFRT QUEUE", "qos in queue task %{public}d is %{public}d", num,
             ffrt_queue_attr_get_qos(&queue_attr[num]));
         if (ffrt_queue_attr_get_qos(&queue_attr[num]) != num) {
             a = 1;
@@ -3837,7 +3841,7 @@ static napi_module demoModule = {
     .nm_flags = 0,
     .nm_filename = nullptr,
     .nm_register_func = Init,
-    .nm_modname = "ffrtndk",
+    .nm_modname = "entry",
     .nm_priv = ((void*)0),
     .reserved = { 0 },
 };
