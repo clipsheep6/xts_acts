@@ -22,7 +22,8 @@
 
 
 static napi_value OsCheckSelfPermissionA(napi_env env,
-                                         napi_callback_info info) {
+                                         napi_callback_info info)
+                                         {
     const char* str = "ohos.permission.CAMERA";
     bool returnValue = OH_AT_CheckSelfPermission(str);
 
@@ -32,7 +33,8 @@ static napi_value OsCheckSelfPermissionA(napi_env env,
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"osCheckSelfPermissionA", nullptr, OsCheckSelfPermissionA, nullptr,
          nullptr, nullptr, napi_default, nullptr}};
@@ -54,6 +56,7 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
     napi_module_register(&demoModule);
 }
