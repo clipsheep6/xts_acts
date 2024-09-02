@@ -1,6 +1,7 @@
 {
   "src": [
     "MainAbility/pages/index/Index",
-    "MainAbility/pages/PickerComponent"
+    "MainAbility/pages/PickerComponent",
+    "MainAbility/pages/RecentPhotoDemo"
   ]
 }
