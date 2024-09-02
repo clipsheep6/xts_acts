@@ -21,7 +21,7 @@ import fs from '@ohos.file.fs';
 import fileio from '@ohos.fileio'
 import { UiDriver, BY, PointerMatrix } from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-import abilityAccessCtrl,{ Context, PermissionRequestResult, Permissions} from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 const CODECMIMEVALUE = ['video/avc', 'audio/mp4a-latm', 'audio/mpeg']
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 export async function getPermission(permissionNames) {
