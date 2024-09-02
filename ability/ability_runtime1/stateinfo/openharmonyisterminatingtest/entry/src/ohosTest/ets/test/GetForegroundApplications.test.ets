@@ -48,11 +48,6 @@ export default function getForegroundApplicationsTest() {
   let flag: boolean = false;
 
   describe('getForegroundApplicationsTest', () => {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(() => {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
-    })
     beforeEach(async () => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
@@ -66,10 +61,6 @@ export default function getForegroundApplicationsTest() {
       // This API supports only one parameter: clear action function.
       await abilityDelegator.executeShellCommand(`aa force-stop ${appGegForgrdAppsWant.bundleName}`);
       await sleep(1000);
-    })
-    afterAll(() => {
-      // Presets a clear action, which is performed after all test cases of the test suite end.
-      // This API supports only one parameter: clear action function.
     })
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_0300

@@ -77,12 +77,6 @@ export default function onApplicationState() {
   }
   let applicationStateNumber = -1;
   describe('onApplicationState', () => {
-    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    beforeAll(() => {
-      // Presets an action, which is performed only once before all test cases of the test suite start.
-      // This API supports only one parameter: preset action function.
-
-    })
     beforeEach(async () => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
