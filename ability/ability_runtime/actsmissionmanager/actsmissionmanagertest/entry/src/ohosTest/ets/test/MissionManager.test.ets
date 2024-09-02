@@ -44,27 +44,31 @@ export default function missionManagerTest() {
     beforeAll(async () => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
-      let wingmanCommonEventSubscribeInfo : commonEventManager.CommonEventSubscribeInfo = {
+      let wingmanCommonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
         events: ['wingmanApplicationCommonEvent']
       }
       let wingmanCommonEventSubscriber = await commonEventManager.createSubscriber(wingmanCommonEventSubscribeInfo);
-      commonEventManager.subscribe(wingmanCommonEventSubscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
-        console.log(TAG + `wingmanApplicationCommonEvent onReceive, err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}`);
-        if (!err) {
-          wingmanApplicationLifeCycle.push(data.parameters?.lifeCycle);
-        }
-      })
+      commonEventManager.subscribe(wingmanCommonEventSubscriber,
+        (err: BusinessError, data: commonEventManager.CommonEventData) => {
+          console.log(TAG +
+            `wingmanApplicationCommonEvent onReceive, err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}`);
+          if (!err) {
+            wingmanApplicationLifeCycle.push(data.parameters?.lifeCycle);
+          }
+        })
 
-      let testCommonEventSubscribeInfo : commonEventManager.CommonEventSubscribeInfo = {
+      let testCommonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
         events: ['testApplicationCommonEvent']
       }
       let testCommonEventSubscriber = await commonEventManager.createSubscriber(testCommonEventSubscribeInfo);
-      commonEventManager.subscribe(testCommonEventSubscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
-        console.log(TAG + `testCommonEventSubscriber onReceive, err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}`);
-        if (!err) {
-          testApplicationLifeCycle.push(data.parameters?.lifeCycle);
-        }
-      })
+      commonEventManager.subscribe(testCommonEventSubscriber,
+        (err: BusinessError, data: commonEventManager.CommonEventData) => {
+          console.log(TAG +
+            `testCommonEventSubscriber onReceive, err: ${JSON.stringify(err)}, data: ${JSON.stringify(data)}`);
+          if (!err) {
+            testApplicationLifeCycle.push(data.parameters?.lifeCycle);
+          }
+        })
     })
     beforeEach(async () => {
       // Presets an action, which is performed before each unit test case starts.
@@ -99,81 +103,90 @@ export default function missionManagerTest() {
     })
     it('SUB_Ability_AbilityRuntime_MissionManager_MissionTask_8300', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      let listener: missionManager.MissionListener = {
-        onMissionCreated: (mission: number) => {
-          console.log(TAG + '--------onMissionCreated-------');
-        },
-        onMissionDestroyed: (mission: number) => {
-          console.log(TAG + '--------onMissionDestroyed-------');
-        },
-        onMissionSnapshotChanged: (mission: number) => {
-          console.log(TAG + '--------onMissionSnapshotChanged-------');
-        },
-        onMissionMovedToFront: (mission: number) => {
-          console.log(TAG + '--------onMissionMovedToFront-------');
-        },
-        onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
-          console.log(TAG + '--------onMissionIconUpdated-------');
-        },
-        onMissionClosed: (mission: number) => {
-          console.log(TAG + '--------onMissionClosed-------');
-        },
-        onMissionLabelUpdated: (mission: number) => {
-          console.log(TAG + '--------onMissionLabelUpdated-------');
-        }
-      };
-      let missionID = missionManager.on('mission', listener);
-      console.log(TAG + 'missionID: ' + missionID);
-      if (missionID === 1) {
-        let wingmanMissionID: number = -1;
-        await delegator.startAbility({
-          bundleName: WINGMANAPPLICATIONBUNDLENAME,
-          abilityName: 'EntryAbility',
-        })
-          .then(async () => {
-            console.error(TAG + `startAbility successfully`);
-            wingmanMissionID = (await getMissionInfos()).filter((item) => {
-              return item.want.bundleName === WINGMANAPPLICATIONBUNDLENAME
-            })[0].missionId;
+      try {
+        let listener: missionManager.MissionListener = {
+          onMissionCreated: (mission: number) => {
+            console.log(TAG + '--------onMissionCreated-------');
+          },
+          onMissionDestroyed: (mission: number) => {
+            console.log(TAG + '--------onMissionDestroyed-------');
+          },
+          onMissionSnapshotChanged: (mission: number) => {
+            console.log(TAG + '--------onMissionSnapshotChanged-------');
+          },
+          onMissionMovedToFront: (mission: number) => {
+            console.log(TAG + '--------onMissionMovedToFront-------');
+          },
+          onMissionIconUpdated: (mission: number, icon: image.PixelMap) => {
+            console.log(TAG + '--------onMissionIconUpdated-------');
+          },
+          onMissionClosed: (mission: number) => {
+            console.log(TAG + '--------onMissionClosed-------');
+          },
+          onMissionLabelUpdated: (mission: number) => {
+            console.log(TAG + '--------onMissionLabelUpdated-------');
+          }
+        };
+        let missionID = missionManager.on('mission', listener);
+        console.log(TAG + 'missionID: ' + missionID);
+        if (missionID === 1) {
+          let wingmanMissionID: number = -1;
+          await delegator.startAbility({
+            bundleName: WINGMANAPPLICATIONBUNDLENAME,
+            abilityName: 'EntryAbility',
           })
-          .catch((e: BusinessError) => {
-            console.error(TAG + `startAbility error: ` + JSON.stringify(e));
-            expect().assertFail();
-          })
-        await sleep(2000);
-        console.debug(TAG + `testApplicationlifeCycle: ${JSON.stringify(testApplicationLifeCycle)}, wingmanApplicationLifeCycle: ${JSON.stringify(wingmanApplicationLifeCycle)}`);
-        let isWingmanApplicationOnCreateLifeCycle: boolean = wingmanApplicationLifeCycle.some((item) => {
-          return item === "onCreate"
-        })
-        let isWingmanApplicationOnWindowStageCreateLifeCycle: boolean = wingmanApplicationLifeCycle.some((item) => {
-          return item === "onWindowStageCreate"
-        })
-        let isWingmanApplicationOnForegroundLifeCycle: boolean = wingmanApplicationLifeCycle.some((item) => {
-          return item === "onForeground"
-        })
-        let isTestApplicationOnForegroundLifeCycle: boolean = testApplicationLifeCycle.some((item) => {
-          return item === "onForeground"
-        })
-        let isTestApplicationOnBackgroundLifeCycle: boolean = testApplicationLifeCycle.some((item) => {
-          return item === "onBackground"
-        })
-        console.debug(TAG + `isWingmanApplicationOnCreateLifeCycle: ${isWingmanApplicationOnCreateLifeCycle}, isWingmanApplicationOnWindowStageCreateLifeCycle: ${isWingmanApplicationOnWindowStageCreateLifeCycle}, isWingmanApplicationOnForegroundCreateLifeCycle: ${isWingmanApplicationOnForegroundLifeCycle}, isTestApplicationOnForegroundLifeCycle: ${isTestApplicationOnForegroundLifeCycle}, isTestApplicationOnBackgroundLifeCycle: ${isTestApplicationOnBackgroundLifeCycle}`);
-        if (isWingmanApplicationOnCreateLifeCycle && isWingmanApplicationOnWindowStageCreateLifeCycle && isWingmanApplicationOnForegroundLifeCycle && isTestApplicationOnForegroundLifeCycle && isTestApplicationOnBackgroundLifeCycle) {
-          console.log(TAG + "SUB_Ability_AbilityRuntime_MissionManager_MissionTask_8300 checkLifeCycle successfully");
-          await missionManager.moveMissionToFront(wingmanMissionID)
-            .then(() => {
-              console.log(TAG + `moveMissionToFront(${wingmanMissionID}) finish`);
-              expect().assertFail();
+            .then(async () => {
+              console.error(TAG + `startAbility successfully`);
+              wingmanMissionID = (await getMissionInfos()).filter((item) => {
+                return item.want.bundleName === WINGMANAPPLICATIONBUNDLENAME
+              })[0].missionId;
             })
             .catch((e: BusinessError) => {
-              console.error(TAG + `moveMissionToFront(${wingmanMissionID}) error: ` + JSON.stringify(e));
-              expect(e.code).assertEqual(16000050);
-            });
+              console.error(TAG + `startAbility error: ` + JSON.stringify(e));
+              expect().assertFail();
+            })
+          await sleep(5000);
+          console.log(TAG +
+            `testApplicationlifeCycle: ${JSON.stringify(testApplicationLifeCycle)}, wingmanApplicationLifeCycle: ${JSON.stringify(wingmanApplicationLifeCycle)}`);
+          let isWingmanApplicationOnCreateLifeCycle: boolean = wingmanApplicationLifeCycle.some((item) => {
+            return item === "onCreate"
+          })
+          let isWingmanApplicationOnWindowStageCreateLifeCycle: boolean = wingmanApplicationLifeCycle.some((item) => {
+            return item === "onWindowStageCreate"
+          })
+          let isWingmanApplicationOnForegroundLifeCycle: boolean = wingmanApplicationLifeCycle.some((item) => {
+            return item === "onForeground"
+          })
+          let isTestApplicationOnForegroundLifeCycle: boolean = testApplicationLifeCycle.some((item) => {
+            return item === "onForeground"
+          })
+          let isTestApplicationOnBackgroundLifeCycle: boolean = testApplicationLifeCycle.some((item) => {
+            return item === "onBackground"
+          })
+          console.log(TAG +
+            `isWingmanApplicationOnCreateLifeCycle: ${isWingmanApplicationOnCreateLifeCycle}, isWingmanApplicationOnWindowStageCreateLifeCycle: ${isWingmanApplicationOnWindowStageCreateLifeCycle}, isWingmanApplicationOnForegroundCreateLifeCycle: ${isWingmanApplicationOnForegroundLifeCycle}, isTestApplicationOnForegroundLifeCycle: ${isTestApplicationOnForegroundLifeCycle}, isTestApplicationOnBackgroundLifeCycle: ${isTestApplicationOnBackgroundLifeCycle}`);
+          if (isWingmanApplicationOnCreateLifeCycle && isWingmanApplicationOnWindowStageCreateLifeCycle &&
+            isWingmanApplicationOnForegroundLifeCycle && isTestApplicationOnForegroundLifeCycle &&
+            isTestApplicationOnBackgroundLifeCycle) {
+            console.log(TAG + "SUB_Ability_AbilityRuntime_MissionManager_MissionTask_8300 checkLifeCycle successfully");
+            await missionManager.moveMissionToFront(wingmanMissionID)
+              .then(() => {
+                console.log(TAG + `moveMissionToFront(${wingmanMissionID}) finish`);
+                expect().assertFail();
+              })
+              .catch((e: BusinessError) => {
+                console.error(TAG + `moveMissionToFront(${wingmanMissionID}) error: ` + JSON.stringify(e));
+                expect(e.code).assertEqual(16000050);
+              });
+          } else {
+            console.error(TAG + "SUB_Ability_AbilityRuntime_MissionManager_MissionTask_8300 checkLifeCycle fail");
+            expect().assertFail();
+          }
         } else {
-          console.error(TAG + "SUB_Ability_AbilityRuntime_MissionManager_MissionTask_8300 checkLifeCycle fail");
           expect().assertFail();
         }
-      } else {
+      } catch (e) {
+        console.error(TAG + "SUB_Ability_AbilityRuntime_MissionManager_MissionTask_8300 error: " + JSON.stringify(e));
         expect().assertFail();
       }
     })
