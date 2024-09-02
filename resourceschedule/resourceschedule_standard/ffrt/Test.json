@@ -23,6 +23,9 @@
             "run-command": [
                 "power-shell wakeup",
                 "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "reboot"
             ]
         }
     ]
