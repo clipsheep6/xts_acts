@@ -93,12 +93,12 @@ export default function swiperAnimationJsunit() {
       let left = swiperAnimation.left;
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0024 value is" + left + " --" + right + "--" + top + "--" + bottom);
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       // to swiper
       let driver = await Driver.create();
       await CommonFunc.sleep(500);
-      await driver.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+      await driver.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
       await CommonFunc.sleep(1000);
       // check the onAnimation triggers
       let strJson = getInspectorByKey('animationEnd');
@@ -152,14 +152,14 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0012 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       // to swiper
       let driver2 = await Driver.create();
       await CommonFunc.sleep(500);
-      await driver2.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+      await driver2.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
       await CommonFunc.sleep(500);
-      await driver2.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+      await driver2.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
       await CommonFunc.sleep(500);
        // check the onAnimation triggers
       let strJson = getInspectorByKey('animationStart');
@@ -213,7 +213,7 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0027 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       //to autoplay
       globalThis.value.message.notify({name:'autoPlay',value:true})
@@ -276,7 +276,7 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0019 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       //to autoplay
       globalThis.value.message.notify({name:'autoPlay',value:true})
@@ -288,9 +288,9 @@ export default function swiperAnimationJsunit() {
       await driver.longClick(Math.round(right/2),Math.round(bottom + height/2));
       await CommonFunc.sleep(500);
      // to swipe for duration
-      await driver.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+      await driver.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
       await CommonFunc.sleep(500);
-      await driver.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+      await driver.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
       await CommonFunc.sleep(500);
 
        // check the onAnimation triggers
@@ -344,7 +344,7 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0022 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       //to autoplay
       globalThis.value.message.notify({name:'autoPlay',value:true})
@@ -401,7 +401,7 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0023 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       // click the previous Button
       let driver = await Driver.create();
@@ -466,7 +466,7 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0011 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       // click the previous Button
       let driver = await Driver.create();
@@ -532,7 +532,7 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0028 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       // click the previous Button
       let driver = await Driver.create();
@@ -550,7 +550,7 @@ export default function swiperAnimationJsunit() {
       await CommonFunc.sleep(1000);
 
      // press screen to swipe
-      await driver.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+      await driver.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
       await CommonFunc.sleep(500);  
 
 
@@ -607,7 +607,7 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0020 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       // click the previous Button
       let driver = await Driver.create();
@@ -625,7 +625,7 @@ export default function swiperAnimationJsunit() {
       await CommonFunc.sleep(1000);
 
      // press screen to swipe
-      await driver.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+      await driver.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
       await CommonFunc.sleep(3000);
      await driver.swipe(Math.round(left + width*0.1),Math.round(bottom + height/2),Math.round(left + width*0.1),Math.round(bottom + height/2));
 
@@ -684,14 +684,14 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationGestureJsunit_0016 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
     
       // to swiper
       let driver = await Driver.create();
       await CommonFunc.sleep(500);
      // getComponentRectOnScreen
-     await driver.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+     await driver.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
 
       await CommonFunc.sleep(1000);
        // check the onAnimation triggers
@@ -746,12 +746,12 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0017 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       // to swiper
       let driver = await Driver.create();
       await CommonFunc.sleep(500);
-      await driver.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+      await driver.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
       await CommonFunc.sleep(500);
        // check the onAnimation triggers
       let strJson = getInspectorByKey('GestureSwipe');
@@ -811,7 +811,7 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0019 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       //to autoplay
       globalThis.value.message.notify({name:'autoPlay',value:true})
@@ -819,7 +819,7 @@ export default function swiperAnimationJsunit() {
       // to swiper
       let driver = await Driver.create();
       await CommonFunc.sleep(500);
-      await driver.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+      await driver.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
       await CommonFunc.sleep(500);
        // check the onAnimation triggers
       let strJson = getInspectorByKey('GestureSwipe');
@@ -879,7 +879,7 @@ export default function swiperAnimationJsunit() {
       let bottom = swiperAnimation.bottom;
       console.info("swiperAnimationJsunit_0020 value is" + left + " --" + right + "--" + top + "--" + bottom);
        
-      let height = top -bottom;
+      let height = Math.abs(top - bottom);
       let width = right - left;
       let driver = await Driver.create();
       await CommonFunc.sleep(500);
@@ -896,7 +896,7 @@ export default function swiperAnimationJsunit() {
       await CommonFunc.sleep(1000);
 
       // to swiper
-      await driver.swipe(Math.round(right- width*0.1),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
+      await driver.swipe(Math.round(right- width*0.4),Math.round(bottom + height/2),0,Math.round(bottom + height/2));
       await CommonFunc.sleep(3000);
        //check the onAnimation triggers
       let strJson = getInspectorByKey('GestureSwipe');

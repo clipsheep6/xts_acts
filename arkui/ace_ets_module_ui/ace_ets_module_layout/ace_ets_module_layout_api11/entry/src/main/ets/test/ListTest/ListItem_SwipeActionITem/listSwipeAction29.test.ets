@@ -90,7 +90,7 @@ export default function listSwipeAction29Jsunit() {
 
       // swipe to left
       await driver.swipe(
-        Math.round(globalThis.winLeft + vp2px(240)), Math.round(globalThis.winTop + vp2px(108)), Math.round(globalThis.winLeft + vp2px(230)), Math.round(globalThis.winTop + vp2px(108))
+        Math.round(globalThis.winLeft + vp2px(240)), Math.round(globalThis.winTop + vp2px(108)), Math.round(globalThis.winLeft + vp2px(140)), Math.round(globalThis.winTop + vp2px(108))
       );
       await CommonFunc.sleep(4000);
       let textSwipeOffset2 = getInspectorByKey('swipe29Offset');
@@ -121,7 +121,7 @@ export default function listSwipeAction29Jsunit() {
 
       // swipe the listItem to right
       await driver.swipe(
-        Math.round(globalThis.winLeft + vp2px(50)), Math.round(globalThis.winTop + vp2px(108)), Math.round(globalThis.winLeft + vp2px(300)), Math.round(globalThis.winTop + vp2px(108))
+        Math.round(globalThis.winLeft + vp2px(50)), Math.round(globalThis.winTop + vp2px(108)), Math.round(globalThis.winLeft + vp2px(150)), Math.round(globalThis.winTop + vp2px(108))
       );
       await CommonFunc.sleep(5000);
       // judge the swipeActionOffset
@@ -141,7 +141,7 @@ export default function listSwipeAction29Jsunit() {
 
       // swipe to left
       await driver.swipe(
-        Math.round(globalThis.winLeft + vp2px(300)), Math.round(globalThis.winTop + vp2px(108)), Math.round(globalThis.winLeft + vp2px(100)), Math.round(globalThis.winTop + vp2px(108))
+        Math.round(globalThis.winLeft + vp2px(200)), Math.round(globalThis.winTop + vp2px(108)), Math.round(globalThis.winLeft + vp2px(100)), Math.round(globalThis.winTop + vp2px(108))
       );
       await CommonFunc.sleep(5000);
       let textSwipeOffset2 = getInspectorByKey('swipe29Offset');
