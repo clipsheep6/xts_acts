@@ -22,7 +22,7 @@ import { commonEventManager } from '@kit.BasicServicesKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator()
 const TAG = 'MissionManagerTestTAG  ------>  ';
-const TESTAPPLICATIONBUNDLENAME: string = "net.openvalley.xts_acts_project";
+const TESTAPPLICATIONBUNDLENAME: string = "com.hits.missionmanager";
 const WINGMANAPPLICATIONBUNDLENAME: string = "com.ohos.missionmanagerwingman";
 let testApplicationLifeCycle: string[] = [];
 let wingmanApplicationLifeCycle: string[] = [];
