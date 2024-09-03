@@ -926,7 +926,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_timer_start_0001', 0, () => {
+    it('ffrt_timer_start_0001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_timer_start_0001();
       expect(flag).assertEqual(0);
@@ -940,7 +940,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_timer_cancel_0001', 0, () => {
+    it('ffrt_timer_cancel_0001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_timer_cancel_0001();
       expect(flag).assertEqual(0);
@@ -954,7 +954,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_timer_start_abnormal_0001', 0, () => {
+    it('ffrt_timer_start_abnormal_0001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_timer_start_abnormal_0001();
       expect(flag).assertEqual(0);
@@ -968,7 +968,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_loop_abnormal_0001', 0, () => {
+    it('ffrt_loop_abnormal_0001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_loop_abnormal_0001();
       expect(flag).assertEqual(0);
@@ -982,7 +982,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_loop_abnormal_0002', 0, () => {
+    it('ffrt_loop_abnormal_0002', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_loop_abnormal_0002();
       expect(flag).assertEqual(0);
@@ -996,7 +996,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_queue_parallel_api_0001', 0, () => {
+    it('ffrt_queue_parallel_api_0001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_queue_parallel_api_0001();
       expect(flag).assertEqual(0);
@@ -1010,7 +1010,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_queue_parallel_api_0002', 0, () => {
+    it('ffrt_queue_parallel_api_0002', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_queue_parallel_api_0002();
       expect(flag).assertEqual(0);
@@ -1024,7 +1024,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_queue_parallel_api_0003', 0, () => {
+    it('ffrt_queue_parallel_api_0003', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_queue_parallel_api_0003();
       expect(flag).assertEqual(0);
@@ -1038,7 +1038,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_queue_parallel_api_0004', 0, () => {
+    it('ffrt_queue_parallel_api_0004', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_queue_parallel_api_0004();
       expect(flag).assertEqual(0);
@@ -1052,7 +1052,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('queue_parallel_cancel_0001', 0, () => {
+    it('queue_parallel_cancel_0001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queue_parallel_cancel_0001();
       expect(flag).assertEqual(0);
@@ -1066,7 +1066,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('queue_parallel_cancel_0002', 0, () => {
+    it('queue_parallel_cancel_0002', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queue_parallel_cancel_0002();
       expect(flag).assertEqual(0);
@@ -1080,7 +1080,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('queue_parallel_0001', 0, () => {
+    it('queue_parallel_0001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queue_parallel_0001();
       expect(flag).assertEqual(0);
@@ -1094,7 +1094,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('queue_parallel_0002', 0, () => {
+    it('queue_parallel_0002', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queue_parallel_0002();
       expect(flag).assertEqual(0);
@@ -1122,7 +1122,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_loop_normal_0003', 0, () => {
+    it('ffrt_loop_normal_0003', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_loop_normal_0003();
       expect(flag).assertEqual(0);
@@ -1206,7 +1206,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('recursiveMutexAbnormalParamTest001', 0, () => {
+    it('recursiveMutexAbnormalParamTest001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.recursiveMutexAbnormalParamTest001();
       expect(flag).assertEqual(0);
@@ -1220,7 +1220,7 @@ export default function ffrtTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('recursiveMutexAbnormalInvalidParamTest001', 0, () => {
+    it('recursiveMutexAbnormalInvalidParamTest001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.recursiveMutexAbnormalInvalidParamTest001();
       expect(flag).assertEqual(0);

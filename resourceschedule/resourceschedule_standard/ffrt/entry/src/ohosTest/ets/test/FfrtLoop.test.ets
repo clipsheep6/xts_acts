@@ -44,7 +44,7 @@ export default function ffrtLoopTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_loop_0001', 0, () => {
+    it('ffrt_loop_0001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_loop_0001();
       expect(flag).assertEqual(0);
@@ -58,7 +58,7 @@ export default function ffrtLoopTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_loop_0002', 0, () => {
+    it('ffrt_loop_0002', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_loop_0002();
       expect(flag).assertEqual(0);

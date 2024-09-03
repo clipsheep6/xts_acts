@@ -44,7 +44,7 @@ export default function ffrtQueueDelayTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('queueDelayTest001', 0, () => {
+    it('queueDelayTest001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queueDelayTest001();
       expect(flag).assertEqual(0);
@@ -57,7 +57,7 @@ export default function ffrtQueueDelayTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('queueDelayTest002', 0, () => {
+    it('queueDelayTest002', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queueDelayTest002();
       expect(flag).assertEqual(0);
@@ -70,7 +70,7 @@ export default function ffrtQueueDelayTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('queueDfxTest005', 0, () => {
+    it('queueDfxTest005', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queueDfxTest005();
       expect(flag).assertEqual(0);
@@ -83,7 +83,7 @@ export default function ffrtQueueDelayTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('queueDelayTest005', 0, () => {
+    it('queueDelayTest005', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queueDelayTest005();
       expect(flag).assertEqual(0);
@@ -96,7 +96,7 @@ export default function ffrtQueueDelayTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('queueTest001', 0, () => {
+    it('queueTest001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queueTest001();
       expect(flag).assertEqual(9);
@@ -109,7 +109,7 @@ export default function ffrtQueueDelayTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('queueWaitTest001', 0, () => {
+    it('queueWaitTest001', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.queueWaitTest001();
       expect(flag).assertEqual(0);
@@ -122,7 +122,7 @@ export default function ffrtQueueDelayTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('ffrt_timer_start_0002', 0, () => {
+    it('ffrt_timer_start_0002', 0, async () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       let flag = entry.ffrt_timer_start_0002();
       expect(flag).assertEqual(0);
