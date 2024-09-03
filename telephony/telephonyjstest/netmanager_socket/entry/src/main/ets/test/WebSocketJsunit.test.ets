@@ -34,7 +34,7 @@ export default function webSocketJsunit() {
         done();
         return;
       }
-      var mWebSocket = webSocket.createWebSocket();
+      let mWebSocket = webSocket.createWebSocket();
       expect(mWebSocket != null).assertTrue();
       console.log("************* Telephony_WebSocket_WebSocket_createWebSocket_0100 Test end*************");
       done();

@@ -14,7 +14,6 @@
  */
 import {describe, it, expect} from '@ohos/hypium';
 import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
 
 function expectFalse() {
   try {
@@ -25,7 +24,7 @@ function expectFalse() {
 };
 
 export default function HttpRequestOptionsJsunit() {
-  describe("HttpRequestOptionsJsunitTest", () => {
+  describe("HttpRequestOptionsJsunitTest", function () {
 
     /**
      * @tc.number Telephony_Http_HttpRequestOptions_method_0100
@@ -35,7 +34,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_http_HttpRequestOptions_method_0100", 0, async (done: Function) => {
+    it("Telephony_http_HttpRequestOptions_method_0100", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0100';
       console.log("-----------------------HttpRequestOptions_method Test is starting-----------------------");
       try {
@@ -69,7 +68,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_http_HttpRequestOptions_method_0200", 0, async (done: Function) => {
+    it("Telephony_http_HttpRequestOptions_method_0200", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0100';
       console.log("-----------------------HttpRequestOptions_method_01 Test is starting-----------------------");
       try {
@@ -87,7 +86,7 @@ export default function HttpRequestOptionsJsunit() {
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_method_01 Test end-----------------------");
           done();
-        }).catch((error: BusinessError) => {
+        }).catch(error => {
           console.info(casename+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
@@ -107,7 +106,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_extraData_0100", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_extraData_0100", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0200';
       console.log("-----------------------HttpRequestOptions_extraData Test is starting-----------------------");
       try {
@@ -149,7 +148,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_extraData_0200", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_extraData_0200", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0200';
       console.log("-----------------------HttpRequestOptions_extraData_01 Test is starting-----------------------");
       try {
@@ -175,7 +174,7 @@ export default function HttpRequestOptionsJsunit() {
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_extraData_01 Test end-----------------------");
           done();
-        }).catch((error: BusinessError) => {
+        }).catch(error => {
           console.info(casename+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
@@ -195,7 +194,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_header_0100", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_header_0100", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header Test is starting-----------------------");
       try {
@@ -235,7 +234,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_header_0200", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_header_0200", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header_01 Test is starting-----------------------");
       try {
@@ -259,7 +258,7 @@ export default function HttpRequestOptionsJsunit() {
             expectFalse();
             done();
           }
-        }).catch((error: BusinessError) => {
+        }).catch(error => {
           console.info(casename+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
@@ -278,7 +277,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_header_0300", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_header_0300", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header_02 Test is starting-----------------------");
       try {
@@ -318,7 +317,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_header_0400", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_header_0400", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header_03 Test is starting-----------------------");
       try {
@@ -342,7 +341,7 @@ export default function HttpRequestOptionsJsunit() {
             expectFalse();
             done();
           }
-        }).catch((error: BusinessError) => {
+        }).catch(error => {
           console.info(casename+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
@@ -362,7 +361,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_readTimeout_0100", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_readTimeout_0100", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0400';
       console.log("-----------------------HttpRequestOptions_readTimeout Test is starting-----------------------");
       try {
@@ -374,10 +373,6 @@ export default function HttpRequestOptionsJsunit() {
           connectTimeout: 60
         }
         let httpRequest = http.createHttp();
-        if (httpRequestOptions.connectTimeout != undefined && httpRequestOptions.connectTimeout < 60000) {
-          done();
-          return;
-        }
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 408).assertTrue();
@@ -400,7 +395,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_readTimeout_0200", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_readTimeout_0200", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0400';
       console.log("-----------------------HttpRequestOptions_readTimeout_01 Test is starting-----------------------");
       try {
@@ -412,17 +407,13 @@ export default function HttpRequestOptionsJsunit() {
           connectTimeout: 60
         }
         let httpRequest = http.createHttp();
-        if (httpRequestOptions.connectTimeout != undefined && httpRequestOptions.connectTimeout < 60000) {
-          done();
-          return;
-        }
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
           expect(data.responseCode == 408).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_readTimeout_01 Test end-----------------------");
           done();
-        }).catch((error: BusinessError) => {
+        }).catch(error => {
           console.info(casename+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
@@ -442,7 +433,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_connectTimeout_0100", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_connectTimeout_0100", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0500';
       console.log("-----------------------HttpRequestOptions_connectTimeout Test is starting-----------------------");
       try {
@@ -452,10 +443,6 @@ export default function HttpRequestOptionsJsunit() {
           header: "content-type': 'application/json",
           readTimeout: 60,
           connectTimeout: 0.1
-        }
-        if (httpRequestOptions.connectTimeout != undefined && httpRequestOptions.connectTimeout < 60000) {
-          done();
-          return;
         }
         let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
@@ -481,7 +468,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_connectTimeout_0200", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_connectTimeout_0200", 0, async function (done) {
       let casename = 'Telephony_Http_HttpRequestOptions_0500';
       console.log("-----------------------HttpRequestOptions_connectTimeout_01 Test is starting-----------------------");
       try {
@@ -492,10 +479,6 @@ export default function HttpRequestOptionsJsunit() {
           readTimeout: 60,
           connectTimeout: 0.1
         }
-        if (httpRequestOptions.connectTimeout != undefined && httpRequestOptions.connectTimeout < 60000) {
-          done();
-          return;
-        }
         let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
@@ -503,7 +486,7 @@ export default function HttpRequestOptionsJsunit() {
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_connectTimeout_01 Test end-----------------------");
           done();
-        }).catch((error: BusinessError) => {
+        }).catch(error => {
           console.info(casename+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
@@ -523,7 +506,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_UsingProxy_0100", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_UsingProxy_0100", 0, async function (done) {
       let httpRequest = http.createHttp();
       httpRequest.request(
         "https://www.baidu.com/",
@@ -554,7 +537,7 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("Telephony_Http_HttpRequestOptions_UsingProxy_0200", 0, async (done: Function) => {
+    it("Telephony_Http_HttpRequestOptions_UsingProxy_0200", 0, async function (done) {
       let httpRequest = http.createHttp();
       let ExclusionList = ""
       let array = ExclusionList.split(',');
