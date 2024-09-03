@@ -37,7 +37,7 @@ export default function abilityTest() {
    * @tc.level     : Level 3
    */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1300', 0, async (done: Function) => {
-      console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1300 start!');
+      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
       let moduleContext: common.Context;
       let context = null
       let moduleName = 'entry'
@@ -53,7 +53,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1300 end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
         done();
       }
     })
@@ -66,7 +66,7 @@ export default function abilityTest() {
    * @tc.level     : Level 3
    */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400', 0, async (done: Function) => {
-      console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400 start!');
+      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
       let moduleContext: common.Context;
       let context = undefined
       let moduleName = 'entry'
@@ -82,7 +82,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400 end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
         done();
       }
     })
@@ -95,7 +95,7 @@ export default function abilityTest() {
    * @tc.level     : Level 3
    */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1500', 0, async (done: Function) => {
-      console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1500 start!');
+      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
       let moduleContext: common.Context;
       let context = abilityDelegator.getAppContext();
       let moduleName = null
@@ -111,7 +111,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1500 end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
         done();
       }
     })
@@ -124,7 +124,7 @@ export default function abilityTest() {
    * @tc.level     : Level 3
    */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1600', 0, async (done: Function) => {
-      console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1600 start!');
+      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
       let moduleContext: common.Context;
       let context = abilityDelegator.getAppContext();
       let moduleName = undefined
@@ -140,7 +140,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1600 end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
         done();
       }
     })
@@ -153,7 +153,7 @@ export default function abilityTest() {
    * @tc.level     : Level 3
    */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1700', 0, async (done: Function) => {
-      console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1700 start!');
+      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
       let moduleContext: common.Context;
       let context = abilityDelegator.getAppContext();
       let moduleName = 'x&x'
@@ -169,7 +169,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1700 end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
         done();
       }
     })
@@ -182,7 +182,7 @@ export default function abilityTest() {
    * @tc.level     : Level 3
    */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1800', 0, async (done: Function) => {
-      console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1800 start!');
+      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
       let moduleContext: common.Context;
       let context = abilityDelegator.getAppContext();
       let moduleName = ''
@@ -198,7 +198,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1800 end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
         done();
       }
     })
