@@ -4549,11 +4549,10 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        {"createAudioStreamBuilder", nullptr, CreateAudioStreamBuilder,
-            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"createAudioStreamBuilder", nullptr, CreateAudioStreamBuilder, nullptr, nullptr, nullptr, 
+        napi_default, nullptr},
         {"audioCaptureGenerate", nullptr, AudioCaptureGenerate, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGenerateErr", nullptr, AudioCaptureGenerateErr,
-            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGenerateErr", nullptr, AudioCaptureGenerateErr, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCaptureStart", nullptr, AudioCaptureStart, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCaptureStartErr", nullptr, AudioCaptureStartErr, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCapturePause", nullptr, AudioCapturePause, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -4611,8 +4610,9 @@ static napi_value Init(napi_env env, napi_value exports)
         {"audioStreamBuilderSetCapturerCallback", nullptr, AudioStreamBuilderSetCapturerCallback, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCaptureGetChannelCount", nullptr, AudioCaptureGetChannelCount, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRenderGetChannelCount", nullptr, AudioRenderGetChannelCount, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioStreamBuilderSetFrameSizeInCallback", nullptr, AudioStreamBuilderSetFrameSizeInCallback, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererGetVolume_01", nullptr, AudioRendererGetVolume_01,
+        {"audioStreamBuilderSetFrameSizeInCallback", nullptr, AudioStreamBuilderSetFrameSizeInCallback, nullptr, 
+            nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererGetVolume_01", nullptr, AudioRendererGetVolume_01, 
             nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRendererSetVolume_01", nullptr, AudioRendererSetVolume_01,
             nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -4844,7 +4844,6 @@ static napi_value Init(napi_env env, napi_value exports)
 EXTERN_C_END
 
 /*
-
  * module define
  */
 static napi_module g_module = {
