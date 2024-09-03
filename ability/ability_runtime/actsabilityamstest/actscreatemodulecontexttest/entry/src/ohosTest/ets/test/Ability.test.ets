@@ -30,7 +30,7 @@ export default function abilityTest() {
     });
     /*
    * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1300
-   * @tc.name      : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1300
+   * @tc.name      : CreateModuleContextWhenContextIsNullTest
    * @tc.desc      : use CreateModuleContext when context = null
    * @tc.size      : MediumTest
    * @tc.type      : Function
@@ -59,7 +59,7 @@ export default function abilityTest() {
     })
     /*
    * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400
-   * @tc.name      : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400
+   * @tc.name      : CreateModuleContextWhenContextIsUndefinedTest
    * @tc.desc      : use CreateModuleContext when context = undefined
    * @tc.size      : MediumTest
    * @tc.type      : Function
@@ -88,7 +88,7 @@ export default function abilityTest() {
     })
     /*
    * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1500
-   * @tc.name      : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1500
+   * @tc.name      : CreateModuleContextWhenModuleNameIsNullTest
    * @tc.desc      : use CreateModuleContext when moduleName = null
    * @tc.size      : MediumTest
    * @tc.type      : Function
@@ -117,7 +117,7 @@ export default function abilityTest() {
     })
     /*
    * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1600
-   * @tc.name      : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1600
+   * @tc.name      : CreateModuleContextWhenModuleNameIsUndefinedTest
    * @tc.desc      : use CreateModuleContext when moduleName = undefined
    * @tc.size      : MediumTest
    * @tc.type      : Function
@@ -146,7 +146,7 @@ export default function abilityTest() {
     })
     /*
    * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1700
-   * @tc.name      : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1700
+   * @tc.name      : CreateModuleContextWithoutModuleNameTest
    * @tc.desc      : use CreateModuleContext without moduleName
    * @tc.size      : MediumTest
    * @tc.type      : Function
@@ -175,7 +175,7 @@ export default function abilityTest() {
     })
     /*
    * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1800
-   * @tc.name      : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1800
+   * @tc.name      : CreateModuleContextWhenModuleNameIs''Test
    * @tc.desc      : use CreateModuleContext when moduleName = ''
    * @tc.size      : MediumTest
    * @tc.type      : Function
