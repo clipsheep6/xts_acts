@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 HiHope Open Source Organization
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -53,7 +53,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
         done();
       }
     })
@@ -82,7 +82,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
         done();
       }
     })
@@ -111,7 +111,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
         done();
       }
     })
@@ -140,7 +140,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
         done();
       }
     })
@@ -169,7 +169,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
         done();
       }
     })
@@ -198,7 +198,7 @@ export default function abilityTest() {
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test end!');
+        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
         done();
       }
     })
