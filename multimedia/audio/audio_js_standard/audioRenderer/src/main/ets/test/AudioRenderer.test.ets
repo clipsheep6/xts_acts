@@ -2370,12 +2370,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-2C-48000-4SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
-      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2405,12 +2403,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-1C-8000-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
-      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2439,12 +2435,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-1C-16000-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
-      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2474,12 +2468,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-2C-24000-3SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
-      await sleep(100);
-      expect(resultFlag).assertTrue();
+      await sleep(100););
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2509,12 +2501,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-1C-44100-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
-      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2544,12 +2534,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-2C-48000-4SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
-      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2579,12 +2567,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-1C-8000-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
-      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2613,12 +2599,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-1C-16000-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
-      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2648,12 +2632,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-2C-24000-3SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
-      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2683,12 +2665,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-1C-44100-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
-      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -2718,12 +2698,10 @@ export default function audioRendererTest() {
         streamInfo: audioStreamInfo,
         rendererInfo: audioRendererInfo
       }
-      let resultFlag = true;
       let readPath = 'StarWars10s-1C-44100-2SW.wav'
       await getFdRead(readPath, done);
       await play(audioRendererOptions, filePath, done);
       await sleep(100);
-      expect(resultFlag).assertTrue();
       await closeFileDescriptor(readPath);
       done();
     })
@@ -4014,12 +3992,10 @@ export default function audioRendererTest() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0200
-     * @tc.name      : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0200
-     * @tc.desc      : SetInterruptMode mode 1 callback,is independent mode
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.name: SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0200
+     * @tc.desc: SetInterruptMode mode 1 callback,is independent mode
+     * @tc.type: FUNC
+     * @tc.require: Issue Number
      */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0200", 2, async function (done) {
       let audioStreamInfo = {
@@ -4055,12 +4031,10 @@ export default function audioRendererTest() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0300
-     * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0300
-     * @tc.desc:SetInterruptMode mode 0 promise,is public share mode
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.name: SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0300
+     * @tc.desc: SetInterruptMode mode 0 promise,is public mode
+     * @tc.type: FUNC
+     * @tc.require: Issue Number
      */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0300", 2, async function (done) {
       let audioStreamInfo = {
@@ -4092,12 +4066,10 @@ export default function audioRendererTest() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0400
      * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0400
      * @tc.desc:SetInterruptMode mode 1 promise,is independent mode
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.type: FUNC
+     * @tc.require: Issue Number
      */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0400", 2, async function (done) {
       let audioStreamInfo = {
@@ -4129,12 +4101,10 @@ export default function audioRendererTest() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0500
      * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0500
      * @tc.desc:SetInterruptMode mode 'invalid_parameter',will catch error with type error
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
+     * @tc.type: FUNC
+     * @tc.require: Issue Number
      */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0500", 2, async function (done) {
       let audioStreamInfo = {
@@ -4167,12 +4137,10 @@ export default function audioRendererTest() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0600
-     * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0600
-     * @tc.desc:SetInterruptMode mode 2,set it to default SHARE_MODE
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level 2
+    * @tc.name:SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0600
+    * @tc.desc:SetInterruptMode mode 2,set it to default SHARE_MODE
+    * @tc.type: FUNC
+    * @tc.require: Issue Number
     */
     it("SUB_MULTIMEDIA_AUDIO_SETINTERRUPTMODE_0600", 2, async function (done) {
       let audioStreamInfo = {
@@ -12952,17 +12920,21 @@ export default function audioRendererTest() {
       try {
         audioRenderer = await audio.createAudioRenderer(audioRendererOptions);
       } catch (err) {
+        console.info(`${TagFrmwkRender}: AudioRender Create : ERROR`);
+        expect(false).assertTrue();
       }
       try {
         audioRenderer.setSilentModeAndMixWithOthers(true);
         let data = audioRenderer.getSilentModeAndMixWithOthers();
         expect(data).assertEqual(true);
       } catch (err) {
+        console.info(`SUB_MULTIMEDIA_AUDIO_MEDIA_MUTE_PLAY_0008 : ERROR`);
+        expect(false).assertTrue();
       }
       audioRenderer.release().then(() => {
-        console.info(`AudioRenderer release : SUCCESS`);
+        console.info(`${TagFrmwkRender}: AudioRenderer release : SUCCESS`);
       }).catch((err) => {
-        console.info(`AudioRenderer release :ERROR : ${err.message}`);
+        console.info(`${TagFrmwkRender}: AudioRenderer release :ERROR : ${err.message}`);
       });
       console.info('afterAll called')
       done();
