@@ -46,6 +46,7 @@ static napi_value Freeifaddrs(napi_env env, napi_callback_info info)
         freeifaddrs(ifc);
     }
     int ret = FAIL;
+    //This interface is under security control, and the permission may be insufficient on some devices.
     if (errno == NO_ERR || errno == EACCES) {
         ret = SUCCESS;
     }
