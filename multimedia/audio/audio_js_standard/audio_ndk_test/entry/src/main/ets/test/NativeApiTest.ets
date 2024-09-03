@@ -1178,13 +1178,13 @@ export default function audioNDK() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0100
-     * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
-     * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level0
-     */
+        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0100
+        * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+        * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level0
+    */
     it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0100', 0, async function (done) {
       let a = myaudioNdk.audioRendererSetOnMarkReached_01();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0100 audioRendererSetOnMarkReached: ${a}`);
@@ -1193,13 +1193,13 @@ export default function audioNDK() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0200
-     * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
-     * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level0
-     */
+        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0200
+        * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+        * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level0
+    */
     it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0200', 0, async function (done) {
       let a = myaudioNdk.audioRendererSetOnMarkReached_02();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0200 audioRendererSetOnMarkReached: ${a}`);
@@ -1208,13 +1208,13 @@ export default function audioNDK() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0300
-     * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
-     * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level0
-     */
+        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0300
+        * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+        * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level0
+    */
     it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0300', 0, async function (done) {
       let a = myaudioNdk.audioRendererSetOnMarkReached_03();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0300 audioRendererSetOnMarkReached: ${a}`);
@@ -1223,13 +1223,13 @@ export default function audioNDK() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0400
-     * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
-     * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level0
-     */
+        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0400
+        * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+        * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level0
+    */
     it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0400', 0, async function (done) {
       let a = myaudioNdk.audioRendererSetOnMarkReached_04();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0400 audioRendererSetOnMarkReached: ${a}`);
@@ -1238,13 +1238,13 @@ export default function audioNDK() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0500
-     * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
-     * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level0
-     */
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0500
+            * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
     it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0500', 0, async function (done) {
       let a = myaudioNdk.audioRendererSetOnMarkReached_05();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0500 audioRendererSetOnMarkReached: ${a}`);
@@ -1253,13 +1253,13 @@ export default function audioNDK() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0700
-     * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
-     * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level0
-     */
+        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0700
+        * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+        * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level0
+    */
     it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0700', 0, async function (done) {
       let a = myaudioNdk.audioRendererSetOnMarkReached_07();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0700 audioRendererSetOnMarkReached: ${a}`);
@@ -1268,13 +1268,13 @@ export default function audioNDK() {
     })
 
     /*
-     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0800
-     * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
-     * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level0
-     */
+        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0800
+        * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+        * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+        * @tc.size      : MediumTest
+        * @tc.type      : Function
+        * @tc.level     : Level0
+    */
     it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0800', 0, async function (done) {
       let a = myaudioNdk.audioRendererSetOnMarkReached_08();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0800 audioRendererSetOnMarkReached: ${a}`);
@@ -1319,7 +1319,7 @@ export default function audioNDK() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level0
-  */
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0300', 0, async function (done) {
       let a = myaudioNdk.audioRendererCancelMark_03();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0300 audioRendererCancelMark: ${a}`);
@@ -1424,7 +1424,7 @@ export default function audioNDK() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level0
-  */
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0200', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerGetDevices_02();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0200 audioRoutingManagerGetDevices: ${a}`);
@@ -1490,7 +1490,7 @@ export default function audioNDK() {
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0600 audioRoutingManagerGetDevices: ${a}`);
       expect(a).assertEqual(TEST_PASS)
       done()
-    
+    })
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETDEVICES_0700
@@ -1506,7 +1506,6 @@ export default function audioNDK() {
       expect(a).assertEqual(TEST_PASS)
       done()
     })
-
     /**
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_MANAGER_GETMANAGER_0001
      * @tc.name      : get AudioManager with nullptr
@@ -1619,7 +1618,7 @@ export default function audioNDK() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level0
-    */
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0100', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_001();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0100 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
@@ -1634,7 +1633,7 @@ export default function audioNDK() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level0
-    */
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0200', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_002();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0200 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
@@ -1649,7 +1648,7 @@ export default function audioNDK() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level0
-    */
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0300', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_003();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0300 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
@@ -1664,12 +1663,12 @@ export default function audioNDK() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level0
-    */
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0400', 0, async function (done) {
-      let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_004();
-      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0400 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
-      expect(a).assertEqual(TEST_PASS)
-      done()
+        let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_004();
+        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0400 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
+        expect(a).assertEqual(TEST_PASS)
+        done()
     })
 
     /**
@@ -1688,13 +1687,13 @@ export default function audioNDK() {
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0600
-        * @tc.name      : registerDeviceChangeCallback with nullptr callback
-        * @tc.desc      : test OH_AudioRoutingManager_RegisterDeviceChangeCallback
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0600
+     * @tc.name      : registerDeviceChangeCallback with nullptr callback
+     * @tc.desc      : test OH_AudioRoutingManager_RegisterDeviceChangeCallback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0600', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_006();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0600 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
@@ -1703,13 +1702,13 @@ export default function audioNDK() {
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0700
-        * @tc.name      : registerDeviceChangeCallback with nullptr callback
-        * @tc.desc      : test OH_AudioRoutingManager_RegisterDeviceChangeCallback
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.leel     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0700
+     * @tc.name      : registerDeviceChangeCallback with nullptr callback
+     * @tc.desc      : test OH_AudioRoutingManager_RegisterDeviceChangeCallback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0700', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_007();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0700 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
@@ -1718,13 +1717,13 @@ export default function audioNDK() {
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0800
-        * @tc.name      : registerDeviceChangeCallback with nullptr callback
-        * @tc.desc      : test OH_AudioRoutingManager_RegisterDeviceChangeCallback
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0800
+     * @tc.name      : registerDeviceChangeCallback with nullptr callback
+     * @tc.desc      : test OH_AudioRoutingManager_RegisterDeviceChangeCallback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0800', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerRegisterDeviceChangeCallback_008();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_REGISTERDEVICECHANGECALLBACK_0800 audioRoutingManagerRegisterDeviceChangeCallback: ${a}`);
@@ -1733,13 +1732,13 @@ export default function audioNDK() {
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0100
-        * @tc.name      : unRegisterDeviceChangeCallback without register callback
-        * @tc.desc      : test OH_AudioRoutingManager_UnRegisterDeviceChangeCallback
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0100
+     * @tc.name      : unRegisterDeviceChangeCallback without register callback
+     * @tc.desc      : test OH_AudioRoutingManager_UnRegisterDeviceChangeCallback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0100', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerUnregisterDeviceChangeCallback_001();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0100 audioRoutingManagerUnRegisterDeviceChangeCallback: ${a}`);
@@ -1748,13 +1747,13 @@ export default function audioNDK() {
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0200
-        * @tc.name      : unRegisterDeviceChangeCallback without get audioRoutingManager
-        * @tc.desc      : test OH_AudioRoutingManager_UnRegisterDeviceChangeCallback
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0200
+     * @tc.name      : unRegisterDeviceChangeCallback without get audioRoutingManager
+     * @tc.desc      : test OH_AudioRoutingManager_UnRegisterDeviceChangeCallback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0200', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerUnregisterDeviceChangeCallback_002();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0200 audioRoutingManagerUnRegisterDeviceChangeCallback: ${a}`);
@@ -1763,13 +1762,13 @@ export default function audioNDK() {
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0300
-        * @tc.name      : unRegisterDeviceChangeCallback with nullptr callback
-        * @tc.desc      : test OH_AudioRoutingManager_UnRegisterDeviceChangeCallback
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0300
+     * @tc.name      : unRegisterDeviceChangeCallback with nullptr callback
+     * @tc.desc      : test OH_AudioRoutingManager_UnRegisterDeviceChangeCallback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0300', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerUnregisterDeviceChangeCallback_003();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_UNREGISTERDEVICECHANGECALLBACK_0300 audioRoutingManagerUnRegisterDeviceChangeCallback: ${a}`);
@@ -1778,13 +1777,13 @@ export default function audioNDK() {
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0100
-        * @tc.name      : release devices without get audioRoutingManager
-        * @tc.desc      : test OH_AudioRoutingManager_ReleaseDevices
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0100
+     * @tc.name      : release devices without get audioRoutingManager
+     * @tc.desc      : test OH_AudioRoutingManager_ReleaseDevices
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0100', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerReleaseDevices_001();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0100 audioRoutingManagerReleaseDevices: ${a}`);
@@ -1793,13 +1792,13 @@ export default function audioNDK() {
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0200
-        * @tc.name      : release devices with nullptr devices
-        * @tc.desc      : test OH_AudioRoutingManager_ReleaseDevices
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0200
+     * @tc.name      : release devices with nullptr devices
+     * @tc.desc      : test OH_AudioRoutingManager_ReleaseDevices
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0200', 0, async function (done) {
       let a = myaudioNdk.audioRoutingManagerReleaseDevices_002();
       console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_RELEASEDEVICES_0200 audioRoutingManagerReleaseDevices: ${a}`);
@@ -1808,453 +1807,453 @@ export default function audioNDK() {
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0100
-        * @tc.name      : get deviceType with all devices
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceType
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0100
+     * @tc.name      : get deviceType with all devices
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceType
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0100', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceType_001();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0100 audioAudioDeviceDescriptorGetDeviceType: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceType_001();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0100 audioAudioDeviceDescriptorGetDeviceType: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0200
-        * @tc.name      : get deviceType with nullptr devicetype
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceType
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0200
+     * @tc.name      : get deviceType with nullptr devicetype
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceType
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0200', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceType_002();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0200 audioAudioDeviceDescriptorGetDeviceType: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceType_002();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0200 audioAudioDeviceDescriptorGetDeviceType: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0300
-        * @tc.name      : get deviceType with nullptr descriptor
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceType
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0300
+     * @tc.name      : get deviceType with nullptr descriptor
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceType
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0300', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceType_003();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0300 audioAudioDeviceDescriptorGetDeviceType: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceType_003();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICETYPE_0300 audioAudioDeviceDescriptorGetDeviceType: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0100
-        * @tc.name      : get deviceRole with all devices
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceRole
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0100
+     * @tc.name      : get deviceRole with all devices
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceRole
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0100', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceRole_001();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0100 audioAudioDeviceDescriptorGetDeviceRole: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceRole_001();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0100 audioAudioDeviceDescriptorGetDeviceRole: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0200
-        * @tc.name      : get deviceRole with nullptr deviceRole
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceRole
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0200
+     * @tc.name      : get deviceRole with nullptr deviceRole
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceRole
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0200', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceRole_002();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0200 audioAudioDeviceDescriptorGetDeviceRole: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceRole_002();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0200 audioAudioDeviceDescriptorGetDeviceRole: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0300
-        * @tc.name      : get deviceRole with nullptr descriptor
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceRole
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0300
+     * @tc.name      : get deviceRole with nullptr descriptor
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceRole
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0300', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceRole_003();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0300 audioAudioDeviceDescriptorGetDeviceRole: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceRole_003();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEROLE_0300 audioAudioDeviceDescriptorGetDeviceRole: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0100
-        * @tc.name      : get deviceId with all devices
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceId
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0100
+     * @tc.name      : get deviceId with all devices
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceId
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0100', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceId_001();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0100 audioAudioDeviceDescriptorGetDeviceId: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceId_001();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0100 audioAudioDeviceDescriptorGetDeviceId: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0200
-        * @tc.name      : get deviceId with nullptr deviceId
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceId
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0200
+     * @tc.name      : get deviceId with nullptr deviceId
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceId
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0200', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceId_002();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0200 audioAudioDeviceDescriptorGetDeviceId: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceId_002();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0200 audioAudioDeviceDescriptorGetDeviceId: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0300
-        * @tc.name      : get deviceId with nullptr descriptor
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceId
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0300
+     * @tc.name      : get deviceId with nullptr descriptor
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceId
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0300', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceId_003();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0300 audioAudioDeviceDescriptorGetDeviceId: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceId_003();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEID_0300 audioAudioDeviceDescriptorGetDeviceId: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0100
-        * @tc.name      : get deviceName with all devices
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceName
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0100
+     * @tc.name      : get deviceName with all devices
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceName
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0100', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceName_001();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0100 audioAudioDeviceDescriptorGetDeviceName: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceName_001();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0100 audioAudioDeviceDescriptorGetDeviceName: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0200
-        * @tc.name      : get deviceName with nullptr deviceName
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceName
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0200
+     * @tc.name      : get deviceName with nullptr deviceName
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceName
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0200', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceName_002();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0200 audioAudioDeviceDescriptorGetDeviceName: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceName_002();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0200 audioAudioDeviceDescriptorGetDeviceName: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0300
-        * @tc.name      : get deviceName with nullptr descriptor
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceName
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0300
+     * @tc.name      : get deviceName with nullptr descriptor
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceName
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0300', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceName_003();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0300 audioAudioDeviceDescriptorGetDeviceName: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceName_003();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICENAME_0300 audioAudioDeviceDescriptorGetDeviceName: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0100
-        * @tc.name      : get deviceAddress with all devices
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceAddress
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0100
+     * @tc.name      : get deviceAddress with all devices
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceAddress
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0100', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceAddress_001();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0100 audioAudioDeviceDescriptorGetDeviceAddress: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceAddress_001();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0100 audioAudioDeviceDescriptorGetDeviceAddress: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0200
-        * @tc.name      : get deviceAddress with nullptr deviceAddress
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceAddress
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0200
+     * @tc.name      : get deviceAddress with nullptr deviceAddress
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceAddress
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0200', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceAddress_002();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0200 audioAudioDeviceDescriptorGetDeviceAddress: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceAddress_002();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0200 audioAudioDeviceDescriptorGetDeviceAddress: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0300
-        * @tc.name      : get deviceAddress with nullptr descriptor
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceAddress
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0300
+     * @tc.name      : get deviceAddress with nullptr descriptor
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceAddress
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0300', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceAddress_003();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0300 audioAudioDeviceDescriptorGetDeviceAddress: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceAddress_003();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEADDRESS_0300 audioAudioDeviceDescriptorGetDeviceAddress: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0100
-        * @tc.name      : get deviceSampleRates with all devices
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceSampleRates
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0100
+     * @tc.name      : get deviceSampleRates with all devices
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceSampleRates
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0100', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_001();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0100 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_001();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0100 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0200
-        * @tc.name      : get deviceSampleRates with nullptr deviceSampleRates
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceSampleRates
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0200
+     * @tc.name      : get deviceSampleRates with nullptr deviceSampleRates
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceSampleRates
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0200', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_002();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0200 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_002();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0200 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0300
-        * @tc.name      : get deviceSampleRates with nullptr size
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceSampleRates
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0300
+     * @tc.name      : get deviceSampleRates with nullptr size
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceSampleRates
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0300', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_003();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0300 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_003();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0300 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0400
-        * @tc.name      : get deviceSampleRates with nullptr descriptor
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceSampleRates
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0400
+     * @tc.name      : get deviceSampleRates with nullptr descriptor
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceSampleRates
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0400', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_004();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0400 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceSampleRates_004();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICESAMPLERATES_0400 audioAudioDeviceDescriptorGetDeviceSampleRates: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0100
-        * @tc.name      : get deviceChannelCounts with all devices
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceChannelCounts
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0100
+     * @tc.name      : get deviceChannelCounts with all devices
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceChannelCounts
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0100', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_001();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0100 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_001();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0100 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0200
-        * @tc.name      : get deviceChannelCounts with nullptr channelCounts
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceChannelCounts
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0200
+     * @tc.name      : get deviceChannelCounts with nullptr channelCounts
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceChannelCounts
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0200', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_002();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0200 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_002();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0200 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0300
-        * @tc.name      : get deviceChannelCounts with nullptr channelSize
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceChannelCounts
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0300
+     * @tc.name      : get deviceChannelCounts with nullptr channelSize
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceChannelCounts
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0300', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_003();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0300 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_003();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0300 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0400
-        * @tc.name      : get deviceChannelCounts with nullptr descriptor
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceChannelCounts
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0400
+     * @tc.name      : get deviceChannelCounts with nullptr descriptor
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceChannelCounts
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0400', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_004();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0400 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceChannelCounts_004();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICECHANNELCOUNTS_0400 audioAudioDeviceDescriptorGetDeviceChannelCounts: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0100
-        * @tc.name      : get deviceDisplayName with all devices
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceDisplayName
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0100
+     * @tc.name      : get deviceDisplayName with all devices
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceDisplayName
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0100', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceDisplayName_001();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0100 audioAudioDeviceDescriptorGetDeviceDisplayName: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceDisplayName_001();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0100 audioAudioDeviceDescriptorGetDeviceDisplayName: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0200
-        * @tc.name      : get deviceDisplayName with nullptr displayName
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceDisplayName
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0200
+     * @tc.name      : get deviceDisplayName with nullptr displayName
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceDisplayName
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0200', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceDisplayName_002();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0200 audioAudioDeviceDescriptorGetDeviceDisplayName: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceDisplayName_002();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0200 audioAudioDeviceDescriptorGetDeviceDisplayName: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0300
-        * @tc.name      : get deviceDisplayName with nullptr descriptor
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceDisplayName
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0300
+     * @tc.name      : get deviceDisplayName with nullptr descriptor
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceDisplayName
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0300', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceDisplayName_003();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0300 audioAudioDeviceDescriptorGetDeviceDisplayName: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceDisplayName_003();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEDISPLAYNAME_0300 audioAudioDeviceDescriptorGetDeviceDisplayName: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0100
-        * @tc.name      : get deviceEncodingTypes with all devices
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceEncodingTypes
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0100
+     * @tc.name      : get deviceEncodingTypes with all devices
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceEncodingTypes
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0100', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_001();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0100 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_001();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0100 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0200
-        * @tc.name      : get deviceEncodingTypes with nullptr encodingTypes
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceEncodingTypes
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0200
+     * @tc.name      : get deviceEncodingTypes with nullptr encodingTypes
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceEncodingTypes
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0200', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_002();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0200 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_002();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0200 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0300
-        * @tc.name      : get deviceEncodingTypes with nullptr encodingTypeSize
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceEncodingTypes
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0300
+     * @tc.name      : get deviceEncodingTypes with nullptr encodingTypeSize
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceEncodingTypes
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0300', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_003();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0300 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_003();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0300 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
-        * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0400
-        * @tc.name      : get deviceEncodingTypes with nullptr descriptor
-        * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceEncodingTypes
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level0
-    */
+     * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0400
+     * @tc.name      : get deviceEncodingTypes with nullptr descriptor
+     * @tc.desc      : test OH_AudioDeviceDescriptor_GetDeviceEncodingTypes
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level0
+     */
     it('SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0400', 0, async function (done) {
-        let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_004();
-        console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0400 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
-        expect(a).assertEqual(TEST_PASS)
-        done()
+      let a = myaudioNdk.audioAudioDeviceDescriptorGetDeviceEncodingTypes_004();
+      console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_ROUTING_MANAGER_GETDEVICEENCODINGTYPES_0400 audioAudioDeviceDescriptorGetDeviceEncodingTypes: ${a}`);
+      expect(a).assertEqual(TEST_PASS)
+      done()
     })
 
     /**
@@ -2271,8 +2270,8 @@ export default function audioNDK() {
       expect(a).assertEqual(0)
       done()
     })
-    
-    /**
+
+   /**
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_APPLICATION_INTERNAL_RECORDING_0004
      * @tc.name      : Set Renderer Privacy with Internal Recording
      * @tc.desc      : test Renderer Privacy with Internal Recording
@@ -2301,7 +2300,7 @@ export default function audioNDK() {
       expect(a).assertEqual(0)
       done()
     })
-    
+
     /**
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_STREAM_BUILDER_SET_RENDERER_WRITE_DATA_CALLBACK_0100
      * @tc.name      : set rendererWriteDataCallback with VALID result after create audioStreamBuilder
