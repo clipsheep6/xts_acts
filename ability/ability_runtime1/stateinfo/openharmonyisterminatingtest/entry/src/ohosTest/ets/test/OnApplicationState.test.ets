@@ -439,6 +439,7 @@ export default function onApplicationState() {
         let step3onProcessCreated = false;
         let step3onAbilityStateChanged = false;
         let step3onAbilityStateChangedStep2 = false;
+        let step3onAbilityStateChangedCurrent = false;
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
           onAppStarted(appStateData: appManager.AppStateData): void {
@@ -446,9 +447,11 @@ export default function onApplicationState() {
           onAppStopped(appStateData: appManager.AppStateData): void {
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            console.log('zhanghan', 'onForegroundApplicationChangeds ' + JSON.stringify(appStateData));
             step2onForegroundApplicationChanged = getAppStateData(appStateData,
               step2onForegroundApplicationChanged, 2, appEmptyWant.bundleName);
+
+            step3onAbilityStateChangedCurrent = getAppStateData(appStateData,
+              step3onAbilityStateChangedCurrent, 2, featureAbilityWant.bundleName);
 
             step2onForegroundApplicationChangedCurrent = getAppStateData(appStateData,
               step2onForegroundApplicationChangedCurrent, 4, currentWant.bundleName);
@@ -509,6 +512,7 @@ export default function onApplicationState() {
           expect(step2onForegroundApplicationChanged).assertTrue();
           expect(step2onAbilityStateChangedCurrent).assertTrue();
           expect(step2onForegroundApplicationChangedCurrent).assertTrue();
+          step3onAbilityStateChangedCurrent = false;
           // 第3步
           await abilityDelegator.startAbility(featureAbilityWant);
           await sleep(1000);
@@ -518,10 +522,12 @@ export default function onApplicationState() {
             step3onProcessCreated ${step3onProcessCreated}
             step3onAbilityStateChanged ${step3onAbilityStateChanged}
             step3onAbilityStateChangedStep2 ${step3onAbilityStateChangedStep2}
+            step3onAbilityStateChangedCurrent ${step3onAbilityStateChangedCurrent}
             `);
           expect(step3onProcessCreated).assertFalse();
           expect(step3onAbilityStateChanged).assertTrue();
           expect(step3onAbilityStateChangedStep2).assertTrue();
+          expect(step3onAbilityStateChangedCurrent).assertTrue();
         } catch (e) {
           hilog.error(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1400 error,
@@ -549,6 +555,7 @@ export default function onApplicationState() {
         let step2onForegroundApplicationChangedCurrent = false;
         //第3步
         let step3onAbilityStateChanged = false;
+        let step3onForegroundApplicationChanged = false;
         let step3onAbilityStateChangedStep2 = false;
         // 注册监听
         let appState: appManager.ApplicationStateObserver = {
@@ -557,9 +564,11 @@ export default function onApplicationState() {
           onAppStopped(appStateData: appManager.AppStateData): void {
           },
           onForegroundApplicationChanged(appStateData: appManager.AppStateData): void {
-            console.log('zhanghan', 'onForegroundApplicationChangeds ' + JSON.stringify(appStateData));
             step2onForegroundApplicationChanged = getAppStateData(appStateData,
               step2onForegroundApplicationChanged, 2, featureAbilityWant.bundleName);
+
+            step3onForegroundApplicationChanged = getAppStateData(appStateData,
+              step3onForegroundApplicationChanged, 2, featureAbilityWant2.bundleName);
 
             step2onForegroundApplicationChangedCurrent = getAppStateData(appStateData,
               step2onForegroundApplicationChangedCurrent, 4, currentWant.bundleName);
@@ -616,6 +625,8 @@ export default function onApplicationState() {
           expect(step2onForegroundApplicationChanged).assertTrue();
           expect(step2onAbilityStateChangedCurrent).assertTrue();
           expect(step2onForegroundApplicationChangedCurrent).assertTrue();
+
+          step3onForegroundApplicationChanged = false;
           // 第3步
           context!.startAbility(featureAbilityWant2);
           await sleep(1000);
@@ -623,9 +634,11 @@ export default function onApplicationState() {
           hilog.info(Domain, TAG,
             `SUB_Ability_AbilityRuntime_ABILITY_StateInfo_OpenHarmonyIsTerminating_1600
             step3onForegroundApplicationChangedCurrent ${step3onAbilityStateChanged}
+            step3onForegroundApplicationChanged ${step3onForegroundApplicationChanged}
             step3onAbilityStateChangedState5 ${step3onAbilityStateChangedStep2}
             `);
           expect(step3onAbilityStateChanged).assertTrue();
+          expect(step3onForegroundApplicationChanged).assertTrue();
           expect(step3onAbilityStateChangedStep2).assertTrue();
         } catch (e) {
           hilog.error(Domain, TAG,
