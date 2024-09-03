@@ -29,6 +29,7 @@ static napi_value Getifaddrs(napi_env env, napi_callback_info info)
 {
     struct ifaddrs *ifc;
     int ret = getifaddrs(&ifc);
+    //This interface is under security control, and the permission may be insufficient on some devices.
     if (ret == FAIL && errno == EACCES) {
         ret = NO_ERR;
     }
