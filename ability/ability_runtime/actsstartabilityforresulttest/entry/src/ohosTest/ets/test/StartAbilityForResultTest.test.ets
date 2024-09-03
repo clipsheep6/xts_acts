@@ -13,16 +13,15 @@
  * limitations under the License.
  */
 import { describe, afterEach, it, expect } from '@ohos/hypium'
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import hilog from '@ohos.hilog';
 import { Driver, ON } from '@ohos.UiTest';
 import systemParameterEnhance from '@ohos.systemParameterEnhance';
+import commonEventManager from '@ohos.commonEventManager'
 import { BusinessError } from '@ohos.base';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import Want from '@ohos.app.ability.Want';
 
 let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
-
 export default function StartAbilityForResultTest() {
   describe('StartAbilityForResultTest', () => {
 
@@ -30,7 +29,7 @@ export default function StartAbilityForResultTest() {
     let abilityName = 'SecondAbility';
     let driver = Driver.create();
 
-    afterEach((done: Function) => {
+    afterEach((done:Function) => {
       console.log('StartAbilityForResultTest afterEach start');
       setTimeout(() => {
         console.log('StartAbilityForResultTest afterEach end');
@@ -46,7 +45,7 @@ export default function StartAbilityForResultTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_2400', 3, async (done: Function) => {
+    it('AbilityRuntime_StartAndTerminate_StartAbility_2400', 3, async (done:Function) => {
       const TAG = 'StartAbility';
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_2400';
@@ -58,7 +57,7 @@ export default function StartAbilityForResultTest() {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
           expect().assertFail();
           done();
-        }).catch((error: BusinessError) => {
+        }).catch((error:BusinessError) => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${error}`);
           expect(error.code == undefined).assertFalse();
           expect(error.code).assertEqual(2097152);
@@ -79,7 +78,7 @@ export default function StartAbilityForResultTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_2600', 3, async (done: Function) => {
+    it('AbilityRuntime_StartAndTerminate_StartAbility_2600', 3, async (done:Function) => {
       const TAG = 'StartAbility';
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_2600';
@@ -91,7 +90,7 @@ export default function StartAbilityForResultTest() {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
           expect().assertFail();
           done();
-        }).catch((error: BusinessError) => {
+        }).catch((error:BusinessError) => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${error}`);
           expect(error.code == undefined).assertFalse();
           expect(error.code).assertEqual(2097152);
@@ -113,7 +112,7 @@ export default function StartAbilityForResultTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_2700', 3, async (done: Function) => {
+    it('AbilityRuntime_StartAndTerminate_StartAbility_2700', 3, async (done:Function) => {
       const TAG = 'StartAbility';
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_2700';
@@ -123,50 +122,50 @@ export default function StartAbilityForResultTest() {
       let lifeMethodCalledCount = 0;
 
       //onCreate回调
-      let onCreateCallback = () => {
+      let onCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(1);
       }
 
       //onWindowStageCreate回调
-      let onWindowStageCreateCallback = () => {
+      let onWindowStageCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onWindowStageCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(2);
       }
 
       //onForeground的回调
-      let onForegroundCallback = async () => {
+      let onForegroundCallback = async ():Promise<void> => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onForegroundCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(3);
         await delegator.removeAbilityMonitor(monitor).then((data) => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(data)}`);
           done();
-        }).catch((err: BusinessError) => {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.meassage)}`);
+        }).catch((err:BusinessError) => {
+          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.message)}`);
           expect().assertFail();
           done();
         })
       }
 
       //设置监听器,监听新ability的生命周期函数
-      let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+      let monitor:AbilityDelegatorRegistry.AbilityMonitor ={
         abilityName: abilityName,
         onAbilityCreate: onCreateCallback,
         onWindowStageCreate: onWindowStageCreateCallback,
         onAbilityForeground: onForegroundCallback,
       };
       delegator.addAbilityMonitor(monitor, (async (err, result) => {
-        let want: Want = {
+        let want:Want = {
           bundleName: 'com.example.mytest1',
           abilityName: abilityName,
         }
         try {
           await delegator.startAbility(want).then(async () => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
-          }).catch((err: BusinessError) => {
+          }).catch((err:BusinessError) => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${err}`);
           })
         } catch (error) {
@@ -187,14 +186,14 @@ export default function StartAbilityForResultTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_2800', 3, async (done: Function) => {
+    it('AbilityRuntime_StartAndTerminate_StartAbility_2800', 3, async (done:Function) => {
       const TAG = 'StartAbility';
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_2800';
 
       hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
 
-      let want: Want = {
+      let want:Want = {
         // 'abilityName': 'SecondAbility',
         'abilityName': 'X',
         'bundleName': 'com.example.mytest1',
@@ -203,7 +202,7 @@ export default function StartAbilityForResultTest() {
         let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
         await delegator.startAbility(want).then(async () => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
-        }).catch((err: BusinessError) => {
+        }).catch((err:BusinessError) => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${err}`);
           expect(err.code).assertEqual(2097152);
           done();
@@ -226,14 +225,14 @@ export default function StartAbilityForResultTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_2900', 3, async (done: Function) => {
+    it('AbilityRuntime_StartAndTerminate_StartAbility_2900', 3, async (done:Function) => {
       const TAG = 'StartAbility';
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_2900';
 
       hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
 
-      let want: Want = {
+      let want:Want = {
         'abilityName': 'SecondAbility',
         // 'bundleName': 'com.example.mytest1',
         'bundleName': 'xxx',
@@ -242,7 +241,7 @@ export default function StartAbilityForResultTest() {
         let delegator = AbilityDelegatorRegistry.getAbilityDelegator();
         await delegator.startAbility(want).then(async () => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
-        }).catch((err: BusinessError) => {
+        }).catch((err:BusinessError) => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${err}`);
           expect(err.code).assertEqual(2097152);
           done();
@@ -267,7 +266,7 @@ export default function StartAbilityForResultTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_3000', 3, async (done: Function) => {
+    it('AbilityRuntime_StartAndTerminate_StartAbility_3000', 3, async (done:Function) => {
 
       const TAG = 'StartAbility';
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
@@ -278,43 +277,41 @@ export default function StartAbilityForResultTest() {
       let lifeMethodCalledCount = 0;
 
       //onCreate回调
-      let onCreateCallback = () => {
+      let onCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(1);
       }
-
       //onWindowStageCreate回调
-      let onWindowStageCreateCallback = () => {
+      let onWindowStageCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onWindowStageCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(2);
       }
-
       //onForeground回调
-      let onForegroundCallback = async () => {
+      let onForegroundCallback = async ():Promise<void> => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onForegroundCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(3);
         await delegator.removeAbilityMonitor(monitor).then((data) => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(data)}`);
           done();
-        }).catch((err) => {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.meassage)}`);
+        }).catch((err:BusinessError) => {
+          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.message)}`);
           expect().assertFail();
           done();
         })
       }
 
       //设置监听器,监听新ability的生命周期函数
-      let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+      let monitor:AbilityDelegatorRegistry.AbilityMonitor ={
         abilityName: abilityName,
         onAbilityCreate: onCreateCallback,
         onWindowStageCreate: onWindowStageCreateCallback,
         onAbilityForeground: onForegroundCallback
       };
       delegator.addAbilityMonitor(monitor, (async (err, result) => {
-        let want: Want = {
+        let want:Want = {
           bundleName: 'com.example.mytest1',
           abilityName: abilityName,
           deviceId: undefined
@@ -322,7 +319,7 @@ export default function StartAbilityForResultTest() {
         try {
           await delegator.startAbility(want).then(async () => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
-          }).catch((err) => {
+          }).catch((err:BusinessError) => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${err}`);
           })
         } catch (error) {
@@ -343,7 +340,7 @@ export default function StartAbilityForResultTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_3100', 3, async (done: Function) => {
+    it('AbilityRuntime_StartAndTerminate_StartAbility_3100', 3, async (done:Function) => {
       const TAG = 'StartAbility';
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_3100';
@@ -353,49 +350,47 @@ export default function StartAbilityForResultTest() {
       let lifeMethodCalledCount = 0;
 
       //onCreate回调
-      let onCreateCallback = () => {
+      let onCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(1);
       }
-
       //onWindowStageCreate回调
-      let onWindowStageCreateCallback = () => {
+      let onWindowStageCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onWindowStageCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(2);
       }
-
       //onForeground回调
-      let onForegroundCallback = async () => {
+      let onForegroundCallback = async ():Promise<void> => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onForegroundCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(3);
         await delegator.removeAbilityMonitor(monitor).then((data) => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(data)}`);
           done();
-        }).catch((err: BusinessError) => {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.meassage)}`);
+        }).catch((err:BusinessError) => {
+          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.message)}`);
           expect().assertFail();
           done();
         })
       }
 
       //设置监听器,监听新ability的生命周期函数
-      let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+      let monitor:AbilityDelegatorRegistry.AbilityMonitor ={
         abilityName: abilityName,
         onAbilityCreate: onCreateCallback,
         onWindowStageCreate: onWindowStageCreateCallback,
         onAbilityForeground: onForegroundCallback
       };
       delegator.addAbilityMonitor(monitor, (async (err, result) => {
-        let want: Want = {
+        let want:Want = {
           uri: "https://www.test.com:8080/query/student"
         }
         try {
           await delegator.startAbility(want).then(async () => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
-          }).catch((err: BusinessError) => {
+          }).catch((err:BusinessError) => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${err}`);
           })
         } catch (error) {
@@ -424,7 +419,7 @@ export default function StartAbilityForResultTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_3200', 3, async (done: Function) => {
+    it('AbilityRuntime_StartAndTerminate_StartAbility_3200', 3, async (done:Function) => {
 
       const TAG = 'StartAbility';
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
@@ -435,43 +430,41 @@ export default function StartAbilityForResultTest() {
       let lifeMethodCalledCount = 0;
 
       //onCreate回调
-      let onCreateCallback = () => {
+      let onCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(1);
       }
-
       //onWindowStageCreate回调
-      let onWindowStageCreateCallback = () => {
+      let onWindowStageCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onWindowStageCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(2);
       }
-
       //onForeground回调
-      let onForegroundCallback = async () => {
+      let onForegroundCallback = async ():Promise<void> => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onForegroundCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(3);
         await delegator.removeAbilityMonitor(monitor).then((data) => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(data)}`);
           done();
-        }).catch((err: BusinessError) => {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.meassage)}`);
+        }).catch((err:BusinessError) => {
+          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.message)}`);
           expect().assertFail();
           done();
         })
       }
 
       //设置监听器,监听新ability的生命周期函数
-      let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+      let monitor:AbilityDelegatorRegistry.AbilityMonitor = {
         abilityName: abilityName,
         onAbilityCreate: onCreateCallback,
         onWindowStageCreate: onWindowStageCreateCallback,
         onAbilityForeground: onForegroundCallback
       };
       delegator.addAbilityMonitor(monitor, (async (err, result) => {
-        let want: Want = {
+        let want:Want = {
           bundleName: 'com.example.mytest1',
           abilityName: abilityName,
           // flags: 0x00000001
@@ -480,7 +473,7 @@ export default function StartAbilityForResultTest() {
         try {
           await delegator.startAbility(want).then(async () => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
-          }).catch((err: BusinessError) => {
+          }).catch((err:BusinessError) => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${err}`);
           })
         } catch (error) {
@@ -501,7 +494,7 @@ export default function StartAbilityForResultTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_3300', 3, async (done: Function) => {
+    it('AbilityRuntime_StartAndTerminate_StartAbility_3300', 3, async (done:Function) => {
 
       const TAG = 'StartAbility';
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
@@ -512,29 +505,27 @@ export default function StartAbilityForResultTest() {
       let lifeMethodCalledCount = 0;
 
       //onCreate回调
-      let onCreateCallback = () => {
+      let onCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(1);
       }
-
       //onWindowStageCreate回调
-      let onWindowStageCreateCallback = () => {
+      let onWindowStageCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onWindowStageCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(2);
       }
-
       //onForeground回调
-      let onForegroundCallback = async () => {
+      let onForegroundCallback = async ():Promise<void> => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onForegroundCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(3);
         await delegator.removeAbilityMonitor(monitor).then((data) => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(data)}`);
           done();
-        }).catch((err: BusinessError) => {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.meassage)}`);
+        }).catch((err:BusinessError) => {
+          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.message)}`);
           expect().assertFail();
           done();
         })
@@ -548,14 +539,14 @@ export default function StartAbilityForResultTest() {
       const res = flag1 | flag2;
 
       //设置监听器,监听新ability的生命周期函数
-      let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+      let monitor:AbilityDelegatorRegistry.AbilityMonitor ={
         abilityName: abilityName,
         onAbilityCreate: onCreateCallback,
         onWindowStageCreate: onWindowStageCreateCallback,
         onAbilityForeground: onForegroundCallback
       };
       delegator.addAbilityMonitor(monitor, (async (err, result) => {
-        let want: Want = {
+        let want:Want = {
           bundleName: 'com.example.mytest1',
           abilityName: abilityName,
           flags: res
@@ -563,7 +554,7 @@ export default function StartAbilityForResultTest() {
         try {
           await delegator.startAbility(want).then(async () => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
-          }).catch((err: BusinessError) => {
+          }).catch((err:BusinessError) => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${err}`);
           })
         } catch (error) {
@@ -584,7 +575,7 @@ export default function StartAbilityForResultTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_3400', 3, async (done: Function) => {
+    it('AbilityRuntime_StartAndTerminate_StartAbility_3400', 3, async (done:Function) => {
 
       const TAG = 'StartAbility';
       const TEST_SUITE_NAME: string = 'StartAbilityTest';
@@ -595,43 +586,41 @@ export default function StartAbilityForResultTest() {
       let lifeMethodCalledCount = 0;
 
       //onCreate回调
-      let onCreateCallback = () => {
+      let onCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(1);
       }
-
       //onWindowStageCreate回调
-      let onWindowStageCreateCallback = () => {
+      let onWindowStageCreateCallback = ():void => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onWindowStageCreateCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(2);
       }
-
       //onForeground回调
-      let onForegroundCallback = async () => {
+      let onForegroundCallback = async ():Promise<void> => {
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onForegroundCallback succ`);
         lifeMethodCalledCount++;
         expect(lifeMethodCalledCount).assertEqual(3);
         await delegator.removeAbilityMonitor(monitor).then((data) => {
           hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(data)}`);
           done();
-        }).catch((err: BusinessError) => {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.meassage)}`);
+        }).catch((err:BusinessError) => {
+          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.message)}`);
           expect().assertFail();
           done();
         })
       }
 
       //设置监听器,监听新ability的生命周期函数
-      let monitor: abilityDelegatorRegistry.AbilityMonitor = {
+      let monitor:AbilityDelegatorRegistry.AbilityMonitor ={
         abilityName: abilityName,
         onAbilityCreate: onCreateCallback,
         onWindowStageCreate: onWindowStageCreateCallback,
         onAbilityForeground: onForegroundCallback
       };
       delegator.addAbilityMonitor(monitor, (async (err, result) => {
-        let want: Want = {
+        let want:Want = {
           bundleName: 'com.example.mytest1',
           abilityName: abilityName,
           flags: 1.22
@@ -639,7 +628,7 @@ export default function StartAbilityForResultTest() {
         try {
           await delegator.startAbility(want).then(async () => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
-          }).catch((err: BusinessError) => {
+          }).catch((err:BusinessError) => {
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${err}`);
           })
         } catch (error) {
@@ -650,156 +639,5 @@ export default function StartAbilityForResultTest() {
       }))
     });
 
-
-    /**
-     * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_3500
-     * @tc.name      : Configure bundleName, activityName, and flags, where flags are numeric strings
-     * @tc.desc      : Call the startAbility interface through context, where the wantAbilityName
-     *                 and bundleName are the correct values,the flag is a string, and the string is a number
-     * @tc.level     : Level 3
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_3500', 3, async (done: Function) => {
-
-      const TAG = 'StartAbility';
-      const TEST_SUITE_NAME: string = 'StartAbilityTest';
-      const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_3500';
-
-      hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
-
-      let lifeMethodCalledCount = 0;
-
-      //onCreate回调
-      let onCreateCallback = () => {
-        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onCreateCallback succ`);
-        lifeMethodCalledCount++;
-        expect(lifeMethodCalledCount).assertEqual(1);
-      }
-
-      //onWindowStageCreate回调
-      let onWindowStageCreateCallback = () => {
-        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onWindowStageCreateCallback succ`);
-        lifeMethodCalledCount++;
-        expect(lifeMethodCalledCount).assertEqual(2);
-      }
-
-      //onForeground回调
-      let onForegroundCallback = async () => {
-        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onForegroundCallback succ`);
-        lifeMethodCalledCount++;
-        expect(lifeMethodCalledCount).assertEqual(3);
-        await delegator.removeAbilityMonitor(monitor).then((data) => {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(data)}`);
-          done();
-        }).catch((err: BusinessError) => {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.meassage)}`);
-          expect().assertFail();
-          done();
-        })
-      }
-
-      //设置监听器,监听新ability的生命周期函数
-      let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-        abilityName: abilityName,
-        onAbilityCreate: onCreateCallback,
-        onWindowStageCreate: onWindowStageCreateCallback,
-        onAbilityForeground: onForegroundCallback
-      };
-      delegator.addAbilityMonitor(monitor, (async (err, result) => {
-        let want: Want = {
-          bundleName: 'com.example.mytest1',
-          abilityName: abilityName,
-          flags: '12345'
-        }
-        try {
-          await delegator.startAbility(want).then(async () => {
-            hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
-          }).catch((err: BusinessError) => {
-            hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${err}`);
-          })
-        } catch (error) {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start fail : ${error}`);
-          expect().assertFail();
-          done();
-        }
-      }))
-    });
-
-
-    /**
-     * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_3600
-     * @tc.name      : Configure bundleName, activityName, and flags, where flags are non numeric strings
-     * @tc.desc      : Call the startAbility interface through context, where the wantAbilityName
-     *                 and bundleName are the correct values,the flag is a string, and the string is a non numeric value
-     * @tc.level     : Level 3
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     */
-    it('AbilityRuntime_StartAndTerminate_StartAbility_3600', 3, async (done: Function) => {
-
-      const TAG = 'StartAbility';
-      const TEST_SUITE_NAME: string = 'StartAbilityTest';
-      const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_3600';
-
-      hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
-
-      let lifeMethodCalledCount = 0;
-
-      //onCreate回调
-      let onCreateCallback = () => {
-        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onCreateCallback succ`);
-        lifeMethodCalledCount++;
-        expect(lifeMethodCalledCount).assertEqual(1);
-      }
-
-      //onWindowStageCreate回调
-      let onWindowStageCreateCallback = () => {
-        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onWindowStageCreateCallback succ`);
-        lifeMethodCalledCount++;
-        expect(lifeMethodCalledCount).assertEqual(2);
-      }
-
-      //onForeground回调
-      let onForegroundCallback = async () => {
-        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} onForegroundCallback succ`);
-        lifeMethodCalledCount++;
-        expect(lifeMethodCalledCount).assertEqual(3);
-        await delegator.removeAbilityMonitor(monitor).then((data) => {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(data)}`);
-          done();
-        }).catch((err: BusinessError) => {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} removeAbilityMonitor successful: ${JSON.stringify(err.meassage)}`);
-          expect().assertFail();
-          done();
-        })
-      }
-
-      //设置监听器,监听新ability的生命周期函数
-      let monitor: abilityDelegatorRegistry.AbilityMonitor = {
-        abilityName: abilityName,
-        onAbilityCreate: onCreateCallback,
-        onWindowStageCreate: onWindowStageCreateCallback,
-        onAbilityForeground: onForegroundCallback
-      };
-      delegator.addAbilityMonitor(monitor, (async (err, result) => {
-        let want: Want = {
-          bundleName: 'com.example.mytest1',
-          abilityName: abilityName,
-          flags: 'falg'
-        }
-        try {
-          await delegator.startAbility(want).then(async () => {
-            hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability successful`);
-          }).catch((err: BusinessError) => {
-            hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ablility err : ${err}`);
-          })
-        } catch (error) {
-          hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start fail : ${error}`);
-          expect().assertFail();
-          done();
-        }
-      }))
-    });
   })
 }
