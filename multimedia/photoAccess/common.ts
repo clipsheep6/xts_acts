@@ -20,7 +20,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import fs, { ListFileOptions } from '@ohos.file.fs';
 import fileuri from "@ohos.file.fileuri";
-import sendablePhotoAccessHelper from '@kit.MediaLibraryKit';
+import { sendablePhotoAccessHelper } from '@kit.MediaLibraryKit';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const phAccessHelper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
