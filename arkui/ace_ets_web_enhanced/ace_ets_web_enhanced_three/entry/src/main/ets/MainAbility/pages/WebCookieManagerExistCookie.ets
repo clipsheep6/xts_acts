@@ -17,6 +17,7 @@ import Utils from '../../test/Utils';
 import webView from '@ohos.web.webview';
 import events_emitter from '@ohos.events.emitter';
 import business_error from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -66,7 +67,7 @@ struct WebCookieManagerExistCookie {
                   let isCookie = webView.WebCookieManager.existCookie()
                   Utils.emitEvent(isCookie, 100302)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -81,7 +82,7 @@ struct WebCookieManagerExistCookie {
                     Utils.emitEvent(isCookie, 100303)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -98,7 +99,7 @@ struct WebCookieManagerExistCookie {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -110,7 +111,7 @@ struct WebCookieManagerExistCookie {
                   let isCookie = webView.WebCookieManager.existCookie()
                   Utils.emitEvent(isCookie, 100305)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -126,7 +127,7 @@ struct WebCookieManagerExistCookie {
                     Utils.emitEvent(isCookie, 100306)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -144,7 +145,7 @@ struct WebCookieManagerExistCookie {
                       console.error("error: " + error);
                     });
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -156,7 +157,7 @@ struct WebCookieManagerExistCookie {
                   let isCookie = webView.WebCookieManager.existCookie()
                   Utils.emitEvent(isCookie, 100308)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -172,7 +173,7 @@ struct WebCookieManagerExistCookie {
                     Utils.emitEvent(isCookie, 100309)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -190,7 +191,7 @@ struct WebCookieManagerExistCookie {
                       console.error("error: " + error);
                     });
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -202,7 +203,7 @@ struct WebCookieManagerExistCookie {
                   let isCookie = webView.WebCookieManager.existCookie()
                   Utils.emitEvent(isCookie, 100311)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -218,7 +219,7 @@ struct WebCookieManagerExistCookie {
                     Utils.emitEvent(isCookie, 100312)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -236,7 +237,7 @@ struct WebCookieManagerExistCookie {
                       console.error("error: " + error);
                     });
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -248,7 +249,7 @@ struct WebCookieManagerExistCookie {
                   let isCookie = webView.WebCookieManager.existCookie()
                   Utils.emitEvent(isCookie, 100314)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -264,7 +265,7 @@ struct WebCookieManagerExistCookie {
                     Utils.emitEvent(isCookie, 100315)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -282,7 +283,7 @@ struct WebCookieManagerExistCookie {
                       console.error("error: " + error);
                     });
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -294,7 +295,7 @@ struct WebCookieManagerExistCookie {
                   let isCookie = webView.WebCookieManager.existCookie()
                   Utils.emitEvent(isCookie, 100317)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -310,7 +311,7 @@ struct WebCookieManagerExistCookie {
                     Utils.emitEvent(isCookie, 100318)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -330,7 +331,7 @@ struct WebCookieManagerExistCookie {
                     })
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -353,7 +354,7 @@ struct WebCookieManagerExistCookie {
                   })
 
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -369,7 +370,7 @@ struct WebCookieManagerExistCookie {
                     Utils.emitEvent(isCookie, 100321)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -390,7 +391,7 @@ struct WebCookieManagerExistCookie {
                     })
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -413,7 +414,7 @@ struct WebCookieManagerExistCookie {
                       });
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -429,7 +430,7 @@ struct WebCookieManagerExistCookie {
                     Utils.emitEvent(isCookie, 100324)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -448,7 +449,7 @@ struct WebCookieManagerExistCookie {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -470,7 +471,7 @@ struct WebCookieManagerExistCookie {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -494,7 +495,7 @@ struct WebCookieManagerExistCookie {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -512,7 +513,7 @@ struct WebCookieManagerExistCookie {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -534,7 +535,7 @@ struct WebCookieManagerExistCookie {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -552,7 +553,7 @@ struct WebCookieManagerExistCookie {
                       console.error("error: " + error);
                     });
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -570,7 +571,7 @@ struct WebCookieManagerExistCookie {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }

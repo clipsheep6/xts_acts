@@ -18,7 +18,7 @@ import webView from '@ohos.web.webview';
 import events_emitter from '@ohos.events.emitter';
 import { JsProxyObject } from '../../test/Interfaces';
 import image from '@ohos.multimedia.image';
-import business_error from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -91,7 +91,7 @@ struct webViewControllerPart2 {
                 let accessStep = this.controller.accessStep(-1);
                 Utils.emitEvent(accessStep, 37000)
               } catch (error) {
-                console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${error.message}`);
               }
               break;
             }
@@ -103,7 +103,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle()
                 Utils.emitEvent(title, 37001)
               } catch (error) {
-                console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${error.message}`);
               }
               break;
             }
@@ -120,7 +120,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle();
                 Utils.emitEvent(title, 37002)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -132,7 +132,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle();
                 Utils.emitEvent(title, 37003)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -144,7 +144,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle();
                 Utils.emitEvent(title, 37004)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -156,7 +156,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle();
                 Utils.emitEvent(title, 77000)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -169,7 +169,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle();
                 Utils.emitEvent(title, 77002)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -189,7 +189,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle();
                 Utils.emitEvent(title, 37005)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -207,7 +207,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle();
                 Utils.emitEvent(title, 37006)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -223,7 +223,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle();
                 Utils.emitEvent(title, 37007)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -239,7 +239,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle();
                 Utils.emitEvent(title, 37008)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -248,7 +248,7 @@ struct webViewControllerPart2 {
               try {
                 Utils.emitEvent(this.controller.getUserAgent().indexOf('OpenHarmony') >= 0, 37009)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -258,7 +258,7 @@ struct webViewControllerPart2 {
                 let webId = this.controller.getWebId()
                 Utils.emitEvent(webId > 0, 37010)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -268,7 +268,7 @@ struct webViewControllerPart2 {
                 let getTitle = this.controller.getTitle()
                 Utils.emitEvent(getTitle, 37011)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -282,7 +282,7 @@ struct webViewControllerPart2 {
                 await Utils.sleep(2000);
                 Utils.emitEvent(this.numberOfMatches, 37012)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -299,7 +299,7 @@ struct webViewControllerPart2 {
                 await Utils.sleep(2000);
                 Utils.emitEvent(this.searchNext, 100080)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -316,7 +316,7 @@ struct webViewControllerPart2 {
                 await Utils.sleep(2000);
                 Utils.emitEvent(this.searchNext, 100081)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -336,7 +336,7 @@ struct webViewControllerPart2 {
                   }
                 });
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -352,11 +352,11 @@ struct webViewControllerPart2 {
                       Utils.emitEvent(filename, 37014)
                     }
                   })
-                  .catch((error: business_error.BusinessError) => {
+                  .catch((error: BusinessError) => {
                     console.log('error: ' + JSON.stringify(error));
                   })
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -376,7 +376,7 @@ struct webViewControllerPart2 {
                   }
                 });
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -392,11 +392,11 @@ struct webViewControllerPart2 {
                       Utils.emitEvent(filename, 37016)
                     }
                   })
-                  .catch((error: business_error.BusinessError) => {
+                  .catch((error: BusinessError) => {
                     console.log('error: ' + JSON.stringify(error));
                   })
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -409,7 +409,7 @@ struct webViewControllerPart2 {
                 let title = this.controller.getTitle()
                 Utils.emitEvent(title, 37017)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -418,7 +418,7 @@ struct webViewControllerPart2 {
               try {
                 Utils.emitEvent(this.controller.getCustomUserAgent().indexOf('OpenHarmony') >= 0, 37018)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${error.message}`);
               }
               break;
             }
@@ -429,7 +429,7 @@ struct webViewControllerPart2 {
                 this.controller.setCustomUserAgent(setUA)
                 Utils.emitEvent(this.controller.getCustomUserAgent(), 37019);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${error.message}`);
               }
               break;
             }
@@ -439,7 +439,7 @@ struct webViewControllerPart2 {
                 console.log('testProtectedResourceType001 :'+ProtectedResourceType.SENSOR)
                 Utils.emitEvent(ProtectedResourceType.SENSOR, 37020);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${error.message}`);
               }
               break;
             }
@@ -449,7 +449,7 @@ struct webViewControllerPart2 {
                 console.log('testNativeEmbedStatus001 :'+NativeEmbedStatus.ENTER_BFCACHE)
                 Utils.emitEvent(NativeEmbedStatus.ENTER_BFCACHE, 37021);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${error.message}`);
               }
               break;
             }
@@ -459,7 +459,7 @@ struct webViewControllerPart2 {
                 console.log('testNativeEmbedStatus002 :'+NativeEmbedStatus.LEAVE_BFCACHE)
                 Utils.emitEvent(NativeEmbedStatus.LEAVE_BFCACHE, 37022);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${error.message}`);
               }
               break;
             }
@@ -469,7 +469,7 @@ struct webViewControllerPart2 {
                 console.log('testScrollType001 :'+webView.ScrollType.EVENT)
                 Utils.emitEvent(webView.ScrollType.EVENT, 37023);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${error.message}`);
               }
               break;
             }
@@ -483,7 +483,7 @@ struct webViewControllerPart2 {
                 console.log("original result: " + result);
                 Utils.emitEvent(result, 37024);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code}, Message: ${error.message}`);
                 Utils.emitEvent("error", 37024);
               }
               break;

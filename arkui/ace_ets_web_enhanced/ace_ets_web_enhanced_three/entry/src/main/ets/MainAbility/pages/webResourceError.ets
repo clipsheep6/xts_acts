@@ -16,6 +16,7 @@
 import events_emitter from '@ohos.events.emitter';
 import Utils from '../../test/Utils';
 import webView from '@ohos.web.webview';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -77,7 +78,7 @@ struct webResourceError {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.errorInfo, 36020)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -89,7 +90,7 @@ struct webResourceError {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.errorCode, 36022)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }

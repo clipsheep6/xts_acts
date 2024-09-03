@@ -16,6 +16,7 @@
 import Utils from '../../test/Utils';
 import events_emitter from '@ohos.events.emitter';
 import webView from '@ohos.web.webview';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -69,7 +70,7 @@ struct WebControllerZoom {
               try {
                 this.webController.zoom(this.zoom)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -79,7 +80,7 @@ struct WebControllerZoom {
               try {
                 this.webController.zoom(this.zoom)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               setTimeout(() => {
                 Utils.emitEvent(true, 7802)

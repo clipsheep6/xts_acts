@@ -17,6 +17,7 @@
 import Utils from '../../test/Utils';
 import webView from '@ohos.web.webview';
 import events_emitter from '@ohos.events.emitter';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -69,7 +70,7 @@ struct WebViewControllerZoom {
               try {
                 this.controller.zoom(this.zoom)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -79,7 +80,7 @@ struct WebViewControllerZoom {
               try {
                 this.controller.zoom(this.zoom)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               setTimeout(() => {
                 Utils.emitEvent(true, 7708)
@@ -93,7 +94,7 @@ struct WebViewControllerZoom {
               try {
                 this.controller.zoomIn()
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -104,7 +105,7 @@ struct WebViewControllerZoom {
               try {
                 this.controller.zoomIn()
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               setTimeout(async () => {
                 this.controller.zoom(0.2)
@@ -120,7 +121,7 @@ struct WebViewControllerZoom {
               try {
                 this.controller.zoomOut()
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -131,7 +132,7 @@ struct WebViewControllerZoom {
               try {
                 this.controller.zoomOut()
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               setTimeout(() => {
                 Utils.emitEvent(true, 7707)
@@ -146,7 +147,7 @@ struct WebViewControllerZoom {
               try {
                 this.controller.zoomOut()
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               setTimeout(() => {
                 Utils.emitEvent(true, 7707)
