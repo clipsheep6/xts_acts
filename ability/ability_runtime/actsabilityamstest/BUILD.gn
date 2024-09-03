@@ -20,7 +20,7 @@ group("ActsBackToCallerAbilityTest") {
       "actscreatemodulecontexttest:ActsBackToCallerAbilityHapTest",
       "actsapplicationhap:ActsApplicationHap",
       "actschildprocesshap:ActsChildProcessHap",
-      "actsentryhap:ActsEntryHap"
+      "actsentryhap:ActsEntryHap",
     ]
   }
 }
