@@ -2281,12 +2281,30 @@ Camera_ErrorCode NDKCamera::SetFrameRate(int useCaseCode)
 {
     int32_t minFps = activeFrameRateRange_.min;
     int32_t maxFps = activeFrameRateRange_.max;
+    bool flag = false;
+    for (uint32_t i = 0; i < frameRatesSize_; i++) {
+        if (frameRateRange_[i].min != activeFrameRateRange_.min &&
+            frameRateRange_[i].max != activeFrameRateRange_.max) {
+            minFps = frameRateRange_[i].min;
+            maxFps = frameRateRange_[i].max;
+            flag = true;
+            break;
+        }
+    }
+    if (!flag) {
+        if (maxFps > minFps) {
+            minFps++;
+        }
+    }
     if (useCaseCode == PARAMETER_OK) {
+        if (maxFps <= minFps + INVALID_MIN_FPS) {
+            return CAMERA_OK;
+        }
         ret_ = OH_PreviewOutput_SetFrameRate(previewOutput_, minFps, maxFps);
     } else if (useCaseCode == PARAMETER1_ERROR) {
         ret_ = OH_PreviewOutput_SetFrameRate(nullptr, minFps, maxFps);
     } else if (useCaseCode == PARAMETER2_ERROR) {
-        ret_ = OH_PreviewOutput_SetFrameRate(previewOutput_, minFps - INVALID_MIN_FPS, maxFps + INVALID_MAX_FPS);
+        ret_ = OH_PreviewOutput_SetFrameRate(previewOutput_, INVALID_MIN_FPS, maxFps + INVALID_MAX_FPS);
     }
     if (ret_ != CAMERA_OK) {
         LOG("OH_PreviewOutput_DeleteFrameRates failed.");
@@ -2341,12 +2359,30 @@ Camera_ErrorCode NDKCamera::VideoOutputSetFrameRate(int useCaseCode)
 {
     uint32_t minFps = videoActiveFrameRateRange_.min;
     uint32_t maxFps = videoActiveFrameRateRange_.max;
+    bool flag = false;
+    for (uint32_t i = 0; i < videoFrameRatesSize_; i++) {
+        if (videoFrameRateRange_[i].min != videoActiveFrameRateRange_.min &&
+            videoFrameRateRange_[i].max != videoActiveFrameRateRange_.max) {
+            minFps = videoFrameRateRange_[i].min;
+            maxFps = videoFrameRateRange_[i].max;
+            flag = true;
+            break;
+        }
+    }
+    if (!flag) {
+        if (maxFps > minFps) {
+            minFps++;
+        }
+    }
     if (useCaseCode == PARAMETER_OK) {
+        if (maxFps <= minFps + INVALID_MIN_FPS) {
+            return CAMERA_OK;
+        }
         ret_ = OH_VideoOutput_SetFrameRate(videoOutput_, minFps, maxFps);
     } else if (useCaseCode == PARAMETER1_ERROR) {
         ret_ = OH_VideoOutput_SetFrameRate(nullptr, minFps, maxFps);
     } else if (useCaseCode == PARAMETER2_ERROR) {
-        ret_ = OH_VideoOutput_SetFrameRate(videoOutput_, minFps - INVALID_MIN_FPS, maxFps + INVALID_MAX_FPS);
+        ret_ = OH_VideoOutput_SetFrameRate(videoOutput_, INVALID_MIN_FPS, maxFps + INVALID_MAX_FPS);
     }
     if (ret_ != CAMERA_OK) {
         LOG("OH_VideoOutput_SetFrameRate failed.");
