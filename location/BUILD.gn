@@ -19,12 +19,14 @@ group("location") {
       "geolocation_errorCode:ActslocationErrorCodeTest",
       "geolocation_nop:ActslocationNopTest",
       "geolocation_standard:ActslocationJsTest",
+      "geolocation_capi:ActslocationCApiTest",
     ]
   } else {
     deps = [
       "geolocation_errorCode:ActslocationErrorCodeTest",
       "geolocation_nop:ActslocationNopTest",
       "geolocation_standard:ActslocationJsTest",
+      "geolocation_capi:ActslocationCApiTest",
     ]
   }
 }
