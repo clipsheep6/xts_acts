@@ -11,10 +11,7 @@
     "kits": [
         {
             "test-file-name": [
-                "ActsCreateModuleContextTest.hap",
-                "ActsApplicationHap.hap",
-                "ActsEntryHap.hap",
-                "ActsChildProcessHap.hap"
+                "ActsCreateModuleContextTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

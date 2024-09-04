@@ -24,56 +24,50 @@ const PARAMETER_ERROR_CODE  = 401
 
 export default function abilityTest() {
   describe('ACTS_CreateModuleContext_Test', () => {
-    afterEach(async (done:Function) => {
-        await abilityDelegator.executeShellCommand('aa start -b com.example.actscreatemodulecontexttest -a MainAbility');
-        done();
-    });
     /*
-   * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1300
-   * @tc.name      : CreateModuleContextWhenContextIsNullTest
-   * @tc.desc      : use CreateModuleContext when context = null
-   * @tc.size      : MediumTest
-   * @tc.type      : Function
-   * @tc.level     : Level 3
-   */
+     * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1300
+     * @tc.name      : CreateModuleContextWhenContextIsNullTest
+     * @tc.desc      : use CreateModuleContext when context = null
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1300', 0, async (done: Function) => {
       console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
-      let moduleContext: common.Context;
-      let context = null
-      let moduleName = 'entry'
+      let context = null;
+      let moduleName = 'entry';
       try {
-        application.createModuleContext(context,moduleName).then((data: Context)=>{
-          moduleContext = data;
+        await application.createModuleContext(context,moduleName).then((data: Context)=>{
           console.info('createBundleContext success!');
+          expect().assertFail();
         }).catch((error : BusinessError)=>{
           console.error(` error, errorCode: ${JSON.stringify(error)}`);
           expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-          done();
-        })
+        });
       } catch (error) {
         console.error(` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
         console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
-        done();
-      }
+      };
+      done();
     })
+
     /*
-   * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400
-   * @tc.name      : CreateModuleContextWhenContextIsUndefinedTest
-   * @tc.desc      : use CreateModuleContext when context = undefined
-   * @tc.size      : MediumTest
-   * @tc.type      : Function
-   * @tc.level     : Level 3
-   */
+     * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400
+     * @tc.name      : CreateModuleContextWhenContextIsUndefinedTest
+     * @tc.desc      : use CreateModuleContext when context = undefined
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400', 0, async (done: Function) => {
       console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
-      let moduleContext: common.Context;
       let context = undefined
       let moduleName = 'entry'
       try {
         application.createModuleContext(context,moduleName).then((data: Context)=>{
-          moduleContext = data;
           console.info('createBundleContext success!');
+          expect().assertFail();
         }).catch((error : BusinessError)=>{
           console.error(` error, errorCode: ${JSON.stringify(error)}`);
           expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
@@ -86,14 +80,15 @@ export default function abilityTest() {
         done();
       }
     })
+
     /*
-   * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1500
-   * @tc.name      : CreateModuleContextWhenModuleNameIsNullTest
-   * @tc.desc      : use CreateModuleContext when moduleName = null
-   * @tc.size      : MediumTest
-   * @tc.type      : Function
-   * @tc.level     : Level 3
-   */
+     * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1500
+     * @tc.name      : CreateModuleContextWhenModuleNameIsNullTest
+     * @tc.desc      : use CreateModuleContext when moduleName = null
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1500', 0, async (done: Function) => {
       console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
       let moduleContext: common.Context;
@@ -115,14 +110,15 @@ export default function abilityTest() {
         done();
       }
     })
+
     /*
-   * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1600
-   * @tc.name      : CreateModuleContextWhenModuleNameIsUndefinedTest
-   * @tc.desc      : use CreateModuleContext when moduleName = undefined
-   * @tc.size      : MediumTest
-   * @tc.type      : Function
-   * @tc.level     : Level 3
-   */
+     * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1600
+     * @tc.name      : CreateModuleContextWhenModuleNameIsUndefinedTest
+     * @tc.desc      : use CreateModuleContext when moduleName = undefined
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1600', 0, async (done: Function) => {
       console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
       let moduleContext: common.Context;
@@ -144,14 +140,15 @@ export default function abilityTest() {
         done();
       }
     })
+
     /*
-   * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1700
-   * @tc.name      : CreateModuleContextWithoutModuleNameTest
-   * @tc.desc      : use CreateModuleContext without moduleName
-   * @tc.size      : MediumTest
-   * @tc.type      : Function
-   * @tc.level     : Level 3
-   */
+     * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1700
+     * @tc.name      : CreateModuleContextWithoutModuleNameTest
+     * @tc.desc      : use CreateModuleContext without moduleName
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1700', 0, async (done: Function) => {
       console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
       let moduleContext: common.Context;
@@ -173,14 +170,15 @@ export default function abilityTest() {
         done();
       }
     })
+
     /*
-   * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1800
-   * @tc.name      : CreateModuleContextWhenModuleNameIs''Test
-   * @tc.desc      : use CreateModuleContext when moduleName = ''
-   * @tc.size      : MediumTest
-   * @tc.type      : Function
-   * @tc.level     : Level 3
-   */
+     * @tc.number    : SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1800
+     * @tc.name      : CreateModuleContextWhenModuleNameIs''Test
+     * @tc.desc      : use CreateModuleContext when moduleName = ''
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1800', 0, async (done: Function) => {
       console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
       let moduleContext: common.Context;

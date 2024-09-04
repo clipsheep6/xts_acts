@@ -27,6 +27,7 @@ group("ability_runtime") {
       "actsNotificationWantAgentTest:ActsNotificationWantAgentTest",
       "actsaaappdebugtest:actsaaappdebugtest",
       "actsaastartabilitytest:actsaastartabilitytest",
+      "actsabilityamstest:ActsAbilityAmsTest",
       "actsabilitydelegatorcase:ActsAbilityDelegatorCaseTest",
       "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
       "actsabilitytooltest:actsabilitytooltest",
@@ -94,7 +95,6 @@ group("ability_runtime") {
       "stopserviceextension:stopserviceextension",
       "want:want",
       "workercontextcover:workercontextcover",
-      "actsabilityamstest:ActsAbilityAmsTest",
     ]
   }
 }
