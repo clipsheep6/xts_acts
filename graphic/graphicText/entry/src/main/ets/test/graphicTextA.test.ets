@@ -287,5 +287,174 @@ export default function graphicTextATest() {
       }
     })
 
+    async function loadFontByPromiseInvalidParameter(msg, fontName, path)
+    {
+      console.info(msg + ' begin ');
+      let fontCollection = new text.FontCollection;
+      await fontCollection.loadFont(fontName, path).then(() => {
+        console.info(msg + `loadFont by promise successfully`);
+        expect(false).assertTrue();
+        done();
+      }).catch((err) => {
+        console.info(msg + ` loadFont by promise failed, error: [${err.code}, ${err.message}]`);
+        expect(true).assertTrue();
+        done();
+      });
+    }
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_056
+     * @tc.name      : testLoadFontByPromiseInvalidPath01
+     * @tc.desc      : To test interface loadFont of FontCollection.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testLoadFontByPromiseInvalidPath01', 56, async function (done) {
+      let msg = "testLoadFontByPromiseInvalidPath01"
+      await loadFontByPromiseInvalidParameter(msg, "test", "").catch((err) => {
+        console.info(msg + ` failed, error: [${err.code}, ${err.message}]`);
+        expect(true).assertTrue();
+        done();
+      });
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_057
+     * @tc.name      : testLoadFontByPromiseInvalidPath02
+     * @tc.desc      : To test interface loadFontAsync of FontCollection.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testLoadFontByPromiseInvalidPath02', 57, async function (done) {
+      let msg = "testLoadFontByPromiseInvalidPath02"
+      await loadFontByPromiseInvalidParameter(msg, 'test', 'File://').catch((err) => {
+        console.info(msg + ` failed, error: [${err.code}, ${err.message}]`);
+        expect(true).assertTrue();
+        done();
+      });
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_058
+     * @tc.name      : testLoadFontByPromiseInvalidPath03
+     * @tc.desc      : To test interface loadFontAsync of FontCollection.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testLoadFontByPromiseInvalidPath03', 58, async function (done) {
+      let msg = "testLoadFontByPromiseInvalidPath03"
+      await loadFontByPromiseInvalidParameter(msg, 'test', '中文无效路径').catch((err) => {
+        console.info(msg + ` failed, error: [${err.code}, ${err.message}]`);
+        expect(true).assertTrue();
+        done();
+      });
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_059
+     * @tc.name      : testLoadFontByPromiseInvalidPath04
+     * @tc.desc      : To test interface loadFontAsync of FontCollection.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testLoadFontByPromiseInvalidPath04', 59, async function (done) {
+      let msg = "testLoadFontByPromiseInvalidPath04"
+      await loadFontByPromiseInvalidParameter(msg, 'test', 'english中文无效路径$rawfile(MiSans_VF.ttf)').catch((err) => {
+        console.info(msg + ` failed, error: [${err.code}, ${err.message}]`);
+        expect(true).assertTrue();
+        done();
+      });
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_060
+     * @tc.name      : testLoadFontByPromiseInvalidPath05
+     * @tc.desc      : To test interface loadFontAsync of FontCollection.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testLoadFontByPromiseInvalidPath05', 60, async function (done) {
+      let msg = "testLoadFontByPromiseInvalidPath05"
+      await loadFontByPromiseInvalidParameter(msg, 'test', 'File://').catch((err) => {
+        console.info(msg + ` failed, error: [${err.code}, ${err.message}]`);
+        expect(true).assertTrue();
+        done();
+      });
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_061
+     * @tc.name      : testLoadFontByPromiseInvalidName01
+     * @tc.desc      : To test interface loadFontAsync of FontCollection.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testLoadFontByPromiseInvalidName01', 61, async function (done) {
+      let msg = "testLoadFontByPromiseInvalidName01"
+      await loadFontByPromiseInvalidParameter(msg, null, 'File://').catch((err) => {
+        console.info(msg + ` failed, error: [${err.code}, ${err.message}]`);
+        expect(true).assertTrue();
+        done();
+      });
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_062
+     * @tc.name      : testLoadFontByPromiseInvalidName02
+     * @tc.desc      : To test interface loadFontAsync of FontCollection.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testLoadFontByPromiseInvalidName02', 62, async function (done) {
+      let msg = "testLoadFontByPromiseInvalidName02"
+      await loadFontByPromiseInvalidParameter(msg, undefined, 'File://').catch((err) => {
+        console.info(msg + ` failed, error: [${err.code}, ${err.message}]`);
+        expect(true).assertTrue();
+        done();
+      });
+    })
+
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_063
+     * @tc.name      : testLoadFontByPromiseInvalidPath06
+     * @tc.desc      : To test interface loadFontAsync of FontCollection.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testLoadFontByPromiseInvalidPath06', 63, async function (done) {
+      let msg = "testLoadFontByPromiseInvalidPath06"
+      await loadFontByPromiseInvalidParameter(msg, "test", null).catch((err) => {
+        console.info(msg + ` failed, error: [${err.code}, ${err.message}]`);
+        expect(true).assertTrue();
+        done();
+      });
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_064
+     * @tc.name      : testLoadFontByPromiseInvalidPath07
+     * @tc.desc      : To test interface loadFontAsync of FontCollection.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testLoadFontByPromiseInvalidPath07', 64, async function (done) {
+      let msg = "testLoadFontByPromiseInvalidPath07"
+      await loadFontByPromiseInvalidParameter(msg, "test", undefined).catch((err) => {
+        console.info(msg + ` failed, error: [${err.code}, ${err.message}]`);
+        expect(true).assertTrue();
+        done();
+      });
+    })
+
   })
 }
