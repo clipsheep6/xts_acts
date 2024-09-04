@@ -15,7 +15,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import pasteboard from '@ohos.pasteboard';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
 let tag = "PASTEBOARDSYNC--------------------"
 
 export default function pasteboardDetectPatternsTest() {
