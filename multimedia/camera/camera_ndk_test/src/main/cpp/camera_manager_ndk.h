@@ -44,7 +44,7 @@
 #define ONLY_ON_FOCUS_STATE_CHANGE 3
 #define INVALID_SURFACE_ID 4
 #define SET_OH_COLORSPACE_SRGB_FULL 2
-#define INVALID_MIN_FPS 1
+#define INVALID_MIN_FPS (-1)
 #define INVALID_MAX_FPS 5
 
 typedef enum CameraCallbackCode {

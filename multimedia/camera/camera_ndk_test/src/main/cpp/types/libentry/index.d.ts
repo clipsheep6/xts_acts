@@ -111,7 +111,7 @@ interface frameRatesSize {
 
 interface videoFrameRatesSize {
   errorCode: number;
-  frameRatesSize: number;
+  videoFrameRatesSize: number;
 }
 
 interface FrameRateRange {
@@ -330,7 +330,7 @@ export const oHPhotoOutputUnregisterPhotoAssetAvailableCallback: (index:number) 
 
 export const oHPhotoOutputIsMovingPhotoSupported: (index:number) => movingPhoto;
 
-export const oHPhotoOutputEnableMovingPhoto: (index:number) => number;
+export const oHPhotoOutputEnableMovingPhoto: (index:number, enable:boolean) => number;
 
 export const oHPhotoNativeGetMainImage: (index:number) => number;
 
