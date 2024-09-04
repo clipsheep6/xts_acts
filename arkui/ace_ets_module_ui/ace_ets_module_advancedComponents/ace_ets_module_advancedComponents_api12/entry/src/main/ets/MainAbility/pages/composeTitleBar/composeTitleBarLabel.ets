@@ -18,7 +18,7 @@ import promptAction from '@ohos.promptAction';
 
 @Entry
 @Component
-struct ComposeTitleBarPage {
+struct ComposeTitleBarLabel {
   private menuItems: Array<ComposeTitleBarMenuItem> = [
     {
       value: $r('sys.media.ohos_ic_public_copy'),

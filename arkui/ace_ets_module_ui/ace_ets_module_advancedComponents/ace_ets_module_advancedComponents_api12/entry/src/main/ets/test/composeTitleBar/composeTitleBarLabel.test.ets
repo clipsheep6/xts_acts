@@ -18,55 +18,55 @@ import { Driver, ON } from '@ohos.UiTest';
 import router from '@ohos.router';
 import Utils from '../Utils';
 
-export default function composeTitleBar() {
-  describe('composeTitleBar', () => {
+export default function composeTitleBarLabel() {
+  describe('composeTitleBarLabel', () => {
     beforeEach(async (done: Function) => {
-      console.info("composeTitleBar beforeEach start");
+      console.info("composeTitleBarLabel beforeEach start");
       let options: router.RouterOptions = {
-        url: 'MainAbility/pages/composeTitleBar/composeTitleBar',
+        url: 'MainAbility/pages/composeTitleBar/composeTitleBarLabel',
       }
       try {
         router.clear();
         let pages = router.getState();
-        console.info("get composeTitleBar state pages: " + JSON.stringify(pages));
-        if (!('composeTitleBar' == pages.name)) {
-          console.info("get composeTitleBar pages.name: " + JSON.stringify(pages.name));
+        console.info("get composeTitleBarLabel state pages: " + JSON.stringify(pages));
+        if (!('composeTitleBarLabel' == pages.name)) {
+          console.info("get composeTitleBarLabel pages.name: " + JSON.stringify(pages.name));
           await router.pushUrl(options);
           await Utils.sleep(2000);
-          console.info("push composeTitleBar page result successful");
+          console.info("push composeTitleBarLabel page result successful");
         }
       } catch (err) {
-        console.error("push composeTitleBar page error: " + err);
+        console.error("push composeTitleBarLabel page error: " + err);
       }
 
       await Utils.sleep(1000);
-      console.info('composeTitleBar beforeEach end');
+      console.info('composeTitleBarLabel beforeEach end');
       done();
     });
 
     afterEach(async () => {
       await Utils.sleep(1000);
-      console.info('composeTitleBar after each called');
+      console.info('composeTitleBarLabel after each called');
     })
 
     /**
-     * @tc.number composeTitleBar
-     * @tc.name   composeTitleBar_0100
-     * @tc.desc   Test composeTitleBar
+     * @tc.number composeTitleBarLabel
+     * @tc.name   composeTitleBarLabel_0100
+     * @tc.desc   Test composeTitleBarLabel
      * @tc.size   MediumTest
      * @tc.type   Function
      * @tc.level  0
      */
-    it('composeTitleBar_0100', 0, async (done: Function) => {
-      console.info('[composeTitleBar_0100] START');
+    it('composeTitleBarLabel_0100', 0, async (done: Function) => {
+      console.info('[composeTitleBarLabel_0100] START');
       let driver = await Driver.create();
       await driver.delayMs(2000);
-      // 查看composeTitleBarPage是否存在以下入口。
+      // 查看composeTitleBarLabelPage是否存在以下入口。
       let titleText = await driver.findComponent(ON.text('Title'));
       let subTitleText = await driver.findComponent(ON.text('SubTitle'));
       expect(titleText !== null).assertTrue();
       expect(subTitleText !== null).assertTrue();
-      console.info('[composeTitleBar_0100] END');
+      console.info('[composeTitleBarLabel_0100] END');
       done();
     });
   })

@@ -47,6 +47,6 @@
     "MainAbility/pages/downloadFileButton/FileButtonSave",
     "MainAbility/pages/downloadFileButton/FileButtonSaveFile",
     "MainAbility/pages/downloadFileButton/FileButtonSaveImage",
-    "MainAbility/pages/composeTitleBar/composeTitleBar"
+    "MainAbility/pages/composeTitleBar/composeTitleBarLabel"
   ]
 }
