@@ -21,7 +21,7 @@ import pasteBoardRecordTest from './PasteBoardRecord.test.ets'
 import pasteBoardSystemPasteBoardTest from './PasteBoardSystemPasteBoard.test.ets'
 import PasteboardUnifiedTest from './PasteboardUnified.test';
 import PasteboartdCopyJsAPITest from './PasteboartdCopyJsAPITest.test';
-import pasteboardDetectPatternsTest from './pasteboardDetectPatterns.test'
+import pasteboardDetectPatternsTest from './PasteBoardDetectPatterns.test'
 export default function testsuite() {
   pasteBoardJEtsunitTest()
   pasteBoardSystemPasteBoardTest()
