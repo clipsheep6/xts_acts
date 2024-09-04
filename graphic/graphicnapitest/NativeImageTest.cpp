@@ -100,7 +100,7 @@ public:
     static inline GLuint textureId2 = 0;
     static inline EGLDisplay eglDisplay_ = EGL_NO_DISPLAY;
     static inline EGLContext eglContext_ = EGL_NO_CONTEXT;
-     static inline EGLConfig config_;
+    static inline EGLConfig config_;
     static void OnFrameAvailable(void *context);
 };
 
@@ -1198,13 +1198,13 @@ HWTEST_F(NativeImageTest, OHConsumerSurfaceCreateMuch, Function | MediumTest | L
 {
     OH_NativeImage* newImage[500];
     for (int i = 0; i < 500; i++) {
-       newImage[i] = nullptr;
-       newImage[i] = OH_ConsumerSurface_Create();
-       ASSERT_NE(newImage[i], nullptr);
+        newImage[i] = nullptr;
+        newImage[i] = OH_ConsumerSurface_Create();
+        ASSERT_NE(newImage[i], nullptr);
     }
     for (int i = 0; i < 500; i++) {
-       OH_NativeImage_Destroy(&newImage[i]);
-       ASSERT_EQ(newImage[i], nullptr);
+        OH_NativeImage_Destroy(&newImage[i]);
+        ASSERT_EQ(newImage[i], nullptr);
     }
 }
 /*
@@ -1223,10 +1223,10 @@ HWTEST_F(NativeImageTest, OHConsumerSufaceSetDefaultUsageNormal, Function | Medi
     ASSERT_EQ(ret, NATIVE_ERROR_OK);
     int32_t ret1 = OH_ConsumerSuface_SetDefaultUsage(image, 1000);
     ASSERT_EQ(ret1, NATIVE_ERROR_OK);
-    int32_t ret2 = OH_ConsumerSuface_SetDefaultUsage(image, UINT64_MAX-1);
+    int32_t ret2 = OH_ConsumerSuface_SetDefaultUsage(image, UINT64_MAX - 1);
     ASSERT_EQ(ret2, NATIVE_ERROR_OK);
     
-    uint64_t usage[] = {0, 1000, UINT64_MAX-1};
+    uint64_t usage[] = {0, 1000, UINT64_MAX - 1};
     for (int i = 0; i < 3; i++) {
         usage[i] += 1;
         int32_t ret3 = OH_ConsumerSuface_SetDefaultUsage(image, usage[i]);
@@ -1277,15 +1277,15 @@ HWTEST_F(NativeImageTest, OHConsumerSufaceSetDefaultSizeNormal, Function | Mediu
     int32_t res = 1 << 16;
     int32_t ret = OH_ConsumerSuface_SetDefaultSize(image, 1, 1);
     ASSERT_EQ(ret, NATIVE_ERROR_OK);
-    int32_t ret1 = OH_ConsumerSuface_SetDefaultSize(image, 1, res-1);
+    int32_t ret1 = OH_ConsumerSuface_SetDefaultSize(image, 1, res - 1);
     ASSERT_EQ(ret1, NATIVE_ERROR_OK);
-    int32_t ret2 = OH_ConsumerSuface_SetDefaultSize(image, res-1, 1);
+    int32_t ret2 = OH_ConsumerSuface_SetDefaultSize(image, res - 1, 1);
     ASSERT_EQ(ret2, NATIVE_ERROR_OK);
     int32_t ret3 = OH_ConsumerSuface_SetDefaultSize(image, 100, 100);
     ASSERT_EQ(ret3, NATIVE_ERROR_OK);
     int32_t ret4 = OH_ConsumerSuface_SetDefaultSize(image, 10000, 10000);
     ASSERT_EQ(ret4, NATIVE_ERROR_OK);
-    int32_t ret5 = OH_ConsumerSuface_SetDefaultSize(image, res-1, res-1);
+    int32_t ret5 = OH_ConsumerSuface_SetDefaultSize(image, res - 1, res - 1);
     ASSERT_EQ(ret5, NATIVE_ERROR_OK);
     
     int32_t w[] = {1, 100, 10000};
@@ -1327,11 +1327,11 @@ HWTEST_F(NativeImageTest, OHConsumerSufaceSetDefaultSizeAbNormal, Function | Med
     ASSERT_EQ(ret4, NATIVE_ERROR_INVALID_ARGUMENTS);
     int32_t ret5 = OH_ConsumerSuface_SetDefaultSize(image, -res, 100);
     ASSERT_EQ(ret5, NATIVE_ERROR_INVALID_ARGUMENTS);
-    int32_t ret6 = OH_ConsumerSuface_SetDefaultSize(image, -100, res-1);
+    int32_t ret6 = OH_ConsumerSuface_SetDefaultSize(image, -100, res - 1);
     ASSERT_EQ(ret6, NATIVE_ERROR_INVALID_ARGUMENTS);
     int32_t ret7 = OH_ConsumerSuface_SetDefaultSize(image, -res, -res);
     ASSERT_EQ(ret7, NATIVE_ERROR_INVALID_ARGUMENTS);
-    int32_t ret8 = OH_ConsumerSuface_SetDefaultSize(image, res+1, res+1);
+    int32_t ret8 = OH_ConsumerSuface_SetDefaultSize(image, res + 1, res + 1);
     ASSERT_EQ(ret8, NATIVE_ERROR_OK);
     int32_t ret9 = OH_ConsumerSuface_SetDefaultSize(nullptr, 100, 100);
     ASSERT_EQ(ret9, NATIVE_ERROR_INVALID_ARGUMENTS);
