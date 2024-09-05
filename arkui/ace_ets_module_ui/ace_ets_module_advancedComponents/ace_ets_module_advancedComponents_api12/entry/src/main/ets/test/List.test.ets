@@ -23,6 +23,7 @@ import composeListItemOperateItemSubIcon from './composeListItem/composeListItem
 import composeListItemOperateItemSwitch from './composeListItem/composeListItemOperateItemSwitch.test';
 import composeListItemPageTest from './composeListItem/composeListItemPageTest.test';
 import composeTitleBarTest from './composeTitleBar/composeTitleBarTest.test';
+import composeTitleBarLabel from './composeTitleBar/composeTitleBarLabel.test';
 import exceptionPromptTest from './exceptionPrompt/exceptionPromptTest.test';
 import exceptionPromptTestTwo from './exceptionPrompt/exceptionPromptTestTwo.test';
 import filterTest from './filter/filterTest.test';
@@ -68,6 +69,7 @@ export default function testsuite() {
   popupDirectionTest();
   segmentButtonDirectionTest();
   composeTitleBarTest();
+  composeTitleBarLabel();
   composeListItemIconType();
   composeListItemOperateItemArrow();
   composeListItemOperateItemButton();
@@ -101,7 +103,6 @@ export default function testsuite() {
   subHeaderButton();
   subHeaderIconGroup();
   subHeaderTextArrow();
-  composeTitleBarTest();
 
   FileButtonContinueToReceiveTest();
   FileButtonDownloadTest();

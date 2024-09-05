@@ -18,7 +18,7 @@ import promptAction from '@ohos.promptAction';
 
 @Entry
 @Component
-struct ComposeTitleBarPage {
+struct ComposeTitleBarLabel {
   private menuItems: Array<ComposeTitleBarMenuItem> = [
     {
       value: $r('sys.media.ohos_ic_public_copy'),
@@ -46,7 +46,6 @@ struct ComposeTitleBarPage {
   build() {
     Row() {
       Column() {
-        Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
           title: 'Title',
           subtitle: 'SubTitle',
