@@ -11,7 +11,7 @@
     "kits": [
         {
             "test-file-name": [
-                "ActsCreateModuleContexErrortTest.hap"
+                "ActsCreateModuleContextErrorTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
