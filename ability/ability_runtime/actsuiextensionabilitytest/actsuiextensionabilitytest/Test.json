@@ -1,0 +1,36 @@
+{
+  "description": "Configuration for aceceshi Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "1800000",
+    "bundle-name": "com.example.actsuiextensionabilitytest",
+    "module-name": "entry_test",
+    "shell-timeout": "1800000",
+    "testcase-timeout": 25000
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsActionExtAbilityOne.hap",
+        "ActsActionExtAbilityTwo.hap",
+        "ActsEmbeddedUIExtAbilityOne.hap",
+        "ActsEmbeddedUIExtAbilityTwo.hap",
+        "ActsShareExtAbilityOne.hap",
+        "ActsShareExtAbilityTwo.hap",
+        "ActsUIExtAbilityOne.hap",
+        "ActsUIExtAbilityTwo.hap",
+        "ActsUIExtensionAbilityTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "power-shell wakeup",
+        "power-shell setmode 602",
+        "param set persist.sys.abilityms.multi_process_model true"
+      ]
+    }
+  ]
+}

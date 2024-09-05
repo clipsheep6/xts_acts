@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/EmbeddedUIExtAbilityPageA",
+    "pages/EmbeddedUIExtAbilityPageB",
+    "pages/Index"
+  ]
+}
