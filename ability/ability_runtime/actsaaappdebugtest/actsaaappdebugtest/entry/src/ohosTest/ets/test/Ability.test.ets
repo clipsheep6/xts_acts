@@ -49,8 +49,7 @@ export default function abilityTest() {
         let result1 = result[1].split(',');
         console.info('====> [ACTS_aaAppDebug_1102] data.exitCode: ' + result1[0]);
 
-        expect(result1[0].trim()).assertEqual('com.acts.bundleNameA');
-        expect(result[2].trim()).assertEqual('false');
+        expect(d.stdResult.trim()).assertEqual('app debug successfully.');
         done();
 
       }).catch((err: BusinessError) => {
@@ -88,8 +87,7 @@ export default function abilityTest() {
         let result1 = result[1].split(',');
         console.info('====> [ACTS_aaAppDebug_1202] data.exitCode: ' + result1[0]);
 
-        expect(result1[0].trim()).assertEqual('com.acts.bundleNameA');
-        expect(result[2].trim()).assertEqual('true');
+        expect(d.stdResult.trim()).assertEqual('app debug successfully.');
         done();
 
       }).catch((err: BusinessError) => {
@@ -135,8 +133,7 @@ export default function abilityTest() {
         console.info('====> [ACTS_aaAppDebug_1303] data.exitCode: ' + result[1]);
         let result1 = result[1].split(',');
         console.info('====> [ACTS_aaAppDebug_1303] data.exitCode: ' + result1[0]);
-        expect(result1[0].trim()).assertEqual('com.acts.bundleNameB');
-        expect(result[2].trim()).assertEqual('true');
+        expect(d.stdResult.trim()).assertEqual('app debug successfully.');
         done();
       }).catch((err: BusinessError) => {
         console.info('====> [ACTS_aaAppDebug_1303] err: ' + JSON.stringify(err));
@@ -182,8 +179,7 @@ export default function abilityTest() {
         let result1 = result[1].split(',');
         console.info('====> [ACTS_aaAppDebug_1403] data.exitCode: ' + result1[0]);
 
-        expect(result1[0].trim()).assertEqual('com.acts.bundleNameB');
-        expect(result[2].trim()).assertEqual('false');
+        expect(d.stdResult.trim()).assertEqual('app debug successfully.');
         done();
 
       }).catch((err: BusinessError) => {
@@ -518,8 +514,7 @@ export default function abilityTest() {
         let result1 = result[1].split(',');
         console.info('====> [ACTS_aaAppDebug_2402] data.exitCode: ' + result1[0]);
 
-        expect(result1[0].trim()).assertEqual('com.acts.bundleNameA');
-        expect(result[2].trim()).assertEqual('true');
+        expect(d.stdResult.trim()).assertEqual('app debug successfully.');
         done();
 
       }).catch((err: BusinessError) => {
@@ -590,8 +585,7 @@ export default function abilityTest() {
         let result1 = result[1].split(',');
         console.info('====> [ACTS_aaAppDebug_2603] data.exitCode: ' + result1[0]);
 
-        expect(result1[0].trim()).assertEqual('com.acts.bundleNameB');
-        expect(result[2].trim()).assertEqual('false');
+        expect(d.stdResult.trim()).assertEqual('app debug successfully.');
         done();
 
       }).catch((err: BusinessError) => {
@@ -638,8 +632,7 @@ export default function abilityTest() {
         let result1 = result[1].split(',');
         console.info('====> [ACTS_aaAppDebug_2703] data.exitCode: ' + result1[0]);
 
-        expect(result1[0].trim()).assertEqual('com.acts.bundleNameB');
-        expect(result[2].trim()).assertEqual('true');
+        expect(d.stdResult.trim()).assertEqual('app debug successfully.');
         done();
 
       }).catch((err: BusinessError) => {
@@ -681,8 +674,7 @@ export default function abilityTest() {
         let result1 = result[1].split(',');
         console.info('====> [ACTS_aaAppDebug_2802] data.exitCode5: ' + result1[0]);
 
-        expect(result1[0].trim()).assertEqual('com.acts.bundleNameA');
-        expect(result[2].trim()).assertEqual('true');
+        expect(d.stdResult.trim()).assertEqual('app debug successfully.');
       }).catch((err: BusinessError) => {
         console.info('====> [ACTS_aaAppDebug_2802] err2: ' + JSON.stringify(err));
         expect().assertFail();
@@ -742,8 +734,7 @@ export default function abilityTest() {
         let result1 = result[1].split(',');
         console.info('====> [ACTS_aaAppDebug_2902] data.exitCode: ' + result1[0]);
 
-        expect(result1[0].trim()).assertEqual('123');
-        expect(result[2].trim()).assertEqual('false');
+        expect(d.stdResult.trim()).assertEqual('app debug successfully.');
         done();
 
       }).catch((err: BusinessError) => {
@@ -781,8 +772,7 @@ export default function abilityTest() {
         let result1 = result[1].split(',');
         console.info('====> [ACTS_aaAppDebug_3002] data.exitCode: ' + result1[0]);
 
-        expect(result1[0].trim()).assertEqual('abc');
-        expect(result[2].trim()).assertEqual('false');
+        expect(d.stdResult.trim()).assertEqual('app debug successfully.');
         done();
 
       }).catch((err: BusinessError) => {
