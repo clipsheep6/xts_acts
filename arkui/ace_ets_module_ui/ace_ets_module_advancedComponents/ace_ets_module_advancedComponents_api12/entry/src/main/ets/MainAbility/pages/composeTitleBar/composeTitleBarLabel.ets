@@ -46,7 +46,6 @@ struct ComposeTitleBarLabel {
   build() {
     Row() {
       Column() {
-        Divider().height(2).color(0xCCCCCC)
         ComposeTitleBar({
           title: 'Title',
           subtitle: 'SubTitle',
