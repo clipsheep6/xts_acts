@@ -53,7 +53,6 @@ export default function abilityTest() {
         hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
-        let context = null;
       };
       done();
     })
@@ -70,7 +69,7 @@ export default function abilityTest() {
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400';
       hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
       let context = undefined;
-      let moduleName = 'entry_test'
+      let moduleName = 'entry_test';
       try {
         await application.createModuleContext(context,moduleName).then((data: Context)=>{
           hilog.info(0x0000, TAG, '%{public}s', 'createBundleContext success!');
@@ -83,7 +82,6 @@ export default function abilityTest() {
         hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
-        let context = null;
       };
       done();
     })
@@ -113,7 +111,6 @@ export default function abilityTest() {
         hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
-        let context = null;
       };
       done();
     })
@@ -143,7 +140,6 @@ export default function abilityTest() {
         hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
-        let context = null;
       };
       done();
     })
@@ -173,7 +169,6 @@ export default function abilityTest() {
         hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
-        let context = null;
       };
       done();
     })
@@ -203,7 +198,6 @@ export default function abilityTest() {
         hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
         hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
-        let context = null;
       };
       done();
     })
