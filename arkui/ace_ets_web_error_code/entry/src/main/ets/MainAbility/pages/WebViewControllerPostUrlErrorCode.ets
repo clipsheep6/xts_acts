@@ -102,7 +102,7 @@ struct WebViewControllerPostUrlErrorCode {
             }
           })
 
-        Web({ src: $rawfile('webStorage.html'), controller: this.controller })
+        Web({ src: $rawfile('webstorage.html'), controller: this.controller })
           .javaScriptAccess(this.javaScriptAccess)
       }
       .width('100%')

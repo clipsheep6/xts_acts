@@ -434,7 +434,7 @@ struct Index {
 
             case "emitLoadUrl2": {
               try {
-                this.controller.loadUrl($rawfile(''));
+                this.controller.loadUrl('');
                 Utils.emitEvent(this.no_error, 1058)
               } catch (error) {
                 Utils.emitEvent(error.code, 1058)
