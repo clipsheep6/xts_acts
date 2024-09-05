@@ -19,28 +19,14 @@ import {expect} from 'deccjsunit/index'
 import router from '@system.router'
 import fs from '@ohos.file.fs';
 import fileio from '@ohos.fileio'
+import featureAbility from '@ohos.ability.featureAbility'
 import { UiDriver, BY, PointerMatrix } from '@ohos.UiTest';
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 const CODECMIMEVALUE = ['video/avc', 'audio/mp4a-latm', 'audio/mpeg']
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 export async function getPermission(permissionNames) {
-    let atManager = abilityAccessCtrl.createAtManager();
-    // requestPermissionsFromUser会判断权限的授权状态来决定是否唤起弹窗
-    atManager.requestPermissionsFromUser(context, permissions).then((data) => {
-        let grantStatus = data.authResults;
-        let length = grantStatus.length;
-        for (let i = 0; i < length; i++) {
-            if (grantStatus[i] === 0) {
-                // 用户授权，可以继续访问目标操作
-            } else {
-                // 用户拒绝授权，提示用户必须授权才能访问当前页面的功能，并引导用户到系统设置中打开相应的权限
-                return;
-            }
-        }
-        // 授权成功
-    }).catch((err) => {
-        console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
+    featureAbility.getContext().requestPermissionsFromUser(permissionNames, 0, async (data) => {
+        console.info("case request success" + JSON.stringify(data));
     })
 }
 
@@ -135,7 +121,11 @@ export function isFileOpen(fileDescriptor, done) {
 
 export async function getFdRead(pathName, done) {
     let fdReturn;
-    pathName = globalThis.abilityContext.filesDir + '/' + pathName;
+    await featureAbility.getContext().getFilesDir().then((fileDir) => {
+        console.info("case file dir is" + JSON.stringify(fileDir));
+        pathName = fileDir + '/' + pathName;
+        console.info("case pathName is" + pathName);
+    });
     await fileio.open(pathName).then((fdNumber) => {
         isFileOpen(fdNumber, done)
         fdReturn = fdNumber;
@@ -262,7 +252,7 @@ export async function clearRouter() {
 export async function saveVideo(asset) {
     console.info('case saveVideo start');
     try {
-        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
+        let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(featureAbility.getContext());
         let assetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
         assetChangeRequest.saveCameraPhoto();
         await phAccessHelper.applyChanges(assetChangeRequest);
@@ -280,7 +270,11 @@ export async function getFd(pathName) {
         fdNumber : null
     }
     
-    pathName = globalThis.abilityContext.filesDir + '/' + pathName;
+    await featureAbility.getContext().getFilesDir().then((fileDir) => {
+        console.info("case file dir is" + JSON.stringify(fileDir));
+        pathName = fileDir + '/' + pathName;
+        console.info("case pathName is" + pathName);
+    });
     
     let file = fs.openSync(pathName, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     fdObject.fileAsset = file;

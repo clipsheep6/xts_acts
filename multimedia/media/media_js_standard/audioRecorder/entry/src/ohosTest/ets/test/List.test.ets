@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import RecorderLocalTestAudioFUNC from './RecorderLocalTestAudioFUNC.test.js'
-import RecorderLocalTestAudioAPI from './RecorderLocalTestAudioAPI.test.js'
-import AudioRecorderEnumTest from './AudioRecorderEnumTest.test.js'
+import RecorderLocalTestAudioFUNC from './RecorderLocalTestAudioFUNC.test'
+import RecorderLocalTestAudioAPI from './RecorderLocalTestAudioAPI.test'
+import AudioRecorderEnumTest from './AudioRecorderEnumTest.test'
 export default function testsuite() {
     RecorderLocalTestAudioFUNC()
     RecorderLocalTestAudioAPI()
