@@ -18,9 +18,13 @@ import commonEvent from '@ohos.commonEvent';
 import common from '@ohos.app.ability.common';
 import { UIAbility, application} from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import hilog from '@ohos.hilog';
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-const PARAMETER_ERROR_CODE  = 401
+const PARAMETER_ERROR_CODE  = 401;
+
+const TAG = 'CreateModuleContext';
+const TEST_SUITE_NAME: string = 'CreateModuleContextTest';
 
 export default function abilityTest() {
   describe('ACTS_CreateModuleContext_Test', () => {
@@ -33,21 +37,23 @@ export default function abilityTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1300', 0, async (done: Function) => {
-      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
+      const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1300';
+      hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
       let context = null;
       let moduleName = 'entry';
       try {
         await application.createModuleContext(context,moduleName).then((data: Context)=>{
-          console.info('createBundleContext success!');
+          hilog.info(0x0000, TAG, '%{public}s', 'createBundleContext success!');
           expect().assertFail();
         }).catch((error : BusinessError)=>{
-          console.error(` error, errorCode: ${JSON.stringify(error)}`);
+          hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
           expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
         });
       } catch (error) {
-        console.error(` error, errorCode: ${JSON.stringify(error)}`);
+        hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
+        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
+        let context = null;
       };
       done();
     })
@@ -61,24 +67,25 @@ export default function abilityTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400', 0, async (done: Function) => {
-      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
-      let context = undefined
-      let moduleName = 'entry'
+      const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1400';
+      hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
+      let context = undefined;
+      let moduleName = 'entry_test'
       try {
-        application.createModuleContext(context,moduleName).then((data: Context)=>{
-          console.info('createBundleContext success!');
+        await application.createModuleContext(context,moduleName).then((data: Context)=>{
+          hilog.info(0x0000, TAG, '%{public}s', 'createBundleContext success!');
           expect().assertFail();
         }).catch((error : BusinessError)=>{
-          console.error(` error, errorCode: ${JSON.stringify(error)}`);
+          hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
           expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-          done();
-        })
+        });
       } catch (error) {
-        console.error(` error, errorCode: ${JSON.stringify(error)}`);
+        hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
-        done();
-      }
+        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
+        let context = null;
+      };
+      done();
     })
 
     /*
@@ -90,25 +97,25 @@ export default function abilityTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1500', 0, async (done: Function) => {
-      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
-      let moduleContext: common.Context;
-      let context = abilityDelegator.getAppContext();
-      let moduleName = null
+      const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1500';
+      hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
+      let context = AppStorage.get<Context>("abilityContext");
+      let moduleName = null;
       try {
-        application.createModuleContext(context,moduleName).then((data: Context)=>{
-          moduleContext = data;
-          console.info('createBundleContext success!');
+        await application.createModuleContext(context,moduleName).then((data: Context)=>{
+          hilog.info(0x0000, TAG, '%{public}s', 'createBundleContext success!');
+          expect().assertFail();
         }).catch((error : BusinessError)=>{
-          console.error(` error, errorCode: ${JSON.stringify(error)}`);
+          hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
           expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-          done();
-        })
+        });
       } catch (error) {
-        console.error(` error, errorCode: ${JSON.stringify(error)}`);
+        hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
-        done();
-      }
+        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
+        let context = null;
+      };
+      done();
     })
 
     /*
@@ -120,25 +127,25 @@ export default function abilityTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1600', 0, async (done: Function) => {
-      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
-      let moduleContext: common.Context;
-      let context = abilityDelegator.getAppContext();
-      let moduleName = undefined
+      const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1600';
+      hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
+      let context = AppStorage.get<Context>("abilityContext");
+      let moduleName = undefined;
       try {
-        application.createModuleContext(context,moduleName).then((data: Context)=>{
-          moduleContext = data;
-          console.info('createBundleContext success!');
+        await application.createModuleContext(context,moduleName).then((data: Context)=>{
+          hilog.info(0x0000, TAG, '%{public}s', 'createBundleContext success!');
+          expect().assertFail();
         }).catch((error : BusinessError)=>{
-          console.error(` error, errorCode: ${JSON.stringify(error)}`);
+          hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
           expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-          done();
-        })
+        });
       } catch (error) {
-        console.error(` error, errorCode: ${JSON.stringify(error)}`);
+        hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
-        done();
-      }
+        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
+        let context = null;
+      };
+      done();
     })
 
     /*
@@ -150,25 +157,25 @@ export default function abilityTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1700', 0, async (done: Function) => {
-      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
-      let moduleContext: common.Context;
-      let context = abilityDelegator.getAppContext();
-      let moduleName = 'x&x'
+      const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1700';
+      hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
+      let context = AppStorage.get<Context>("abilityContext");
+      let moduleName = 'x&x';
       try {
-        application.createModuleContext(context,moduleName).then((data: Context)=>{
-          moduleContext = data;
-          console.info('createBundleContext success!');
+        await application.createModuleContext(context,moduleName).then((data: Context)=>{
+          hilog.info(0x0000, TAG, '%{public}s', 'createBundleContext success!');
+          expect().assertFail();
         }).catch((error : BusinessError)=>{
-          console.error(` error, errorCode: ${JSON.stringify(error)}`);
+          hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
           expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-          done();
-        })
+        });
       } catch (error) {
-        console.error(` error, errorCode: ${JSON.stringify(error)}`);
+        hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
-        done();
-      }
+        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
+        let context = null;
+      };
+      done();
     })
 
     /*
@@ -180,25 +187,25 @@ export default function abilityTest() {
      * @tc.level     : Level 3
      */
     it('SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1800', 0, async (done: Function) => {
-      console.info('AbilityRuntime AMS Context CreateModuleContext Test start!');
-      let moduleContext: common.Context;
-      let context = abilityDelegator.getAppContext();
-      let moduleName = ''
+      const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_AMS_Context_CreateModuleContext_1800';
+      hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} start`);
+      let context = AppStorage.get<Context>("abilityContext");
+      let moduleName = '';
       try {
-        application.createModuleContext(context,moduleName).then((data: Context)=>{
-          moduleContext = data;
-          console.info('createBundleContext success!');
+        await application.createModuleContext(context,moduleName).then((data: Context)=>{
+          hilog.info(0x0000, TAG, '%{public}s', 'createBundleContext success!');
+          expect().assertFail();
         }).catch((error : BusinessError)=>{
-          console.error(` error, errorCode: ${JSON.stringify(error)}`);
+          hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
           expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-          done();
-        })
+        });
       } catch (error) {
-        console.error(` error, errorCode: ${JSON.stringify(error)}`);
+        hilog.error(0x0000, TAG, '%{public}s', ` error, errorCode: ${JSON.stringify(error)}`);
         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        console.info('AbilityRuntime AMS Context CreateModuleContext Test completed!');
-        done();
-      }
+        hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} completed`);
+        let context = null;
+      };
+      done();
     })
   })
 }
