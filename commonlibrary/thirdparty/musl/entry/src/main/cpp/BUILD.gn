@@ -1814,7 +1814,7 @@ ohos_shared_library("dso_easy_symver") {
   subsystem_name = "thirdparty"
   part_name = "musl"
   version_script = "dso_easy_symver.map"
-  sources = [ "./dso_easy_symver.cpp" ]
+  sources = [ "./dso_easy_symver.c" ]
   libs = [ rebase_path(libcxx_ndk_shared_file) ]
 
   include_dirs = [ "../cpp" ]

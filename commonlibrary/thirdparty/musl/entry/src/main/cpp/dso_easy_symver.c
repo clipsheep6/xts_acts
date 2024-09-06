@@ -13,10 +13,6 @@
  * limitations under the License.
  */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 char *dso_easy_symver(void);
 
 __asm__(".symver dso_easy_symver_old, dso_easy_symver@OLD");
@@ -37,7 +33,3 @@ char *dso_easy_symver_dev(void)
 {
     return (char *)__FUNCTION__;
 }
-
-#ifdef __cplusplus
-}
-#endif

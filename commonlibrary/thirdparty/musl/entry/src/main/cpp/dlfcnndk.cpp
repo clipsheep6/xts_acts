@@ -38,8 +38,9 @@ static napi_value DlSym(napi_env env, napi_callback_info info)
     }
 
     void *handle = dlsym(ptr, "dso_easy_symver");
-    if (handle == nullptr)
+    if (handle == nullptr) {
         res = DLSYM_FAIL;
+    }
     napi_value result = nullptr;
     napi_create_int32(env, res, &result);
     return result;
@@ -58,8 +59,9 @@ static napi_value DlVSym(napi_env env, napi_callback_info info)
     }
     const char *dso_easy_symver_version_stable = "STABLE";
     void *handle = dlvsym(ptr, "dso_easy_symver", dso_easy_symver_version_stable);
-    if (handle == nullptr)
+    if (handle == nullptr) {
         res = DLSYM_FAIL;
+    }
     napi_value result = nullptr;
     napi_create_int32(env, res, &result);
     return result;
