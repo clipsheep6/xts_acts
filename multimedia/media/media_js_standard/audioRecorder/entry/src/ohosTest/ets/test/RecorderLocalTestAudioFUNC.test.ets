@@ -14,8 +14,8 @@
  */
 
 import media from '@ohos.multimedia.media'
-import MediaTestBase, { FdObject } from '../../../../../../NewMediaTestBase';
-import VideoRecorderBase, { RecorderConfigFile } from '../../../../../../NewVideoRecorderTestBase';
+import MediaTestBase, { FdObject } from './NewMediaTestBase';
+import VideoRecorderBase, { RecorderConfigFile } from './NewVideoRecorderTestBase';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import { Permissions } from '@kit.AbilityKit';
 

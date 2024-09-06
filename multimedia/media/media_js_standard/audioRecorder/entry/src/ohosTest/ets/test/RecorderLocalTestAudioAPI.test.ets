@@ -14,7 +14,7 @@
  */
 
 import media from '@ohos.multimedia.media'
-import MediaTestBase, { FdObject } from '../../../../../../NewMediaTestBase';
+import MediaTestBase, { FdObject } from './NewMediaTestBase';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 
 let audioRecorder: media.AudioRecorder | null = null;
