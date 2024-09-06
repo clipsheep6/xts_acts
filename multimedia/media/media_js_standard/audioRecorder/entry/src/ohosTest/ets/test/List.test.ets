@@ -15,8 +15,9 @@
 import RecorderLocalTestAudioFUNC from './RecorderLocalTestAudioFUNC.test'
 import RecorderLocalTestAudioAPI from './RecorderLocalTestAudioAPI.test'
 import AudioRecorderEnumTest from './AudioRecorderEnumTest.test'
+
 export default function testsuite() {
-    RecorderLocalTestAudioFUNC()
-    RecorderLocalTestAudioAPI()
-    AudioRecorderEnumTest()
+  RecorderLocalTestAudioFUNC()
+  RecorderLocalTestAudioAPI()
+  AudioRecorderEnumTest()
 }

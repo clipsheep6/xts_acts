@@ -220,10 +220,10 @@ export default class MediaTestBase {
     }
   }
 
-  checkOldDescription(actualDescription: Array<media.MediaDescription>, descriptionKey: Array<string>,
+  checkOldDescription(actualDescription: media.MediaDescription, descriptionKey: Array<string>,
     descriptionValue: Array<string>) {
     for (let i = 0; i < descriptionKey.length; i++) {
-      let property: string = actualDescription[descriptionKey[i]];
+      let property: Object = actualDescription[descriptionKey[i]];
       let tmpDescriptionValue: string = descriptionValue[i]
       console.info('case key is  ' + descriptionKey[i]);
       console.info('case actual value is  ' + property);

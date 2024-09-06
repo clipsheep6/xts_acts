@@ -158,7 +158,7 @@ export default function RecorderLocalTestAudioAPI() {
     beforeAll(async () => {
       fdObject = await mediaTestBase.getFd('audio_api.mp4');
       if (fdObject.fdNumber != null) {
-          fdPath = "fd://" + fdObject.fdNumber.toString();
+        fdPath = "fd://" + fdObject.fdNumber.toString();
       }
       audioConfig.uri = fdPath;
       console.info('beforeAll case');

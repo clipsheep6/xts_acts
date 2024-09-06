@@ -17,6 +17,7 @@ import media from '@ohos.multimedia.media'
 import MediaTestBase, { FdObject } from '../../../../../../NewMediaTestBase';
 import VideoRecorderBase, { RecorderConfigFile } from '../../../../../../NewVideoRecorderTestBase';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { Permissions } from '@kit.AbilityKit';
 
 let audioRecorder: media.AudioRecorder | null = null;
 const END_STATE = 0;
@@ -169,11 +170,9 @@ function setCallback(mySteps: Array<number>, done: Function) {
 export default function RecorderLocalTestAudioFUNC() {
   describe('RecorderLocalTestAudioFUNC', () => {
     beforeAll(async () => {
-      let permissionName1 = 'ohos.permission.MICROPHONE';
-      let permissionName2 = 'ohos.permission.MEDIA_LOCATION';
-      let permissionName3 = 'ohos.permission.READ_MEDIA';
-      let permissionName4 = 'ohos.permission.WRITE_MEDIA';
-      let permissionNames = [permissionName1, permissionName2, permissionName3, permissionName4];
+      let permissionNames: Array<Permissions> =
+        ['ohos.permission.MICROPHONE', 'ohos.permission.MEDIA_LOCATION', 'ohos.permission.READ_MEDIA',
+          'ohos.permission.WRITE_MEDIA'];
       await mediaTestBase.getPermission(permissionNames);
       await mediaTestBase.msleepAsync(2000);
       await mediaTestBase.driveFn(3);
@@ -250,7 +249,7 @@ export default function RecorderLocalTestAudioFUNC() {
       fdPath = "fd://" + fdObject.fdNumber?.toString();
       audioConfig.uri = fdPath;
       audioConfig.numberOfChannels = CHANNEL_TWO;
-      let trackArray = videoRecorderBase.getTrackArray(ONLYAUDIO_TYPE, audioConfig, undefined);
+      videoRecorderBase.getTrackArray(ONLYAUDIO_TYPE, audioConfig, undefined);
       initAudioRecorder();
       let mySteps = new Array(PRE_STATE, START_STATE, STOP_STATE, RELEASE_STATE,
         CHECK_STATE, RECORDER_TIME, END_STATE);
