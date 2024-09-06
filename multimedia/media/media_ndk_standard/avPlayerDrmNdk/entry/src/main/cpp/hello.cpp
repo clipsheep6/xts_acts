@@ -37,7 +37,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#define PATH "/data/storage/el2/base/files/ChinaDRMLab_Promo_210525-264-30-1080P-10000K.sm4c.ts"
+#define PATH "/data/storage/el2/base/haps/entry/files/ChinaDRMLab_Promo_210525-264-30-1080P-10000K.sm4c.ts"
 #define BLUE_AREA "com.clearplay.drm"
 #define YELLOW_AREA "com.wiseplay.drm"
 
