@@ -64,38 +64,45 @@ function initAudioRecorder() {
 
 async function nextStep(mySteps: Array<number>, done: Function) {
   if (mySteps[0] == END_STATE) {
-    done();
     console.info('case to done');
+    done();
     return;
   }
   switch (mySteps[0]) {
     case PRE_STATE:
       console.info('case to prepare');
       audioRecorder?.prepare(audioConfig);
+      mediaTestBase.msleep(1000)
       break;
     case START_STATE:
       console.info('case to start');
       audioRecorder?.start();
+      mediaTestBase.msleep(1000)
       break;
     case PAUSE_STATE:
       console.info('case to pause');
       audioRecorder?.pause();
+      mediaTestBase.msleep(1000)
       break;
     case RESUME_STATE:
       console.info('case to resume');
       audioRecorder?.resume();
+      mediaTestBase.msleep(1000)
       break;
     case STOP_STATE:
       console.info('case to stop');
       audioRecorder?.stop();
+      mediaTestBase.msleep(1000)
       break;
     case RESET_STATE:
       console.info('case to reset');
       audioRecorder?.reset();
+      mediaTestBase.msleep(1000)
       break;
     case RELEASE_STATE:
       console.info('case to release');
       audioRecorder?.release();
+      mediaTestBase.msleep(1000)
       audioRecorder = null;
       break;
     case CHECK_STATE:

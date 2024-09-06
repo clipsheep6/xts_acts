@@ -174,9 +174,7 @@ export default class VideoRecorderTestBase {
     videoPlayer.on('error', (error) => {
       console.info(`case error called,errMessage is ${error.message}`);
       expect().assertFail();
-      return;
     });
-
     videoPlayer.url = playFdPath;
     let tarckType: Array<string> | undefined = undefined;
     if (playerSurfaceId != null) {
