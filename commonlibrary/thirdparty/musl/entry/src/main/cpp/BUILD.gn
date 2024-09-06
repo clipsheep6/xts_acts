@@ -1809,3 +1809,18 @@ ohos_shared_library("stat1ndk") {
 
   output_extension = "so"
 }
+ohos_shared_library("dso_easy_symver") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  version_script = "dso_easy_symver.map"
+  sources = [ "./dso_easy_symver.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}

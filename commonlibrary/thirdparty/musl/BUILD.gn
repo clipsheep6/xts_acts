@@ -150,6 +150,7 @@ ohos_js_hap_suite("ActsThirdPartyMuslTest") {
     "./entry/src/main/cpp:unistdndk1",
     "./entry/src/main/cpp:errndk",
     "./entry/src/main/cpp:utsnamendk",
+    "./entry/src/main/cpp:dso_easy_symver",
     ":libcppsharedso",
   ]
 }
