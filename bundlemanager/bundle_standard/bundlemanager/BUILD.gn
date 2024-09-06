@@ -38,6 +38,7 @@ group("bundlemanager") {
       "sceneProject/bmsaccesstokenone:bmsAccessTokenTest1",
       "sceneProject/bmsaccesstokenthree:bmsAccessTokenTest3",
       "sceneProject/bmsaccesstokentwo:bmsAccessTokenTest2",
+      "sceneProject/bmsdefaultapp:hits_bms_default_app",
       "sceneProject/bmsfirstright:first_right",
       "sceneProject/bmsgetinfosfifthscene:bmsThirdBundleTest5",
       "sceneProject/bmsgetinfosfirstscene:bmsThirdBundleTest1",
