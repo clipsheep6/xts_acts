@@ -83,7 +83,7 @@ export default class VideoRecorderTestBase {
   }
 
   getTrackArray(videoType: string, recorderConfigFile: RecorderConfigFile,
-    sourceType: media.VideoSourceType) {
+    sourceType: media.VideoSourceType | undefined) {
     if (videoType == AUDIO_VIDEO_TYPE) {
       let audioTrack: Array<string> =
         new Array(recorderConfigFile.audioBitrate == undefined ? '0' : recorderConfigFile.audioBitrate.toString(),
