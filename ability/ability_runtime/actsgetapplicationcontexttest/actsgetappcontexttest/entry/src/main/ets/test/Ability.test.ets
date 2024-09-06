@@ -280,6 +280,23 @@ export default function abilityTest() {
       }).catch((err: BusinessError) => {
         console.error(TAG, 'StartAbility err: ' + err.code);
       })
+      try {
+        let driver = Driver.create();
+        console.log(TAG, 'SUB_Ability_AbilityRuntime_GetApplicationContext_0700 start!!!');
+        await driver.delayMs(500);
+        let name = await driver.findComponent(ON.id('change1'));
+        await driver.delayMs(500);
+        await name.click();
+        await abilityDelegator.startAbility(want).then(() => {
+          console.log(TAG, 'StartAbility successfully.');
+        }).catch((err: BusinessError) => {
+          console.error(TAG, 'StartAbility err: ' + err.code);
+        })
+      } catch (err) {
+        console.log('SUB_Ability_AbilityRuntime_GetApplicationContext_0700 error: ', JSON.stringify(err));
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
