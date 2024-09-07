@@ -1126,7 +1126,7 @@ export default function cameraJSUnitOutput() {
             expect().assertFail();
           }
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_DEFAULT_CALLBACK_0100 ends here");
-          await sleep(3000);
+          await sleep(6000);
           done();
         })
       }
