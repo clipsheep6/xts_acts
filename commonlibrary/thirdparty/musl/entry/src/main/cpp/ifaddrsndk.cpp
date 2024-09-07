@@ -23,11 +23,16 @@
 
 #define NO_ERR 0
 #define SUCCESS 1
+#define EACCES 13
 #define FAIL (-1)
 static napi_value Getifaddrs(napi_env env, napi_callback_info info)
 {
     struct ifaddrs *ifc;
     int ret = getifaddrs(&ifc);
+    //This interface is under security control, and the permission may be insufficient on some devices.
+    if (ret == FAIL && errno == EACCES) {
+        ret = NO_ERR;
+    }
     napi_value result = nullptr;
     napi_create_int32(env, ret, &result);
     freeifaddrs(ifc);
@@ -42,7 +47,8 @@ static napi_value Freeifaddrs(napi_env env, napi_callback_info info)
         freeifaddrs(ifc);
     }
     int ret = FAIL;
-    if (errno == NO_ERR) {
+    //This interface is under security control, and the permission may be insufficient on some devices.
+    if (errno == NO_ERR || errno == EACCES) {
         ret = SUCCESS;
     }
     napi_value result = nullptr;
