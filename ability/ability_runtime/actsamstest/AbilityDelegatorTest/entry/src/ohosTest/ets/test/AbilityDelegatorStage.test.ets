@@ -14,9 +14,10 @@
  */
 
 import hilog from '@ohos.hilog';
-import { beforeAll, describe, expect, it } from '@ohos/hypium';
+import { afterEach, beforeAll, describe, expect, it } from '@ohos/hypium';
 import { BusinessError } from '@ohos.base';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import UIAbility from '@ohos.app.ability.UIAbility';
 
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
@@ -27,6 +28,15 @@ export default function abilityDelegatorStage() {
         'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12700 beforeAll');
       abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     });
+
+    afterEach(async (done: Function) => {
+      console.log("SUB_AA_AbilityStageMonitor afterEach called");
+      setTimeout(() => {
+        console.log("SUB_AA_AbilityStageMonitor afterEach called");
+        done();
+      }, 1000);
+    })
+
     /*
      * @tc.number:SUB_Ability_AbilityTools_AbilityDelegator_Stage_12700
      * @tc.name: SUB_Ability_AbilityTools_AbilityDelegator_Stage_12700
@@ -39,22 +49,23 @@ export default function abilityDelegatorStage() {
       hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s',
         'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12700 begin');
       try {
-        let want: Want = {
-          bundleName: 'bundleName',
+        abilityDelegator.startAbility({
+          bundleName: 'com.acts.abilitydelegatortest',
           abilityName: 'abilityName'
-        };
-        abilityDelegator.startAbility(want, (err: BusinessError, data: void) => {
-          console.info('startAbility callback');
+        }, (err: BusinessError, data: void) => {
+          console.info('startAbility callback err ' + JSON.stringify(err.code));
           if (err) {
-            expect(err.code).assertEqual(16000001);
+            expect(err.code).assertEqual(2097152);
+            done();
+          } else {
+            expect(false).assertTrue();
             done();
           }
         });
-        done();
       } catch (error) {
         hilog.error(0x0000, 'abilityDelegatorStageTag', '%{public}s',
           'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12700 failed ' + JSON.stringify(error));
-        expect(error.code).assertEqual(16000001);
+        expect(false).assertTrue();
         done();
       }
     });
@@ -72,25 +83,226 @@ export default function abilityDelegatorStage() {
         'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12800 begin');
       try {
         let want: Want = {
-          bundleName: 'bundleName',
+          bundleName: 'com.acts.abilitydelegatortest',
           abilityName: 'abilityName'
         };
         abilityDelegator.startAbility(want).then((data: void) => {
           console.info('startAbility promise');
+          expect(false).assertTrue();
+          done();
         }).catch((err: BusinessError) => {
           hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s',
-            'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12800 begin');
-          expect(err.code).assertEqual(16000001);
+            'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12800 failed');
+          expect(err.code).assertEqual(2097152);
           done();
         })
-        done();
       } catch (error) {
         hilog.error(0x0000, 'abilityDelegatorStageTag', '%{public}s',
           'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12800 failed ' + JSON.stringify(error));
-        expect(error.code).assertEqual(16000001);
+        expect(false).assertTrue();
         done();
       }
     });
+
+    /*
+     * @tc.number:SUB_Ability_AbilityTools_AbilityDelegator_Stage_12900
+     * @tc.name: SUB_Ability_AbilityTools_AbilityDelegator_Stage_12900
+     * @tc.desc:Unable to obtain background Ability information (Promise)
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
+     */
+    it('SUB_Ability_AbilityTools_AbilityDelegator_Stage_12900', 0, async (done: Function) => {
+      hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+        'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12900 begin');
+
+      await sleep(1000);
+      await abilityDelegator.startAbility({
+        bundleName: 'com.acts.abilitydelegatortest',
+        abilityName: 'AbilityA'
+      }).then((data: void) => {
+        hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s', 'startAbility promise abilitydemoa');
+        expect(true).assertTrue();
+      })
+
+      await sleep(1000);
+      await abilityDelegator.startAbility({
+        bundleName: 'com.acts.abilitydelegatortest',
+        abilityName: 'AbilityB'
+      }).then((data: void) => {
+        hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s', 'startAbility promise abilitydemob');
+        expect(true).assertTrue();
+      });
+
+      await sleep(1000);
+      await abilityDelegator.startAbility({
+        bundleName: 'com.acts.abilitydelegatortest',
+        abilityName: 'AbilityC'
+      }).then((data: void) => {
+        hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s', 'startAbility promise abilitydemoc');
+        expect(true).assertTrue();
+      });
+      await sleep(1000);
+      abilityDelegator.getCurrentTopAbility().then((ability: UIAbility) => {
+        console.info('enter getCurrentTopAbility')
+        let context = ability.context;
+        hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+          'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12900 getCurrentTopAbility ' +
+          JSON.stringify(context.abilityInfo.bundleName));
+        let name: string = context.abilityInfo.name;
+        if (name === 'AbilityA') {
+          expect(false).assertTrue();
+          console.info('enter getCurrentTopAbility')
+          done();
+        } else {
+          expect(true).assertTrue();
+          done();
+        }
+      }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+          'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12900 failed ' + JSON.stringify(err));
+        expect(false).assertTrue();
+        done();
+      })
+    });
+
+    /*
+     * @tc.number:SUB_Ability_AbilityTools_AbilityDelegator_Stage_13000
+     * @tc.name: SUB_Ability_AbilityTools_AbilityDelegator_Stage_13000
+     * @tc.desc:Unable to obtain background Ability information (callback)
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
+     */
+    it('SUB_Ability_AbilityTools_AbilityDelegator_Stage_13000', 0, async (done: Function) => {
+      hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+        'SUB_Ability_AbilityTools_AbilityDelegator_Stage_12900 begin');
+      await sleep(1000);
+      await abilityDelegator.startAbility({
+        bundleName: 'com.acts.abilitydelegatortest',
+        abilityName: 'AbilityA'
+      }).then((data: void) => {
+        hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s', 'startAbility promise abilitydemoa');
+        expect(true).assertTrue();
+      })
+
+      await sleep(1000);
+      await abilityDelegator.startAbility({
+        bundleName: 'com.acts.abilitydelegatortest',
+        abilityName: 'AbilityB'
+      }).then((data: void) => {
+        hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s', 'startAbility promise abilitydemob');
+        expect(true).assertTrue();
+      });
+
+      await sleep(1000);
+      await abilityDelegator.startAbility({
+        bundleName: 'com.acts.abilitydelegatortest',
+        abilityName: 'AbilityC'
+      }).then((data: void) => {
+        hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s', 'startAbility promise abilitydemoc');
+        expect(true).assertTrue();
+      });
+
+      await sleep(1000);
+      abilityDelegator.getCurrentTopAbility((err: BusinessError, ability: UIAbility) => {
+        if (err) {
+          hilog.error(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+            'SUB_Ability_AbilityTools_AbilityDelegator_Stage_13000 callback failed ' + JSON.stringify(err));
+          expect(false).assertTrue();
+          done();
+        } else {
+          let context = ability.context;
+          hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+            'SUB_Ability_AbilityTools_AbilityDelegator_Stage_13000 getCurrentTopAbility ' +
+            JSON.stringify(context.abilityInfo.bundleName));
+          let name: string = context.abilityInfo.name;
+          if (name === 'AbilityA') {
+            expect(false).assertTrue();
+            console.info('enter getCurrentTopAbility')
+            done();
+          } else {
+            expect(true).assertTrue();
+            done();
+          }
+        }
+      });
+    })
+
+    /*
+     * @tc.number:SUB_Ability_AbilityTools_AbilityDelegator_Stage_21900
+     * @tc.name: SUB_Ability_AbilityTools_AbilityDelegator_Stage_21900
+     * @tc.desc:Can start the specified PageAbility (AsyncCallback)
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
+     */
+    it('SUB_Ability_AbilityTools_AbilityDelegator_Stage_21900', 0, async (done: Function) => {
+      hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+        'SUB_Ability_AbilityTools_AbilityDelegator_Stage_21900 begin');
+      await sleep(1000);
+      await abilityDelegator.startAbility({
+        bundleName: 'com.acts.abilitydelegatortest',
+        abilityName: 'AbilityA'
+      }).then((data: void) => {
+        hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s', 'startAbility promise abilitydemoa');
+        expect(true).assertTrue();
+      })
+      await sleep(1000);
+      abilityDelegator.getCurrentTopAbility((err: BusinessError, ability: UIAbility) => {
+        if (err) {
+          hilog.error(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+            'SUB_Ability_AbilityTools_AbilityDelegator_Stage_21900 callback failed ' + JSON.stringify(err));
+          expect(false).assertEqual(true);
+          done();
+        } else {
+          let context = ability.context;
+          hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+            'SUB_Ability_AbilityTools_AbilityDelegator_Stage_21900 getCurrentTopAbility ' + JSON.stringify(context.abilityInfo.bundleName));
+          expect(context.abilityInfo.name).assertEqual('AbilityA');
+          done();
+        }
+      });
+    });
+
+    /*
+     * @tc.number:SUB_Ability_AbilityTools_AbilityDelegator_Stage_22000
+     * @tc.name: SUB_Ability_AbilityTools_AbilityDelegator_Stage_22000
+     * @tc.desc:Can start the specified PageAbility (Promise)
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
+     */
+    it('SUB_Ability_AbilityTools_AbilityDelegator_Stage_22000', 0, async (done: Function) => {
+      hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+        'SUB_Ability_AbilityTools_AbilityDelegator_Stage_22000 begin');
+
+      await sleep(1000);
+      await abilityDelegator.startAbility({
+        bundleName: 'com.acts.abilitydelegatortest',
+        abilityName: 'AbilityA'
+      }).then((data: void) => {
+        hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s', 'startAbility promise abilitydemoa');
+        expect(true).assertTrue();
+      })
+      await sleep(1000);
+      abilityDelegator.getCurrentTopAbility().then((ability: UIAbility) => {
+        console.info('enter getCurrentTopAbility')
+        let context = ability.context;
+        hilog.info(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+          'SUB_Ability_AbilityTools_AbilityDelegator_Stage_22000 getCurrentTopAbility ' + JSON.stringify(context.abilityInfo.name));
+        expect(context.abilityInfo.name).assertEqual('AbilityA');
+        done();
+      }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'abilityDelegatorStageTag', '%{public}s',
+          'SUB_Ability_AbilityTools_AbilityDelegator_Stage_22000 failed ' + JSON.stringify(err));
+        expect(false).assertTrue();
+        done();
+      })
+    })
   });
 }
 
+let sleep = (ms: number): Promise<void> => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
