@@ -14,7 +14,7 @@
  */
 import { Theme } from '@ohos.arkui.theme';
 
-export const frameTime = 1000;
+export const frameTime = 2000;
 export function sleep(time: number) {
   return new Promise((resolve: (value: string) => void) => {
     setTimeout(() => {
