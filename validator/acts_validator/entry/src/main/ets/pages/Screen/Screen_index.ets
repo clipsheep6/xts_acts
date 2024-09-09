@@ -47,8 +47,7 @@ struct IndexPage {
   @State TEST: number = 0;
   private TestCaseList: TestCase[] = [
     { title: 'VirtualScreen', uri: 'pages/Screen/VirtualScreen' },
-    { title: 'Brightness', uri: 'pages/Screen/Brightness' },
-    { title: 'ScreenPick', uri: 'pages/Screen/ScreenPick' }
+    { title: 'Brightness', uri: 'pages/Screen/Brightness' }
   ]
   @State ColorObject: Object[] = letColor;
   @State ColorTrue: number[] = [];
