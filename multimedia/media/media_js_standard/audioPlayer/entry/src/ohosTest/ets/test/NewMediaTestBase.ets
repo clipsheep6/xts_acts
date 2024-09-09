@@ -232,7 +232,9 @@ export default class MediaTestBase {
         expect(Math.abs(Number(property) - Number(tmpDescriptionValue))).assertLess(500);
         return;
       }
-      expect(property).assertEqual(tmpDescriptionValue);
+      if (property != tmpDescriptionValue) {
+        expect().assertFail()
+      }
     }
   }
 

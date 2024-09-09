@@ -277,12 +277,12 @@ export default function PlayerLocalTestAudioFUNC() {
 
   describe('PlayerLocalTestAudioFUNC', () => {
     beforeAll(async () => {
-      await mediaTestBase.getFileDescriptor(AUDIO_SOURCE).then((res: resourceManager.RawFileDescriptor | undefined) => {
-        fileDescriptor = res;
-      });
       await mediaTestBase.getFdRead(AUDIO_SOURCE, openFileFailed).then((testNumber) => {
         fdNumber = testNumber;
         fdPath = fdHead + '' + fdNumber;
+        fileDescriptor = {
+          fd: testNumber
+        }
       });
       console.info('beforeAll case');
     });
