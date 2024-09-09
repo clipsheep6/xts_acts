@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
-import PlayerLocalTestAudioAPI from './PlayerLocalTestAudioAPI.test.js'
-import PlayerLocalTestAudioFormat from './PlayerLocalTestAudioFormat.test.js'
-import PlayerLocalTestAudioFUNC from './PlayerLocalTestAudioFUNC.test.js'
+import PlayerLocalTestAudioAPI from './PlayerLocalTestAudioAPI.test'
+import PlayerLocalTestAudioFormat from './PlayerLocalTestAudioFormat.test'
+import PlayerLocalTestAudioFUNC from './PlayerLocalTestAudioFUNC.test'
+
 export default function testsuite() {
-PlayerLocalTestAudioAPI()
-PlayerLocalTestAudioFormat()
-PlayerLocalTestAudioFUNC()
+  PlayerLocalTestAudioAPI()
+  PlayerLocalTestAudioFormat()
+  PlayerLocalTestAudioFUNC()
 }
