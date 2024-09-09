@@ -30,14 +30,32 @@ import cameraVideoSuperStabilizationTest from './CameraVideoSuperStabilizationTe
 import cameraTorchTest from './CameraTorchTest.test.ets'
 import cameraPickerPc from './CameraPickerPc.test'
 import cameraSecureSessionTest from './CameraSecureSessionTest.test.ets'
-import call from  '@ohos.telephony.call'
-let voice = call.hasVoiceCapability()
+
+import cameraZoomTest from './cameraZoom.test'
+import cameraSessionTest from './cameraSession.test'
+import cameraColorTest from './cameraColor.test'
+import cameraStabiliTest from './cameraStabili.test'
+import cameraExposureTest from './cameraExposure.test'
+import cameraFocusTest from './cameraFocus.test'
+import cameraFlashTest from './cameraFlash.test'
+import cameraInputsTest from './cameraInput.test'
+import cameraManagersTest from './cameraManagers.test'
+
+
 let TAG = 'CameraModuleTest: '
 
 export default function cameraKit() {
   console.info(TAG + 'Entering cameraKit')
-  if (voice){
     cameraInputTest()
+	cameraManagersTest()
+    cameraInputsTest()
+    cameraFlashTest()
+    cameraFocusTest()
+    cameraExposureTest()
+    cameraStabiliTest()
+    cameraColorTest()
+    cameraSessionTest()
+    cameraZoomTest()
     cameraVideoSuperStabilizationTest()
     cameraJSUnitOutput()
     cameraSessionFlashTest()
@@ -52,7 +70,5 @@ export default function cameraKit() {
     cameraEnumTest()
     cameraTorchTest()
     cameraSecureSessionTest()
-  }else{
-    cameraPickerPc()
-  }
+ 
 }
