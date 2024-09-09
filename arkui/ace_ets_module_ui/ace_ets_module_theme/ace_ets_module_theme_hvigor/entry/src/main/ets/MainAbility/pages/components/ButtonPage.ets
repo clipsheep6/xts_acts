@@ -115,7 +115,7 @@ struct ButtonPage {
 
         Button('Error Normal Button',
           { buttonStyle: ButtonStyleMode.NORMAL, role: ButtonRole.ERROR })
-          .key(ButtonKeys.buttonSystemErrorNormalNormal);
+          .key(ButtonKeys.buttonSystemErrorNormalNormal)
         Button('Error Emphasized Button',
           { buttonStyle: ButtonStyleMode.EMPHASIZED, role: ButtonRole.ERROR })
           .key(ButtonKeys.buttonSystemErrorEmphasizedNormal)
