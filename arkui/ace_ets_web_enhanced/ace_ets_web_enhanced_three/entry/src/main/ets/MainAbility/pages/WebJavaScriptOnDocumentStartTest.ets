@@ -16,6 +16,7 @@
 import Utils from '../../test/Utils';
 import webView from '@ohos.web.webview';
 import events_emitter from '@ohos.events.emitter';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -74,7 +75,7 @@ struct WebJavaScriptOnDocumentStartTest {
                     }
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -98,7 +99,7 @@ struct WebJavaScriptOnDocumentStartTest {
                     }
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }

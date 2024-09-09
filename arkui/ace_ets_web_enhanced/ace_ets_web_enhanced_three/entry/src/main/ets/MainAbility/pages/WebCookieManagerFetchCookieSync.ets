@@ -17,6 +17,7 @@ import Utils from '../../test/Utils';
 import webView from '@ohos.web.webview';
 import events_emitter from '@ohos.events.emitter';
 import business_error from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -66,7 +67,7 @@ struct WebCookieManagerFetchCookieSync {
                   console.log("fetchCookieSync cookie = " + value);
                   Utils.emitEvent(value, 100101)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -78,7 +79,7 @@ struct WebCookieManagerFetchCookieSync {
                   console.log("fetchCookieSync cookie = " + value);
                   Utils.emitEvent(value, 100102)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -94,7 +95,7 @@ struct WebCookieManagerFetchCookieSync {
                     Utils.emitEvent(value, 100103)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -112,7 +113,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -125,7 +126,7 @@ struct WebCookieManagerFetchCookieSync {
                   console.log("fetchCookieSync cookie = " + value);
                   Utils.emitEvent(value, 100105)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -142,7 +143,7 @@ struct WebCookieManagerFetchCookieSync {
                     Utils.emitEvent(value, 100106)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -161,7 +162,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.error("error: " + error);
                     });
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -174,7 +175,7 @@ struct WebCookieManagerFetchCookieSync {
                   console.log("fetchCookieSync cookie = " + value);
                   Utils.emitEvent(value, 100108)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -191,7 +192,7 @@ struct WebCookieManagerFetchCookieSync {
                     Utils.emitEvent(value, 100109)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -210,7 +211,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.error("error: " + error);
                     });
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -223,7 +224,7 @@ struct WebCookieManagerFetchCookieSync {
                   console.log("fetchCookieSync cookie = " + value);
                   Utils.emitEvent(value, 100111)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -236,7 +237,7 @@ struct WebCookieManagerFetchCookieSync {
                   console.log("fetchCookieSync cookie = " + value);
                   Utils.emitEvent(value, 100112)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -253,7 +254,7 @@ struct WebCookieManagerFetchCookieSync {
                     Utils.emitEvent(value, 100113)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -272,7 +273,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.error("error: " + error);
                     });
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -285,7 +286,7 @@ struct WebCookieManagerFetchCookieSync {
                   console.log("fetchCookieSync cookie = " + value);
                   Utils.emitEvent(value, 100115)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -302,7 +303,7 @@ struct WebCookieManagerFetchCookieSync {
                     Utils.emitEvent(value, 100116)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -321,7 +322,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.error("error: " + error);
                     });
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -334,7 +335,7 @@ struct WebCookieManagerFetchCookieSync {
                   console.log("fetchCookieSync cookie = " + value);
                   Utils.emitEvent(value, 100118)
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -351,7 +352,7 @@ struct WebCookieManagerFetchCookieSync {
                     Utils.emitEvent(value, 100119)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -372,7 +373,7 @@ struct WebCookieManagerFetchCookieSync {
                     })
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -396,7 +397,7 @@ struct WebCookieManagerFetchCookieSync {
                   })
 
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -413,7 +414,7 @@ struct WebCookieManagerFetchCookieSync {
                     Utils.emitEvent(value, 100122)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -434,7 +435,7 @@ struct WebCookieManagerFetchCookieSync {
                     })
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -457,7 +458,7 @@ struct WebCookieManagerFetchCookieSync {
                       });
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -474,7 +475,7 @@ struct WebCookieManagerFetchCookieSync {
                     Utils.emitEvent(value, 100125)
                   })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -493,7 +494,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -516,7 +517,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -541,7 +542,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -560,7 +561,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -583,7 +584,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -602,7 +603,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.error("error: " + error);
                     });
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }
@@ -621,7 +622,7 @@ struct WebCookieManagerFetchCookieSync {
                       console.log('error: ' + JSON.stringify(error));
                     })
                 } catch (error) {
-                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
                 }
                 break;
               }

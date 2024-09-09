@@ -63,13 +63,17 @@ struct setPathAllowingUniversalAccess {
                   getContext().resourceDir,
                   getContext().filesDir + "/example"
                 ])
+                let urlLoad: string = "file://" + getContext().resourceDir + "/index.html"
+                console.log("setPathAllowingUniversalAccess0100 loadUrl:" + urlLoad)
                 this.controller.loadUrl("file://" + getContext().resourceDir + "/index.html")
                 console.log(getContext().resourceDir)
                 await Utils.sleep(2000);
+                console.log("setPathAllowingUniversalAccess0100 loadUrl ok")
                 let driver: Driver = Driver.create();
                 let buttonOne = await driver.findComponent(ON.text('stealFile'));
                 await buttonOne.click()
                 await Utils.sleep(2000);
+                console.log("setPathAllowingUniversalAccess0100 click ok")
                 this.controller.searchAllAsync('success');
 
               } catch (error) {

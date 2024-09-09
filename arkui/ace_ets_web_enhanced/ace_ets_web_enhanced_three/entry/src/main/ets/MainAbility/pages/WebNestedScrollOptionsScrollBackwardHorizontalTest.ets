@@ -17,6 +17,7 @@ import events_emitter from '@ohos.events.emitter';
 import webView from '@ohos.web.webview';
 import { Driver } from '@ohos.UiTest';
 import Utils from '../../test/Utils';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -81,7 +82,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime == 0 && this.selfScrollTime != 0, 9001)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -107,7 +108,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime > this.selfScrollTime && this.selfScrollTime > 0, 9002)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -133,7 +134,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime < this.selfScrollTime && this.parentScrollTime > 0, 9003)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -157,7 +158,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime > 0 && this.selfScrollTime > 0, 9004)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -181,7 +182,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime == 0 && this.selfScrollTime != 0, 9005)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -207,7 +208,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime > this.selfScrollTime && this.selfScrollTime > 0, 9006)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -233,7 +234,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime < this.selfScrollTime && this.parentScrollTime > 0, 9007)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -257,7 +258,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime > 0 && this.selfScrollTime > 0, 9008)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -281,7 +282,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime == 0 && this.selfScrollTime != 0, 9009)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -307,7 +308,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime > this.selfScrollTime && this.selfScrollTime > 0, 9010)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -333,7 +334,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime < this.selfScrollTime && this.parentScrollTime > 0, 9011)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -357,7 +358,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime > 0 && this.selfScrollTime > 0, 9012)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -381,7 +382,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime == 0 && this.selfScrollTime != 0, 9013)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -407,7 +408,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime > this.selfScrollTime && this.selfScrollTime > 0, 9014)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -433,7 +434,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime < this.selfScrollTime && this.parentScrollTime > 0, 9015)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -457,7 +458,7 @@ struct WebNestedScrollOptionsScrollBackwardHorizontalTest {
                 await Utils.sleep(3000)
                 Utils.emitEvent(this.parentScrollTime > 0 && this.selfScrollTime > 0, 9016)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }

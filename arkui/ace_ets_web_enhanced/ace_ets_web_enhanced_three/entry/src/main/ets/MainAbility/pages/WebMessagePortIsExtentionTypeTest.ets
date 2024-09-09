@@ -17,6 +17,7 @@ import webView from '@ohos.web.webview';
 import Utils from '../../test/Utils';
 import { JsProxyObject } from '../../test/Interfaces.d';
 import events_emitter from '@ohos.events.emitter';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -84,7 +85,7 @@ struct WebMessagePortIsExtentionTypeTest {
                 this.ports[0].postMessageEventExt(this.message);
               } catch (error) {
                 Utils.emitEvent(error.code, 100100)
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }

@@ -148,7 +148,7 @@ export default function webViewControllerPart2() {
     it('testLoadUrl004', 0, async (done: Function) => {
       Utils.emitEvent("testLoadUrl004", 10)
       await Utils.sleep(2000);
-      Utils.registerEvent("testLoadUrl004", "second", 77002, done);
+      Utils.registerEvent("testLoadUrl004", "second.html", 77002, done);
       sendEventByKey('WebViewControllerPart2Button', 10, '');
     })
 

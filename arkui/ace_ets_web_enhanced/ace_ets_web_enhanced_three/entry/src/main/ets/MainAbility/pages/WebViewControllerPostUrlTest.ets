@@ -16,6 +16,7 @@
 import Utils from '../../test/Utils';
 import webView from '@ohos.web.webview';
 import events_emitter from '@ohos.events.emitter';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 class testObj {
   constructor() {
@@ -79,7 +80,7 @@ struct WebViewControllerPostUrlTest {
                 this.controller.postUrl('www.example.com', postData);
                 await Utils.sleep(6000)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -92,7 +93,7 @@ struct WebViewControllerPostUrlTest {
                 this.controller.postUrl('resource://rawfile/second.html', postData);
                 await Utils.sleep(6000)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -106,7 +107,7 @@ struct WebViewControllerPostUrlTest {
                 this.controller.postUrl(sandboxPath, postData);
                 await Utils.sleep(6000)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -119,7 +120,7 @@ struct WebViewControllerPostUrlTest {
                 this.controller.postUrl('www.example.com', postData);
                 await Utils.sleep(6000)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -132,7 +133,7 @@ struct WebViewControllerPostUrlTest {
                 this.controller.postUrl('resource://rawfile/second.html', postData);
                 await Utils.sleep(6000)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -146,7 +147,7 @@ struct WebViewControllerPostUrlTest {
                 this.controller.postUrl(sandboxPath, postData);
                 await Utils.sleep(6000)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }

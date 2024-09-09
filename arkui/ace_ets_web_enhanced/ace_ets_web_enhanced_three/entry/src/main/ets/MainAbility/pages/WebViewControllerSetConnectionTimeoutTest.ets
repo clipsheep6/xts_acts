@@ -16,6 +16,7 @@
 import Utils from '../../test/Utils';
 import webView from '@ohos.web.webview';
 import events_emitter from '@ohos.events.emitter';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { JsProxyObject } from '../../test/Interfaces';
 
 class testObj {
@@ -94,7 +95,7 @@ struct WebViewControllerSetConnectionTimeoutTest {
                 await Utils.sleep(2000)
                 webView.WebviewController.setConnectionTimeout(30)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -109,7 +110,7 @@ struct WebViewControllerSetConnectionTimeoutTest {
                 await Utils.sleep(2000)
                 webView.WebviewController.setConnectionTimeout(30)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -124,7 +125,7 @@ struct WebViewControllerSetConnectionTimeoutTest {
                 await Utils.sleep(2000)
                 webView.WebviewController.setConnectionTimeout(30)
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }

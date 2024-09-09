@@ -18,6 +18,7 @@ import Utils from '../../test/Utils';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../../test/List.test';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -107,7 +108,7 @@ struct webResourceResponseGet {
                 }
                 Utils.emitEvent(false, 35010);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -119,7 +120,7 @@ struct webResourceResponseGet {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.getRequestUrlValue, 35011);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -131,7 +132,7 @@ struct webResourceResponseGet {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.isRequestGestureValue, 35012);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -145,7 +146,7 @@ struct webResourceResponseGet {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.isMainFrameValue, 35013);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -157,7 +158,7 @@ struct webResourceResponseGet {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.isRedirectValue, 35014);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -169,7 +170,7 @@ struct webResourceResponseGet {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.getRequestMethodValue, 35015);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -181,7 +182,7 @@ struct webResourceResponseGet {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.getResponseDataValue, 35016);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -193,7 +194,7 @@ struct webResourceResponseGet {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.getResponseEncodingValue, 35017);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -205,7 +206,7 @@ struct webResourceResponseGet {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.getResponseMimeTypeValue, 35018);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -217,7 +218,7 @@ struct webResourceResponseGet {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.getReasonMessageValue, 35019);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -233,7 +234,7 @@ struct webResourceResponseGet {
                 }
                 Utils.emitEvent(false, 35020);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
@@ -245,7 +246,7 @@ struct webResourceResponseGet {
                 await Utils.sleep(4000);
                 Utils.emitEvent(this.getResponseCodeValue, 35021);
               } catch (error) {
-                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as Error).message}`);
               }
               break;
             }
