@@ -80,7 +80,9 @@ struct HomePage {
             .width('100%')
             .buttonStyle(ButtonStyleMode.NORMAL)
             .onClick(event => {
-              certManagerDialog.openCertificateManagerDialog(getContext(this), certManagerDialog.CertificateDialogPageType.PAGE_INSTALL_CERTIFICATE);
+              certManagerDialog.openCertificateManagerDialog(
+                getContext(this),
+                certManagerDialog.CertificateDialogPageType.PAGE_INSTALL_CERTIFICATE);
             })
             .margin({ top: 24 })
         }.width('100%')
