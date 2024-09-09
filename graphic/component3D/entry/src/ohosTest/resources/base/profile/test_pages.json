@@ -1,8 +1,0 @@
-{
-  "src": [
-    "testability/pages/Index",
-    "MainAbility/pages/backgroundBrightness",
-    "MainAbility/pages/Component3D1",
-    "MainAbility/pages/Component3D"
-  ]
-}

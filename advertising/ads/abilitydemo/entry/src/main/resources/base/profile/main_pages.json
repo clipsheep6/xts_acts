@@ -1,7 +1,0 @@
-{
-  "src": [
-    "pages/FullScreenAdPage",
-    "pages/UIExtensionAbilityPage",
-    "pages/AutoRefreshPage"
-  ]
-}

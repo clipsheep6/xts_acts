@@ -1,8 +1,0 @@
-{
-    "src": [
-        "MainAbility/pages/index/index",
-        "MainAbility/pages/second/second",
-        "pages/index/index",
-        "pages/second/second"
-    ]
-}
