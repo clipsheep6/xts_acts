@@ -39,8 +39,6 @@ group("ndk") {
   if (is_standard_system) {
     deps = [
       "dnsndk:ActsDnsNdkTest",
-      "network_netmanager:ActsNetConnTest"
-      
     ]
   }
 }
