@@ -1,24 +1,28 @@
 {
-    "description": "Configuration for ActsNetConnTest Tests",
+    "description": "Configuration for MemoryUitls Tests",
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "180000",
-        "bundle-name": "com.netconn.netconnndktest",
-        "module-name": "com.netconn.napitest",
         "shell-timeout": "600000",
-        "testcase-timeout": 60000
+        "testcase-timeout": "6000",
+        "bundle-name": "com.network.netconn.napitest",
+        "module-name": "com.netconn.napitest"
     },
-    "kits": [{
-        "test-file-name": [
-            "ActsNetConnTest.hap"
-        ],
-        "type": "AppInstallKit",
-        "cleanup-apps": true
-    }, {
-        "type": "ShellKit",
-        "run-command": [
-            "power-shell wakeup",
-            "power-shell setmode 602"
-        ]
-    }]
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNetConnNDKTest.hap",
+                "ActsNetConnNDKMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
 }
