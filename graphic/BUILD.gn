@@ -43,6 +43,7 @@ group("graphic") {
       "imageNdk:image_ndk_hap",
       "nativebuffer:ActsNativeBufferTest",
       "nativedrawing:ActsNativeDrawingTest",
+      "nativewindow:ActsNativeWindowTest",
       "nativeimage:ActsNativeImageTest",
       "nativevsync:ActsNativeVsyncTest",
       "webGL:webGL_hap_test",
