@@ -1,0 +1,56 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\w30025808\\.ohos\\config\\default_demo_ndk_stage_BxYIC7499d_W6KKD77t3NIY80EZI_Sh5eJ75V9Vp4-U=.cer",
+          "storePassword": "0000001BD1D9476A4DD45F34671B8A01426B821ABDEA7D8FDE05004D2FB412494B5E09001743B4310A0FA7",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B635CA5EF3759E1BF9F1DACDA674B253B8A16A58E45D0C56DBB5905CACA6B3D7FA8C9A24079407D",
+          "profile": "C:\\Users\\w30025808\\.ohos\\config\\default_demo_ndk_stage_BxYIC7499d_W6KKD77t3NIY80EZI_Sh5eJ75V9Vp4-U=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\w30025808\\.ohos\\config\\default_demo_ndk_stage_BxYIC7499d_W6KKD77t3NIY80EZI_Sh5eJ75V9Vp4-U=.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": "5.0.0(12)",
+        "compatibleSdkVersion": "5.0.0(12)",
+        "runtimeOS": "HarmonyOS",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
