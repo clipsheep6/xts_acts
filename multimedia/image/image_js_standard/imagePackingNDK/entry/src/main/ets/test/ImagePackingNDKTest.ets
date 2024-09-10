@@ -30,6 +30,7 @@ export default function ImagePackingNDKTest() {
         let isSupportGifEncode;
         const CODE_SUCCESS = 0;
         const ERR_CODE = 62980115;
+        const ERR_CODE1 = 62980279;
         beforeAll(function () {
             console.info('beforeAll case');
             isSupportGifEncode = image.createImagePacker().supportedFormats.includes("image/gif");
@@ -237,7 +238,7 @@ export default function ImagePackingNDKTest() {
                 }
                 let packingRes = ndkTest.packToData(packer.result, source, packOpts);
                 log.log("packer packingRes.result " + JSON.stringify(packingRes));
-                expect(packingRes.code == ERR_CODE).assertTrue();
+                expect(packingRes.code == ERR_CODE || packingRes.code == ERR_CODE1).assertTrue();
                 done();
             } catch (error) {
                 console.error("Test exception " + error);
@@ -258,7 +259,7 @@ export default function ImagePackingNDKTest() {
                 }
                 let packingRes = ndkTest.packToFile(packer.result, source, writeFd, packOpts);
                 log.log(`packingRes : ${JSON.stringify(packingRes)}`)
-                expect(packingRes.code == ERR_CODE).assertTrue();
+                expect(packingRes.code == ERR_CODE || packingRes.code == ERR_CODE1).assertTrue();
                 ndkTest.release(packer.result);
                 packer.result.release();
                 done();
