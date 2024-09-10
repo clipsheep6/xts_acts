@@ -12,8 +12,21 @@
 # limitations under the License.
 
 import("//build/ohos_var.gni")
+import("//test/xts/tool/build/suite.gni)
 
 group("websocket") {
   testonly = true
-  deps = [ "websocketalltest:ActsNetworkMgrWebsocketTest" ]
+  deps = [ 
+  "websocketalltest:ActsNetworkMgrWebsocketTest"
+   ]
 }
+
+group("ndk") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+       "netstack_websocket:ActsWebSocketNDKTest"
+    ]
+  }
+}
+

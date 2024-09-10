@@ -12,6 +12,7 @@
 # limitations under the License.
 
 import("//build/ohos_var.gni")
+import("//test/xts/tool/build/suite.gni)
 
 group("netmanager_base") {
   testonly = true
@@ -30,6 +31,17 @@ group("netmanager_base") {
       "register:ActsRegisterTest",
       "socket:ActsSocketTest",
       "system_fetch:ActsSystemFetchTest",
+    ]
+  }
+}
+
+group("ndk") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "dnsndk:ActsDnsNdkTest",
+      "network_netmanager:ActsNetConnTest"
+      
     ]
   }
 }
