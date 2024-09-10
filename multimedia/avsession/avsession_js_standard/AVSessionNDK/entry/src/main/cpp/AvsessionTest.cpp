@@ -291,24 +291,6 @@ AVSessionError AVSessionSetPlaybackState(OH_AVSession* avsession, const Param& p
     return AV_SESSION_ERR_SET_PLAYBACK_STATE_FAILED;
 }
 
-AVSessionError AVSessionSetBufferedTime(OH_AVSession* avsession, const Param& param)
-{
-    uint64_t bufferedTime = static_cast<uint64_t>(std::get<double>(param));
-    if (OH_AVSession_SetBufferedTime(avsession, bufferedTime) == AV_SESSION_ERR_SUCCESS) {
-        return AV_SESSION_ERROR_SUCCESSED;
-    }
-    return AV_SESSION_ERR_SET_BUFFERED_TIME_FAILED;
-}
-
-AVSessionError AVSessionSetSpeed(OH_AVSession* avsession, const Param& param)
-{
-    uint32_t speed = static_cast<uint32_t>(std::get<double>(param));
-    if (OH_AVSession_SetSpeed(avsession, speed) == AV_SESSION_ERR_SUCCESS) {
-        return AV_SESSION_ERROR_SUCCESSED;
-    }
-    return AV_SESSION_ERR_SET_SPEED_FAILED;
-}
-
 AVSessionError AVSessionSetFavorite(OH_AVSession* avsession, const Param& param)
 {
     OH_LOG_ERROR(LOG_APP, "into AVSessionSetFavorite check 1");
@@ -345,8 +327,6 @@ AVSessionError AVSessionSetPlaybackPosition(OH_AVSession* avsession, const Param
 using SetSessionFunctionPtr = AVSessionError (*)(OH_AVSession*, const Param&);
 SetSessionFunctionPtr g_setSessionFunctions[] = {
     AVSessionSetPlaybackState,
-    AVSessionSetBufferedTime,
-    AVSessionSetSpeed,
     AVSessionSetFavorite,
     AVSessionSetLoopMode
 };
@@ -390,13 +370,6 @@ static OH_AVSessionCallback_OnSeek seek_callback = [](OH_AVSession* session, uin
     return AVSESSION_CALLBACK_RESULT_SUCCESS;
 };
 
-static OH_AVSessionCallback_OnSetSpeed speed_callback = [](OH_AVSession* session, uint32_t speed,
-    void* userData) -> AVSessionCallback_Result {
-    g_speedCallbackCount++;
-    OH_LOG_DEBUG(LOG_APP, "speed_callback called, count: %d", g_speedCallbackCount);
-    return AVSESSION_CALLBACK_RESULT_SUCCESS;
-};
-
 static OH_AVSessionCallback_OnSetLoopMode loop_callback = [](OH_AVSession* session, AVSession_LoopMode curLoopMode,
     void* userData) -> AVSessionCallback_Result {
     g_loopCallbackCount++;
@@ -408,13 +381,6 @@ static OH_AVSessionCallback_OnToggleFavorite favorite_callback = [](OH_AVSession
     void* userData) -> AVSessionCallback_Result {
     g_favoriteCallbackCount++;
     OH_LOG_DEBUG(LOG_APP, "favorite_callback called, count: %d", g_favoriteCallbackCount);
-    return AVSESSION_CALLBACK_RESULT_SUCCESS;
-};
-
-static OH_AVSessionCallback_OnPlayFromAssetId from_assetid_callback = [](OH_AVSession* session, const char* assetId,
-    void* userData) -> AVSessionCallback_Result {
-    g_fromAssetIdCallbackCount++;
-    OH_LOG_DEBUG(LOG_APP, "from_assetid_callback called, count: %d", g_fromAssetIdCallbackCount);
     return AVSESSION_CALLBACK_RESULT_SUCCESS;
 };
 
@@ -511,29 +477,6 @@ static AVSessionError UnregisterSeekCallback(OH_AVSession* session)
     return AV_SESSION_ERROR_SUCCESSED;
 }
 
-static AVSessionError RegisterSpeedCallback(OH_AVSession* session)
-{
-    int userData = 1;
-    AVSession_ErrCode ret = OH_AVSession_RegisterSpeedCallback(session, speed_callback, (void *)(&userData));
-    if (ret != AV_SESSION_ERR_SUCCESS) {
-        OH_LOG_DEBUG(LOG_APP, "RegisterSpeedCallback ret is :%{public}s", ret == 0 ? "success" : "falid");
-        return AV_SESSION_ERR_REGISTER_SPEED_CALLBACK_FAILED;
-    }
-
-    return AV_SESSION_ERROR_SUCCESSED;
-}
-
-
-static AVSessionError UnregisterSpeedCallback(OH_AVSession* session)
-{
-    AVSession_ErrCode ret = OH_AVSession_UnregisterSpeedCallback(session, speed_callback);
-    if (ret != AV_SESSION_ERR_SUCCESS) {
-        OH_LOG_DEBUG(LOG_APP, "UnregisterSpeedCallback ret is :%{public}s", ret == 0 ? "success" : "falid");
-        return AV_SESSION_ERR_UNREGISTER_SPEED_CALLBACK_FAILED;
-    }
-
-    return AV_SESSION_ERROR_SUCCESSED;
-}
 
 static AVSessionError RegisterSetLoopModeCallback(OH_AVSession* session)
 {
@@ -582,28 +525,6 @@ static AVSessionError UnregisterToggleFavoriteCallback(OH_AVSession* session)
     return AV_SESSION_ERROR_SUCCESSED;
 }
 
-static AVSessionError RegisterPlayFromAssetIdCallback(OH_AVSession* session)
-{
-    int userData = 1;
-    AVSession_ErrCode ret = OH_AVSession_RegisterPlayFromAssetIdCallback(session, from_assetid_callback, (void *)(&userData));
-    if (ret != AV_SESSION_ERR_SUCCESS) {
-        OH_LOG_DEBUG(LOG_APP, "RegisterPlayFromAssetIdCallback ret is :%{public}s", ret == 0 ? "success" : "falid");
-        return AV_SESSION_ERR_REGISTER_FORWARD_CALLBACK_FAILED;
-    }
-
-    return AV_SESSION_ERROR_SUCCESSED;
-}
-
-static AVSessionError UnregisterPlayFromAssetIdCallback(OH_AVSession* session)
-{
-    AVSession_ErrCode ret = OH_AVSession_UnregisterPlayFromAssetIdCallback(session, from_assetid_callback);
-    if (ret != AV_SESSION_ERR_SUCCESS) {
-        OH_LOG_DEBUG(LOG_APP, "UnregisterPlayFromAssetIdCallback ret is :%{public}s", ret == 0 ? "success" : "falid");
-        return AV_SESSION_ERR_UNREGISTER_FORWARD_CALLBACK_FAILED;
-    }
-
-    return AV_SESSION_ERROR_SUCCESSED;
-}
 
 AVSessionError RegisterAllCallback(OH_AVSession* session)
 {
@@ -620,10 +541,6 @@ AVSessionError RegisterAllCallback(OH_AVSession* session)
     if (ret != AV_SESSION_ERROR_SUCCESSED) {
         return ret;
     }
-    ret = RegisterSeekCallback(session);
-    if (ret != AV_SESSION_ERROR_SUCCESSED) {
-        return ret;
-    }
     ret = RegisterSpeedCallback(session);
     if (ret != AV_SESSION_ERROR_SUCCESSED) {
         return ret;
@@ -636,10 +553,6 @@ AVSessionError RegisterAllCallback(OH_AVSession* session)
     if (ret != AV_SESSION_ERROR_SUCCESSED) {
         return ret;
     }
-    ret = RegisterPlayFromAssetIdCallback(session);
-    if (ret != AV_SESSION_ERROR_SUCCESSED) {
-        return ret;
-    }
     return AV_SESSION_ERROR_SUCCESSED;
 }
 
@@ -649,10 +562,8 @@ AVSessionError UnregisterAllCallback(OH_AVSession* session)
     UnregisterForwardCallback(session);
     UnregisterRewindCallback(session);
     UnregisterSeekCallback(session);
-    UnregisterSpeedCallback(session);
     UnregisterSetLoopModeCallback(session);
     UnregisterToggleFavoriteCallback(session);
-    UnregisterPlayFromAssetIdCallback(session);
     return AV_SESSION_ERROR_SUCCESSED;
 }
 
@@ -687,15 +598,15 @@ AVSessionError UnregisterAllCallback(OH_AVSession* session)
  * duration:        int64_t
  * 
  * playbackState:   AVSession_PlaybackState
- * bufferedTime:    uint64_t
- * speed:           uint32_t
+ * bufferedTime:    uint64_t  开发.h文件删除
+ * speed:           uint32_t  开发.h文件删除
  * isFavorite:      bool
  * loopMode:        loopMode
  * elapsedTime      int64_t
  * updateTime       int64_t
  */
 static AVSessionError TestAVSessionTestAll(const ParamList& params) {
-    const int AVSessionTestAllParaCnt = 25;
+    const int AVSessionTestAllParaCnt = 23;
     AVSessionError err = AV_SESSION_ERROR_SUCCESSED;
     if (params.size() != AVSessionTestAllParaCnt) { return AV_SESSION_ERR_INVALID_PARA; }
     int listIdx = 0;
@@ -782,26 +693,6 @@ AVSessionError TestAVSessionCreate(const ParamList& params)
 
 
 /**
- * TESTNAME : SetSpeed
- * params = [speed]
- * 
- * 变量名            最终进入接口类型
- * speed            int64_t
-*/
-AVSessionError TestAVSessionSetSpeed(const ParamList& params)
-{
-    if (params.size() != 1) {return AV_SESSION_ERR_SET_SPEED_FAILED;}
-    OH_AVSession* session;
-    AVSessionError returnValue;
-    AVSession_ErrCode ret = OH_AVSession_Create(SESSION_TYPE_AUDIO, "oh_av_session_test_001",
-        "com.xxx.hmxx", "ndkxx", &session);
-    if (ret != AV_SESSION_ERR_SUCCESS) { return AV_SESSION_ERR_CREATE_FAILED; }
-    returnValue = AVSessionSetSpeed(session, params[0]);
-    OH_AVSession_Destroy(session);
-    return returnValue;
-}
-
-/**
  * TESTNAME : SetPlaybackState
  * params = [speed]
  * 
@@ -822,26 +713,6 @@ AVSessionError TestAVSessionSetPlaybackState(const ParamList& params)
     return returnValue;
 }
 
-/**
- * TESTNAME : SetBufferedTime
- * params = [bufferedTime]
- * 
- * 变量名            最终进入接口类型
- * bufferedTime    uint64
-*/
-AVSessionError TestAVSessionSetBufferedTime(const ParamList& params)
-{
-    if (params.size() != 1) {return AV_SESSION_ERR_INVALID_PARA;}
-    OH_AVSession* session;
-    AVSessionError returnValue;
-    AVSession_ErrCode ret = OH_AVSession_Create(SESSION_TYPE_AUDIO, "oh_av_session_test_001",
-        "com.xxx.hmxx", "ndkxx", &session);
-    if (ret != AV_SESSION_ERR_SUCCESS) { return AV_SESSION_ERR_CREATE_FAILED; }
-
-    returnValue = AVSessionSetBufferedTime(session,  params[0]);
-    OH_AVSession_Destroy(session);
-    return returnValue;
-}
 
 /**
  * TESTNAME : SetFavorite
@@ -971,10 +842,8 @@ using TestFunction = AVSessionError (*)(const ParamList&);
 std::unordered_map<std::string, TestFunction> testFunctions = {
     {"CreateAVSessionTest", TestAVSessionCreate},
     {"SetPlaybackState", TestAVSessionSetPlaybackState},
-    {"SetBufferedTime", TestAVSessionSetBufferedTime},
     {"SetFavorite", TestAVSessionSetFavorite},
     {"SetLoopMode", TestAVSessionSetLoopMode},
-    {"SetSpeed", TestAVSessionSetSpeed},
     {"SetPlaybackPosition", TestAVSessionSetPlaybackPosition},
     {"SetAVMetaData", TestAVSessionSetAVMetaData},
     {"TestAll", TestAVSessionTestAll}
