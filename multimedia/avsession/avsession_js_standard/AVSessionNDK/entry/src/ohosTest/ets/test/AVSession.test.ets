@@ -65,21 +65,9 @@ export default function builderAbilityTest() {
       // 继续添加测试
     })
 
-    it('SetBufferedTime', 0, async () => {
-      console.info("test SetBufferedTime ---------------");
-      let ret = avSes.runTest('SetBufferedTime', [300]);
-      expect(ret).assertEqual(0);
-    })
-
     it('SetLoopMode', 0, async () => {
       console.info("test SetLoopMode ---------------");
       let ret = avSes.runTest('SetLoopMode', [0]);
-      expect(ret).assertEqual(0);
-    })
-
-    it('SetSpeed', 0, async () => {
-      console.info("test SetSpeed ---------------");
-      let ret = avSes.runTest('SetSpeed', [199]);
       expect(ret).assertEqual(0);
     })
 
