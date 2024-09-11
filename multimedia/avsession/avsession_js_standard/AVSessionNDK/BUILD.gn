@@ -25,7 +25,7 @@ ohos_app_assist_suite("avsession_ndk_main") {
   subsystem_name = "multimedia"
 }
 
-ohos_js_app_suite("demo_ndk_ohosTest") {
+ohos_js_app_suite("avsession_demo_ndk_ohosTest") {
   test_hap = true
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
