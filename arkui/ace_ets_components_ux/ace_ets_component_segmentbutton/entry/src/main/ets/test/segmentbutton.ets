@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
-import router from '@system.router'
+import router from '@ohos.router'
 import { Driver, ON } from '@ohos.UiTest'
-import Utils from './Utils.ets'
+import Utils from './Utils'
 
 export default function abilityTest() {
   const SUITE = 'SegmentButton'
   describe('ActsAceSegmentButtonTest', () => {
     beforeEach(async (done: Function) => {
-      let options = {
-        uri: "../testability/pages/Index",
+      let options: router.RouterOptions = {
+        url: "../testability/pages/Index",
       }
       try {
         router.clear();

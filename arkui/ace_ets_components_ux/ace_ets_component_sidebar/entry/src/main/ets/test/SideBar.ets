@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// @ts-nocheck
+
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import events_emitter from '@ohos.events.emitter';
-import Utils from './Utils.ets';
+import Utils from './Utils';
+import { BusinessError } from '@ohos.base';
+
 export default function sidebar() {
   describe('ActsAceSideBarTest', function () {
     beforeEach(async function (done) {
@@ -27,7 +29,7 @@ export default function sidebar() {
     afterEach(async function (done) {
       console.info("sidebar afterEach start");
       try {
-        var eventData = {
+        let eventData = {
           data: {
             "strokeWidthStr": '10px',
             "dividerColorStr": '#000000',
@@ -49,14 +51,14 @@ export default function sidebar() {
             "endMarginRes": $r('app.string.Divider_endMargin'),
           }
         }
-        var innerEvent = {
+        let innerEvent = {
           eventId: 183,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[ArkUI_SideBarContainer_Divider] start to publish emit");
         events_emitter.emit(innerEvent, eventData);
       } catch (err) {
-        console.log("[ArkUI_SideBarContainer_Divider] change component data error: " + err.message);
+        console.log("[ArkUI_SideBarContainer_Divider] change component data error: " + (err as BusinessError).message);
       }
       await Utils.sleep(2000);
       done();
@@ -138,21 +140,21 @@ export default function sidebar() {
       let startMarginStr = '5vp';
       let endMarginStr = '5vp';
       try {
-        var eventData = {
+        let eventData = {
           data: {
             "strokeWidthStr": strokeWidthStr,
             "startMarginStr": startMarginStr,
             "endMarginStr": endMarginStr
           }
         }
-        var innerEvent = {
+        let innerEvent = {
           eventId: 183,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("ArkUI_SideBarContainer_Divider_0400 start to publish emit");
         events_emitter.emit(innerEvent, eventData);
       } catch (err) {
-        console.log("ArkUI_SideBarContainer_Divider_0400 change component data error: " + err.message);
+        console.log("ArkUI_SideBarContainer_Divider_0400 change component data error: " + (err as BusinessError).message);
       }
       await Utils.sleep(2000);
 
@@ -184,21 +186,21 @@ export default function sidebar() {
       let startMarginStr = '5fp';
       let endMarginStr = '5fp';
       try {
-        var eventData = {
+        let eventData = {
           data: {
             "strokeWidthStr": strokeWidthStr,
             "startMarginStr": startMarginStr,
             "endMarginStr": endMarginStr
           }
         }
-        var innerEvent = {
+        let innerEvent = {
           eventId: 183,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("ArkUI_SideBarContainer_Divider_0500 start to publish emit");
         events_emitter.emit(innerEvent, eventData);
       } catch (err) {
-        console.log("ArkUI_SideBarContainer_Divider_0500 change component data error: " + err.message);
+        console.log("ArkUI_SideBarContainer_Divider_0500 change component data error: " + (err as BusinessError).message);
       }
       await Utils.sleep(2000);
 
@@ -230,21 +232,21 @@ export default function sidebar() {
       let startMarginStr = '5lpx';
       let endMarginStr = '5lpx';
       try {
-        var eventData = {
+        let eventData = {
           data: {
             "strokeWidthStr": strokeWidthStr,
             "startMarginStr": startMarginStr,
             "endMarginStr": endMarginStr
           }
         }
-        var innerEvent = {
+        let innerEvent = {
           eventId: 183,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("ArkUI_SideBarContainer_Divider_0600 start to publish emit");
         events_emitter.emit(innerEvent, eventData);
       } catch (err) {
-        console.log("ArkUI_SideBarContainer_Divider_0600 change component data error: " + err.message);
+        console.log("ArkUI_SideBarContainer_Divider_0600 change component data error: " + (err as BusinessError).message);
       }
       await Utils.sleep(2000);
 
@@ -331,19 +333,19 @@ export default function sidebar() {
       let strJson = getInspectorByKey('sideBarTest2');
       console.info("ArkUI_SideBarContainer_Divider_1000: " + JSON.stringify(strJson))
       try {
-        var eventData = {
+        let eventData = {
           data: {
             "nullFlag": true,
           }
         }
-        var innerEvent = {
+        let innerEvent = {
           eventId: 183,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[ArkUI_SideBarContainer_Divider_1000] start to publish emit");
         events_emitter.emit(innerEvent, eventData);
       } catch (err) {
-        console.log("[ArkUI_SideBarContainer_Divider_1000] change component data error: " + err.message);
+        console.log("[ArkUI_SideBarContainer_Divider_1000] change component data error: " + (err as BusinessError).message);
       }
       await Utils.sleep(2000);
       let newJson = getInspectorByKey('sideBarTest2');
@@ -373,19 +375,19 @@ export default function sidebar() {
       expect(dividerObject.endMargin).assertEqual("5.00vp");
 
       try {
-        var eventData = {
+        let eventData = {
           data: {
             "strokeWidthNum": -1,
           }
         }
-        var innerEvent = {
+        let innerEvent = {
           eventId: 183,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[ArkUI_SideBarContainer_Divider_1100] start to publish emit");
         events_emitter.emit(innerEvent, eventData);
       } catch (err) {
-        console.log("[ArkUI_SideBarContainer_Divider_1100] change component data error: " + err.message);
+        console.log("[ArkUI_SideBarContainer_Divider_1100] change component data error: " + (err as BusinessError).message);
       }
       await Utils.sleep(2000);
       let newJson = getInspectorByKey('sideBarTest2');
@@ -415,19 +417,19 @@ export default function sidebar() {
       expect(dividerObject.endMargin).assertEqual("5.00px");
 
       try {
-        var eventData = {
+        let eventData = {
           data: {
             "dividerColorStr": 'aaaaa',
           }
         }
-        var innerEvent = {
+        let innerEvent = {
           eventId: 183,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[ArkUI_SideBarContainer_Divider_1200] start to publish emit");
         events_emitter.emit(innerEvent, eventData);
       } catch (err) {
-        console.log("[ArkUI_SideBarContainer_Divider_1200] change component data error: " + err.message);
+        console.log("[ArkUI_SideBarContainer_Divider_1200] change component data error: " + err(err as BusinessError).message);
       }
       await Utils.sleep(2000);
       let newJson = getInspectorByKey('sideBarTest3');
@@ -457,19 +459,19 @@ export default function sidebar() {
       expect(dividerObject.endMargin).assertEqual("5.00vp");
 
       try {
-        var eventData = {
+        let eventData = {
           data: {
             "startMarginNum": -1,
           }
         }
-        var innerEvent = {
+        let innerEvent = {
           eventId: 183,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[ArkUI_SideBarContainer_Divider_1300] start to publish emit");
         events_emitter.emit(innerEvent, eventData);
       } catch (err) {
-        console.log("[ArkUI_SideBarContainer_Divider_1300] change component data error: " + err.message);
+        console.log("[ArkUI_SideBarContainer_Divider_1300] change component data error: " + (err as BusinessError).message);
       }
       await Utils.sleep(2000);
       let newJson = getInspectorByKey('sideBarTest2');
@@ -499,19 +501,19 @@ export default function sidebar() {
       expect(dividerObject.endMargin).assertEqual("5.00vp");
 
       try {
-        var eventData = {
+        let eventData = {
           data: {
             "endMarginNum": -1,
           }
         }
-        var innerEvent = {
+        let innerEvent = {
           eventId: 183,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[ArkUI_SideBarContainer_Divider_1400] start to publish emit");
         events_emitter.emit(innerEvent, eventData);
       } catch (err) {
-        console.log("[ArkUI_SideBarContainer_Divider_1400] change component data error: " + err.message);
+        console.log("[ArkUI_SideBarContainer_Divider_1400] change component data error: " + (err as BusinessError).message);
       }
       await Utils.sleep(2000);
       let newJson = getInspectorByKey('sideBarTest2');

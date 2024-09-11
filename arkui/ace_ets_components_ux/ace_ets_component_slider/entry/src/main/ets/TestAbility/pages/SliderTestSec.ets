@@ -31,71 +31,71 @@ struct Index {
     console.info("key==> page valueChangeCallBack");
     if (eventData != null) {
       console.info("valueChangeCallBack:" + JSON.stringify(eventData));
-      if (eventData.data.value == "true") {
-        if (eventData.data.content == "no") {
+      if (eventData.data?.value == "true") {
+        if (eventData.data?.content == "no") {
           this.valueNo = true;
         }
-        if (eventData.data.content == "null") {
+        if (eventData.data?.content == "null") {
           this.value = true
           this.isStr = false
           this.isNum = false
           this.isNUll = true
         }
-        if (eventData.data.content == "undefined") {
+        if (eventData.data?.content == "undefined") {
           this.value = true
           this.isStr = false
           this.isNum = false
           this.isNUll = false
         }
-        if (eventData.data.content == "ResourceTest") {
+        if (eventData.data?.content == "ResourceTest") {
           this.Style = SliderStyle.InSet
           this.resFalg = true
         }
       }
-      if (eventData.data.value == "false") {
-        if (eventData.data.content == "no") {
+      if (eventData.data?.value == "false") {
+        if (eventData.data?.content == "no") {
           this.valueNo = false;
         }
-        if (eventData.data.content == "null") {
+        if (eventData.data?.content == "null") {
           this.value = false
           this.isStr = false
           this.isNum = false
           this.isNUll = true
         }
-        if (eventData.data.content == "undefined") {
+        if (eventData.data?.content == "undefined") {
           this.value = false
           this.isStr = false
           this.isNum = false
           this.isNUll = false
         }
-        if (eventData.data.content == "ResourceTest") {
+        if (eventData.data?.content == "ResourceTest") {
           this.Style = SliderStyle.OutSet
           this.resFalg = false
         }
       }
-      if (eventData.data.value == "trueStr") {
+      if (eventData.data?.value == "trueStr") {
         this.Style = SliderStyle.InSet
         this.isStr = true
         this.value = true
-        this.content = eventData.data.content;
+        this.content = eventData.data?.content;
       }
-      if (eventData.data.value == "falseStr") {
+      if (eventData.data?.value == "falseStr") {
         this.Style = SliderStyle.OutSet
         this.value = false
         this.isStr = true
-        this.content = eventData.data.content;
+        this.content = eventData.data?.content;
       }
-      if (eventData.data.value == "trueNum") {
+      if (eventData.data?.value == "trueNum") {
         this.isStr = false
         this.isNum = true
         this.value = true
-        this.num = Number(eventData.data.content);
+        this.num = Number(eventData.data?.content);
       }
-      if (eventData.data.value == "falseNum") {
+      if (eventData.data?.value == "falseNum") {
         this.value = false
         this.isStr = false
         this.isNum = true
-        this.num = Number(eventData.data.content);
+        this.num = Number(eventData.data?.content);
       }
     }
 
