@@ -1,4 +1,4 @@
-import { typeNode, NodeController, FrameNode } from  '@ohos.arkui.node';
+import { typeNode, NodeController, FrameNode } from '@ohos.arkui.node';
 import { CheckboxModifier } from '@ohos.arkui.modifier';
 
 let checkboxGroupData1: CheckboxGroupOptions = {
@@ -39,7 +39,7 @@ let checkboxData6: CheckboxOptions = {
 }
 
 class MyNodeController extends NodeController {
-  makeNode(uiContext: UIContext): FrameNode | null {
+  makeNode(uiContext: UIContext): FrameNode | null{
     let node = new FrameNode(uiContext)
     let col = typeNode.createNode(uiContext, 'Column')
     col.initialize({ space: 10 }).borderColor(Color.Black).alignItems(HorizontalAlign.Center)
