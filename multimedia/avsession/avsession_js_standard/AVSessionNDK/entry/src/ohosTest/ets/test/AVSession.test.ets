@@ -89,7 +89,7 @@ export default function builderAbilityTest() {
       let ret = avSes.runTest('TestAll', [1, 'sessionTag', 'sessionTag', 'abilityName',
         'title', 'artist', 'author', 'album', 'writer', 'composer', 'mediaImageUri',
         'subtitle', 'description', 'lyric', 'assetId',
-        30, 1, 1, 1, 111, 1, true, 1, 1, 2]);
+        30, 1, 1, 1, true, 1, 1, 2]);
       expect(ret).assertEqual(0);
     })
   })
