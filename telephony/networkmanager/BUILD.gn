@@ -11,9 +11,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/ohos_var.gni")
-import("//test/xts/tool/build/suite.gni")
-
 group("networkmanager") {
   testonly = true
   deps = [
@@ -30,11 +27,4 @@ group("networkmanager") {
     "statistics:statistics",
     "websocket:websocket",
   ]
-}
-
-group("ndk") {
-  testonly = true
-  if (is_standard_system) {
-    deps = [ "netstack_websocket:ActsNetwstackwebsocketNdkTest" ]
-  }
 }

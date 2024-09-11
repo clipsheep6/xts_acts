@@ -15,6 +15,9 @@ import("//test/xts/tools/build/suite.gni")
 group("ndk") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "networkndk:ActsNetWorkMgrStackNDKTest" ]
+    deps = [ 
+    "networkndk:ActsNetWorkMgrStackNDKTest",
+    "netstark_websocket:ActsWebSocketNDKTest",
+    ]
   }
 }
