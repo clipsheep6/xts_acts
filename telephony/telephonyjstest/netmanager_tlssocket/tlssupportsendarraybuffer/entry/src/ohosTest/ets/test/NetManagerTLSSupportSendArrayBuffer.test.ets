@@ -74,7 +74,7 @@ export default function NetManagerTLSSupportSendArrayBufferTest() {
           }
         });
       } catch (err) {
-        console.info(`${caseName} fail, error is ${JSON.stringify(err)}`);
+        console.info(`${caseName} fail, error  is ${JSON.stringify(err)}`);
         ExpectFalse(true);
         done();
       }
