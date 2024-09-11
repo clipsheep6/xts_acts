@@ -10,9 +10,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import("//build/ohos_var.gni")
-import("//test/xts/tool/build/suite.gni")
-
 
 group("telephonyjstest") {
   testonly = true
@@ -35,3 +32,5 @@ group("telephonyjstest") {
     "telephony_base:telephony_base",
   ]
 }
+
+import("//test/xts/tool/build/suite.gni")
