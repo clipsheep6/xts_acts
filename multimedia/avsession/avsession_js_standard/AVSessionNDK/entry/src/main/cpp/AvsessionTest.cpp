@@ -512,10 +512,6 @@ AVSessionError RegisterAllCallback(OH_AVSession* session)
     if (ret != AV_SESSION_ERROR_SUCCESSED) {
         return ret;
     }
-    ret = RegisterSpeedCallback(session);
-    if (ret != AV_SESSION_ERROR_SUCCESSED) {
-        return ret;
-    }
     ret = RegisterSetLoopModeCallback(session);
     if (ret != AV_SESSION_ERROR_SUCCESSED) {
         return ret;
@@ -826,9 +822,10 @@ static AVSessionError FindAndDoTest(const std::string& functionName, const Param
 
 static napi_value RunTest(napi_env env, napi_callback_info info)
 {
+    const int expected_index = 2;
     size_t expected_argc = 2;
-    size_t argc;
-    napi_value args[expected_argc] = {nullptr};
+    size_t argc = 2;
+    napi_value args[expected_index] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     if (argc != expected_argc) {
         napi_throw_error(env, nullptr, "Invalid number of arguments");
