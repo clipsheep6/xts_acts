@@ -387,7 +387,7 @@ static AVSessionError RegisterForwardCallback(OH_AVSession* session)
     int userData = 1;
     AVSession_ErrCode ret = OH_AVSession_RegisterForwardCallback(session, forward_callback, (void *)(&userData));
     if (ret != AV_SESSION_ERR_SUCCESS) {
-        OH_LOG_DEBUG(LOG_APP,"RegisterForwardCallback ret is :%{public}s", ret == 0 ? "success" : "falid");
+        OH_LOG_DEBUG(LOG_APP, "RegisterForwardCallback ret is: %{public}s", ret == 0 ? "success" : "failed");
         return AV_SESSION_ERR_REGISTER_FORWARD_CALLBACK_FAILED;
     }
     return AV_SESSION_ERROR_SUCCESSED;
@@ -406,7 +406,7 @@ static AVSessionError UnregisterForwardCallback(OH_AVSession* session)
 static AVSessionError RegisterRewindCallback(OH_AVSession* session)
 {
     int userData = 1;
-    AVSession_ErrCode ret = OH_AVSession_RegisterRewindCallback(session, rewind_callback, (void *)(&userData)); 
+    AVSession_ErrCode ret = OH_AVSession_RegisterRewindCallback(session, rewind_callback, (void *)(&userData));
     if (ret != AV_SESSION_ERR_SUCCESS) {
         OH_LOG_DEBUG(LOG_APP, "AVSessionRegisterRewindCallback ret is :%{public}s", ret == 0 ? "success" : "falid");
         return AV_SESSION_ERR_REGISTER_REWIND_CALLBACK_FAILED;
@@ -592,7 +592,6 @@ static AVSessionError TestAVSessionTestAll(const ParamList& params)
     int ret = OH_AVSession_Create(
         sessionType, sessionTag.c_str(), bundleName.c_str()abilityName.c_str(), &session);
     if (ret != AV_SESSION_ERR_SUCCESS) { return AV_SESSION_ERR_CREATE_FAILED; }
-
     OH_AVMetadataBuilder *builder = nullptr;
     ret = OH_AVMetadataBuilder_Create(&builder);
     if (ret != AVMETADATA_SUCCESS) {
@@ -732,7 +731,6 @@ AVSessionError TestAVSessionSetLoopMode(const ParamList& params)
 /**
  * TESTNAME : SetPlaybackPosition
  * params = [elapsedTime, updateTime]
- * 
  * 变量名            最终进入接口类型
  * elapsedTime      uint64_t
  * updateTime       uint64_t
@@ -841,45 +839,38 @@ static napi_value RunTest(napi_env env, napi_callback_info info)
     size_t argc;
     napi_value args[expected_argc] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
     if (argc != expected_argc) {
         napi_throw_error(env, nullptr, "Invalid number of arguments");
         return nullptr;
     }
-
     char functionName[256];
     size_t functionNameLength;
     if (napi_get_value_string_utf8(env, args[0], functionName, sizeof(functionName), &functionNameLength) != napi_ok) {
         napi_throw_error(env, nullptr, "Failed to get function name");
         return nullptr;
     }
-
     napi_valuetype valueType;
     if (napi_typeof(env, args[1], &valueType) != napi_ok || valueType != napi_object) {
         napi_throw_error(env, nullptr, "Invalid arguments type");
         return nullptr;
     }
-
     ParamList params;
     uint32_t paramCount;
     if (napi_get_array_length(env, args[1], &paramCount) != napi_ok) {
         napi_throw_error(env, nullptr, "Failed to get arguments length");
         return nullptr;
     }
-
     for (uint32_t i = 0; i < paramCount; ++i) {
         napi_value paramValue;
         if (napi_get_element(env, args[1], i, &paramValue) != napi_ok) {
             napi_throw_error(env, nullptr, "Failed to get argument value");
             return nullptr;
         }
-
         napi_valuetype paramType;
         if (napi_typeof(env, paramValue, &paramType) != napi_ok) {
             napi_throw_error(env, nullptr, "Failed to get argument type");
             return nullptr;
         }
-
         if (paramType == napi_string) {
             char paramStr[256];
             size_t paramStrLength;
