@@ -13,9 +13,11 @@
 
 import("//build/ohos_var.gni")
 
-group("network_netmanager") {
+group("netstack_websocketndk") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "network_netmanager_ndk:ActsNetworkConnectionNdkTest" ]
+    deps = [ 
+    "netstark_websocket:ActsNetStackWebSocketNDKTest",
+    ]
   }
 }

@@ -18,11 +18,11 @@ group("netmanager_base") {
     deps = [
       "actshttpscertificatetest:ActsHttpsCertificateTest",
       "dns:ActsDNSTest",
-      "dnsndk:ActsDnsNdkTest",      
+      "dnsndk:dnsndk",      
       "jshttp:ActsJSHTTPTest",
       "multicastconnection201_dns:ActsNetworkManagerMulDNS201Test",
       "multicastconnection_dns:ActsNetworkManagerMulDNSTest",
-      "network_netmanager:ActsNetworkConnectionNdkTest",      
+      "network_netmanager:network_netmanager",      
       "network_nopermission:ActsNetworkNopermissionTest",
       "network_nowifi:ActsNetworkNowifiTest",
       "network_wifi:ActsNetworkWifiTest",
