@@ -582,7 +582,7 @@ static AVSessionError TestAVSessionTestAll(const ParamList& params)
     OH_AVSession* session = nullptr;
     AVSessionError result;
     int ret = OH_AVSession_Create(
-        sessionType, sessionTag.c_str(), bundleName.c_str()abilityName.c_str(), &session);
+        sessionType, sessionTag.c_str(), bundleName.c_str(), abilityName.c_str(), &session);
     if (ret != AV_SESSION_ERR_SUCCESS) { return AV_SESSION_ERR_CREATE_FAILED; }
     OH_AVMetadataBuilder *builder = nullptr;
     ret = OH_AVMetadataBuilder_Create(&builder);
