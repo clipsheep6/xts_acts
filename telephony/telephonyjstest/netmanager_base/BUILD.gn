@@ -11,16 +11,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/ohos_var.gni")
-import("//test/xts/tool/build/suite.gni")
-
 group("netmanager_base") {
   testonly = true
   if (is_standard_system) {
     deps = [
       "actshttpscertificatetest:ActsHttpsCertificateTest",
       "dns:ActsDNSTest",
-      "dnsndk:ActsDnsNdkTest",
       "jshttp:ActsJSHTTPTest",
       "multicastconnection201_dns:ActsNetworkManagerMulDNS201Test",
       "multicastconnection_dns:ActsNetworkManagerMulDNSTest",
@@ -43,3 +39,5 @@ group("ndk") {
     ]
   }
 }
+
+import("//test/xts/tool/build/suite.gni")
