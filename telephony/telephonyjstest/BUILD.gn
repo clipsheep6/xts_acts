@@ -32,5 +32,3 @@ group("telephonyjstest") {
     "telephony_base:telephony_base",
   ]
 }
-
-import("//test/xts/tool/build/suite.gni")

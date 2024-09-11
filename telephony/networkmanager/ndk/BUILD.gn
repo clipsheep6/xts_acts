@@ -16,8 +16,8 @@ group("ndk") {
   testonly = true
   if (is_standard_system) {
     deps = [ 
-    "networkndk:ActsNetWorkMgrStackNDKTest",
     "netstark_websocket:ActsWebSocketNDKTest",
+    "networkndk:ActsNetWorkMgrStackNDKTest",
     ]
   }
 }
