@@ -546,7 +546,6 @@ AVSessionError UnregisterAllCallback(OH_AVSession* session)
  *           previousAssetId, nextAssetId, intervals, tags, # build avmetadata
  *           playbackState bufferedTime, activeItemId, speed，isFavorite,
  *           loopMode, playbackPosition]  # avsession property para
- * 
  * 变量名            最终进入接口类型
  * sessionType:     AVSession_Type;
  * sessionTag:      char*
@@ -684,7 +683,6 @@ AVSessionError TestAVSessionSetPlaybackState(const ParamList& params)
 /**
  * TESTNAME : SetFavorite
  * params = [favorite]
- * 
  * 变量名            最终进入接口类型
  * favorite    bool
 */
@@ -705,7 +703,6 @@ AVSessionError TestAVSessionSetFavorite(const ParamList& params)
 /**
  * TESTNAME : SetLoopMode
  * params = [setLoopMode]
- * 
  * 变量名            最终进入接口类型
  * setLoopMode    AVSession_LoopMode
 */
