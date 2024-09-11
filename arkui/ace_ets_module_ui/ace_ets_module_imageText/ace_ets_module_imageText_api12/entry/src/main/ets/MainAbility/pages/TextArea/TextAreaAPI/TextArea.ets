@@ -49,6 +49,7 @@ struct TextAreaExample {
           .id('TextArea_6')
           .width(300)
           .height(60)
+          .margin(20)
           .onWillDelete(() => {
             this.message2 = 'onWillDelete'
             return true;
@@ -61,6 +62,6 @@ struct TextAreaExample {
 
       }.width('100%')
     }
-    .height('100%')
+    .height('40%')
   }
 }
