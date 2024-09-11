@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import PerfTest from './Perf.test.js'
+import PerfTest from './Perf.test'
 export default function testsuite() {
 PerfTest()
 }
