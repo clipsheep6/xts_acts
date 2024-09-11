@@ -476,7 +476,7 @@ struct webRegisterCustomsComponent {
               console.log("emitWebViewSubFrameUrl ==>");
               this.controller.loadUrl($rawfile('sdkSchemeHandler.html'));
 
-              await Utils.sleep(3000);
+              await Utils.sleep(8000);
               let result:number = testNapi.getSubFrameUrl();
               console.log("emitWebViewSubFrameUrl ==>" + result);
 
