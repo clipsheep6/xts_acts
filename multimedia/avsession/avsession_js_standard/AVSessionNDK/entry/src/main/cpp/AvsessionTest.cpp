@@ -59,7 +59,6 @@ enum AVSessionError {
     AV_META_ERROR_SET_DISPLAY_TAGS_FAILED,
     AV_META_ERROR_GENERATE_AV_METADATA_FAILED,
     AV_META_ERROR_DESTROY_BUILDER_FAILED,
-    AV_META_ERROR_SET_Duration_FAILED,
     AV_META_ERROR_INVALID_PARA,
 
     // OHAVSession 类方法失败的错误编码
@@ -233,7 +232,7 @@ AVSessionError AVMetadataBuilderSetDuration(OH_AVMetadataBuilder* builder, const
     if (OH_AVMetadataBuilder_SetDuration(builder, duration) == AVMETADATA_SUCCESS) {
         return AV_SESSION_ERROR_SUCCESSED;
     }
-    return AV_META_ERROR_SET_Duration_FAILED;
+    return AV_META_ERROR_SET_DURATION_FAILED;
 }
 
 using BuilderSetFunctionPtr = AVSessionError (*)(OH_AVMetadataBuilder*, const Param&);
@@ -579,9 +578,9 @@ AVSessionError UnregisterAllCallback(OH_AVSession* session)
  */
 static AVSessionError TestAVSessionTestAll(const ParamList& params)
 {
-    const int AVSessionTestAllParaCnt = 23;
+    const int AV_SESSION_TEST_ALL_PARA_CNT = 23;
     AVSessionError err = AV_SESSION_ERROR_SUCCESSED;
-    if (params.size() != AVSessionTestAllParaCnt) { return AV_SESSION_ERR_INVALID_PARA; }
+    if (params.size() != AV_SESSION_TEST_ALL_PARA_CNT) { return AV_SESSION_ERR_INVALID_PARA; }
     int listIdx = 0;
     AVSession_Type sessionType = static_cast<AVSession_Type>(std::get<double>(params[listIdx++]));
     const std::string& sessionTag = std::get<std::string>(params[listIdx++]);
@@ -640,7 +639,6 @@ out_session:
 
 /**
  * TESTNAME : Create
- *
  * 变量名          最终进入接口类型
  * sessionType      AVSession_Type
  * sessionTag       char*
@@ -667,7 +665,6 @@ AVSessionError TestAVSessionCreate(const ParamList& params)
 /**
  * TESTNAME : SetPlaybackState
  * params = [speed]
- * 
  * 变量名            最终进入接口类型
  * PlaybackState    AVSession_PlaybackState
 */
@@ -771,8 +768,8 @@ AVSessionError TestAVSessionSetPlaybackPosition(const ParamList& params)
  */
 AVSessionError TestAVSessionSetAVMetaData(const ParamList& params)
 {
-    const int AVSessionSetAVMetaDataParaCnt = 14;
-    if (params.size() != AVSessionSetAVMetaDataParaCnt) { return AV_SESSION_ERR_INVALID_PARA; }
+    const int AV_SESSION_SET_AV_META_DATA_PARA_CNT = 14;
+    if (params.size() != AV_SESSION_SET_AV_META_DATA_PARA_CNT) { return AV_SESSION_ERR_INVALID_PARA; }
     OH_AVSession* session;
     AVSessionError returnValue;
     int ret = OH_AVSession_Create(SESSION_TYPE_AUDIO, "oh_av_session_test_001",
