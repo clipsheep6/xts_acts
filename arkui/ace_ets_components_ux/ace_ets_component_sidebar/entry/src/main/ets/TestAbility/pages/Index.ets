@@ -14,7 +14,7 @@
  */
 
 import events_emitter from '@ohos.events.emitter';
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium';
 import hilog from '@ohos.hilog';
 import testsuite from '../../test/List.test'
@@ -40,64 +40,64 @@ struct SideBarTest {
     @State startMarginRes: Resource = $r('app.string.Divider_startMargin')
     @State endMarginRes: Resource = $r('app.string.Divider_endMargin')
 
-    private stateChangCallBack = (eventData) => {
+    private stateChangCallBack = (eventData: events_emitter.EventData) => {
         console.info("sideBar page state change called:" + JSON.stringify(eventData));
         if (eventData != null) {
-            if (eventData.data.dividerColorStr != null) {
-                this.dividerColorStr = eventData.data.dividerColorStr;
+            if (eventData.data?.dividerColorStr != null) {
+                this.dividerColorStr = eventData.data?.dividerColorStr;
             }
-            if (eventData.data.strokeWidthStr != null) {
-                this.strokeWidthStr = eventData.data.strokeWidthStr;
+            if (eventData.data?.strokeWidthStr != null) {
+                this.strokeWidthStr = eventData.data?.strokeWidthStr;
             }
-            if (eventData.data.startMarginStr != null) {
-                this.startMarginStr = eventData.data.startMarginStr;
+            if (eventData.data?.startMarginStr != null) {
+                this.startMarginStr = eventData.data?.startMarginStr;
             }
-            if (eventData.data.endMarginStr != null) {
-                this.endMarginStr = eventData.data.endMarginStr;
+            if (eventData.data?.endMarginStr != null) {
+                this.endMarginStr = eventData.data?.endMarginStr;
             }
-            if (eventData.data.nullFlag != null) {
-                this.nullFlag = eventData.data.nullFlag;
+            if (eventData.data?.nullFlag != null) {
+                this.nullFlag = eventData.data?.nullFlag;
             }
-            if (eventData.data.dividerColor != null) {
-                this.dividerColor = eventData.data.dividerColor;
+            if (eventData.data?.dividerColor != null) {
+                this.dividerColor = eventData.data?.dividerColor;
             }
-            if (eventData.data.strokeWidthNum != null) {
-                this.strokeWidthNum = eventData.data.strokeWidthNum;
+            if (eventData.data?.strokeWidthNum != null) {
+                this.strokeWidthNum = eventData.data?.strokeWidthNum;
             }
-            if (eventData.data.dividerColorNum != null) {
-                this.dividerColorNum = eventData.data.dividerColorNum;
+            if (eventData.data?.dividerColorNum != null) {
+                this.dividerColorNum = eventData.data?.dividerColorNum;
             }
-            if (eventData.data.startMarginNum != null) {
-                this.startMarginNum = eventData.data.startMarginNum;
+            if (eventData.data?.startMarginNum != null) {
+                this.startMarginNum = eventData.data?.startMarginNum;
             }
-            if (eventData.data.endMarginNum != null) {
-                this.endMarginNum = eventData.data.endMarginNum;
+            if (eventData.data?.endMarginNum != null) {
+                this.endMarginNum = eventData.data?.endMarginNum;
             }
 
-            if (eventData.data.dividerColorRes != null) {
-                this.dividerColorRes = eventData.data.dividerColorRes;
+            if (eventData.data?.dividerColorRes != null) {
+                this.dividerColorRes = eventData.data?.dividerColorRes;
             }
-            if (eventData.data.strokeWidthRes != null) {
-                this.strokeWidthRes = eventData.data.strokeWidthRes;
+            if (eventData.data?.strokeWidthRes != null) {
+                this.strokeWidthRes = eventData.data?.strokeWidthRes;
             }
-            if (eventData.data.startMarginRes != null) {
-                this.startMarginRes = eventData.data.startMarginRes;
+            if (eventData.data?.startMarginRes != null) {
+                this.startMarginRes = eventData.data?.startMarginRes;
             }
-            if (eventData.data.endMarginRes != null) {
-                this.endMarginRes = eventData.data.endMarginRes;
+            if (eventData.data?.endMarginRes != null) {
+                this.endMarginRes = eventData.data?.endMarginRes;
             }
         }
     }
 
     aboutToAppear(){
-        let stateChangeEvent = {
+        let stateChangeEvent: events_emitter.InnerEvent = {
             eventId: 183,
             priority: events_emitter.EventPriority.LOW
         }
         events_emitter.on(stateChangeEvent, this.stateChangCallBack);
-	    let abilityDelegator: any
+        let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator
         abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        let abilityDelegatorArguments: any
+        let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs
         abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
         hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
         hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
