@@ -748,7 +748,6 @@ AVSessionError TestAVSessionSetPlaybackPosition(const ParamList& params)
 /**
  * TESTNAME : SetPlaybackPosition
  * params = []
- * 
  * title:           char*
  * artist:          char*
  * author:          char*
