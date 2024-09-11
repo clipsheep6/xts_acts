@@ -35,7 +35,6 @@
 #include <variant>
 
 #include <cstring>
-#include <string.h>
 
 
 enum AVSessionError {
@@ -95,36 +94,9 @@ enum AVSessionError {
     AV_SESSION_ERR_UNKNOWN,
     AV_SESSION_ERR_INVALID_PARA
 };
-//
-// AVSessionError AVMetadataBuilderCreate(OH_AVMetadataBuilder** builder)
-// {
-//     if (OH_AVMetadataBuilder_Create(builder) != AV_SESSION_ERROR_SUCCESSED) {
-//         return AV_META_ERROR_GENERATE_AV_METADATA_FAILED;
-//     }
-//     return AV_SESSION_ERROR_SUCCESSED;
-// }
-//
-// AVSessionError AVMetadataBuilderDestroy(OH_AVMetadataBuilder* builder)
-// {
-//     if (OH_AVMetadataBuilder_Destroy(builder) != AV_SESSION_ERROR_SUCCESSED) {
-//         return AV_META_ERROR_GENERATE_AV_METADATA_FAILED;
-//     }
-//     return AV_SESSION_ERROR_SUCCESSED;
-// }
-//
 
 using Param = std::variant<std::string, double, bool>;
 using ParamList = std::vector<Param>;
-
-// AVSessionError AVMetadataBuilderCreate(OH_AVMetadataBuilder* builder, const Param& param)
-// {
-//     const std::string& assetId = std::get<std::string>(param);
-//     if (OH_AVMetadataBuilder_SetAssetId(builder, assetId.c_str()) == AVMETADATA_SUCCESS) {
-//         return AV_SESSION_ERROR_SUCCESSED;
-//     }
-//     return AV_META_ERROR_SET_ASSET_ID_FAILED;
-// }
-
 
 AVSessionError AVMetadataBuilderSetAssetId(OH_AVMetadataBuilder* builder, const Param& param)
 {
@@ -341,7 +313,7 @@ static int g_loopCallbackCount = 0;
 static int g_favoriteCallbackCount = 0;
 static int g_fromAssetIdCallbackCount = 0;
 
-/* 定义所有回调函数 */ 
+/* 定义所有回调函数 */
 static OH_AVSessionCallback_OnCommand cmd_callback = [](OH_AVSession* session,
     AVSession_ControlCommand command, void* userData) -> AVSessionCallback_Result {
     g_cmdCallbackCount++;
@@ -415,7 +387,7 @@ static AVSessionError RegisterForwardCallback(OH_AVSession* session)
     int userData = 1;
     AVSession_ErrCode ret = OH_AVSession_RegisterForwardCallback(session, forward_callback, (void *)(&userData));
     if (ret != AV_SESSION_ERR_SUCCESS) {
-        OH_LOG_DEBUG(LOG_APP, "OH_AVSession_RegisterForwardCallback ret is :%{public}s", ret == 0 ? "success" : "falid");
+        OH_LOG_DEBUG(LOG_APP,"RegisterForwardCallback ret is :%{public}s", ret == 0 ? "success" : "falid");
         return AV_SESSION_ERR_REGISTER_FORWARD_CALLBACK_FAILED;
     }
     return AV_SESSION_ERROR_SUCCESSED;
@@ -434,7 +406,7 @@ static AVSessionError UnregisterForwardCallback(OH_AVSession* session)
 static AVSessionError RegisterRewindCallback(OH_AVSession* session)
 {
     int userData = 1;
-    AVSession_ErrCode ret =  OH_AVSession_RegisterRewindCallback(session, rewind_callback, (void *)(&userData)); 
+    AVSession_ErrCode ret = OH_AVSession_RegisterRewindCallback(session, rewind_callback, (void *)(&userData)); 
     if (ret != AV_SESSION_ERR_SUCCESS) {
         OH_LOG_DEBUG(LOG_APP, "AVSessionRegisterRewindCallback ret is :%{public}s", ret == 0 ? "success" : "falid");
         return AV_SESSION_ERR_REGISTER_REWIND_CALLBACK_FAILED;
@@ -505,7 +477,8 @@ static AVSessionError UnregisterSetLoopModeCallback(OH_AVSession* session)
 static AVSessionError RegisterToggleFavoriteCallback(OH_AVSession* session)
 {
     int userData = 1;
-    AVSession_ErrCode ret = OH_AVSession_RegisterToggleFavoriteCallback(session, favorite_callback, (void *)(&userData));
+    AVSession_ErrCode ret = OH_AVSession_RegisterToggleFavoriteCallback(
+        session, favorite_callback, (void *)(&userData));
     if (ret != AV_SESSION_ERR_SUCCESS) {
         OH_LOG_DEBUG(LOG_APP, "RegisterToggleFavoriteCallback ret is :%{public}s", ret == 0 ? "success" : "falid");
         return AV_SESSION_ERR_REGISTER_TOGGLE_FAVORITE_CALLBACK_FAILED;
@@ -528,8 +501,7 @@ static AVSessionError UnregisterToggleFavoriteCallback(OH_AVSession* session)
 
 AVSessionError RegisterAllCallback(OH_AVSession* session)
 {
-    AVSessionError ret;
-    ret = RegisterCommandCallback(session);
+    AVSessionError ret = RegisterCommandCallback(session);
     if (ret != AV_SESSION_ERROR_SUCCESSED) {
         return ret;
     }
@@ -569,14 +541,14 @@ AVSessionError UnregisterAllCallback(OH_AVSession* session)
 
 /**
  * TESTNAME : AVSessionTestAll
- * params = [sessionType, sessionTag, bundleName, abilityName, # create avsession para
- *           title, artist, author, album, writer, composer, duration, 
- *           mediaImageUri, subtitle, description, lyric, assetId, 
+ * params = [sessionType, sessionTag, bundleName, abilityName,# create avsession para
+ *           title, artist, author, album, writer, composer, duration,
+ *           mediaImageUri, subtitle, description, lyric, assetId,
  *           previousAssetId, nextAssetId, intervals, tags, # build avmetadata
  *           playbackState bufferedTime, activeItemId, speed，isFavorite,
  *           loopMode, playbackPosition]  # avsession property para
  * 
- * 变量名            最终进入接口类型             
+ * 变量名            最终进入接口类型
  * sessionType:     AVSession_Type;
  * sessionTag:      char*
  * bundleName:      char*
@@ -605,7 +577,8 @@ AVSessionError UnregisterAllCallback(OH_AVSession* session)
  * elapsedTime      int64_t
  * updateTime       int64_t
  */
-static AVSessionError TestAVSessionTestAll(const ParamList& params) {
+static AVSessionError TestAVSessionTestAll(const ParamList& params)
+{
     const int AVSessionTestAllParaCnt = 23;
     AVSessionError err = AV_SESSION_ERROR_SUCCESSED;
     if (params.size() != AVSessionTestAllParaCnt) { return AV_SESSION_ERR_INVALID_PARA; }
@@ -616,8 +589,8 @@ static AVSessionError TestAVSessionTestAll(const ParamList& params) {
     const std::string& abilityName = std::get<std::string>(params[listIdx++]);
     OH_AVSession* session = nullptr;
     AVSessionError result;
-    int ret = OH_AVSession_Create(sessionType, sessionTag.c_str(), bundleName.c_str(),
-                                                abilityName.c_str(), &session);
+    int ret = OH_AVSession_Create(
+        sessionType, sessionTag.c_str(), bundleName.c_str()abilityName.c_str(), &session);
     if (ret != AV_SESSION_ERR_SUCCESS) { return AV_SESSION_ERR_CREATE_FAILED; }
 
     OH_AVMetadataBuilder *builder = nullptr;
@@ -766,7 +739,8 @@ AVSessionError TestAVSessionSetLoopMode(const ParamList& params)
 */
 AVSessionError TestAVSessionSetPlaybackPosition(const ParamList& params)
 {
-    if (params.size() != 2) {return AV_SESSION_ERR_INVALID_PARA;}
+    const int kExpectedParamCount = 2;
+    if (params.size() != kExpectedParamCount) {return AV_SESSION_ERR_INVALID_PARA;}
     OH_AVSession* session;
     AVSessionError returnValue;
     AVSession_ErrCode ret = OH_AVSession_Create(SESSION_TYPE_AUDIO, "oh_av_session_test_001",
@@ -799,7 +773,8 @@ AVSessionError TestAVSessionSetPlaybackPosition(const ParamList& params)
  */
 AVSessionError TestAVSessionSetAVMetaData(const ParamList& params)
 {
-    if (params.size() != 14) { return AV_SESSION_ERR_INVALID_PARA; }
+    const int AVSessionSetAVMetaDataParaCnt = 14;
+    if (params.size() != AVSessionSetAVMetaDataParaCnt) { return AV_SESSION_ERR_INVALID_PARA; }
     OH_AVSession* session;
     AVSessionError returnValue;
     int ret = OH_AVSession_Create(SESSION_TYPE_AUDIO, "oh_av_session_test_001",
@@ -862,11 +837,12 @@ static AVSessionError FindAndDoTest(const std::string& functionName, const Param
 
 static napi_value RunTest(napi_env env, napi_callback_info info)
 {
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
+    size_t expected_argc = 2;
+    size_t argc;
+    napi_value args[expected_argc] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
-    if (argc != 2) {
+    if (argc != expected_argc) {
         napi_throw_error(env, nullptr, "Invalid number of arguments");
         return nullptr;
     }
