@@ -48,7 +48,7 @@ group("multimedia") {
       "avcodec/AVCodecDrmNdk:AVcodecDrm_NDK_test",
       "avcodec/avcodecNdk:AVcodec_NDK_test",
       "avsession/avsession_js_standard/avsessionManager:avsession_framework_js_hap",
-      "avsession/avsession_js_standard/AVSessionNDK:avsession_demo_ndk_ohosTest",
+      "avsession/avsession_js_standard/AVSessionNDK:avsession_ndk_main",
       "avsession/avsession_js_standard/avsessionVoiceCall:avsession_voicecall_js_hap",
       "avsource:ActsAVCodecTest",
       "camera/camera_js_standard:camera_framework_ets_hap",
