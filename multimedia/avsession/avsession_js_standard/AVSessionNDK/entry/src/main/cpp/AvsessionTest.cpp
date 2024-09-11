@@ -566,7 +566,6 @@ AVSessionError UnregisterAllCallback(OH_AVSession* session)
  * intervals:       AVMetadata_SkipIntervals
  * tags:            uint32_t
  * duration:        int64_t
- * 
  * playbackState:   AVSession_PlaybackState
  * bufferedTime:    uint64_t  开发.h文件删除
  * speed:           uint32_t  开发.h文件删除
