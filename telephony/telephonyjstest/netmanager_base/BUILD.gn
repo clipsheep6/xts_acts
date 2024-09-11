@@ -10,6 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import("//build/ohos_var.gni")
 
 group("netmanager_base") {
   testonly = true
@@ -17,9 +18,11 @@ group("netmanager_base") {
     deps = [
       "actshttpscertificatetest:ActsHttpsCertificateTest",
       "dns:ActsDNSTest",
+      "dnsndk:ActsDnsNdkTest",      
       "jshttp:ActsJSHTTPTest",
       "multicastconnection201_dns:ActsNetworkManagerMulDNS201Test",
       "multicastconnection_dns:ActsNetworkManagerMulDNSTest",
+      "network_netmanager:ActsNetworkConnectionNdkTest",      
       "network_nopermission:ActsNetworkNopermissionTest",
       "network_nowifi:ActsNetworkNowifiTest",
       "network_wifi:ActsNetworkWifiTest",
@@ -29,15 +32,3 @@ group("netmanager_base") {
     ]
   }
 }
-
-group("ndk") {
-  testonly = true
-  if (is_standard_system) {
-    deps = [
-      "dnsndk:ActsDnsNdkTest",
-      "network_netmanager:ActsNetworkConnectionNdkTest",
-    ]
-  }
-}
-
-import("//test/xts/tool/build/suite.gni")
