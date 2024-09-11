@@ -133,6 +133,8 @@ public:
     Camera_FrameRateRange* videoFrameRateRange_;
     Camera_FrameRateRange videoActiveFrameRateRange_;
     bool isCreatePhotoOutputWithoutSurface_;
+    Camera_ImageRotation imageRotation_;
+    Camera_ImageRotation previewRotation_;
 
     //callback
     static CameraCallbackCode cameraCallbackCode_;
@@ -200,6 +202,10 @@ public:
     Camera_ErrorCode SessionGetExposureBiasRange(void);
     Camera_ErrorCode SessionSetExposureBias(float exposureBias);
     Camera_ErrorCode SessionGetExposureBias(void);
+    Camera_ErrorCode SessionGetPhotoRotation(int rotation);
+    Camera_ErrorCode SessionGetVideoRotation(int rotation);
+    Camera_ErrorCode SessionGetPreviewRotation(int rotation);
+    Camera_ErrorCode SessionSetPreviewRotation(int rotation, bool isDisplayLocked);
 
     Camera_ErrorCode SessionIsFocusModeSupported(uint32_t mode);
     Camera_ErrorCode SessionGetFocusMode(void);
