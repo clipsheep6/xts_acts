@@ -552,7 +552,6 @@ AVSessionError UnregisterAllCallback(OH_AVSession* session)
  * sessionTag:      char*
  * bundleName:      char*
  * abilityName:     char*
- * 
  * title:           char*
  * artist:          char*
  * author:          char*
@@ -578,9 +577,9 @@ AVSessionError UnregisterAllCallback(OH_AVSession* session)
  */
 static AVSessionError TestAVSessionTestAll(const ParamList& params)
 {
-    const int AV_SESSION_TEST_ALL_PARA_CNT = 23;
+    const int avSessionTestAllParaCnt = 23;
     AVSessionError err = AV_SESSION_ERROR_SUCCESSED;
-    if (params.size() != AV_SESSION_TEST_ALL_PARA_CNT) { return AV_SESSION_ERR_INVALID_PARA; }
+    if (params.size() != avSessionTestAllParaCnt) { return AV_SESSION_ERR_INVALID_PARA; }
     int listIdx = 0;
     AVSession_Type sessionType = static_cast<AVSession_Type>(std::get<double>(params[listIdx++]));
     const std::string& sessionTag = std::get<std::string>(params[listIdx++]);
@@ -768,8 +767,8 @@ AVSessionError TestAVSessionSetPlaybackPosition(const ParamList& params)
  */
 AVSessionError TestAVSessionSetAVMetaData(const ParamList& params)
 {
-    const int AV_SESSION_SET_AV_META_DATA_PARA_CNT = 14;
-    if (params.size() != AV_SESSION_SET_AV_META_DATA_PARA_CNT) { return AV_SESSION_ERR_INVALID_PARA; }
+    const int avSessionSetAvMetaDataParaCnt = 14;
+    if (params.size() != avSessionSetAvMetaDataParaCnt) { return AV_SESSION_ERR_INVALID_PARA; }
     OH_AVSession* session;
     AVSessionError returnValue;
     int ret = OH_AVSession_Create(SESSION_TYPE_AUDIO, "oh_av_session_test_001",
