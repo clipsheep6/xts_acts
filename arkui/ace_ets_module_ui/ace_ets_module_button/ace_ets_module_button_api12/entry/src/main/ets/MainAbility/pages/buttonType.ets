@@ -17,8 +17,8 @@ import events_emitter from '@ohos.events.emitter';
 @Entry
 @Component
 struct Index {
-  build() {
-    Button("button")
+  build(){
+    Button('button')
       .key('key_ButtonType_001')
       .type(ButtonType.ROUNDED_RECTANGLE)
   }
