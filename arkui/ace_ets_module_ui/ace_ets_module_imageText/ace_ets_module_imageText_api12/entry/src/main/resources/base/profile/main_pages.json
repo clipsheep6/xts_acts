@@ -128,5 +128,6 @@
 	"MainAbility/pages/Text/TextDataDetectorConfig",
 	"MainAbility/pages/Text/FontSettingOptions",
 	"MainAbility/pages/Text/TextMaxLines"
+	"MainAbility/pages/Marquee/marqueeFrame"
   ]
 }
