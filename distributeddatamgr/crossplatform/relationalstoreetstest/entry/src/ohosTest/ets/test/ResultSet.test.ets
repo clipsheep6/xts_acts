@@ -1745,3 +1745,586 @@ export default function rdbResultSetTest() {
      * @tc.type   : Function
      * @tc.level  : Level 2
      */
+    it("testResultSetGetLong001", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetLong001 start *************");
+      let predicates = await new relationalStore.RdbPredicates("test");
+      let resultSet = await rdbStore.query(predicates);
+      try {
+        {
+          expect(true).assertEqual(resultSet.goToFirstRow());
+          const id = resultSet.getLong(resultSet.getColumnIndex("id"));
+          const data2 = resultSet.getLong(resultSet.getColumnIndex("data2"));
+          console.info(TAG + "id=" + id + ", data2=" + data2);
+          expect(10).assertEqual(data2);
+        }
+        resultSet.close();
+        expect(true).assertEqual(resultSet.isClosed);
+      } catch (e) {
+        expect(!e).assertTrue();
+      }
+      resultSet = null;
+      done();
+      console.info(TAG + "************* testResultSetGetLong001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0790
+     * @tc.name   : testResultSetGetLong002
+     * @tc.desc   : ResultSet getLong test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetLong002", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetLong002 start *************");
+      let predicates = await new relationalStore.RdbPredicates("test");
+      let resultSet = await rdbStore.query(predicates);
+      try {
+        {
+          expect(true).assertEqual(resultSet.goToFirstRow());
+          expect(true).assertEqual(resultSet.goToNextRow());
+          const data1 = resultSet.getLong(resultSet.getColumnIndex("data1"));
+          expect(2).assertEqual(data1);
+        }
+        resultSet.close();
+        expect(true).assertEqual(resultSet.isClosed);
+      } catch (e) {
+        expect(!e).assertTrue();
+      }
+      resultSet = null;
+      done();
+      console.info(TAG + "************* testResultSetGetLong002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0800
+     * @tc.name   : testResultSetGetLong003
+     * @tc.desc   : ResultSet getLong test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetLong003", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetLong003 start *************");
+      let predicates = await new relationalStore.RdbPredicates("test");
+      let resultSet = await rdbStore.query(predicates);
+      try {
+        {
+          expect(true).assertEqual(resultSet.goToFirstRow());
+          expect(true).assertEqual(resultSet.goToNextRow());
+          const data2 = resultSet.getLong(resultSet.getColumnIndex("data2"));
+          expect(-5).assertEqual(data2);
+        }
+        resultSet.close();
+        expect(true).assertEqual(resultSet.isClosed);
+      } catch (e) {
+        expect(!e).assertTrue();
+      }
+      resultSet = null;
+      done();
+      console.info(TAG + "************* testResultSetGetLong003 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0820
+     * @tc.name   : testResultSetGetLong004
+     * @tc.desc   : ResultSet getLong test null
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetLong004", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetLong004 start *************");
+      let predicates = await new relationalStore.RdbPredicates("test");
+      let resultSet = await rdbStore.query(predicates);
+      try {
+        {
+          expect(true).assertEqual(resultSet.goToFirstRow());
+          const data2 = resultSet.getLong(null);
+          expect(!data2).assertTrue();
+        }
+      } catch (e) {
+        console.info(TAG + "************* testResultSetGetLong004 err " + e);
+        expect('401').assertEqual(e.code);
+      }
+      resultSet.close();
+      expect(true).assertEqual(resultSet.isClosed);
+      resultSet = null;
+      done();
+      console.info(TAG + "************* testResultSetGetLong004 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0810
+     * @tc.name   : testResultSetGetLong005
+     * @tc.desc   : ResultSet getLong test err parameter
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetLong005", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetLong005 start *************");
+      let predicates = await new relationalStore.RdbPredicates("test");
+      let resultSet = await rdbStore.query(predicates);
+      try {
+        {
+          expect(true).assertEqual(resultSet.goToFirstRow());
+          const data2 = resultSet.getLong(100);
+          expect(!data2).assertTrue();
+        }
+      } catch (e) {
+        console.info(TAG + "************* testResultSetGetLong005 err " + e);
+        expect(e.code == 14800013).assertTrue();
+      }
+      resultSet.close();
+      expect(true).assertEqual(resultSet.isClosed);
+      resultSet = null;
+      done();
+      console.info(TAG + "************* testResultSetGetLong005 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0830
+     * @tc.name   : testResultSetGetLong006
+     * @tc.desc   : ResultSet getLong test err typr parameter
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetLong006", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetLong006 start *************");
+      let predicates = await new relationalStore.RdbPredicates("test");
+      let resultSet = await rdbStore.query(predicates);
+      try {
+        {
+          expect(true).assertEqual(resultSet.goToFirstRow());
+          let errType: ESObject = "errType";
+          const data2 = resultSet.getLong(errType);
+          expect(!data2).assertTrue();
+        }
+      } catch (e) {
+        console.info(TAG + "************* testResultSetGetLong006 err " + e);
+        expect('401').assertEqual(e.code);
+      }
+      resultSet.close();
+      expect(true).assertEqual(resultSet.isClosed);
+      resultSet = null;
+      done();
+      console.info(TAG + "************* testResultSetGetLong006 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0730
+     * @tc.name   : testResultSetGetDouble001
+     * @tc.desc   : ResultSet getDouble test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetDouble001", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetDouble001 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(0);
+          const data3 = resultSet.getDouble(resultSet.getColumnIndex("data3"));
+          expect(1.0).assertEqual(data3);
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetGetDouble001 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0750
+     * @tc.name   : testResultSetGetDouble002
+     * @tc.desc   : ResultSet getDouble test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetDouble002", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetDouble002 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(1);
+          const data3 = resultSet.getDouble(resultSet.getColumnIndex("data3"));
+          expect(2.5).assertEqual(data3);
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetGetDouble002 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0740
+     * @tc.name   : testResultSetGetDouble003
+     * @tc.desc   : ResultSet getDouble test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetDouble003", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetDouble003 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(2);
+          const data3 = resultSet.getDouble(resultSet.getColumnIndex("data3"));
+          expect(1.8).assertEqual(data3);
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetGetDouble003 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0720
+     * @tc.name   : testResultSetGetDouble004
+     * @tc.desc   : ResultSet getDouble test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetDouble004", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetDouble004 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(0);
+          const data2 = resultSet.getDouble(resultSet.getColumnIndex("data2"));
+          expect(10).assertEqual(data2);
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetGetDouble004 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0770
+     * @tc.name   : testResultSetGetDouble005
+     * @tc.desc   : ResultSet getDouble test null
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetDouble005", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetDouble005 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(0);
+          try {
+            const data = resultSet.getDouble(null);
+            expect(!data).assertTrue();
+          } catch (e) {
+            console.info(TAG + "************* testResultSetGetDouble005 err " + e);
+            expect('401').assertEqual(e.code);
+          }
+          expect(resultSet !== null).assertTrue();
+          resultSet.close();
+        }
+        resultSet = null;
+        expect(resultSet == null).assertTrue();
+        done();
+        console.info(TAG + "************* testResultSetGetDouble005 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0760
+     * @tc.name   : testResultSetGetDouble006 err parameter
+     * @tc.desc   : ResultSet getDouble test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetDouble006", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetDouble006 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(0);
+          try {
+            const data = resultSet.getDouble(100);
+            expect(!data).assertTrue();
+          } catch (e) {
+            console.info(TAG + "************* testResultSetGetDouble006 err " + e);
+            expect(e.code == 14800013).assertTrue();
+          }
+          expect(resultSet !== null).assertTrue();
+          resultSet.close();
+        }
+        resultSet = null;
+        expect(resultSet == null).assertTrue();
+        done();
+        console.info(TAG + "************* testResultSetGetDouble006 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0780
+     * @tc.name   : testResultSetGetDouble007
+     * @tc.desc   : ResultSet getDouble test err type parameter
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetGetDouble007", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetGetDouble007 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet = await rdbStore.query(predicates);
+        let errType: ESObject = "errType";
+        {
+          resultSet.goToRow(0);
+          try {
+            const data = resultSet.getDouble(errType);
+            expect(!data).assertTrue();
+          } catch (e) {
+            console.info(TAG + "************* testResultSetGetDouble007 err " + e);
+            expect('401').assertEqual(e.code);
+          }
+          expect(resultSet !== null).assertTrue();
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetGetDouble007 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_1060
+     * @tc.name   : testResultSetIsColumnNull001
+     * @tc.desc   : ResultSet isColumnNull test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetIsColumnNull001", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetIsColumnNull001 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet: relationalStore.ResultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(2);
+          const isColumnNull1 = resultSet.isColumnNull(resultSet.getColumnIndex("data1"));
+          expect(false).assertEqual(isColumnNull1);
+          console.info(TAG + "************* testResultSetIsColumnNull001 " + resultSet.getString(resultSet.getColumnIndex("data1")));
+          expect("hello world").assertEqual(resultSet.getString(resultSet.getColumnIndex("data1")));
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetIsColumnNull001 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_1010
+     * @tc.name   : testResultSetIsColumnNull002
+     * @tc.desc   : ResultSet isColumnNull test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetIsColumnNull002", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetIsColumnNull002 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(2);
+          const isColumnNull4 = resultSet.isColumnNull(resultSet.getColumnIndex("data4"));
+          expect(true).assertEqual(isColumnNull4);
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetIsColumnNull002 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_1030
+     * @tc.name   : testResultSetIsColumnNull003
+     * @tc.desc   : ResultSet isColumnNull test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetIsColumnNull003", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetIsColumnNull003 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(2);
+          expect(false).assertEqual(resultSet.isColumnNull(1));
+          console.info(TAG + "************* testResultSetIsColumnNull001 " + resultSet.getString(1));
+          expect("hello world").assertEqual(resultSet.getString(1));
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetIsColumnNull003 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_1040
+     * @tc.name   : testResultSetIsColumnNull003
+     * @tc.desc   : ResultSet isColumnNull test null
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetIsColumnNull004", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetIsColumnNull004 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet: relationalStore.ResultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(2);
+          try {
+            const data = resultSet.isColumnNull(null);
+            expect(!data).assertTrue();
+          } catch (e) {
+            console.info(TAG + "************* testResultSetIsColumnNull004 err " + e);
+            expect('401').assertEqual(e.code);
+          }
+          expect(resultSet !== null).assertTrue();
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetIsColumnNull004 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_1020
+     * @tc.name   : testResultSetIsColumnNull005
+     * @tc.desc   : ResultSet isColumnNull test err parameter
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetIsColumnNull005", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetIsColumnNull005 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet: relationalStore.ResultSet = await rdbStore.query(predicates);
+        {
+          resultSet.goToRow(2);
+          try {
+            const data = resultSet.isColumnNull(100);
+            expect(!data).assertTrue();
+          } catch (e) {
+            console.info(TAG + "************* testResultSetIsColumnNull005 err " + e);
+            expect(e.code == 14800013).assertTrue();
+          }
+          expect(resultSet !== null).assertTrue();
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetIsColumnNull005 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_1050
+     * @tc.name   : testResultSetIsColumnNull006
+     * @tc.desc   : ResultSet isColumnNull test err type parameter
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetIsColumnNull006", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetIsColumnNull006 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet: relationalStore.ResultSet = await rdbStore.query(predicates);
+        let errType: ESObject = "errType";
+        {
+          resultSet.goToRow(2);
+          try {
+            const data = resultSet.isColumnNull(errType);
+            expect(!data).assertTrue();
+          } catch (e) {
+            console.info(TAG + "************* testResultSetIsColumnNull005 err " + e);
+            expect('401').assertEqual(e.code);
+          }
+          expect(resultSet !== null).assertTrue();
+          resultSet.close();
+        }
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetIsColumnNull006 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0320
+     * @tc.name   : testResultSetClose001
+     * @tc.desc   : ResultSet close test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetClose001", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetClose001 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        let resultSet = await rdbStore.query(predicates);
+        resultSet.goToRow(1);
+        resultSet.close();
+        expect(true).assertEqual(resultSet.isClosed);
+
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetClose001 end *************");
+      }
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_ResultSetJsAPITest_0520
+     * @tc.name   : testResultSetClose002
+     * @tc.desc   : ResultSet close test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testResultSetClose002", 0, async (done: Function) => {
+      console.info(TAG + "************* testResultSetClose002 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("test");
+        predicates.equalTo("name", "wangwu");
+        let resultSet = await rdbStore.query(predicates);
+        resultSet.close();
+        expect(true).assertEqual(resultSet.isClosed);
+
+        resultSet = null;
+        done();
+        console.info(TAG + "************* testResultSetClose002 end *************");
+      }
+    });
+  });
+}
