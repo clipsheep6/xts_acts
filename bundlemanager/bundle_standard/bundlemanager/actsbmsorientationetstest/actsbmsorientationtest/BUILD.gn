@@ -13,31 +13,11 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_js_hap_suite("ActsBmsOrientationTest") {
-  hap_profile = "entry/src/main/module.json"
-  js_build_mode = "debug"
-  deps = [
-    ":bmsorientationtest_js_assets",
-    ":bmsorientationtest_resources",
-  ]
-  ets2abc = true
-  certificate_profile = "signature/openharmony_sx.p7b"
+ohos_js_app_suite("ActsBmsOrientationTest") {
+  test_hap = true
+  testonly = true
+  certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsBmsOrientationTest"
-  subsystem_name = "bundlemanager"
   part_name = "bundle_framework"
-}
-
-ohos_app_scope("bmsorientationtest_app_profile") {
-  app_profile = "AppScope/app.json"
-  sources = [ "AppScope/resources" ]
-}
-
-ohos_js_assets("bmsorientationtest_js_assets") {
-  source_dir = "entry/src/main/ets"
-}
-
-ohos_resources("bmsorientationtest_resources") {
-  sources = [ "entry/src/main/resources" ]
-  deps = [ ":bmsorientationtest_app_profile" ]
-  hap_profile = "entry/src/main/module.json"
+  subsystem_name = "bundlemanager"
 }
