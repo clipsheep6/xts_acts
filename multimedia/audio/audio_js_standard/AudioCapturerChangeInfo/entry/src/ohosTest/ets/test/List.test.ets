@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
- import audioCapturerChange from './AudioCapturerChangeInfo.test.ets'
+ import audioCapturerChange from './AudioCapturerChangeInfo.test.ets';
  
  export default function testsuite() {
-   audioCapturerChange()
+   audioCapturerChange();
  }
 
 
