@@ -19,7 +19,7 @@ group("networkmanager") {
     "http:http",
     "mdns:mdns",
     "ndk:ndk",
-    "netstack_websocketndk:netstack_websocketndk",
+    "netstack_websocket:netstack_websocketndk",
     "network:network",
     "networksecurity:networksecurity",
     "noNet:noNet",
