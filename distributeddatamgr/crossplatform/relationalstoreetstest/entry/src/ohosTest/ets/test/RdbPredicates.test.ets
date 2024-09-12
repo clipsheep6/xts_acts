@@ -3854,3 +3854,1862 @@ export default function rdbPredicatesTest() {
       done();
       console.info(TAG + "************* testRdbPredicatesNotBetween020 end *************");
     });
+
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1310
+     * @tc.name   : testRdbPredicatesGreaterThan001
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan001 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("stringValue", "ABC");
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1290
+     * @tc.name   : testRdbPredicatesGreaterThan002
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan002 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("doubleValue", 0.0);
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1340
+     * @tc.name   : testRdbPredicatesGreaterThan003
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan003", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan003 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("integerValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan003 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1440
+     * @tc.name   : testRdbPredicatesGreaterThan004
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan004", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan004 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("longValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan004 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1320
+     * @tc.name   : testRdbPredicatesGreaterThan005
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan005", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan005 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("stringValue", "ZZZ");
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan005 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1300
+     * @tc.name   : testRdbPredicatesGreaterThan006
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan006", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan006 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("doubleValue", 999.0);
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan006 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1410
+     * @tc.name   : testRdbPredicatesGreaterThan007
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan007", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan007 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("integerValue", -999);
+        let result = await rdbStore.query(predicates);
+        expect(2).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan007 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1460
+     * @tc.name   : testRdbPredicatesGreaterThan008
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan008", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan008 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("longValue", -999);
+        let result = await rdbStore.query(predicates);
+        expect(2).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan008 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1330
+     * @tc.name   : testRdbPredicatesGreaterThan009
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan009", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan009 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("stringValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan009 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1430
+     * @tc.name   : testRdbPredicatesGreaterThan010
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan010", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan010 start *************");
+      {
+        try {
+          let predicates = await new relationalStore.RdbPredicates("AllDataType");
+          predicates.greaterThan(null, 1);
+          let result = await rdbStore.query(predicates);
+          expect(0).assertEqual(result.rowCount);
+          result.close();
+          result = null;
+        } catch (e) {
+          expect('401').assertEqual(e.code);
+        }
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan010 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1400
+     * @tc.name   : testRdbPredicatesGreaterThan011
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan011", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan011 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("integerValue", "A");
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan011 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1350
+     * @tc.name   : testRdbPredicatesGreaterThan012
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan012", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan012 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("integerValue", Number.MAX_VALUE);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan012 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1360
+     * @tc.name   : testRdbPredicatesGreaterThan013
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan013", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan013 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("integerValue", Number.MIN_VALUE);
+        let result = await rdbStore.query(predicates);
+        expect(2).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan013 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1370
+     * @tc.name   : testRdbPredicatesGreaterThan014
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan014", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan014 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("integerValue", Number.NaN);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan014 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1380
+     * @tc.name   : testRdbPredicatesGreaterThan015
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan015", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan015 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("integerValue", Number.NEGATIVE_INFINITY);
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan015 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1390
+     * @tc.name   : testRdbPredicatesGreaterThan016
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan016", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan016 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("integerValue", Number.POSITIVE_INFINITY);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan016 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1420
+     * @tc.name   : testRdbPredicatesGreaterThan018
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan018", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan018 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("floatValue", -999);
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan018 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1450
+     * @tc.name   : testRdbPredicatesGreaterThan019
+     * @tc.desc   : Test the greaterThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThan019", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThan019 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThan("longValue", "ABC");
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThan019 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1910
+     * @tc.name   : testRdbPredicatesLessThan001
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan001 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThan("stringValue", "ABD");
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1870
+     * @tc.name   : testRdbPredicatesLessThan002
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan002 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThan("doubleValue", 0.0);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1930
+     * @tc.name   : testRdbPredicatesLessThan003
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan003", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan003 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThan("integerValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan003 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1970
+     * @tc.name   : testRdbPredicatesLessThan004
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan004", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan004 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThan("longValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan004 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1880
+     * @tc.name   : testRdbPredicatesLessThan005
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan005", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan005 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThan("doubleValue", 1.0);
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan005 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1920
+     * @tc.name   : testRdbPredicatesLessThan006
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan006", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan006 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThan("integerValue", -2147483648);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan006 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1960
+     * @tc.name   : testRdbPredicatesLessThan007
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan007", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan007 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThan("longValue", -9223372036854775808);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan007 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1900
+     * @tc.name   : testRdbPredicatesLessThan008
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan008", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan008 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThan("stringValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan008 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1940
+     * @tc.name   : testRdbPredicatesLessThan009
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan009", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan009 start *************");
+      {
+        try {
+          let predicates = await new relationalStore.RdbPredicates("AllDataType");
+          predicates.lessThan(null, "ABD");
+          let result = await rdbStore.query(predicates);
+          expect(0).assertEqual(result.rowCount);
+          result.close();
+          result = null;
+        } catch (e) {
+          expect('401').assertEqual(e.code);
+        }
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan009 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1950
+     * @tc.name   : testRdbPredicatesLessThan010
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan010", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan010 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThan("longValue", "ABC");
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan010 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1890
+     * @tc.name   : testRdbPredicatesLessThan012
+     * @tc.desc   : Test the lessThan() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThan012", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThan012 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThan("stringValue", -9223372036854775808);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThan012 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1490
+     * @tc.name   : testRdbPredicatesGreaterThanOrEqualTo001
+     * @tc.desc   : Test the greaterThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThanOrEqualTo001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo001 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThanOrEqualTo("stringValue", "ABC");
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1480
+     * @tc.name   : testRdbPredicatesGreaterThanOrEqualTo002
+     * @tc.desc   : Test the greaterThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThanOrEqualTo002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo002 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThanOrEqualTo("doubleValue", 0.0);
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1520
+     * @tc.name   : testRdbPredicatesGreaterThanOrEqualTo003
+     * @tc.desc   : Test the greaterThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThanOrEqualTo003", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo003 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThanOrEqualTo("integerValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(2).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo003 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1540
+     * @tc.name   : testRdbPredicatesGreaterThanOrEqualTo004
+     * @tc.desc   : Test the greaterThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThanOrEqualTo004", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo004 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThanOrEqualTo("longValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(2).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo004 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1550
+     * @tc.name   : testRdbPredicatesGreaterThanOrEqualTo005
+     * @tc.desc   : Test the greaterThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThanOrEqualTo005", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo005 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThanOrEqualTo("longValue", "ABC");
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo005 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1530
+     * @tc.name   : testRdbPredicatesGreaterThanOrEqualTo006
+     * @tc.desc   : Test the greaterThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThanOrEqualTo006", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo006 start *************");
+      {
+        try {
+          let predicates = await new relationalStore.RdbPredicates("AllDataType");
+          predicates.greaterThanOrEqualTo(null, "ABC");
+          let result = await rdbStore.query(predicates);
+          expect(0).assertEqual(result.rowCount);
+          result.close();
+          result = null;
+        } catch (e) {
+          expect('401').assertEqual(e.code);
+        }
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo006 end *************");
+    });
+
+    /**
+     * @tc.number :     SSUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1510
+     * @tc.name   : testRdbPredicatesGreaterThanOrEqualTo007
+     * @tc.desc   : Test the greaterThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThanOrEqualTo007", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo007 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThanOrEqualTo("characterValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo007 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1500
+     * @tc.name   : testRdbPredicatesGreaterThanOrEqualTo008
+     * @tc.desc   : Test the greaterThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGreaterThanOrEqualTo008", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo008 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.greaterThanOrEqualTo("stringValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesGreaterThanOrEqualTo008 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2150
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo001
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo001 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("stringValue", "ABD");
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2140
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo002
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo002 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("doubleValue", 0.0);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1980
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo003
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo003", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo003 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("integerValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(2).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo003 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2060
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo004
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo004", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo004 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("longValue", 1);
+        let result = await rdbStore.query(predicates);
+        expect(2).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo004 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2040
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo005
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo005", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo005 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("integerValue", "ABC");
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo005 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1990
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo006
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo006", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo006 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("integerValue", Number.MAX_VALUE);
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo006 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2000
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo007
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo007", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo007 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("integerValue", Number.MIN_VALUE);
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo007 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2010
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo008
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo008", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo008 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("integerValue", Number.NaN);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo008 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2020
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo009
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo009", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo009 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("integerValue", Number.NEGATIVE_INFINITY);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo009 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2030
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo010
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo010", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo010 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("integerValue", Number.POSITIVE_INFINITY);
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo010 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2120
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo011
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo011", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo011 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("longValue", "ABC");
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo011 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2070
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo012
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo012", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo012 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("longValue", Number.MAX_VALUE);
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo012 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2080
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo013
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo013", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo013 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("longValue", Number.MIN_VALUE);
+        let result = await rdbStore.query(predicates);
+        expect(1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo013 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2090
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo014
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo014", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo014 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("longValue", Number.NaN);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo014 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2100
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo015
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo015", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo015 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("longValue", Number.NEGATIVE_INFINITY);
+        let result = await rdbStore.query(predicates);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo015 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2110
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo016
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo016", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo016 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("longValue", Number.POSITIVE_INFINITY);
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo016 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2160
+     * @tc.name   : testRdbPredicatesLessThanOrEqualTo017
+     * @tc.desc   : Test the lessThanOrEqualTo() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLessThanOrEqualTo017", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo017 start *************");
+      try {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.lessThanOrEqualTo("longValueX", Number.POSITIVE_INFINITY);
+        let result = await rdbStore.query(predicates);
+        expect(-1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      } catch (e) {
+        console.info(TAG + "lessThanOrEqualTo call failed.", e);
+        expect('401').assertEqual(e.code);
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesLessThanOrEqualTo017 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2710
+     * @tc.name   : testRdbPredicatesOrderByAsc001
+     * @tc.desc   : Test the orderByAsc() and distinct() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesOrderByAsc001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesOrderByAsc001 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.equalTo("stringValue", "ABCDEFGHIJKLMN").orderByAsc("integerValue").distinct();
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        expect(true).assertEqual(result.goToFirstRow());
+        expect(3).assertEqual(result.getLong(0));
+        expect(true).assertEqual(result.goToNextRow());
+        expect(2).assertEqual(result.getLong(0));
+        expect(true).assertEqual(result.goToNextRow());
+        expect(1).assertEqual(result.getLong(0));
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesOrderByAsc001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2700
+     * @tc.name   : testRdbPredicatesOrderByAsc002
+     * @tc.desc   : Test the orderByAsc() and distinct() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesOrderByAsc002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesOrderByAsc002 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.equalTo("stringValue", "ABCDEFGHIJKLMN").orderByAsc("integerValueX").distinct();
+        let result = await rdbStore.query(predicates);
+        expect(-1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesOrderByAsc002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2750
+     * @tc.name   : testRdbPredicatesOrderByDesc001
+     * @tc.desc   : Test the orderByDesc() and distinct() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesOrderByDesc001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesOrderByDesc001 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.equalTo("stringValue", "ABCDEFGHIJKLMN").orderByDesc("integerValue").distinct();
+        let result = await rdbStore.query(predicates);
+        expect(3).assertEqual(result.rowCount);
+        expect(true).assertEqual(result.goToFirstRow());
+        expect(1).assertEqual(result.getLong(0));
+        expect(true).assertEqual(result.goToNextRow());
+        expect(2).assertEqual(result.getLong(0));
+        expect(true).assertEqual(result.goToNextRow());
+        expect(3).assertEqual(result.getLong(0));
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesOrderByDesc001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2740
+     * @tc.name   : testRdbPredicatesOrderByDesc002
+     * @tc.desc   : Test the orderByDesc() and distinct() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesOrderByDesc002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesOrderByDesc002 start *************");
+      {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.equalTo("stringValue", "ABCDEFGHIJKLMN").orderByDesc("integerValueX").distinct();
+        let result = await rdbStore.query(predicates);
+        expect(-1).assertEqual(result.rowCount);
+        result.close();
+        result = null;
+      }
+      done();
+      console.info(TAG + "************* testRdbPredicatesOrderByDesc002 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0170
+     * @tc.name   : testRdbPredicatesLimitAs001
+     * @tc.desc   : Test the limitAs() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLimitAs001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLimitAs001 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(1);
+      let result = await rdbStore.query(predicates);
+      expect(1).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesLimitAs001 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0180
+     * @tc.name   : testRdbPredicatesLimitAs002
+     * @tc.desc   : Test the limitAs() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLimitAs002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLimitAs002 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3);
+      let result = await rdbStore.query(predicates);
+      expect(3).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesLimitAs002 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0160
+     * @tc.name   : testRdbPredicatesLimitAs003
+     * @tc.desc   : Test the limitAs() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLimitAs003", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLimitAs003 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(100);
+      let result = await rdbStore.query(predicates);
+      expect(3).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesLimitAs003 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0190
+     * @tc.name   : testRdbPredicatesLimitAs004
+     * @tc.desc   : Test the limitAs() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLimitAs004", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLimitAs004 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "中").limitAs(1);
+      let result = await rdbStore.query(predicates);
+      expect(0).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesLimitAs004 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0150
+     * @tc.name   : testRdbPredicatesLimitAs005
+     * @tc.desc   : Test the limitAs() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLimitAs005", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLimitAs005 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(0);
+      let result = await rdbStore.query(predicates);
+      expect(3).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesLimitAs005 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0140
+     * @tc.name   : testRdbPredicatesLimitAs006
+     * @tc.desc   : Test the limitAs() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesLimitAs006", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesLimitAs006 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(-1);
+      let result = await rdbStore.query(predicates);
+      expect(3).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesLimitAs006 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0130
+     * @tc.name   : testRdbPredicatesOffsetAs001
+     * @tc.desc   : Test the offsetAs() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesOffsetAs001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesOffsetAs001 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3).offsetAs(1);
+      let result = await rdbStore.query(predicates);
+      expect(2).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesOffsetAs001 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0120
+     * @tc.name   : testRdbPredicatesOffsetAs002
+     * @tc.desc   : Test the offsetAs() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesOffsetAs002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesOffsetAs002 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3).offsetAs(0);
+      let result = await rdbStore.query(predicates);
+      expect(3).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesOffsetAs002 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0100
+     * @tc.name   : testRdbPredicatesOffsetAs003
+     * @tc.desc   : Test the offsetAs() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesOffsetAs003", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesOffsetAs003 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3).offsetAs(5);
+      let result = await rdbStore.query(predicates);
+      expect(0).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesOffsetAs003 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0110
+     * @tc.name   : testRdbPredicatesOffsetAs004
+     * @tc.desc   : Test the offsetAs() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesOffsetAs004", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesOffsetAs004 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").limitAs(3).offsetAs(-1);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesOffsetAs004 rowCount: " + result.rowCount);
+      expect(3).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesOffsetAs004 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0210
+     * @tc.name   : testRdbPredicatesGroupBy001
+     * @tc.desc   : Test the groupBy() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGroupBy001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGroupBy001 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").groupBy(["characterValue"]);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesGroupBy001 rowCount: " + result.rowCount);
+      expect(3).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesGroupBy001 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0200
+     * @tc.name   : testRdbPredicatesGroupBy002
+     * @tc.desc   : Test the groupBy() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGroupBy002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGroupBy002 start *************");
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.like("stringValue", "ABCDEFGHIJKLMN").groupBy(["characterValueX"]);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesGroupBy002 rowCount: " + result.rowCount);
+      expect(-1).assertEqual(result.rowCount);
+      result.close();
+      result = null;
+      done();
+      console.info(TAG + "************* testRdbPredicatesGroupBy002 end *************");
+    });
+
+    /**
+     * @tc.number :SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_0220
+     * @tc.name   : testRdbPredicatesGroupBy003
+     * @tc.desc   : Test the groupBy() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesGroupBy003", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesGroupBy003 start *************");
+      try {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.like("", "").groupBy(["characterValueX"]);
+        let result = await rdbStore.query(predicates);
+        console.info("testRdbPredicatesGroupBy003 rowCount: " + result.rowCount);
+        expect(-1).assertEqual(result.rowCount);
+        result.close();
+      } catch (err) {
+        console.info(TAG + "err = " + err);
+        expect(err.code).assertEqual("401");
+        done();
+      }
+      console.info(TAG + "************* testRdbPredicatesGroupBy003 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1650
+     * @tc.name   : testRdbPredicatesIndexedBy001
+     * @tc.desc   : Test the indexedBy() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testIndexedBy0001", 0, async (done: Function) => {
+      console.info(TAG + "************* testIndexedBy0001 start *************");
+      await rdbStore.executeSql("CREATE INDEX index_name ON AllDataType (characterValue);", null);
+      try {
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.indexedBy("index_name");
+        let result = await rdbStore.query(predicates);
+        console.info("testIndexedBy0001 rowCount: " + result.rowCount);
+        expect(3).assertEqual(result.rowCount);
+        result.close();
+        done();
+      } catch (err) {
+        console.info(TAG + "err = " + err);
+        expect().assertFail();
+      }
+      console.info(TAG + "************* testIndexedBy0001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1640
+     * @tc.name   : testRdbPredicatesIndexedBy002
+     * @tc.desc   : Test the indexedBy() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesIndexedBy002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesIndexedBy002 start *************");
+      try {
+        await rdbStore.executeSql("CREATE INDEX index_name ON AllDataType (characterValueX);", null);
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.indexedBy("index_name");
+        expect(predicates !== null).assertFail();
+      } catch (errInfo) {
+        expect(errInfo != null).assertTrue();
+        console.info(TAG + "testRdbPredicatesIndexedBy002 error: " + errInfo);
+        done();
+      }
+      console.info(TAG + "************* testRdbPredicatesIndexedBy002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1610
+     * @tc.name   : testRdbPredicatesIn001
+     * @tc.desc   : Test the in() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesIn001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesIn001 start *************");
+      let values = [Number.MIN_VALUE.toString()];
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.in("doubleValue", values);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesIn001 rowCount: " + result.rowCount);
+      expect(1).assertEqual(result.rowCount);
+      result.close();
+      done();
+      console.info(TAG + "************* testRdbPredicatesIn001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1580
+     * @tc.name   : testRdbPredicatesIn002
+     * @tc.desc   : Test the in() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesIn002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesIn002 start *************");
+      let values = ["1.0"];
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.in("doubleValue", values);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesIn002 rowCount: " + result.rowCount);
+      expect(1).assertEqual(result.rowCount);
+      result.close();
+      done();
+      console.info(TAG + "************* testRdbPredicatesIn002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1590
+     * @tc.name   : testRdbPredicatesIn003
+     * @tc.desc   : Test the in() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesIn003", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesIn003 start *************");
+      let values = [DOUBLE_MAX.toString()];
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.in("doubleValue", values);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesIn003 rowCount: " + result.rowCount);
+      expect(1).assertEqual(result.rowCount);
+      result.close();
+      done();
+      console.info(TAG + "************* testRdbPredicatesIn003 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1600
+     * @tc.name   : testRdbPredicatesIn004
+     * @tc.desc   : Test the in() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesIn004", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesIn004 start *************");
+      let values = [Number.MIN_VALUE.toString(), "1.0", DOUBLE_MAX.toString()];
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.in("doubleValue", values);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesIn004 rowCount: " + result.rowCount);
+      expect(3).assertEqual(result.rowCount);
+      result.close();
+      done();
+      console.info(TAG + "************* testRdbPredicatesIn004 end *************");
+    });
+
+    /**
+     * @tc.number :  SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1620
+     * @tc.name   : testRdbPredicatesIn005
+     * @tc.desc   : Test the in() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesIn005", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesIn005 start *************");
+      let values = [Number.MIN_VALUE.toString(), "10.0", DOUBLE_MAX.toString()];
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.in("doubleValueX", values);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesIn005 rowCount: " + result.rowCount);
+      expect(-1).assertEqual(result.rowCount);
+      result.close();
+      done();
+      console.info(TAG + "************* testRdbPredicatesIn005 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_1570
+     * @tc.name   : testRdbPredicatesIn006
+     * @tc.desc   : Test the in() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesIn006", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesIn006 start *************");
+      try {
+        let values = [""];
+        let predicates = await new relationalStore.RdbPredicates("AllDataType");
+        predicates.in("doubleValue", values);
+        let result = await rdbStore.query(predicates);
+        console.info("testRdbPredicatesIn006 rowCount: " + result.rowCount);
+        expect(0).assertEqual(result.rowCount);
+        result.close();
+        done();
+      } catch (err) {
+        console.info(TAG + "err = " + err);
+        expect(err.code).assertEqual("401");
+      }
+      console.info(TAG + "************* testRdbPredicatesIn006 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2660
+     * @tc.name   : testRdbPredicatesNotIn001
+     * @tc.desc   : Test the notIn() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesNotIn001", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesNotIn001 start *************");
+      let values = [1, -2147483648];
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.notIn("integerValue", values);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesNotIn001 rowCount: " + result.rowCount);
+      expect(1).assertEqual(result.rowCount);
+      result.close();
+      done();
+      console.info(TAG + "************* testRdbPredicatesNotIn001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2670
+     * @tc.name   : testRdbPredicatesNotIn002
+     * @tc.desc   : Test the notIn() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesNotIn002", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesNotIn002 start *************");
+      let values = [1, 2147483647];
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.notIn("integerValue", values);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesNotIn002 rowCount: " + result.rowCount);
+      expect(1).assertEqual(result.rowCount);
+      result.close();
+      done();
+      console.info(TAG + "************* testRdbPredicatesNotIn002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2650
+     * @tc.name   : testRdbPredicatesNotIn003
+     * @tc.desc   : Test the notIn() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesNotIn003", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesNotIn003 start *************");
+      let values = [-2147483648, 2147483647];
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.notIn("integerValue", values);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesNotIn003 rowCount: " + result.rowCount);
+      expect(1).assertEqual(result.rowCount);
+      result.close();
+      done();
+      console.info(TAG + "************* testRdbPredicatesNotIn003 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2680
+     * @tc.name   : testRdbPredicatesNotIn004
+     * @tc.desc   : Test the notIn() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesNotIn004", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesNotIn004 start *************");
+      let values: Array<string> = [];
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.notIn("integerValue", values);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesNotIn004 rowCount: " + result.rowCount);
+      expect(3).assertEqual(result.rowCount);
+      result.close();
+      done();
+      console.info(TAG + "************* testRdbPredicatesNotIn004 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_PredicateJsAPITest_2690
+     * @tc.name   : testRdbPredicatesNotIn005
+     * @tc.desc   : Test the notIn() method of class RdbPredicates.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbPredicatesNotIn005", 0, async (done: Function) => {
+      console.info(TAG + "************* testRdbPredicatesNotIn005 start *************");
+      let values = [-2147483648, 2147483647];
+      let predicates = await new relationalStore.RdbPredicates("AllDataType");
+      predicates.notIn("integerValueX", values);
+      let result = await rdbStore.query(predicates);
+      console.info("testRdbPredicatesNotIn005 rowCount: " + result.rowCount);
+      expect(-1).assertEqual(result.rowCount);
+      result.close();
+      done();
+      console.info(TAG + "************* testRdbPredicatesNotIn005 end *************");
+    });
+  });
+}
