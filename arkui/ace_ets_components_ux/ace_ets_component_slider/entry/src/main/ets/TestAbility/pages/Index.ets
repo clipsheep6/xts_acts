@@ -946,7 +946,7 @@ struct SliderTest {
           style: SliderStyle.InSet
         })
           .key('ArkUX_Stage_Slider_blockStyle_1000')
-          .blockStyle(" ")
+          .blockStyle(toFakeSliderBlockStyle(" "))
 
         Slider({
           value: this.inSetValueOne,
@@ -955,7 +955,7 @@ struct SliderTest {
           style: SliderStyle.InSet
         })
           .key('ArkUX_Stage_Slider_blockStyle_1100')
-          .blockStyle(null)
+          .blockStyle(toFakeSliderBlockStyle(null))
 
         Slider({
           value: this.inSetValueOne,
@@ -964,7 +964,7 @@ struct SliderTest {
           style: SliderStyle.InSet
         })
           .key('ArkUX_Stage_Slider_blockStyle_1200')
-          .blockStyle(undefined)
+          .blockStyle(toFakeSliderBlockStyle(undefined))
 
         Slider({
           value: this.inSetValueOne,
@@ -973,7 +973,7 @@ struct SliderTest {
           style: SliderStyle.InSet
         })
           .key('ArkUX_Stage_Slider_blockStyle_1300')
-          .blockStyle(-1)
+          .blockStyle(toFakeSliderBlockStyle(-1))
 
         Slider({
           value: this.inSetValueOne,
@@ -989,4 +989,8 @@ struct SliderTest {
     }
     .height('100%')
   }
+}
+
+function toFakeSliderBlockStyle(v: SliderBlockStyle|string|number|null|undefined) {
+  return v as SliderBlockStyle
 }

@@ -27,6 +27,7 @@ export default function select() {
 
     afterEach(async (done: Function) => {
       console.info("[selectTest_afterEach] start");
+      let spaceValueString = undefined;
       try {
         let eventData: events_emitter.EventData = {
           data: {

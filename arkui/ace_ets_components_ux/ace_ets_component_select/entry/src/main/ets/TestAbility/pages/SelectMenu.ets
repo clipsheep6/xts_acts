@@ -200,7 +200,7 @@ struct SelectMenuTest {
               .selectedOptionFont({ size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
               .optionFont({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
               .key('selectTest10')
-              .menuAlign('menuAlign')
+              .menuAlign(toFakeMenuAlignType('menuAlign'))
               .onSelect((index: number) => {
                 console.info("Select:" + index)
               })
@@ -218,7 +218,7 @@ struct SelectMenuTest {
               .selectedOptionFont({ size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
               .optionFont({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
               .key('selectTest11')
-              .menuAlign()
+              .menuAlign(null)
               .onSelect((index: number) => {
                 console.info("Select:" + index)
               })
@@ -303,3 +303,6 @@ struct SelectMenuTest {
   }
 }
  
+function toFakeMenuAlignType(v: MenuAlignType|string) {
+  return v as MenuAlignType
+}

@@ -48,7 +48,7 @@ struct Index {
           this.isNUll = false
         }
         if (eventData.data?.content == "ResourceTest") {
-          this.Style = SliderStyle.InSet
+          this.style = SliderStyle.InSet
           this.resFalg = true
         }
       }
@@ -69,18 +69,18 @@ struct Index {
           this.isNUll = false
         }
         if (eventData.data?.content == "ResourceTest") {
-          this.Style = SliderStyle.OutSet
+          this.style = SliderStyle.OutSet
           this.resFalg = false
         }
       }
       if (eventData.data?.value == "trueStr") {
-        this.Style = SliderStyle.InSet
+        this.style = SliderStyle.InSet
         this.isStr = true
         this.value = true
         this.content = eventData.data?.content;
       }
       if (eventData.data?.value == "falseStr") {
-        this.Style = SliderStyle.OutSet
+        this.style = SliderStyle.OutSet
         this.value = false
         this.isStr = true
         this.content = eventData.data?.content;
@@ -117,7 +117,7 @@ struct Index {
   @State resFalg: boolean = false;
   @State content: string = "";
   @State style: SliderStyle = SliderStyle.InSet;
-  @State direction: enum = Axis.Vertical;
+  num: number = 0;
 
   build() {
     Row() {
@@ -126,9 +126,10 @@ struct Index {
           value: this.ValueOne,
           min: 0,
           max: 100,
-          style: this.Style
+          style: this.style
         })
-          .showTips(this.value, this.isStr ? this.content : (this.isNum ? this.num : (this.isNUll ? null : undefined)))
+          .showTips(this.value, this.isStr ? this.content : 
+            (this.isNum ? toFakeString(this.num) : (this.isNUll ? null : undefined)))
           .onChange((value: number, mode: SliderChangeMode) => {
             this.ValueOne = value
             console.info('value:' + value + 'mode:' + mode.toString())
@@ -138,7 +139,7 @@ struct Index {
           value: this.ValueTwo,
           min: 0,
           max: 100,
-          style: this.Style
+          style: this.style
         })
           .showTips(this.valueNo)
           .onChange((value: number, mode: SliderChangeMode) => {
@@ -150,7 +151,7 @@ struct Index {
           Slider({
             value: this.ValueThi,
             step: 10,
-            style: this.Style,
+            style: this.style,
             direction: Axis.Vertical
           })
             .height(300)
@@ -164,7 +165,7 @@ struct Index {
           Slider({
             value: this.ValueFour,
             step: 10,
-            style: this.Style,
+            style: this.style,
             direction: Axis.Vertical
           })
             .height(300)
@@ -180,4 +181,8 @@ struct Index {
     }
     .height('100%')
   }
+}
+
+function toFakeString(v: number|string) {
+  return v as string
 }

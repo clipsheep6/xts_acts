@@ -17,7 +17,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { Hypium } from '@ohos/hypium';
 import hilog from '@ohos.hilog';
 import testsuite from '../../test/List.test'
-import { SegmentButton, SegmentButtonOptions, } from '@ohos.arkui.advanced.SegmentButton'
+import { SegmentButton, SegmentButtonOptions, SegmentButtonItemOptions} from '@ohos.arkui.advanced.SegmentButton'
 
 @Entry
 @Component
@@ -100,7 +100,7 @@ struct Index {
           this.multipleTextCapsuleOptions.buttons.unshift({ text: 'unshift button' })
         })
         Button('splice item').onClick(() => {
-          this.tabOptions.buttons.splice(0, 1, { text: 'splice button' })
+          this.tabOptions.buttons.splice(0, 1, new SegmentButtonItemOptions({ text: 'splice button' }))
         })
           .onAppear(() => {
             let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
