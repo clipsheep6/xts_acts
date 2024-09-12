@@ -138,8 +138,8 @@ function createCameraInput() {
   cameraObj.cameraInputOpen();
 }
 
-function getSupportedSceneModes() {
-  let supportedSceneModes = cameraObj.oHCameraManagerGetSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
+function getSupportedSceneModes(index: number) {
+  let supportedSceneModes = cameraObj.oHCameraManagerGetSupportedSceneModes(index);
   if (supportedSceneModes.errorCode != 0) {
     console.error(TAG + "getSupportedSceneModes FAILED");
     expect().assertFail();
@@ -325,7 +325,7 @@ function getPreviewOutputActiveProfile() {
   createCaptureSession();
   getSupportedCamerasInstance();
   getSupportedCameraOutputCapability();
-  getSupportedSceneModes();
+  getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
   setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
   setSessionMode();
   createPreviewOutput();
@@ -362,7 +362,7 @@ function getVideoOutputGetActiveProfile() {
   createCaptureSession();
   getSupportedCamerasInstance();
   getSupportedCameraOutputCapability();
-  getSupportedSceneModes();
+  getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
   setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
   setSessionMode();
   createPreviewOutput();
@@ -384,7 +384,6 @@ function captureSessionPreconfig() {
   getSupportedCamerasInstance();
   createCaptureSession();
   getSupportedCameraOutputCapability();
-  createCameraInput();
   let canPreconfig = cameraObj.oHCaptureSessionCanPreconfig(Camera_PreconfigType.PRECONFIG_720P,
       Parameter_Setting.ALL_PARAMETER_OK);
   console.info(TAG+"canPreconfig: " + canPreconfig.canPreconfig);
@@ -749,7 +748,7 @@ export default function SessionTest() {
       getCameraManagerInstance();
       createCaptureSession();
       getSupportedCamerasInstance();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       let ret = cameraObj.oHCaptureSessionSetSessionMode(Parameter_Setting.ALL_PARAMETER_OK);
       console.info(TAG+"testOHCaptureSessionSetSessionMode0100:"+ret);
@@ -767,7 +766,7 @@ export default function SessionTest() {
       getCameraManagerInstance();
       createCaptureSession();
       getSupportedCamerasInstance();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       let ret = cameraObj.oHCaptureSessionSetSessionMode(Parameter_Setting.ALL_PARAMETER_OK);
       console.info(TAG+"testOHCaptureSessionSetSessionMode0200:"+ret);
@@ -785,7 +784,7 @@ export default function SessionTest() {
       getCameraManagerInstance();
       createCaptureSession();
       getSupportedCamerasInstance();
-      let supportedSceneModes = getSupportedSceneModes();
+      let supportedSceneModes = getSupportedSceneModes(Parameter_Setting.SET_CAMERA_FRONT_FOR_SECURE_PHOTO);
       console.info(TAG+"getSupportedSceneModesSize is called. sceneModesSize is "+supportedSceneModes.sceneModesSize);
       if (!supportedSceneModes.isSecurePhoto) {
         console.error(TAG+"SECURE_PHOTO is not supported");
@@ -810,7 +809,7 @@ export default function SessionTest() {
       getCameraManagerInstance();
       createCaptureSession();
       getSupportedCamerasInstance();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       let ret = cameraObj.oHCaptureSessionSetSessionMode(Parameter_Setting.FIRST_PARAMETER_ERROR);
       console.info(TAG+"testOHCaptureSessionSetSessionMode0400:"+ret);
@@ -828,7 +827,7 @@ export default function SessionTest() {
       getCameraManagerInstance();
       createCaptureSession();
       getSupportedCamerasInstance();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       let ret = cameraObj.oHCaptureSessionSetSessionMode(Parameter_Setting.SECOND_PARAMETER_ERROR);
       console.info(TAG+"testOHCaptureSessionSetSessionMode0500:"+ret);
@@ -847,7 +846,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -871,7 +870,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -895,7 +894,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -919,7 +918,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -943,7 +942,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -968,7 +967,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -993,7 +992,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -1019,7 +1018,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -1044,7 +1043,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1069,7 +1068,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1094,7 +1093,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1120,7 +1119,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1145,7 +1144,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      let supportedSceneModes = getSupportedSceneModes();
+      let supportedSceneModes = getSupportedSceneModes(Parameter_Setting.SET_CAMERA_FRONT_FOR_SECURE_PHOTO);
       console.info(TAG+"getSupportedSceneModesSize is called. sceneModesSize is "+supportedSceneModes.sceneModesSize);
       if (!supportedSceneModes.isSecurePhoto) {
         console.error(TAG+"SECURE_PHOTO is not supported");
@@ -1176,7 +1175,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      let supportedSceneModes = getSupportedSceneModes();
+      let supportedSceneModes = getSupportedSceneModes(Parameter_Setting.SET_CAMERA_FRONT_FOR_SECURE_PHOTO);
       console.info(TAG+"getSupportedSceneModesSize is called. sceneModesSize is "+supportedSceneModes.sceneModesSize);
       if (!supportedSceneModes.isSecurePhoto) {
         console.error(TAG+"SECURE_PHOTO is not supported");
@@ -1208,7 +1207,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      let supportedSceneModes = getSupportedSceneModes();
+      let supportedSceneModes = getSupportedSceneModes(Parameter_Setting.SET_CAMERA_FRONT_FOR_SECURE_PHOTO);
       console.info(TAG+"getSupportedSceneModesSize is called. sceneModesSize is "+supportedSceneModes.sceneModesSize);
       if (!supportedSceneModes.isSecurePhoto) {
         console.error(TAG+"SECURE_PHOTO is not supported");
@@ -1238,7 +1237,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      let supportedSceneModes = getSupportedSceneModes();
+      let supportedSceneModes = getSupportedSceneModes(Parameter_Setting.SET_CAMERA_FRONT_FOR_SECURE_PHOTO);
       console.info(TAG+"getSupportedSceneModesSize is called. sceneModesSize is "+supportedSceneModes.sceneModesSize);
       if (!supportedSceneModes.isSecurePhoto) {
         console.error(TAG+"SECURE_PHOTO is not supported");
@@ -1270,7 +1269,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -1295,7 +1294,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -1320,7 +1319,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -1345,7 +1344,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -1370,7 +1369,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1395,7 +1394,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1420,7 +1419,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1445,7 +1444,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1470,7 +1469,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      let supportedSceneModes = getSupportedSceneModes();
+      let supportedSceneModes = getSupportedSceneModes(Parameter_Setting.SET_CAMERA_FRONT_FOR_SECURE_PHOTO);
       console.info(TAG+"getSupportedSceneModesSize is called. sceneModesSize is "+supportedSceneModes.sceneModesSize);
       if (!supportedSceneModes.isSecurePhoto) {
         console.error(TAG+"SECURE_PHOTO is not supported");
@@ -1502,7 +1501,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1528,7 +1527,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1553,7 +1552,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1578,7 +1577,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -1602,7 +1601,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -1628,7 +1627,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      let supportedSceneModes = getSupportedSceneModes();
+      let supportedSceneModes = getSupportedSceneModes(Parameter_Setting.SET_CAMERA_FRONT_FOR_SECURE_PHOTO);
       console.info(TAG+"getSupportedSceneModesSize is called. sceneModesSize is "+supportedSceneModes.sceneModesSize);
       if (!supportedSceneModes.isSecurePhoto) {
         console.error(TAG+"SECURE_PHOTO is not supported");
@@ -2794,10 +2793,11 @@ export default function SessionTest() {
      */
     it('testOHCameraManagerCreatePhotoOutputUsedInPreconfig0100', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionFlow();
       if (canPreconfig) {
         let ret = cameraObj.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface,
@@ -2817,10 +2817,11 @@ export default function SessionTest() {
      */
     it('testOHCameraManagerCreatePhotoOutputUsedInPreconfig0200', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionFlow();
       if (canPreconfig) {
         let ret = cameraObj.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface,
@@ -2840,10 +2841,11 @@ export default function SessionTest() {
      */
     it('testOHCameraManagerCreatePhotoOutputUsedInPreconfig0300', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionFlow();
       if (canPreconfig) {
         let ret = cameraObj.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface,
@@ -2863,10 +2865,11 @@ export default function SessionTest() {
      */
     it('testOHCameraManagerCreatePhotoOutputUsedInPreconfig0400', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionFlow();
       if (canPreconfig) {
         let ret = cameraObj.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface, INVALID_SURFACE_ID);
@@ -2885,10 +2888,11 @@ export default function SessionTest() {
      */
     it('testOHCameraManagerCreatePhotoOutputUsedInPreconfig0500', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionFlow();
       if (canPreconfig) {
         let ret = cameraObj.oHCameraManagerCreatePhotoOutputUsedInPreconfig(mPhotoSurface,
@@ -2907,10 +2911,11 @@ export default function SessionTest() {
      */
     it('testOHCameraManagerCreateVideoOutputUsedInPreconfig0100', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionFlow();
       createPhotoOutputUsedInPreconfig(canPreconfig);
       addPhotoOutput();
@@ -2931,10 +2936,11 @@ export default function SessionTest() {
      */
     it('testOHCameraManagerCreateVideoOutputUsedInPreconfig0200', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionFlow();
       createPhotoOutputUsedInPreconfig(canPreconfig);
       addPhotoOutput();
@@ -2956,10 +2962,11 @@ export default function SessionTest() {
      */
     it('testOHCameraManagerCreateVideoOutputUsedInPreconfig0300', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionFlow();
       createPhotoOutputUsedInPreconfig(canPreconfig);
       addPhotoOutput();
@@ -2981,10 +2988,11 @@ export default function SessionTest() {
      */
     it('testOHCameraManagerCreateVideoOutputUsedInPreconfig0400', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionFlow();
       createPhotoOutputUsedInPreconfig(canPreconfig);
       addPhotoOutput();
@@ -3005,10 +3013,11 @@ export default function SessionTest() {
      */
     it('testOHCameraManagerCreateVideoOutputUsedInPreconfig0500', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionFlow();
       createPhotoOutputUsedInPreconfig(canPreconfig);
       addPhotoOutput();
@@ -3032,7 +3041,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -3058,7 +3067,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -3083,7 +3092,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutput();
@@ -3105,10 +3114,11 @@ export default function SessionTest() {
      */
     it('testOHPreviewOutputGetActiveProfile0400', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionBeginConfig();
       addInput();
       addPreviewOutput();
@@ -3127,10 +3137,11 @@ export default function SessionTest() {
      */
     it('testOHPreviewOutputGetActiveProfile0500', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionBeginConfig();
       addInput();
       addPreviewOutput();
@@ -3148,10 +3159,11 @@ export default function SessionTest() {
      */
     it('testOHPreviewOutputGetActiveProfile0600', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
+      createCameraInput();
       sessionBeginConfig();
       addInput();
       addPreviewOutput();
@@ -3201,7 +3213,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -3229,7 +3241,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -3256,7 +3268,7 @@ export default function SessionTest() {
       createCaptureSession();
       getSupportedCamerasInstance();
       getSupportedCameraOutputCapability();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutput();
@@ -3280,7 +3292,7 @@ export default function SessionTest() {
      */
     it('testOHVideoOutputGetActiveProfile0400', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
@@ -3305,7 +3317,7 @@ export default function SessionTest() {
      */
     it('testOHVideoOutputGetActiveProfile0500', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
@@ -3329,7 +3341,7 @@ export default function SessionTest() {
      */
     it('testOHVideoOutputGetActiveProfile0600', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_VIDEO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
@@ -3449,7 +3461,7 @@ export default function SessionTest() {
      */
     it('testOHPhotoOutputGetActiveProfile0400', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
@@ -3472,7 +3484,7 @@ export default function SessionTest() {
      */
     it('testOHPhotoOutputGetActiveProfile0500', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
@@ -3494,7 +3506,7 @@ export default function SessionTest() {
      */
     it('testOHPhotoOutputGetActiveProfile0600', 0, () => {
       let canPreconfig = captureSessionPreconfig();
-      getSupportedSceneModes();
+      getSupportedSceneModes(Parameter_Setting.ALL_PARAMETER_OK);
       setSceneMode(Camera_SceneMode.NORMAL_PHOTO);
       setSessionMode();
       createPreviewOutputUsedInPreconfig(canPreconfig);
