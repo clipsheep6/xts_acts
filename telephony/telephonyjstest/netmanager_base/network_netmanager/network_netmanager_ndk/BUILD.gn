@@ -16,9 +16,9 @@ import("//test/xts/tools/build/suite.gni")
 ohos_app_assist_suite("NetworkConnection_ndk_main") {
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "ActsNetworkConnectionNDKMainTest"
+  hap_name = "ActsNetworkConnectionNdkMainTest"
   subsystem_name = "telephony"
-  part_name = "netmanager_networkconnection"
+  part_name = "netmanager_base"
   js_build_mode = "debug"
 }
 
@@ -26,9 +26,9 @@ ohos_js_app_suite("ActsNetworkConnectionNDKNdkTest") {
   test_hap = true
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "ActsNetworkConnectionNDKNdkTest"
+  hap_name = "ActsNetworkConnectionNdkTest"
   subsystem_name = "telephony"
-  part_name = "netmanager_networkconnection"
+  part_name = "netmanager_base"
   js_build_mode = "debug"
   deps = [ ":NetworkConnection_ndk_main" ]
 }
