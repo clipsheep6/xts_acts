@@ -16,6 +16,7 @@
 #include "napi/native_api.h"
 #include <hidebug/hidebug.h>
 #include <hidebug/hidebug_type.h>
+#include <stdlib.h>
 
 static napi_value GetTotalMem(napi_env env, napi_callback_info info)
 {
@@ -253,6 +254,43 @@ static napi_value StopAppTraceCapture(napi_env env, napi_callback_info info)
     return ret;
 }
 
+static napi_value getGraphicsMemory(napi_env env, napi_callback_info info)
+{
+    uint32_t value = 0;
+    napi_value sum;
+    HiDebug_ErrorCode errCode = OH_HiDebug_GetGraphicsMemory(&value);
+    napi_create_double(env, errCode, &sum);
+    return sum;
+}
+
+static napi_value getGraphicsMemoryArray(napi_env env, napi_callback_info info)
+{
+    uint32_t arr[5] = {1, 2, 3, 4, 5};
+    uint32_t *value = arr;
+    napi_value sum;
+    HiDebug_ErrorCode errCode = OH_HiDebug_GetGraphicsMemory(value);
+    napi_create_double(env, errCode, &sum);
+    return sum;
+}
+
+static napi_value getGraphicsMemoryDMA(napi_env env, napi_callback_info info)
+{
+    uint32_t *value = (uint32_t*)malloc(sizeof(uint32_t));
+    *value = 10;
+    HiDebug_ErrorCode errCode = OH_HiDebug_GetGraphicsMemory(value);
+    napi_value sum;
+    napi_create_double(env, errCode, &sum);
+    return sum;
+}
+
+static napi_value getGraphicsMemoryNULL(napi_env env, napi_callback_info info)
+{
+    napi_value sum;
+    HiDebug_ErrorCode errCode = OH_HiDebug_GetGraphicsMemory(NULL);
+    napi_create_double(env, errCode, &sum);
+    return sum;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -277,6 +315,10 @@ static napi_value Init(napi_env env, napi_value exports)
         { "startAppTraceCaptureTag", nullptr,
           StartAppTraceCaptureTag, nullptr, nullptr, nullptr, napi_default, nullptr },
         { "stopAppTraceCapture", nullptr, StopAppTraceCapture, nullptr, nullptr, nullptr, napi_default, nullptr },
+        {"getGraphicsMemory", nullptr, getGraphicsMemory, nullptr, nullptr, nullptr, napi_default, nullptr},
+        { "getGraphicsMemoryNULL", nullptr,getGraphicsMemoryNULL, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getGraphicsMemoryArray", nullptr,getGraphicsMemoryArray, nullptr, nullptr, nullptr, napi_default, nullptr },
+        { "getGraphicsMemoryDMA", nullptr,getGraphicsMemoryDMA, nullptr, nullptr, nullptr, napi_default, nullptr },
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
