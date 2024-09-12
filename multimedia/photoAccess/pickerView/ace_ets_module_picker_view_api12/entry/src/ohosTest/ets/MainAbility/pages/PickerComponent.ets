@@ -9,7 +9,10 @@ import {
   ClickType,
   PickerColorMode,
   MaxSelected,
-  MaxCountType
+  MaxCountType,
+  BaseItemInfo,
+  PhotoBrowserRange,
+  PhotoBrowserUIElement
 } from '@ohos.file.PhotoPickerComponent';
 import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo } from '@ohos.file.AlbumPickerComponent';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
@@ -17,6 +20,13 @@ import events_emitter from '@ohos.events.emitter';
 import router from '@ohos.router';
 import { EventType } from '../common/Common';
 import { PhotoPickerResult } from '../common/PhotoPickerResult';
+import {
+  RecentPhotoOptions,
+  PhotoSource,
+  RecentPhotoComponent,
+  RecentPhotoClickCallback,
+  RecentPhotoCheckResultCallback
+} from '@ohos.file.RecentPhotoComponent';
 
 @Entry
 @Component
