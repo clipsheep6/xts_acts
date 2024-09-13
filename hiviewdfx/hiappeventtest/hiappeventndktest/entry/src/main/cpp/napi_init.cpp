@@ -30,9 +30,9 @@ const double DOUBLE_123_22 = 123.22;
 const double DOUBLE_30949_374 = 30949.374;
 const double DOUBLE_131312_46464 = 131312.46464;
 
-static struct HiAppEventWatcher *watcher;
+static HiAppWatcher* g_watcher;
 
-static void OnReceiver(const char *domain, const struct HiAppEventAppEventGroup *appEventGroups, uint32_t groupSize)
+static void OnReceiver(const char* domain const HiAppEventAppEventGroup* appEventGroups, uint32_t groupSize)
 {
 }
 
@@ -451,7 +451,7 @@ static napi_value Add(napi_env env, napi_callback_info info)
     size_t argc = 2;
     napi_value args[2] = {nullptr};
 
-    napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     napi_valuetype valuetype0;
     napi_typeof(env, args[0], &valuetype0);
