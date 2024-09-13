@@ -10,7 +10,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 import("//build/ohos_var.gni")
 
 group("netmanager_base") {
@@ -19,7 +18,6 @@ group("netmanager_base") {
     deps = [ 
       "actshttpscertificatetest:ActsHttpsCertificateTest",
       "dns:ActsDNSTest",
-      "dnsndk:ActsDnsNdkTest",
       "jshttp:ActsJSHTTPTest",
       "multicastconnection201_dns:ActsNetworkManagerMulDNS201Test",
       "multicastconnection_dns:ActsNetworkManagerMulDNSTest",
