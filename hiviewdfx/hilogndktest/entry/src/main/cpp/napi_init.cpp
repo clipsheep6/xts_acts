@@ -95,9 +95,8 @@ static napi_value OhPrintTest(napi_env env, napi_callback_info info)
     return res;
 }
 
-
-
 EXTERN_C_START
+
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
