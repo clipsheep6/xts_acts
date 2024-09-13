@@ -15,6 +15,6 @@ import("//build/ohos_var.gni")
 group("netstack_websocketndk") {
   testonly = true
   if (is_standard_system) {
-    deps = [ "netstack_websocket:ActsNetStackWebsocketNdkTest" ]
+    deps = [ "netstack_websocketndk:ActsNetStackWebsocketNdkTest" ]
   }
 }
