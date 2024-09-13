@@ -14,13 +14,16 @@
  */
 {
   "module": {
-    "name": "phone",
+    "name": "entry_test",
     "type": "feature",
     "description": "$string:module_test_desc",
     "mainElement": "TestAbility",
     "deviceTypes": [
+      "wearable",
       "default",
-      "tablet"
+      "phone",
+      "tablet",
+      "2in1"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
