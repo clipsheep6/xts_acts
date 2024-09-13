@@ -21,4 +21,3 @@ ohos_js_app_suite("ActsResponseGlobalParamUpdateTest") {
   subsystem_name = "ability"
   part_name = "ability_runtime"
 }
-
