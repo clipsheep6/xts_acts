@@ -31,10 +31,10 @@ let commonEventData: commonEvent.CommonEventPublishData = {
   }
 };
 export default class MainAbility4 extends Ability {
-  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log(`${tag} onCreate`);
     let subscribeInfo: commonEvent.CommonEventSubscribeInfo = {
-      events: [START_ABILITY_EVENT, KILL_PROCESS_EVENT],
+      events: [START_ABILITY_EVENT, KILL_PROCESS_EVENT]
     };
     let subscriber = await commonEvent.createSubscriber(subscribeInfo);
     commonEvent.subscribe(subscriber, (err, data) => {

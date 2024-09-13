@@ -33,15 +33,15 @@ let commonEventData: commonEvent.CommonEventPublishData = {
 };
 
 export default class MainAbility3 extends Ability {
-  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log(`${tag} onCreate`);
     let subscribeInfo: commonEvent.CommonEventSubscribeInfo = {
-      events: [START_ABILITY_EVENT, KILL_PROCESS_EVENT],
+      events: [START_ABILITY_EVENT, KILL_PROCESS_EVENT]
     };
     let subscriber = await commonEvent.createSubscriber(subscribeInfo);
     commonEvent.subscribe(subscriber, (err, data) => {
       console.log(`${tag} data: ${JSON.stringify(data)}}`);
-      let dataObj = data.parameters as Map<string,object>
+      let dataObj = data.parameters as Map<string,object>;
       switch (data.event) {
         case START_ABILITY_EVENT: {
           if (dataObj['targetPid'] !== process.pid) {
@@ -50,7 +50,7 @@ export default class MainAbility3 extends Ability {
           if (dataObj['isDone'] as number == 1) {
             commonEvent.unsubscribe(subscriber, (err, data) => {
               console.info(`${tag} unsubscribe success`);
-            })
+            });
           }
         }
           break;

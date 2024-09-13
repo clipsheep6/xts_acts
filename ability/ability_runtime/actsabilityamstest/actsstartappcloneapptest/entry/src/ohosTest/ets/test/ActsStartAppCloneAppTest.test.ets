@@ -392,8 +392,7 @@ export default function actsStartAppCloneAppTest() {
      * @tc.type Function
      * @tc.level Level 3
      */
-    it('SUB_Ability_AbilityRuntime_AppcloneChose_0400',0,async (done: Function)=>{
-      const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_AppcloneChose_0400';
+    it('SUB_Ability_AbilityRuntime_AppcloneChose_0400',0,async (done: Function)=>{ const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_AppcloneChose_0400';
       hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} test begin`);
       let startAssistAbility = async (tag:string, done:Function):Promise<void> => {
         let obj:ESObject = { flag: false };
@@ -425,6 +424,23 @@ export default function actsStartAppCloneAppTest() {
             done();
             return;
           }
+
+          try {
+            let allowedButton = await driver.findComponent(ON.text('允许', MatchPattern.CONTAINS));
+            hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} no need to click button=allowed== ${allowedButton} `);
+            if (allowedButton) {
+              allowedButton.click();
+              await sleep(4000);
+            };
+          } catch (err) {
+            let code = (err as BusinessError).code;
+            let message = (err as BusinessError).message;
+            hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME}  catch err code is ${code}, message is ${message} `);
+            expect().assertFail();
+            done();
+          };
+
+
           try {
             let allowed = await driver.findComponents(ON.text('label', MatchPattern.CONTAINS));
             hilog.info(0x0000, TAG, '%{public}s', `${TEST_SUITE_NAME}#${TEST_CASE_NAME} no need to click button=allowedOne== ${JSON.stringify(allowed)} `);

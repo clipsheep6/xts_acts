@@ -98,7 +98,7 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
-  async onForeground(): Promise<void> {
+  async onForeground() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     commonEventData.parameters!.pid = process.pid;
     commonEvent.publish(FOREGROUND_EVENT, commonEventData, (err) => {
