@@ -19,10 +19,10 @@ import { AbilityConstant, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-let START_ABILITY_EVENT = "start_ability_event";
-let FOREGROUND_EVENT = "foreground_event"
-let NOTIFY_PID_EVENT = "notify_pid_event";
-let KILL_PROCESS_EVENT = "kill_process_event";
+let START_ABILITY_EVENT = 'start_ability_event';
+let FOREGROUND_EVENT = 'foreground_event'
+let NOTIFY_PID_EVENT = 'notify_pid_event';
+let KILL_PROCESS_EVENT = 'kill_process_event';
 let tag = '[ACTS_StartAbilityInNewProcess MainAbility5]';
 let commonEventData: commonEvent.CommonEventPublishData = {
   parameters: {
@@ -33,7 +33,7 @@ let commonEventData: commonEvent.CommonEventPublishData = {
 export default class MainAbility5 extends Ability {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     console.log(`${tag} onCreate`);
-    let subscribeInfo:commonEvent.CommonEventSubscribeInfo = {
+    let subscribeInfo: commonEvent.CommonEventSubscribeInfo = {
       events: [START_ABILITY_EVENT, KILL_PROCESS_EVENT],
     };
     let subscriber = await commonEvent.createSubscriber(subscribeInfo);

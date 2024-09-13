@@ -34,7 +34,7 @@ let commonEventData: commonEvent.CommonEventPublishData = {
 export default class MainAbility2 extends Ability {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     console.log(`${tag} onCreate`);
-    let subscribeInfo:commonEvent.CommonEventSubscribeInfo = {
+    let subscribeInfo: commonEvent.CommonEventSubscribeInfo = {
       events: [START_ABILITY_EVENT, KILL_PROCESS_EVENT],
     };
     let subscriber = await commonEvent.createSubscriber(subscribeInfo);
@@ -107,9 +107,10 @@ export default class MainAbility2 extends Ability {
       console.log(`${tag} publish FOREGROUND_EVENT err: ${JSON.stringify(err)}`);
     });
     setTimeout(()=>{
-      this.terminalSelf()
-    },2000)
+      this.terminalSelf();
+    },2000);
   }
+
   async terminalSelf(){
     let resultCode = 100;
     let want: Want = {

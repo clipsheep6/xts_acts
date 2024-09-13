@@ -19,10 +19,10 @@ import { AbilityConstant, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-let START_ABILITY_EVENT = "start_ability_event";
-let FOREGROUND_EVENT = "foreground_event"
-let NOTIFY_PID_EVENT = "notify_pid_event";
-let KILL_PROCESS_EVENT = "kill_process_event";
+let START_ABILITY_EVENT = 'start_ability_event';
+let FOREGROUND_EVENT = 'foreground_event'
+let NOTIFY_PID_EVENT = 'notify_pid_event';
+let KILL_PROCESS_EVENT = 'kill_process_event';
 let tag = '[ACTS_StartAbilityInNewProcess MainAbility4]';
 let commonEventData: commonEvent.CommonEventPublishData = {
   parameters: {
@@ -33,7 +33,7 @@ let commonEventData: commonEvent.CommonEventPublishData = {
 export default class MainAbility4 extends Ability {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     console.log(`${tag} onCreate`);
-    let subscribeInfo:commonEvent.CommonEventSubscribeInfo = {
+    let subscribeInfo: commonEvent.CommonEventSubscribeInfo = {
       events: [START_ABILITY_EVENT, KILL_PROCESS_EVENT],
     };
     let subscriber = await commonEvent.createSubscriber(subscribeInfo);
@@ -45,7 +45,6 @@ export default class MainAbility4 extends Ability {
           if (dataObj['targetPid'] !== process.pid) {
             return;
           }
-          // this.startInNewProcess(data);
           if (dataObj['isDone'] as number == 1) {
             commonEvent.unsubscribe(subscriber, (err, data) => {
               console.info(`${tag} unsubscribe success`);
@@ -107,9 +106,10 @@ export default class MainAbility4 extends Ability {
       console.log(`${tag} publish FOREGROUND_EVENT err: ${JSON.stringify(err)}`);
     });
     setTimeout(()=>{
-      this.terminalSelf()
-    },2000)
+      this.terminalSelf();
+    },2000);
   }
+
   async terminalSelf(){
     let resultCode = 100;
     let want: Want = {

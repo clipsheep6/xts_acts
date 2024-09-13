@@ -18,10 +18,10 @@ import { AbilityConstant, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-let ON_FOREGROUND = "on_foreground";
-let SHOW_ABILITY_EVENT = "show_ability_event";
-let HIDE_ABILITY_EVENT = "hide_ability_event";
-let START_ABILITY_IN_NEW_PROCESS_EVENT = "start_ability_in_new_process_event";
+let ON_FOREGROUND = 'on_foreground';
+let SHOW_ABILITY_EVENT = 'show_ability_event';
+let HIDE_ABILITY_EVENT = 'hide_ability_event';
+let START_ABILITY_IN_NEW_PROCESS_EVENT = 'start_ability_in_new_process_event';
 let tag = '[ACTS_StartAbilityInNewProcess MainAbility1]';
 let commonEventData: commonEvent.CommonEventPublishData = {
   parameters: {
@@ -32,7 +32,7 @@ let commonEventData: commonEvent.CommonEventPublishData = {
 export default class MainAbility1 extends Ability {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     console.log(`${tag} onCreate`);
-    let subscribeInfo:commonEvent.CommonEventSubscribeInfo  = {
+    let subscribeInfo: commonEvent.CommonEventSubscribeInfo  = {
       events: [SHOW_ABILITY_EVENT, HIDE_ABILITY_EVENT],
     };
     let subscriber = await commonEvent.createSubscriber(subscribeInfo);
@@ -103,9 +103,10 @@ export default class MainAbility1 extends Ability {
       console.log(`${tag} publish err: ${JSON.stringify(err)}`);
     });
     setTimeout(()=>{
-      this.terminalSelf()
-    },2000)
+      this.terminalSelf();
+    },2000);
   }
+
   async terminalSelf(){
     let resultCode = 100;
     let want: Want = {
@@ -123,7 +124,6 @@ export default class MainAbility1 extends Ability {
         'errMessage:' + JSON.stringify(err.message));
     });
   }
-
 
   onBackground(): void {
     // Ability has back to background

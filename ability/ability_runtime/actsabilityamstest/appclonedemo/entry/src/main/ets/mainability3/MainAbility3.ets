@@ -35,7 +35,7 @@ let commonEventData: commonEvent.CommonEventPublishData = {
 export default class MainAbility3 extends Ability {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     console.log(`${tag} onCreate`);
-    let subscribeInfo:commonEvent.CommonEventSubscribeInfo = {
+    let subscribeInfo: commonEvent.CommonEventSubscribeInfo = {
       events: [START_ABILITY_EVENT, KILL_PROCESS_EVENT],
     };
     let subscriber = await commonEvent.createSubscriber(subscribeInfo);
@@ -47,7 +47,6 @@ export default class MainAbility3 extends Ability {
           if (dataObj['targetPid'] !== process.pid) {
             return;
           }
-          // this.startInNewProcess(data);
           if (dataObj['isDone'] as number == 1) {
             commonEvent.unsubscribe(subscriber, (err, data) => {
               console.info(`${tag} unsubscribe success`);
@@ -109,9 +108,10 @@ export default class MainAbility3 extends Ability {
       console.log(`${tag} publish FOREGROUND_EVENT err: ${JSON.stringify(err)}`);
     });
     setTimeout(()=>{
-      this.terminalSelf()
-    },2000)
+      this.terminalSelf();
+    },2000);
   }
+
   async terminalSelf(){
     let resultCode = 100;
     let want: Want = {
@@ -129,6 +129,7 @@ export default class MainAbility3 extends Ability {
         'errMessage:' + JSON.stringify(err.message));
     });
   }
+
   onBackground(): void {
     // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');

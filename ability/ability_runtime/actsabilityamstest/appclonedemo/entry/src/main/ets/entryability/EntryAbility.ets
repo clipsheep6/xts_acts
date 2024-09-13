@@ -18,10 +18,10 @@ import process from '@ohos.process';
 import { AbilityConstant, common, UIAbility } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
-let START_ABILITY_EVENT = "start_ability_event";
-let FOREGROUND_EVENT = "foreground_event"
-let NOTIFY_PID_EVENT = "notify_pid_event";
-let KILL_PROCESS_EVENT = "kill_process_event";
+let START_ABILITY_EVENT = 'start_ability_event';
+let FOREGROUND_EVENT = 'foreground_event'
+let NOTIFY_PID_EVENT = 'notify_pid_event';
+let KILL_PROCESS_EVENT = 'kill_process_event';
 let tag = '[ACTS_StartAbilityInNewProcess EntryAbility]';
 let commonEventData: commonEvent.CommonEventPublishData = {
   parameters: {
@@ -33,7 +33,7 @@ let commonEventData: commonEvent.CommonEventPublishData = {
 export default class EntryAbility extends UIAbility {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     console.log(`${tag} onCreate, ${JSON.stringify(want)}`);
-    let subscribeInfo:commonEvent.CommonEventSubscribeInfo = {
+    let subscribeInfo: commonEvent.CommonEventSubscribeInfo = {
       events: [START_ABILITY_EVENT, KILL_PROCESS_EVENT],
     };
     let subscriber = await commonEvent.createSubscriber(subscribeInfo);
@@ -101,12 +101,12 @@ export default class EntryAbility extends UIAbility {
   async onForeground(): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     commonEventData.parameters!.pid = process.pid;
-    commonEvent.publish(FOREGROUND_EVENT, commonEventData, (err)=>{
+    commonEvent.publish(FOREGROUND_EVENT, commonEventData, (err) => {
       console.log(`${tag} publish FOREGROUND_EVENT err: ${JSON.stringify(err)}`);
     });
    setTimeout(()=>{
-     this.terminalSelf()
-   },2000)
+     this.terminalSelf();
+   },2000);
   }
 
   async terminalSelf(){
