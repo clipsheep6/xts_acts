@@ -137,6 +137,12 @@ import RichEditorAddApi from './RichEditor/RichEditorAddApi.test'
 import editMeunOptionsTest from './Text/editMeunOptions.test'
 import RichEditorApi13 from './RichEditor/RichEditorApi13.test'
 import onDidIMEInputTest from './RichEditor/onDidIMEInput.test';
+import MarqueeHorseRace from './TextTest/MarqueeHorseRace.test';
+import MarqueeHorseRace2 from './TextTest/MarqueeHorseRace2.test';
+import MarqueeHorseRace3 from './TextTest/MarqueeHorseRace3.test';
+import MarqueeHorseRace4 from './TextTest/MarqueeHorseRace4.test';
+import MarqueeHorseRace5 from './TextTest/MarqueeHorseRace5.test';
+import MarqueeHorseRace6 from './TextTest/MarqueeHorseRace6.test';
 
 export default function testsuite() {
   APIContentTypeTest();
@@ -256,4 +262,10 @@ export default function testsuite() {
   RichEditorAddApi();
   editMeunOptionsTest();
   onDidIMEInputTest();
+  MarqueeHorseRace();
+  MarqueeHorseRace2();
+  MarqueeHorseRace3();
+  MarqueeHorseRace4();
+  MarqueeHorseRace5();
+  MarqueeHorseRace6();
 }

@@ -122,6 +122,12 @@
     "MainAbility/pages/RichEditor/RichEditorAddApi",
     "MainAbility/pages/StyledString/StyledStringKeyTest1",
     "MainAbility/pages/Text/editMeunOptions",
-    "MainAbility/pages/RichEditor/onDidIMEInput"
+    "MainAbility/pages/RichEditor/onDidIMEInput",
+    "MainAbility/pages/Text/MarqueeHorseRace",
+    "MainAbility/pages/Text/MarqueeHorseRace2",
+    "MainAbility/pages/Text/MarqueeHorseRace3",
+    "MainAbility/pages/Text/MarqueeHorseRace4",
+    "MainAbility/pages/Text/MarqueeHorseRace5",
+    "MainAbility/pages/Text/MarqueeHorseRace6"
   ]
 }
