@@ -30,7 +30,7 @@ const double DOUBLE_123_22 = 123.22;
 const double DOUBLE_30949_374 = 30949.374;
 const double DOUBLE_131312_46464 = 131312.46464;
 
-static HiAppWatcher* g_watcher;
+static HiAppWatcher* watcher;
 
 static void OnReceiver(const char* domain const HiAppEventAppEventGroup* appEventGroups, uint32_t groupSize)
 {
