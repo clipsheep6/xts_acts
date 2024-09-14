@@ -29,16 +29,16 @@ group("hiviewdfxtestacts") {
       "hicollietest/hicolliendktest:ActsHicollieTest",
       "hidebugtest/hidebugtestcoltest:ActsHiDebugColTest",
       "hidebugtest/hidebugtestjstest:ActsHiDebugTest",
+      "hilogndktest:ActsHilogNdkTest",
       "hilogtest/hilogdomainofftest:ActsHilogDomainOffJsTest",
       "hilogtest/hilogdomainontest:ActsHilogDomainOnJsTest",
-      "hilogndktest:ActsHilogNdkTest",
       "hisyseventtest/hisyseventboxtest:ActsHiSysEventBoxTest",
       "hisyseventtest/hisyseventjstest:ActsHiSysEventJsTest",
       "hisyseventtest/hisyseventnormaltest:ActsHiSysEventNormalTest",
       "hitracechainjstest:ActsHiTraceChainJsTest",
       "hitracemetertest:ActsHitraceMeterTest",
       "hitracendktest:ActsHitraceNdkTest",
-      "hiview/faultlogger/faultloggerjs:faultloggerjs_test"
+      "hiview/faultlogger/faultloggerjs:faultloggerjs_test",
     ]
   }
 }
