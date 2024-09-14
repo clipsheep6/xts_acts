@@ -10,9 +10,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import("//test/xts/tools/build/suite.gni")
 
-group("netstack_websocketndk") {
+import("//build/ohos_var.gni")
+
+group("netstack_websocket") {
   testonly = true
   if (is_standard_system) {
     deps = [ "netstack_websocketndk:ActsNetStackWebsocketNdkTest" ]

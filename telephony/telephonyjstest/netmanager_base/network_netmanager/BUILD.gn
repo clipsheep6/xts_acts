@@ -12,7 +12,7 @@
 # limitations under the License.
 import("//test/xts/tools/build/suite.gni")
 
-group("network_netmanagerndk") {
+group("network_netmanager") {
   testonly = true
   if (is_standard_system) {
     deps = [ "network_netmanagerndk:ActsNetworkConnectionNdkTest" ]

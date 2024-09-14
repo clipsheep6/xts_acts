@@ -12,7 +12,7 @@
 # limitations under the License.
 import("//test/xts/tools/build/suite.gni")
 
-group("dns_ndk") {
+group("dnsndk") {
   testonly = true
   if (is_standard_system) {
     deps = [ "dns_ndk:ActsDnsNdkTest" ]

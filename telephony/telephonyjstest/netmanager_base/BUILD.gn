@@ -33,4 +33,3 @@ group("netmanager_base") {
     ]
   }
 }
-
