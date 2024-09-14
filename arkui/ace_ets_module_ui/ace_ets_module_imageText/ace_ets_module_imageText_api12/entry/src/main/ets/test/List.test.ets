@@ -142,6 +142,7 @@ import ImageResizable from './ImageTest/ImageResizable.test';
 import TextDataDetectorConfig from './Text/TextDataDetectorConfig.test';
 import FontSettingOptions from './Text/FontSettingOptions.test';
 import TextMaxLines from './Text/TextMaxLines.test';
+import getRectsForRangeTest from './RichEditor/getRectsForRange.test'
 
 export default function testsuite() {
   APIContentTypeTest();
@@ -266,4 +267,5 @@ export default function testsuite() {
   TextDataDetectorConfig();
   FontSettingOptions();
   TextMaxLines();
+  getRectsForRangeTest();
 }

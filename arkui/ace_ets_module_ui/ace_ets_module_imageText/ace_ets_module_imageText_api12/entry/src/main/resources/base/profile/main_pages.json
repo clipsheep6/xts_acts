@@ -127,6 +127,7 @@
     "MainAbility/pages/Image/ImageResizable",
 	"MainAbility/pages/Text/TextDataDetectorConfig",
 	"MainAbility/pages/Text/FontSettingOptions",
-	"MainAbility/pages/Text/TextMaxLines"
+	"MainAbility/pages/Text/TextMaxLines",
+  "MainAbility/pages/RichEditor/getRectsForRange"
   ]
 }
