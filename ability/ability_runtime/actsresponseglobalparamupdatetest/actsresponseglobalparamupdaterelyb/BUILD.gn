@@ -13,10 +13,14 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_app_assist_suite("ActsResponseGlobalParamUpdateRelyB") {
+ohos_js_app_suite("ActsResponseGlobalParamUpdateRelyB") {
   testonly = true
-  certificate_profile = "signature/openharmony_sx.p7b"
+  certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsResponseGlobalParamUpdateRelyB"
+
+  # 部件名称，真实数据，需要子系统对应
   part_name = "ability_runtime"
+
+  # 子系统名称，真实数据，需要部件对应
   subsystem_name = "ability"
 }
