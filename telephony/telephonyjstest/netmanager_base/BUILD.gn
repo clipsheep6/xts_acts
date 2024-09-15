@@ -12,6 +12,7 @@
 # limitations under the License.
 
 import("//build/ohos_var.gni")
+import("//test/xts/tools/build/suite.gni")
 
 group("netmanager_base") {
   testonly = true
