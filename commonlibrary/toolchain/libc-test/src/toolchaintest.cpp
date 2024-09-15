@@ -51,9 +51,14 @@ static int Start(const char *argvs)
     // Set the process stack space
     pid = fork();
     if (pid == 0) {
+        char *env[] = {NULL, NULL};
+        // We need to use the system's options to run asan tests.
+        if (strstr(argvs, "asan")) {
+            env[0] = "ASAN_OPTIONS=log_path=/dev/asan/asan.log:include=/system/etc/asan.options";
+        }
         Runtest::TSetrlim(RLIMIT_STACK, spaceSize);
         // Overloading the subprocess space
-        int exe = execl(argvs, "strptime", nullptr);
+        int exe = execle(argvs, "strptime", nullptr, env);
         printf("exe:%d %s exec failed: %s\n", exe, argvs, strerror(errno));
         exit(1);
     }
