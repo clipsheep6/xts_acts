@@ -22,10 +22,6 @@ group("ActsBundleGetMainElementNameTest") {
       "actsbmsgetmainelementnametestc:ActsBmsGetMainElementNameTestC",
       "actsbmsgetmainelementnametestd:ActsBmsGetMainElementNameTestD",
       "actsbmsgetmainelementnameteste:ActsBmsGetMainElementNameTestE",
-      "actsbmsgetmainelementnametestf:ActsBmsGetMainElementNameTestF",
-      "actsbmsgetmainelementnametestg:ActsBmsGetMainElementNameTestG",
-      "actsbmsgetmainelementnametesth:ActsBmsGetMainElementNameTestH",
-      "actsbmsgetmainelementnametesti:ActsBmsGetMainElementNameTestI",
     ]
   }
 }
