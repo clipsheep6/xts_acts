@@ -49,10 +49,6 @@ export default class AssistantAbilityTwo extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
-    setTimeout(() => {
-      hilog.info(0x0000, 'testTag', 'assistantabilitytwo terminateSelf start.');
-      this.context.terminateSelf()
-    }, 500)
   }
 
   onBackground() {

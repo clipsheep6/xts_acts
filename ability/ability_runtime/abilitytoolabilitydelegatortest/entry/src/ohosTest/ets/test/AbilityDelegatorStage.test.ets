@@ -43,6 +43,7 @@ function isEmpty(info: string): boolean {
 }
 
 export default function AbilityDelegatorStageTest() {
+  
   describe('ActsAbilityTest', () => {
     /**
      * @tc.number    : SUB_Ability_AbilityTools_AbilityDelegator_Stage_23500
@@ -72,6 +73,7 @@ export default function AbilityDelegatorStageTest() {
                     console.log(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}====>removeAbilityMonitor====`)
                   })
                 await sleep(500);
+                ability.context.terminateSelf();
                 done();
               } else {
                 abilityDelegator.doAbilityBackground(ability)
@@ -91,6 +93,7 @@ export default function AbilityDelegatorStageTest() {
               .then(() => {
                 console.log(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}====>removeAbilityMonitor====`)
               })
+              ability.context.terminateSelf();
             done();
           }
         }
@@ -140,6 +143,7 @@ export default function AbilityDelegatorStageTest() {
                   .then(() => {
                     console.log(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}====>removeAbilityMonitor====`)
                   })
+                ability.context.terminateSelf();
                 done();
               } else {
                 abilityDelegator.doAbilityBackground(ability)
@@ -159,6 +163,7 @@ export default function AbilityDelegatorStageTest() {
               .then(() => {
                 console.log(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}====>removeAbilityMonitor====`);
               })
+            ability.context.terminateSelf();
             done();
           }
         }
