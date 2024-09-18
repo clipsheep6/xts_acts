@@ -1,0 +1,61 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:/Users/lenovo/.ohos/config/openharmony/default_MyApplication12_Sw_KBvjoO2v6aC4rsm3bORx1DS5FdhlBxyM1X3HFnnU=.cer",
+          "storePassword": "0000001B2D8CE9CF9CC1176AAEC7C7A85A8CDB220E3D5A6AF27562C514A375B8A0653E90F585BED513D075",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B86339933030C6259301B57E47CF5BF4696A9C777069AD2BB8CC2A14AD13BEC6D012E4AE1E8AD4E",
+          "profile": "C:/Users/lenovo/.ohos/config/openharmony/default_MyApplication12_Sw_KBvjoO2v6aC4rsm3bORx1DS5FdhlBxyM1X3HFnnU=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:/Users/lenovo/.ohos/config/openharmony/default_MyApplication12_Sw_KBvjoO2v6aC4rsm3bORx1DS5FdhlBxyM1X3HFnnU=.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 12,
+        "compatibleSdkVersion": 12,
+        "runtimeOS": "OpenHarmony",
+        "buildOption": {
+          "externalNativeOptions": {
+            "abiFilters": [
+              "arm64-v8a",
+              "armeabi-v7a",
+              "x86_64"
+            ]
+          },
+          "strictMode": {
+            "caseSensitiveCheck": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
