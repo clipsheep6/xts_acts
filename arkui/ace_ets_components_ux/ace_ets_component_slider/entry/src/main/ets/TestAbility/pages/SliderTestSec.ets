@@ -183,6 +183,6 @@ struct Index {
   }
 }
 
-function toFakeString(v: number|string) {
+function toFakeString(v: number | string){
   return v as string
 }

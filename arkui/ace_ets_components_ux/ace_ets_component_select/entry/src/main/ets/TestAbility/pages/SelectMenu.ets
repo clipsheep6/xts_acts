@@ -303,6 +303,6 @@ struct SelectMenuTest {
   }
 }
  
-function toFakeMenuAlignType(v: MenuAlignType|string) {
+function toFakeMenuAlignType(v: MenuAlignType | string){
   return v as MenuAlignType
 }

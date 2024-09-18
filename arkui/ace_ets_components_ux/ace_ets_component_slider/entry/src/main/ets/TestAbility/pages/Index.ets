@@ -991,6 +991,6 @@ struct SliderTest {
   }
 }
 
-function toFakeSliderBlockStyle(v: SliderBlockStyle|string|number|null|undefined) {
+function toFakeSliderBlockStyle(v: SliderBlockStyle | string | number | null | undefined) {
   return v as SliderBlockStyle
 }
