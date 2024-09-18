@@ -31,7 +31,7 @@ static napi_value testTextSpanContent001(napi_env env, napi_callback_info info)
     auto ret = nodeAPI->setAttribute(span, NODE_SPAN_CONTENT, &spanContent);
     ASSERT_EQ(ret, SUCCESS);
     if (nodeAPI->getAttribute(text, NODE_TEXT_FONT)->string == nullptr) {
-        ASSERT_STREQ("", "SpanContent");
+        ASSERT_STREQ("123", "SpanContent");
     } else {
         ASSERT_STREQ(nodeAPI->getAttribute(text, NODE_TEXT_FONT)->string, "SpanContent");
     }
@@ -64,9 +64,9 @@ static napi_value testTextSpanLineHeight003(napi_env env, napi_callback_info inf
     auto ret = nodeAPI->setAttribute(text, NODE_TEXT_LINE_HEIGHT, &valueItem);
     ASSERT_EQ(ret, SUCCESS);
     if (nodeAPI->getAttribute(text, NODE_TEXT_LINE_HEIGHT)->value[PARAM_0].f32 > 0) {
-        ASSERT_STREQ("1", "1");
+        ASSERT_STREQ("123", "123");
     } else {
-        ASSERT_STREQ("1", "2");
+        ASSERT_STREQ("123", "223");
     }
     NAPI_END;
 }
