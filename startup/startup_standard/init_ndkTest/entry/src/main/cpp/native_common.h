@@ -21,25 +21,32 @@
 
 #define NAPI_RETVAL_NOTHING
 
-void GET_AND_THROW_LAST_ERROR(napi_env env) {
-    const napi_extended_error_info *errorInfo = nullptr;
-    napi_get_info(env, &errorInfo);
-    bool isPending = false;
-    napi_is_exception_pending(env, &isPending);
-}
-
-#define NAPI_ASSERT_BASE(env, assertion, message, retVal)                                                              \
+#define GET_AND_THROW_LAST_ERROR(env)                                                                                  \
     do {                                                                                                               \
-        if (!(assertion)) {                                                                                            \
-            napi_throw_error((env), nullptr, "assertion (" #assertion ") failed: " message);                           \
-            return retVal;                                                                                             \
+        const napi_extended_error_info *errorInfo = nullptr                                                           \
+        napi_get_last_error_info((env), &errorInfo);                                                                   \
+        boolPending = false;                                                                                        \
+        napi_is_exception_pending((env), &is);                                                                  \
+        if (isPending) {                                                                                               \
+            napi_throw((env), errorInfo->error);                                                                       \
         }                                                                                                              \
     } while (0)
 
-#define NAPI_ASSERT(env, assertion, message) NAPI_ASSERT_BASE(env, assertion, message, nullptr)
+inline void NAPI_ASSERT_BASE(napi_env env, bool assertion, const char* message, napi_value retVal) {
+    if (!(assert)) {
+        napi_throw_error(env, nullptr, "assertion (" #assertion ") failed: " message);
+        (void)retVal; // 防止未使用变量
+    }
+}
 
-inline void NAPI_ASSERT_RETURN_VOID(napi_env env, bool assertion, const char* message) {
-    NAPI_ASSERT_BASE(env, assertion message, NAPI_RETVAL_NOTHING);
+inline void NAPI_ASSERT(napi_env env, bool assertion, const char* message) {
+    if (!assertion) {
+        napi(env, nullptr, "assertion (" #assertion ") failed: " message);
+    }
+}
+
+inline void NAPI_ASSERT_RETURN_VOID(napi_env env, bool assertion, const char*) {
+    NAPI_ASSERT(env, assertion, message);
 }
 
 void NAPI_ASSERT_BASE(env, assertion, message, retVal){
@@ -75,10 +82,27 @@ inline void N_CALL_RETURN_VOID(napi_env env, napi_status theCall) {
     NAPI_CALL_BASE(env, theCall,API_RETVAL_NOTHING); 
 } 
 
-#define DECLARE_NAPI_PROPERTY(name, val)                                                                               \
-    {                                                                                                                  \
-        (name), nullptr, nullptr, nullptr, nullptr, val, napi_default, nullptr                                         \
-    }
+inline void NAPI_CALL_BASE(napi_env env, napi_status theCall, napi_value ret) {
+    // implementation
+}
+
+inline NAPI_CALL(napi_env env, napi_status theCall) {
+    NAPI_CALL_BASE(env, theCall, nullptr);
+}
+
+inline void NAPI_CALL_RETURN_VOID(napi_env env napi_status theCall) {
+    NAPI_CALL_BASE(env, theCall, NAPI_RETVAL_NOTHING);
+}
+
+inline napi_property_descriptor DECLARE_NAPI_PROPERTY(const char* name,api_value val) {
+    return {
+        (name), nullptr, nullptr, nullptr, nullptr, val, napi_default, nullptr
+    };
+}
+
+inline napi_property_descriptor DECLARE_N_STATIC_PROPERTY(const char* name, napi_value val) {
+    // implementation
+}
 
 static napi_property_descriptor DECLARE_NAPI_PROPERTY(const char* name, napi_value val) {
     return {
@@ -99,55 +123,26 @@ static napi_property_descriptor DECLARE_NAPI_FUNCTION(const char* name, n_callba
 }
 
 struct NapiPropertyDescriptor {
-    const char* name;
-    napi_value value;
-    napi_value getter;
-    napi_value setter;
-    void* data;
-    napi_property_attributes attr;
-    napi_value find;
+    const char* name; napi_value value; napi_value getter; napi_value setter; void* data; napi_property_attributes attr; napi_value find;
 };
 
 NapiPropertyDescriptor DECLARE_NAPI_STATIC_PROPERTY(const char* name, napi_value val) {
     return{
-        name,
-        val,
-        nullptr,
-        nullptr,
-        nullptr,
-        napi_static,
-        nullptr
+        name, val, nullptr, nullptr, nullptr, napi_static, nullptr
     };
 }
 
 NapiPropertyDescriptor DECLARE_NAPI_FUNCTION(const char* name,api_value (func)(napi_env, napi_callback_info)) {
     return {
-        name,
-        nullptr,
-        func,
-        nullptr,
-        nullptr,
-        napi_default,
-       
+        name,nullptr,func,nullptr,nullptr,napi_default 
     };
 }
 
 NapiPropertyDescriptor DECLARE_NAPI_FUNCTION_WITH_DATA(const char* name, napi_value (func)(napi_env, napi_callback_info, void* data), void data) {
     return {
-        name，
-        nullptr,
-        func,
-        nullptr,
-        data,
-        napi_default,
-        nullptr
+        name, nullptr, func, nullptr, data, napi_default, nullptr
     };
 }
-
-#define DECLARE_NAPI_STATIC_FUNCTION(name, func)                                                                       \
-    {                                                                                                                  \
-        (name), nullptr, (func), nullptr, nullptr, nullptr, napi_static, nullptr                                       \
-    }
 
 static_value name_static_function(napi env, napi_value thisVar) {
 // Implementation of the static function
@@ -163,25 +158,19 @@ static napi_value name_setter(napi_env env, napi value, napi_value this) {
 
 napi_property_descriptor DECLARE_NAPI_STATIC_FUNCTION(name, name_static_function) = {
     "name",, nullptr, nullptr, nullptr, nullptr, napi_static, nullptr
-    };
+};
 
 napi_property_descriptor DECLARE_NAPI_GETTER(name, name_getter) = {
-    "name nullptr,, name_getter, nullptr, nullptr, napi_default, nullptr
-    };
+    "name", nullptr,, name_getter, nullptr, nullptr, napi_default, nullptr
+};
 
 napi_property_descriptor DECLARE_NAPI_SETTER(name, name_setter) = {
-    "name nullptr,_setter, nullptr, nullptr, nullptr, napi_default, nullptr
-    };
-
-napi_property_descriptor DECLARE_NAPI_SETTER(const char *name, napi_value setter(const napi_env env, napi_value thisVar const napi_value info[])) {
-    return {
-        (name), nullptr, nullptr, nullptr, setter, nullptr, napi_default nullptr
-    };
-}
+    "name", nullptr,_setter, nullptr, nullptr, nullptr, napi_default, nullptr
+};
 
 napi_property_descriptor DECLAREAPI_GETTER_SETTER(const char *name, napi_value getter(const napi_env env, napi_value thisVar, const napi_value info[]), napi_value setter(constapi_env env, napi_value thisVar, const napi_value info[])) {
     return {
-        (name), nullptr, nullptr, getter, setter, nullptr, napi_default,
+        (name), nullptr, nullptr, getter, setter, nullptr, napi_default
     };
 }
 
