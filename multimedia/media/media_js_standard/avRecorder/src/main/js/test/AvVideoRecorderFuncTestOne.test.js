@@ -414,7 +414,7 @@ export default function avVideoRecorderTestOne() {
 
             // 创建previewOutput输出对象
             let surfaceId = globalThis.value;
-            let previewProfile = cameraOutputCapability.previewProfiles[0];
+            let previewProfile = myProfile;
             try {
                 previewOutput = cameraManager.createPreviewOutput(previewProfile, surfaceId)
                 console.info('createPreviewOutput success');
