@@ -902,3 +902,11 @@ export async function setDelayRequestAndCloseWorkerInstantlyTest() {
   });
   return check('setDelayRequestAndCloseWorkerInstantlyTest', Promise.all([p, p0]));
 }
+
+// test entry point
+export async function continuousQueryTest() {
+  let lockName = "continuousQueryTestLock"
+  let lock = utils.locks.AsyncLock.request(lockName);
+  let state = utils.locks.AsyncLock.query(lock.name);
+  throw new Error('Test failed: expected a valid state, but was ' + state);
+}
