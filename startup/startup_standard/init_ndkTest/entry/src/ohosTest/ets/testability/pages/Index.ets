@@ -17,12 +17,12 @@ import hilog from '@ohos.hilog';
 @Entry
 @Component
 struct Index {
-  aboutToAppear() {
+  aboutToAppear () {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
- @State message: string = 'Hello World'
+ @State message:string = 'Hello World'
    build() {
-         Row() {
+       Row() {
            Column() {
              Text(this.message)
                .fontSize(50)
