@@ -1317,7 +1317,7 @@ export default function initNdkTest() {
     });
 
     /**
-     * @tc.number     : SUB_STARTUP_INIT_SYSCAP_NDK_CANIUSE_0100
+     * @tc.number     : SUB_STARTUP_INIT_SYSCAPNDK_CANIUSE_0100
      * @tc.name       : testCanIUse001
      * @tc.desc       : test canIUse with using SystemCapability.Location.Location.Core
      * @tc.size       : MediumTest
@@ -1335,7 +1335,7 @@ export default function initNdkTest() {
     });
 
     /**
-     * @tc.number     : SUB_STARTUP_INIT_SYSCAP_NDK_CANIUSE_0200
+     * @tc.number     : SUB_STARTUP_INIT_SYSCAPNDK_CANIUSE_0200
      * @tc.name       : testCanIUse002
      * @tc.desc       : test canIUse with using SystemCapability.ArkUI.ArkUI.Full
      * @tc.size       : MediumTest
