@@ -2018,6 +2018,15 @@ static napi_value getVersion(napi_env env, napi_callback_info info)
     return result;
 }
 
+static napi_value getVersionNull(napi_env env, napi_callback_info info)
+{
+    uint32_t version = 0;
+    napi_value result;
+    NAPI_CALL(env, napi_get_version(env, nullptr));
+    NAPI_CALL(env, napi_create_uint32(env, version, &result));
+    return result;
+}
+
 static napi_value createPromise(napi_env env, napi_callback_info info)
 {
     napi_deferred deferred = nullptr;
@@ -2031,11 +2040,42 @@ static napi_value createPromise(napi_env env, napi_callback_info info)
     return _value;
 }
 
+static napi_value createPromiseNull(napi_env env, napi_callback_info info)
+{
+    napi_deferred deferred = nullptr;
+    napi_value promise = nullptr;
+    napi_create_promise(env, &deferred, nullptr);
+    NAPI_ASSERT(env, deferred != nullptr, "create promise success");
+    NAPI_ASSERT(env, promise != nullptr, "create promise success");
+        
+    napi_value _value;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    return _value;
+}
+
 static napi_value resolveAndRejectDeferred(napi_env env, napi_callback_info info)
 {
     napi_deferred deferred = nullptr;
     napi_value promise = nullptr;
     NAPI_CALL(env, napi_create_promise(env, &deferred, &promise));
+
+    bool isPromise = false;
+    napi_is_promise(env, promise, &isPromise);
+
+    napi_value undefined = nullptr;
+    napi_get_undefined(env, &undefined);
+    NAPI_CALL(env, napi_resolve_deferred(env, deferred, undefined));
+
+    napi_value _value;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    return _value;
+}
+
+static napi_value resolveAndRejectDeferredNull(napi_env env, napi_callback_info info)
+{
+    napi_deferred deferred = nullptr;
+    napi_value promise = nullptr;
+    NAPI_CALL(env, napi_create_promise(env, &deferred, nullptr));
 
     bool isPromise = false;
     napi_is_promise(env, promise, &isPromise);
@@ -2064,6 +2104,21 @@ static napi_value isPromise(napi_env env, napi_callback_info info)
     return _value;
 }
 
+static napi_value isPromiseNull(napi_env env, napi_callback_info info)
+{
+    napi_deferred deferred = nullptr;
+    napi_value promise = nullptr;
+    NAPI_CALL(env, napi_create_promise(env, &deferred, nullptr));
+        
+    bool isPromise = false;
+    NAPI_CALL(env, napi_is_promise(env, promise, &isPromise));
+    NAPI_ASSERT(env, isPromise, "napi_is_promise success");
+
+    napi_value _value;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    return _value;
+}
+
 static napi_value runScript(napi_env env, napi_callback_info info)
 {
     napi_value script, result;
@@ -2081,6 +2136,16 @@ static napi_value getUvEventLoop(napi_env env, napi_callback_info info)
     struct uv_loop_s* loop = nullptr;
 
     NAPI_CALL(env, napi_get_uv_event_loop(env, &loop));
+    NAPI_ASSERT(env, loop != nullptr, "napi_get_uv_event_loop fail");
+
+    return nullptr;
+}
+
+static napi_value getUvEventLoopNull(napi_env env, napi_callback_info info)
+{
+    struct uv_loop_s* loop = nullptr;
+
+    NAPI_CALL(env, napi_get_uv_event_loop(env, nullptr));
     NAPI_ASSERT(env, loop != nullptr, "napi_get_uv_event_loop fail");
 
     return nullptr;
@@ -2254,11 +2319,67 @@ static napi_value napiRunScriptPath(napi_env env, napi_callback_info info)
     return _value;
 }
 
+static napi_value napiRunScriptPathEnvNull(napi_env env, napi_callback_info info)
+{
+    napi_value value;
+    const char* path =  "pages/index.ets";
+    napi_status status = napi_run_script_path(nullptr, path, &value);
+    NAPI_ASSERT(env, status == napi_ok, "napi_run_script_path ok");
+    NAPI_ASSERT(env, value != nullptr, "napi_run_script_path success");
+    
+    napi_value _value;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    
+    return _value;
+}
+
+static napi_value napiRunScriptPathResNull(napi_env env, napi_callback_info info)
+{
+    napi_value value = 0;
+    const char* path =  "pages/index.ets";
+    napi_status status = napi_run_script_path(env, path, nullptr);
+    NAPI_ASSERT(env, status == napi_ok, "napi_run_script_path ok");
+    NAPI_ASSERT(env, value != nullptr, "napi_run_script_path success");
+    
+    napi_value _value;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    
+    return _value;
+}
+
 static napi_value napiLoadModule(napi_env env, napi_callback_info info)
 {
     napi_value value;
     const char* path =  "@ohos.hilog";
     napi_status status = napi_load_module(env, path, &value);
+    NAPI_ASSERT(env, status == napi_ok, "napi_load_module ok");
+    NAPI_ASSERT(env, value != nullptr, "napi_load_module success");
+    
+    napi_value _value;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    
+    return _value;
+}
+
+static napi_value napiLoadModuleEnvNull(napi_env env, napi_callback_info info)
+{
+    napi_value value;
+    const char* path =  "@ohos.hilog";
+    napi_status status = napi_load_module(nullptr, path, &value);
+    NAPI_ASSERT(env, status == napi_ok, "napi_load_module ok");
+    NAPI_ASSERT(env, value != nullptr, "napi_load_module success");
+    
+    napi_value _value;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    
+    return _value;
+}
+
+static napi_value napiLoadModuleResNull(napi_env env, napi_callback_info info)
+{
+    napi_value value = 0;
+    const char* path =  "@ohos.hilog";
+    napi_status status = napi_load_module(env, path, nullptr);
     NAPI_ASSERT(env, status == napi_ok, "napi_load_module ok");
     NAPI_ASSERT(env, value != nullptr, "napi_load_module success");
     
@@ -2301,6 +2422,25 @@ static napi_value napiCallThreadsafeFunction(napi_env env, napi_callback_info in
     return value;
 }
 
+static napi_value napiCallThreadsafeFunctionNull(napi_env env, napi_callback_info info)
+{
+    void* data = nullptr;
+    napi_threadsafe_function func = (napi_threadsafe_function)data;
+    napi_threadsafe_function_call_mode blockMode = napi_tsfn_nonblocking;
+    void* context = nullptr;
+    napi_status status = napi_get_threadsafe_function_context(func, &context);
+    NAPI_ASSERT(env, status != napi_ok, "napi_get_threadsafe_function_context fail");
+    static int32_t gSendData = 0;
+    napi_call_threadsafe_function(func, nullptr, blockMode);
+    status = napi_call_threadsafe_function(func, &gSendData, blockMode);
+    NAPI_ASSERT(env, status != napi_ok, "napi_call_threadsafe_function fail");
+    napi_release_threadsafe_function(func, napi_tsfn_release);
+    napi_value value;
+    NAPI_CALL(env, napi_create_int32(env, 0, &value));
+    
+    return value;
+}
+
 static napi_value napiCreateThreadsafeFunction(napi_env env, napi_callback_info info)
 {
     napi_threadsafe_function tsFunc = nullptr;
@@ -2310,6 +2450,27 @@ static napi_value napiCreateThreadsafeFunction(napi_env env, napi_callback_info 
     int32_t  finalCbtDataTestID = 1001;
     napi_status status = napi_create_threadsafe_function(env, nullptr, nullptr, resourceName,
                                                          0, 1, &callJstCbDataTestId, nullptr,
+                                                         &finalCbtDataTestID, nullptr, &tsFunc);
+    NAPI_ASSERT(env, status != napi_ok, "napi_create_threadsafe_function failed");
+    
+    napi_acquire_threadsafe_function(tsFunc);
+    status = napi_unref_threadsafe_function(env, tsFunc);
+    NAPI_ASSERT(env, status != napi_ok, "napi_unref_threadsafe_function failed");
+    
+    napi_value _value;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    
+    return _value;
+}
+
+static napi_value napiCreateThreadsafeFunctionNull(napi_env env, napi_callback_info info)
+{
+    napi_threadsafe_function tsFunc = nullptr;
+    napi_value resourceName = 0;
+    napi_create_string_latin1(env, __func__, NAPI_AUTO_LENGTH, &resourceName);
+    int32_t  finalCbtDataTestID = 1001;
+    napi_status status = napi_create_threadsafe_function(env, nullptr, nullptr, resourceName,
+                                                         0, 1, nullptr, nullptr,
                                                          &finalCbtDataTestID, nullptr, &tsFunc);
     NAPI_ASSERT(env, status != napi_ok, "napi_create_threadsafe_function failed");
     
@@ -2505,11 +2666,49 @@ static napi_value napiRefthreadSafeFunction(napi_env env, napi_callback_info inf
     return _value;
 }
 
+static napi_value napiRefthreadSafeFunctionNull(napi_env env, napi_callback_info info)
+{
+    napi_threadsafe_function tsFunc = nullptr;
+    napi_value resourceName = 0;
+    napi_create_string_latin1(env, __func__, NAPI_AUTO_LENGTH, &resourceName);
+    int32_t callJsCbDataTestId = 101;
+    int32_t finalCbDataTestId = 1001;
+    napi_status status = napi_create_threadsafe_function(env, nullptr, nullptr, resourceName,
+                                                         0, 1, &callJsCbDataTestId,
+                                                         nullptr, &finalCbDataTestId, nullptr, &tsFunc);
+    NAPI_ASSERT(env, status != napi_ok, "napi_create_threadsafe_function failed");
+    
+    status = napi_ref_threadsafe_function(env, nullptr);
+    NAPI_ASSERT(env, status != napi_ok, "napi_ref_threadsafe_function");
+    napi_value _value;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    
+    return _value;
+}
+
 static napi_value napiCreateDate(napi_env env, napi_callback_info info)
 {
     napi_value createResult = nullptr;
     double time = 202110181203150;
     napi_status status = napi_create_date(env, time, &createResult);
+    NAPI_ASSERT(env, status == napi_ok, "napi_create_date success");
+    double getTime = false;
+    napi_get_date_value(env, createResult, &getTime);
+    bool result = false;
+    if (time == getTime) {
+        result = true;
+    }
+    napi_value value;
+    NAPI_CALL(env, napi_create_int32(env, result, &value));
+    
+    return value;
+}
+
+static napi_value napiCreateDateNull(napi_env env, napi_callback_info info)
+{
+    napi_value createResult = nullptr;
+    double time = 202110181203150;
+    napi_status status = napi_create_date(nullptr, time, &createResult);
     NAPI_ASSERT(env, status == napi_ok, "napi_create_date success");
     double getTime = false;
     napi_get_date_value(env, createResult, &getTime);
@@ -2539,6 +2738,22 @@ static napi_value napiCreateBigintUint64(napi_env env, napi_callback_info info)
     return value;
 }
 
+static napi_value napiCreateBigintUint64Null(napi_env env, napi_callback_info info)
+{
+    uint64_t testValue = UINT64_MAX;
+    napi_value result = nullptr;
+    napi_create_bigint_uint64(env, testValue, &result);
+         
+    uint64_t resultValue = 0;
+    bool flag = false;
+    napi_get_value_bigint_uint64(env, result, nullptr, &flag);
+    NAPI_ASSERT(env, resultValue == testValue, "napi_get_value_bigint_int64 failed");
+    napi_value value;
+    NAPI_CALL(env, napi_create_int32(env, flag, &value));
+    
+    return value;
+}
+
 static napi_value napiCreateBigintInt64(napi_env env, napi_callback_info info)
 {
     int64_t testValue = INT64_MAX;
@@ -2554,6 +2769,21 @@ static napi_value napiCreateBigintInt64(napi_env env, napi_callback_info info)
     return value;
 }
 
+static napi_value napiCreateBigintInt64Null(napi_env env, napi_callback_info info)
+{
+    int64_t testValue = INT64_MAX;
+    napi_value result = nullptr;
+    napi_create_bigint_int64(env, testValue, &result);
+    int64_t resultValue = 0;
+    bool flag = false;
+    napi_get_value_bigint_int64(env, result, nullptr, &flag);
+    NAPI_ASSERT(env, resultValue == testValue, "napi_get_value_bigint_int64 failed");
+    napi_value value;
+    NAPI_CALL(env, napi_create_int32(env, flag, &value));
+    
+    return value;
+}
+
 static napi_value napiCreateBigintWords(napi_env env, napi_callback_info info)
 {
     int signBit = 0;
@@ -2562,6 +2792,33 @@ static napi_value napiCreateBigintWords(napi_env env, napi_callback_info info)
     uint64_t wordsOut[] = {0ULL, 0ULL, 0ULL, 0ULL};
     napi_value result = nullptr;
     NAPI_CALL(env, napi_create_bigint_words(env, signBit, wordCount, words, &result));
+    int retSignBit = -1;
+    size_t retWordCount = 4;
+    NAPI_CALL(env, napi_get_value_bigint_words(env, result, &retSignBit, &retWordCount, wordsOut));
+    bool testResult = true;
+    if (retSignBit != signBit || retWordCount != wordCount) {
+        testResult = false;
+    }
+    for (size_t i = 0; i < wordCount; i++) {
+        if (wordsOut[i] != words[i]) {
+            testResult = false;
+            break;
+        }
+    }
+    napi_value value;
+    NAPI_CALL(env, napi_create_int32(env, testResult, &value));
+    
+    return value;
+}
+
+static napi_value napiCreateBigintWordsNull(napi_env env, napi_callback_info info)
+{
+    int signBit = 0;
+    size_t wordCount = 4;
+    uint64_t words[] = {0ULL, 34ULL, 56ULL, 2ULL};
+    uint64_t wordsOut[] = {0ULL, 0ULL, 0ULL, 0ULL};
+    napi_value result = nullptr;
+    NAPI_CALL(env, napi_create_bigint_words(nullptr, signBit, wordCount, words, &result));
     int retSignBit = -1;
     size_t retWordCount = 4;
     NAPI_CALL(env, napi_get_value_bigint_words(env, result, &retSignBit, &retWordCount, wordsOut));
@@ -2653,6 +2910,36 @@ static napi_value ThreadSafeTest(napi_env env, napi_callback_info info) {
     return _value;
 }
 
+static napi_value ThreadSafeTestNull(napi_env env, napi_callback_info info) {
+    size_t argc = 1;
+    napi_value jsCb, work_name;
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, &jsCb, nullptr, nullptr));
+    napi_create_reference(env, jsCb, 1, &functionRef);
+
+    NAPI_CALL(env, napi_create_string_utf8(env, "work_name", NAPI_AUTO_LENGTH, &work_name));
+
+    napi_valuetype valueType = napi_undefined;
+    NAPI_CALL(env, napi_typeof(env, jsCb, &valueType));
+    NAPI_ASSERT(env, valueType == napi_function, "valueType expect equal to napi_function");
+    
+    const char* context = "context";
+    NAPI_CALL(env, napi_create_threadsafe_function(env, jsCb, nullptr, work_name, 0, 1, nullptr, nullptr,
+        const_cast<void*>(reinterpret_cast<const void*>(context)), CallJs, nullptr));
+    void* retContext = nullptr;
+    NAPI_CALL(env, napi_get_threadsafe_function_context(tsfn, &retContext));
+    NAPI_ASSERT(env, retContext == context, "napi_get_threadsafe_function_context failed");
+
+    napi_acquire_threadsafe_function(tsfn);
+    napi_call_threadsafe_function(tsfn, nullptr, napi_tsfn_blocking);
+
+    NAPI_CALL(env, napi_ref_threadsafe_function(env, tsfn));
+    NAPI_CALL(env, napi_unref_threadsafe_function(env, tsfn));
+    NAPI_CALL(env, napi_release_threadsafe_function(tsfn, napi_tsfn_release));
+    napi_value _value;
+    NAPI_CALL(env, napi_create_int32(env, 1, &_value));
+    return _value;
+}
+
 static void NoopDeleter(napi_env env, void* data, [[maybe_unused]] void* finalizeHint)
 {
     g_delCount++;
@@ -2683,6 +2970,22 @@ static napi_value CreateBuffer(napi_env env, napi_callback_info info)
     return napiBuffer;
 }
 
+static napi_value CreateBufferNull(napi_env env, napi_callback_info info)
+{
+    const unsigned int bufferSize = sizeof(TEST_STR);
+    char* copyPtr;
+    napi_value napiBuffer = 0;
+    napi_status status = napi_create_buffer(env, bufferSize, (void**)(&copyPtr), nullptr);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to create buffer");
+        return nullptr;
+    }
+    NAPI_ASSERT(env, copyPtr, "Unable to duplicate static text for CreateBuffer.");
+    int ret = memcpy_s(copyPtr, bufferSize, TEST_STR, strlen(TEST_STR) + 1);
+    NAPI_ASSERT(env, ret == 0, "memcpy_s failed");
+    return napiBuffer;
+}
+
 static napi_value CreateExternalBuffer(napi_env env, napi_callback_info info)
 {
     char* copyPtr = strdup(TEST_STR);
@@ -2700,12 +3003,42 @@ static napi_value CreateExternalBuffer(napi_env env, napi_callback_info info)
     return napiBuffer;
 }
 
+static napi_value CreateExternalBufferNull(napi_env env, napi_callback_info info)
+{
+    char* copyPtr = strdup(TEST_STR);
+    napi_value napiBuffer = 0;
+    const unsigned int bufferSize = sizeof(TEST_STR);
+
+    NAPI_ASSERT(env, copyPtr, "Unable to duplicate static text for CreateExternalBuffer.");
+    NAPI_CALL(env,
+              napi_create_external_buffer(env,
+                                          bufferSize,
+                                          copyPtr,
+                                          DelTest,
+                                          nullptr /* finalizeHint */,
+                                          nullptr));
+    return napiBuffer;
+}
+
 static napi_value BufferCopy(napi_env env, napi_callback_info info)
 {
     const unsigned int bufferSize = sizeof(TEST_STR);
     napi_value napiBuffer;
     void* dataPtr = nullptr;
     napi_status status = napi_create_buffer_copy(env, bufferSize, TEST_STR, &dataPtr, &napiBuffer);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to create buffer");
+        return nullptr;
+    }
+    return napiBuffer;
+}
+
+static napi_value BufferCopyNull(napi_env env, napi_callback_info info)
+{
+    const unsigned int bufferSize = sizeof(TEST_STR);
+    napi_value napiBuffer = 0;
+    void* dataPtr = nullptr;
+    napi_status status = napi_create_buffer_copy(env, bufferSize, TEST_STR, &dataPtr, nullptr);
     if (status != napi_ok) {
         napi_throw_error(env, nullptr, "Failed to create buffer");
         return nullptr;
@@ -2733,6 +3066,25 @@ static napi_value IsBuffer(napi_env env, napi_callback_info info)
     return returnValue;
 }
 
+static napi_value IsBufferNull(napi_env env, napi_callback_info info)
+{
+    napi_value args[1];
+    size_t argc = 1;
+    if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to parse arguments");
+        return nullptr;
+    }
+    NAPI_ASSERT(env, argc == 1, "The number of arguments provided is incorrect.");
+    bool result;
+    napi_status status = napi_is_buffer(env, nullptr, &result);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "The parameter instance is not of type buffer.");
+    }
+    napi_value returnValue;
+    NAPI_CALL(env, napi_get_boolean(env, result, &returnValue));
+    return returnValue;
+}
+
 static napi_value GetBufferInfo(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -2748,6 +3100,29 @@ static napi_value GetBufferInfo(napi_env env, napi_callback_info info)
     napi_value returnValue;
     size_t bufferLength;
     if (napi_get_buffer_info(env, napiBuffer, (void**)(&bufferData), &bufferLength) != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to get buffer info.");
+        return nullptr;
+    }
+    NAPI_CALL(env, napi_get_boolean(env,
+                                    !strcmp(bufferData, TEST_STR) && bufferLength == bufferSize,
+                                    &returnValue));
+    return returnValue;
+}
+
+static napi_value GetBufferInfoNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1];
+    const unsigned int bufferSize = sizeof(TEST_STR);
+    if (napi_get_cb_info(env, info, &argc, args, nullptr, nullptr) != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to parse arguments");
+        return nullptr;
+    }
+    NAPI_ASSERT(env, argc == 1, "Incorrect number of parameters.");
+    char *bufferData;
+    napi_value returnValue;
+    size_t bufferLength;
+    if (napi_get_buffer_info(env, nullptr, (void**)(&bufferData), &bufferLength) != napi_ok) {
         napi_throw_error(env, nullptr, "Failed to get buffer info.");
         return nullptr;
     }
@@ -2960,6 +3335,52 @@ static napi_value GetAllPropertyNames(napi_env env, napi_callback_info info)
     return returnValue;
 }
 
+static napi_value GetAllPropertyNamesEnvNull(napi_env env, napi_callback_info info)
+{
+    napi_value returnValue, props;
+    NAPI_CALL(env, napi_create_object(env, &returnValue));
+    add_returned_status(env,
+                        "envIsNull",
+                        returnValue,
+                        "Invalid argument",
+                        napi_invalid_arg,
+                        napi_get_all_property_names(nullptr,
+                                                    returnValue,
+                                                    napi_key_own_only,
+                                                    napi_key_writable,
+                                                    napi_key_keep_numbers,
+                                                    &props));
+    return returnValue;
+}
+
+static napi_value GetAllPropertyNamesObjNull(napi_env env, napi_callback_info info)
+{
+    napi_value returnValue, props;
+    NAPI_CALL(env, napi_create_object(env, &returnValue));
+    napi_get_all_property_names(env,
+                                nullptr,
+                                napi_key_own_only,
+                                napi_key_writable,
+                                napi_key_keep_numbers,
+                                &props);
+    add_last_status(env, "objectIsNull", returnValue);
+    return returnValue;
+}
+
+static napi_value GetAllPropertyNamesResNull(napi_env env, napi_callback_info info)
+{
+    napi_value returnValue;
+    NAPI_CALL(env, napi_create_object(env, &returnValue));
+    napi_get_all_property_names(env,
+                                returnValue,
+                                napi_key_own_only,
+                                napi_key_writable,
+                                napi_key_keep_numbers,
+                                nullptr);
+    add_last_status(env, "valueIsNull", returnValue);
+    return returnValue;
+}
+
 static napi_value FreezeTest(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -2978,6 +3399,24 @@ static napi_value FreezeTest(napi_env env, napi_callback_info info)
     return object;
 }
 
+static napi_value FreezeTestNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1];
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+
+    // Check if argument is an object
+    napi_value objectConstructor;
+    napi_status status = napi_get_named_property(env, args[0], "Object", &objectConstructor);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Argument must be an object");
+    }
+    // Freeze the object
+    napi_value object = args[0];
+    NAPI_CALL(env, napi_object_freeze(env, nullptr));
+    return object;
+}
+
 static napi_value SealTest(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -2993,6 +3432,25 @@ static napi_value SealTest(napi_env env, napi_callback_info info)
     // Seal the object
     napi_value object = args[0];
     NAPI_CALL(env, napi_object_seal(env, object));
+
+    return object;
+}
+
+static napi_value SealTestNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1];
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+
+    // Check if argument is an object
+    napi_value objectConstructor;
+    napi_status status = napi_get_named_property(env, args[0], "Object", &objectConstructor);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Argument must be an object");
+    }
+    // Seal the object
+    napi_value object = args[0];
+    NAPI_CALL(env, napi_object_seal(env, nullptr));
 
     return object;
 }
@@ -3053,6 +3511,38 @@ static napi_value DetachTest(napi_env env, napi_callback_info info)
     return nullptr;
 }
 
+static napi_value DetachTestEnvNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1];
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+    NAPI_ASSERT(env, argc == 1, "The number of arguments provided is incorrect.");
+    void* data;
+    size_t length;
+    napi_typedarray_type type;
+    napi_value arrayBuffer;
+    NAPI_CALL(env, napi_get_typedarray_info(env, args[0], &type, &length, &data, &arrayBuffer, nullptr));
+
+    NAPI_CALL(env, napi_detach_arraybuffer(nullptr, arrayBuffer));
+    return nullptr;
+}
+
+static napi_value DetachTestArrNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1];
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+    NAPI_ASSERT(env, argc == 1, "The number of arguments provided is incorrect.");
+    void* data;
+    size_t length;
+    napi_typedarray_type type;
+    napi_value arrayBuffer;
+    NAPI_CALL(env, napi_get_typedarray_info(env, args[0], &type, &length, &data, &arrayBuffer, nullptr));
+
+    NAPI_CALL(env, napi_detach_arraybuffer(env, nullptr));
+    return nullptr;
+}
+
 napi_value IsDetachedTest(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -3080,6 +3570,90 @@ napi_value IsDetachedTest(napi_env env, napi_callback_info info)
         napi_throw_error(env, nullptr, "Failed to create boolean result.");
         return nullptr;
     }
+    return result;
+}
+
+napi_value IsDetachedTestEnvNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1];
+    napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    if (status != napi_ok || argc != 1) {
+        napi_throw_error(env, nullptr, "Wrong number of arguments.");
+        return nullptr;
+    }
+    bool isArraybuffer;
+    status = napi_is_arraybuffer(env, args[0], &isArraybuffer);
+    if (status != napi_ok || !isArraybuffer) {
+        napi_throw_error(env, nullptr, "Wrong type of arguments. Expects an array buffer as first argument.");
+        return nullptr;
+    }
+    bool isDetached;
+    status = napi_is_detached_arraybuffer(nullptr, args[0], &isDetached);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to check if array buffer is detached.");
+        return nullptr;
+    }
+    napi_value result;
+    status = napi_get_boolean(env, isDetached, &result);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to create boolean result.");
+        return nullptr;
+    }
+    return result;
+}
+
+napi_value IsDetachedTestArrNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1];
+    napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    if (status != napi_ok || argc != 1) {
+        napi_throw_error(env, nullptr, "Wrong number of arguments.");
+        return nullptr;
+    }
+    bool isArraybuffer;
+    status = napi_is_arraybuffer(env, args[0], &isArraybuffer);
+    if (status != napi_ok || !isArraybuffer) {
+        napi_throw_error(env, nullptr, "Wrong type of arguments. Expects an array buffer as first argument.");
+        return nullptr;
+    }
+    bool isDetached;
+    status = napi_is_detached_arraybuffer(env, nullptr, &isDetached);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to check if array buffer is detached.");
+        return nullptr;
+    }
+    napi_value result;
+    status = napi_get_boolean(env, isDetached, &result);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to create boolean result.");
+        return nullptr;
+    }
+    return result;
+}
+
+napi_value IsDetachedTestResNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 1;
+    napi_value args[1];
+    napi_status status = napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    if (status != napi_ok || argc != 1) {
+        napi_throw_error(env, nullptr, "Wrong number of arguments.");
+        return nullptr;
+    }
+    bool isArraybuffer;
+    status = napi_is_arraybuffer(env, args[0], &isArraybuffer);
+    if (status != napi_ok || !isArraybuffer) {
+        napi_throw_error(env, nullptr, "Wrong type of arguments. Expects an array buffer as first argument.");
+        return nullptr;
+    }
+    status = napi_is_detached_arraybuffer(env, args[0], nullptr);
+    if (status != napi_ok) {
+        napi_throw_error(env, nullptr, "Failed to check if array buffer is detached.");
+        return nullptr;
+    }
+    napi_value result = 0;
     return result;
 }
 
@@ -3126,6 +3700,120 @@ static napi_value CreateAsyncResource(napi_env env, napi_callback_info info)
     if (resourceType == napi_object && destroyOnFinalizer) {
         NAPI_CALL(env,
             napi_add_finalizer(env, resource, reinterpret_cast<void*>(context), AsyncDestroyCb, nullptr, nullptr));
+    }
+    NAPI_CALL(env,
+        napi_wrap(env, asyncContextWrap, context, [](napi_env env, void *data, void *hint) {}, nullptr, nullptr));
+    return asyncContextWrap;
+}
+
+static napi_value CreateAsyncResourceEnvNull(napi_env env, napi_callback_info info)
+{
+    napi_value asyncContextWrap;
+    NAPI_CALL(env, napi_create_object(env, &asyncContextWrap));
+
+    size_t argc = 2; // Number of parameters is 2
+    napi_value args[2]; // Number of parameters is 2
+    size_t parameterCount = 2; // Number of parameters is 2
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+
+    napi_value resource = args[0];
+    napi_value jsDestroyOnFinalizer = args[1];
+    napi_valuetype resourceType;
+    NAPI_CALL(env, napi_typeof(env, resource, &resourceType));
+    if (resourceType != napi_object) {
+        resource = nullptr;
+    }
+
+    napi_value resourceName;
+    NAPI_CALL(env,
+              napi_create_string_utf8(env, "test_async", NAPI_AUTO_LENGTH, &resourceName));
+
+    napi_async_context context;
+    NAPI_CALL(env, napi_async_init(env, resource, resourceName, &context));
+
+    bool destroyOnFinalizer = true;
+    if (argc == parameterCount) {
+        NAPI_CALL(env, napi_get_value_bool(env, jsDestroyOnFinalizer, &destroyOnFinalizer));
+    }
+    if (resourceType == napi_object && destroyOnFinalizer) {
+        NAPI_CALL(env,
+            napi_add_finalizer(nullptr, resource, reinterpret_cast<void*>(context), AsyncDestroyCb, nullptr, nullptr));
+    }
+    NAPI_CALL(env,
+        napi_wrap(env, asyncContextWrap, context, [](napi_env env, void *data, void *hint) {}, nullptr, nullptr));
+    return asyncContextWrap;
+}
+
+static napi_value CreateAsyncResourceObjNull(napi_env env, napi_callback_info info)
+{
+    napi_value asyncContextWrap;
+    NAPI_CALL(env, napi_create_object(env, &asyncContextWrap));
+
+    size_t argc = 2; // Number of parameters is 2
+    napi_value args[2]; // Number of parameters is 2
+    size_t parameterCount = 2; // Number of parameters is 2
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+
+    napi_value resource = args[0];
+    napi_value jsDestroyOnFinalizer = args[1];
+    napi_valuetype resourceType;
+    NAPI_CALL(env, napi_typeof(env, resource, &resourceType));
+    if (resourceType != napi_object) {
+        resource = nullptr;
+    }
+
+    napi_value resourceName;
+    NAPI_CALL(env,
+              napi_create_string_utf8(env, "test_async", NAPI_AUTO_LENGTH, &resourceName));
+
+    napi_async_context context;
+    NAPI_CALL(env, napi_async_init(env, resource, resourceName, &context));
+
+    bool destroyOnFinalizer = true;
+    if (argc == parameterCount) {
+        NAPI_CALL(env, napi_get_value_bool(env, jsDestroyOnFinalizer, &destroyOnFinalizer));
+    }
+    if (resourceType == napi_object && destroyOnFinalizer) {
+        NAPI_CALL(env,
+            napi_add_finalizer(env, nullptr, reinterpret_cast<void*>(context), AsyncDestroyCb, nullptr, nullptr));
+    }
+    NAPI_CALL(env,
+        napi_wrap(env, asyncContextWrap, context, [](napi_env env, void *data, void *hint) {}, nullptr, nullptr));
+    return asyncContextWrap;
+}
+
+static napi_value CreateAsyncResourceCbNull(napi_env env, napi_callback_info info)
+{
+    napi_value asyncContextWrap;
+    NAPI_CALL(env, napi_create_object(env, &asyncContextWrap));
+
+    size_t argc = 2; // Number of parameters is 2
+    napi_value args[2]; // Number of parameters is 2
+    size_t parameterCount = 2; // Number of parameters is 2
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+
+    napi_value resource = args[0];
+    napi_value jsDestroyOnFinalizer = args[1];
+    napi_valuetype resourceType;
+    NAPI_CALL(env, napi_typeof(env, resource, &resourceType));
+    if (resourceType != napi_object) {
+        resource = nullptr;
+    }
+
+    napi_value resourceName;
+    NAPI_CALL(env,
+              napi_create_string_utf8(env, "test_async", NAPI_AUTO_LENGTH, &resourceName));
+
+    napi_async_context context;
+    NAPI_CALL(env, napi_async_init(env, resource, resourceName, &context));
+
+    bool destroyOnFinalizer = true;
+    if (argc == parameterCount) {
+        NAPI_CALL(env, napi_get_value_bool(env, jsDestroyOnFinalizer, &destroyOnFinalizer));
+    }
+    if (resourceType == napi_object && destroyOnFinalizer) {
+        NAPI_CALL(env,
+            napi_add_finalizer(env, resource, reinterpret_cast<void*>(context), nullptr, nullptr, nullptr));
     }
     NAPI_CALL(env,
         napi_wrap(env, asyncContextWrap, context, [](napi_env env, void *data, void *hint) {}, nullptr, nullptr));
@@ -3332,6 +4020,75 @@ static napi_value NapiSetInstanceData(napi_env env, napi_callback_info info)
     return value;
 }
 
+static napi_value NapiSetInstanceDataEnvNull(napi_env env, napi_callback_info info)
+{
+    InstanceData* data = reinterpret_cast<InstanceData*>(malloc(sizeof(*data)));
+    data->value = 1;
+    data->print = true;
+    data->jsCbRef = nullptr;
+
+    NAPI_CALL(env, napi_set_instance_data(nullptr, data, DeleteAddonData, nullptr));
+
+    InstanceData* getData = nullptr;
+    NAPI_CALL(env, napi_get_instance_data(env, (void**)&getData));
+    ++getData->value;
+    const size_t expectValue = 2;
+
+    bool res = true;
+    NAPI_ASSERT(env, getData->value == expectValue, "napi_get_instance_data failed");
+
+    napi_value value;
+    NAPI_CALL(env, napi_create_int32(env, res, &value));
+
+    return value;
+}
+
+static napi_value NapiGetInstanceDataEnvNull(napi_env env, napi_callback_info info)
+{
+    InstanceData* data = reinterpret_cast<InstanceData*>(malloc(sizeof(*data)));
+    data->value = 1;
+    data->print = true;
+    data->jsCbRef = nullptr;
+
+    NAPI_CALL(env, napi_set_instance_data(env, data, DeleteAddonData, nullptr));
+
+    InstanceData* getData = nullptr;
+    NAPI_CALL(env, napi_get_instance_data(nullptr, (void**)&getData));
+    ++getData->value;
+    const size_t expectValue = 2;
+
+    bool res = true;
+    NAPI_ASSERT(env, getData->value == expectValue, "napi_get_instance_data failed");
+
+    napi_value value;
+    NAPI_CALL(env, napi_create_int32(env, res, &value));
+
+    return value;
+}
+
+static napi_value NapiGetInstanceDataDataNull(napi_env env, napi_callback_info info)
+{
+    InstanceData* data = reinterpret_cast<InstanceData*>(malloc(sizeof(*data)));
+    data->value = 1;
+    data->print = true;
+    data->jsCbRef = nullptr;
+
+    NAPI_CALL(env, napi_set_instance_data(env, data, DeleteAddonData, nullptr));
+
+    InstanceData* getData = nullptr;
+    NAPI_CALL(env, napi_get_instance_data(env, nullptr));
+    ++getData->value;
+    const size_t expectValue = 2;
+
+    bool res = true;
+    NAPI_ASSERT(env, getData->value == expectValue, "napi_get_instance_data failed");
+
+    napi_value value;
+    NAPI_CALL(env, napi_create_int32(env, res, &value));
+
+    return value;
+}
+
 static napi_value AsyncWorkCallback(napi_env env, napi_callback_info info)
 {
     if (EstablishCallbackRef(env, info)) {
@@ -3458,6 +4215,102 @@ static napi_value NapiAsyncCleanUpHook(napi_env env, napi_callback_info exports)
     return nullptr;
 }
 
+static napi_value NapiAsyncCleanUpHookHandleNull(napi_env env, napi_callback_info exports)
+{
+    // Reinitialize the static variable to be compatible with musl libc.
+    g_cleanupHookCount = 0;
+    // Create object wrap before cleanup hooks.
+    CreateObjectWrap(env);
+
+    {
+        AsyncData* data = CreateAsyncData();
+        data->env = env;
+        napi_add_async_cleanup_hook(env, AsyncCleanupHook, data, &data->handle);
+    }
+
+    {
+        AsyncData* data = CreateAsyncData();
+        data->env = env;
+        napi_add_async_cleanup_hook(env, AsyncCleanupHook, data, nullptr);
+    }
+
+    {
+        napi_async_cleanup_hook_handle mustNotCallHandle;
+        napi_add_async_cleanup_hook(
+            env, MustNotCall, nullptr, &mustNotCallHandle);
+        napi_remove_async_cleanup_hook(nullptr);
+    }
+
+    // Create object wrap after cleanup hooks.
+    CreateObjectWrap(env);
+
+    return nullptr;
+}
+
+static napi_value NapiAsyncCleanUpHookEnvNull(napi_env env, napi_callback_info exports)
+{
+    // Reinitialize the static variable to be compatible with musl libc.
+    g_cleanupHookCount = 0;
+    // Create object wrap before cleanup hooks.
+    CreateObjectWrap(env);
+
+    {
+        AsyncData* data = CreateAsyncData();
+        data->env = env;
+        napi_add_async_cleanup_hook(nullptr, AsyncCleanupHook, data, &data->handle);
+    }
+
+    {
+        AsyncData* data = CreateAsyncData();
+        data->env = env;
+        napi_add_async_cleanup_hook(env, AsyncCleanupHook, data, nullptr);
+    }
+
+    {
+        napi_async_cleanup_hook_handle mustNotCallHandle;
+        napi_add_async_cleanup_hook(
+            env, MustNotCall, nullptr, &mustNotCallHandle);
+        napi_remove_async_cleanup_hook(mustNotCallHandle);
+    }
+
+    // Create object wrap after cleanup hooks.
+    CreateObjectWrap(env);
+
+    return nullptr;
+}
+
+static napi_value NapiAsyncCleanUpHookHookNull(napi_env env, napi_callback_info exports)
+{
+    // Reinitialize the static variable to be compatible with musl libc.
+    g_cleanupHookCount = 0;
+    // Create object wrap before cleanup hooks.
+    CreateObjectWrap(env);
+
+    {
+        AsyncData* data = CreateAsyncData();
+        data->env = env;
+        napi_add_async_cleanup_hook(env, nullptr, data, &data->handle);
+    }
+
+    {
+        AsyncData* data = CreateAsyncData();
+        data->env = env;
+        napi_add_async_cleanup_hook(env, AsyncCleanupHook, data, nullptr);
+    }
+
+    {
+        napi_async_cleanup_hook_handle mustNotCallHandle;
+        napi_add_async_cleanup_hook(
+            env, MustNotCall, nullptr, &mustNotCallHandle);
+        napi_remove_async_cleanup_hook(mustNotCallHandle);
+    }
+
+    // Create object wrap after cleanup hooks.
+    CreateObjectWrap(env);
+
+    return nullptr;
+}
+
 static void Cleanup(void* arg)
 {
     g_cleanupHookCount++;
@@ -3506,11 +4359,101 @@ static napi_value NapiEnvCleanUpHook(napi_env env, napi_callback_info exports)
     return nullptr;
 }
 
+static napi_value NapiEnvCleanUpHookEnvNull(napi_env env, napi_callback_info exports)
+{
+    // Create object wrap before cleanup hooks.
+    g_cleanupHookCount = 0;
+    static int argValue = 42;
+    static int argValueRemoved = 17;
+    ObjectWrapper(env);
+
+    napi_add_env_cleanup_hook(nullptr, Cleanup, &argValueRemoved);
+    napi_add_env_cleanup_hook(env, Cleanup, &argValue);
+    napi_remove_env_cleanup_hook(env, Cleanup, &argValueRemoved);
+
+    // Create object wrap after cleanup hooks.
+    CreateObjectWrap(env);
+
+    return nullptr;
+}
+
+static napi_value NapiEnvCleanUpHookFuncNull(napi_env env, napi_callback_info exports)
+{
+    // Create object wrap before cleanup hooks.
+    g_cleanupHookCount = 0;
+    static int argValue = 42;
+    static int argValueRemoved = 17;
+    ObjectWrapper(env);
+
+    napi_add_env_cleanup_hook(env, nullptr, &argValueRemoved);
+    napi_add_env_cleanup_hook(env, Cleanup, &argValue);
+    napi_remove_env_cleanup_hook(env, Cleanup, &argValueRemoved);
+
+    // Create object wrap after cleanup hooks.
+    CreateObjectWrap(env);
+
+    return nullptr;
+}
+
+static napi_value NapiRemoveEnvCleanUpHookEnvNull(napi_env env, napi_callback_info exports)
+{
+    // Create object wrap before cleanup hooks.
+    g_cleanupHookCount = 0;
+    static int argValue = 42;
+    static int argValueRemoved = 17;
+    ObjectWrapper(env);
+
+    napi_add_env_cleanup_hook(env, Cleanup, &argValueRemoved);
+    napi_add_env_cleanup_hook(env, Cleanup, &argValue);
+    napi_remove_env_cleanup_hook(nullptr, Cleanup, &argValueRemoved);
+
+    // Create object wrap after cleanup hooks.
+    CreateObjectWrap(env);
+
+    return nullptr;
+}
+
+static napi_value NapiRemoveEnvCleanUpHookFuncNull(napi_env env, napi_callback_info exports)
+{
+    // Create object wrap before cleanup hooks.
+    g_cleanupHookCount = 0;
+    static int argValue = 42;
+    static int argValueRemoved = 17;
+    ObjectWrapper(env);
+
+    napi_add_env_cleanup_hook(env, Cleanup, &argValueRemoved);
+    napi_add_env_cleanup_hook(env, Cleanup, &argValue);
+    napi_remove_env_cleanup_hook(env, nullptr, &argValueRemoved);
+
+    // Create object wrap after cleanup hooks.
+    CreateObjectWrap(env);
+
+    return nullptr;
+}
+
 static napi_value GetModuleFileName(napi_env env, napi_callback_info info)
 {
     const char *filename;
     napi_value result;
     node_api_get_module_file_name(env, &filename);
+    napi_create_string_utf8(env, filename, NAPI_AUTO_LENGTH, &result);
+    return result;
+}
+
+static napi_value GetModuleFileNameEnvNull(napi_env env, napi_callback_info info)
+{
+    const char *filename;
+    napi_value result;
+    node_api_get_module_file_name(nullptr, &filename);
+    napi_create_string_utf8(env, filename, NAPI_AUTO_LENGTH, &result);
+    return result;
+}
+
+static napi_value GetModuleFileNameResNull(napi_env env, napi_callback_info info)
+{
+    const char *filename;
+    napi_value result;
+    node_api_get_module_file_name(env, nullptr);
     napi_create_string_utf8(env, filename, NAPI_AUTO_LENGTH, &result);
     return result;
 }
@@ -3535,6 +4478,58 @@ static napi_value AsyncWorkWithQos(napi_env env, napi_callback_info info)
         (void *)addonData, &addonData->asyncWork));
 
     NAPI_CALL(env, napi_queue_async_work_with_qos(env, addonData->asyncWork, napi_qos_default));
+
+    napi_value _value = 0;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    return _value;
+}
+
+static napi_value AsyncWorkWithQosEnvNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 2;
+    napi_value args[2];
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+
+    AddonData* addonData = reinterpret_cast<AddonData*>(malloc(sizeof(AddonData)));
+    if (addonData == nullptr) {
+        return nullptr;
+    }
+
+    NAPI_CALL(env, napi_get_value_double(env, args[0], &addonData->args));
+    NAPI_CALL(env, napi_create_reference(env, args[1], 1, &addonData->callback));
+
+    napi_value resourceName = nullptr;
+    NAPI_CALL(env, napi_create_string_utf8(env, "AsyncWorkWithQosTest", NAPI_AUTO_LENGTH, &resourceName));
+    NAPI_CALL(env, napi_create_async_work(env, nullptr, resourceName, AddExecuteCB, AddCallbackCompleteCB,
+        (void *)addonData, &addonData->asyncWork));
+
+    NAPI_CALL(env, napi_queue_async_work_with_qos(nullptr, addonData->asyncWork, napi_qos_default));
+
+    napi_value _value = 0;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    return _value;
+}
+
+static napi_value AsyncWorkWithQosWorkNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 2;
+    napi_value args[2];
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, nullptr, nullptr));
+
+    AddonData* addonData = reinterpret_cast<AddonData*>(malloc(sizeof(AddonData)));
+    if (addonData == nullptr) {
+        return nullptr;
+    }
+
+    NAPI_CALL(env, napi_get_value_double(env, args[0], &addonData->args));
+    NAPI_CALL(env, napi_create_reference(env, args[1], 1, &addonData->callback));
+
+    napi_value resourceName = nullptr;
+    NAPI_CALL(env, napi_create_string_utf8(env, "AsyncWorkWithQosTest", NAPI_AUTO_LENGTH, &resourceName));
+    NAPI_CALL(env, napi_create_async_work(env, nullptr, resourceName, AddExecuteCB, AddCallbackCompleteCB,
+        (void *)addonData, &addonData->asyncWork));
+
+    NAPI_CALL(env, napi_queue_async_work_with_qos(env, nullptr, napi_qos_default));
 
     napi_value _value = 0;
     NAPI_CALL(env, napi_create_int32(env, 0, &_value));
@@ -3623,6 +4618,204 @@ static napi_value CreateObjectWithProperties(napi_env env, napi_callback_info in
     };
     napi_value obj1;
     NAPI_CALL(env, napi_create_object_with_properties(env, &obj1, 1, desc1));
+    napi_valuetype valuetype1;
+    NAPI_CALL(env, napi_typeof(env, obj1, &valuetype1));
+    napi_value obj2;
+    napi_property_descriptor desc2[] = {
+        DECLARE_NAPI_DEFAULT_PROPERTY("a", val_false),
+        DECLARE_NAPI_GETTER_SETTER("b", CreateWithPropertiesTestGetter, CreateWithPropertiesTestSetter),
+        DECLARE_NAPI_DEFAULT_PROPERTY("c", obj1),
+    };
+    NAPI_CALL(env, napi_create_object_with_properties(env, &obj2, 3, desc2));  // 3 : The property count.
+    napi_valuetype valuetype2;
+    NAPI_CALL(env, napi_typeof(env, obj2, &valuetype2));
+    NAPI_ASSERT(env, valuetype1 == napi_object, "Wrong type of argment. Expects a  object.");
+    NAPI_ASSERT(env, valuetype2 == napi_object, "Wrong type of argment. Expects a  object.");
+    auto checkPropertyEqualsTo = [env] (napi_value obj, const char *keyStr, napi_value expect) -> bool {
+        napi_value result;
+        napi_get_named_property(env, obj, keyStr, &result);
+        bool equal = false;
+        napi_strict_equals(env, result, expect, &equal);
+        return equal;
+    };
+
+    bool equalRes = false;
+    // get obj1.x == true
+    equalRes = checkPropertyEqualsTo(obj1, "x", val_true);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // set obj1.x = false
+    NAPI_CALL(env, napi_set_named_property(env, obj1, "x", val_false));
+    // get obj1.x == false
+    equalRes = checkPropertyEqualsTo(obj1, "x", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.a == false
+    equalRes = checkPropertyEqualsTo(obj2, "a", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.b == false
+    equalRes = checkPropertyEqualsTo(obj2, "b", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // set obj2.b = true (useless)
+    NAPI_CALL(env, napi_set_named_property(env, obj2, "b", val_true));
+    // get obj2.b == false
+    equalRes = checkPropertyEqualsTo(obj2, "b", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.c == obj1
+    equalRes = checkPropertyEqualsTo(obj2, "c", obj1);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.c.x == false
+    napi_value val_res;
+    NAPI_CALL(env, napi_get_named_property(env, obj2, "c", &val_res));
+    equalRes = checkPropertyEqualsTo(val_res, "x", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+
+    napi_value _value = 0;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    return _value;
+}
+
+static napi_value CreateObjectWithPropertiesEnvNull(napi_env env, napi_callback_info info)
+{
+    napi_value excep;
+    NAPI_CALL(env, napi_get_and_clear_last_exception(env, &excep));
+    napi_value val_false;
+    napi_value val_true;
+    NAPI_CALL(env, napi_get_boolean(env, false, &val_false));
+    NAPI_CALL(env, napi_get_boolean(env, true, &val_true));
+    napi_property_descriptor desc1[] = {
+        DECLARE_NAPI_DEFAULT_PROPERTY("x", val_true),
+    };
+    napi_value obj1;
+    NAPI_CALL(env, napi_create_object_with_properties(nullptr, &obj1, 1, desc1));
+    napi_valuetype valuetype1;
+    NAPI_CALL(env, napi_typeof(env, obj1, &valuetype1));
+    napi_value obj2;
+    napi_property_descriptor desc2[] = {
+        DECLARE_NAPI_DEFAULT_PROPERTY("a", val_false),
+        DECLARE_NAPI_GETTER_SETTER("b", CreateWithPropertiesTestGetter, CreateWithPropertiesTestSetter),
+        DECLARE_NAPI_DEFAULT_PROPERTY("c", obj1),
+    };
+    NAPI_CALL(env, napi_create_object_with_properties(env, &obj2, 3, desc2));  // 3 : The property count.
+    napi_valuetype valuetype2;
+    NAPI_CALL(env, napi_typeof(env, obj2, &valuetype2));
+    NAPI_ASSERT(env, valuetype1 == napi_object, "Wrong type of argment. Expects a  object.");
+    NAPI_ASSERT(env, valuetype2 == napi_object, "Wrong type of argment. Expects a  object.");
+    auto checkPropertyEqualsTo = [env] (napi_value obj, const char *keyStr, napi_value expect) -> bool {
+        napi_value result;
+        napi_get_named_property(env, obj, keyStr, &result);
+        bool equal = false;
+        napi_strict_equals(env, result, expect, &equal);
+        return equal;
+    };
+
+    bool equalRes = false;
+    // get obj1.x == true
+    equalRes = checkPropertyEqualsTo(obj1, "x", val_true);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // set obj1.x = false
+    NAPI_CALL(env, napi_set_named_property(env, obj1, "x", val_false));
+    // get obj1.x == false
+    equalRes = checkPropertyEqualsTo(obj1, "x", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.a == false
+    equalRes = checkPropertyEqualsTo(obj2, "a", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.b == false
+    equalRes = checkPropertyEqualsTo(obj2, "b", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // set obj2.b = true (useless)
+    NAPI_CALL(env, napi_set_named_property(env, obj2, "b", val_true));
+    // get obj2.b == false
+    equalRes = checkPropertyEqualsTo(obj2, "b", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.c == obj1
+    equalRes = checkPropertyEqualsTo(obj2, "c", obj1);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.c.x == false
+    napi_value val_res;
+    NAPI_CALL(env, napi_get_named_property(env, obj2, "c", &val_res));
+    equalRes = checkPropertyEqualsTo(val_res, "x", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+
+    napi_value _value = 0;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    return _value;
+}
+
+static napi_value CreateObjectWithPropertiesResNull(napi_env env, napi_callback_info info)
+{
+    napi_value excep;
+    NAPI_CALL(env, napi_get_and_clear_last_exception(env, &excep));
+    napi_value val_false;
+    napi_value val_true;
+    NAPI_CALL(env, napi_get_boolean(env, false, &val_false));
+    NAPI_CALL(env, napi_get_boolean(env, true, &val_true));
+    napi_value obj1;
+    NAPI_CALL(env, napi_create_object_with_properties(env, &obj1, 1, nullptr));
+    napi_valuetype valuetype1;
+    NAPI_CALL(env, napi_typeof(env, obj1, &valuetype1));
+    napi_value obj2;
+    napi_property_descriptor desc2[] = {
+        DECLARE_NAPI_DEFAULT_PROPERTY("a", val_false),
+        DECLARE_NAPI_GETTER_SETTER("b", CreateWithPropertiesTestGetter, CreateWithPropertiesTestSetter),
+        DECLARE_NAPI_DEFAULT_PROPERTY("c", obj1),
+    };
+    NAPI_CALL(env, napi_create_object_with_properties(env, &obj2, 3, desc2));  // 3 : The property count.
+    napi_valuetype valuetype2;
+    NAPI_CALL(env, napi_typeof(env, obj2, &valuetype2));
+    NAPI_ASSERT(env, valuetype1 == napi_object, "Wrong type of argment. Expects a  object.");
+    NAPI_ASSERT(env, valuetype2 == napi_object, "Wrong type of argment. Expects a  object.");
+    auto checkPropertyEqualsTo = [env] (napi_value obj, const char *keyStr, napi_value expect) -> bool {
+        napi_value result;
+        napi_get_named_property(env, obj, keyStr, &result);
+        bool equal = false;
+        napi_strict_equals(env, result, expect, &equal);
+        return equal;
+    };
+
+    bool equalRes = false;
+    // get obj1.x == true
+    equalRes = checkPropertyEqualsTo(obj1, "x", val_true);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // set obj1.x = false
+    NAPI_CALL(env, napi_set_named_property(env, obj1, "x", val_false));
+    // get obj1.x == false
+    equalRes = checkPropertyEqualsTo(obj1, "x", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.a == false
+    equalRes = checkPropertyEqualsTo(obj2, "a", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.b == false
+    equalRes = checkPropertyEqualsTo(obj2, "b", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // set obj2.b = true (useless)
+    NAPI_CALL(env, napi_set_named_property(env, obj2, "b", val_true));
+    // get obj2.b == false
+    equalRes = checkPropertyEqualsTo(obj2, "b", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.c == obj1
+    equalRes = checkPropertyEqualsTo(obj2, "c", obj1);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+    // get obj2.c.x == false
+    napi_value val_res;
+    NAPI_CALL(env, napi_get_named_property(env, obj2, "c", &val_res));
+    equalRes = checkPropertyEqualsTo(val_res, "x", val_false);
+    NAPI_ASSERT(env, equalRes == true, "equalRes is false.");
+
+    napi_value _value = 0;
+    NAPI_CALL(env, napi_create_int32(env, 0, &_value));
+    return _value;
+}
+
+static napi_value CreateObjectWithPropertiesEnvResNull(napi_env env, napi_callback_info info)
+{
+    napi_value excep;
+    NAPI_CALL(env, napi_get_and_clear_last_exception(env, &excep));
+    napi_value val_false;
+    napi_value val_true;
+    NAPI_CALL(env, napi_get_boolean(env, false, &val_false));
+    NAPI_CALL(env, napi_get_boolean(env, true, &val_true));
+    napi_value obj1;
+    NAPI_CALL(env, napi_create_object_with_properties(nullptr, &obj1, 1, nullptr));
     napi_valuetype valuetype1;
     NAPI_CALL(env, napi_typeof(env, obj1, &valuetype1));
     napi_value obj2;
@@ -3769,6 +4962,64 @@ static napi_value MakeCallback(napi_env env, napi_callback_info info)
     if (func_type == napi_function) {
         NAPI_CALL(env,
                   napi_make_callback(env, context, recv, func, argc - 3, argv, &result)); // 3 : reserved arguments.
+    } else {
+        NAPI_ASSERT(env, false, "Unexpected argument type");
+    }
+    return result;
+}
+
+static napi_value MakeCallbackEnvNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 10; // 10 : max arguments.
+    size_t n;
+    napi_value args[10]; // 10 : max arguments.
+    // NOLINTNEXTLINE (readability/null_usage)
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, NULL, NULL));
+    NAPI_ASSERT(env, argc > 0, "Wrong number of arguments");
+    napi_value async_context_wrap = args[0];
+    napi_value recv = args[1];
+    napi_value func = args[2]; // 2 : create async resouce arguments count.
+    napi_value argv[7]; // 7 : remain arguments.
+    for (n = 3; n < argc; n += 1) { // 3 : reserved arguments.
+        argv[n - 3] = args[n]; // 3 : reserved arguments.
+    }
+    napi_valuetype func_type;
+    NAPI_CALL(env, napi_typeof(env, func, &func_type));
+    napi_async_context context;
+    NAPI_CALL(env, napi_unwrap(env, async_context_wrap, (void **)&context));
+    napi_value result;
+    if (func_type == napi_function) {
+        NAPI_CALL(env,
+                  napi_make_callback(nullptr, context, recv, func, argc - 3, argv, &result)); // 3 : reserved arguments.
+    } else {
+        NAPI_ASSERT(env, false, "Unexpected argument type");
+    }
+    return result;
+}
+
+static napi_value MakeCallbackTextNull(napi_env env, napi_callback_info info)
+{
+    size_t argc = 10; // 10 : max arguments.
+    size_t n;
+    napi_value args[10]; // 10 : max arguments.
+    // NOLINTNEXTLINE (readability/null_usage)
+    NAPI_CALL(env, napi_get_cb_info(env, info, &argc, args, NULL, NULL));
+    NAPI_ASSERT(env, argc > 0, "Wrong number of arguments");
+    napi_value async_context_wrap = args[0];
+    napi_value recv = args[1];
+    napi_value func = args[2]; // 2 : create async resouce arguments count.
+    napi_value argv[7]; // 7 : remain arguments.
+    for (n = 3; n < argc; n += 1) { // 3 : reserved arguments.
+        argv[n - 3] = args[n]; // 3 : reserved arguments.
+    }
+    napi_valuetype func_type;
+    NAPI_CALL(env, napi_typeof(env, func, &func_type));
+    napi_async_context context;
+    NAPI_CALL(env, napi_unwrap(env, async_context_wrap, (void **)&context));
+    napi_value result;
+    if (func_type == napi_function) {
+        NAPI_CALL(env,
+                  napi_make_callback(env, nullptr, recv, func, argc - 3, argv, &result)); // 3 : reserved arguments.
     } else {
         NAPI_ASSERT(env, false, "Unexpected argument type");
     }
@@ -5074,26 +6325,40 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("unwrap", unwrap),
         DECLARE_NAPI_FUNCTION("removeWrap", removeWrap),
         DECLARE_NAPI_FUNCTION("getVersion", getVersion),
+        DECLARE_NAPI_FUNCTION("getVersionNull", getVersionNull),
         DECLARE_NAPI_FUNCTION("createPromise", createPromise),
+        DECLARE_NAPI_FUNCTION("createPromiseNull", createPromiseNull),
         DECLARE_NAPI_FUNCTION("resolveAndRejectDeferred", resolveAndRejectDeferred),
+        DECLARE_NAPI_FUNCTION("resolveAndRejectDeferredNull", resolveAndRejectDeferredNull),
         DECLARE_NAPI_FUNCTION("isPromise", isPromise),
+        DECLARE_NAPI_FUNCTION("isPromiseNull", isPromiseNull),
         DECLARE_NAPI_FUNCTION("TestLatin1", TestLatin1),
         DECLARE_NAPI_FUNCTION("TestUtf16", TestUtf16),
         DECLARE_NAPI_FUNCTION("TestUtf8", TestUtf8),
         DECLARE_NAPI_FUNCTION("runScript", runScript),
         DECLARE_NAPI_FUNCTION("getUvEventLoop", getUvEventLoop),
+        DECLARE_NAPI_FUNCTION("getUvEventLoopNull", getUvEventLoopNull),
         DECLARE_NAPI_FUNCTION("napCreateArrayBuffer", napCreateArrayBuffer),
         DECLARE_NAPI_FUNCTION("naiGetArrayBufferInfo", naiGetArrayBufferInfo),
         DECLARE_NAPI_FUNCTION("napiDefineClass", napiDefineClass),
         DECLARE_NAPI_FUNCTION("napiRunScriptPath", napiRunScriptPath),
+        DECLARE_NAPI_FUNCTION("napiRunScriptPathEnvNull", napiRunScriptPathEnvNull),
+        DECLARE_NAPI_FUNCTION("napiRunScriptPathResNull", napiRunScriptPathResNull),
         DECLARE_NAPI_FUNCTION("napiGetNodeVersion", napiGetNodeVersion),
         DECLARE_NAPI_FUNCTION("napiCallThreadsafeFunction", napiCallThreadsafeFunction),
+        DECLARE_NAPI_FUNCTION("napiCallThreadsafeFunctionNull", napiCallThreadsafeFunctionNull),
         DECLARE_NAPI_FUNCTION("napiCreateThreadsafeFunction", napiCreateThreadsafeFunction),
+        DECLARE_NAPI_FUNCTION("napiCreateThreadsafeFunctionNull", napiCreateThreadsafeFunctionNull),
         DECLARE_NAPI_FUNCTION("napiRefthreadSafeFunction", napiRefthreadSafeFunction),
+        DECLARE_NAPI_FUNCTION("napiRefthreadSafeFunctionNull", napiRefthreadSafeFunctionNull),
         DECLARE_NAPI_FUNCTION("napiCreateDate", napiCreateDate),
+        DECLARE_NAPI_FUNCTION("napiCreateDateNull", napiCreateDateNull),
         DECLARE_NAPI_FUNCTION("napiCreateBigintUint64", napiCreateBigintUint64),
+        DECLARE_NAPI_FUNCTION("napiCreateBigintUint64Null", napiCreateBigintUint64Null),
         DECLARE_NAPI_FUNCTION("napiCreateBigintInt64", napiCreateBigintInt64),
+        DECLARE_NAPI_FUNCTION("napiCreateBigintInt64Null", napiCreateBigintInt64Null),
         DECLARE_NAPI_FUNCTION("napiCreateBigintWords", napiCreateBigintWords),
+        DECLARE_NAPI_FUNCTION("napiCreateBigintWordsNull", napiCreateBigintWordsNull),
         DECLARE_NAPI_FUNCTION("napiGetCbInfo", napiGetCbInfo),
         DECLARE_NAPI_FUNCTION("checkTypeTag", CheckTypeTag),
         DECLARE_NAPI_FUNCTION("typeTaggedInstance", TypeTaggedInstance),
@@ -5107,42 +6372,82 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("getGlobal", getGlobal),
         DECLARE_NAPI_FUNCTION("callFunction", callFunction),
         DECLARE_NAPI_FUNCTION("ThreadSafeTest", ThreadSafeTest),
+        DECLARE_NAPI_FUNCTION("ThreadSafeTestNull", ThreadSafeTestNull),
         DECLARE_NAPI_FUNCTION("CreateBuffer", CreateBuffer),
+        DECLARE_NAPI_FUNCTION("CreateBufferNull", CreateBufferNull),
         DECLARE_NAPI_FUNCTION("CreateExternalBuffer", CreateExternalBuffer),
+        DECLARE_NAPI_FUNCTION("CreateExternalBufferNull", CreateExternalBufferNull),
         DECLARE_NAPI_FUNCTION("BufferCopy", BufferCopy),
+        DECLARE_NAPI_FUNCTION("BufferCopyNull", BufferCopyNull),
         DECLARE_NAPI_FUNCTION("IsBuffer", IsBuffer),
+        DECLARE_NAPI_FUNCTION("IsBufferNull", IsBufferNull),
         DECLARE_NAPI_FUNCTION("GetBufferInfo", GetBufferInfo),
+        DECLARE_NAPI_FUNCTION("GetBufferInfoNull", GetBufferInfoNull),
         DECLARE_NAPI_FUNCTION("GetAllPropertyNames", GetAllPropertyNames),
+        DECLARE_NAPI_FUNCTION("GetAllPropertyNamesEnvNull", GetAllPropertyNamesEnvNull),
+        DECLARE_NAPI_FUNCTION("GetAllPropertyNamesObjNull", GetAllPropertyNamesObjNull),
+        DECLARE_NAPI_FUNCTION("GetAllPropertyNamesResNull", GetAllPropertyNamesResNull),
         DECLARE_NAPI_FUNCTION("GetSymbolNames", GetSymbolNames),
         DECLARE_NAPI_FUNCTION("GetEnumerableWritableNames", GetEnumerableWritableNames),
         DECLARE_NAPI_FUNCTION("GetOwnWritableNames", GetOwnWritableNames),
         DECLARE_NAPI_FUNCTION("GetEnumerableConfigurableNames", GetEnumerableConfigurableNames),
         DECLARE_NAPI_FUNCTION("GetOwnConfigurableNames", GetOwnConfigurableNames),
         DECLARE_NAPI_FUNCTION("FreezeTest", FreezeTest),
+        DECLARE_NAPI_FUNCTION("FreezeTestNull", FreezeTestNull),
         DECLARE_NAPI_FUNCTION("SealTest", SealTest),
+        DECLARE_NAPI_FUNCTION("SealTestNull", SealTestNull),
         DECLARE_NAPI_FUNCTION("StaticBuffer", StaticBuffer),
         DECLARE_NAPI_FUNCTION("External", External),
         DECLARE_NAPI_FUNCTION("DetachTest", DetachTest),
+        DECLARE_NAPI_FUNCTION("DetachTestEnvNull", DetachTestEnvNull),
+        DECLARE_NAPI_FUNCTION("DetachTestArrNull", DetachTestArrNull),
         DECLARE_NAPI_FUNCTION("IsDetachedTest", IsDetachedTest),
+        DECLARE_NAPI_FUNCTION("IsDetachedTestEnvNull", IsDetachedTestEnvNull),
+        DECLARE_NAPI_FUNCTION("IsDetachedTestArrNull", IsDetachedTestArrNull),
+        DECLARE_NAPI_FUNCTION("IsDetachedTestResNull", IsDetachedTestResNull),
         DECLARE_NAPI_FUNCTION("stringUtf16OfLengthLeZero", StringUtf16OfLengthLeZero),
         DECLARE_NAPI_FUNCTION("stringUtf16OfLengthEqOne", StringUtf16OfLengthEqOne),
         DECLARE_NAPI_FUNCTION("stringUtf8OfLengthLeZero", StringUtf8OfLengthLeZero),
         DECLARE_NAPI_FUNCTION("NewTargetTest", NewTargetTest),
         DECLARE_NAPI_FUNCTION("napiLoadModule", napiLoadModule),
+        DECLARE_NAPI_FUNCTION("napiLoadModuleEnvNull", napiLoadModuleEnvNull),
+        DECLARE_NAPI_FUNCTION("napiLoadModuleResNull", napiLoadModuleResNull),
         DECLARE_NAPI_FUNCTION("createAsyncResource", CreateAsyncResource),
+        DECLARE_NAPI_FUNCTION("createAsyncResourceEnvNull", CreateAsyncResourceEnvNull),
+        DECLARE_NAPI_FUNCTION("createAsyncResourceObjNull", CreateAsyncResourceObjNull),
+        DECLARE_NAPI_FUNCTION("createAsyncResourceCbNull", CreateAsyncResourceCbNull),
         DECLARE_NAPI_FUNCTION("destroyAsyncResource", DestroyAsyncResource),
         DECLARE_NAPI_FUNCTION("runInCallbackScope", RunInCallbackScope),
         DECLARE_NAPI_FUNCTION("testResolveAsync", TestResolveAsync),
         DECLARE_NAPI_FUNCTION("napiSetInstanceData", NapiSetInstanceData),
+        DECLARE_NAPI_FUNCTION("napiSetInstanceDataEnvNull", NapiSetInstanceDataEnvNull),
+        DECLARE_NAPI_FUNCTION("napiGetInstanceDataEnvNull", NapiGetInstanceDataEnvNull),
+        DECLARE_NAPI_FUNCTION("napiGetInstanceDataDataNull", NapiGetInstanceDataDataNull),
         DECLARE_NAPI_FUNCTION("asyncWorkCallback", AsyncWorkCallback),
         DECLARE_NAPI_FUNCTION("napiAsyncCleanUpHook", NapiAsyncCleanUpHook),
+        DECLARE_NAPI_FUNCTION("napiAsyncCleanUpHookHandleNull", NapiAsyncCleanUpHookHandleNull),
+        DECLARE_NAPI_FUNCTION("napiAsyncCleanUpHookEnvNull", NapiAsyncCleanUpHookEnvNull),
+        DECLARE_NAPI_FUNCTION("napiAsyncCleanUpHookHookNull", NapiAsyncCleanUpHookHookNull),
         DECLARE_NAPI_FUNCTION("napiEnvCleanUpHook", NapiEnvCleanUpHook),
+        DECLARE_NAPI_FUNCTION("napiEnvCleanUpHookEnvNull", NapiEnvCleanUpHookEnvNull),
+        DECLARE_NAPI_FUNCTION("napiEnvCleanUpHookFuncNull", NapiEnvCleanUpHookFuncNull),
+        DECLARE_NAPI_FUNCTION("napiRemoveEnvCleanUpHookEnvNull", NapiRemoveEnvCleanUpHookEnvNull),
+        DECLARE_NAPI_FUNCTION("napiRemoveEnvCleanUpHookFuncNull", NapiRemoveEnvCleanUpHookFuncNull),
         DECLARE_NAPI_FUNCTION("getModuleFileName", GetModuleFileName),
+        DECLARE_NAPI_FUNCTION("getModuleFileNameEnvNull", GetModuleFileNameEnvNull),
+        DECLARE_NAPI_FUNCTION("getModuleFileNameResNull", GetModuleFileNameResNull),
         DECLARE_NAPI_FUNCTION("asyncWorkWithQos", AsyncWorkWithQos),
+        DECLARE_NAPI_FUNCTION("asyncWorkWithQosEnvNull", AsyncWorkWithQosEnvNull),
+        DECLARE_NAPI_FUNCTION("asyncWorkWithQosWorkNull", AsyncWorkWithQosWorkNull),
         DECLARE_NAPI_FUNCTION("coerceToNativeBindingObject", CoerceToNativeBindingObject),
         DECLARE_NAPI_FUNCTION("createObjectWithProperties", CreateObjectWithProperties),
+        DECLARE_NAPI_FUNCTION("createObjectWithPropertiesResNull", CreateObjectWithPropertiesResNull),
+        DECLARE_NAPI_FUNCTION("createObjectWithPropertiesEnvResNull", CreateObjectWithPropertiesEnvResNull),
+        DECLARE_NAPI_FUNCTION("createObjectWithPropertiesEnvNull", CreateObjectWithPropertiesEnvNull),
         DECLARE_NAPI_FUNCTION("createObjectWithNamedProperties", CreateObjectWithNamedProperties),
         DECLARE_NAPI_FUNCTION("makeCallback", MakeCallback),
+        DECLARE_NAPI_FUNCTION("makeCallbackEnvNull", MakeCallbackEnvNull),
+        DECLARE_NAPI_FUNCTION("makeCallbackTextNull", MakeCallbackTextNull),
         DECLARE_NAPI_FUNCTION("makeCallbackOne", MakeCallbackOne),
         DECLARE_NAPI_FUNCTION("runEventLoop", RunEventLoop),
         DECLARE_NAPI_FUNCTION("stopEventLoop", StopEventLoop),
