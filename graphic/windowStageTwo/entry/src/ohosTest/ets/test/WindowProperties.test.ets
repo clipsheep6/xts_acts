@@ -397,7 +397,10 @@ export default function windowPropertiesTest() {
         if(error.code == 1300002){
           console.info(`${caseName} This window state is abnormal`);
           done();
-        } else{
+        } else if (error.code == 801) {
+          console.info(`${caseName} The current device type does not support to windowRectChange`);
+          done();
+        } else {
           console.error(`${caseName}: Error: ${JSON.stringify(error)}`);
           expect().assertFail();
           done();
@@ -434,7 +437,10 @@ export default function windowPropertiesTest() {
         if(error.code == 1300002){
           console.info(`${caseName} This window state is abnormal`);
           done();
-        } else{
+        }  else if (error.code == 801) {
+          console.info(`${caseName} The current device type does not support to windowRectChange`);
+          done();
+        } else {
           console.error(`${caseName}: Error: ${JSON.stringify(error)}`);
           expect().assertFail();
           done();
@@ -480,7 +486,10 @@ export default function windowPropertiesTest() {
         if(error.code == 1300002){
           console.info(`${caseName} This window state is abnormal`);
           done();
-        } else{
+        } else if (error.code == 801) {
+          console.info(`${caseName} The current device type does not support to windowRectChange`);
+          done();
+        } else {
           console.error(`${caseName}: Error: ${JSON.stringify(error)}`);
           expect().assertFail();
           done();
@@ -525,7 +534,10 @@ export default function windowPropertiesTest() {
         if(error.code == 1300002){
           console.info(`${caseName} This window state is abnormal`);
           done();
-        } else{
+        } else if (error.code == 801) {
+          console.info(`${caseName} The current device type does not support to windowRectChange`);
+          done();
+        } else {
           console.error(`${caseName}: Error: ${JSON.stringify(error)}`);
           expect().assertFail();
           done();
@@ -570,7 +582,10 @@ export default function windowPropertiesTest() {
         if(error.code == 1300002){
           console.info(`${caseName} This window state is abnormal`);
           done();
-        } else{
+        }  else if (error.code == 801) {
+          console.info(`${caseName} The current device type does not support to windowRectChange`);
+          done();
+        } else {
           console.error(`${caseName}: Error: ${JSON.stringify(error)}`);
           expect().assertFail();
           done();
