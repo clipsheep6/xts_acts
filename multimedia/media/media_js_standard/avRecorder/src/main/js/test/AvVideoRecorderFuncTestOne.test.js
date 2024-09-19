@@ -270,6 +270,7 @@ export default function avVideoRecorderTestOne() {
         let cameraOutputCap;
         let videoSurfaceId = null;
         let myProfile = null;
+        let myPreviewProfile = null;
         let isSupportCameraVideoProfiles = true;
 
         beforeAll(async function () {
@@ -298,15 +299,16 @@ export default function avVideoRecorderTestOne() {
             let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
             if (cameraOutputCapability?.videoProfiles) {
                 console.info('initCamera 007');
-                let defaultDisplay = null;
-                try {
-                    defaultDisplay = display.getDefaultDisplaySync();
-                } catch (exception) {
-                    console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
-                }
-                let availableVideoProfileList = [];
-                getVideoProfile(cameraOutputCapability.videoProfiles, defaultDisplay.width, defaultDisplay.height, availableVideoProfileList, 0);
-                myProfile = availableVideoProfileList[0];
+                // let defaultDisplay = null;
+                // try {
+                //     defaultDisplay = display.getDefaultDisplaySync();
+                // } catch (exception) {
+                //     console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+                // }
+                // let availableVideoProfileList = [];
+                // getVideoProfile(cameraOutputCapability.videoProfiles, defaultDisplay.width, defaultDisplay.height, availableVideoProfileList, 0);
+                // myProfile = availableVideoProfileList[0];
+                setProfileSize(cameraOutputCapability.videoProfiles,cameraOutputCapability.previewProfiles);
                 let configs = [avConfig, avConfigMpeg, avConfigMpegAac, avConfigH264, avConfigH264Aac, avConfigH265, avConfigH265Aac]
                 for (let i = 0; i < configs.length; i++) {
                     checkDevice(configs[i])
@@ -351,23 +353,31 @@ export default function avVideoRecorderTestOne() {
             console.info('afterAll case');
         })
 
-         function getVideoProfile(sizeList, width, height, toList, index) {
-            console.log('display width: ' + width + ', height: ' + height);
-            let aVvideoProfile = undefined;
-            for (let i = 0; i < sizeList.length; i++) {
-                const size = sizeList[i].size;
-                if(isCorrectSize(size, width, height)) {
-                    if(!aVvideoProfile || size.width > aVvideoProfile.size.width) {
-                        aVvideoProfile = sizeList[i];
+         function setProfileSize(videoProfiles, previewProfiles) {
+            console.log('choosen videoProfiles: ' + JSON.stringify(videoProfiles));
+            console.log('choosen previewProfiles: ' + JSON.stringify(previewProfiles));
+
+            let myProfile0 = [];
+            let myPreviewProfile0 = [];
+            for (let i = 0; i < videoProfiles.length; i++) {
+                for (let j = 0; j < previewProfiles.length; j++) {
+                    if(checkIfQuotientsAreEqual(videoProfiles[i], previewProfiles[j])){
+                        myProfile0[0] = videoProfiles[i];
+                        myPreviewProfile0[0] = previewProfiles[j];
+                        console.log('choosen myProfile0: ' + JSON.stringify(myProfile0));
+                        console.log('choosen myPreviewProfile0: ' + JSON.stringify(myPreviewProfile0));
+                        break outerLoop;
                     }
                 }
             }
-            toList[index] = aVvideoProfile;
-            console.log('choosen aVvideoProfile: ' + JSON.stringify(aVvideoProfile));
+            myProfile = myProfile0[0];
+            myPreviewProfile = myPreviewProfile0[0];
+            console.log('choosen myProfile: ' + JSON.stringify(myProfile));
+            console.log('choosen myPreviewProfile: ' + JSON.stringify(myPreviewProfile));
          }
 
-         function isCorrectSize(size, standardWidth, standardHeight) {
-            return (size.width <= standardWidth) && (size.height <= standardHeight);
+         function checkIfQuotientsAreEqual(videoProfileSize, previewProfileSize) {
+            return (videoProfileSize.size.width / videoProfileSize.size.height) === (previewProfileSize.size.width / previewProfileSize.size.height);
          }
 
         function checkDevice(avConfig) {
@@ -385,7 +395,7 @@ export default function avVideoRecorderTestOne() {
             let cameras = cameraManager.getSupportedCameras();
             let cameraDevice = cameras[0];
             // 查询相机设备在模式下支持的输出能力
-            let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
+            // let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
             // 创建相机输入流
             try {
                 cameraInput = cameraManager.createCameraInput(cameraDevice);
@@ -401,6 +411,7 @@ export default function avVideoRecorderTestOne() {
             // 创建VideoOutput对象
             // let profile = cameraOutputCapability.videoProfiles[0];
             let profile = myProfile;
+            console.log('choosen[0] profile: ' + JSON.stringify(profile));
             try {
                 videoOutput = cameraManager.createVideoOutput(profile, videoSurfaceId)
                 console.info('createVideoOutput success');
@@ -414,7 +425,8 @@ export default function avVideoRecorderTestOne() {
 
             // 创建previewOutput输出对象
             let surfaceId = globalThis.value;
-            let previewProfile = cameraOutputCapability.previewProfiles[0];
+            let previewProfile = myPreviewProfile;
+            console.log('choosen[0] previewProfile: ' + JSON.stringify(previewProfile));
             try {
                 previewOutput = cameraManager.createPreviewOutput(previewProfile, surfaceId)
                 console.info('createPreviewOutput success');
