@@ -26,7 +26,7 @@ static napi_value testTextSpanContent001(napi_env env, napi_callback_info info)
     valueItem.string = "textContent";
     ArkUI_AttributeItem spanContent = {.string = "SpanContent"};
     nodeAPI->setAttribute(text, NODE_TEXT_FONT, &valueItem);
-    NAPI_START(span, ARKUI_NODE_SPAN);
+    auto span = nodeAPI->createNode(ARKUI_NODE_SPAN);
     nodeAPI->addChild(text, span);
     auto ret = nodeAPI->setAttribute(span, NODE_SPAN_CONTENT, &spanContent);
     ASSERT_EQ(ret, SUCCESS);
@@ -45,7 +45,7 @@ static napi_value testTextSpanFontSize002(napi_env env, napi_callback_info info)
     float size1 = 16;
     ArkUI_NumberValue value[] = {{.f32 = size}};
     ArkUI_AttributeItem valueItem = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
-    NAPI_START(span, ARKUI_NODE_SPAN);
+    auto span = nodeAPI->createNode(ARKUI_NODE_SPAN);
     nodeAPI->addChild(text, span);
     auto ret = nodeAPI->setAttribute(text, NODE_FONT_SIZE, &valueItem);
     ASSERT_EQ(ret, SUCCESS);
@@ -59,7 +59,7 @@ static napi_value testTextSpanLineHeight003(napi_env env, napi_callback_info inf
     float height = -10;
     ArkUI_NumberValue value[] = {{.f32 = height}};
     ArkUI_AttributeItem valueItem = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
-    NAPI_START(span, ARKUI_NODE_SPAN);
+    auto span = nodeAPI->createNode(ARKUI_NODE_SPAN);
     nodeAPI->addChild(text, span);
     auto ret = nodeAPI->setAttribute(text, NODE_TEXT_LINE_HEIGHT, &valueItem);
     ASSERT_EQ(ret, SUCCESS);
