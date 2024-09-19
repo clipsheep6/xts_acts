@@ -29,9 +29,9 @@ async function sleep(time) {
 }
 export default function WindowLifecycle(context: common.UIAbilityContext, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
   describe('WindowLifecycleTest', function () {
-    
+
     beforeAll(function () {
-      
+
     })
     beforeEach(function () {
 
@@ -509,7 +509,7 @@ export default function WindowLifecycle(context: common.UIAbilityContext, window
           expect().assertFail();
           done();
           });
-          
+
         }).catch((err) => {
           console.log(msgStr + 'windowStage.createSubWindow failed error: ' + JSON.stringify(err));
           subWindowClass.destroyWindow();
@@ -1172,6 +1172,7 @@ export default function WindowLifecycle(context: common.UIAbilityContext, window
         expect().assertFail();
         done();
       });
+    })
 
 
 
@@ -1620,6 +1621,6 @@ export default function WindowLifecycle(context: common.UIAbilityContext, window
 
 
 
-    })
+    
   })
 }
