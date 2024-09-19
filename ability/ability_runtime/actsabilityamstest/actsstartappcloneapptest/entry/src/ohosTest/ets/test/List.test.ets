@@ -15,5 +15,5 @@
 import actsStartAppCloneAppTest from './ActsStartAppCloneAppTest.test';
 
 export default function testsuite() {
-  actsStartAppCloneAppTest()
+  actsStartAppCloneAppTest();
 }

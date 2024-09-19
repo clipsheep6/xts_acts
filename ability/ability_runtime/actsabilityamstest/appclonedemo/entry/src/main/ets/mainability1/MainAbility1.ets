@@ -12,65 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Ability from '@ohos.app.ability.UIAbility'
 import commonEvent from '@ohos.commonEventManager';
 import { AbilityConstant, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-let ON_FOREGROUND = 'on_foreground';
-let SHOW_ABILITY_EVENT = 'show_ability_event';
-let HIDE_ABILITY_EVENT = 'hide_ability_event';
-let START_ABILITY_IN_NEW_PROCESS_EVENT = 'start_ability_in_new_process_event';
+
+let FOREGROUND_EVENT = "foreground_event"
+
 let tag = '[ACTS_StartAbilityInNewProcess MainAbility1]';
-let commonEventData: commonEvent.CommonEventPublishData = {
-  parameters: {
-    num: -1,
-  }
-};
+
 
 export default class MainAbility1 extends Ability {
-  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log(`${tag} onCreate`);
-    let subscribeInfo: commonEvent.CommonEventSubscribeInfo = {
-      events: [SHOW_ABILITY_EVENT, HIDE_ABILITY_EVENT]
-    };
-    let subscriber = await commonEvent.createSubscriber(subscribeInfo);
-    commonEvent.subscribe(subscriber, async (err, data) => {
-      console.log(`${tag} data: ${JSON.stringify(data)}}`);
-      commonEvent.unsubscribe(subscriber, (err, data) => {
-        console.info(`${tag} unsubscribe success`);
-      })
-      switch (data.event) {
-        case SHOW_ABILITY_EVENT: {
-          console.log(`${tag} showAbility`);
-          try {
-            await this.context.showAbility();
-          } catch (err) {
-            console.log(`${tag} showAbility err: ${JSON.stringify(err)}`);
-            commonEventData.parameters!.num = err.code;
-            commonEvent.publish(START_ABILITY_IN_NEW_PROCESS_EVENT, commonEventData, (err)=>{
-              console.log(`${tag} publish err: ${JSON.stringify(err)}`);
-            });
-          }
-        }
-          break;
-        case HIDE_ABILITY_EVENT: {
-          try {
-            await this.context.hideAbility();
-          } catch (err) {
-            console.log(`${tag} showAbility err: ${JSON.stringify(err)}`);
-            commonEventData.parameters!.num = err.code;
-            commonEvent.publish(START_ABILITY_IN_NEW_PROCESS_EVENT, commonEventData, (err)=>{
-              console.log(`${tag} publish err: ${JSON.stringify(err)}`);
-            });
-          }
-        }
-          break;
-        default:
-          break;
-      }
-    });
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, tag, '%{public}s', `want===${JSON.stringify(want)},=launch==${JSON.stringify(launchParam)}`);
   }
 
   onDestroy(): void {
@@ -78,10 +35,8 @@ export default class MainAbility1 extends Ability {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     AppStorage.setOrCreate('pageContent', 'IndexTwo');
-
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -92,22 +47,20 @@ export default class MainAbility1 extends Ability {
   }
 
   onWindowStageDestroy(): void {
-    // Main window is destroyed, release UI related resources
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
-    // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
-    commonEvent.publish(ON_FOREGROUND, (err)=>{
+    commonEvent.publish(FOREGROUND_EVENT, (err) => {
       console.log(`${tag} publish err: ${JSON.stringify(err)}`);
     });
-    setTimeout(()=>{
+    setTimeout(() => {
       this.terminalSelf();
-    },2000);
+    }, 1000)
   }
 
-  async terminalSelf(){
+  async terminalSelf() {
     let resultCode = 100;
     let want: Want = {
       bundleName: 'com.acts.appclonedemo',
@@ -125,9 +78,8 @@ export default class MainAbility1 extends Ability {
     });
   }
 
+
   onBackground(): void {
-    // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
-
 }

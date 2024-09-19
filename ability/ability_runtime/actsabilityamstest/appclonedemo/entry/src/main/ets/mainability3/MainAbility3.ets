@@ -12,69 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Ability from '@ohos.app.ability.UIAbility'
 import commonEvent from '@ohos.commonEventManager';
-import process from '@ohos.process';
 import { AbilityConstant, common } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tag = '[ACTS_StartAbilityInNewProcess MainAbility1]';
-let START_ABILITY_EVENT = "start_ability_event";
 let FOREGROUND_EVENT = "foreground_event"
-let NOTIFY_PID_EVENT = "notify_pid_event";
-let KILL_PROCESS_EVENT = "kill_process_event";
-let commonEventData: commonEvent.CommonEventPublishData = {
-  parameters: {
-    num: -1,
-    pid: -1
-  }
-};
 
 export default class MainAbility3 extends Ability {
-  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-    console.log(`${tag} onCreate`);
-    let subscribeInfo: commonEvent.CommonEventSubscribeInfo = {
-      events: [START_ABILITY_EVENT, KILL_PROCESS_EVENT]
-    };
-    let subscriber = await commonEvent.createSubscriber(subscribeInfo);
-    commonEvent.subscribe(subscriber, (err, data) => {
-      console.log(`${tag} data: ${JSON.stringify(data)}}`);
-      let dataObj = data.parameters as Map<string,object>;
-      switch (data.event) {
-        case START_ABILITY_EVENT: {
-          if (dataObj['targetPid'] !== process.pid) {
-            return;
-          }
-          if (dataObj['isDone'] as number == 1) {
-            commonEvent.unsubscribe(subscriber, (err, data) => {
-              console.info(`${tag} unsubscribe success`);
-            });
-          }
-        }
-          break;
-        case KILL_PROCESS_EVENT: {
-          if (dataObj['targetPid'] !== process.pid) {
-            return;
-          }
-          if (dataObj['isDone'] as number == 1) {
-            commonEvent.unsubscribe(subscriber, (err, data) => {
-              console.info(`${tag} unsubscribe success`);
-            })
-          }
-          this.context.terminateSelf();
-        }
-          break;
-        default:
-          break;
-      }
-    });
-    commonEventData.parameters!.pid = process.pid;
-    console.log(`${tag} pid: ${commonEventData.parameters!.pid}`);
-    commonEvent.publish(NOTIFY_PID_EVENT, commonEventData, (err)=>{
-      console.log(`${tag} publish NOTIFY_PID_EVENT err: ${JSON.stringify(err)}`);
-    });
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    hilog.info(0x0000, tag, '%{public}s', `want===${JSON.stringify(want)},=launch==${JSON.stringify(launchParam)}`);
   }
 
   onDestroy(): void {
@@ -82,10 +33,8 @@ export default class MainAbility3 extends Ability {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     AppStorage.setOrCreate('pageContent', 'IndexCommonTwo');
-
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
@@ -96,22 +45,29 @@ export default class MainAbility3 extends Ability {
   }
 
   onWindowStageDestroy(): void {
-    // Main window is destroyed, release UI related resources
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
-  onForeground(): void {
-    // Ability has brought to foreground
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
-    commonEventData.parameters!.pid = process.pid;
-    commonEvent.publish(FOREGROUND_EVENT, commonEventData, (err)=>{
-      console.log(`${tag} publish FOREGROUND_EVENT err: ${JSON.stringify(err)}`);
+  async onForeground(): Promise<void> {
+    hilog.info(0x0000, tag, '%{public}s', 'Ability onForeground');
+    let resource = $r("app.string.EntryAbility_label2")
+    hilog.info(0x0000, tag, '%{public}s', `commonEventData str==${JSON.stringify(resource)}`);
+    let resourceManager = this.context.resourceManager;
+    let label = await resourceManager.getStringValue(resource);
+    hilog.info(0x0000, tag, '%{public}s', `commonEventData label==${JSON.stringify(label)}`);
+    let commonEventData: commonEvent.CommonEventPublishData = {
+      parameters:{
+        returnStr:label,
+      }
+    };
+    hilog.info(0x0000, 'testTag', '%{public}s', `commonEventData==${JSON.stringify(commonEventData)}`);
+    commonEvent.publish(FOREGROUND_EVENT, commonEventData,(err)=>{
+      console.log(`${tag} publish err: ${JSON.stringify(err)}`);
     });
     setTimeout(()=>{
       this.terminalSelf();
-    },2000);
+    },1000)
   }
-
   async terminalSelf(){
     let resultCode = 100;
     let want: Want = {
@@ -129,9 +85,7 @@ export default class MainAbility3 extends Ability {
         'errMessage:' + JSON.stringify(err.message));
     });
   }
-
   onBackground(): void {
-    // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
 
