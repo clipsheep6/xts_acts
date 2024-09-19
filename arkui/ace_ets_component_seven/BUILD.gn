@@ -20,6 +20,7 @@ group("componentSevenAttrssTest") {
       "ace_ets_component_common_seven_attrs_accessibilityLevel:ActsAceEtsComponentCommonSevenAttrsAccessibilityLevelTest",
       "ace_ets_component_common_seven_attrs_accessibilityText:ActsAceEtsComponentCommonSevenAttrsAccessibilityTextTest",
       "ace_ets_component_common_seven_attrs_align:ActsAceEtsComponentCommonSevenAttrsAlignTest",
+      "ace_ets_component_common_seven_attrs_allowDrop:ActsAceEtsComponentCommonSevenAttrsAllowDropTest",
       "ace_ets_component_common_seven_attrs_backdropBlur:ActsAceEtsComponentCommonSevenAttrsBackdropBlurTest",
       "ace_ets_component_common_seven_attrs_backgroundBlurStyle:ActsAceEtsComponentCommonSevenAttrsBackgroundBlurStyleTest",
       "ace_ets_component_common_seven_attrs_backgroundColor:ActsAceEtsComponentCommonSevenAttrsBackgroundColorTest",
