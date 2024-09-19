@@ -542,7 +542,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect(true).assertTrue();
         done();
       } catch (error) {
-        if (err.code === 801) {
+        if (error.code === 801) {
           console.info(`${msgStr} The current device type does not support to windowRectChange`);
           done();
         } else {
