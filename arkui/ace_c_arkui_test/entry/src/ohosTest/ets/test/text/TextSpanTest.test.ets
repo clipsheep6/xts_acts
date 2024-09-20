@@ -36,6 +36,8 @@ export default function textSpanTest() {
      */
     it('testTextSpanContent001', 0, async (done: Function) => {
       expect(nativeFunc.testTextSpanContent001()).assertEqual(0)
+      let textID1 = getInspectorByKey('textID1');
+      expect(""+JSON.stringify(JSON.parse(textID1).$attrs.content).assertEqual('SpanContent');
       done()
     })
 
@@ -48,7 +50,9 @@ export default function textSpanTest() {
      * @tc.level      : Level 1
      */
     it('testTextSpanFontSize002', 0, async (done: Function) => {
-      expect(nativeFunc.testTextSpanFontSize002()).assertEqual(0)
+      expect(nativeFunc.testTextSpanFontSize002()).assertEqual(401)
+      let textID2 = getInspectorByKey('textID2');
+      expect(""+JSON.stringify(JSON.parse(textID2).$attrs.fontSize).assertEqual('16.00fp');
       done()
     })
 
@@ -61,7 +65,7 @@ export default function textSpanTest() {
      * @tc.level      : Level 1
      */
     it('testTextSpanLineHeight003', 0, async (done: Function) => {
-      expect(nativeFunc.testTextSpanLineHeight003()).assertEqual(0)
+      expect(nativeFunc.testTextSpanLineHeight003()).assertEqual(401)
       done()
     })
   })
