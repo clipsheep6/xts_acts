@@ -104,6 +104,7 @@ add_library(nativerender SHARED
     drag/drag_getXY.cpp
     drag/drag_getWidthHeight.cpp
     drag/drag_getModifierKeyStates.cpp
+    animation/animator_event_test.cpp
 )
 
 add_library(nativefunc SHARED
