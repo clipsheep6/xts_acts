@@ -15,11 +15,11 @@
 
 @Component
 export struct NavigationView {
-  private arr: number[] = [0, 1, 2, 3]
-  @State isActive: boolean = false
-  @State dex: number = 0
+  private arr: number[] = [0, 1, 2, 3];
+  @State isActive: boolean = false;
+  @State dex: number = 0;
   @Link _position: Position;
-  private componentKey: string;
+  private componentKey: string = '';
 
   build() {
     Navigation() {

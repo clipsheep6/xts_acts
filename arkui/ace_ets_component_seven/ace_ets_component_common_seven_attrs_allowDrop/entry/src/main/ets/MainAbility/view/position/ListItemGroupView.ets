@@ -16,11 +16,11 @@
 @Component
 export struct ListItemGroupView {
   @Link _position: Position;
-  private componentKey: string;
-  private parentWidth: number;
-  private parentHeight: number;
-  private parentComponentKey: string;
-  private referenceComponentKey: string;
+  private componentKey: string = '';
+  private parentWidth: number = 0;
+  private parentHeight: number = 0;
+  private parentComponentKey: string = '';
+  private referenceComponentKey: string = '';
   private projects: string[] = ['item1', 'item2', 'item3']
 
   @Builder itemHead(text: string) {
@@ -51,11 +51,11 @@ export struct ListItemGroupView {
   build() {
     List({ space: 20 }) {
       ListItemGroup({ header: this.itemHead('Group1'), footer: this.itemFoot(this.projects.length) }) {
-        ForEach(this.projects, (project) => {
+        ForEach(this.projects, (project: string) => {
           ListItem() {
             this.content(project)
           }
-        }, item => item)
+        }, (item: number) => item.toString())
       }
       .borderRadius(20)
       .position(this._position)
@@ -63,11 +63,11 @@ export struct ListItemGroupView {
       .divider({ strokeWidth: 1, color: Color.Blue })
 
       ListItemGroup({ header: this.itemHead('Group2'), footer: this.itemFoot(this.projects.length) }) {
-        ForEach(this.projects, (project) => {
+        ForEach(this.projects, (project: string) => {
           ListItem() {
             this.content(project)
           }
-        }, item => item)
+        }, (item: number) => item.toString())
       }
       .borderRadius(20)
       .key(this.referenceComponentKey)
