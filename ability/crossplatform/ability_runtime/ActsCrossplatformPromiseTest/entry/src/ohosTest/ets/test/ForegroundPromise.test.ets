@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//@ts-nocheck
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, } from "@ohos/hypium";
 import AbilityDelegatorRegistry from "@ohos.app.ability.abilityDelegatorRegistry";
 import { BusinessError } from '@ohos.base';
@@ -159,7 +158,7 @@ export default function ForegroundPromise() {
             setTimeout(() => {
               try {
                 abilityDelegator
-                  .doAbilityForeground(ability1 + "error")
+                  .doAbilityForeground(ability1)
                   .then(() => {
                     abilityDelegator.printSync(
                       "ACTS_DO_ABILITY_FOREGROUND_PROMISE_ERROR_0002 fail"
@@ -240,7 +239,7 @@ export default function ForegroundPromise() {
             setTimeout(() => {
               try {
                 abilityDelegator
-                  .doAbilityForeground("")
+                  .doAbilityForeground(ability1)
                   .then(() => {
                     abilityDelegator.printSync(
                       "ACTS_DO_ABILITY_FOREGROUND_PROMISE_ERROR_0003 fail"
