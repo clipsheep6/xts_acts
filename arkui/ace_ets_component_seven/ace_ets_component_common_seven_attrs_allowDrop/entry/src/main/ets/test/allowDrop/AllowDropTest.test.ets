@@ -31,7 +31,7 @@ export default function AllowDropTest() {
   let parentHeight = 200;
   let gutter = 10;
   let columns = 3;
-  let pageConfig = {
+  let pageConfig: ESObject = {
     testName: 'testAllowDrop',
     pageName: 'allowDropPage',
     pageUrl: 'MainAbility/pages/allowDrop/AllowDropPage',
@@ -43,24 +43,24 @@ export default function AllowDropTest() {
     parentComponentKey: 'parentComponentKey',
     gutter: gutter,
     columns: columns
-  }
+  } as ESObject
 
-  let testValues = [{
+  let testValues: ESObject[] = [{
     describe: 'SetAllowDrop',
     setValue: {
       allowDrop: [udmfType.UniformDataType.IMAGE]
-    },
+    } as ESObject,
     expectValue: {
       allowDrop: ["general.image"]
-    }
-  }]
+    } as ESObject
+  } as ESObject]
 
   /**
    * Create test suite.
    */
   describe('allowDropTest', () => {
     //Generate test cases (it) through a loop based on the support view * test values.
-    CommonTest.initTest(pageConfig, supportView, testValues, async data => {
+    CommonTest.initTest(pageConfig, supportView, testValues, async (data:ESObject) => {
       //Modify the target component properties.
       console.error('[' + data.caseTag + '] allowDropTest');
       console.error('[' + data.caseTag + '] check allowDrop.' + ` ${data.testValue.setValue.allowDrop}`);
