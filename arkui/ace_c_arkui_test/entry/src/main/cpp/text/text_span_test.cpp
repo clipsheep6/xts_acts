@@ -29,12 +29,9 @@ static napi_value testTextSpanContent001(napi_env env, napi_callback_info info)
     auto span = nodeAPI->createNode(ARKUI_NODE_SPAN);
     nodeAPI->addChild(text, span);
     auto ret = nodeAPI->setAttribute(span, NODE_SPAN_CONTENT, &spanContent);
+    ArkUI_AttributeItem textID = {.string = "textID1"};
+    nodeAPI->setAttribute(text, NODE_ID, &textID);
     ASSERT_EQ(ret, SUCCESS);
-    if (nodeAPI->getAttribute(text, NODE_TEXT_FONT)->string == nullptr) {
-        ASSERT_STREQ("123", "SpanContent");
-    } else {
-        ASSERT_STREQ(nodeAPI->getAttribute(text, NODE_TEXT_FONT)->string, "SpanContent");
-    }
     NAPI_END;
 }
 
@@ -47,9 +44,11 @@ static napi_value testTextSpanFontSize002(napi_env env, napi_callback_info info)
     ArkUI_AttributeItem valueItem = {value, sizeof(value) / sizeof(ArkUI_NumberValue)};
     auto span = nodeAPI->createNode(ARKUI_NODE_SPAN);
     nodeAPI->addChild(text, span);
-    auto ret = nodeAPI->setAttribute(text, NODE_FONT_SIZE, &valueItem);
-    ASSERT_EQ(ret, SUCCESS);
-    ASSERT_EQ(nodeAPI->getAttribute(text, NODE_FONT_SIZE)->value[PARAM_0].f32, size1);
+    nodeAPI->setAttribute(text, NODE_FONT_SIZE, &valueItem);
+    ArkUI_AttributeItem spanContent = {.string = "SpanContent"};
+    nodeAPI->setAttribute(span, NODE_SPAN_CONTENT, &spanContent);
+    ArkUI_AttributeItem textID = {.string = "textID2"};
+    nodeAPI->setAttribute(text, NODE_ID, &textID);
     NAPI_END;
 }
 
@@ -62,12 +61,10 @@ static napi_value testTextSpanLineHeight003(napi_env env, napi_callback_info inf
     auto span = nodeAPI->createNode(ARKUI_NODE_SPAN);
     nodeAPI->addChild(text, span);
     auto ret = nodeAPI->setAttribute(text, NODE_TEXT_LINE_HEIGHT, &valueItem);
-    ASSERT_EQ(ret, SUCCESS);
-    if (nodeAPI->getAttribute(text, NODE_TEXT_LINE_HEIGHT)->value[PARAM_0].f32 > 0) {
-        ASSERT_STREQ("123", "123");
-    } else {
-        ASSERT_STREQ("123", "223");
-    }
+    ArkUI_AttributeItem spanContent = {.string = "SpanContent"};
+    nodeAPI->setAttribute(span, NODE_SPAN_CONTENT, &spanContent);
+    ArkUI_AttributeItem textID = {.string = "textID3"};
+    nodeAPI->setAttribute(text, NODE_ID, &textID);
     NAPI_END;
 }
 
