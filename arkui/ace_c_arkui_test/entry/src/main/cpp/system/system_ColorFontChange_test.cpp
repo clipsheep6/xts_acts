@@ -282,6 +282,8 @@ static napi_value testSystemFontStyleEvent_GetFontWeightScale_006(napi_env env, 
                 "OnEventReceive: fontStyle is null");
             return;
         }
+
+        
         auto fontWeight = OH_ArkUI_SystemFontStyleEvent_GetFontWeightScale(fontStyle);
         
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Manager",
