@@ -21,7 +21,7 @@ import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tag = '[ACTS_StartAbilityInNewProcess MainAbility1]';
-let FOREGROUND_EVENT = "foreground_event"
+let FOREGROUND_EVENT = 'foreground_event';
 
 export default class MainAbility3 extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -48,9 +48,9 @@ export default class MainAbility3 extends Ability {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
-  async onForeground(): Promise<void> {
+  async onForeground():Promise<void>{
     hilog.info(0x0000, tag, '%{public}s', 'Ability onForeground');
-    let resource = $r("app.string.EntryAbility_label2")
+    let resource = $r('app.string.EntryAbility_label2');
     hilog.info(0x0000, tag, '%{public}s', `commonEventData str==${JSON.stringify(resource)}`);
     let resourceManager = this.context.resourceManager;
     let label = await resourceManager.getStringValue(resource);

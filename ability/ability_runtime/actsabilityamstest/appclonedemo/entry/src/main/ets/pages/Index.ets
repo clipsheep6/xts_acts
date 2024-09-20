@@ -17,7 +17,7 @@
 struct Index {
   @State message: string = 'Hello  App Clone';
 
-  aboutToAppear(): void {
+  aboutToAppear():void{
     this.message = AppStorage.get('pageContent') as string;
   }
 

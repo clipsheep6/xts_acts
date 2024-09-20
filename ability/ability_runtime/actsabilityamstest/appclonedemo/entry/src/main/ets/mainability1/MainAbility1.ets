@@ -20,10 +20,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let FOREGROUND_EVENT = "foreground_event"
-
+let FOREGROUND_EVENT = 'foreground_event';
 let tag = '[ACTS_StartAbilityInNewProcess MainAbility1]';
-
 
 export default class MainAbility1 extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -60,7 +58,7 @@ export default class MainAbility1 extends Ability {
     }, 1000)
   }
 
-  async terminalSelf() {
+  async terminalSelf(){
     let resultCode = 100;
     let want: Want = {
       bundleName: 'com.acts.appclonedemo',

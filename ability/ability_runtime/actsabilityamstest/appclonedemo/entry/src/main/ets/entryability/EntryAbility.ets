@@ -19,7 +19,7 @@ import { AbilityConstant, common, UIAbility } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
-let FOREGROUND_EVENT = "foreground_event"
+let FOREGROUND_EVENT = 'foreground_event';
 let tag = '[ACTS_StartAbilityInNewProcess EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
@@ -50,9 +50,8 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
-  async onForeground(): Promise<void> {
+  async onForeground():Promise<void>{
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
-    // commonEventData.parameters!.pid = process.pid;
     commonEvent.publish(FOREGROUND_EVENT, (err) => {
       console.log(`${tag} publish FOREGROUND_EVENT err: ${JSON.stringify(err)}`);
     });
@@ -61,7 +60,7 @@ export default class EntryAbility extends UIAbility {
     }, 2000)
   }
 
-  async terminalSelf() {
+  async terminalSelf(){
     let resultCode = 100;
     let want: Want = {
       bundleName: 'com.acts.appclonedemo',
