@@ -14,13 +14,15 @@
  */
 import hilog from '@ohos.hilog';
 import Ability from '@ohos.app.ability.UIAbility'
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
 import Window from '@ohos.window'
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class TestAbility extends Ability {
-    onCreate(want, launchParam) {
+    onCreate(want:Want, launchParam: AbilityConstant.LaunchParam) {
         globalThis.abilityContext = this.context;
         hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
         hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate');
