@@ -20,7 +20,8 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import {
   sleep,
   getPermission,
-  fetchAllOption
+  fetchAllOption,
+  createResource
 } from '../../util/common'
 
 export default function getLastObjectTest () {
@@ -28,15 +29,17 @@ export default function getLastObjectTest () {
 
     let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
     let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
+    let fileNameList: Array<string> = ['lastObj.jpg'];
 
     beforeAll(async () => {
       console.info('beforeAll case');
       await getPermission();
       await sleep(10);
+      await createResource(globalContext, fileNameList);
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_ALBUM_GET_LAST_OBJECT_0100
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Last_Obj_001
      * @tc.name      : get_last_object_promise_001
      * @tc.desc      : getLastObject
      * @tc.size      : MEDIUM

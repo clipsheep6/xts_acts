@@ -31,7 +31,7 @@ export default function releaseTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_RELEASE_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Release_001
      * @tc.name      : release_promise_000
      * @tc.desc      : release photoAccessHelper instance
      * @tc.size      : MEDIUM

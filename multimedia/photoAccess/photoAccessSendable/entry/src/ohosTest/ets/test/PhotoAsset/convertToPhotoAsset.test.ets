@@ -22,6 +22,7 @@ import {
   sleep,
   photoKeys,
   getPermission,
+  createResource
 } from '../../util/common'
 
 export default function convertToPhotoAssetTest () {
@@ -30,10 +31,12 @@ export default function convertToPhotoAssetTest () {
     const fileName: string = 'convertToPhotoAssetTest.jpg';
     let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
     let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
+    let fileNameList: Array<string> = ['convertToPhotoAssetTest.jpg'];
 
     beforeAll(async () => {
       await getPermission();
       await sleep(10);
+      await createResource(globalContext, fileNameList);
     })
 
     /**

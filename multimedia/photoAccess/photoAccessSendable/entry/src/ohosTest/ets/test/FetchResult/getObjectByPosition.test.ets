@@ -21,7 +21,8 @@ import {
   sleep,
   fetchOption,
   photoKeys,
-  getPermission
+  getPermission,
+  createResource
 } from '../../util/common'
 
 export default function getObjectByPositionTest () {
@@ -29,11 +30,13 @@ export default function getObjectByPositionTest () {
 
     let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
     let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
+    let fileNameList: Array<string> = ['getObjectByPositionTest.jpg', 'getObjectByPositionTest.mp4'];
 
     beforeAll(async () => {
       console.info('beforeAll case');
       await getPermission();
       await sleep(10);
+      await createResource(globalContext, fileNameList);
     });
 
 
@@ -54,7 +57,7 @@ export default function getObjectByPositionTest () {
     }
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_OBJECT_BY_POSITION_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Obj_By_Position_001
      * @tc.name      : getObjectByPosition_promise_000
      * @tc.desc      : getObjectByPosition image
      * @tc.size      : MEDIUM
@@ -68,7 +71,7 @@ export default function getObjectByPositionTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_OBJECT_BY_POSITION_0100
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Obj_By_Position_002
      * @tc.name      : getObjectByPosition_promise_001
      * @tc.desc      : getObjectByPosition video
      * @tc.size      : MEDIUM

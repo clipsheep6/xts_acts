@@ -23,7 +23,8 @@ import {
   sleep,
   getPermission,
   getAssetId,
-  isNum
+  isNum,
+  createResource
 } from '../../util/common'
 
 export default function getTest () {
@@ -31,10 +32,12 @@ export default function getTest () {
 
     let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
     let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
+    let fileNameList: Array<string> = ['getTest.jpg', 'getTest.mp4'];
 
     beforeAll(async () => {
       await getPermission();
       await sleep(10);
+      await createResource(globalContext, fileNameList);
     });
 
     const getProvisionAsset = async (done: Function, testNum: string, displayName: string): Promise<sendablePhotoAccessHelper.PhotoAsset | undefined> => {
@@ -87,7 +90,7 @@ export default function getTest () {
     }
 
     /**
-     * @tc.number    : SUB_PHOTO_ACCESS_HELPER_GET_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_Get_MemberType_001
      * @tc.name      : get_image_uri_001
      * @tc.desc      : image get photoKeys.URI
      * @tc.size      : MEDIUM
@@ -104,7 +107,7 @@ export default function getTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTO_ACCESS_HELPER_GET_5000
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_Get_MemberType_002
      * @tc.name      : get_video_uri_001
      * @tc.desc      : video get photoKeys.URI
      * @tc.size      : MEDIUM
@@ -121,7 +124,7 @@ export default function getTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTO_ACCESS_HELPER_GET_6100
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_Get_MemberType_003
      * @tc.name      : get_image_title_001
      * @tc.desc      : image get photoKeys.TITLE
      * @tc.size      : MEDIUM
@@ -138,7 +141,7 @@ export default function getTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTO_ACCESS_HELPER_GET_6200
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_Get_MemberType_004
      * @tc.name      : get_video_title_001
      * @tc.desc      : video get photoKeys.TITLE
      * @tc.size      : MEDIUM

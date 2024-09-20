@@ -21,22 +21,25 @@ import {
   sleep,
   getPermission,
   fetchAllOption,
+  createResource
 } from '../../util/common'
 
 export default function IsAfterLastTest () {
 
   let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
   let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
+  let fileNameList: Array<string> = ['IsAfterLastTest.jpg'];
 
   describe('IsAfterLastTest', () => {
     beforeAll(async () => {
       console.info('beforeAll case');
       await getPermission();
       await sleep(10);
+      await createResource(globalContext, fileNameList);
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_ALBUM_IS_AFTER_LAST_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Is_Last_Obj_001
      * @tc.name      : album_isAfterLast_000
      * @tc.desc      : isAfterLast
      * @tc.size      : MEDIUM

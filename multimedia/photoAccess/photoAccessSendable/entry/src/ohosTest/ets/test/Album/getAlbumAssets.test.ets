@@ -24,7 +24,8 @@ import {
   albumFetchOption,
   getFileAsset,
   photoKeys,
-  getPermission
+  getPermission,
+  createResource
 } from '../../util/common'
 
 export default function getAlbumAssetsTest () {
@@ -33,16 +34,18 @@ export default function getAlbumAssetsTest () {
     let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
     let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
     const helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(globalContext);
+    let fileNameList: Array<string> = ['addPro01.jpg'];
 
     beforeAll(async () => {
       console.info('beforeAll case');
       await getPermission();
       await sleep(10);
+      await createResource(globalContext, fileNameList);
     });
 
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_ADD_ASSETS_0100
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Album_Asset_001
      * @tc.name      : addAssets_promise_001
      * @tc.desc      : add image asset to user album
      * @tc.size      : MEDIUM

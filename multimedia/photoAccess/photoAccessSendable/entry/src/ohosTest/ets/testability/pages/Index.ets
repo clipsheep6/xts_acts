@@ -13,24 +13,15 @@
  * limitations under the License.
  */
 import hilog from '@ohos.hilog';
-import { addResourceToSandbox, createResource, getPermission, sleep } from '../../util/common'
+import { addResourceToSandbox } from '../../util/common'
 import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct Index {
-  async aboutToAppear() {
+  aboutToAppear(){
     let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
-    await getPermission();
-    sleep(10);
     addResourceToSandbox(globalContext);
-    let fileNameList: Array<string> = [
-      "addPro01.jpg", "01.jpg", "getBurstAssetsTest.jpg", "modifyPro01.jpg", "modifyPro02.jpg", "modifyPro03.jpg",
-      "modifyPro04.jpg", "modifyPro05.jpg", "modifyPro06.jpg", "modifyPro07.jpg", "convertToPhotoAssetTest.jpg",
-      "getTest.jpg", "01.mp4", "modifyPro01.mp4", "modifyPro02.mp4", "modifyPro03.mp4", "modifyPro04.mp4",
-      "modifyPro05.mp4", "modifyPro06.mp4", "modifyPro07.mp4"
-    ];
-    await createResource(globalContext, fileNameList);
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
  @State message: string = 'Hello World'

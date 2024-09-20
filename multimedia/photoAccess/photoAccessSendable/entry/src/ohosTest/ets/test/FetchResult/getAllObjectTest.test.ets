@@ -54,7 +54,7 @@ export default function getAllObjectTest () {
     }
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_ALL_OBJECTS_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_All_001
      * @tc.name      : getAllObjects_promise_000
      * @tc.desc      : getAllObjects image
      * @tc.size      : MEDIUM
@@ -68,7 +68,7 @@ export default function getAllObjectTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_ALL_OBJECTS_0100
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_All_002
      * @tc.name      : getAllObjects_promise_001
      * @tc.desc      : getAllObjects video
      * @tc.size      : MEDIUM

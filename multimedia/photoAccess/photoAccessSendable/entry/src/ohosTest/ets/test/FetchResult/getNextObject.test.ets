@@ -20,7 +20,8 @@ import { common } from '@kit.AbilityKit';
 import {
   sleep,
   getPermission,
-  fetchAllOption
+  fetchAllOption,
+  createResource
 } from '../../util/common'
 
 export default function getNextObjectTest () {
@@ -28,15 +29,17 @@ export default function getNextObjectTest () {
 
     let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
     let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
+    let fileNameList: Array<string> = ['nextObj.jpg'];
 
     beforeAll(async () => {
       console.info('beforeAll case');
       await getPermission();
       await sleep(10);
+      await createResource(globalContext, fileNameList);
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_ALBUM_GET_NEXT_OBJECT_0100
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Next_Obj_001
      * @tc.name      : get_next_object_promise_001
      * @tc.desc      : getNextObject
      * @tc.size      : MEDIUM

@@ -33,7 +33,7 @@ export default function getPhotoAccessHelperTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_GET_PHOTO_ACCESS_HELPER_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Sendable_Helper_001
      * @tc.name      : getPhotoAccessHelper_000
      * @tc.desc      : get a photoAccess instance
      * @tc.size      : MEDIUM

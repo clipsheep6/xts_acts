@@ -22,7 +22,8 @@ import {
   photoKeys,
   getPermission,
   photoFetchOption,
-  fetchAllOption
+  fetchAllOption,
+  createResource
 } from '../../util/common'
 
 export default function getBurstAssetsTest () {
@@ -31,12 +32,14 @@ export default function getBurstAssetsTest () {
   const videoDisplayName: string = "getBurstAssetsTest.mp4";
   let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
   let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
+  let fileNameList: Array<string> = ['getBurstAssetsTest.jpg', 'getBurstAssetsTest.mp4']
 
   describe('getBurstAssetsTest', () => {
     beforeAll(async () => {
       console.info('getBurstAssetsTest beforeAll case');
       await getPermission();
       await sleep(10);
+      await createResource(globalContext, fileNameList);
     });
 
     const getBurstKey = async (testNum: string, fetchOps: photoAccessHelper.FetchOptions): Promise<string> => {
@@ -62,7 +65,7 @@ export default function getBurstAssetsTest () {
     }
 
     /**
-     * @tc.number    : Sub_PhotoAccess_Helper_Get_BurstAssets_001
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Burst_001
      * @tc.name      : get_image_burst_assets_001
      * @tc.desc      : getBurstAssets image
      * @tc.size      : MEDIUM
@@ -95,7 +98,7 @@ export default function getBurstAssetsTest () {
     })
 
     /**
-     * @tc.number    : Sub_PhotoAccess_Helper_Get_BurstAssets_002
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Burst_002
      * @tc.name      : get_burst_assets_video_001
      * @tc.desc      : getBurstAssets video
      * @tc.size      : MEDIUM
@@ -128,7 +131,7 @@ export default function getBurstAssetsTest () {
     })
 
     /**
-     * @tc.number    : Sub_PhotoAccess_Helper_Get_BurstAssets_003
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Burst_003
      * @tc.name      : get_image_burst_assets_003
      * @tc.desc      : getBurstAssets by burstKey not exist
      * @tc.size      : MEDIUM

@@ -139,15 +139,11 @@ export function addResourceToSandbox(context: common.UIAbilityContext) {
     let fileNames = fs.listFileSync(resourcePath, listFileOption);
     for (let i = 0; i < fileNames.length; i++) {
       let filePath = resourcePath + "/" + fileNames[i];
-      fs.copyFileSync(filePath, fileDir);
-      let newPath = fileDir + "/" + fileNames[i];
-      let res = fs.accessSync(newPath);
-      if (res) {
-        console.log(`addResourceToSandBox :: ${fileNames[i]} copy to sandbox success !`);
-      } else {
-        console.log(`addResourceToSandBox :: ${fileNames[i]} copy to sandbox failed !`);
-      }
+      let newFilePath = fileDir + "/" + fileNames[i];
+      fs.copyFileSync(filePath, newFilePath);
     }
+    let newFileNames = fs.listFileSync(fileDir, listFileOption);
+    console.log(`add resouce success, newFileNames len is ${newFileNames.length}`);
   } catch (error) {
     console.log(`addResourceToSandBox :: run failed, message is ${error}`);
   }

@@ -36,8 +36,8 @@ export default function closeTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_ALBUM_CLOSE_0000
-     * @tc.name      : album_close_000
+     * @tc.number    : Sub_Photo_Access_Sendable_Close_001
+     * @tc.name      : close_fetch_result_000
      * @tc.desc      : close fetchResult
      * @tc.size      : MEDIUM
      * @tc.type      : Function
@@ -63,7 +63,7 @@ export default function closeTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_ALBUM_CLOSE_0001
+     * @tc.number    : SSub_Photo_Access_Sendable_Close_002
      * @tc.name      : close_fetch_result_001
      * @tc.desc      : close fetchResult, then operate fetchResult
      * @tc.size      : MEDIUM

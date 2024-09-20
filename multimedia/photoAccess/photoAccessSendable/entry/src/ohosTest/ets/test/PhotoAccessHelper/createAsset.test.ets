@@ -73,7 +73,7 @@ export default function createAssetTest () {
     }
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_CREATE_IMAGE_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Create_Asset_001
      * @tc.name      : createImage_promise_000
      * @tc.desc      : createAsset
      * @tc.size      : MEDIUM
@@ -91,7 +91,7 @@ export default function createAssetTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_CREATE_IMAGE_0100
+     * @tc.number    : Sub_Photo_Access_Sendable_Create_Asset_002
      * @tc.name      : createImage_promise_001
      * @tc.desc      : createAsset without CreateOptions
      * @tc.size      : MEDIUM
@@ -106,7 +106,7 @@ export default function createAssetTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_CREATE_IMAGE_0300
+     * @tc.number    : Sub_Photo_Access_Sendable_Create_Asset_003
      * @tc.name      : createImage_promise_003
      * @tc.desc      : createAsset with invalid extension
      * @tc.size      : MEDIUM
@@ -124,7 +124,7 @@ export default function createAssetTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_CREATE_IMAGE_0500
+     * @tc.number    : Sub_Photo_Access_Sendable_Create_Asset_004
      * @tc.name      : createImage_promise_005
      * @tc.desc      : createAsset with undefined title
      * @tc.size      : MEDIUM
@@ -142,7 +142,7 @@ export default function createAssetTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_CREATE_IMAGE_0600
+     * @tc.number    : Sub_Photo_Access_Sendable_Create_Asset_005
      * @tc.name      : createImage_promise_006
      * @tc.desc      : createAsset with undefined CreateOptions
      * @tc.size      : MEDIUM
@@ -158,7 +158,7 @@ export default function createAssetTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_CREATE_VIDEO_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Create_Asset_006
      * @tc.name      : createVideo_promise_000
      * @tc.desc      : createAsset
      * @tc.size      : MEDIUM
@@ -176,7 +176,7 @@ export default function createAssetTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_CREATE_VIDEO_0100
+     * @tc.number    : Sub_Photo_Access_Sendable_Create_Asset_007
      * @tc.name      : createVideo_promise_001
      * @tc.desc      : createAsset without CreateOptions
      * @tc.size      : MEDIUM
@@ -191,7 +191,7 @@ export default function createAssetTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_CREATE_VIDEO_0300
+     * @tc.number    : Sub_Photo_Access_Sendable_Create_Asset_008
      * @tc.name      : createVideo_promise_003
      * @tc.desc      : createAsset with invalid extension
      * @tc.size      : MEDIUM
@@ -209,7 +209,7 @@ export default function createAssetTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_CREATE_VIDEO_0500
+     * @tc.number    : Sub_Photo_Access_Sendable_Create_Asset_009
      * @tc.name      : createVideo_promise_005
      * @tc.desc      : createAsset with undefined title
      * @tc.size      : MEDIUM
@@ -227,7 +227,7 @@ export default function createAssetTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_CREATE_VIDEO_0600
+     * @tc.number    : Sub_Photo_Access_Sendable_Create_Asset_010
      * @tc.name      : createVideo_promise_006
      * @tc.desc      : createAsset with undefined CreateOptions
      * @tc.size      : MEDIUM

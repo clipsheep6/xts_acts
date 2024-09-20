@@ -51,7 +51,7 @@ export default function getAlbumsTest () {
     }
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_ALBUMS_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Album_001
      * @tc.name      : getAlbums_promise_000
      * @tc.desc      : get an user album
      * @tc.size      : MEDIUM
@@ -93,7 +93,7 @@ export default function getAlbumsTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_ALBUMS_0001
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Album_001
      * @tc.name      : getAlbums_promise_001
      * @tc.desc      : get an user album
      * @tc.size      : MEDIUM

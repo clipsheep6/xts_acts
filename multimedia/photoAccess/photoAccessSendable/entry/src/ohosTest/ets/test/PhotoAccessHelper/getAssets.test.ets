@@ -21,7 +21,8 @@ import {
   photoKeys,
   fetchOption,
   sleep,
-  getPermission
+  getPermission,
+  createResource
 } from '../../util/common'
 
 export default function getAssetsTest() {
@@ -29,11 +30,13 @@ export default function getAssetsTest() {
 
     let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
     let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
+    let fileNameList: Array<string> = ['01.jpg', '01.mp4'];
 
     beforeAll(async () => {
       console.info('beforeAll case');
       await getPermission();
       await sleep(10);
+      await createResource(globalContext, fileNameList);
     });
 
 
@@ -52,7 +55,7 @@ export default function getAssetsTest() {
     }
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_ASSETS_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Asset_001
      * @tc.name      : getAssets_promise_000
      * @tc.desc      : getAssets image
      * @tc.size      : MEDIUM
@@ -67,7 +70,7 @@ export default function getAssetsTest() {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_ASSETS_0100
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Asset_002
      * @tc.name      : getAssets_promise_001
      * @tc.desc      : getAssets image
      * @tc.size      : MEDIUM
@@ -82,7 +85,7 @@ export default function getAssetsTest() {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_ASSETS_0400
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Asset_003
      * @tc.name      : getAssets_promise_004
      * @tc.desc      : getAssets video
      * @tc.size      : MEDIUM

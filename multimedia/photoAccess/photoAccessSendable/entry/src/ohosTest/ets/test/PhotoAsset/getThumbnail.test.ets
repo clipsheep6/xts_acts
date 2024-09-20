@@ -23,7 +23,8 @@ import {
   sleep,
   getPermission,
   photoKeys,
-  fetchOption
+  fetchOption,
+  createResource
 } from '../../util/common'
 
 export default function getThumbnailTest () {
@@ -31,10 +32,12 @@ export default function getThumbnailTest () {
 
     let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
     let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
+    let fileNameList: Array<string> = ['01.jpg'];
 
     beforeAll(async () => {
       await getPermission();
       await sleep(10);
+      await createResource(globalContext, fileNameList);
     });
 
     const getThumbnailPromise2 = async (done: Function, testNum: string, fetchOps: photoAccessHelper.FetchOptions, size: image.Size | undefined, expectSize: image.Size) => {
@@ -56,7 +59,7 @@ export default function getThumbnailTest () {
     }
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_THUMBNAIL_0100
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_Get_Thumb_001
      * @tc.name      : getThumbnail_promise_001
      * @tc.desc      : getThumbnail(image) by { width: 128, height: 128 }
      * @tc.size      : MEDIUM
@@ -76,7 +79,7 @@ export default function getThumbnailTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_THUMBNAIL_0200
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_Get_Thumb_002
      * @tc.name      : getThumbnail_promise_002
      * @tc.desc      : getThumbnail(image) by { width: 1, height: 1024 }
      * @tc.size      : MEDIUM
@@ -96,7 +99,7 @@ export default function getThumbnailTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_THUMBNAIL_0300
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_Get_Thumb_003
      * @tc.name      : getThumbnail_promise_003
      * @tc.desc      : getThumbnail(image) by { width: 1024, height: 1 }
      * @tc.size      : MEDIUM
@@ -116,7 +119,7 @@ export default function getThumbnailTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_THUMBNAIL_0400
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_Get_Thumb_004
      * @tc.name      : getThumbnail_promise_004
      * @tc.desc      : getThumbnail(image) by { width: 1024, height: 1024 }
      * @tc.size      : MEDIUM
@@ -136,7 +139,7 @@ export default function getThumbnailTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_THUMBNAIL_0500
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_Get_Thumb_005
      * @tc.name      : getThumbnail_promise_005
      * @tc.desc      : getThumbnail(image) by { width: 1, height: 1 }
      * @tc.size      : MEDIUM
@@ -158,7 +161,7 @@ export default function getThumbnailTest () {
 
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_GET_THUMBNAIL_0800
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_Get_Thumb_006
      * @tc.name      : getThumbnail_promise_008
      * @tc.desc      : getThumbnail(image) by undefined
      * @tc.size      : MEDIUM

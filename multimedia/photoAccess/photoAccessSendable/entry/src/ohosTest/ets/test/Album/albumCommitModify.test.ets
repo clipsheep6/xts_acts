@@ -20,66 +20,60 @@ import { common } from '@kit.AbilityKit'
 import {
   sleep,
   genRadomStr,
-  fetchOption,
-  albumFetchOption,
-  getFileAsset,
-  photoKeys,
-  getPermission
+  getPermission,
+  albumFetchOption
 } from '../../util/common'
 
-export default function getAlbumAssetsTest () {
-  describe('getAlbumAssetsTest', () => {
+export default function albumCommitModifyTest () {
+  describe('albumCommitModifyTest', () => {
 
     let globalContext: common.UIAbilityContext = AppStorage.get('globalContext') as common.UIAbilityContext;
-    let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(globalContext);
     let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
+    const helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(globalContext);
 
     beforeAll(async () => {
       console.info('beforeAll case');
       await getPermission();
       sleep(10);
     });
-
-
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_ADD_ASSETS_0100
-     * @tc.name      : addAssets_promise_001
-     * @tc.desc      : add image asset to user album
+     * @tc.number    : Sub_Photo_Access_Sendable_Album_CommitModify_001
+     * @tc.name      : sendable_album_commitModify_promise_001
+     * @tc.desc      : album change new name
      * @tc.size      : MEDIUM
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('addAssets_promise_001', 0, async (done: Function) => {
-      const testNum = 'addAssets_promise_001';
+    it('sendable_album_commitModify_promise_001', 0, async (done: Function) => {
+      const testNum = 'sendable_album_commitModify_promise_001';
       try {
-        // 创建相册
-        let albumName: string = genRadomStr(20) + new Date().getTime();
-        let albumChangeRequest1: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(globalContext, albumName);
-        await helper.applyChanges(albumChangeRequest1);
-        // 获取照片
-        const fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, 'addPro01.jpg');
-        const asset = await getFileAsset(globalContext, testNum, fetchOps);
-        let ops = albumFetchOption(testNum, 'album_name', albumName);
-        // 查询上面创建的相册
-        let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.USER, photoAccessHelper.AlbumSubtype.USER_GENERIC, ops);
-        let album: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
-        // 添加一个照片进入相册
-        let albumChangeRequest2: photoAccessHelper.MediaAlbumChangeRequest = new photoAccessHelper.MediaAlbumChangeRequest(album);
-        albumChangeRequest2.addAssets([asset]);
-        await helper.applyChanges(albumChangeRequest2);
-        // sendable 相册
-        let fetchResult: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.Album> = await sendablePhAccessHelper.getAlbums(sendablePhotoAccessHelper.AlbumType.USER, sendablePhotoAccessHelper.AlbumSubtype.USER_GENERIC, ops);
-        let sendableAlbum: sendablePhotoAccessHelper.Album = await fetchResult.getFirstObject();
-        expect(sendableAlbum.imageCount).assertEqual(1);
-        fetchResult.close();
+        let albumName = testNum + genRadomStr(20);
+        let albumChangeRequest: photoAccessHelper.MediaAlbumChangeRequest = photoAccessHelper.MediaAlbumChangeRequest.createAlbumRequest(globalContext, albumName);
+        await helper.applyChanges(albumChangeRequest);
+        console.log(`${testNum} :: create album success .`);
+        let newName = Date.now() + genRadomStr(20);
+        let albumFetchOptions = albumFetchOption(testNum, 'album_name', albumName);
+        let albumList: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.Album> = await sendablePhAccessHelper.getAlbums(sendablePhotoAccessHelper.AlbumType.USER, sendablePhotoAccessHelper.AlbumSubtype.USER_GENERIC, albumFetchOptions);
+        let album: sendablePhotoAccessHelper.Album = await albumList.getFirstObject();
+        console.log(`${testNum} ::sendableAlbum get success.`);
+        album.albumName = newName;
+        console.log(`${testNum} :: album new name is ${album.albumName}`);
+        await album.commitModify();
+        console.log(`${testNum} :: commit new name success`);
+        let newOps = albumFetchOption(testNum, 'album_name', newName);
+        let newAlbumList: sendablePhotoAccessHelper.FetchResult<sendablePhotoAccessHelper.Album> = await sendablePhAccessHelper.getAlbums(sendablePhotoAccessHelper.AlbumType.USER, sendablePhotoAccessHelper.AlbumSubtype.USER_GENERIC, newOps);
+        console.log(`${testNum} :: newAlbumList 's  len = ${newAlbumList.getCount()}`);
+        if (newAlbumList === undefined || newAlbumList.getCount() <= 0) {
+          expect(false).assertTrue();
+          done();
+        }
         done();
-      } catch (error) {
+      }
+      catch (error) {
         console.info(`${testNum} failed; error: ${error}`);
         expect(false).assertTrue();
         done();
       }
     });
-
   })
 }
-

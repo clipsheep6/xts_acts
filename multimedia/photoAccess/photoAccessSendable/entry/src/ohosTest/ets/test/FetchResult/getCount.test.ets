@@ -36,7 +36,7 @@ export default function getCountTest () {
     let sendablePhAccessHelper: sendablePhotoAccessHelper.PhotoAccessHelper = sendablePhotoAccessHelper.getPhotoAccessHelper(globalContext);
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_CALLBACK_ALBUM_GET_COUNT_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Get_Count_001
      * @tc.name      : get_count_promise_001
      * @tc.desc      : getCount
      * @tc.size      : MEDIUM

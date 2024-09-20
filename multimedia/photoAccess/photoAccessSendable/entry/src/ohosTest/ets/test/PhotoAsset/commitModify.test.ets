@@ -22,7 +22,8 @@ import {
   getPermission,
   photoKeys,
   fetchOption,
-  photoFetchOption
+  photoFetchOption,
+  createResource
 } from '../../util/common'
 
 export default function commitModifyTest () {
@@ -77,7 +78,7 @@ export default function commitModifyTest () {
     }
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_0000
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_001
      * @tc.name      : photoAsset_commitModify_promise_000
      * @tc.desc      : modify image displayName
      * @tc.size      : MEDIUM
@@ -86,13 +87,15 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_000', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_000';
+      let fileNameList: Array<string> = ['modifyPro01.jpg'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro01.jpg');
       const newTitle = new Date().getTime() + testNum;
       await commitModifyPromise(done, testNum, fetchOps, newTitle);
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_0100
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_002
      * @tc.name      : photoAsset_commitModify_promise_001
      * @tc.desc      : modify image displayName '五五...' (83)
      * @tc.size      : MEDIUM
@@ -101,6 +104,8 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_001', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_001';
+      let fileNameList: Array<string> = ['modifyPro02.jpg'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro02.jpg');
       let newTitle = '';
       for (let i = 0; i < 83; i++) {
@@ -110,7 +115,7 @@ export default function commitModifyTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_0200
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_003
      * @tc.name      : photoAsset_commitModify_promise_002
      * @tc.desc      : modify image displayName 'eeeeeee...' (251)
      * @tc.size      : MEDIUM
@@ -119,6 +124,8 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_002', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_002';
+      let fileNameList: Array<string> = ['modifyPro03.jpg'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro03.jpg');
       let newTitle = '';
       for (let i = 0; i < 251; i++) {
@@ -128,7 +135,7 @@ export default function commitModifyTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_0300
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_004
      * @tc.name      : photoAsset_commitModify_promise_003
      * @tc.desc      : modify image uri
      * @tc.size      : MEDIUM
@@ -137,6 +144,8 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_003', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_003';
+      let fileNameList: Array<string> = ['modifyPro04.jpg'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = fetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro04.jpg');
       const type = 'uri';
       const value = 'file://media/Photo/999999';
@@ -144,7 +153,7 @@ export default function commitModifyTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_0500
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_005
      * @tc.name      : photoAsset_commitModify_promise_005
      * @tc.desc      : modify image displayName '六六....jpg' (84)
      * @tc.size      : MEDIUM
@@ -153,6 +162,8 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_005', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_005';
+      let fileNameList: Array<string> = ['modifyPro06.jpg'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = fetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro06.jpg');
       const type = 'displayName';
       let value = '';
@@ -164,7 +175,7 @@ export default function commitModifyTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_0600
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_006
      * @tc.name      : photoAsset_commitModify_promise_006
      * @tc.desc      : modify image displayName 'fffffff...' (252)
      * @tc.size      : MEDIUM
@@ -173,6 +184,8 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_006', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_006';
+      let fileNameList: Array<string> = ['modifyPro07.jpg'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = fetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro07.jpg');
       const type = 'displayName';
       let value = '';
@@ -184,7 +197,7 @@ export default function commitModifyTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_0700
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_007
      * @tc.name      : photoAsset_commitModify_promise_007
      * @tc.desc      : modify video displayName
      * @tc.size      : MEDIUM
@@ -193,13 +206,15 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_007', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_007';
+      let fileNameList: Array<string> = ['modifyPro01.mp4'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro01.mp4');
       const newTitle = new Date().getTime() + testNum;
       await commitModifyPromise(done, testNum, fetchOps, newTitle);
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_0800
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_008
      * @tc.name      : photoAsset_commitModify_promise_008
      * @tc.desc      : modify video displayName '七七...' (83)
      * @tc.size      : MEDIUM
@@ -208,6 +223,8 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_008', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_008';
+      let fileNameList: Array<string> = ['modifyPro02.mp4'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro02.mp4');
       let newTitle = '';
       for (let i = 0; i < 83; i++) {
@@ -217,7 +234,7 @@ export default function commitModifyTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_0900
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_009
      * @tc.name      : photoAsset_commitModify_promise_009
      * @tc.desc      : modify image displayName 'ggggggg...' (251)
      * @tc.size      : MEDIUM
@@ -226,6 +243,8 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_009', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_009';
+      let fileNameList: Array<string> = ['modifyPro03.mp4'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro03.mp4');
       let newTitle = '';
       for (let i = 0; i < 251; i++) {
@@ -235,7 +254,7 @@ export default function commitModifyTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_1000
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_010
      * @tc.name      : photoAsset_commitModify_promise_010
      * @tc.desc      : modify image uri
      * @tc.size      : MEDIUM
@@ -244,6 +263,8 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_010', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_010';
+      let fileNameList: Array<string> = ['modifyPro04.mp4'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro04.mp4');
       const type = 'uri';
       const value = 'file://media/Photo/999999';
@@ -251,7 +272,7 @@ export default function commitModifyTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_1200
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_011
      * @tc.name      : photoAsset_commitModify_promise_012
      * @tc.desc      : modify image displayName '八八...' (84)
      * @tc.size      : MEDIUM
@@ -260,6 +281,8 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_012', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_012';
+      let fileNameList: Array<string> = ['modifyPro06.mp4'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = fetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro06.mp4');
       const type = 'displayName';
       let value = '';
@@ -271,7 +294,7 @@ export default function commitModifyTest () {
     });
 
     /**
-     * @tc.number    : SUB_PHOTOACCESS_HELPER_PROMISE_FILE_ASSET_COMMITMODIFY_1300
+     * @tc.number    : Sub_Photo_Access_Sendable_Asset_CommitModify_012
      * @tc.name      : photoAsset_commitModify_promise_013
      * @tc.desc      : modify image displayName 'hhhhhhh...' (252)
      * @tc.size      : MEDIUM
@@ -280,6 +303,8 @@ export default function commitModifyTest () {
      */
     it('photoAsset_commitModify_promise_013', 2, async (done: Function) => {
       const testNum = 'photoAsset_commitModify_promise_013';
+      let fileNameList: Array<string> = ['modifyPro07.mp4'];
+      await createResource(globalContext, fileNameList);
       const fetchOps: photoAccessHelper.FetchOptions = fetchOption(testNum, photoKeys.DISPLAY_NAME, 'modifyPro07.mp4');
       const type = 'displayName';
       let value = '';
