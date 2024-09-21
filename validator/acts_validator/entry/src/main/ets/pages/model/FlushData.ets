@@ -400,4 +400,28 @@ export default class FlushData {
       console.info("Succeeded in flushing.");
     });
   }
+  static ResetIOT = async () => {
+    let Test : data_preferences.Preferences;
+    let context : Context | null= null;
+    context = globalThis.getContext();
+    let preferences: ESObject;
+
+    let promise = data_preferences.getPreferences(context, 'mystore');
+    await promise.then((object) => {
+      preferences = object;
+    });
+    promise = preferences.get('IOT', 0);
+    await promise.then((data) => {
+      Test = data;
+      console.info("Succeeded in getting value of 'IOT'. Data: " + data);
+    });
+    promise = preferences.put('IOT', 0);
+    promise.then(() => {
+      console.info("Succeeded in putting value of 'IOT'.");
+    });
+    promise = preferences.flush();
+    promise.then(() => {
+      console.info("Succeeded in flushing.");
+    });
+  }
 }
