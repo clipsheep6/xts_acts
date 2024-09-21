@@ -39,10 +39,10 @@ export default function abilityTest() {
     it('ButtonType0100', 0, async (done: Function) => {
       let tagName = 'ButtonType0100';
       console.info('[' + tagName + '] START============================1');
-      let strJsonNew = getInspectorByKey('key_ButtonType_001');
+      let strJsonNew: string = getInspectorByKey('key_ButtonType_001');
       console.info('[' + tagName + '] START============================2');
       console.info('[' + tagName + '] Search type is: ' + strJsonNew);
-      let parseNew = JSON.parse(strJsonNew);
+      let parseNew: object = JSON.parse(strJsonNew);
       console.info('[' + tagName + '] START============================3');
       expect(parseNew?.$attrs?.type).assertEqual('ButtonType.ROUNDED_RECTANGLE');
       console.info('[' + tagName + '] END ===========================');
