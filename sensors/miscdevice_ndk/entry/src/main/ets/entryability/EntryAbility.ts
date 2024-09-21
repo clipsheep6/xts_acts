@@ -1,3 +1,6 @@
+// Copyright (c) 2023, Example Company. All rights reserved.
+// This code is licensed under the MIT License.
+// SPDX-License-Identifier: MIT
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
