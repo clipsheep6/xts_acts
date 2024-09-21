@@ -88,6 +88,7 @@ group("ability_runtime") {
       "faapicover:faapicover",
       "featureability:featureability",
       "freeinstalltest:freeinstalltest",
+      "hitsamstest:hitsamstest",
       "newwant:newwant",
       "registerjserror:registerjserror",
       "shareextensionability:actsshareextensionability",
