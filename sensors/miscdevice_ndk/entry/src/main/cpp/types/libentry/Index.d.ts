@@ -1,4 +1,4 @@
-// Copyright (c) 2023, Example Company. All rights reserved.
+// Copyright (c) 2024, Example Company. All rights reserved.
 // This code is licensed under the MIT License.
 // SPDX-License-Identifier: MIT
 export const startVibrator: (duration: number, attribute: Object) => number;
