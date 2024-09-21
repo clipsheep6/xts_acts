@@ -21,6 +21,7 @@ import {Driver, ON} from '@ohos.UiTest';
 import commonEventManager from '@ohos.commonEventManager';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+import Want from '@ohos.app.ability.Want';
 
 let driver = Driver.create();
 let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
@@ -709,6 +710,120 @@ export default function abilityTest() {
         console.log('ACTS_NewWant_Test_0800 - startAbility start SecondAbility: '
           + JSON.stringify(error) + ", " + JSON.stringify(data))
       })
+    })
+
+    /**
+     * @tc.number: SUB_Ability_AbilityRuntime_StartInstance_0100
+     * @tc.name: instanceKey
+     * @tc.desc: multi-instance param
+     */
+    it('SUB_Ability_AbilityRuntime_StartInstance_0100', 0, async (done:Function) => {
+      console.log("SUB_Ability_AbilityRuntime_StartInstance_0100 --- start")
+      let want: Want = {
+        bundleName: "com.example.newwanthap",
+        abilityName: "com.example.newwanthapa.MainAbility",
+        parameters: {
+          "ohos.extra.param.key.appInstance": "app_instance_0"
+        }
+      }
+      if (deviceType != '2in1') {
+        try {
+          globalThis.mainAbilityContext.startAbility(want)
+            .then(() => {
+              console.info('startAbility succeed');
+              expect().assertFail();
+            })
+            .catch((err: BusinessError) => {
+              console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+              let errCode = 16000078;
+              expect(err.code).assertEqual(errCode);
+              done();
+            });
+        } catch (err) {
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          console.error(`startAbility failed, code is ${code}, message is ${message}`);
+          expect().assertFail();
+        }
+        done();
+        return;
+      }
+      try {
+        globalThis.mainAbilityContext.startAbility(want)
+          .then(() => {
+            console.info('startAbility succeed');
+            expect().assertFail();
+          })
+          .catch((err: BusinessError) => {
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            let errCode = 16000072;
+            expect(err.code).assertEqual(errCode);
+            done();
+          });
+      } catch (err) {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+        expect().assertFail();
+      }
+      done();
+    })
+
+    /**
+     * @tc.number: SUB_Ability_AbilityRuntime_CreateInstance_0100
+     * @tc.name: crateInstance
+     * @tc.desc: multi-instance param
+     */
+    it('SUB_Ability_AbilityRuntime_CreateInstance_0100', 0, async (done:Function) => {
+      console.log("SUB_Ability_AbilityRuntime_CreateInstance_0100 --- start")
+      let want: Want = {
+        bundleName: "com.example.newwanthap",
+        abilityName: "com.example.newwanthapa.MainAbility",
+        parameters: {
+          "ohos.extra.param.key.createAppInstance": true
+        }
+      }
+      if (deviceType != '2in1') {
+        try {
+          globalThis.mainAbilityContext.startAbility(want)
+            .then(() => {
+              console.info('startAbility succeed');
+              expect().assertFail();
+            })
+            .catch((err: BusinessError) => {
+              console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+              let errCode = 16000078;
+              expect(err.code).assertEqual(errCode);
+              done();
+            });
+        } catch (err) {
+          let code = (err as BusinessError).code;
+          let message = (err as BusinessError).message;
+          console.error(`startAbility failed, code is ${code}, message is ${message}`);
+          expect().assertFail();
+        }
+        done();
+        return;
+      }
+      try {
+        globalThis.mainAbilityContext.startAbility(want)
+          .then(() => {
+            console.info('startAbility succeed');
+            expect().assertFail();
+          })
+          .catch((err: BusinessError) => {
+            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+            let errCode = 16000072;
+            expect(err.code).assertEqual(errCode);
+            done();
+          });
+      } catch (err) {
+        let code = (err as BusinessError).code;
+        let message = (err as BusinessError).message;
+        console.error(`startAbility failed, code is ${code}, message is ${message}`);
+        expect().assertFail();
+      }
+      done();
     })
   })
 }
