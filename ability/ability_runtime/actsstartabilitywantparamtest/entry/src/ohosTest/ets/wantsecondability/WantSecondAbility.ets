@@ -21,6 +21,7 @@ import commonEvent from '@ohos.commonEvent';
 import Want from '@ohos.app.ability.Want';
 
 const EVENT_WantParametersJs_0200 = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0200'
+const EVENT_WantParametersJs_1100 = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_1100'
 
 export default class WantSecondAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -66,5 +67,13 @@ export default class WantSecondAbility extends UIAbility {
   onBackground() {
     // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
+  }
+
+  onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam) {
+    commonEvent.publish(EVENT_WantParametersJs_1100, {
+      parameters: want.parameters
+    }, (err, data) => {
+      hilog.info(0x0000, 'testTag', '%{public}s', `WantSecondAbility Ability publish event : ${EVENT_WantParametersJs_1100}`);
+    })
   }
 }

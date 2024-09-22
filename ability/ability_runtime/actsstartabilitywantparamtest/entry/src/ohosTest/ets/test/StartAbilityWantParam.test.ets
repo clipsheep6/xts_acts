@@ -32,6 +32,7 @@ const EVENT_WantParametersJs_0400 = 'SUB_Ability_AbilityBase_WantParam_WantParam
 const EVENT_WantParametersJs_0500 = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0500'
 const EVENT_WantParametersJs_0600 = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_0600'
 const EVENT_WantParametersJs_1600 = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_1600'
+const EVENT_WantParametersJs_1100 = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_1100'
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
 
 function sleep(time: number) {
@@ -357,7 +358,7 @@ export default function startAbilityWantParamTest() {
             "key1": [
               {
                 "data1": "value1", "data2": "value2"
-              } as ESObject, 
+              } as ESObject,
               {
                 "data3": "value3", "data4": "value4"
               } as ESObject
@@ -529,6 +530,62 @@ export default function startAbilityWantParamTest() {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} fail: ${err}`);
         fail(done);
         done();
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_Ability_AbilityBase_WantParam_WantParametersJs_1100
+     * @tc.name      : The type is FD and the value is the correct image index value in the parameters carried by want
+     * @tc.desc      : test startAbility twice with want parameters："keyFd":{"type":"FD", "value": fd}
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it("SUB_Ability_AbilityBase_WantParam_WantParametersJs_1100", 3, async (done:Function) => {
+      const TEST_CASE_NAME: string = 'SUB_Ability_AbilityBase_WantParam_WantParametersJs_1100';
+      let fd : number = -1;
+      try {
+        let filePath = abilityDelegator.getAppContext().filesDir + '/xts.png'
+        let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+        fd = file.fd;
+        let parameter:ESObject = {
+          "keyFd": {
+            "type": "FD",
+            "value": fd
+          } as ESObject
+        }
+        let commonEventSubscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
+          events: [EVENT_WantParametersJs_1100]
+        }
+        await commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
+          commonEvent.subscribe(subscriber, (err, commonEventData) => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe sunccess : ${JSON.stringify(commonEventData.parameters!.keyFd)},
+                           parameter : ${JSON.stringify(parameter)}`);
+            expect(commonEventData.parameters!.keyFd.type).assertEqual(parameter.keyFd.type);
+            commonEvent.unsubscribe(subscriber, (err, data) => {
+              done();
+            });
+          })
+        })
+
+        await startAbilityTest('WantSecondAbility', parameter).then(() => {
+          console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability success`);
+          await sleep(2000);
+          await startAbilityTest('WantSecondAbility', parameter).then(() => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability success`);
+          }, (error:BusinessError) => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability err : ${JSON.stringify(error)}`);
+            fail(done);
+          })
+        }, (error:BusinessError) => {
+          console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} start ability err : ${JSON.stringify(error)}`);
+          fail(done);
+        })
+      } catch (err) {
+        console.error(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} err:${JSON.stringify(err)}`);
+        fail(done);
+      } finally {
+        fs.closeSync(fd);
       }
     })
   })
