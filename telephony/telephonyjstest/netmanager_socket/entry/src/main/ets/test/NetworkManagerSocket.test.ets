@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License')
@@ -17,9 +16,9 @@ import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
 import socket from '@ohos.net.socket';
 
 let sendData = "hello!";
-let instance = undefined;
+let instance: undefined | socket.TLSSocket = undefined;
 
-let options = {
+let options: socket.TLSConnectOptions = {
   ALPNProtocols: ["spdy/1", "http/1.1"],
   address: {
     address: "192.168.31.96",
@@ -59,7 +58,7 @@ export default function networkManagerSocketTest() {
     */
     it('Telephony_NetworkManager_constructTLSSocketInstance_0100', 0, async function (done) {
       instance = socket.constructTLSSocketInstance()
-      if (instance != "") {
+      if (instance != undefined) {
         expect(instance).assertInstanceOf('Object');
         done();
       } else {
@@ -84,8 +83,10 @@ export default function networkManagerSocketTest() {
         expect(options.secureOptions.ca != undefined).assertEqual(true);
         expect(options.secureOptions.password != undefined).assertEqual(true);
         expect(options.secureOptions.protocols != undefined).assertEqual(true);
-        expect(options.secureOptions.protocols[0] == "TLSv1.2").assertEqual(true);
-        expect(options.secureOptions.protocols[1] == "TLSv1.3").assertEqual(true);
+        expect(options.secureOptions.protocols != undefined
+          && options.secureOptions.protocols[0] == "TLSv1.2").assertEqual(true);
+        expect(options.secureOptions.protocols != undefined
+          && options.secureOptions.protocols[1] == "TLSv1.3").assertEqual(true);
         expect(options.secureOptions.useRemoteCipherPrefer != undefined).assertEqual(true);
         expect(options.secureOptions.signatureAlgorithms != undefined).assertEqual(true);
         expect(options.secureOptions.cipherSuite != undefined).assertEqual(true);
@@ -391,7 +392,7 @@ export default function networkManagerSocketTest() {
     it('Telephony_TLSSocket_off_message_0100', 0, async function (done) {
       try {
         let tls = socket.constructTLSSocketInstance();
-        let callback = value => {
+        let callback = (value: socket.SocketMessageInfo) => {
           console.log('message: ' + JSON.stringify(value.message));
           console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
         }

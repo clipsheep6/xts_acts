@@ -15,16 +15,16 @@
 import {describe, it, expect} from '@ohos/hypium';
 import http from '@ohos.net.http';
 
+function expectFalse() {
+  try {
+    expect().assertFail();
+  } catch (err) {
+    console.info('assertion failure');
+  }
+};
 
 export default function HttpRequestOptionsJsunit() {
   describe("HttpRequestOptionsJsunitTest", function () {
-    function expectFalse() {
-      try {
-        expect().assertFail();
-      } catch (err) {
-        console.info('assertion failure');
-      }
-    };
 
     /**
      * @tc.number Telephony_Http_HttpRequestOptions_method_0100
@@ -35,17 +35,17 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_http_HttpRequestOptions_method_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0100';
+      let casename = 'Telephony_Http_HttpRequestOptions_0100';
       console.log("-----------------------HttpRequestOptions_method Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
@@ -69,17 +69,17 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_http_HttpRequestOptions_method_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0100';
+      let casename = 'Telephony_Http_HttpRequestOptions_0100';
       console.log("-----------------------HttpRequestOptions_method_01 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
@@ -107,10 +107,10 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_Http_HttpRequestOptions_extraData_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0200';
+      let casename = 'Telephony_Http_HttpRequestOptions_0200';
       console.log("-----------------------HttpRequestOptions_extraData Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: {
             //tn=albumsdetail&word=渐变风格插画&fr=albumslist&album_tab=设计素材&album_id=409&rn=30
@@ -125,7 +125,7 @@ export default function HttpRequestOptionsJsunit() {
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://image.baidu.com/search/albumsdetail/", httpRequestOptions, (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
@@ -149,10 +149,10 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_Http_HttpRequestOptions_extraData_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0200';
+      let casename = 'Telephony_Http_HttpRequestOptions_0200';
       console.log("-----------------------HttpRequestOptions_extraData_01 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: {
             //tn=albumsdetail&word=渐变风格插画&fr=albumslist&album_tab=设计素材&album_id=409&rn=30
@@ -167,7 +167,7 @@ export default function HttpRequestOptionsJsunit() {
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://image.baidu.com/search/albumsdetail/", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
@@ -195,17 +195,17 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_Http_HttpRequestOptions_header_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0300';
+      let casename = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           try {
@@ -235,17 +235,17 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_Http_HttpRequestOptions_header_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0300';
+      let casename = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header_01 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
           try {
@@ -278,17 +278,17 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_Http_HttpRequestOptions_header_0300", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0300';
+      let casename = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header_02 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/xml",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           try {
@@ -318,17 +318,17 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_Http_HttpRequestOptions_header_0400", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0300';
+      let casename = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header_03 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/xml",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
           try {
@@ -362,21 +362,17 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_Http_HttpRequestOptions_readTimeout_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0400';
+      let casename = 'Telephony_Http_HttpRequestOptions_0400';
       console.log("-----------------------HttpRequestOptions_readTimeout Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 0.1,
           connectTimeout: 60
         }
-        var httpRequest = http.createHttp();
-        if (httpRequestOptions.connectTimeout < 60000) {
-          done();
-          return;
-        }
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 408).assertTrue();
@@ -400,21 +396,17 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_Http_HttpRequestOptions_readTimeout_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0400';
+      let casename = 'Telephony_Http_HttpRequestOptions_0400';
       console.log("-----------------------HttpRequestOptions_readTimeout_01 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 0.1,
           connectTimeout: 60
         }
-        var httpRequest = http.createHttp();
-        if (httpRequestOptions.connectTimeout < 60000) {
-          done();
-          return;
-        }
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
           expect(data.responseCode == 408).assertTrue();
@@ -442,21 +434,17 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_Http_HttpRequestOptions_connectTimeout_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0500';
+      let casename = 'Telephony_Http_HttpRequestOptions_0500';
       console.log("-----------------------HttpRequestOptions_connectTimeout Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 60,
           connectTimeout: 0.1
         }
-        if (httpRequestOptions.connectTimeout < 60000) {
-          done();
-          return;
-        }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
           console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 504).assertTrue();
@@ -481,21 +469,17 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.size: SmallTest
      */
     it("Telephony_Http_HttpRequestOptions_connectTimeout_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0500';
+      let casename = 'Telephony_Http_HttpRequestOptions_0500';
       console.log("-----------------------HttpRequestOptions_connectTimeout_01 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
-          extraData: null,
+          extraData: "",
           header: "content-type': 'application/json",
           readTimeout: 60,
           connectTimeout: 0.1
         }
-        if (httpRequestOptions.connectTimeout < 60000) {
-          done();
-          return;
-        }
-        var httpRequest = http.createHttp();
+        let httpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
           console.log(casename + JSON.stringify(data));
           expect(data.responseCode == 504).assertTrue();
@@ -557,7 +541,7 @@ export default function HttpRequestOptionsJsunit() {
       let httpRequest = http.createHttp();
       let ExclusionList = ""
       let array = ExclusionList.split(',');
-      let httpProxy = {
+      let httpProxy: http.HttpProxy = {
         host: "host",
         port: 1,
         exclusionList: array

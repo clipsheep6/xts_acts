@@ -19,6 +19,21 @@ import socket from '@ohos.net.socket'
 import http from '@ohos.net.http';
 import utils from './Utils.ets'
 
+let multicastSocket = socket.constructMulticastSocketInstance();
+let multicastAddress:socket.NetAddress = {
+  address: '239.255.0.1',
+  family: 1,
+  port: 32123
+}
+
+
+
+let result:string;
+
+let options:socket.UDPSendOptions = {
+  data: 'Hello',
+  address: multicastAddress,
+}
 export default function socketJsunit() {
   describe('socketTest', function () {
   
@@ -82,7 +97,7 @@ export default function socketJsunit() {
         return;
       }
       console.log("************* Telephony_Socket_Socket_constructUDPSocketInstance_0100 Test start*************");
-      var udpSocket = udp;
+      let udpSocket = udp;
       expect(udpSocket != null).assertTrue();
       console.log("************* Telephony_Socket_Socket_constructUDPSocketInstance_0100 Test end*************");
       done();
@@ -100,7 +115,7 @@ export default function socketJsunit() {
         return;
       }
       console.log("************* Telephony_Socket_Socket_constructTCPSocketInstance_0100 Test start*************");
-      var tcpSocket = tcp;
+      let tcpSocket = tcp;
       expect(tcpSocket != null).assertTrue();
       console.log("************* Telephony_Socket_Socket_constructTCPSocketInstance_0100 Test end*************");
       done();
@@ -2173,27 +2188,35 @@ export default function socketJsunit() {
      * @tc.desc Test send property.
      */
     it("NetworkManager_UDPSocket_send_Async_0100", 0, async function (done) {
+      type sleepFn = (a: number) => Promise<null>;
+      const sleeps: sleepFn = (timeout) => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve(null);
+          }, timeout)
+        })
+      }
       let caseName = "NetworkManager_UDPSocket_send_Async_0100"
-      let result;
+      multicastSocket.addMembership(multicastAddress, (err, data: void) => {
+        if (err) {
+          console.log(`${caseName} addMembership failed, err: ${JSON.stringify(err)}`);
+        }
+      });
       multicastSocket.on('message', (data) => {
         console.info(caseName + ' on message,data.remoteInfo.size: ' + JSON.stringify(data.remoteInfo.size));
         result = JSON.stringify(data.remoteInfo.size);
-        done();
       })
-      await sleep(2000);
+      await sleeps(2000);
       multicastSocket.send(options, (err, data) => {
         if (err) {
           console.log(`${caseName} send failed, err: ${JSON.stringify(err)}`);
-          expectFalse();
-          done();
         } else {
-          console.log(`${caseName} send success, data: ${JSON.stringify(data)}`);
-          expect(data).assertEqual(undefined);
+          expect(data as undefined).assertEqual(undefined);
           done();
         }
       });
-      await sleep(2000);
-      expect(result).assertEqual(5);
+      await sleeps(2000);
+      expect(Number(result)).assertEqual(5);
     });
 
 
