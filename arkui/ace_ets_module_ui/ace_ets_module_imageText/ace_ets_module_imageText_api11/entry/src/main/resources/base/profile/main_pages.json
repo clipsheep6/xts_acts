@@ -209,6 +209,7 @@
         "MainAbility/pages/Progress/loadingProgress2",
         "MainAbility/pages/Search/SearchGesture",
         "MainAbility/pages/text/TextDrag",
-        "MainAbility/pages/TextArea/textAreaOnCaretAndKeyboard"
+        "MainAbility/pages/TextArea/textAreaOnCaretAndKeyboard",
+		"MainAbility/pages/TextArea/textAreaAutoFill"
     ]
 }
