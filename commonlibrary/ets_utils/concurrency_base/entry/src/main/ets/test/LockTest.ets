@@ -920,3 +920,83 @@ export async function gcAfterLockAsyncTest() {
   ArkTools.forceFullGC();
   return check('gcAfterLockAsyncTest', p);
 }
+
+async function mainExecutor(index: number, flagBuf: Uint32Array, timeout: number): Promise<void> {
+  let lockName = 'doubleExitSharedLockTest';
+  let lock = utils.locks.AsyncLock.request(lockName);
+  await lock.lockAsync(async () => {
+    flagBuf[index] = 1;
+    if (flagBuf[2] != 0) {
+      throw new Error('Unexpected set flag at index 2');
+    }
+    await new Promise<void>(resolve => setTimeout(resolve, timeout));
+    flagBuf[index] = 0;
+  }, utils.locks.AsyncLockMode.SHARED);
+}
+
+@Concurrent
+async function taskExecutor(flagBuf: Uint32Array, timeout: number) {
+  let lockName = 'doubleExitSharedLockTest';
+  let lock = utils.locks.AsyncLock.request(lockName);
+  await lock.lockAsync(async () => {
+    flagBuf[2] = 1;
+    if (flagBuf[0] != 0) {
+      throw new Error('Unexpected set flag at index 0');
+    }
+    if (flagBuf[1] != 0) {
+      throw new Error('Unexpected set flag at index 1');
+    }
+    await new Promise<void>(resolve => setTimeout(resolve, timeout));
+    flagBuf[2] = 0;
+  }, utils.locks.AsyncLockMode.SHARED);
+}
+
+// test entry point
+export function doubleExitSharedLockTest() {
+  let sab = new SharedArrayBuffer(3 * 4);
+  let flagBuf = new Uint32Array(sab);
+  for (let i = 0; i < flagBuf.length; ++i) {
+    flagBuf[i] = 0;
+  }
+  return check('doubleExitSharedLockTest', Promise.all([
+    mainExecutor(0, flagBuf, 100),
+    mainExecutor(1, flagBuf, 1000),
+    taskpool.execute(taskExecutor, flagBuf, 100),
+  ]));
+}
+
+@Concurrent
+async function sharedLockSchedulingTask() {
+  let lockName = 'sharedLockSchedulingTest';
+  let lock = utils.locks.AsyncLock.request(lockName);
+  let flags = new Array<number>();
+  flags[0] = 0;
+  flags[1] = 0;
+  let callback = async (idx: number, flags: Array<number>): Promise<void> => {
+    flags[idx] = 1;
+    let prevSet = true;
+    for (let i = 0; i < idx; ++i) {
+        if (!flags[i]) {
+            prevSet = false;
+        }
+    }
+    if (!prevSet) {
+        throw new Error('Expected callback interference');
+    }
+    await new Promise<void>(resolve => setTimeout(resolve, 100));
+    flags[idx] = 0;
+  };
+  let p1: Promise<void> = lock.lockAsync(async () => callback(0, flags), utils.locks.AsyncLockMode.SHARED);
+  let p2: Promise<void> = lock.lockAsync(async () => callback(1, flags), utils.locks.AsyncLockMode.SHARED);
+  await Promise.all([p1, p2]);
+}
+
+// test entry point
+export function sharedLockSchedulingTest() {
+  let lockName = 'sharedLockSchedulingTest';
+  let lock = utils.locks.AsyncLock.request(lockName);
+  lock.lockAsync(async () => {
+    await new Promise<void>(resolve => setTimeout(resolve, 100));
+  }, utils.locks.AsyncLockMode.SHARED);
+  return check('sharedLockSchedulingTest', taskpool.execute(sharedLockSchedulingTask));
+}
