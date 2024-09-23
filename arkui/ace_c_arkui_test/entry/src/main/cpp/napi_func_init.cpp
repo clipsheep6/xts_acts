@@ -357,6 +357,7 @@
 #include "text/text_width_test.cpp"
 #include "text/text_CustomSpan_test.cpp"
 #include "text/text_StyleGraphic_test.cpp"
+#include "text/text_span_test.cpp"
 #include "textinput/textinput_backgroundcolor_test.cpp"
 #include "textinput/textinput_backgroundimage_test.cpp"
 #include "textinput/textinput_caretcolor_test.cpp"
@@ -4986,6 +4987,10 @@ static napi_value Init(napi_env env, napi_value exports)
                 napi_default, nullptr},
 
 		{"textImageSpanTest001", nullptr, textImageSpanTest001, nullptr, nullptr, nullptr, napi_default, nullptr},
+		
+		{"testTextSpanContent001", nullptr, testTextSpanContent001, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testTextSpanFontSize002", nullptr, testTextSpanFontSize002, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"testTextSpanLineHeight003", nullptr, testTextSpanLineHeight003, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
