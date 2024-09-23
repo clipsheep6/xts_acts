@@ -10,6 +10,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import("//build/ohos_var.gni")
+import("//test/xts/tools/build/suite.gni")
 
 group("networkmanager") {
   testonly = true
@@ -19,6 +21,7 @@ group("networkmanager") {
     "http:http",
     "mdns:mdns",
     "ndk:ndk",
+    "netstack_websocket:netstack_websocketndk",
     "network:network",
     "networksecurity:networksecurity",
     "noNet:noNet",
