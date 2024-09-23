@@ -13,7 +13,10 @@
     "name": ".entry",
     "deviceType": [
       "tablet",
-      "default"
+      "default",
+      "phone",
+      "2in1",
+      "wearable"
     ],
     "distro": {
       "deliveryWithInstall": true,

@@ -86,7 +86,7 @@ describe('I18nUtilInI18nTest', function () {
                                         'en-US', 
                                         undefined);
         console.log('i18n_i18nutil_test_0200 ' + value);
-        let devType = deviceInfo.devicType;
+        let devType = deviceInfo.deviceType;
         if (devType == '2in1'){
             expect(value).assertEqual('236.588 liters');
         }else if (devType == 'phone'){
@@ -107,7 +107,7 @@ describe('I18nUtilInI18nTest', function () {
                                         'en-US', 
                                         null);
         console.log('i18n_i18nutil_test_0300 ' + value);
-        let devType = deviceInfo.devicType;
+        let devType = deviceInfo.deviceType;
         if (devType == '2in1'){
             expect(value).assertEqual('236.588 liters');
         }else if (devType == 'phone'){
@@ -128,7 +128,7 @@ describe('I18nUtilInI18nTest', function () {
                                         'en-US', 
                                         'medium');
         console.log('i18n_i18nutil_test_0400 ' + value);
-        let devType = deviceInfo.devicType;
+        let devType = deviceInfo.deviceType;
         if (devType == '2in1'){
             expect(value).assertEqual('236.588 liters');
         }else if (devType == 'phone'){
@@ -197,7 +197,7 @@ describe('I18nUtilInI18nTest', function () {
                                         'zh-CN', 
                                         'medium');
         console.log('i18n_i18nutil_test_0800 ' + value);
-        let devType = deviceInfo.devicType;
+        let devType = deviceInfo.deviceType;
         if (devType == '2in1'){
             expect(value).assertEqual('36,000秒钟');
         }else if (devType == 'phone'){
