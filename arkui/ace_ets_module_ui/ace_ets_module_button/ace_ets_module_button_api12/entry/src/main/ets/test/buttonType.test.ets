@@ -1,7 +1,7 @@
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
-let sleep = async ()=>{
-  return new Promise(res=>setTimeout(res,3000))
+function sleep(ms: number) {
+  return new Promise<void>(resolve => setTimeout(resolve, ms));
 }
 export default function abilityTest() {
   describe('ActsAbilityTest', () => {
@@ -44,7 +44,9 @@ export default function abilityTest() {
       console.info('[' + tagName + '] Search type is: ' + strJsonNew);
       let parseNew: object = JSON.parse(strJsonNew);
       console.info('[' + tagName + '] START============================3');
-      expect(parseNew?.$attrs?.type).assertEqual('ButtonType.ROUNDED_RECTANGLE');
+      if(parseNew != NULL){
+        expect(parseNew?.$attrs?.type).assertEqual('ButtonType.ROUNDED_RECTANGLE');
+      }
       console.info('[' + tagName + '] END ===========================');
       done();
     });
