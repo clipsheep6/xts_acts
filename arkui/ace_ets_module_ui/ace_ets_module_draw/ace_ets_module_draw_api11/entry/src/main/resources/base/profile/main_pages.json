@@ -34,6 +34,29 @@
         "MainAbility/pages/Rect/rect",
         "MainAbility/pages/Shape/shape",
         "MainAbility/pages/Circle/circle",
+
+        "MainAbility/pages/Navigation/Navigation",
+        "MainAbility/pages/NavRouter/NavRouter",
+        "MainAbility/pages/panel/panel002",
+        "MainAbility/pages/path/path002",
+        "MainAbility/pages/polygon/polygon002",
+        "MainAbility/pages/polyline/polyline002",
+        "MainAbility/pages/QRCode/QRCode",
+        "MainAbility/pages/Radio/Radio",
+        "MainAbility/pages/Rect/rect002",
+        "MainAbility/pages/Refresh/Refresh",
+        "MainAbility/pages/RichEditor/RichEditor",
+        "MainAbility/pages/RichText/RichText",
+        "MainAbility/pages/Scroll/Scroll",
+        "MainAbility/pages/Search/Search",
+        "MainAbility/pages/Select/Select",
+        "MainAbility/pages/Shape/shape002",
+        "MainAbility/pages/SideBarContainer/SideBarContainer",
+        "MainAbility/pages/Slider/Slider",
+        "MainAbility/pages/Span/Span",
+        "MainAbility/pages/Stack/Stack",
+        "MainAbility/pages/Stepper/Stepper",
+
         "MainAbility/pages/common"
     ]
 }

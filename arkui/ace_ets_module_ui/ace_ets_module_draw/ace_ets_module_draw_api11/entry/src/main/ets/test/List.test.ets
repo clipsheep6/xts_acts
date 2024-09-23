@@ -42,7 +42,52 @@ import polygonNewJsunit from './polygonTest/polygon.test';
 import polyLineNeJsunit from './polylineTest/polyLine.test';
 import rectNeJsunit from './RectTest/rect.test';
 
+import NavigationTest from './NavigationTest/Navigation.test';
+import NavRouterTest from './NavRouterTest/NavRouter.test';
+import Panel002Test from './panelTest/panel002.test';
+import Path002Test from './pathTest/path002.test';
+import Polygon002Test from './polygonTest/polygon002.test';
+import Polyline002Test from './polylineTest/polyline002.test';
+import QRCodeTest from './QRCodeTest/QRCode.test';
+import Rect002Test from './RectTest/rect002.test';
+import RadioTest from './RadioTest/Radio.test';
+import RefreshTest from './RefreshTest/Refresh.test';
+import RichEditorTest from './RichEditorTest/RichEditor.test';
+import RichTextTest from './RichTextTest/RichText.test';
+import SideBarContainerTest from './SideBarContainerTest/SideBarContainer.test';
+import ScrollTest from './ScrollTest/Scroll.test';
+import SearchTest from './SearchTest/Search.test';
+import SelectTest from './SelectTest/Select.test';
+import Shape002Test from './ShapeTest/Shape002.test';
+import SliderTest from './SliderTest/Slider.test';
+import SpanTest from './SpanTest/Span.test';
+import StackTest from './StackTest/Stack.test';
+import StepperTest from './StepperTest/Stepper.test';
+
 export default function testsuite() {
+  NavigationTest();
+  NavRouterTest();
+  Panel002Test();
+  Path002Test();
+  Polygon002Test();
+  Polyline002Test();
+  QRCodeTest();
+  Rect002Test();
+  RadioTest();
+  RefreshTest();
+  RichEditorTest();
+
+  RichTextTest();
+  ScrollTest();
+  SearchTest();
+  SelectTest();
+  Shape002Test();
+  SideBarContainerTest();
+  SliderTest();
+  SpanTest();
+  StackTest();
+  StepperTest();
+
   ellipseJsunit();
   CanvasAPIUnitTest();
   CanvasAPICanvasRenderTest();
