@@ -1,0 +1,57 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\Administrator\\.ohos\\config\\default_resmgrjs_KCBq_hb0D5Gxf06aiPMW83Fz3zDO8OuU48x9R4yrF7o=.cer",
+          "storePassword": "0000001A59A46DB7F9031CDB5A2708F9A25B725AC09562EC6DD0D30D78697E1040B638CD38BB80856815",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001A92396D7D2B8E71472219D87C7D561FCCFB8BE492B21232EBF098F9151819DCDC997B99895AD8",
+          "profile": "C:\\Users\\Administrator\\.ohos\\config\\default_resmgrjs_KCBq_hb0D5Gxf06aiPMW83Fz3zDO8OuU48x9R4yrF7o=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\Administrator\\.ohos\\config\\default_resmgrjs_KCBq_hb0D5Gxf06aiPMW83Fz3zDO8OuU48x9R4yrF7o=.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": 12,
+        "compatibleSdkVersion": 12,
+        "targetSdkVersion": 12,
+        "runtimeOS": "OpenHarmony",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
