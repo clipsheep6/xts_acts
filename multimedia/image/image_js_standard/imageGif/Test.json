@@ -29,7 +29,8 @@
             "push": [
                 "./resource/image/moving_test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
                 "./resource/image/test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
-                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files"
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
+                "./resource/image/giftest.txt ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files"
             ]
         },
         {

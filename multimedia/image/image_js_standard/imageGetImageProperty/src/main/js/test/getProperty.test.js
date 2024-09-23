@@ -31,7 +31,7 @@ export default function imageGetImageProperty() {
             LOOP_ZERO: '0',
             LOOP_NO: null,
         };
-        let GET_PROPERTIES_ERROR_CODE = "62980096";
+        let GET_PROPERTIES_ERROR_CODE = "62980285";
         let globalImagesource;
         async function getFd(fileName) {
             let context = await featureAbility.getContext();
@@ -207,6 +207,9 @@ export default function imageGetImageProperty() {
             if (type == "buf") {
                 const data = getPropertyBuf.buffer;
                 imageSourceApi = image.createImageSource(data);
+            } else if (type == "txt") {
+                await getFd("giftest.txt");
+                imageSourceApi = image.createImageSource(fdNumber);
             } else {
                 await getFd("test_exif1.jpg");
                 imageSourceApi = image.createImageSource(fdNumber);
@@ -216,13 +219,34 @@ export default function imageGetImageProperty() {
                 expect(false).assertTrue();
                 done();
             } else {
-                if (isTypeErr) {
+                if (isTypeErr == 62980115) {
                     try {
                         await imageSourceApi.getImageProperty(args);
                         expect(false).assertTrue();
                     } catch (error) {
-                        expect(error.code == 401).assertTrue();
+                        expect(error.code == 62980115).assertTrue();
                         console.log(`${testNum} error msg: ` + error);
+                        console.log(`${testNum} error code: ` + error.code);
+                        done();
+                    }
+                } else if (isTypeErr == 62980281) {
+                    try {
+                        await imageSourceApi.getImageProperty(args);
+                        expect(false).assertTrue();
+                    } catch (error) {
+                        expect(error.code == 62980281).assertTrue();
+                        console.log(`${testNum} error msg: ` + error);
+                        console.log(`${testNum} error code: ` + error.code);
+                        done();
+                    }
+                } else if (isTypeErr == 62980279) {
+                    try {
+                        await imageSourceApi.getImageProperty(args);
+                        expect(false).assertTrue();
+                    } catch (error) {
+                        expect(error.code == 62980279).assertTrue();
+                        console.log(`${testNum} error msg: ` + error);
+                        console.log(`${testNum} error code: ` + error.code);
                         done();
                     }
                 } else {
@@ -232,6 +256,7 @@ export default function imageGetImageProperty() {
                     } catch (error) {
                         expect(error.code != 0).assertTrue();
                         console.log(`${testNum} error msg: ` + error);
+                        console.log(`${testNum} error code: ` + error.code);
                         done();
                     }
                 }
@@ -243,6 +268,9 @@ export default function imageGetImageProperty() {
             if (type == "buf") {
                 const data = getPropertyBuf.buffer;
                 imageSourceApi = image.createImageSource(data);
+            } else if (type == "txt") {
+                await getFd("giftest.txt");
+                imageSourceApi = image.createImageSource(fdNumber);
             } else {
                 await getFd("test_exif1.jpg");
                 imageSourceApi = image.createImageSource(fdNumber);
@@ -252,7 +280,7 @@ export default function imageGetImageProperty() {
                 expect(false).assertTrue();
                 done();
             } else {
-                if (isTypeErr) {
+                if (isTypeErr == 62980115) {
                     try {
                         imageSourceApi.getImageProperty(args, (error, data) => {
                             expect(false).assertTrue();
@@ -260,14 +288,47 @@ export default function imageGetImageProperty() {
                         });
                     } catch (error) {
                         console.log(`${testNum} error1 msg: ` + error);
-                        expect(error.code == 401).assertTrue();
+                        expect(error.code == 62980115).assertTrue();
                         done();
                     }
+                } else if (isTypeErr == 62980281) {
+                    imageSourceApi.getImageProperty(args, (err, data) => {
+                        if (err != undefined) {
+                            console.log(`${testNum} error msg: ` + err);
+                            console.log(`${testNum} error code: ` + err.code);
+                            expect(err.code == 62980281).assertTrue();
+                            done();
+                        } else {
+                            console.info(`${testNum} failed`);
+                            expect(false).assertTrue();
+                            done();
+                        }
+                    });
+                } else if (isTypeErr == 62980279) {
+                    imageSourceApi.getImageProperty(args, (error, data) => {
+                        if (error != undefined) {
+                            expect(error.code == 62980279).assertTrue();
+                            console.log(`${testNum} error msg: ` + error);
+                            console.log(`${testNum} error code: ` + error.code);
+                            done();
+                        } else {
+                            console.info(`${testNum} failed`);
+                            expect(false).assertTrue();
+                            done();
+                        }
+                    });
                 } else {
                     imageSourceApi.getImageProperty(args, (error, data) => {
-                        expect(error.code != 0).assertTrue();
-                        console.log(`${testNum} error3 msg: ` + error);
-                        done();
+                        if (error != undefined) {
+                            expect(error.code != 0).assertTrue();
+                            console.log(`${testNum} error msg: ` + error);
+                            console.log(`${testNum} error code: ` + error.code);
+                            done();
+                        } else {
+                            console.info(`${testNum} failed`);
+                            expect(false).assertTrue();
+                            done();
+                        }
                     });
                 }
             }
@@ -278,6 +339,9 @@ export default function imageGetImageProperty() {
             if (type == "buf") {
                 const data = getPropertyBuf.buffer;
                 imageSourceApi = image.createImageSource(data);
+            } else if (type == "txt") {
+                await getFd("giftest.txt");
+                imageSourceApi = image.createImageSource(fdNumber);
             } else {
                 await getFd("test_exif1.jpg");
                 imageSourceApi = image.createImageSource(fdNumber);
@@ -288,25 +352,59 @@ export default function imageGetImageProperty() {
                 done();
             } else {
                 let property = { index: 0, defaultValue: "9999" };
-                if (isTypeErr) {
+                if (isTypeErr == 62980115) {
                     try {
                         imageSourceApi.getImageProperty(args, property, (error, data) => {
                             expect(false).assertTrue();
                         });
                     } catch (error) {
-                        expect(error.code == 401).assertTrue();
+                        expect(error.code == 62980115).assertTrue();
                         console.log(`${testNum} error msg: ` + error);
                         done();
                     }
+                } else if (isTypeErr == 62980281) {
+                    imageSourceApi.getImageProperty(args, property, (err, data) => {
+                        if (err != undefined) {
+                            console.log(`${testNum} error msg: ` + err);
+                            console.log(`${testNum} error code: ` + err.code);
+                            expect(err.code == 62980281).assertTrue();
+                            done();
+                        } else {
+                            console.info(`${testNum} failed`);
+                            expect(false).assertTrue();
+                            done();
+                        }
+                    });
+                } else if (isTypeErr == 62980279) {
+                    imageSourceApi.getImageProperty(args, property, (error, data) => {
+                        if (error != undefined) {
+                            expect(error.code == 62980279).assertTrue();
+                            console.log(`${testNum} error msg: ` + error);
+                            console.log(`${testNum} error code: ` + error.code);
+                            done();
+                        } else {
+                            console.info(`${testNum} failed`);
+                            expect(false).assertTrue();
+                            done();
+                        }
+                    });
                 } else {
                     imageSourceApi.getImageProperty(args, property, (error, data) => {
-                        expect(error.code != 0).assertTrue();
-                        console.log(`${testNum} error msg: ` + error);
-                        done();
+                        if (error != undefined) {
+                            expect(error.code != 0).assertTrue();
+                            console.log(`${testNum} error msg: ` + error);
+                            console.log(`${testNum} error code: ` + error.code);
+                            done();
+                        } else {
+                            console.info(`${testNum} failed`);
+                            expect(false).assertTrue();
+                            done();
+                        }
                     });
                 }
             }
         }
+
 
         async function testGetGifLoopCount(done, testNum, loopCase, isBatch, args) {
             let imageSourceApi;
@@ -338,7 +436,7 @@ export default function imageGetImageProperty() {
                     .catch((error) => {
                         console.log(`${testNum} error: ` + error);
                         console.log(`${testNum} error: ` + JSON.stringify(error));
-                        expect(error.code == "62980149").assertTrue();
+                        expect(error.code == "62980279").assertTrue();
                         done();
                     });
                 } else {
@@ -810,7 +908,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0100", 0, async function (done) {
             let key = "Date";
-            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0100", "picture", key, false);
+            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0100", "picture", key, 0);
         });
 
         /**
@@ -824,7 +922,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0200", 0, async function (done) {
             let key = null;
-            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0200", "picture", key, true);
+            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0200", "picture", key, 62980115);
         });
 
         /**
@@ -838,7 +936,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0300", 0, async function (done) {
             let key = 12;
-            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0300", "picture", key, true);
+            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0300", "picture", key, 62980115);
         });
 
         /**
@@ -852,7 +950,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0400", 0, async function (done) {
             let key = { w: 12 };
-            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0400", "picture", key, true);
+            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_ERROR_0400", "picture", key, 62980115);
         });
 
         /**
@@ -866,7 +964,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0100", 0, async function (done) {
             let key = "Date";
-            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0100", "picture", key, false);
+            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0100", "picture", key, 0);
         });
 
         /**
@@ -880,7 +978,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0200", 0, async function (done) {
             let key = null;
-            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0200", "picture", key, true);
+            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0200", "picture", key, 62980115);
         });
 
         /**
@@ -894,7 +992,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0300", 0, async function (done) {
             let key = 12;
-            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0300", "picture", key, true);
+            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0300", "picture", key, 62980115);
         });
 
         /**
@@ -908,7 +1006,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0400", 0, async function (done) {
             let key = { w: 12 };
-            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0400", "picture", key, true);
+            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0400", "picture", key, 62980115);
         });
 
         /**
@@ -922,7 +1020,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0500", 0, async function (done) {
             let key = "Date";
-            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0500", "picture", key, false);
+            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0500", "picture", key, 0);
         });
 
         /**
@@ -936,7 +1034,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0600", 0, async function (done) {
             let key = null;
-            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0600", "picture", key, true);
+            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0600", "picture", key, 62980115);
         });
 
         /**
@@ -950,7 +1048,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0700", 0, async function (done) {
             let key = 12;
-            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0700", "picture", key, true);
+            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0700", "picture", key, 62980115);
         });
 
         /**
@@ -964,7 +1062,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0800", 0, async function (done) {
             let key = { a: 12 };
-            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0800", "picture", key, true);
+            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_ERROR_0800", "picture", key, 62980115);
         });
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0100
@@ -977,7 +1075,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0100", 0, async function (done) {
             let key = "Date";
-            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0100", "buf", key, false);
+            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0100", "buf", key, 0);
         });
 
         /**
@@ -991,7 +1089,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0200", 0, async function (done) {
             let key = null;
-            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0200", "buf", key, true);
+            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0200", "buf", key, 62980115);
         });
 
         /**
@@ -1005,7 +1103,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0300", 0, async function (done) {
             let key = 12;
-            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0300", "buf", key, true);
+            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0300", "buf", key, 62980115);
         });
 
         /**
@@ -1019,7 +1117,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0400", 0, async function (done) {
             let key = { w: 12 };
-            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0400", "buf", key, true);
+            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_BUFFER_ERROR_0400", "buf", key, 62980115);
         });
 
         /**
@@ -1033,7 +1131,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0100", 0, async function (done) {
             let key = "Date";
-            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0100", "buf", key, false);
+            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0100", "buf", key, 0);
         });
 
         /**
@@ -1047,7 +1145,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0200", 0, async function (done) {
             let key = null;
-            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0200", "buf", key, true);
+            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0200", "buf", key, 62980115);
         });
 
         /**
@@ -1061,7 +1159,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0300", 0, async function (done) {
             let key = 12;
-            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0300", "buf", key, true);
+            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0300", "buf", key, 62980115);
         });
 
         /**
@@ -1075,7 +1173,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0400", 0, async function (done) {
             let key = { w: 12 };
-            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0400", "buf", key, true);
+            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0400", "buf", key, 62980115);
         });
 
         /**
@@ -1089,7 +1187,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0500", 0, async function (done) {
             let key = "Date";
-            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0500", "buf", key, false);
+            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0500", "buf", key, 0);
         });
 
         /**
@@ -1103,7 +1201,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0600", 0, async function (done) {
             let key = null;
-            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0600", "buf", key, true);
+            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0600", "buf", key, 62980115);
         });
 
         /**
@@ -1117,7 +1215,7 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0700", 0, async function (done) {
             let key = 12;
-            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0700", "buf", key, true);
+            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0700", "buf", key, 62980115);
         });
 
         /**
@@ -1131,7 +1229,97 @@ export default function imageGetImageProperty() {
          */
         it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0800", 0, async function (done) {
             let key = { a: 12 };
-            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0800", "buf", key, true);
+            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_BUFFER_ERROR_0800", "buf", key, 62980115);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_TXT_ERROR_0100
+         * @tc.name      : getImageProperty-Promise
+         * @tc.desc      : 1.create imagesource
+         *                 2.call getImageProperty(args)
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_TXT_ERROR_0100", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_TXT_ERROR_0100", "txt", key, 62980281);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_TXT_ERROR_0100
+         * @tc.name      : getImageProperty-callback
+         * @tc.desc      : 1.create imagesource
+         *                 2.call getImageProperty(args, callback)
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_TXT_ERROR_0100", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_TXT_ERROR_0100", "txt", key, 62980281);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_TXT_ERROR_0200
+         * @tc.name      : getImageProperty-callback
+         * @tc.desc      : 1.create imagesource
+         *                 2.call getImageProperty(args, property, callback)
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_TXT_ERROR_0200", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_TXT_ERROR_0200", "txt", key, 62980281);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_JPG_ERROR_0100
+         * @tc.name      : getImageProperty-Promise
+         * @tc.desc      : 1.create imagesource
+         *                 2.call getImageProperty(args)
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_JPG_ERROR_0100", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            testGetImagePropertyPromiseErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_JPG_ERROR_0100", "jpg", key, 62980279);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_JPG_ERROR_0100
+         * @tc.name      : getImageProperty-callback
+         * @tc.desc      : 1.create imagesource
+         *                 2.call getImageProperty(args, callback)
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_JPG_ERROR_0100", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            await testGetImagePropertyCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_JPG_ERROR_0100", "jpg", key, 62980279);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_JPG_ERROR_0200
+         * @tc.name      : getImageProperty-callback
+         * @tc.desc      : 1.create imagesource
+         *                 2.call getImageProperty(args, property, callback)
+         *                 3.return errorCode
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_JPG_ERROR_0200", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            testGetImagePropertyOptCbErr(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CALLBACK_JPG_ERROR_0200", "jpg", key, 62980279);
         });
 
         /**
