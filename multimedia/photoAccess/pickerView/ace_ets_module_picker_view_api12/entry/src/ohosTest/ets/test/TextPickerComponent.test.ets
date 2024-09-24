@@ -32,11 +32,20 @@ import {
   SelectMode,
   PickerOrientation,
   PhotoBrowserInfo,
-  ClickType
+  ClickType,
+  BaseItemInfo,
+  PhotoBrowserRange
 } from '@ohos.file.PhotoPickerComponent';
 import { AlbumPickerComponent, AlbumPickerOptions, AlbumInfo } from '@ohos.file.AlbumPickerComponent';
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import { PhotoPickerResult } from '../MainAbility/common/PhotoPickerResult'
+import {
+  RecentPhotoOptions,
+  PhotoSource,
+  RecentPhotoComponent,
+  RecentPhotoClickCallback,
+  RecentPhotoCheckResultCallback
+} from '@ohos.file.RecentPhotoComponent';
 
 async function routeToUrl(options: router.RouterOptions) {
   try {
@@ -922,6 +931,187 @@ export default function TextPicker() {
       router.back();
       console.info("testPicer18 finish");
       events_emitter.off(event.eventId);
+      done();
+    });
+
+
+    /**
+     * @tc.number    : testPicker19
+     * @tc.name      : testPicker19
+     * @tc.desc      : Testing RecentPhotoComponent(PhotoSource.ALL)
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level1
+     */
+    it('testPicker19', 0, async (done: Function) => {
+      let code: number = EventType.RECENT_PHOTO_INFO;
+      let recentPhotoOptions: RecentPhotoOptions = new RecentPhotoOptions();
+      recentPhotoOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      recentPhotoOptions.period = 0;
+      recentPhotoOptions.photoSource = PhotoSource.ALL;
+      let callback = (event: events_emitter.EventData) => {
+        let baseItemInfo: BaseItemInfo = event?.data?.msg;
+        console.info('testPicker19 baseItemInfo =:' + JSON.stringify(baseItemInfo));
+        expect(baseItemInfo.uri).not().assertUndefined();
+        expect(baseItemInfo.uri).not().assertEqual('');
+        expect(baseItemInfo.mimeType).not().assertUndefined();
+        expect(baseItemInfo.width).not().assertUndefined();
+        expect(baseItemInfo.height).not().assertUndefined();
+        expect(baseItemInfo.size).not().assertUndefined();
+        expect(baseItemInfo.duration).not().assertUndefined();
+        done();
+      }
+      let event: events_emitter.InnerEvent = {
+        eventId: code,
+        priority: events_emitter.EventPriority.LOW
+      }
+      events_emitter.on(event, callback);
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/RecentPhotoDemo',
+        params: {
+          eventId: code,
+          recentPhotoOptions: recentPhotoOptions,
+        }
+      }
+      await routeToUrl(options);
+      console.info('testPicker19 create');
+      let component: Component = await driver.findComponent(ON.id('recentPhoto'));
+      await component.click();
+      await CommonFunc.sleep(2000);
+      router.back();
+      console.info("testPicer19 finish");
+      events_emitter.off(event.eventId);
+      done();
+    });
+
+    /**
+     * @tc.number    : testPicker20
+     * @tc.name      : testPicker20
+     * @tc.desc      : Testing RecentPhotoComponent(PhotoSource.CAMERA)
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level1
+     */
+    it('testPicker20', 0, async (done: Function) => {
+      let code: number = EventType.RECENT_PHOTO_INFO;
+      let recentPhotoOptions: RecentPhotoOptions = new RecentPhotoOptions();
+      recentPhotoOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      recentPhotoOptions.period = 0;
+      recentPhotoOptions.photoSource = PhotoSource.CAMERA;
+      let callback = (event: events_emitter.EventData) => {
+        let baseItemInfo: BaseItemInfo = event?.data?.msg;
+        console.info('testPicker20 baseItemInfo =:' + JSON.stringify(baseItemInfo));
+        expect(baseItemInfo.uri).not().assertUndefined();
+        expect(baseItemInfo.uri).not().assertEqual('');
+        expect(baseItemInfo.mimeType).not().assertUndefined();
+        expect(baseItemInfo.width).not().assertUndefined();
+        expect(baseItemInfo.height).not().assertUndefined();
+        expect(baseItemInfo.size).not().assertUndefined();
+        expect(baseItemInfo.duration).not().assertUndefined();
+        done();
+      }
+      let event: events_emitter.InnerEvent = {
+        eventId: code,
+        priority: events_emitter.EventPriority.LOW
+      }
+      events_emitter.on(event, callback);
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/RecentPhotoDemo',
+        params: {
+          eventId: code,
+          recentPhotoOptions: recentPhotoOptions,
+        }
+      }
+      await routeToUrl(options);
+      console.info('testPicker20 create');
+      let component: Component = await driver.findComponent(ON.id('recentPhoto'));
+      await component.click();
+      await CommonFunc.sleep(2000);
+      router.back();
+      console.info("testPicer20 finish");
+      events_emitter.off(event.eventId);
+      done();
+    });
+
+    /**
+     * @tc.number    : testPicker21
+     * @tc.name      : testPicker21
+     * @tc.desc      : Testing RecentPhotoComponent(PhotoSource.SCREENSHOT)
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level1
+     */
+    it('testPicker21', 0, async (done: Function) => {
+      let code: number = EventType.RECENT_PHOTO_INFO;
+      let recentPhotoOptions: RecentPhotoOptions = new RecentPhotoOptions();
+      recentPhotoOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
+      recentPhotoOptions.period = 0;
+      recentPhotoOptions.photoSource = PhotoSource.SCREENSHOT;
+      let callback = (event: events_emitter.EventData) => {
+        let baseItemInfo: BaseItemInfo = event?.data?.msg;
+        console.info('testPicker21 baseItemInfo =:' + JSON.stringify(baseItemInfo));
+        expect(baseItemInfo.uri).not().assertUndefined();
+        expect(baseItemInfo.uri).not().assertEqual('');
+        expect(baseItemInfo.mimeType).not().assertUndefined();
+        expect(baseItemInfo.width).not().assertUndefined();
+        expect(baseItemInfo.height).not().assertUndefined();
+        expect(baseItemInfo.size).not().assertUndefined();
+        expect(baseItemInfo.duration).not().assertUndefined();
+        done();
+      }
+      let event: events_emitter.InnerEvent = {
+        eventId: code,
+        priority: events_emitter.EventPriority.LOW
+      }
+      events_emitter.on(event, callback);
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/RecentPhotoDemo',
+        params: {
+          eventId: code,
+          recentPhotoOptions: recentPhotoOptions,
+        }
+      }
+      await routeToUrl(options);
+      console.info('testPicker21 create');
+      let component: Component = await driver.findComponent(ON.id('recentPhoto'));
+      await component.click();
+      await CommonFunc.sleep(2000);
+      router.back();
+      console.info("testPicer21 finish");
+      events_emitter.off(event.eventId);
+      done();
+    });
+
+    /* *
+       * @tc.number    : testPicker22
+       * @tc.name      : testPicker22
+       * @tc.desc      : Testing PhotoPickerComponent set browser back button and checkbox
+       * @tc.size      : MediumTest
+       * @tc.type      : Function
+       * @tc.level     : Level0
+       */
+    it('testPicker22', 0, async (done: Function) => {
+      let code: number = EventType.PHOTO_PICKER_INFO;
+      let pickerOptions: PickerOptions = getDefaultPickerOptions();
+      // 支持滑动多选
+      pickerOptions.isSlidingSelectionSupported = true;
+      // 设置大图页checkbox位置
+      pickerOptions.photoBrowserCheckboxPosition = [0.5, 0.5];
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/PickerComponent',
+        params: {
+          eventId: code,
+          pickerOptions: pickerOptions,
+        }
+      }
+      await routeToUrl(options);
+      let strJson: string = getInspectorByKey('PhotoPickerComponent');
+      console.info("testPicker22 JSON.parse(strJson) is" + strJson);
+      expect(JSON.parse(strJson).$attrs.visibility).assertEqual('Visibility.Visible');
+      await clickResultButton(driver);
+      await CommonFunc.sleep(2000);
+      router.back();
+      console.info("testPicer22 finish");
       done();
     });
   })
