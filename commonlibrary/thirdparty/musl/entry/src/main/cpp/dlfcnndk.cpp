@@ -22,27 +22,48 @@
 
 #define INIT (-1)
 #define SUCCESS 0
+#define DLOPEN_FAIL (-1)
+#define DLSYM_FAIL (-2)
 
 static napi_value DlSym(napi_env env, napi_callback_info info)
 {
-    const char *path = "/system/lib/extensionability/libstatic_subscriber_extension_module.z.so";
+    int res = SUCCESS;
+    const char *path = "libdso_easy_symver.so";
     void *ptr = dlopen(path, RTLD_LAZY);
-    errno = 0;
-    dlsym(ptr, "OHOS_EXTENSION_GetExtensionModule");
+    if (ptr == nullptr) {
+        res = DLOPEN_FAIL;
+        napi_value result = nullptr;
+        napi_create_int32(env, res, &result);
+        return result;
+    }
+
+    void *handle = dlsym(ptr, "dso_easy_symver");
+    if (handle == nullptr) {
+        res = DLSYM_FAIL;
+    }
     napi_value result = nullptr;
-    napi_create_int32(env, errno, &result);
+    napi_create_int32(env, res, &result);
     return result;
 }
 
 static napi_value DlVSym(napi_env env, napi_callback_info info)
 {
-    const char *path = "/system/lib/extensionability/libstatic_subscriber_extension_module.z.so";
+    int res = SUCCESS;
+    const char *path = "libdso_easy_symver.so";
     void *ptr = dlopen(path, RTLD_LAZY);
-    errno = 0;
+    if (ptr == nullptr) {
+        res = DLOPEN_FAIL;
+        napi_value result = nullptr;
+        napi_create_int32(env, res, &result);
+        return result;
+    }
     const char *dso_easy_symver_version_stable = "STABLE";
-    dlvsym(ptr, "OHOS_EXTENSION_GetExtensionModule", dso_easy_symver_version_stable);
+    void *handle = dlvsym(ptr, "dso_easy_symver", dso_easy_symver_version_stable);
+    if (handle == nullptr) {
+        res = DLSYM_FAIL;
+    }
     napi_value result = nullptr;
-    napi_create_int32(env, errno, &result);
+    napi_create_int32(env, res, &result);
     return result;
 }
 
