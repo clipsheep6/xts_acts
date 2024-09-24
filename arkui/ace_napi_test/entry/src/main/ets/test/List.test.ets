@@ -16,11 +16,12 @@ import napiStringTest from './NativeApiStringTest';
 import napiObjectTest from './NativeApiObjectTest';
 import napiBufferTest from './NativeApiBufferTest';
 import napiSendableTest from './NativeApiSendableTest';
-
+import napiApiTest from './NapiTest';
 
 export default function testsuite() {
   napiStringTest();
   napiBufferTest();
   napiObjectTest();
   napiSendableTest();
+  napiApiTest();
 }
