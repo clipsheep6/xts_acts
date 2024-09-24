@@ -16,6 +16,13 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import deviceAttest from '@ohos.deviceAttest';
 import { window } from '@kit.ArkUI';
 import base from '@ohos.base';
+import {
+  RecentPhotoOptions,
+  PhotoSource,
+  RecentPhotoComponent,
+  RecentPhotoClickCallback,
+  RecentPhotoCheckResultCallback
+} from '@o
 
 export default function deviceAttestInfoTest(context: Context, windowStage:window.WindowStage,
                                              abilityStorage: LocalStorage) {
