@@ -1,4 +1,18 @@
-
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
 #include "napi/native_api.h"
 #include "hilog/log.h"
 #include <string>
@@ -9,20 +23,15 @@
 #include "database/udmf/udmf_meta.h"
 #include "database/udmf/uds.h"
 #include "database/udmf/utd.h"
-
-
-
 #include <iostream>
 #include <map>
 #include <ctime>
 #include "common.h"
-
 #include <cctype>
 #include <condition_variable>
 #include <cstdint>
 #include <fcntl.h>
 #include <functional>
-
 #include <iostream>
 #include <list>
 #include <map>
@@ -32,28 +41,23 @@
 #include <sys/mman.h>
 #include <thread>
 #include <vector>
-
-
 #include <string>
 #include <random>
 #include <chrono>
 
 
 const char *TAG = "testLog";
-
-
 static constexpr char HYPERLINK_URL[] = "file://data/image.png";
 static constexpr char PLAINTEXT_CONTENT[] = "PLAINTEXT_CONTENT";
 static void* GetDataCallback(void* context, const char* type);
-static int callbackValue;
+static int g_callbackValue;
 static constexpr int UPDATE_VALUE = 1;
-
 
 void FinalizeFunc(void* context) {};
 void ContextFinalizeFunc(void* context) {};
 void CallbackFunc(void* context, Pasteboard_NotifyType type)
 {
-    callbackValue = UPDATE_VALUE;
+    g_callbackValue = UPDATE_VALUE;
 }
 
 
@@ -454,7 +458,7 @@ static napi_value OH_Pasteboard_GetData0100(napi_env env, napi_callback_info inf
     OH_UdmfRecord_GetPlainText(getRecords[0], getPlainText);
     const char *getContent = OH_UdsPlainText_GetContent(getPlainText);
  
-    NAPI_ASSERT(env, strcmp(getContent,content) == 0, "OH_Pasteboard_GetData is fail.");
+    NAPI_ASSERT(env, strcmp(getContent, scontent) == 0, "OH_Pasteboard_GetData is fail.");
     napi_create_int32(env, res == ERR_OK, &result);
     OH_Pasteboard_Destroy(pasteboard);
     OH_UdsPlainText_Destroy(plainText);
@@ -593,7 +597,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"OH_Pasteboard_GetDataSrouce0100", nullptr, OH_Pasteboard_GetDataSrouce0100, nullptr,
          nullptr, nullptr, napi_default, nullptr},
         {"OH_Pasteboard_HasType0100", nullptr, OH_Pasteboard_HasType0100, nullptr,
-         nullptr,nullptr, napi_default, nullptr},
+         nullptr, nullptr, napi_default, nullptr},
         {"OH_Pasteboard_HasData0100", nullptr, OH_Pasteboard_HasData0100, nullptr,
          nullptr, nullptr, napi_default, nullptr},
         {"OH_Pasteboard_ClearData0100", nullptr, OH_Pasteboard_ClearData0100, nullptr,
