@@ -374,6 +374,50 @@ export default function appManagerTest() {
         })
     })
 
+    /**
+     * @tc.number: System_API_Test_App_Manager_1700
+     * @tc.name: promise form killProcessWithAccount system interface interception test
+     * @tc.desc: Test the third-party application call killProcessWithAccount will be blocked
+     * @tc.level 3
+     */
+    it('System_API_Test_App_Manager_1700', 0, (done: Function) => {
+      let TAG = 'System_API_Test_App_Manager_1700';
+      let bundleName = "com.ohos.application";
+      let accountId = 100;
+      appManager.killProcessWithAccount(bundleName, accountId, true)
+        .then(err => {
+          console.log(TAG + ` err->${JSON.stringify(err)}`);
+          expect().assertFail();
+          done();
+        })
+        .catch((err: BusinessError) => {
+          console.log(TAG + "  err.code: " + err.code);
+          expect(err.code).assertEqual(ERROR_CODE);
+          done();
+        })
+    })
+
+    /**
+     * @tc.number: System_API_Test_App_Manager_1800
+     * @tc.name: promise form killProcessesByBundleName system interface interception test
+     * @tc.desc: Test the third-party application call killProcessesByBundleName will be blocked
+     * @tc.level 3
+     */
+    it('System_API_Test_App_Manager_1800', 0, (done: Function) => {
+      let TAG = 'System_API_Test_App_Manager_1800';
+      let bundleName = "com.ohos.application";
+      appManager.killProcessesByBundleName(bundleName, true)
+        .then(err => {
+          console.log(TAG + ` err->${JSON.stringify(err)}`);
+          expect().assertFail();
+          done();
+        })
+        .catch((err: BusinessError) => {
+          console.log(TAG + "  err.code: " + err.code);
+          expect(err.code).assertEqual(ERROR_CODE);
+          done();
+        })
+    })
 
     /**
      * @tc.number: Public_API_Test_App_Manager_0100
