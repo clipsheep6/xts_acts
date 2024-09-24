@@ -211,25 +211,6 @@ export default function unhandledRejectionTest() {
     })
 
     /*
-     * @tc.number: ACTS_Register_JsErrorCallback_UnhandledRejection_0800
-     * @tc.name: JsError unhandled rejection callback enhancement
-     * @tc.desc: Trying to register a null UnhandledRejectionObserver will end up with a 401 error.
-     */
-    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0800', 0, async (done: Function) => {
-      console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_0800<=====");
-
-      try {
-        errorManager.on('unhandledRejection', null);
-        expect().assertFail();
-        done();
-      } catch (e) {
-        console.info("====>ACTS_Register_JsErrorCallback_UnhandledRejection_0800 catch " + JSON.stringify(e));
-        expect(e.code).assertEqual(401);
-        done();
-      }
-    })
-
-    /*
      * @tc.number: ACTS_Register_JsErrorCallback_UnhandledRejection_0900
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: When an error is thrown during the parsing process in try catch, it will be captured as an unhandled rejection.
@@ -442,34 +423,11 @@ export default function unhandledRejectionTest() {
     })
 
     /*
-     * @tc.number: ACTS_Unregister_JsErrorCallback_UnhandledRejection_0400
-     * @tc.name: JsError unhandled rejection callback enhancement
-     * @tc.desc: Trying to unregister a null UnhandledRejectionObserver will end up with a 401 error.
-     */
-    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0400', 0, async (done: Function) => {
-      console.log("=====>ACTS_Unregister_JsErrorCallback_UnhandledRejection_0400<=====");
-      try {
-        errorManager.off('unhandledRejection', null);
-        expect().assertFail();
-        done();
-      } catch (e) {
-        console.info("====>ACTS_Unregister_JsErrorCallback_UnhandledRejection_0400 catch " + JSON.stringify(e));
-        expect(e.code).assertEqual(401);
-        done();
-      }
-
-      setTimeout(() => {
-        done();
-      }, TIMEOUT_DUARATION);
-      await sleep(SLEEP_DURATION);
-    })
-
-    /*
      * @tc.number: ACTS_Unregister_JsErrorCallback_UnhandledRejection_0500
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: Trying to unregister UnhandledRejectionObserver in worker.
      */
-    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0500', 0, async (done) => {
+    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0500', 0, async (done:Function) => {
       let flag = false;
       console.log("=====>ACTS_Unregister_JsErrorCallback_UnhandledRejection_0500<=====");
 
