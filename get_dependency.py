@@ -21,7 +21,7 @@ import sys
 import stat
 
 precise_repo_xts = sys.argv[1]
-DEEP = int(sys.argv[2]) if len(sys.argv) > 2 else -1
+DEEP = 1
 home = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 manifest_home = os.path.join(home, ".repo")
 preloader_path = os.path.join(home, "out", "preloader")
