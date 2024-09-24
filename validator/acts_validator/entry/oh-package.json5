@@ -19,6 +19,8 @@
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {}
+  "dependencies": {
+    '@ohos/IoTConnectKit': "file:./lib/IotLibrary.har"
+  }
 }
 

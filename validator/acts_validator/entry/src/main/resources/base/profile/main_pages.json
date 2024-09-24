@@ -105,7 +105,14 @@
     "pages/PCS/SubscribeCommonEvent",
     "pages/PCS/UninstallHap",
     "pages/PCS/SecureScreenLock",
-    "pages/PCS/RebootScreenUnlock"
+    "pages/PCS/RebootScreenUnlock",
+    "pages/IOT/IOT_index",
+    "pages/IOT/IOTDiscovery",
+    "pages/IOT/IOTConnect",
+    "pages/IOT/IOTReConnect",
+    "pages/IOT/IOTPinConnect",
+    "pages/IOT/IOTConnectState",
+    "pages/IOT/IOTControl"
   ]
 }
 
