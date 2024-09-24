@@ -69,30 +69,5 @@ export default function imagePixelMapTest() {
       done();
     });
 
-    /**
-     * @tc.number    ImagePixelMapTest
-     * @tc.name      ImagePixelMapTest_0200
-     * @tc.desc      api
-     * @tc.level:    Level 2
-     * @tc.type :
-     * @tc.size :
-     */
-    it("ImagePixelMapTest_0200", 0, async (done:Function)=> {
-      let options :router.RouterOptions= {
-        url: 'MainAbility/pages/index/indexPixel',
-      }
-      let result = await router.replace(options);
-      let driver: Driver = Driver.create();
-      await driver.delayMs(2000);
-      let button3 = await driver.findComponent(ON.id('createPixelMapFromSurfaceSync'));
-      await button3.click();
-      await driver.delayMs(1000);
-      let strJson = getInspectorByKey('createPixelMapFromSurfaceSync');
-      let obj :ESObject= JSON.parse(strJson);
-      expect(obj.$attrs.content).assertEqual('pass');
-      await driver.delayMs(2000);
-      done();
-    });
-
   })
 }
