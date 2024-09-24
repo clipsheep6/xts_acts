@@ -17,10 +17,6 @@ import cameraPickerPc from './CameraPickerPc.test'
 import call from  '@ohos.telephony.call'
 let voice = call.hasVoiceCapability()
 
-export default async function testsuite() {
-    if (voice){
-        cameraPicker()
-    }else{
-        cameraPickerPc()
-    }
+export default async function testsuite() {  
+    cameraPickerPc() 
 }
