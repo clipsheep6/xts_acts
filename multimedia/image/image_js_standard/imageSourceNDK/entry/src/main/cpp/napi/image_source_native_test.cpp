@@ -46,6 +46,10 @@ static napi_value Init(napi_env env, napi_value exports)
             "JsModifyImageProperty", nullptr, ImageSourceTest::JsModifyImageProperty,
             nullptr, nullptr, nullptr, napi_static, nullptr
         },
+        {
+            "JsGetDisposalTypeList", nullptr, ImageSourceTest::JsGetDisposalTypeList,
+            nullptr, nullptr, nullptr, napi_static, nullptr
+        },
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -149,6 +153,41 @@ std::string ImageSourceTest::getStringFromArgs(napi_env env, napi_value arg)
     std::string strValue = buffer;
     free(buffer);
     return strValue;
+}
+
+napi_value ImageSourceTest::JsGetDisposalTypeList(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    napi_value thisVar = nullptr;
+
+    napi_value argValue[NUM_1] = {0};
+    size_t argCount = NUM_1;
+
+    if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok) {
+        HiviewDFX::HiLog::Error(LABEL, "JsGetDisposalTypeList failed to parse params");
+
+        return result;
+    }
+
+    int32_t fd = 0;
+    napi_get_value_int32(env, argValue[NUM_0], &fd);
+
+    std::vector<int32_t> disposalTypeList;
+    ImageSourceModuleTest ismt;
+    Image_ErrorCode ret = ismt.GetDisposalTypeList(fd, &disposalTypeList);
+    if (ret != IMAGE_SUCCESS) {
+        HiviewDFX::HiLog::Error(LABEL, "JsGetDisposalTypeList failed");
+        return result;
+    }
+    size_t len = disposalTypeList.size();
+    napi_create_array(env, &result);
+    for (size_t i = 0; i < len; i++) {
+        napi_value elem;
+        napi_create_int32(env, disposalTypeList[i], &elem);
+        napi_set_element(env, result, i, elem);
+    }
+    return result;
 }
 
 } // namespace Media
