@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/UIExtAbilityPageA",
+    "pages/UIExtAbilityPageB",
+    "pages/Index"
+  ]
+}
