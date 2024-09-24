@@ -103,7 +103,7 @@ export default function getBundleInfoForSelf() {
         expect(data.appInfo.description).assertEqual("$string:description_application");
         expect(data.appInfo.descriptionId).assertLarger(0);
         expect(data.appInfo.enabled).assertTrue();
-        expect(data.appInfo.label).assertEqual("$string:app_name");
+        expect(data.appInfo.label).assertEqual("$string:entry_label");
         expect(data.appInfo.labelId).assertLarger(0);
         expect(data.appInfo.icon).assertEqual("$media:icon");
         expect(data.appInfo.iconId).assertLarger(0);
@@ -159,7 +159,7 @@ export default function getBundleInfoForSelf() {
         expect(data.appInfo.description).assertEqual("$string:description_application");
         expect(data.appInfo.descriptionId).assertLarger(0);
         expect(data.appInfo.enabled).assertTrue();
-        expect(data.appInfo.label).assertEqual("$string:app_name");
+        expect(data.appInfo.label).assertEqual("$string:entry_label");
         expect(data.appInfo.labelId).assertLarger(0);
         expect(data.appInfo.icon).assertEqual("$media:icon");
         expect(data.appInfo.iconId).assertLarger(0);
@@ -1172,7 +1172,7 @@ export default function getBundleInfoForSelf() {
       expect(data.appInfo.description).assertEqual("$string:description_application");
       expect(data.appInfo.descriptionId).assertLarger(0);
       expect(data.appInfo.enabled).assertTrue();
-      expect(data.appInfo.label).assertEqual("$string:app_name");
+      expect(data.appInfo.label).assertEqual("$string:entry_label");
       expect(data.appInfo.labelId).assertLarger(0);
       expect(data.appInfo.icon).assertEqual("$media:icon");
       expect(data.appInfo.iconId).assertLarger(0);
@@ -1656,7 +1656,7 @@ export default function getBundleInfoForSelf() {
       expect(data.appInfo.description).assertEqual("$string:description_application");
       expect(data.appInfo.descriptionId).assertLarger(0);
       expect(data.appInfo.enabled).assertTrue();
-      expect(data.appInfo.label).assertEqual("$string:app_name");
+      expect(data.appInfo.label).assertEqual("$string:entry_label");
       expect(data.appInfo.labelId).assertLarger(0);
       expect(data.appInfo.icon).assertEqual("$media:icon");
       expect(data.appInfo.iconId).assertLarger(0);
