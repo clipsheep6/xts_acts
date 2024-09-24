@@ -220,8 +220,12 @@ import textSpanFontTest from './textTest/textSpanFont.test';
 import search_gesture from './SearchTest/search_gesture.test';
 import text_drag from './textTest/text_drag.test';
 import textAreaOnCaretAndKeyboardTest from './TextAreaTest/textAreaOnCaretAndKeyboard.test';
+import ImageAdvancedTest from './imageTest/ImageAdvancedTest.test.ets'
+import ImageAnimatorAdvancedTest from './ImageAnimator/imageAnimatorAdvancedTest.test.ets'
 
 export default function testsuite() {
+  ImageAdvancedTest()
+  ImageAnimatorAdvancedTest()
   ToggleJsunit();
   stageFontTest();
   stageMediaquery();

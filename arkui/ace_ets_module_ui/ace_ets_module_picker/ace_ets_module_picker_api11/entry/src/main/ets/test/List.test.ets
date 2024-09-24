@@ -62,6 +62,8 @@ import systempromptJsunit from './SystempromptJsunit.test';
 import TextPickerJsunit from './TextPicker/TextPickerJsunit.test';
 import TimePickerJsunit from './TimePickerTest/TimePickerJsunit.test';
 import timeStampJsunit from './TimePickerTest/TimeStampJsunit.test';
+import RatingAdvancedTest from './RatingTest/RatingAdvanced.test'
+import SliderInterfaceTest from './slider/sliderInterfaceTest.test'
 import datePickerUIJsunit from './DatePickerTest/datePickerUIJsunit.test';
 
 
@@ -122,4 +124,6 @@ export default function testsuite() {
   TimePickerJsunit();
   timeStampJsunit();
   datePickerUIJsunit();
+  RatingAdvancedTest()
+  SliderInterfaceTest()
 }
