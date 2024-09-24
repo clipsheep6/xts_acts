@@ -163,5 +163,51 @@ export default function showAssetsCreationDialogTest() {
       await showAssetCreationDialog(done, testNum, fileUriList, photoCreationConfigs, true);
     })
 
+    /**
+     * @tc.number    : Sub_PhotoAccess_Helper_Show_Creations_Dialog_003
+     * @tc.name      : show_asset_create_dialog_003
+     * @tc.desc      : show dialog to add mediaLibrary resource: no title
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it("show_asset_create_dialog_003", 0, async (done: Function) => {
+      const testNum = "show_asset_create_dialog_003";
+      let fileUriList: Array<string> = [
+        "file://ohos.acts.multimedia.photoaccess/data/storage/el2/base/haps/phone/photos/test_mov_1.jpg"
+      ];
+      let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+        {
+          fileNameExtension: 'jpg',
+          photoType: photoAccessHelper.PhotoType.IMAGE,
+          subtype: photoAccessHelper.PhotoSubtype.DEFAULT,
+        }
+      ];
+      await showAssetCreationDialog(done, testNum, fileUriList, photoCreationConfigs, true);
+    })
+
+    /**
+     * @tc.number    : Sub_PhotoAccess_Helper_Show_Creations_Dialog_004
+     * @tc.name      : show_asset_create_dialog_004
+     * @tc.desc      : show dialog to add mediaLibrary resource: no subtype
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it("show_asset_create_dialog_004", 0, async (done: Function) => {
+      const testNum = "show_asset_create_dialog_004";
+      let fileUriList: Array<string> = [
+        "file://ohos.acts.multimedia.photoaccess/data/storage/el2/base/haps/phone/photos/test_mov_1.jpg"
+      ];
+      let photoCreationConfigs: Array<photoAccessHelper.PhotoCreationConfig> = [
+        {
+          title: 'showAssetsCreationDialogTest',
+          fileNameExtension: 'jpg',
+          photoType: photoAccessHelper.PhotoType.IMAGE
+        }
+      ];
+      await showAssetCreationDialog(done, testNum, fileUriList, photoCreationConfigs, true);
+    })
+
   })
 }
