@@ -13,32 +13,11 @@
 
 import("//build/ohos.gni")
 import("//test/xts/tools/build/suite.gni")
-ohos_js_hap_suite("ActsUdmfNapiEtsTest") {
-  hap_profile = "./entry/src/main/config.json"
-  deps = [
-    ":ace_third_ets_assets",
-    ":ace_third_ets_resources",
-    ":ace_third_ets_test_assets",
-  ]
-  ets2abc = true
+ohos_js_app_suite("ActsUdmfNapiEtsTest") {
+  test_hap = true
+  testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsUdmfNapiEtsTest"
   subsystem_name = "distributeddatamgr"
   part_name = "udmf"
-  shared_libraries = [
-    "./entry/src/main/cpp:UdmfNdk",
-    "./entry/src/main/cpp:UdsNdk",
-    "./entry/src/main/cpp:UtdNdk",
-  ]
-}
-
-ohos_js_assets("ace_third_ets_assets") {
-  source_dir = "./entry/src/main/ets/MainAbility"
-}
-ohos_js_assets("ace_third_ets_test_assets") {
-  source_dir = "./entry/src/main/ets/TestAbility"
-}
-ohos_resources("ace_third_ets_resources") {
-  sources = [ "./entry/src/main/resources" ]
-  hap_profile = "./entry/src/main/config.json"
 }
