@@ -121,5 +121,18 @@ export default function oHPrintTest() {
       let result: number = await entry.oHPrintProperty();
       expect(result).assertEqual(0);
     });
+
+    /**
+     * @tc.number     : SUB_PRINT_FWK_OH_PRINT_TEST_0900
+     * @tc.name       : testOHPrint009
+     * @tc.desc       : test oHPrintStartPrintByNative
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testOHPrint009', 0, async () => {
+      let result: number = await entry.oHPrintStartPrintByNative(getContext(this));
+      expect(result).assertEqual(0);
+    });
   })
 }
