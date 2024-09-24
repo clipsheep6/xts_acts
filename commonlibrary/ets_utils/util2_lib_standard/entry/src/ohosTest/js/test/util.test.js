@@ -9325,9 +9325,9 @@ describe('DecodeEncodeTest', function () {
     })
 
     /**
-     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0001
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STRINGDECODER_0100
      * @tc.name: testwrite001
-     * @tc.desc:  Returns a decoded string, ensuring that any incomplete multibyte characters at the end of the Uint8Array are
+     * @tc.desc: Returns a decoded string, ensuring that any incomplete multibyte characters at the end of the Uint8Array are
      * comitted from the returned string and stored in an internal buffer.
      * @tc.size: MediumTest
      * @tc.type: Function
@@ -9342,7 +9342,7 @@ describe('DecodeEncodeTest', function () {
     });
 
     /**
-     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0002
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STRINGDECODER_0200
      * @tc.name: testwrite002
      * @tc.desc: Returns a decoded string, ensuring that any incomplete multibyte characters at the end of the Uint8Array are
      * comitted from the returned string and stored in an internal buffer.
@@ -9357,7 +9357,7 @@ describe('DecodeEncodeTest', function () {
     });
 
     /**
-     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_00013
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STRINGDECODER_0300
      * @tc.name: testwrite003
      * @tc.desc:  Returns a decoded string, ensuring that any incomplete multibyte characters at the end of the Uint8Array are
      * comitted from the returned string and stored in an internal buffer.
@@ -9373,7 +9373,7 @@ describe('DecodeEncodeTest', function () {
     });
 
     /**
-     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0012
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STRINGDECODER_0400
      * @tc.name: testwrite004
      * @tc.desc:  Returns a decoded string, ensuring that any incomplete multibyte characters at the end of the Uint8Array are
      * comitted from the returned string and stored in an internal buffer.
@@ -9389,7 +9389,7 @@ describe('DecodeEncodeTest', function () {
     });
 
     /**
-     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0010
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STRINGDECODER_0500
      * @tc.name: testwrite005
      * @tc.desc:  Returns a decoded string, ensuring that any incomplete multibyte characters at the end of the Uint8Array are
      * comitted from the returned string and stored in an internal buffer.
@@ -9405,7 +9405,7 @@ describe('DecodeEncodeTest', function () {
     });
 
     /**
-     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0011
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STRINGDECODER_0600
      * @tc.name: testwrite006
      * @tc.desc:  Returns a decoded string, ensuring that any incomplete multibyte characters at the end of the Uint8Array are
      * comitted from the returned string and stored in an internal buffer.
@@ -9421,7 +9421,7 @@ describe('DecodeEncodeTest', function () {
     });
 
     /**
-     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0003
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STRINGDECODER_0700
      * @tc.name: testend001
      * @tc.desc: Returns any remaining input stored in the internal buffer as a string.
      * @tc.size: MediumTest
@@ -9436,7 +9436,7 @@ describe('DecodeEncodeTest', function () {
     });
 
     /**
-     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0004
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STRINGDECODER_0800
      * @tc.name: testend002
      * @tc.desc: Returns any remaining input stored in the internal buffer as a string.
      * @tc.size: MediumTest
@@ -9450,7 +9450,7 @@ describe('DecodeEncodeTest', function () {
     });
 
     /**
-     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0005
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_STRINGDECODER_0900
      * @tc.name: testend003
      * @tc.desc: Returns any remaining input stored in the internal buffer as a string.
      * @tc.size: MediumTest
@@ -9465,7 +9465,7 @@ describe('DecodeEncodeTest', function () {
     });
 
     /**
-     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_01006
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_1000
      * @tc.name: testend004
      * @tc.desc: Returns any remaining input stored in the internal buffer as a string.
      * @tc.size: MediumTest
@@ -9479,6 +9479,58 @@ describe('DecodeEncodeTest', function () {
       const decodeend = decoder.end(input.slice(5));
       expect(decoded).assertEqual('你');
       expect(decodeend).assertEqual('好');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_1100
+     * @tc.name: testwrite007
+     * @tc.desc: Returns a decoded string.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it("testwrite007", 0, function () {
+        let decoder = new util.StringDecoder('utf-8');
+        let input = new Uint8Array([228,189,160,0,0,229,165,189,0]);
+        const decoded = decoder.write(input);
+        expect(decoded).assertEqual('你\u0000\u0000好\u0000');
+        expect(decoded.length).assertEqual(5);
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_1200
+     * @tc.name: testwrite008
+     * @tc.desc: Returns a decoded string.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it("testwrite008", 0, function () {
+        let decoder = new util.StringDecoder('utf-8');
+        let input = new Uint8Array([228,189,160,0,0,229]);
+        const decoded = decoder.write(input);
+        expect(decoded).assertEqual('你\u0000\u0000');
+        let uint8 = new Uint8Array([165,189,0]);
+        const resStr = decoder.end(uint8);
+        expect(resStr).assertEqual('好\u0000');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_1300
+     * @tc.name: testwrite009
+     * @tc.desc: Returns a decoded string.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it("testwrite009", 0, function () {
+        let decoder = new util.StringDecoder('utf-8');
+        let input = new Uint8Array([0,228,189,160,0,229,165]);
+        const decoded = decoder.write(input);
+        expect(decoded).assertEqual('\u0000你\u0000');
+        let uint8 = new Uint8Array([189]);
+        const resStr = decoder.end(uint8);
+        expect(resStr).assertEqual('好');
     });
 })
 }

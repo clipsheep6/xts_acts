@@ -2417,4 +2417,58 @@ describe('XmlSerializerXmlPullParserTest', function () {
             expect(e.code).assertEqual(401);
         }
     })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10100
+     * @tc.name: testSetCDATA006
+     * @tc.desc: Writes the CDATA.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetCDATA006', 0, function () {
+        const myMAX = 2048;
+        var arrayBuffer = new ArrayBuffer(myMAX);
+        var thatSer = new xml.XmlSerializer(arrayBuffer);
+        thatSer.setCDATA(']]>')
+        let uint8 = new Uint8Array(arrayBuffer);
+        let result = util.TextDecoder.create().decodeWithStream(uint8);
+        expect(result.trim()).assertEqual('<![CDATA[]]]]><![CDATA[>]]>');
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10200
+     * @tc.name: testSetCDATA007
+     * @tc.desc: Writes the CDATA.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetCDATA007', 0, function () {
+        const myMAX = 2048;
+        var arrayBuffer = new ArrayBuffer(myMAX);
+        var thatSer = new xml.XmlSerializer(arrayBuffer);
+        thatSer.setCDATA('<![CDATA[]]>')
+        let uint8 = new Uint8Array(arrayBuffer);
+        let result = util.TextDecoder.create().decodeWithStream(uint8);
+        expect(result.trim()).assertEqual('<![CDATA[<![CDATA[]]]]><![CDATA[>]]>');
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_10300
+     * @tc.name: testSetCDATA008
+     * @tc.desc: Writes the CDATA.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testSetCDATA008', 0, function () {
+        const myMAX = 2048;
+        var arrayBuffer = new ArrayBuffer(myMAX);
+        var thatSer = new xml.XmlSerializer(arrayBuffer);
+        thatSer.setCDATA(']]>]]>')
+        let uint8 = new Uint8Array(arrayBuffer);
+        let result = util.TextDecoder.create().decodeWithStream(uint8);
+        expect(result.trim()).assertEqual('<![CDATA[]]]]><![CDATA[>]]]]><![CDATA[>]]>');
+    })
 })}
