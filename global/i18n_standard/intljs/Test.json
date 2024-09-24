@@ -25,6 +25,8 @@
         {
             "type": "ShellKit",
             "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
                 "chmod 644 /system/usr/ohos_locale_config/white_languages.xml"
             ]
         }
