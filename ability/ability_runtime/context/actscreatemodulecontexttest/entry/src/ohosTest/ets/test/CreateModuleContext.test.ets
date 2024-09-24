@@ -16,6 +16,7 @@
 import { describe, it, expect } from "@ohos/hypium";
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
+import application from '@ohos.app.ability.application';
 
 let createModuleContext:common.Context | null;
 let bundleName:string;
@@ -257,6 +258,63 @@ export default function actsCreateModuleContextTest() {
       }
 
       expect(createModuleContext).assertEqual(null);
+      done();
+    });
+
+    /**
+     * @tc.number: SUB_AA_CreateModuleContext_1100
+     * @tc.name: AbilityStageContext calls createModuleContext, and the incoming moduleName is undefined
+     * @tc.desc: Verify that the context of the application can not be obtained
+     * @tc.level: 3
+     */
+    it("SUB_AA_CreateModuleContext_1100", 0, async (done:Function) => {
+      console.info("SUB_AA_CreateModuleContext_1000 begin");
+
+      moduleContext = null;
+
+      try {
+        application.createModuleContext(globalThis.abilityStageContext, undefined).then((data: Context)=>{
+          moduleContext = data;
+        }).catch((err : BusinessError)=>{
+          let e:string = err.toString();
+          let errLog = "Parse param moduleName failed, moduleName must be string."
+          expect(e.indexOf(errLog) >= 0).assertTrue();
+          console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+        })
+      } catch (error) {
+        console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+      }
+
+      expect(createModuleContext).assertEqual(null);
+      done();
+    });
+
+    /**
+     * @tc.number: SUB_AA_CreateModuleContext_1200
+     * @tc.name: AbilityStageContext calls createModuleContext, and the incoming moduleName is undefined
+     * @tc.desc: Verify that the context of the application can not be obtained
+     * @tc.level: 3
+     */
+    it("SUB_AA_CreateModuleContext_1200", 0, async (done:Function) => {
+      console.info("SUB_AA_CreateModuleContext_1000 begin");
+
+      moduleContext = null;
+
+      try {
+        application.createModuleContext(globalThis.abilityStageContext, 'entry_test').then((data: Context)=>{
+          moduleContext = data;
+          expect(createModuleContext).assertTrue(null);
+        }).catch((err : BusinessError)=>{
+          let e:string = err.toString();
+          let errLog = "Parse param moduleName failed, moduleName must be string."
+          expect(e.indexOf(errLog) >= 0).assertTrue();
+          console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+        })
+      } catch (error) {
+        console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+      }
+
+      
       done();
     });
   });
