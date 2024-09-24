@@ -5,7 +5,7 @@
         "test-timeout": "300000",
         "shell-timeout": "300000",
         "bundle-name": "com.example.uiabilitycontexttest",
-        "module-name": "entryTest",
+        "module-name": "entry_test",
         "testcase-timeout": 5000
     },
     "kits": [
