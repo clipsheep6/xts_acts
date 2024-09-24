@@ -26,451 +26,451 @@ import router from '@ohos.router'
 import udmfType from '@ohos.data.uniformTypeDescriptor';
 
 class AlphabetIndexerModifier implements AttributeModifier<AlphabetIndexerAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: AlphabetIndexerAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class BadgeModifier implements AttributeModifier<BadgeAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: BadgeAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class BlankModifier implements AttributeModifier<BlankAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: BlankAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ButtonModifier implements AttributeModifier<ButtonAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ButtonAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class CalendarPickerModifier implements AttributeModifier<CalendarPickerAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: CalendarPickerAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class CheckboxModifier implements AttributeModifier<CheckboxAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: CheckboxAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class CheckboxGroupModifier implements AttributeModifier<CheckboxGroupAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: CheckboxGroupAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ColumnModifier implements AttributeModifier<ColumnAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ColumnAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ColumnSplitModifier implements AttributeModifier<ColumnSplitAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ColumnSplitAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class CounterModifier implements AttributeModifier<CounterAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: CounterAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class DataPanelModifier implements AttributeModifier<DataPanelAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: DataPanelAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class DatePickerModifier implements AttributeModifier<DatePickerAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: DatePickerAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class DividerModifier implements AttributeModifier<DividerAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: DividerAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class EffectComponentModifier implements AttributeModifier<EffectComponentAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: EffectComponentAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class FlexModifier implements AttributeModifier<FlexAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: FlexAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class FlowItemModifier implements AttributeModifier<FlowItemAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: FlowItemAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class FormComponentModifier implements AttributeModifier<FormComponentAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: FormComponentAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class FormLinkModifier implements AttributeModifier<FormLinkAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: FormLinkAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class GaugeModifier implements AttributeModifier<GaugeAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: GaugeAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class GridModifier implements AttributeModifier<GridAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: GridAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class GridColModifier implements AttributeModifier<GridColAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: GridColAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class GridItemModifier implements AttributeModifier<GridItemAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: GridItemAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class GridRowModifier implements AttributeModifier<GridRowAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: GridRowAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class HyperlinkModifier implements AttributeModifier<HyperlinkAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: HyperlinkAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ImageAnimatorModifier implements AttributeModifier<ImageAnimatorAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ImageAnimatorAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ImageSpanModifier implements AttributeModifier<ImageSpanAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ImageSpanAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ImageModifier implements AttributeModifier<ImageAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ImageAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ListModifier implements AttributeModifier<ListAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ListAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ListItemModifier implements AttributeModifier<ListItemAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ListItemAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ListItemGroupModifier implements AttributeModifier<ListItemGroupAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ListItemGroupAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class LoadingProgressModifier implements AttributeModifier<LoadingProgressAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: LoadingProgressAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class MarqueeModifier implements AttributeModifier<MarqueeAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: MarqueeAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class MenuModifier implements AttributeModifier<MenuAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: MenuAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class MenuItemModifier implements AttributeModifier<MenuItemAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: MenuItemAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class MenuItemGroupModifier implements AttributeModifier<MenuItemGroupAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: MenuItemGroupAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class NavDestinationModifier implements AttributeModifier<NavDestinationAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: NavDestinationAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class NavigationModifier implements AttributeModifier<NavigationAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: NavigationAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class NavigatorModifier implements AttributeModifier<NavigatorAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: NavigatorAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class NavRouterModifier implements AttributeModifier<NavRouterAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: NavRouterAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class PatternLockModifier implements AttributeModifier<PatternLockAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: PatternLockAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class PluginComponentModifier implements AttributeModifier<PluginComponentAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: PluginComponentAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class QRCodeModifier implements AttributeModifier<QRCodeAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: QRCodeAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class RadioModifier implements AttributeModifier<RadioAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: RadioAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class RatingModifier implements AttributeModifier<RatingAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: RatingAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class RefreshModifier implements AttributeModifier<RefreshAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: RefreshAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class RelativeContainerModifier implements AttributeModifier<RelativeContainerAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: RelativeContainerAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class RemoteWindowModifier implements AttributeModifier<RemoteWindowAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: RemoteWindowAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class RichEditorModifier implements AttributeModifier<RichEditorAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: RichEditorAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class RichTextModifier implements AttributeModifier<RichTextAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: RichTextAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class RowModifier implements AttributeModifier<RowAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: RowAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class RowSplitModifier implements AttributeModifier<RowSplitAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: RowSplitAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ScrollModifier implements AttributeModifier<ScrollAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ScrollAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ScrollBarModifier implements AttributeModifier<ScrollBarAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ScrollBarAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class SearchModifier implements AttributeModifier<SearchAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: SearchAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class SelectModifier implements AttributeModifier<SelectAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: SelectAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class SideBarContainerModifier implements AttributeModifier<SideBarContainerAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: SideBarContainerAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class SliderModifier implements AttributeModifier<SliderAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: SliderAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class StackModifier implements AttributeModifier<StackAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: StackAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class StepperModifier implements AttributeModifier<StepperAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: StepperAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class StepperItemModifier implements AttributeModifier<StepperItemAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: StepperItemAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class SwiperModifier implements AttributeModifier<SwiperAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: SwiperAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class TabContentModifier implements AttributeModifier<TabContentAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: TabContentAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class TabsModifier implements AttributeModifier<TabsAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: TabsAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class TextModifier implements AttributeModifier<TextAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: TextAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class TextAreaModifier implements AttributeModifier<TextAreaAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: TextAreaAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class TextClockModifier implements AttributeModifier<TextClockAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: TextClockAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class TextInputModifier implements AttributeModifier<TextInputAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: TextInputAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class TextPickerModifier implements AttributeModifier<TextPickerAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: TextPickerAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class TextTimerModifier implements AttributeModifier<TextTimerAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: TextTimerAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class TimePickerModifier implements AttributeModifier<TimePickerAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: TimePickerAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class ToggleModifier implements AttributeModifier<ToggleAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: ToggleAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class UIExtensionComponentModifier implements AttributeModifier<UIExtensionComponentAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: UIExtensionComponentAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class WaterFlowModifier implements AttributeModifier<WaterFlowAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: WaterFlowAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class WebModifier implements AttributeModifier<WebAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: WebAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
 }
 class XComponentModifier implements AttributeModifier<XComponentAttribute> {
-  mAllowDrop: UniformDataType[] = this.mAllowDrop;
+  mAllowDrop: UniformDataType[] = [];
   applyNormalAttribute(instance: XComponentAttribute): void {
     instance.allowDrop(this.mAllowDrop)
   }
@@ -554,17 +554,17 @@ struct allowDropPage {
   @State _allowDropWaterFlowMod: WaterFlowModifier = new WaterFlowModifier()
   @State _allowDropWebMod: WebModifier = new WebModifier()
   @State _allowDropXComponentMod: XComponentModifier = new XComponentModifier()
-  @State targetView: string = router.getParams() ? router.getParams()['view']['targetView'] : ''
-  @State componentKey: string = router.getParams() ? router.getParams()['view']['componentKey'] : ''
-  @State parentWidth: number = router.getParams() ? router.getParams()['view']['parentWidth'] : 0
-  @State parentHeight: number = router.getParams() ? router.getParams()['view']['parentHeight'] : 0
-  @State columns: number = router.getParams() ? router.getParams()['view']['columns'] : 0
-  @State gutter: number = router.getParams() ? router.getParams()['view']['gutter'] : 0
-  @State parentComponentKey: string = router.getParams() ? router.getParams()['view']['parentComponentKey'] : ''
+  @State targetView: string = router.getParams() ? (router.getParams() as ESObject)['view']['targetView'] : ''
+  @State componentKey: string = router.getParams() ? (router.getParams() as ESObject)['view']['componentKey'] : ''
+  @State parentWidth: number = router.getParams() ? (router.getParams() as ESObject)['view']['parentWidth'] : 0
+  @State parentHeight: number = router.getParams() ? (router.getParams() as ESObject)['view']['parentHeight'] : 0
+  @State columns: number = router.getParams() ? (router.getParams() as ESObject)['view']['columns'] : 0
+  @State gutter: number = router.getParams() ? (router.getParams() as ESObject)['view']['gutter'] : 0
+  @State parentComponentKey: string = router.getParams() ? (router.getParams() as ESObject)['view']['parentComponentKey'] : ''
 
   onPageShow() {
     console.info('22222 translate page show called ')
-    attrsManager.registerDataChange(value => {
+    attrsManager.registerDataChange((value: ESObject) => {
       console.info('22222 [registerDataChange] ' + JSON.stringify(value.allowDrop))
       this._allowDropAlphabetIndexerMod.mAllowDrop =  value.allowDrop
       this._allowDropBadgeMod.mAllowDrop =  value.allowDrop
@@ -835,7 +835,7 @@ struct allowDropPage {
             direction: GridRowDirection.Row
           }) {
             ForEach([Color.Red, Color.Orange, Color.Yellow, Color.Green,
-            Color.Pink, Color.Grey, Color.Blue, Color.Brown], (color) => {
+            Color.Pink, Color.Grey, Color.Blue, Color.Brown], (color: Color) => {
               GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
                 Row().width('100%').height('20vp')
               }.borderColor(color).borderWidth(2)
@@ -911,19 +911,19 @@ struct allowDropPage {
         } else if (this.targetView == 'Scroll') {
           Scroll() {
             Column() {
-              ForEach([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], (item) => {
+              ForEach([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], (item: number) => {
                 Text('Scroll' + item.toString())
                   .width('90%')
                   .height(50)
                   .backgroundColor(Color.White)
                   .textAlign(TextAlign.Center)
-              }, item => item)
+              }, (item: number) => item.toString())
             }.width('100%')
           }.scrollBar(BarState.On).commonStyle().attributeModifier(this._allowDropScrollMod)
         } else if (this.targetView == 'SideBarContainer') {
           SideBarContainer(SideBarContainerType.Embed) {
             Column() {
-              ForEach([1, 2, 3], (item) => {
+              ForEach([1, 2, 3], (item: number) => {
                 Column({ space: 5 }) {
                   Image($r('app.media.icon')).width(50).height(50)
                   Text('Index0' + item).fontSize(25)
@@ -942,7 +942,7 @@ struct allowDropPage {
           Swiper() {
             ForEach([1, 2, 3], (item: string) => {
               Text('Swiper' + item).width('90%').height(50)
-            }, item => item)
+            }, (item: number) => item.toString())
           }
           .indicator(true)
           .backgroundColor(Color.White)
@@ -971,7 +971,7 @@ struct allowDropPage {
                     .objectFit(ImageFit.Fill)
                 }
               }
-            }, item => item)
+            }, (item: number) => item.toString())
           }.commonStyle().attributeModifier(this._allowDropWaterFlowMod)
         } else if (this.targetView == 'StepperItem') {
           Stepper() {
@@ -1014,7 +1014,7 @@ struct allowDropPage {
               }
               .commonStyle().attributeModifier(this._allowDropFlowItemMod)
               .backgroundColor(Color.Yellow)
-            }, item => item)
+            }, (item: number) => item.toString())
           }
           .backgroundColor(Color.Pink)
           .width('100%')

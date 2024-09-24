@@ -15,11 +15,11 @@
 
 @Component
 export struct NavigationView {
-  private arr: number[] = [0, 1, 2, 3]
-  @State isActive: boolean = false
-  @State dex: number = 0
+  private arr: number[] = [0, 1, 2, 3];
+  @State isActive: boolean = false;
+  @State index: number = 0;
   @Link _position: Position;
-  private componentKey: string;
+  private componentKey: string = '';
 
   build() {
     Navigation() {
@@ -36,7 +36,7 @@ export struct NavigationView {
               }
               .width(180)
               .height(72)
-              .backgroundColor(this.dex === index ? '#ccc' : '#fff')
+              .backgroundColor(this.index === index ? '#ccc' : '#fff')
               .borderRadius(24)
 
               NavDestination() {
@@ -51,10 +51,10 @@ export struct NavigationView {
               .title(`NavDestination${item + 1}`)
             }.onStateChange((isActivated: boolean) => {
               console.info('isActivated = ' + isActivated);
-              this.dex = index
+              this.index = index
             })
           }
-        }, item => item)
+        }, (item: number) => item.toString())
       }
       .height('100%')
       .width('100%')
