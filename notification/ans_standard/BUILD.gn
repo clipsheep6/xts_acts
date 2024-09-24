@@ -16,6 +16,7 @@ group("ans_standard") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "actsEmergencyNotificationTest:ActsEmergencyNotificationTest",
       "actsNotificationBadgeTest:ActsNotificationBadgeTest",
       "actsNotificationDistributedTest:ActsNotificationDistributedTest",
       "actsNotificationEmitterNewTest:ActsNotificationEmitterNewTest",
