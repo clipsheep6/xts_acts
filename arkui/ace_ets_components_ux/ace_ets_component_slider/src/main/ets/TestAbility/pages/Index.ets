@@ -985,6 +985,176 @@ struct SliderTest {
           .key('ArkUX_Stage_Slider_blockStyle_1400')
           .blockStyle(this.sliderShapeCircle)
           .size(null)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_1000')
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_1101')
+          .sliderInteractionMode(SliderInteraction.SLIDE_AND_CLICK)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_1102')
+          .sliderInteractionMode(SliderInteraction.SLIDE_ONLY)
+          
+        Slider({
+            value: this.inSetValueOne,
+            min: 0,
+            max: 100,
+            style: SliderStyle.InSet
+        })
+            .key('ArkUX_Stage_Slider_sliderInteractionMode_1103')
+            .sliderInteractionMode(5)
+        
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_1201')
+          .sliderInteractionMode(true)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_1202')
+          .sliderInteractionMode(false)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_1300')
+          .sliderInteractionMode(undefined)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_1400')
+          .sliderInteractionMode(-1)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_s1100')
+          .sliderInteractionMode("SliderInteraction.SLIDE_ONLY")
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_s1101')
+          .sliderInteractionMode("true")
+              
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_s1200')
+          .sliderInteractionMode("false")
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_sliderInteractionMode_s1300')
+          .sliderInteractionMode("SliderInteraction.SLIDE_ONLY1")
+              
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_minResponsiveDistance_1100')
+          .minResponsiveDistance(10)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_minResponsiveDistance_1101')
+          .minResponsiveDistance(101)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_minResponsiveDistance_1200')
+          .minResponsiveDistance(-10)
+              
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_minResponsiveDistance_1300')
+          .minResponsiveDistance(undefined)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_minResponsiveDistance_s1100')
+          .minResponsiveDistance("10")
+          
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_minResponsiveDistance_s1200')
+          .minResponsiveDistance("-10")
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_minResponsiveDistance_s1300')
+          .minResponsiveDistance("str123")
       }
       .width('100%')
     }
