@@ -8073,6 +8073,126 @@ describe('DecodeEncodeTest', function () {
     })
 
     /**
+     * @tc.number: SUB_COMMONLIBRARY_DEOCDETOSTRING0029
+     * @tc.name: decodeTostring0029
+     * @tc.desc: Returns the result of running encoding's decoder.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('decodeTostring0029', 0, function () {
+        let textDecoder = util.TextDecoder.create('utf-8',{ignoreBOM:true, fatal:true});
+        let uint8 = new Uint8Array([0xEF,0xBB,0xBF,228,189,160,229,165,189]);;
+        expect(textDecoder.ignoreBOM).assertEqual(true);
+        expect(textDecoder.fatal).assertEqual(true);
+        let resStr = textDecoder.decodeToString(uint8, {stream: true});
+        expect(resStr).assertEqual('你好');
+        expect(resStr.length).assertEqual(2);
+        expect(textDecoder.ignoreBOM).assertEqual(true);
+        expect(textDecoder.fatal).assertEqual(true);
+        resStr = textDecoder.decodeToString(uint8, {stream: true});
+        expect(resStr).assertEqual('你好');
+        expect(resStr.length).assertEqual(2);
+        expect(textDecoder.ignoreBOM).assertEqual(true);
+        expect(textDecoder.fatal).assertEqual(true);
+        resStr = textDecoder.decodeToString(uint8, {stream: true});
+        expect(resStr).assertEqual('你好');
+        expect(resStr.length).assertEqual(2);
+        expect(textDecoder.ignoreBOM).assertEqual(true);
+        expect(textDecoder.fatal).assertEqual(true);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DEOCDETOSTRING0030
+     * @tc.name: decodeTostring0030
+     * @tc.desc: Returns the result of running encoding's decoder.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('decodeTostring0030', 0, function () {
+        let textDecoder = util.TextDecoder.create('utf-8',{ignoreBOM:false, fatal:false});
+        let uint8 = new Uint8Array([0xEF,0xBB,0xBF,228,189,160,229,165,189]);;
+        expect(textDecoder.ignoreBOM).assertEqual(false);
+        expect(textDecoder.fatal).assertEqual(false);
+        let resStr = textDecoder.decodeToString(uint8, {stream: true});
+        expect(resStr).assertEqual('\uFEFF你好');
+        expect(resStr.length).assertEqual(3);
+        expect(textDecoder.ignoreBOM).assertEqual(false);
+        expect(textDecoder.fatal).assertEqual(false);
+        resStr = textDecoder.decodeToString(uint8, {stream: true});
+        expect(resStr).assertEqual('\uFEFF你好');
+        expect(resStr.length).assertEqual(3);
+        expect(textDecoder.ignoreBOM).assertEqual(false);
+        expect(textDecoder.fatal).assertEqual(false);
+        resStr = textDecoder.decodeToString(uint8, {stream: true});
+        expect(resStr).assertEqual('\uFEFF你好');
+        expect(resStr.length).assertEqual(3);
+        expect(textDecoder.ignoreBOM).assertEqual(false);
+        expect(textDecoder.fatal).assertEqual(false);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DEOCDETOSTRING0031
+     * @tc.name: decodeTostring0031
+     * @tc.desc: Returns the result of running encoding's decoder.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('decodeTostring0031', 0, function () {
+        let textDecoder = util.TextDecoder.create('utf-8',{ignoreBOM:true, fatal:true});
+        let uint8 = new Uint8Array([0xEF,0xBB,0xBF,228,189,160,229,165,189]);
+        expect(textDecoder.ignoreBOM).assertEqual(true);
+        expect(textDecoder.fatal).assertEqual(true);
+        let resStr = textDecoder.decodeToString(uint8);
+        expect(resStr).assertEqual('你好');
+        expect(resStr.length).assertEqual(2);
+        expect(textDecoder.ignoreBOM).assertEqual(true);
+        expect(textDecoder.fatal).assertEqual(true);
+        resStr = textDecoder.decodeToString(uint8);
+        expect(resStr).assertEqual('你好');
+        expect(resStr.length).assertEqual(2);
+        expect(textDecoder.ignoreBOM).assertEqual(true);
+        expect(textDecoder.fatal).assertEqual(true);
+        resStr = textDecoder.decodeToString(uint8);
+        expect(resStr).assertEqual('你好');
+        expect(resStr.length).assertEqual(2);
+        expect(textDecoder.ignoreBOM).assertEqual(true);
+        expect(textDecoder.fatal).assertEqual(true);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DEOCDETOSTRING0032
+     * @tc.name: decodeTostring0032
+     * @tc.desc: Returns the result of running encoding's decoder.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('decodeTostring0032', 0, function () {
+        let textDecoder = util.TextDecoder.create('utf-8',{ignoreBOM:false, fatal:false});
+        let uint8 = new Uint8Array([0xEF,0xBB,0xBF,228,189,160,229,165,189]);
+        expect(textDecoder.ignoreBOM).assertEqual(false);
+        expect(textDecoder.fatal).assertEqual(false);
+        let resStr = textDecoder.decodeToString(uint8);
+        expect(resStr).assertEqual('\uFEFF你好');
+        expect(resStr.length).assertEqual(3);
+        expect(textDecoder.ignoreBOM).assertEqual(false);
+        expect(textDecoder.fatal).assertEqual(false);
+        resStr = textDecoder.decodeToString(uint8);
+        expect(resStr).assertEqual('\uFEFF你好');
+        expect(resStr.length).assertEqual(3);
+        expect(textDecoder.ignoreBOM).assertEqual(false);
+        expect(textDecoder.fatal).assertEqual(false);
+        resStr = textDecoder.decodeToString(uint8);
+        expect(resStr).assertEqual('\uFEFF你好');
+        expect(resStr.length).assertEqual(3);
+        expect(textDecoder.ignoreBOM).assertEqual(false);
+        expect(textDecoder.fatal).assertEqual(false);
+    })
+
+    /**
      * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_001
      * @tc.name: testEncodeInto001
      * @tc.desc: Returns the result of encoder.
