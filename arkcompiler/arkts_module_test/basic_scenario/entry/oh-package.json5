@@ -26,6 +26,7 @@
     "library3": "file:../library3",
     "har": "file:../har",
     "libentry.so": "file:./src/main/cpp/types/libentry",
-    "@wolfx/json5": "^2.2.3-rc.1"
+    "@wolfx/json5": "^2.2.3-rc.1",
+    "behaviortree": "file:./dependency/behaviortree.har"
   }
 }
