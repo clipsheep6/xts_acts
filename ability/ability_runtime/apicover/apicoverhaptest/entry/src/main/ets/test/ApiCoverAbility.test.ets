@@ -34,6 +34,7 @@ import wantConstant from '@ohos.app.ability.wantConstant';
 import { BusinessError } from '@ohos.base';
 import commonEventManager from '@ohos.commonEventManager';
 import systemParameterEnhance from '@ohos.systemParameterEnhance';
+import wantAgent from '@ohos.app.ability.wantAgent';
 
 let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 let EXTENSION_INFO_ERR = 16000001;
@@ -1167,6 +1168,43 @@ export default function ApiCoverTest() {
         done();
       }
       
+    });
+
+    /*
+     * @tc.number : SUB_Ability_AbilityRuntime_WantAgent_StartServiceExtension_1000
+     * @tc.name   : Call getWantAgent
+     * @tc.desc   : The function call should return error
+     * @tc.size   : LargeTest
+     * @tc.type   : Function
+     * @tc.level  : 3
+     */
+     it('SUB_Ability_AbilityRuntime_WantAgent_StartServiceExtension_1000', 0, async (done: Function) => {
+      let tag = `SUB_Ability_AbilityRuntime_WantAgent_StartServiceExtension_1000`;
+      console.log(`${tag}, test begin`);
+      let wantAgentInfo: wantAgent.WantAgentInfo = {
+        wants: [
+          {
+            bundleName: "ohos.acts.aafwk.test.stagesupplement",
+            abilityName: "MainAbility",
+          }
+        ],
+        actionType: wantAgent.OperationType.START_SERVICE_EXTENSION,
+        requestCode: 0,
+        wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+      };
+
+      wantAgent.getWantAgent(WantAgentInfo, (err, data) => {
+        if (err != null) {
+          console.info(`${TAG} getWantAgent AsyncCallback err: ${err.code} ,message: ${err.message}`)
+          expect(true).assertTrue();
+          done();
+        } else {
+          WantAgent = data;
+          console.info(`${TAG} getWantAgent AsyncCallback success: ${JSON.stringify(data)}`)
+          expect(false).assertTrue();
+          done();
+        }
+      })
     });
   })
 }
