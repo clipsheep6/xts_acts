@@ -14,13 +14,10 @@
 import("//test/xts/tools/build/suite.gni")
 
 ohos_app_assist_suite("ActsUIExtensionExitReasonRely") {
+  test_hap = true
   testonly = true
-  certificate_profile = "./signature/openharmony_sx.p7b"
+  certificate_profile = "signature/openharmony_sx.p7b"
   hap_name = "ActsUIExtensionExitReasonRely"
-
-  # 部件名称，真实数据，需要子系统对应
-  part_name = "ability_runtime"
-
-  # 子系统名称，真实数据，需要部件对应
   subsystem_name = "ability"
+  part_name = "ability_runtime"
 }

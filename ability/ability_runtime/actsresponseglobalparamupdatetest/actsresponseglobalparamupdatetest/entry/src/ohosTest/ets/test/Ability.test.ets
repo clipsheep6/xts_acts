@@ -80,17 +80,17 @@ let commonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
 let subscribeCallBack = (err: BusinessError, data: commonEventManager.CommonEventData) => {
   hilog.info(0x0000, TAG, 'Received %{public}s', data.event);
   hilog.info(0x0000, TAG, 'currentLanguage: %{public}s receivedLanguage: %{public}s',
-    currentLanguage, data.parameters.language);
-  expect(currentLanguage).assertEqual(data.parameters.language);
+    currentLanguage, data);
+  expect(currentLanguage).assertEqual(data);
   hilog.info(0x0000, TAG, 'currentFontSizeScale: %{public}s receivedFontSizeScale: %{public}s',
-    currentFontSizeScale.toString(), data.parameters.fontSizeScale.toString());
-  expect(currentFontSizeScale).assertEqual(data.parameters.fontSizeScale);
+    currentFontSizeScale.toString(), data);
+  expect(currentFontSizeScale).assertEqual(data);
   hilog.info(0x0000, TAG, 'currentFontWeightScale: %{public}s receivedFontWeightScale: %{public}s',
-    currentFontWeightScale.toString(), data.parameters.fontWeightScale.toString());
-  expect(currentFontWeightScale).assertEqual(data.parameters.fontWeightScale);
+    currentFontWeightScale.toString(), data);
+  expect(currentFontWeightScale).assertEqual(data);
   hilog.info(0x0000, TAG, 'currentColorMode: %{public}d receivedColorMode: %{public}d',
-    currentColorMode, data.parameters.colorMode);
-  expect(currentColorMode).assertEqual(data.parameters.colorMode);
+    currentColorMode, data);
+  expect(currentColorMode).assertEqual(data);
 
   if (data.event == 'RelyA_Ability_ConfigurationUpdateEvent') {
     result ^= 2**0;
