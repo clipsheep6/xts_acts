@@ -18,7 +18,6 @@
 #include "hctest.h"
 
 #include "hks_api.h"
-#include "hks_exist_test.h"
 #include "hks_param.h"
 #include "hks_test_api_performance.h"
 #include "hks_test_common.h"
@@ -28,9 +27,6 @@
 #include "ohos_types.h"
 
 #include <unistd.h>
-
-#define TEST_TASK_STACK_SIZE      0x2000
-#define WAIT_TO_TEST_DONE         4
 
 static osPriority_t g_setPriority;
 static const struct HksTestKeyExistParams g_testKeyExistParams[] = {
@@ -47,44 +43,42 @@ static const struct HksTestKeyExistParams g_testKeyExistParams[] = {
  */
 LITE_TEST_SUIT(security, securityData, HksExistTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
     (void)argument;
-    LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
-    LiteTestPrint("HksInitialize End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksInitialize Begin!\n");
+    TEST_ASSERT_EQUAL(0, HksInitialize());
+    HKS_TEST_LOG_I("HksInitialize End!\n");
 }
 
-static void ExecHksExistTest001(void const *argument)
+static void ExecHksExistTest001(__attribute__((unused)) void *argument)
 {
     (void)argument;
     int32_t ret;
-    LiteTestPrint("HksExistTest001 Begin!\n");
+    HKS_TEST_LOG_I("HksExistTest001 Begin!\n");
     struct HksBlob *keyAlias = NULL;
     if (g_testKeyExistParams[0].isGenKey) {
-        TEST_ASSERT_TRUE(TestGenDefaultKeyAndGetAlias(&keyAlias) == 0);
+        TEST_ASSERT_EQUAL(0, TestGenDefaultKeyAndGetAlias(&keyAlias));
         ret = HksKeyExistRun(keyAlias, 1);
-        TEST_ASSERT_TRUE(ret == g_testKeyExistParams[0].expectResult);
-        TEST_ASSERT_TRUE(HksDeleteKey(keyAlias, NULL) == HKS_SUCCESS);
+        TEST_ASSERT_EQUAL(g_testKeyExistParams[0].expectResult, ret);
+        TEST_ASSERT_EQUAL(HKS_SUCCESS, HksDeleteKey(keyAlias, NULL));
     } else {
         ret = TestConstuctBlob(&keyAlias,
                                g_testKeyExistParams[0].keyAliasParams.blobExist,
                                g_testKeyExistParams[0].keyAliasParams.blobSize,
                                g_testKeyExistParams[0].keyAliasParams.blobDataExist,
                                g_testKeyExistParams[0].keyAliasParams.blobDataSize);
-        TEST_ASSERT_TRUE(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
         ret = HksKeyExistRun(keyAlias, 1);
         if (ret != g_testKeyExistParams[0].expectResult) {
             HKS_TEST_LOG_I("HksKeyExistRun 2 failed, ret[%u] = %d", g_testKeyExistParams[0].testId, ret);
         }
-        TEST_ASSERT_TRUE(ret == g_testKeyExistParams[0].expectResult);
+        TEST_ASSERT_EQUAL(g_testKeyExistParams[0].expectResult, ret);
     }
     TestFreeBlob(&keyAlias);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
-    LiteTestPrint("HksExistTest001 End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksExistTest001 End!\n");
 }
 /**
  * @tc.setup: define a setup for test suit, format:"CalcMultiTest + SetUp"
@@ -92,7 +86,7 @@ static void ExecHksExistTest001(void const *argument)
  */
 static BOOL HksExistTestSetUp(void)
 {
-    LiteTestPrint("setup\n");
+    HKS_TEST_LOG_I("setup\n");
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -103,12 +97,10 @@ static BOOL HksExistTestSetUp(void)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
-    if (id == NULL) {
-        printf("Failed to create thread ExecHksInitialize!\n");
-    }
-    osDelay(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksGenerateKeyTestSetUp End2!\n");
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksGenerateKeyTestSetUp End2!\n");
     return TRUE;
 }
 
@@ -118,7 +110,7 @@ static BOOL HksExistTestSetUp(void)
  */
 static BOOL HksExistTestTearDown(void)
 {
-    LiteTestPrint("tearDown\n");
+    HKS_TEST_LOG_I("tearDown\n");
     return TRUE;
 }
 
@@ -139,12 +131,10 @@ LITE_TEST_CASE(HksExistTest, HksExistTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksExistTest001, NULL, &attr);
-    if (id == NULL) {
-        printf("Failed to create thread ExecHksExistTest001!\n");
-    }
-    osDelay(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksExistTest001 End2!\n");
+    id = osThreadNew(ExecHksExistTest001, NULL, &attr);
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksExistTest001 End2!\n");
 }
 RUN_TEST_SUITE(HksExistTest);
 #endif /* _CUT_AUTHENTICATE_ */

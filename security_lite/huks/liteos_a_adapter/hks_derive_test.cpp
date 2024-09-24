@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_derive_test.h"
-
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_test_api_performance.h"
@@ -120,10 +118,10 @@ static int32_t DeriveKey(const struct HksTestDeriveParamSet *deriveParamSetParam
     uint32_t saltSize = deriveParamSetParams->saltSize;
     uint32_t infoSize = deriveParamSetParams->infoSize;
     if (saltSize != 0) {
-        HKS_TEST_ASSERT(TestConstuctBlob(saltData, true, saltSize, true, saltSize) == 0);
+        EXPECT_EQ(0, TestConstuctBlob(saltData, true, saltSize, true, saltSize));
     }
     if (infoSize != 0) {
-        HKS_TEST_ASSERT(TestConstuctBlob(infoData, true, infoSize, true, infoSize) == 0);
+        EXPECT_EQ(0, TestConstuctBlob(infoData, true, infoSize, true, infoSize));
     }
     struct TestDeriveParamSetStructure paramStruct = {
         &deriveParamSet,
@@ -137,7 +135,7 @@ static int32_t DeriveKey(const struct HksTestDeriveParamSet *deriveParamSetParam
         deriveParamSetParams->setIsKeyAlias, deriveParamSetParams->isKeyAlias
     };
     int32_t ret = TestConstructDeriveParamSet(&paramStruct);
-    HKS_TEST_ASSERT(ret == 0);
+    EXPECT_EQ(0, ret);
 
     ret = HksDeriveKeyRun(deriveParamSet, masterKey, derivedKey, 1);
     HksFreeParamSet(&deriveParamSet);
@@ -164,7 +162,7 @@ static int32_t BaseTestDerive(uint32_t index)
                 g_testDeriveParams[index].masterKeyParams.blobDataSize);
         }
     }
-    HKS_TEST_ASSERT(ret == 0);
+    EXPECT_EQ(0, ret);
 
     /* 2. derive */
     struct HksBlob *derivedKey = NULL;
@@ -173,7 +171,7 @@ static int32_t BaseTestDerive(uint32_t index)
         g_testDeriveParams[index].derivedKeyParams.blobSize,
         g_testDeriveParams[index].derivedKeyParams.blobDataExist,
         g_testDeriveParams[index].derivedKeyParams.blobDataSize);
-    HKS_TEST_ASSERT(ret == 0);
+    EXPECT_EQ(0, ret);
 
     struct HksBlob *saltData = NULL;
     struct HksBlob *infoData = NULL;
@@ -181,13 +179,13 @@ static int32_t BaseTestDerive(uint32_t index)
     if (ret != g_testDeriveParams[index].expectResult) {
         HKS_TEST_LOG_I("failed, ret[%u] = %d", g_testDeriveParams[index].testId, ret);
     }
-    HKS_TEST_ASSERT(ret == g_testDeriveParams[index].expectResult);
+    EXPECT_EQ(g_testDeriveParams[index].expectResult, ret);
 
     /* 3. delete key */
     if (!(g_testDeriveParams[index].genKeyParamSetParams.setKeyStorageFlag &&
         (g_testDeriveParams[index].genKeyParamSetParams.keyStorageFlag == HKS_STORAGE_TEMP)) &&
         (g_testDeriveParams[index].keyAliasParams.blobExist)) {
-        HKS_TEST_ASSERT(HksDeleteKey(keyAlias, NULL) == 0);
+        EXPECT_EQ(0, HksDeleteKey(keyAlias, NULL));
     }
     TestFreeBlob(&keyAlias);
     TestFreeBlob(&derivedKey);
@@ -206,7 +204,7 @@ static int32_t BaseTestDerive(uint32_t index)
 HWTEST_F(HksDeriveTest, HksDeriveTest001, TestSize.Level1)
 {
     int32_t ret = BaseTestDerive(0);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 #endif /* _CUT_AUTHENTICATE_ */
 
@@ -218,6 +216,6 @@ HWTEST_F(HksDeriveTest, HksDeriveTest001, TestSize.Level1)
 HWTEST_F(HksDeriveTest, HksDeriveTest002, TestSize.Level1)
 {
     int32_t ret = BaseTestDerive(1);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 }

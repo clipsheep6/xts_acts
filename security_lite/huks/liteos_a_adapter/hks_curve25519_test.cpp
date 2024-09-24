@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_curve25519_test.h"
-
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_test_curve25519.h"
@@ -61,7 +59,7 @@ void HksCurve25519Test::TearDown()
  */
 HWTEST_F(HksCurve25519Test, HksCurve25519Test001, TestSize.Level1)
 {
-    ASSERT_TRUE(TestCurve25519All() == 0);
+    EXPECT_EQ(TestCurve25519All(), 0);
 }
 
 /**
@@ -71,7 +69,7 @@ HWTEST_F(HksCurve25519Test, HksCurve25519Test001, TestSize.Level1)
  */
 HWTEST_F(HksCurve25519Test, HksCurve25519Test002, TestSize.Level1)
 {
-    ASSERT_TRUE(TestEd25519SignTeeVerifyLocal() == 0);
+    EXPECT_EQ(TestEd25519SignTeeVerifyLocal(), 0);
 }
 
 /**
@@ -81,7 +79,7 @@ HWTEST_F(HksCurve25519Test, HksCurve25519Test002, TestSize.Level1)
  */
 HWTEST_F(HksCurve25519Test, HksCurve25519Test003, TestSize.Level1)
 {
-    ASSERT_TRUE(TestCurve25519SignWrong() == 0);
+    EXPECT_EQ(TestCurve25519SignWrong(), 0);
 }
 
 /**
@@ -91,7 +89,7 @@ HWTEST_F(HksCurve25519Test, HksCurve25519Test003, TestSize.Level1)
  */
 HWTEST_F(HksCurve25519Test, HksCurve25519Test004, TestSize.Level1)
 {
-    ASSERT_TRUE(TestCurve25519verifyWrong() == 0);
+    EXPECT_EQ(TestCurve25519verifyWrong(), 0);
 }
 #endif /* _CUT_AUTHENTICATE_ */
 }

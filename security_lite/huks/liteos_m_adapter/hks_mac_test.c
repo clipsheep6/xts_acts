@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-#include "hks_mac_test.h"
-
 #include <hctest.h>
 #include <unistd.h>
 
@@ -31,8 +29,6 @@
 #define HKS_DEFAULT_MAC_SRCDATA_SIZE 253
 #define HKS_DEFAULT_MAC_SHA256_SIZE 32
 
-#define TEST_TASK_STACK_SIZE      0x2000
-#define WAIT_TO_TEST_DONE         4
 #define CAL_ARRAY_SIZE(arr) ((sizeof(arr)) / (sizeof((arr)[0])))
 //*********************************************
 #define SINGLE_PRINT_LENGTH 50
@@ -146,7 +142,11 @@ static int32_t ConstructParamSet(struct HksParamSet **out, const struct HksParam
 static int32_t BaseTestMacAnswer()
 {
     char mainKey[] = "8DD3C70014857C93F2B3B131892BB67662CD7B41D5D0D1E28CC60480975050F6";
-    char msgSource[] = "484A813EA48CD370DEF23EA6C488199BDE801FB1DE7E155C3B4ADBD3459DBBBE3030383532444145463338413436424130413833303336323332383637323334394437454530434135394435303646393139323932433133363633413631433435343230343539443933464537373346393934354644363432373746424132434142384642393936444443314430423937363736464242313234324233393330";
+    char msgSource[] = "484A813EA48CD370DEF23EA6C488199BDE801FB1DE7E155C3B4ADBD3459DBBBE"
+        "3030383532444145463338413436424130413833303336323332383637323334"
+        "3944374545304341353944353036463931393239324331333636334136314334"
+        "3534323034353944393346453737334639393435464436343237374642413243"
+        "4142384642393936444443314430423937363736464242313234324233393330";
     uint8_t mainKeyByte[32] = { 0 };
     uint8_t sourceByte[160] = { 0 };
     uint8_t macByte[32] = { 0 };
@@ -211,12 +211,11 @@ static const struct HksTestMacParams g_testMacParams[] = {
  */
 LITE_TEST_SUIT(security, securityData, HksMacTest);
 
-static void ExecHksInitialize(void const *argument)
+static void ExecHksInitialize(__attribute__((unused)) void *argument)
 {
-    LiteTestPrint("HksInitialize Begin!\n");
-    TEST_ASSERT_TRUE(HksInitialize() == 0);
-    LiteTestPrint("HksInitialize End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksInitialize Begin!\n");
+    TEST_ASSERT_EQUAL(0, HksInitialize());
+    HKS_TEST_LOG_I("HksInitialize End!\n");
 }
 
 /**
@@ -225,7 +224,7 @@ static void ExecHksInitialize(void const *argument)
  */
 static BOOL HksMacTestSetUp()
 {
-    LiteTestPrint("setup\n");
+    HKS_TEST_LOG_I("setup\n");
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -236,9 +235,10 @@ static BOOL HksMacTestSetUp()
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksInitialize, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksMacTestSetUp End2!\n");
+    id = osThreadNew(ExecHksInitialize, NULL, &attr);
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksMacTestSetUp End2!\n");
     return TRUE;
 }
 
@@ -248,7 +248,7 @@ static BOOL HksMacTestSetUp()
  */
 static BOOL HksMacTestTearDown()
 {
-    LiteTestPrint("tearDown\n");
+    HKS_TEST_LOG_I("tearDown\n");
     return TRUE;
 }
 
@@ -260,14 +260,14 @@ static int32_t ConstructDataToBlob(struct HksBlob **srcData, struct HksBlob **ma
         srcDataParams->blobSize,
         srcDataParams->blobDataExist,
         srcDataParams->blobDataSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = TestConstuctBlob(macData,
         macDataParams->blobExist,
         macDataParams->blobSize,
         macDataParams->blobDataExist,
         macDataParams->blobDataSize);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     return ret;
 }
 
@@ -293,7 +293,7 @@ static int32_t Mac(const struct HksBlob *key, const struct HksBlob *srcData, str
         };
         ret = TestConstructMacParamSet(&paramStructFalse);
     }
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = HksMacRun(key, macParamSet, srcData, macData, 1);
     HksFreeParamSet(&macParamSet);
@@ -324,26 +324,26 @@ static int32_t BaseTestMac(uint32_t index)
                 g_testMacParams[index].keyParams.blobDataSize);
         }
     }
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     /* 2. mac */
     struct HksBlob *srcData = NULL;
     struct HksBlob *macData = NULL;
     ret = ConstructDataToBlob(&srcData, &macData,
         &g_testMacParams[index].srcDataParams, &g_testMacParams[index].macParams);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
 
     ret = Mac(key, srcData, macData, &g_testMacParams[index].macParamSetParams, g_testMacParams[index].macType);
     if (ret != g_testMacParams[index].expectResult) {
         HKS_TEST_LOG_I("failed, ret[%u] = %d", g_testMacParams[index].testId, ret);
     }
-    TEST_ASSERT_TRUE(ret == g_testMacParams[index].expectResult);
+    TEST_ASSERT_EQUAL(g_testMacParams[index].expectResult, ret);
 
     /* 3. deletekey */
     if ((g_testMacParams[index].macType == HKS_TEST_MAC_TYPE_TEE) &&
         (g_testMacParams[index].keyAliasParams.blobExist)) {
         ret = HksDeleteKey(key, NULL);
-        TEST_ASSERT_TRUE(ret == 0);
+        TEST_ASSERT_EQUAL(0, ret);
     }
     TestFreeBlob(&key);
     TestFreeBlob(&srcData);
@@ -351,23 +351,21 @@ static int32_t BaseTestMac(uint32_t index)
     return ret;
 }
 
-static void ExecHksMacTest001(void const *argument)
+static void ExecHksMacTest001(__attribute__((unused)) void *argument)
 {
-    LiteTestPrint("HksMacTest001 Begin!\n");
+    HKS_TEST_LOG_I("HksMacTest001 Begin!\n");
     int32_t ret = BaseTestMac(0);
-    TEST_ASSERT_TRUE(ret == 0);
-    LiteTestPrint("HksMacTest001 End!\n");
-    osThreadExit();
+    TEST_ASSERT_EQUAL(0, ret);
+    HKS_TEST_LOG_I("HksMacTest001 End!\n");
 }
 
-static void ExecHksMacTest002(void const *argument)
+static void ExecHksMacTest002(__attribute__((unused)) void *argument)
 {
-    LiteTestPrint("HksMacTest002 Begin!\n");
+    HKS_TEST_LOG_I("HksMacTest002 Begin!\n");
     int32_t ret = BaseTestMac(1);
-    TEST_ASSERT_TRUE(ret == 0);
+    TEST_ASSERT_EQUAL(0, ret);
     ret = BaseTestMacAnswer();
-    LiteTestPrint("HksMacTest002 End!\n");
-    osThreadExit();
+    HKS_TEST_LOG_I("HksMacTest002 End!\n");
 }
 
 /**
@@ -376,7 +374,7 @@ static void ExecHksMacTest002(void const *argument)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksMacTest, HksMacTest001, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -387,9 +385,10 @@ LITE_TEST_CASE(HksMacTest, HksMacTest001, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksMacTest001, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksMacTest001 End2!\n");
+    id = osThreadNew(ExecHksMacTest001, NULL, &attr);
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksMacTest001 End2!\n");
 }
 
 #ifndef _CUT_AUTHENTICATE_
@@ -399,7 +398,7 @@ LITE_TEST_CASE(HksMacTest, HksMacTest001, Level1)
  * @tc.type: FUNC
  */
 LITE_TEST_CASE(HksMacTest, HksMacTest002, Level1)
-{   
+{
     osThreadId_t id;
     osThreadAttr_t attr;
     g_setPriority = osPriorityAboveNormal6;
@@ -410,9 +409,10 @@ LITE_TEST_CASE(HksMacTest, HksMacTest002, Level1)
     attr.stack_mem = NULL;
     attr.stack_size = TEST_TASK_STACK_SIZE;
     attr.priority = g_setPriority;
-    id = osThreadNew((osThreadFunc_t)ExecHksMacTest002, NULL, &attr);
-    sleep(WAIT_TO_TEST_DONE);
-    LiteTestPrint("HksMacTest002 End2!\n");
+    id = osThreadNew(ExecHksMacTest002, NULL, &attr);
+    TEST_ASSERT_NOT_NULL(id);
+    HksWaitForThread(id);
+    HKS_TEST_LOG_I("HksMacTest002 End2!\n");
 }
 #endif /* _CUT_AUTHENTICATE_ */
 

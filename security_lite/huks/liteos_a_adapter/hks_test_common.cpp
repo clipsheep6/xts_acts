@@ -1,0 +1,1 @@
+../liteos_m_adapter/hks_test_common.c

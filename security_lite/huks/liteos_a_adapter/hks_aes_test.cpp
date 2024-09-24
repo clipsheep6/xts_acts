@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_aes_test.h"
-
 #include "securec.h"
 
 #include "hks_api.h"
@@ -61,7 +59,7 @@ void HksAesTest::TearDown()
  */
 HWTEST_F(HksAesTest, HksAesTest001, TestSize.Level1)
 {
-    ASSERT_TRUE(TestAes256ByAgree() == 0);
+    EXPECT_EQ(TestAes256ByAgree(), 0);
 }
 
 /**
@@ -71,7 +69,7 @@ HWTEST_F(HksAesTest, HksAesTest001, TestSize.Level1)
  */
 HWTEST_F(HksAesTest, HksAesTest002, TestSize.Level1)
 {
-    ASSERT_TRUE(TestAes256ByAgree1() == 0);
+    EXPECT_EQ(TestAes256ByAgree1(), 0);
 }
 
 /**
@@ -81,7 +79,7 @@ HWTEST_F(HksAesTest, HksAesTest002, TestSize.Level1)
  */
 HWTEST_F(HksAesTest, HksAesTest003, TestSize.Level1)
 {
-    ASSERT_TRUE(TestAes256ByAgree2() == 0);
+    EXPECT_EQ(TestAes256ByAgree2(), 0);
 }
 #endif /* _CUT_AUTHENTICATE_ */
 

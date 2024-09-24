@@ -15,8 +15,6 @@
 
 #include <gtest/gtest.h>
 
-#include "hks_generate_random_test.h"
-
 #include "hks_api.h"
 #include "hks_param.h"
 #include "hks_test_api_performance.h"
@@ -73,15 +71,15 @@ HWTEST_F(HksGenerateRandomTest, HksGenerateRandomTest001, TestSize.Level1)
         g_testGenRandomParams[0].randomParams.blobSize,
         g_testGenRandomParams[0].randomParams.blobDataExist,
         g_testGenRandomParams[0].randomParams.blobDataSize);
-    HKS_TEST_ASSERT(ret == 0);
+    EXPECT_EQ(0, ret);
 
     ret = HksGenerateRandomRun(random, 1);
     if (ret != g_testGenRandomParams[0].expectResult) {
         HKS_TEST_LOG_I("HksGenerateRandomRun failed, ret[%u] = %d", g_testGenRandomParams[0].testId, ret);
     }
-    HKS_TEST_ASSERT(ret == g_testGenRandomParams[0].expectResult);
+    EXPECT_EQ(g_testGenRandomParams[0].expectResult, ret);
 
     TestFreeBlob(&random);
-    ASSERT_TRUE(ret == 0);
+    EXPECT_EQ(ret, 0);
 }
 }
