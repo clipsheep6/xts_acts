@@ -20,15 +20,34 @@
             "type": "ShellKit",
             "run-command": [
                 "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files/",
-                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files/*"
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files/*",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/temp/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/temp/*",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/cache/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/cache/*",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/*",
+                "power-shell setmode 602"
             ]
         },
         {
             "type": "PushKit",
             "pre-push": [],
             "push": [
-                "./resource/image/CUVAHdr.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
-                "./resource/image/JPEGVividSingle.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files"
+                "./resource/image/JPEGCUVA.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/temp",
+	    	        "./resource/image/CUVAHdr.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/JPEGISOSingle.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/ISOHEIFHDR.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/JPEGVividSingle.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/VIVIDHEIF1.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/test.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/test.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/test.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/test.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/test.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files",
+                "./resource/image/SVG.svg ->/data/app/el2/100/base/ohos.acts.multimedia.image.image/haps/entry_test/files"
             ]
         }
     ]
